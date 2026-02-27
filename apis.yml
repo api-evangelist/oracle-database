@@ -1,0 +1,140 @@
+name: Oracle Database APIs
+description: APIs and interfaces for Oracle Database management, querying, and administration
+image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+created: 2024-01-20 00:00:00+00:00
+modified: 2024-01-20 00:00:00+00:00
+specificationVersion: '0.18'
+url: https://www.oracle.com/database/apis.json
+apis:
+- name: Oracle REST Data Services (ORDS)
+  description: RESTful API development and data access for Oracle Database
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://www.oracle.com/database/technologies/appdev/rest.html
+  baseUrl: https://example.oracle.com/ords/
+  tags:
+  - REST
+  - SQL
+  - Database
+  - Data Access
+  properties:
+  - type: OpenAPI
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  contact:
+  - FN: Oracle Support
+    email: support@oracle.com
+    url: https://support.oracle.com
+- name: Oracle Database API for MongoDB
+  description: MongoDB-compatible API for Oracle Database
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://www.oracle.com/database/mongodb-api/
+  baseUrl: https://example.oracle.com:27017/
+  tags:
+  - MongoDB
+  - NoSQL
+  - JSON
+  - Database
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/mongodb-api/
+  - type: Getting Started
+    url: https://www.oracle.com/database/mongodb-api/get-started/
+  contact:
+  - FN: Oracle Support
+    email: support@oracle.com
+- name: Oracle Cloud Infrastructure Database API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://docs.oracle.com/iaas/database/
+  baseUrl: https://database.{region}.oraclecloud.com/
+  tags:
+  - Cloud
+  - Database Management
+  - Infrastructure
+  - Autonomous Database
+  properties:
+  - type: OpenAPI
+    url: https://docs.oracle.com/iaas/api/#/en/database/
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDK
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: API Reference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  contact:
+  - FN: Oracle Cloud Support
+    email: cloud-support@oracle.com
+    url: https://support.oracle.com
+- name: Oracle Database JDBC
+  description: Java Database Connectivity API for Oracle Database
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://www.oracle.com/database/technologies/appdev/jdbc.html
+  tags:
+  - Java
+  - JDBC
+  - Database Driver
+  - SQL
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-database/21/jjdbc/
+  - type: Downloads
+    url: https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
+  - type: GitHub
+    url: https://github.com/oracle/oracle-db-examples/tree/master/java
+- name: Oracle Call Interface (OCI)
+  description: C/C++ API for Oracle Database access
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://www.oracle.com/database/technologies/appdev/oci.html
+  tags:
+  - C
+  - C++
+  - Database Driver
+  - Native API
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-database/21/lnoci/
+  - type: Programming Guide
+    url: https://docs.oracle.com/en/database/oracle/oracle-database/21/lnoci/introduction.html
+- name: Oracle SQL Developer REST API
+  description: RESTful services for Oracle SQL Developer
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://www.oracle.com/database/sqldeveloper/
+  tags:
+  - Development Tools
+  - REST
+  - SQL
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/sql-developer/
+  - type: User Guide
+    url: https://docs.oracle.com/en/database/oracle/sql-developer/latest/
+- name: Oracle SODA (Simple Oracle Document Access)
+  description: NoSQL-style document API for Oracle Database
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  tags:
+  - NoSQL
+  - JSON
+  - Document Database
+  - REST
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+maintainers:
+- FN: Oracle Corporation
+  email: info@oracle.com
+  url: https://www.oracle.com
+tags:
+- Database
+- SQL
+- Oracle
+- REST API
+- Cloud
+- Enterprise
