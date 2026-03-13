@@ -1,0 +1,1748 @@
+openapi: 3.1.0
+info:
+  title: Oracle Cloud Infrastructure Database API
+  description: >-
+    API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI).
+    Provides management of DB Systems, Autonomous Databases, Exadata infrastructure,
+    database backups, Data Guard associations, database homes, and related cloud
+    database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+servers:
+  - url: https://database.{region}.oraclecloud.com/20160918
+    description: OCI Database Service Regional Endpoint
+    variables:
+      region:
+        default: us-ashburn-1
+        description: OCI region identifier
+        enum:
+          - us-ashburn-1
+          - us-phoenix-1
+          - eu-frankfurt-1
+          - uk-london-1
+          - ap-tokyo-1
+          - ap-mumbai-1
+          - ca-toronto-1
+          - ap-sydney-1
+          - sa-saopaulo-1
+          - ap-seoul-1
+security:
+  - ociSignature: []
+tags:
+  - name: Autonomous Databases
+    description: Manage Oracle Autonomous Database instances
+  - name: DB Systems
+    description: Manage Oracle Database Cloud Service DB Systems
+  - name: Databases
+    description: Manage databases within DB Systems
+  - name: Database Homes
+    description: Manage Oracle Database Home directories
+  - name: Backups
+    description: Manage database backups
+  - name: Data Guard
+    description: Manage Data Guard associations for high availability
+  - name: Exadata Infrastructure
+    description: Manage Exadata Cloud Infrastructure
+  - name: VM Clusters
+    description: Manage VM clusters on Exadata infrastructure
+  - name: Pluggable Databases
+    description: Manage pluggable databases in multitenant architecture
+  - name: Key Stores
+    description: Manage key stores for TDE encryption
+paths:
+  /autonomousDatabases:
+    get:
+      operationId: listAutonomousDatabases
+      summary: List Autonomous Databases
+      description: >-
+        Returns a list of Autonomous Databases in the specified compartment.
+        Results can be filtered by display name, lifecycle state, and other parameters.
+      tags:
+        - Autonomous Databases
+      parameters:
+        - $ref: '#/components/parameters/compartmentIdParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - name: displayName
+          in: query
+          description: Filter by display name
+          schema:
+            type: string
+        - name: lifecycleState
+          in: query
+          description: Filter by lifecycle state
+          schema:
+            type: string
+            enum:
+              - PROVISIONING
+              - AVAILABLE
+              - STOPPING
+              - STOPPED
+              - STARTING
+              - TERMINATING
+              - TERMINATED
+              - UNAVAILABLE
+              - RESTORE_IN_PROGRESS
+              - BACKUP_IN_PROGRESS
+              - SCALE_IN_PROGRESS
+              - UPDATING
+              - MAINTENANCE_IN_PROGRESS
+        - name: dbWorkload
+          in: query
+          description: Filter by workload type
+          schema:
+            type: string
+            enum:
+              - OLTP
+              - DW
+              - AJD
+              - APEX
+      responses:
+        '200':
+          description: Autonomous Databases listed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AutonomousDatabaseSummary'
+          headers:
+            opc-next-page:
+              description: Pagination token for next page
+              schema:
+                type: string
+            opc-request-id:
+              description: Unique request identifier
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAutonomousDatabase
+      summary: Create an Autonomous Database
+      description: >-
+        Creates a new Autonomous Database with the specified configuration.
+        Supports OLTP, Data Warehouse, JSON Database, and APEX workload types.
+      tags:
+        - Autonomous Databases
+      parameters:
+        - $ref: '#/components/parameters/opcRetryTokenParam'
+        - $ref: '#/components/parameters/opcRequestIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAutonomousDatabaseDetails'
+      responses:
+        '200':
+          description: Autonomous Database creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+          headers:
+            etag:
+              description: Entity tag for optimistic concurrency
+              schema:
+                type: string
+            opc-work-request-id:
+              description: Work request identifier for tracking
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /autonomousDatabases/{autonomousDatabaseId}:
+    get:
+      operationId: getAutonomousDatabase
+      summary: Get an Autonomous Database
+      description: Returns details about the specified Autonomous Database.
+      tags:
+        - Autonomous Databases
+      parameters:
+        - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+      responses:
+        '200':
+          description: Autonomous Database details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateAutonomousDatabase
+      summary: Update an Autonomous Database
+      description: >-
+        Updates the specified Autonomous Database. Supports scaling CPU,
+        storage, and other configuration changes.
+      tags:
+        - Autonomous Databases
+      parameters:
+        - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+        - $ref: '#/components/parameters/ifMatchParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAutonomousDatabaseDetails'
+      responses:
+        '200':
+          description: Autonomous Database update initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAutonomousDatabase
+      summary: Delete an Autonomous Database
+      description: Terminates and deletes the specified Autonomous Database.
+      tags:
+        - Autonomous Databases
+      parameters:
+        - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '202':
+          description: Delete request accepted
+          headers:
+            opc-work-request-id:
+              schema:
+                type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /autonomousDatabases/{autonomousDatabaseId}/actions/start:
+    post:
+      operationId: startAutonomousDatabase
+      summary: Start an Autonomous Database
+      description: Starts a stopped Autonomous Database.
+      tags:
+        - Autonomous Databases
+      parameters:
+        - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '200':
+          description: Start initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /autonomousDatabases/{autonomousDatabaseId}/actions/stop:
+    post:
+      operationId: stopAutonomousDatabase
+      summary: Stop an Autonomous Database
+      description: Stops a running Autonomous Database.
+      tags:
+        - Autonomous Databases
+      parameters:
+        - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '200':
+          description: Stop initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /autonomousDatabases/{autonomousDatabaseId}/actions/restart:
+    post:
+      operationId: restartAutonomousDatabase
+      summary: Restart an Autonomous Database
+      description: Restarts the specified Autonomous Database.
+      tags:
+        - Autonomous Databases
+      parameters:
+        - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '200':
+          description: Restart initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /autonomousDatabases/{autonomousDatabaseId}/actions/generateWallet:
+    post:
+      operationId: generateAutonomousDatabaseWallet
+      summary: Generate database wallet
+      description: >-
+        Creates and downloads a wallet zip file containing credentials
+        for connecting to the Autonomous Database.
+      tags:
+        - Autonomous Databases
+      parameters:
+        - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateAutonomousDatabaseWalletDetails'
+      responses:
+        '200':
+          description: Wallet generated successfully
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /autonomousDatabaseBackups:
+    get:
+      operationId: listAutonomousDatabaseBackups
+      summary: List Autonomous Database backups
+      description: Returns a list of backups for the specified Autonomous Database.
+      tags:
+        - Autonomous Databases
+      parameters:
+        - name: autonomousDatabaseId
+          in: query
+          description: The Autonomous Database OCID
+          schema:
+            type: string
+        - $ref: '#/components/parameters/compartmentIdParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+      responses:
+        '200':
+          description: Backups listed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AutonomousDatabaseBackupSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAutonomousDatabaseBackup
+      summary: Create an Autonomous Database backup
+      description: Creates a new manual backup for the specified Autonomous Database.
+      tags:
+        - Autonomous Databases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAutonomousDatabaseBackupDetails'
+      responses:
+        '200':
+          description: Backup creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabaseBackup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /dbSystems:
+    get:
+      operationId: listDbSystems
+      summary: List DB Systems
+      description: Returns a list of DB Systems in the specified compartment.
+      tags:
+        - DB Systems
+      parameters:
+        - $ref: '#/components/parameters/compartmentIdParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+        - name: displayName
+          in: query
+          schema:
+            type: string
+        - name: lifecycleState
+          in: query
+          schema:
+            type: string
+            enum:
+              - PROVISIONING
+              - AVAILABLE
+              - UPDATING
+              - TERMINATING
+              - TERMINATED
+              - FAILED
+              - MIGRATED
+      responses:
+        '200':
+          description: DB Systems listed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DbSystemSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: launchDbSystem
+      summary: Launch a DB System
+      description: >-
+        Creates and launches a new DB System with the specified configuration.
+        This is a long-running operation tracked via work requests.
+      tags:
+        - DB Systems
+      parameters:
+        - $ref: '#/components/parameters/opcRetryTokenParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LaunchDbSystemDetails'
+      responses:
+        '200':
+          description: DB System launch initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DbSystem'
+          headers:
+            opc-work-request-id:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /dbSystems/{dbSystemId}:
+    get:
+      operationId: getDbSystem
+      summary: Get a DB System
+      description: Returns details about the specified DB System.
+      tags:
+        - DB Systems
+      parameters:
+        - $ref: '#/components/parameters/dbSystemIdParam'
+      responses:
+        '200':
+          description: DB System details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DbSystem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateDbSystem
+      summary: Update a DB System
+      description: Updates the specified DB System configuration.
+      tags:
+        - DB Systems
+      parameters:
+        - $ref: '#/components/parameters/dbSystemIdParam'
+        - $ref: '#/components/parameters/ifMatchParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDbSystemDetails'
+      responses:
+        '200':
+          description: DB System update initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DbSystem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: terminateDbSystem
+      summary: Terminate a DB System
+      description: Terminates and deletes the specified DB System.
+      tags:
+        - DB Systems
+      parameters:
+        - $ref: '#/components/parameters/dbSystemIdParam'
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '202':
+          description: Termination accepted
+          headers:
+            opc-work-request-id:
+              schema:
+                type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /databases:
+    get:
+      operationId: listDatabases
+      summary: List databases
+      description: >-
+        Returns a list of databases in the specified compartment
+        or DB System.
+      tags:
+        - Databases
+      parameters:
+        - $ref: '#/components/parameters/compartmentIdParam'
+        - name: dbHomeId
+          in: query
+          schema:
+            type: string
+        - name: systemId
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+      responses:
+        '200':
+          description: Databases listed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatabaseSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createDatabase
+      summary: Create a database
+      description: Creates a new database in the specified DB Home.
+      tags:
+        - Databases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDatabaseDetails'
+      responses:
+        '200':
+          description: Database creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /databases/{databaseId}:
+    get:
+      operationId: getDatabase
+      summary: Get a database
+      description: Returns details about the specified database.
+      tags:
+        - Databases
+      parameters:
+        - name: databaseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Database details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateDatabase
+      summary: Update a database
+      description: Updates the specified database.
+      tags:
+        - Databases
+      parameters:
+        - name: databaseId
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ifMatchParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDatabaseDetails'
+      responses:
+        '200':
+          description: Database update initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDatabase
+      summary: Delete a database
+      description: Deletes the specified database.
+      tags:
+        - Databases
+      parameters:
+        - name: databaseId
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '202':
+          description: Deletion accepted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /dbHomes:
+    get:
+      operationId: listDbHomes
+      summary: List Database Homes
+      description: Returns a list of Database Homes in the specified compartment.
+      tags:
+        - Database Homes
+      parameters:
+        - $ref: '#/components/parameters/compartmentIdParam'
+        - name: dbSystemId
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+      responses:
+        '200':
+          description: Database Homes listed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DbHomeSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createDbHome
+      summary: Create a Database Home
+      description: Creates a new Database Home in the specified DB System.
+      tags:
+        - Database Homes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDbHomeDetails'
+      responses:
+        '200':
+          description: Database Home creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DbHome'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /dbHomes/{dbHomeId}:
+    get:
+      operationId: getDbHome
+      summary: Get a Database Home
+      description: Returns details about the specified Database Home.
+      tags:
+        - Database Homes
+      parameters:
+        - name: dbHomeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Database Home details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DbHome'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDbHome
+      summary: Delete a Database Home
+      description: Deletes the specified Database Home.
+      tags:
+        - Database Homes
+      parameters:
+        - name: dbHomeId
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '202':
+          description: Deletion accepted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /backups:
+    get:
+      operationId: listBackups
+      summary: List database backups
+      description: Returns a list of backups for a database or compartment.
+      tags:
+        - Backups
+      parameters:
+        - name: databaseId
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/compartmentIdParam'
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+      responses:
+        '200':
+          description: Backups listed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BackupSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createBackup
+      summary: Create a database backup
+      description: Creates a new backup for the specified database.
+      tags:
+        - Backups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBackupDetails'
+      responses:
+        '200':
+          description: Backup creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Backup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /backups/{backupId}:
+    get:
+      operationId: getBackup
+      summary: Get a database backup
+      description: Returns details about the specified backup.
+      tags:
+        - Backups
+      parameters:
+        - name: backupId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Backup details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Backup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteBackup
+      summary: Delete a database backup
+      description: Deletes the specified backup.
+      tags:
+        - Backups
+      parameters:
+        - name: backupId
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '202':
+          description: Deletion accepted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /dataGuardAssociations:
+    get:
+      operationId: listDataGuardAssociations
+      summary: List Data Guard associations
+      description: Returns Data Guard associations for the specified database.
+      tags:
+        - Data Guard
+      parameters:
+        - name: databaseId
+          in: query
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+      responses:
+        '200':
+          description: Data Guard associations listed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DataGuardAssociationSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /pluggableDatabases:
+    get:
+      operationId: listPluggableDatabases
+      summary: List pluggable databases
+      description: Returns a list of pluggable databases.
+      tags:
+        - Pluggable Databases
+      parameters:
+        - $ref: '#/components/parameters/compartmentIdParam'
+        - name: databaseId
+          in: query
+          schema:
+            type: string
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/pageParam'
+      responses:
+        '200':
+          description: Pluggable databases listed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PluggableDatabaseSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createPluggableDatabase
+      summary: Create a pluggable database
+      description: Creates a new pluggable database.
+      tags:
+        - Pluggable Databases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePluggableDatabaseDetails'
+      responses:
+        '200':
+          description: Pluggable database creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluggableDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /pluggableDatabases/{pluggableDatabaseId}:
+    get:
+      operationId: getPluggableDatabase
+      summary: Get a pluggable database
+      description: Returns details about the specified pluggable database.
+      tags:
+        - Pluggable Databases
+      parameters:
+        - name: pluggableDatabaseId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Pluggable database details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluggableDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updatePluggableDatabase
+      summary: Update a pluggable database
+      description: Updates the specified pluggable database.
+      tags:
+        - Pluggable Databases
+      parameters:
+        - name: pluggableDatabaseId
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ifMatchParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePluggableDatabaseDetails'
+      responses:
+        '200':
+          description: Pluggable database updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluggableDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deletePluggableDatabase
+      summary: Delete a pluggable database
+      description: Deletes the specified pluggable database.
+      tags:
+        - Pluggable Databases
+      parameters:
+        - name: pluggableDatabaseId
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '202':
+          description: Deletion accepted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+  parameters:
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    opcRetryTokenParam:
+      name: opc-retry-token
+      in: header
+      description: Unique retry token to prevent duplicate requests
+      schema:
+        type: string
+    opcRequestIdParam:
+      name: opc-request-id
+      in: header
+      description: Unique request identifier for tracing
+      schema:
+        type: string
+    autonomousDatabaseIdParam:
+      name: autonomousDatabaseId
+      in: path
+      required: true
+      description: The OCID of the Autonomous Database
+      schema:
+        type: string
+    dbSystemIdParam:
+      name: dbSystemId
+      in: path
+      required: true
+      description: The OCID of the DB System
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    AutonomousDatabase:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The OCID of the Autonomous Database
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        dbName:
+          type: string
+        dbVersion:
+          type: string
+        dbWorkload:
+          type: string
+          enum:
+            - OLTP
+            - DW
+            - AJD
+            - APEX
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        dataStorageSizeInGBs:
+          type: integer
+        isAutoScalingEnabled:
+          type: boolean
+        isDedicated:
+          type: boolean
+        isFreeTier:
+          type: boolean
+        lifecycleState:
+          type: string
+          enum:
+            - PROVISIONING
+            - AVAILABLE
+            - STOPPING
+            - STOPPED
+            - STARTING
+            - TERMINATING
+            - TERMINATED
+            - UNAVAILABLE
+            - RESTORE_IN_PROGRESS
+            - BACKUP_IN_PROGRESS
+            - SCALE_IN_PROGRESS
+            - UPDATING
+            - MAINTENANCE_IN_PROGRESS
+        connectionStrings:
+          type: object
+          properties:
+            high:
+              type: string
+            medium:
+              type: string
+            low:
+              type: string
+        connectionUrls:
+          type: object
+          properties:
+            sqlDevWebUrl:
+              type: string
+              format: uri
+            apexUrl:
+              type: string
+              format: uri
+            machineLearningUserManagementUrl:
+              type: string
+              format: uri
+            graphStudioUrl:
+              type: string
+              format: uri
+        timeCreated:
+          type: string
+          format: date-time
+        licenseModel:
+          type: string
+          enum:
+            - LICENSE_INCLUDED
+            - BRING_YOUR_OWN_LICENSE
+        whitelistedIps:
+          type: array
+          items:
+            type: string
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+        definedTags:
+          type: object
+          additionalProperties:
+            type: object
+    AutonomousDatabaseSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        dbName:
+          type: string
+        dbWorkload:
+          type: string
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        lifecycleState:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+        isFreeTier:
+          type: boolean
+    CreateAutonomousDatabaseDetails:
+      type: object
+      required:
+        - compartmentId
+        - dbName
+        - cpuCoreCount
+        - dataStorageSizeInTBs
+        - adminPassword
+      properties:
+        compartmentId:
+          type: string
+        dbName:
+          type: string
+        displayName:
+          type: string
+        adminPassword:
+          type: string
+          format: password
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        dbWorkload:
+          type: string
+          enum:
+            - OLTP
+            - DW
+            - AJD
+            - APEX
+        isAutoScalingEnabled:
+          type: boolean
+        isFreeTier:
+          type: boolean
+        licenseModel:
+          type: string
+          enum:
+            - LICENSE_INCLUDED
+            - BRING_YOUR_OWN_LICENSE
+        whitelistedIps:
+          type: array
+          items:
+            type: string
+        subnetId:
+          type: string
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    UpdateAutonomousDatabaseDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        isAutoScalingEnabled:
+          type: boolean
+        adminPassword:
+          type: string
+          format: password
+        whitelistedIps:
+          type: array
+          items:
+            type: string
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    GenerateAutonomousDatabaseWalletDetails:
+      type: object
+      required:
+        - password
+      properties:
+        password:
+          type: string
+          format: password
+          description: Password to encrypt the wallet keys
+        generateType:
+          type: string
+          enum:
+            - ALL
+            - SINGLE
+    AutonomousDatabaseBackup:
+      type: object
+      properties:
+        id:
+          type: string
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+          enum:
+            - INCREMENTAL
+            - FULL
+            - LONG_TERM
+        lifecycleState:
+          type: string
+        databaseSizeInTBs:
+          type: number
+        timeStarted:
+          type: string
+          format: date-time
+        timeEnded:
+          type: string
+          format: date-time
+        isAutomatic:
+          type: boolean
+    AutonomousDatabaseBackupSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+        lifecycleState:
+          type: string
+        timeStarted:
+          type: string
+          format: date-time
+        isAutomatic:
+          type: boolean
+    CreateAutonomousDatabaseBackupDetails:
+      type: object
+      required:
+        - autonomousDatabaseId
+        - displayName
+      properties:
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        isLongTermBackup:
+          type: boolean
+        retentionPeriodInDays:
+          type: integer
+    DbSystem:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        availabilityDomain:
+          type: string
+        shape:
+          type: string
+        cpuCoreCount:
+          type: integer
+        nodeCount:
+          type: integer
+        dataStorageSizeInGBs:
+          type: integer
+        databaseEdition:
+          type: string
+          enum:
+            - STANDARD_EDITION
+            - ENTERPRISE_EDITION
+            - ENTERPRISE_EDITION_HIGH_PERFORMANCE
+            - ENTERPRISE_EDITION_EXTREME_PERFORMANCE
+        lifecycleState:
+          type: string
+        hostname:
+          type: string
+        domain:
+          type: string
+        subnetId:
+          type: string
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        timeCreated:
+          type: string
+          format: date-time
+        version:
+          type: string
+        licenseModel:
+          type: string
+        diskRedundancy:
+          type: string
+          enum:
+            - HIGH
+            - NORMAL
+    DbSystemSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        shape:
+          type: string
+        lifecycleState:
+          type: string
+        databaseEdition:
+          type: string
+        cpuCoreCount:
+          type: integer
+        timeCreated:
+          type: string
+          format: date-time
+    LaunchDbSystemDetails:
+      type: object
+      required:
+        - compartmentId
+        - availabilityDomain
+        - shape
+        - subnetId
+        - sshPublicKeys
+        - hostname
+        - cpuCoreCount
+      properties:
+        compartmentId:
+          type: string
+        availabilityDomain:
+          type: string
+        shape:
+          type: string
+        subnetId:
+          type: string
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        hostname:
+          type: string
+        displayName:
+          type: string
+        cpuCoreCount:
+          type: integer
+        nodeCount:
+          type: integer
+        initialDataStorageSizeInGB:
+          type: integer
+        databaseEdition:
+          type: string
+          enum:
+            - STANDARD_EDITION
+            - ENTERPRISE_EDITION
+            - ENTERPRISE_EDITION_HIGH_PERFORMANCE
+            - ENTERPRISE_EDITION_EXTREME_PERFORMANCE
+        dbHome:
+          $ref: '#/components/schemas/CreateDbHomeDetails'
+        licenseModel:
+          type: string
+          enum:
+            - LICENSE_INCLUDED
+            - BRING_YOUR_OWN_LICENSE
+        diskRedundancy:
+          type: string
+          enum:
+            - HIGH
+            - NORMAL
+    UpdateDbSystemDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+        cpuCoreCount:
+          type: integer
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        dataStorageSizeInGBs:
+          type: integer
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    Database:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        dbName:
+          type: string
+        dbUniqueName:
+          type: string
+        dbHomeId:
+          type: string
+        dbSystemId:
+          type: string
+        lifecycleState:
+          type: string
+        characterSet:
+          type: string
+        ncharacterSet:
+          type: string
+        pdbName:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+    DatabaseSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        dbName:
+          type: string
+        dbHomeId:
+          type: string
+        lifecycleState:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+    CreateDatabaseDetails:
+      type: object
+      required:
+        - dbHomeId
+        - dbName
+        - adminPassword
+      properties:
+        dbHomeId:
+          type: string
+        dbName:
+          type: string
+        adminPassword:
+          type: string
+          format: password
+        characterSet:
+          type: string
+        ncharacterSet:
+          type: string
+        pdbName:
+          type: string
+    UpdateDatabaseDetails:
+      type: object
+      properties:
+        dbBackupConfig:
+          type: object
+          properties:
+            autoBackupEnabled:
+              type: boolean
+            recoveryWindowInDays:
+              type: integer
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    DbHome:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        dbSystemId:
+          type: string
+        dbVersion:
+          type: string
+        lifecycleState:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+    DbHomeSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        dbVersion:
+          type: string
+        lifecycleState:
+          type: string
+    CreateDbHomeDetails:
+      type: object
+      required:
+        - dbVersion
+      properties:
+        dbVersion:
+          type: string
+        displayName:
+          type: string
+        database:
+          $ref: '#/components/schemas/CreateDatabaseDetails'
+    Backup:
+      type: object
+      properties:
+        id:
+          type: string
+        databaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+          enum:
+            - INCREMENTAL
+            - FULL
+            - VIRTUAL_FULL
+        lifecycleState:
+          type: string
+        databaseSizeInGBs:
+          type: number
+        timeStarted:
+          type: string
+          format: date-time
+        timeEnded:
+          type: string
+          format: date-time
+    BackupSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        databaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+        lifecycleState:
+          type: string
+        timeStarted:
+          type: string
+          format: date-time
+    CreateBackupDetails:
+      type: object
+      required:
+        - databaseId
+        - displayName
+      properties:
+        databaseId:
+          type: string
+        displayName:
+          type: string
+    DataGuardAssociationSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        databaseId:
+          type: string
+        peerDatabaseId:
+          type: string
+        role:
+          type: string
+          enum:
+            - PRIMARY
+            - STANDBY
+            - DISABLED_STANDBY
+        peerRole:
+          type: string
+        lifecycleState:
+          type: string
+        protectionMode:
+          type: string
+          enum:
+            - MAXIMUM_AVAILABILITY
+            - MAXIMUM_PERFORMANCE
+            - MAXIMUM_PROTECTION
+        transportType:
+          type: string
+          enum:
+            - SYNC
+            - ASYNC
+            - FASTSYNC
+        applyLag:
+          type: string
+        applyRate:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+    PluggableDatabase:
+      type: object
+      properties:
+        id:
+          type: string
+        containerDatabaseId:
+          type: string
+        pdbName:
+          type: string
+        compartmentId:
+          type: string
+        lifecycleState:
+          type: string
+          enum:
+            - PROVISIONING
+            - AVAILABLE
+            - TERMINATING
+            - TERMINATED
+            - UPDATING
+            - FAILED
+        openMode:
+          type: string
+          enum:
+            - READ_ONLY
+            - READ_WRITE
+            - MOUNTED
+            - MIGRATE
+        timeCreated:
+          type: string
+          format: date-time
+        connectionStrings:
+          type: object
+          properties:
+            pdbDefault:
+              type: string
+            pdbIpDefault:
+              type: string
+    PluggableDatabaseSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        containerDatabaseId:
+          type: string
+        pdbName:
+          type: string
+        lifecycleState:
+          type: string
+        openMode:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+    CreatePluggableDatabaseDetails:
+      type: object
+      required:
+        - containerDatabaseId
+        - pdbName
+      properties:
+        containerDatabaseId:
+          type: string
+        pdbName:
+          type: string
+        pdbAdminPassword:
+          type: string
+          format: password
+        tdeWalletPassword:
+          type: string
+          format: password
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    UpdatePluggableDatabaseDetails:
+      type: object
+      properties:
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+        definedTags:
+          type: object
+          additionalProperties:
+            type: object

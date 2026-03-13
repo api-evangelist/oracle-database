@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oracle.com/schemas/database/document.json",
+  "title": "Oracle SODA Document",
+  "description": "Represents a JSON document stored in an Oracle SODA collection, including metadata such as key, version, and timestamps managed by the database.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique document key assigned by the server or client"
+    },
+    "etag": {
+      "type": "string",
+      "description": "Entity tag representing the document version for optimistic concurrency control"
+    },
+    "lastModified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the last modification to the document"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the document was created"
+    },
+    "value": {
+      "type": "object",
+      "description": "The JSON document content"
+    },
+    "mediaType": {
+      "type": "string",
+      "description": "Content type for non-JSON documents (e.g., image/jpeg)",
+      "default": "application/json"
+    },
+    "bytes": {
+      "type": "integer",
+      "description": "Content length in bytes for non-JSON documents"
+    }
+  },
+  "required": ["id"]
+}

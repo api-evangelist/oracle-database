@@ -1,0 +1,1101 @@
+openapi: 3.1.0
+info:
+  title: Oracle SODA (Simple Oracle Document Access) REST API
+  description: >-
+    NoSQL-style document access API for Oracle Database. SODA for REST provides
+    HTTP operations for managing JSON document collections, enabling CRUD
+    operations, querying by example (QBE), bulk operations, and index management
+    through a RESTful interface built on Oracle REST Data Services.
+  version: 1.0.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+    email: support@oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+externalDocs:
+  description: SODA for REST Documentation
+  url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+servers:
+  - url: https://{host}:{port}/ords/{schema}/soda/{version}
+    description: SODA REST API Server
+    variables:
+      host:
+        default: localhost
+        description: ORDS server hostname
+      port:
+        default: '8443'
+        description: ORDS server port
+      schema:
+        default: myschema
+        description: Oracle Database schema name
+      version:
+        default: latest
+        description: SODA API version
+security:
+  - oauth2: []
+  - basicAuth: []
+tags:
+  - name: Collections
+    description: Collection management operations (create, list, delete)
+  - name: Documents
+    description: Document CRUD operations (get, insert, update, delete)
+  - name: Queries
+    description: Query by Example (QBE) and filter operations
+  - name: Bulk Operations
+    description: Bulk insert, delete, and update operations
+  - name: Indexes
+    description: Collection index management
+  - name: Metadata
+    description: Collection metadata and catalog operations
+paths:
+  /:
+    get:
+      operationId: listCollections
+      summary: List all collections
+      description: >-
+        Returns a list of collection names for the current database schema.
+        Supports pagination through limit and fromID parameters.
+      tags:
+        - Collections
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of collections to return
+          schema:
+            type: integer
+            minimum: 1
+        - name: fromID
+          in: query
+          description: Start listing from this collection name (inclusive)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Collections retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Schema not found
+  /metadata-catalog:
+    get:
+      operationId: getCatalog
+      summary: Get collection catalog with metadata
+      description: >-
+        Lists all collections in the schema with full metadata and navigation links.
+        Each collection includes its properties and links to the collection itself
+        and its JSON schema.
+      tags:
+        - Metadata
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of collections to return
+          schema:
+            type: integer
+            minimum: 1
+        - name: fromID
+          in: query
+          description: Start from this collection name (inclusive)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Catalog retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /metadata-catalog/{collection}:
+    get:
+      operationId: getCollectionSchema
+      summary: Get JSON schema for a collection
+      description: >-
+        Retrieves the JSON schema describing the document structure for
+        the specified collection, including collection properties and
+        column configurations.
+      tags:
+        - Metadata
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+      responses:
+        '200':
+          description: Collection schema retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionSchema'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /custom-actions/:
+    get:
+      operationId: listCustomActions
+      summary: List available custom actions
+      description: Returns a list of available custom actions for SODA collections.
+      tags:
+        - Metadata
+      responses:
+        '200':
+          description: Custom actions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        description:
+                          type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{collection}:
+    put:
+      operationId: createCollection
+      summary: Create a collection
+      description: >-
+        Creates a new document collection. This operation is idempotent - if
+        the collection already exists, it returns 200 instead of 201. An
+        optional request body can specify collection metadata configuration.
+      tags:
+        - Collections
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        description: Optional collection metadata specification
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionMetadata'
+      responses:
+        '200':
+          description: Collection already exists
+        '201':
+          description: Collection created successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{collection}/:
+    get:
+      operationId: getCollection
+      summary: Get documents from a collection
+      description: >-
+        Retrieves documents from the specified collection with optional filtering,
+        pagination, and field selection. Supports Query by Example (QBE) filter
+        specifications via the q parameter.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+        - name: limit
+          in: query
+          description: Maximum number of documents to return
+          schema:
+            type: integer
+            minimum: 1
+        - name: offset
+          in: query
+          description: Number of documents to skip (default 0)
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+        - name: fields
+          in: query
+          description: Control which fields are returned
+          schema:
+            type: string
+            enum:
+              - id
+              - value
+              - all
+        - name: totalResults
+          in: query
+          description: Include total count in response (may be slow on large collections)
+          schema:
+            type: boolean
+            default: false
+        - name: fromID
+          in: query
+          description: Start after this key (ascending order)
+          schema:
+            type: string
+        - name: toID
+          in: query
+          description: Stop before this key (descending order)
+          schema:
+            type: string
+        - name: since
+          in: query
+          description: Only return documents modified after this timestamp
+          schema:
+            type: string
+            format: date-time
+        - name: until
+          in: query
+          description: Only return documents modified before this timestamp
+          schema:
+            type: string
+            format: date-time
+        - name: q
+          in: query
+          description: QBE filter specification as a JSON object
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Documents retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: insertDocument
+      summary: Insert a new document
+      description: >-
+        Inserts a new JSON document into the collection with a server-assigned key.
+        Returns the generated key, etag, and timestamps in the response.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        required: true
+        description: JSON document to insert
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '201':
+          description: Document inserted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InsertResponse'
+        '202':
+          description: Accepted for asynchronous insertion
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '405':
+          description: Collection is read-only
+        '501':
+          description: Unsupported operation
+    put:
+      operationId: putDocumentNoKey
+      summary: Insert or replace document (no key in URL)
+      description: >-
+        Inserts or replaces a document. Used with client-assigned keys
+        included in the document body.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Document replaced successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '405':
+          description: Collection is read-only
+    delete:
+      operationId: deleteCollection
+      summary: Delete a collection
+      description: >-
+        Deletes the entire collection and all documents it contains.
+        This operation cannot be undone.
+      tags:
+        - Collections
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+      responses:
+        '200':
+          description: Collection deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /{collection}/{key}:
+    get:
+      operationId: getDocument
+      summary: Get a document by key
+      description: >-
+        Retrieves a single document from the collection by its unique key.
+        Supports conditional retrieval via If-Modified-Since and If-None-Match headers.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+        - $ref: '#/components/parameters/keyParam'
+        - name: If-Modified-Since
+          in: header
+          description: Return 304 if document has not been modified since this timestamp
+          schema:
+            type: string
+            format: date-time
+        - name: If-None-Match
+          in: header
+          description: Return 304 if document etag matches this value
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Document retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+          headers:
+            ETag:
+              description: Document version tag
+              schema:
+                type: string
+            Last-Modified:
+              description: Last modification timestamp
+              schema:
+                type: string
+                format: date-time
+        '204':
+          description: Document exists but has null content
+        '304':
+          description: Document has not been modified
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: putDocument
+      summary: Replace or insert a document by key
+      description: >-
+        Replaces an existing document or inserts a new one at the specified key.
+        Used for client-assigned keys.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+        - $ref: '#/components/parameters/keyParam'
+      requestBody:
+        required: true
+        description: JSON document content
+        content:
+          application/json:
+            schema:
+              type: object
+      responses:
+        '200':
+          description: Document replaced successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentMetadata'
+        '201':
+          description: Document inserted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentMetadata'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '405':
+          description: Collection is read-only
+    patch:
+      operationId: patchDocument
+      summary: Patch a document using JSON Patch
+      description: >-
+        Updates a document using the JSON Patch specification (RFC 6902).
+        The request body must contain an array of patch operations.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+        - $ref: '#/components/parameters/keyParam'
+      requestBody:
+        required: true
+        description: JSON Patch operations (RFC 6902)
+        content:
+          application/json-patch+json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/JsonPatchOperation'
+      responses:
+        '200':
+          description: Document patched successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          description: Collection is read-only
+    delete:
+      operationId: deleteDocument
+      summary: Delete a document by key
+      description: Deletes a single document from the collection by its unique key.
+      tags:
+        - Documents
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+        - $ref: '#/components/parameters/keyParam'
+      responses:
+        '200':
+          description: Document deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          description: Collection is read-only
+  /custom-actions/query/{collection}:
+    post:
+      operationId: queryCollection
+      summary: Query collection with QBE filter
+      description: >-
+        Queries the collection using a Query by Example (QBE) filter specification
+        in the request body. Returns matching documents with optional pagination.
+        This endpoint is equivalent to /{collection}/?action=query.
+      tags:
+        - Queries
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+        - name: limit
+          in: query
+          description: Maximum number of documents to return
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          description: Number of documents to skip
+          schema:
+            type: integer
+        - name: fields
+          in: query
+          description: Control which fields are returned
+          schema:
+            type: string
+            enum:
+              - id
+              - value
+              - all
+      requestBody:
+        required: true
+        description: QBE filter specification
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QBEFilter'
+      responses:
+        '200':
+          description: Query results returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /custom-actions/insert/{collection}:
+    post:
+      operationId: bulkInsert
+      summary: Bulk insert documents
+      description: >-
+        Inserts multiple documents into the collection in a single operation.
+        Documents are provided as a JSON array. Server-assigned keys are
+        generated for each document.
+      tags:
+        - Bulk Operations
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        required: true
+        description: Array of JSON documents to insert
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+      responses:
+        '200':
+          description: Documents inserted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkInsertResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          description: Collection is read-only
+  /custom-actions/delete/{collection}:
+    post:
+      operationId: bulkDelete
+      summary: Bulk delete documents by filter
+      description: >-
+        Deletes multiple documents matching a QBE filter specification.
+        Returns the count of deleted documents.
+      tags:
+        - Bulk Operations
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        required: true
+        description: QBE filter to identify documents to delete
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QBEFilter'
+      responses:
+        '200':
+          description: Documents deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkDeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          description: Collection is read-only
+  /custom-actions/truncate/{collection}:
+    post:
+      operationId: truncateCollection
+      summary: Truncate all documents from collection
+      description: >-
+        Removes all documents from the collection without deleting
+        the collection itself. This is faster than deleting documents
+        one by one or with a filter.
+      tags:
+        - Bulk Operations
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+      responses:
+        '200':
+          description: Collection truncated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkDeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          description: Collection is read-only
+  /custom-actions/update/{collection}:
+    post:
+      operationId: bulkUpdate
+      summary: Bulk update documents by filter
+      description: >-
+        Updates multiple documents matching a QBE filter using JSON Patch
+        operations specified in the $patch field of the request body.
+      tags:
+        - Bulk Operations
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        required: true
+        description: QBE filter with $patch operations
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkUpdateRequest'
+      responses:
+        '200':
+          description: Documents updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkUpdateResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '405':
+          description: Collection is read-only
+  /custom-actions/index/{collection}:
+    post:
+      operationId: createIndex
+      summary: Create a collection index
+      description: >-
+        Creates an index on the specified collection based on the SODA
+        index specification provided in the request body.
+      tags:
+        - Indexes
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        required: true
+        description: SODA index specification
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndexSpecification'
+      responses:
+        '200':
+          description: Index created successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /custom-actions/unindex/{collection}:
+    post:
+      operationId: dropIndex
+      summary: Drop a collection index
+      description: Drops the specified index from the collection.
+      tags:
+        - Indexes
+      parameters:
+        - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        required: true
+        description: Index to drop
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                  description: Name of the index to drop
+      responses:
+        '200':
+          description: Index dropped successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+    basicAuth:
+      type: http
+      scheme: basic
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
+    keyParam:
+      name: key
+      in: path
+      required: true
+      description: The unique key of the document
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameter value
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: Link URL
+        mediaType:
+          type: string
+          description: Media type of the linked resource
+    CollectionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Collection name
+              properties:
+                type: object
+                description: Collection metadata properties
+        hasMore:
+          type: boolean
+          description: Whether more collections exist beyond this page
+    CatalogResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Collection name
+              properties:
+                type: object
+                description: Collection metadata properties
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+        hasMore:
+          type: boolean
+    CollectionSchema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Collection name
+        properties:
+          type: object
+          properties:
+            schemaName:
+              type: string
+              description: Database schema name
+            tableName:
+              type: string
+              description: Underlying table name
+            keyColumn:
+              type: object
+              description: Key column configuration
+            contentColumn:
+              type: object
+              description: Content column configuration
+            versionColumn:
+              type: object
+              description: Version column configuration
+            lastModifiedColumn:
+              type: object
+              description: Last modified column configuration
+            readOnly:
+              type: boolean
+              description: Whether collection is read-only
+        schema:
+          type: object
+          description: JSON Schema describing document structure
+          properties:
+            type:
+              type: string
+            properties:
+              type: object
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    CollectionMetadata:
+      type: object
+      description: Optional collection configuration metadata
+      properties:
+        keyColumn:
+          type: object
+          properties:
+            name:
+              type: string
+            sqlType:
+              type: string
+            maxLength:
+              type: integer
+            assignmentMethod:
+              type: string
+              enum:
+                - UUID
+                - GUID
+                - SEQUENCE
+                - CLIENT
+        contentColumn:
+          type: object
+          properties:
+            name:
+              type: string
+            sqlType:
+              type: string
+            compress:
+              type: string
+            cache:
+              type: boolean
+            encrypt:
+              type: string
+            validation:
+              type: string
+        versionColumn:
+          type: object
+          properties:
+            name:
+              type: string
+            method:
+              type: string
+              enum:
+                - UUID
+                - TIMESTAMP
+                - SHA256
+                - MD5
+                - NONE
+        lastModifiedColumn:
+          type: object
+          properties:
+            name:
+              type: string
+        readOnly:
+          type: boolean
+    DocumentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        hasMore:
+          type: boolean
+          description: Whether more documents exist beyond this page
+        limit:
+          type: integer
+          description: Server-imposed result limit
+        offset:
+          type: integer
+          description: Offset of first returned result
+        count:
+          type: integer
+          description: Number of documents in this response
+        totalResults:
+          type: integer
+          description: Total documents in collection (only if totalResults=true)
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique document key
+        etag:
+          type: string
+          description: Document version tag for optimistic concurrency
+        lastModified:
+          type: string
+          format: date-time
+          description: Last modification timestamp
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        value:
+          type: object
+          description: Document content (when fields=value or fields=all)
+        mediaType:
+          type: string
+          description: Content type for non-JSON documents
+        bytes:
+          type: integer
+          description: Content length for non-JSON documents
+    DocumentMetadata:
+      type: object
+      properties:
+        id:
+          type: string
+        etag:
+          type: string
+        lastModified:
+          type: string
+          format: date-time
+        created:
+          type: string
+          format: date-time
+    InsertResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentMetadata'
+        hasMore:
+          type: boolean
+    QBEFilter:
+      type: object
+      description: >-
+        Query by Example filter specification. Provide field names and values
+        to match, or use operators like $gt, $lt, $in, $regex, etc.
+      additionalProperties: true
+      example:
+        name: John
+        salary:
+          $gt: 50000
+    BulkInsertResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentMetadata'
+        hasMore:
+          type: boolean
+    BulkDeleteResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of documents affected
+        itemsDeleted:
+          type: integer
+          description: Number of documents deleted
+    BulkUpdateRequest:
+      type: object
+      description: >-
+        Combination of QBE filter fields and $patch operations.
+        Filter fields identify documents to update, $patch contains
+        the JSON Patch operations to apply.
+      properties:
+        $patch:
+          type: array
+          items:
+            $ref: '#/components/schemas/JsonPatchOperation'
+      additionalProperties: true
+      example:
+        department: HR
+        $patch:
+          - op: replace
+            path: /salary
+            value: 70000
+    BulkUpdateResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of documents matched
+        itemsUpdated:
+          type: integer
+          description: Number of documents updated
+    JsonPatchOperation:
+      type: object
+      required:
+        - op
+        - path
+      properties:
+        op:
+          type: string
+          enum:
+            - add
+            - remove
+            - replace
+            - move
+            - copy
+            - test
+          description: The patch operation to perform
+        path:
+          type: string
+          description: JSON Pointer path to the target field
+        value:
+          description: The value to use for add, replace, or test operations
+        from:
+          type: string
+          description: JSON Pointer path for move and copy source
+    IndexSpecification:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Index name
+        fields:
+          type: array
+          description: Fields to index
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+                description: JSON path to the field
+              datatype:
+                type: string
+                description: Data type for indexing
+                enum:
+                  - string
+                  - number
+                  - date
+                  - timestamp
+              maxLength:
+                type: integer
+                description: Maximum length for string fields
+              order:
+                type: string
+                enum:
+                  - asc
+                  - desc
+        unique:
+          type: boolean
+          description: Whether the index enforces uniqueness
+        language:
+          type: string
+          description: Language for text indexes
+        spatial:
+          type: string
+          description: Spatial index specification
+        search_on:
+          type: string
+          description: Full-text search specification
+          enum:
+            - none
+            - text
+            - text_value

@@ -1,0 +1,205 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oracle.com/schemas/database/table.json",
+  "title": "Oracle Database Table",
+  "description": "Represents an Oracle Database table as exposed through the ORDS Data Dictionary API, including table metadata, column definitions, and storage properties.",
+  "type": "object",
+  "properties": {
+    "owner": {
+      "type": "string",
+      "description": "Schema owner of the table"
+    },
+    "table_name": {
+      "type": "string",
+      "description": "Name of the table"
+    },
+    "tablespace_name": {
+      "type": "string",
+      "description": "Tablespace in which the table is stored"
+    },
+    "num_rows": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Estimated number of rows based on last statistics gathering"
+    },
+    "last_analyzed": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when statistics were last gathered"
+    },
+    "status": {
+      "type": "string",
+      "description": "Status of the table",
+      "enum": ["VALID", "INVALID"]
+    },
+    "temporary": {
+      "type": "string",
+      "description": "Whether the table is a temporary table",
+      "enum": ["Y", "N"]
+    },
+    "partitioned": {
+      "type": "string",
+      "description": "Whether the table is partitioned",
+      "enum": ["YES", "NO"]
+    },
+    "iot_type": {
+      "type": ["string", "null"],
+      "description": "Index-organized table type"
+    },
+    "compression": {
+      "type": "string",
+      "description": "Table compression status",
+      "enum": ["ENABLED", "DISABLED"]
+    },
+    "logging": {
+      "type": "string",
+      "description": "Whether logging is enabled",
+      "enum": ["YES", "NO"]
+    },
+    "columns": {
+      "type": "array",
+      "description": "List of columns in the table",
+      "items": {
+        "$ref": "#/$defs/Column"
+      }
+    },
+    "indexes": {
+      "type": "array",
+      "description": "List of indexes on the table",
+      "items": {
+        "$ref": "#/$defs/Index"
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "description": "List of constraints on the table",
+      "items": {
+        "$ref": "#/$defs/Constraint"
+      }
+    }
+  },
+  "required": ["owner", "table_name"],
+  "$defs": {
+    "Column": {
+      "type": "object",
+      "description": "A column in an Oracle Database table",
+      "properties": {
+        "column_name": {
+          "type": "string",
+          "description": "Name of the column"
+        },
+        "data_type": {
+          "type": "string",
+          "description": "Oracle data type of the column",
+          "examples": ["VARCHAR2", "NUMBER", "DATE", "TIMESTAMP", "CLOB", "BLOB", "JSON", "RAW"]
+        },
+        "data_length": {
+          "type": "integer",
+          "description": "Length of the column in bytes"
+        },
+        "data_precision": {
+          "type": ["integer", "null"],
+          "description": "Numeric precision for NUMBER columns"
+        },
+        "data_scale": {
+          "type": ["integer", "null"],
+          "description": "Numeric scale for NUMBER columns"
+        },
+        "nullable": {
+          "type": "string",
+          "description": "Whether the column allows NULL values",
+          "enum": ["Y", "N"]
+        },
+        "column_id": {
+          "type": "integer",
+          "description": "Position of the column in the table definition"
+        },
+        "default_value": {
+          "type": ["string", "null"],
+          "description": "Default value expression for the column"
+        },
+        "identity_column": {
+          "type": "string",
+          "description": "Whether this is an identity column",
+          "enum": ["YES", "NO"]
+        },
+        "virtual_column": {
+          "type": "string",
+          "description": "Whether this is a virtual (computed) column",
+          "enum": ["YES", "NO"]
+        }
+      },
+      "required": ["column_name", "data_type"]
+    },
+    "Index": {
+      "type": "object",
+      "description": "An index on an Oracle Database table",
+      "properties": {
+        "index_name": {
+          "type": "string",
+          "description": "Name of the index"
+        },
+        "index_type": {
+          "type": "string",
+          "description": "Type of the index",
+          "enum": ["NORMAL", "BITMAP", "FUNCTION-BASED NORMAL", "FUNCTION-BASED BITMAP", "DOMAIN"]
+        },
+        "uniqueness": {
+          "type": "string",
+          "description": "Whether the index enforces uniqueness",
+          "enum": ["UNIQUE", "NONUNIQUE"]
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the index",
+          "enum": ["VALID", "INVALID", "UNUSABLE"]
+        },
+        "columns": {
+          "type": "array",
+          "description": "Columns included in the index",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["index_name"]
+    },
+    "Constraint": {
+      "type": "object",
+      "description": "A constraint on an Oracle Database table",
+      "properties": {
+        "constraint_name": {
+          "type": "string",
+          "description": "Name of the constraint"
+        },
+        "constraint_type": {
+          "type": "string",
+          "description": "Type of constraint",
+          "enum": ["P", "U", "R", "C", "V", "O"],
+          "x-enum-descriptions": {
+            "P": "Primary key",
+            "U": "Unique key",
+            "R": "Referential integrity (foreign key)",
+            "C": "Check constraint",
+            "V": "With check option on a view",
+            "O": "With read only on a view"
+          }
+        },
+        "status": {
+          "type": "string",
+          "description": "Enforcement status",
+          "enum": ["ENABLED", "DISABLED"]
+        },
+        "r_constraint_name": {
+          "type": ["string", "null"],
+          "description": "Referenced constraint name for foreign keys"
+        },
+        "r_owner": {
+          "type": ["string", "null"],
+          "description": "Owner of the referenced constraint"
+        }
+      },
+      "required": ["constraint_name", "constraint_type"]
+    }
+  }
+}

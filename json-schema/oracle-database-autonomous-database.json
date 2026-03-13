@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oracle.com/schemas/database/autonomous-database.json",
+  "title": "Oracle Autonomous Database",
+  "description": "Represents an Oracle Autonomous Database instance in Oracle Cloud Infrastructure, including configuration, lifecycle state, connection details, and scaling parameters.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The OCID (Oracle Cloud Identifier) of the Autonomous Database"
+    },
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment containing the Autonomous Database"
+    },
+    "displayName": {
+      "type": "string",
+      "description": "User-friendly display name for the Autonomous Database"
+    },
+    "dbName": {
+      "type": "string",
+      "description": "The database name, unique within the tenancy",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_]{0,13}$"
+    },
+    "dbVersion": {
+      "type": "string",
+      "description": "Oracle Database version"
+    },
+    "dbWorkload": {
+      "type": "string",
+      "description": "The workload type of the Autonomous Database",
+      "enum": ["OLTP", "DW", "AJD", "APEX"]
+    },
+    "cpuCoreCount": {
+      "type": "integer",
+      "description": "Number of CPU cores allocated",
+      "minimum": 1
+    },
+    "ocpuCount": {
+      "type": "number",
+      "description": "Number of OCPU cores allocated"
+    },
+    "dataStorageSizeInTBs": {
+      "type": "integer",
+      "description": "Data storage size in terabytes",
+      "minimum": 1
+    },
+    "dataStorageSizeInGBs": {
+      "type": "integer",
+      "description": "Data storage size in gigabytes"
+    },
+    "isAutoScalingEnabled": {
+      "type": "boolean",
+      "description": "Whether auto-scaling is enabled for CPU resources"
+    },
+    "isAutoScalingForStorageEnabled": {
+      "type": "boolean",
+      "description": "Whether auto-scaling is enabled for storage"
+    },
+    "isDedicated": {
+      "type": "boolean",
+      "description": "Whether the database runs on dedicated Exadata infrastructure"
+    },
+    "isFreeTier": {
+      "type": "boolean",
+      "description": "Whether this is an Always Free Autonomous Database"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "description": "Current lifecycle state of the Autonomous Database",
+      "enum": [
+        "PROVISIONING",
+        "AVAILABLE",
+        "STOPPING",
+        "STOPPED",
+        "STARTING",
+        "TERMINATING",
+        "TERMINATED",
+        "UNAVAILABLE",
+        "RESTORE_IN_PROGRESS",
+        "RESTORE_FAILED",
+        "BACKUP_IN_PROGRESS",
+        "SCALE_IN_PROGRESS",
+        "AVAILABLE_NEEDS_ATTENTION",
+        "UPDATING",
+        "MAINTENANCE_IN_PROGRESS",
+        "RESTARTING",
+        "RECREATING",
+        "ROLE_CHANGE_IN_PROGRESS",
+        "UPGRADING",
+        "INACCESSIBLE"
+      ]
+    },
+    "licenseModel": {
+      "type": "string",
+      "description": "The Oracle license model for the Autonomous Database",
+      "enum": ["LICENSE_INCLUDED", "BRING_YOUR_OWN_LICENSE"]
+    },
+    "connectionStrings": {
+      "type": "object",
+      "description": "Connection strings for different service levels",
+      "properties": {
+        "high": {
+          "type": "string",
+          "description": "High-priority connection string with highest parallelism"
+        },
+        "medium": {
+          "type": "string",
+          "description": "Medium-priority connection string with moderate parallelism"
+        },
+        "low": {
+          "type": "string",
+          "description": "Low-priority connection string for batch operations"
+        },
+        "dedicated": {
+          "type": "string",
+          "description": "Connection string for dedicated infrastructure"
+        }
+      }
+    },
+    "connectionUrls": {
+      "type": "object",
+      "description": "URLs for database tools and services",
+      "properties": {
+        "sqlDevWebUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL for SQL Developer Web"
+        },
+        "apexUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL for Oracle APEX"
+        },
+        "machineLearningUserManagementUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL for Machine Learning user management"
+        },
+        "graphStudioUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL for Graph Studio"
+        },
+        "mongoDbUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL for MongoDB API access"
+        },
+        "ordsUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL for Oracle REST Data Services"
+        },
+        "databaseTransformUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL for Data Transforms"
+        }
+      }
+    },
+    "whitelistedIps": {
+      "type": "array",
+      "description": "List of allowed IP addresses or CIDR blocks for access control",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subnetId": {
+      "type": "string",
+      "description": "The OCID of the subnet for private endpoint access"
+    },
+    "privateEndpointIp": {
+      "type": "string",
+      "description": "Private endpoint IP address"
+    },
+    "privateEndpointLabel": {
+      "type": "string",
+      "description": "Private endpoint DNS label"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the database was created"
+    },
+    "timeMaintenanceBegin": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Start time of next scheduled maintenance window"
+    },
+    "timeMaintenanceEnd": {
+      "type": "string",
+      "format": "date-time",
+      "description": "End time of next scheduled maintenance window"
+    },
+    "freeformTags": {
+      "type": "object",
+      "description": "Free-form tags for resource categorization",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "definedTags": {
+      "type": "object",
+      "description": "Defined tags for resource governance",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  },
+  "required": ["id", "compartmentId", "dbName", "lifecycleState"]
+}

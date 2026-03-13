@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oracle.com/schemas/database/event-message.json",
+  "title": "Oracle Transactional Event Queue Message",
+  "description": "Represents a message in Oracle Transactional Event Queues (TxEventQ), the Kafka-compatible event streaming system built into Oracle Database.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": ["string", "null"],
+      "description": "Message key used for partition assignment and ordering guarantees"
+    },
+    "value": {
+      "description": "The message payload content, can be any JSON value"
+    },
+    "headers": {
+      "type": "object",
+      "description": "Optional message headers for metadata and routing",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "topic": {
+      "type": "string",
+      "description": "Name of the TxEventQ topic"
+    },
+    "partition": {
+      "type": "integer",
+      "description": "Partition number within the topic",
+      "minimum": 0
+    },
+    "offset": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Sequential offset of the message within its partition",
+      "minimum": 0
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the message was produced or appended"
+    },
+    "timestampType": {
+      "type": "string",
+      "description": "Type of timestamp",
+      "enum": ["CREATE_TIME", "LOG_APPEND_TIME"]
+    }
+  },
+  "required": ["value"]
+}

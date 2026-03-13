@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oracle.com/schemas/database/pluggable-database.json",
+  "title": "Oracle Pluggable Database",
+  "description": "Represents an Oracle Pluggable Database (PDB) in a multitenant container database architecture. PDBs are portable, self-contained database containers that share the resources of a container database (CDB).",
+  "type": "object",
+  "properties": {
+    "pdb_name": {
+      "type": "string",
+      "description": "Name of the pluggable database"
+    },
+    "pdb_id": {
+      "type": "integer",
+      "description": "Unique identifier for the PDB within the CDB"
+    },
+    "id": {
+      "type": "string",
+      "description": "The OCID of the pluggable database (OCI managed)"
+    },
+    "containerDatabaseId": {
+      "type": "string",
+      "description": "The OCID of the container database (OCI managed)"
+    },
+    "compartmentId": {
+      "type": "string",
+      "description": "The OCID of the compartment (OCI managed)"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the PDB",
+      "enum": ["NORMAL", "RESTRICTED", "UNUSABLE", "RECOVERING", "NEW"]
+    },
+    "open_mode": {
+      "type": "string",
+      "description": "Current open mode of the PDB",
+      "enum": ["READ_WRITE", "READ_ONLY", "MOUNTED", "MIGRATE"]
+    },
+    "lifecycleState": {
+      "type": "string",
+      "description": "OCI lifecycle state of the PDB",
+      "enum": [
+        "PROVISIONING",
+        "AVAILABLE",
+        "TERMINATING",
+        "TERMINATED",
+        "UPDATING",
+        "FAILED"
+      ]
+    },
+    "total_size": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Total size of the PDB in bytes"
+    },
+    "creation_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the PDB was created"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp (OCI format)"
+    },
+    "connectionStrings": {
+      "type": "object",
+      "description": "Connection strings for the PDB",
+      "properties": {
+        "pdbDefault": {
+          "type": "string",
+          "description": "Default connection string for the PDB"
+        },
+        "pdbIpDefault": {
+          "type": "string",
+          "description": "IP-based default connection string for the PDB"
+        }
+      }
+    },
+    "freeformTags": {
+      "type": "object",
+      "description": "Free-form tags for resource categorization",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "definedTags": {
+      "type": "object",
+      "description": "Defined tags for resource governance",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  },
+  "required": ["pdb_name"]
+}

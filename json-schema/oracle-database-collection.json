@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://oracle.com/schemas/database/collection.json",
+  "title": "Oracle SODA Collection",
+  "description": "Represents a SODA document collection in Oracle Database, including its metadata configuration for key generation, content storage, versioning, and modification tracking.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Collection name, must not be 'custom-actions' or 'metadata-catalog'"
+    },
+    "properties": {
+      "type": "object",
+      "description": "Collection metadata properties",
+      "properties": {
+        "schemaName": {
+          "type": "string",
+          "description": "Oracle Database schema (user account) owning the collection"
+        },
+        "tableName": {
+          "type": "string",
+          "description": "Name of the underlying database table storing documents"
+        },
+        "keyColumn": {
+          "type": "object",
+          "description": "Configuration for the document key column",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Column name for the document key",
+              "default": "ID"
+            },
+            "sqlType": {
+              "type": "string",
+              "description": "SQL data type for the key column",
+              "enum": ["VARCHAR2", "NUMBER", "RAW"],
+              "default": "VARCHAR2"
+            },
+            "maxLength": {
+              "type": "integer",
+              "description": "Maximum length for VARCHAR2 key columns",
+              "default": 255
+            },
+            "assignmentMethod": {
+              "type": "string",
+              "description": "Method for generating document keys",
+              "enum": ["UUID", "GUID", "SEQUENCE", "CLIENT"],
+              "default": "UUID"
+            },
+            "sequenceName": {
+              "type": "string",
+              "description": "Name of the sequence used when assignmentMethod is SEQUENCE"
+            }
+          }
+        },
+        "contentColumn": {
+          "type": "object",
+          "description": "Configuration for the document content column",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Column name for document content",
+              "default": "JSON_DOCUMENT"
+            },
+            "sqlType": {
+              "type": "string",
+              "description": "SQL data type for content storage",
+              "enum": ["JSON", "BLOB", "CLOB", "VARCHAR2"],
+              "default": "JSON"
+            },
+            "compress": {
+              "type": "string",
+              "description": "Compression method for BLOB content",
+              "enum": ["NONE", "HIGH", "MEDIUM", "LOW"]
+            },
+            "cache": {
+              "type": "boolean",
+              "description": "Whether to enable LOB caching"
+            },
+            "encrypt": {
+              "type": "string",
+              "description": "Encryption algorithm for content"
+            },
+            "validation": {
+              "type": "string",
+              "description": "JSON validation mode",
+              "enum": ["STANDARD", "STRICT", "LAX"],
+              "default": "STANDARD"
+            },
+            "maxLength": {
+              "type": "integer",
+              "description": "Maximum length for VARCHAR2 content columns"
+            }
+          }
+        },
+        "versionColumn": {
+          "type": "object",
+          "description": "Configuration for the document version column",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Column name for document version",
+              "default": "VERSION"
+            },
+            "method": {
+              "type": "string",
+              "description": "Method for computing document versions",
+              "enum": ["UUID", "TIMESTAMP", "SHA256", "MD5", "NONE"],
+              "default": "UUID"
+            }
+          }
+        },
+        "lastModifiedColumn": {
+          "type": "object",
+          "description": "Configuration for the last modified timestamp column",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Column name for last modified timestamp",
+              "default": "LAST_MODIFIED"
+            },
+            "index": {
+              "type": "string",
+              "description": "Name of the index on the last modified column"
+            }
+          }
+        },
+        "creationTimeColumn": {
+          "type": "object",
+          "description": "Configuration for the creation timestamp column",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Column name for creation timestamp",
+              "default": "CREATED_ON"
+            }
+          }
+        },
+        "readOnly": {
+          "type": "boolean",
+          "description": "Whether the collection is read-only",
+          "default": false
+        },
+        "mediaTypeColumn": {
+          "type": "object",
+          "description": "Configuration for the media type column (non-JSON content)",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Column name for media type"
+            }
+          }
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "description": "Navigation links for the collection",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rel": {
+            "type": "string",
+            "description": "Link relation type"
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "description": "Link URL"
+          },
+          "mediaType": {
+            "type": "string",
+            "description": "Media type of the linked resource"
+          }
+        }
+      }
+    }
+  },
+  "required": ["name"]
+}

@@ -1,0 +1,150 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "oracle": "https://oracle.com/schemas/database/",
+    "oci": "https://docs.oracle.com/iaas/api/",
+    "soda": "https://oracle.com/schemas/database/soda/",
+    "ords": "https://oracle.com/schemas/database/ords/",
+    "txeventq": "https://oracle.com/schemas/database/txeventq/",
+
+    "Database": "oracle:Database",
+    "AutonomousDatabase": "oracle:AutonomousDatabase",
+    "PluggableDatabase": "oracle:PluggableDatabase",
+    "DbSystem": "oracle:DbSystem",
+    "Collection": "soda:Collection",
+    "Document": "soda:Document",
+    "Table": "oracle:Table",
+    "Column": "oracle:Column",
+    "Index": "oracle:Index",
+    "Topic": "txeventq:Topic",
+    "EventMessage": "txeventq:EventMessage",
+    "ConsumerGroup": "txeventq:ConsumerGroup",
+
+    "databaseName": {
+      "@id": "oracle:databaseName",
+      "@type": "xsd:string"
+    },
+    "displayName": {
+      "@id": "oracle:displayName",
+      "@type": "xsd:string"
+    },
+    "compartmentId": {
+      "@id": "oci:compartmentId",
+      "@type": "@id"
+    },
+    "lifecycleState": {
+      "@id": "oracle:lifecycleState",
+      "@type": "xsd:string"
+    },
+    "dbWorkload": {
+      "@id": "oracle:dbWorkload",
+      "@type": "xsd:string"
+    },
+    "cpuCoreCount": {
+      "@id": "oracle:cpuCoreCount",
+      "@type": "xsd:integer"
+    },
+    "dataStorageSizeInTBs": {
+      "@id": "oracle:dataStorageSizeInTBs",
+      "@type": "xsd:integer"
+    },
+    "connectionStrings": {
+      "@id": "oracle:connectionStrings",
+      "@type": "@id"
+    },
+    "connectionUrls": {
+      "@id": "oracle:connectionUrls",
+      "@type": "@id"
+    },
+
+    "collectionName": {
+      "@id": "soda:collectionName",
+      "@type": "xsd:string"
+    },
+    "documentKey": {
+      "@id": "soda:documentKey",
+      "@type": "xsd:string"
+    },
+    "etag": {
+      "@id": "soda:etag",
+      "@type": "xsd:string"
+    },
+    "lastModified": {
+      "@id": "soda:lastModified",
+      "@type": "xsd:dateTime"
+    },
+    "mediaType": {
+      "@id": "soda:mediaType",
+      "@type": "xsd:string"
+    },
+
+    "tableName": {
+      "@id": "oracle:tableName",
+      "@type": "xsd:string"
+    },
+    "schemaOwner": {
+      "@id": "oracle:schemaOwner",
+      "@type": "xsd:string"
+    },
+    "tablespaceName": {
+      "@id": "oracle:tablespaceName",
+      "@type": "xsd:string"
+    },
+    "columnName": {
+      "@id": "oracle:columnName",
+      "@type": "xsd:string"
+    },
+    "dataType": {
+      "@id": "oracle:dataType",
+      "@type": "xsd:string"
+    },
+
+    "topicName": {
+      "@id": "txeventq:topicName",
+      "@type": "xsd:string"
+    },
+    "partition": {
+      "@id": "txeventq:partition",
+      "@type": "xsd:integer"
+    },
+    "offset": {
+      "@id": "txeventq:offset",
+      "@type": "xsd:long"
+    },
+    "messageKey": {
+      "@id": "txeventq:messageKey",
+      "@type": "xsd:string"
+    },
+    "messageValue": {
+      "@id": "txeventq:messageValue"
+    },
+    "consumerGroupId": {
+      "@id": "txeventq:consumerGroupId",
+      "@type": "xsd:string"
+    },
+
+    "pdbName": {
+      "@id": "oracle:pdbName",
+      "@type": "xsd:string"
+    },
+    "openMode": {
+      "@id": "oracle:openMode",
+      "@type": "xsd:string"
+    },
+    "containerDatabaseId": {
+      "@id": "oracle:containerDatabaseId",
+      "@type": "@id"
+    },
+
+    "timeCreated": {
+      "@id": "oracle:timeCreated",
+      "@type": "xsd:dateTime"
+    },
+    "version": {
+      "@id": "oracle:version",
+      "@type": "xsd:string"
+    },
+
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}

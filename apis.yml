@@ -2,7 +2,7 @@ name: Oracle Database APIs
 description: APIs and interfaces for Oracle Database management, querying, and administration
 image: https://www.oracle.com/asset/web/favicons/favicon-192.png
 created: 2024-01-20 00:00:00+00:00
-modified: 2024-01-20 00:00:00+00:00
+modified: '2026-03-04'
 specificationVersion: '0.18'
 url: https://www.oracle.com/database/apis.json
 apis:
@@ -23,6 +23,14 @@ apis:
     url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
   - type: Swagger
     url: https://example.oracle.com/ords/metadata-catalog/
+  - type: OpenAPI
+    url: openapi/oracle-database-ords-openapi.yml
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
   contact:
   - FN: Oracle Support
     email: support@oracle.com
@@ -64,6 +72,14 @@ apis:
     url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
   - type: API Reference
     url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: OpenAPI
+    url: openapi/oracle-database-oci-openapi.yml
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
   contact:
   - FN: Oracle Cloud Support
     email: cloud-support@oracle.com
@@ -127,10 +143,75 @@ apis:
     url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
   - type: Java API
     url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: OpenAPI
+    url: openapi/oracle-database-soda-openapi.yml
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+- name: Oracle Transactional Event Queues (TxEventQ)
+  description: Kafka-compatible event streaming and message queuing built into Oracle Database
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/
+  baseUrl: https://example.oracle.com/ords/{schema}/database/txeventq/
+  tags:
+  - Event Streaming
+  - Messaging
+  - Kafka
+  - Pub/Sub
+  - Queues
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/
+  - type: AsyncAPI
+    url: asyncapi/oracle-database-txeventq-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/oracle-database-event-message.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  contact:
+  - FN: Oracle Support
+    email: support@oracle.com
+    url: https://support.oracle.com
 maintainers:
-- FN: Oracle Corporation
-  email: info@oracle.com
-  url: https://www.oracle.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
+common:
+- type: Portal
+  url: https://www.oracle.com/database/technologies/appdev.html
+- type: Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-database/
+- type: Getting Started
+  url: https://www.oracle.com/database/technologies/appdev/quickstartsandtutorials.html
+- type: Support
+  url: https://www.oracle.com/support/
+- type: Status
+  url: https://ocistatus.oraclecloud.com/
+- type: Blog
+  url: https://blogs.oracle.com/database/
+- type: Terms of Service
+  url: https://www.oracle.com/legal/terms.html
+- type: Privacy Policy
+  url: https://www.oracle.com/legal/privacy/
+- type: Website
+  url: https://www.oracle.com/database/
+- type: Console
+  url: https://cloud.oracle.com/
+- type: Sign Up
+  url: https://signup.cloud.oracle.com/
+- type: GitHub Organization
+  url: https://github.com/oracle
+- type: Community
+  url: https://forums.oracle.com/ords/apexds/domain/dev-community
+- type: Stack Overflow
+  url: https://stackoverflow.com/questions/tagged/oracle
+- type: YouTube
+  url: https://www.youtube.com/user/Oracle
+- type: Pricing
+  url: https://www.oracle.com/database/technologies/oracle-database-pricing.html
 tags:
 - Database
 - SQL

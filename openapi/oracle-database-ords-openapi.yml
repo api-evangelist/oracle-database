@@ -1,0 +1,3331 @@
+openapi: 3.1.0
+info:
+  title: Oracle REST Data Services (ORDS) API
+  description: >-
+    RESTful API for Oracle Database management, monitoring, and data access
+    through Oracle REST Data Services. Provides 300+ endpoints across 17
+    categories including database administration, performance monitoring,
+    Data Guard management, Data Pump operations, pluggable database lifecycle,
+    APEX management, RDF graph operations, and transactional event queues.
+  version: 25.4.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+    email: support@oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+externalDocs:
+  description: ORDS REST API Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.4/orrst/
+servers:
+  - url: https://{host}:{port}/ords
+    description: ORDS Server
+    variables:
+      host:
+        default: localhost
+        description: ORDS server hostname
+      port:
+        default: '8443'
+        description: ORDS server port
+security:
+  - oauth2: []
+  - basicAuth: []
+tags:
+  - name: General
+    description: Core database instance status, version, and configuration services
+  - name: Data Dictionary
+    description: Database tables, views, columns, indexes, and object metadata
+  - name: Monitoring
+    description: Database session monitoring, locks, alerts, and wait metrics
+  - name: Performance
+    description: SQL performance analysis, execution plans, and active session history
+  - name: Pluggable Databases
+    description: PDB lifecycle management for multitenant environments
+  - name: PDB Snapshots
+    description: PDB snapshot carousel management
+  - name: Data Guard
+    description: Oracle Data Guard broker configuration and database management
+  - name: Data Pump
+    description: High-speed data and metadata export/import operations
+  - name: Data Tools
+    description: Data loading, cloud storage links, and survey operations
+  - name: REST Services
+    description: Custom REST API module, handler, and OAuth management
+  - name: Scheduler
+    description: Oracle Scheduler job management
+  - name: APEX
+    description: Oracle APEX workspace and application management
+  - name: RDF Graph
+    description: Knowledge graph management using W3C RDF, OWL, and SPARQL standards
+  - name: Transactional Event Queues
+    description: Message queue and event streaming services
+  - name: Open Service Broker
+    description: Open Service Broker API compliant service provisioning
+  - name: Environment
+    description: Oracle Home and DBCA database creation services
+paths:
+  /database/status:
+    get:
+      operationId: getDatabaseStatus
+      summary: Get database status
+      description: Returns the current status of the Oracle Database instance.
+      tags:
+        - General
+      responses:
+        '200':
+          description: Database status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/version:
+    get:
+      operationId: getDatabaseVersion
+      summary: Get database version
+      description: Returns the version information of the Oracle Database instance.
+      tags:
+        - General
+      responses:
+        '200':
+          description: Database version retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseVersion'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/components/:
+    get:
+      operationId: getDatabaseComponents
+      summary: Get all database components
+      description: Returns a list of all installed database components and their status.
+      tags:
+        - General
+      responses:
+        '200':
+          description: Components retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComponentList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/parameters/:
+    get:
+      operationId: getDatabaseParameters
+      summary: Get all database parameters
+      description: Returns all database initialization parameters and their current values.
+      tags:
+        - General
+      parameters:
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: Parameters retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/parameters/{name}:
+    get:
+      operationId: getDatabaseParameter
+      summary: Get a specific database parameter
+      description: Returns the value and metadata for a specific database parameter.
+      tags:
+        - General
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: The name of the database parameter
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Parameter retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseParameter'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/security/users/:
+    get:
+      operationId: getDatabaseUsers
+      summary: Get all database users
+      description: Returns a list of all database users and their properties.
+      tags:
+        - General
+      responses:
+        '200':
+          description: Users retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/storage/bytes:
+    get:
+      operationId: getStorageBytes
+      summary: Get storage usage in bytes
+      description: Returns the total storage usage of the database in bytes.
+      tags:
+        - General
+      responses:
+        '200':
+          description: Storage information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/storage/tablespaces/:
+    get:
+      operationId: getTablespaces
+      summary: Get all tablespaces storage information
+      description: Returns storage information for all tablespaces.
+      tags:
+        - General
+      responses:
+        '200':
+          description: Tablespace storage information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TablespaceList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/storage/tablespaces/{tablespace_name}/:
+    get:
+      operationId: getTablespace
+      summary: Get tablespace details
+      description: Returns detailed storage information for a specific tablespace.
+      tags:
+        - General
+      parameters:
+        - name: tablespace_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tablespace details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tablespace'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/storage/tablespaces/{tablespace_name}/datafiles/:
+    get:
+      operationId: getDatafiles
+      summary: Get tablespace datafiles
+      description: Returns datafiles associated with a specific tablespace.
+      tags:
+        - General
+      parameters:
+        - name: tablespace_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Datafiles retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatafileList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/feature_usage/:
+    get:
+      operationId: getFeatureUsage
+      summary: Get feature usage statistics
+      description: Returns usage statistics for database features.
+      tags:
+        - General
+      responses:
+        '200':
+          description: Feature usage retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureUsageList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/sessionless-transactions/:
+    post:
+      operationId: startSessionlessTransaction
+      summary: Start a sessionless transaction
+      description: Starts a new sessionless transaction and returns its identifier.
+      tags:
+        - General
+      responses:
+        '201':
+          description: Transaction started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionlessTransaction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/sessionless-transactions/{sessionlessTransactionID}:
+    put:
+      operationId: commitSessionlessTransaction
+      summary: Commit a sessionless transaction
+      description: Commits the specified sessionless transaction.
+      tags:
+        - General
+      parameters:
+        - name: sessionlessTransactionID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction committed successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: rollbackSessionlessTransaction
+      summary: Rollback a sessionless transaction
+      description: Rolls back the specified sessionless transaction.
+      tags:
+        - General
+      parameters:
+        - name: sessionlessTransactionID
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction rolled back successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/objects/tables/:
+    get:
+      operationId: getTables
+      summary: Get all tables
+      description: Returns metadata for all database tables accessible to the current user.
+      tags:
+        - Data Dictionary
+      parameters:
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: Tables retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/objects/tables/{owner},{table_name}:
+    get:
+      operationId: getTable
+      summary: Get a specific table
+      description: Returns metadata for a specific database table.
+      tags:
+        - Data Dictionary
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: table_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Table metadata retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableMetadata'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/objects/columns/:
+    get:
+      operationId: getColumns
+      summary: Get all table columns
+      description: Returns column metadata for all tables.
+      tags:
+        - Data Dictionary
+      parameters:
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: Columns retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ColumnList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/objects/columns/{owner},{table_name},{column_name}:
+    get:
+      operationId: getColumn
+      summary: Get a specific column
+      description: Returns metadata for a specific table column.
+      tags:
+        - Data Dictionary
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: table_name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: column_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Column metadata retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ColumnMetadata'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/objects/indexes/:
+    get:
+      operationId: getIndexes
+      summary: Get all indexes
+      description: Returns metadata for all database indexes.
+      tags:
+        - Data Dictionary
+      parameters:
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: Indexes retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/objects/indexes/{owner},{index_name}:
+    get:
+      operationId: getIndex
+      summary: Get a specific index
+      description: Returns metadata for a specific database index.
+      tags:
+        - Data Dictionary
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: index_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Index metadata retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexMetadata'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/objects/functions/:
+    get:
+      operationId: getFunctions
+      summary: Get all functions
+      description: Returns metadata for all database functions.
+      tags:
+        - Data Dictionary
+      responses:
+        '200':
+          description: Functions retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FunctionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/objects/functions/{object_id}:
+    get:
+      operationId: getFunction
+      summary: Get a specific function
+      description: Returns metadata for a specific database function.
+      tags:
+        - Data Dictionary
+      parameters:
+        - name: object_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Function metadata retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FunctionMetadata'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/objects/foreign_keys/:
+    get:
+      operationId: getForeignKeys
+      summary: Get all foreign keys
+      description: Returns metadata for all foreign key constraints.
+      tags:
+        - Data Dictionary
+      responses:
+        '200':
+          description: Foreign keys retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForeignKeyList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/db_links/:
+    get:
+      operationId: getDatabaseLinks
+      summary: Get all database links
+      description: Returns metadata for all database links.
+      tags:
+        - Data Dictionary
+      responses:
+        '200':
+          description: Database links retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseLinkList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/db_links/{owner},{db_link}:
+    get:
+      operationId: getDatabaseLink
+      summary: Get a specific database link
+      description: Returns metadata for a specific database link.
+      tags:
+        - Data Dictionary
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: db_link
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Database link retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseLink'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/tablespaces/:
+    get:
+      operationId: getTablespacesDict
+      summary: Get all tablespaces
+      description: Returns data dictionary information for all tablespaces.
+      tags:
+        - Data Dictionary
+      responses:
+        '200':
+          description: Tablespaces retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TablespaceList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/sessions/:
+    get:
+      operationId: getSessions
+      summary: Get all sessions
+      description: Returns information about all active database sessions.
+      tags:
+        - Monitoring
+      parameters:
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: Sessions retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/sessions/{sid},{serial_number}/:
+    get:
+      operationId: getSession
+      summary: Get a specific session
+      description: Returns detailed information about a specific database session.
+      tags:
+        - Monitoring
+      parameters:
+        - name: sid
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: serial_number
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Session details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/monitoring/session_locks/:
+    get:
+      operationId: getSessionLocks
+      summary: Get all session locks
+      description: Returns information about all current session locks.
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Session locks retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionLockList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/session_locks/holding/:
+    get:
+      operationId: getBlockingLocks
+      summary: Get blocking locks
+      description: Returns information about sessions holding locks that block others.
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Blocking locks retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionLockList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/session_locks/waiting/:
+    get:
+      operationId: getWaitingLocks
+      summary: Get waiting locks
+      description: Returns information about sessions waiting to acquire locks.
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Waiting locks retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionLockList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/alerts/:
+    get:
+      operationId: getAlerts
+      summary: Get all alerts
+      description: Returns all database alerts and notifications.
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Alerts retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/alerts_summaries/by_message_level:
+    get:
+      operationId: getAlertSummaries
+      summary: Get alert summaries by message level
+      description: Returns alert summary statistics grouped by message level.
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Alert summaries retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertSummaryList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/wait_class_metrics:
+    get:
+      operationId: getWaitClassMetrics
+      summary: Get wait class metrics
+      description: Returns database wait class performance metrics.
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Wait class metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaitClassMetricList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/wait_class_totals:
+    get:
+      operationId: getWaitClassTotals
+      summary: Get wait class totals
+      description: Returns total wait time statistics by wait class.
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Wait class totals retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaitClassTotalList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/session_limits:
+    get:
+      operationId: getSessionLimits
+      summary: Get session limits
+      description: Returns the configured session limits and current usage.
+      tags:
+        - Monitoring
+      responses:
+        '200':
+          description: Session limits retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionLimitList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/performance/sql_statements/:
+    get:
+      operationId: getSQLStatements
+      summary: Get all SQL statements
+      description: Returns performance statistics for all SQL statements in the shared pool.
+      tags:
+        - Performance
+      parameters:
+        - $ref: '#/components/parameters/limitParam'
+        - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: SQL statements retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SQLStatementList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/performance/top_sql_statements/:
+    get:
+      operationId: getTopSQLStatements
+      summary: Get top SQL by CPU usage
+      description: Returns the top SQL statements ranked by CPU consumption.
+      tags:
+        - Performance
+      responses:
+        '200':
+          description: Top SQL statements retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SQLStatementList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/performance/sql_statements/{sql_id}/:
+    get:
+      operationId: getSQLStatementStats
+      summary: Get SQL statement statistics
+      description: Returns detailed statistics for a specific SQL statement.
+      tags:
+        - Performance
+      parameters:
+        - name: sql_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: SQL statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SQLStatementDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/performance/sql_statements/{sql_id}/text:
+    get:
+      operationId: getSQLStatementText
+      summary: Get SQL statement text
+      description: Returns the full SQL text for a specific statement.
+      tags:
+        - Performance
+      parameters:
+        - name: sql_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: SQL text retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SQLText'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/performance/sql_statements/{sql_id}/plan:
+    get:
+      operationId: getSQLExecutionPlan
+      summary: Get SQL execution plan
+      description: Returns the execution plan for a specific SQL statement.
+      tags:
+        - Performance
+      parameters:
+        - name: sql_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Execution plan retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionPlan'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/performance/sql_statements/{sql_id}/history:
+    get:
+      operationId: getSQLHistory
+      summary: Get SQL statement history
+      description: Returns historical performance data for a specific SQL statement.
+      tags:
+        - Performance
+      parameters:
+        - name: sql_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: SQL history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SQLHistoryList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/performance/active_sessions_history/:
+    get:
+      operationId: getActiveSessionsHistory
+      summary: Get active sessions history
+      description: Returns the active session history (ASH) data.
+      tags:
+        - Performance
+      responses:
+        '200':
+          description: Active sessions history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveSessionHistoryList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/performance/active_sessions_history_waits/:
+    get:
+      operationId: getActiveSessionsHistoryWaits
+      summary: Get active session history waits
+      description: Returns wait event data from the active session history.
+      tags:
+        - Performance
+      responses:
+        '200':
+          description: Wait data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveSessionWaitList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/pdbs/:
+    get:
+      operationId: getPDBs
+      summary: Get all pluggable databases
+      description: Returns a list of all pluggable databases in the container database.
+      tags:
+        - Pluggable Databases
+      responses:
+        '200':
+          description: PDBs retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PDBList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createPDB
+      summary: Create a pluggable database
+      description: Creates a new pluggable database in the container database.
+      tags:
+        - Pluggable Databases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePDBRequest'
+      responses:
+        '201':
+          description: PDB created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PDB'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/pdbs/{pdb_name}:
+    get:
+      operationId: getPDB
+      summary: Get a specific pluggable database
+      description: Returns details about a specific pluggable database.
+      tags:
+        - Pluggable Databases
+      parameters:
+        - name: pdb_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: PDB details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PDB'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updatePDB
+      summary: Update a pluggable database
+      description: Updates properties of a specific pluggable database including open/close state.
+      tags:
+        - Pluggable Databases
+      parameters:
+        - name: pdb_name
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePDBRequest'
+      responses:
+        '200':
+          description: PDB updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PDB'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: dropPDB
+      summary: Drop a pluggable database
+      description: Drops the specified pluggable database from the container database.
+      tags:
+        - Pluggable Databases
+      parameters:
+        - name: pdb_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: PDB dropped successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/snapshots/:
+    get:
+      operationId: getSnapshots
+      summary: Get all PDB snapshots
+      description: Returns a list of all PDB snapshots.
+      tags:
+        - PDB Snapshots
+      responses:
+        '200':
+          description: Snapshots retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSnapshot
+      summary: Create a PDB snapshot
+      description: Creates a new snapshot of the current pluggable database state.
+      tags:
+        - PDB Snapshots
+      responses:
+        '201':
+          description: Snapshot created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snapshot'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: configureAutoSnapshots
+      summary: Configure automatic snapshots
+      description: Configures automatic snapshot scheduling for the PDB.
+      tags:
+        - PDB Snapshots
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AutoSnapshotConfig'
+      responses:
+        '200':
+          description: Auto snapshot configuration updated successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/snapshots/{snapshot_name}:
+    get:
+      operationId: getSnapshot
+      summary: Get a specific snapshot
+      description: Returns details about a specific PDB snapshot.
+      tags:
+        - PDB Snapshots
+      parameters:
+        - name: snapshot_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Snapshot details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snapshot'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createNamedSnapshot
+      summary: Create a named PDB snapshot
+      description: Creates a new snapshot with the specified name.
+      tags:
+        - PDB Snapshots
+      parameters:
+        - name: snapshot_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: Named snapshot created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snapshot'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteSnapshot
+      summary: Delete a PDB snapshot
+      description: Deletes the specified PDB snapshot.
+      tags:
+        - PDB Snapshots
+      parameters:
+        - name: snapshot_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Snapshot deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/snapshot_mode:
+    get:
+      operationId: getSnapshotMode
+      summary: Get snapshot mode
+      description: Returns the current snapshot mode configuration.
+      tags:
+        - PDB Snapshots
+      responses:
+        '200':
+          description: Snapshot mode retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotMode'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/dataguard/configuration/:
+    get:
+      operationId: getDataGuardConfiguration
+      summary: Get Data Guard broker configuration
+      description: Returns the current Data Guard broker configuration.
+      tags:
+        - Data Guard
+      responses:
+        '200':
+          description: Configuration retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataGuardConfiguration'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: addDataGuardConfiguration
+      summary: Add a Data Guard configuration
+      description: Creates a new Data Guard broker configuration.
+      tags:
+        - Data Guard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDataGuardConfigRequest'
+      responses:
+        '201':
+          description: Configuration added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataGuardConfiguration'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: updateDataGuardConfiguration
+      summary: Enable or disable Data Guard configuration
+      description: Enables or disables the Data Guard broker configuration.
+      tags:
+        - Data Guard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataGuardConfigRequest'
+      responses:
+        '200':
+          description: Configuration updated successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: removeDataGuardConfiguration
+      summary: Remove Data Guard configuration
+      description: Removes the Data Guard broker configuration.
+      tags:
+        - Data Guard
+      responses:
+        '200':
+          description: Configuration removed successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/dataguard/databases/:
+    get:
+      operationId: getDataGuardDatabases
+      summary: Get all Data Guard databases
+      description: Returns all databases registered with the Data Guard broker.
+      tags:
+        - Data Guard
+      responses:
+        '200':
+          description: Databases retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataGuardDatabaseList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: addDataGuardDatabase
+      summary: Add a database to Data Guard
+      description: Adds a database to the Data Guard broker configuration.
+      tags:
+        - Data Guard
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddDataGuardDatabaseRequest'
+      responses:
+        '201':
+          description: Database added successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/dataguard/databases/{database}:
+    put:
+      operationId: updateDataGuardDatabase
+      summary: Update Data Guard database role
+      description: Converts, enables, or disables a database in the Data Guard configuration.
+      tags:
+        - Data Guard
+      parameters:
+        - name: database
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDataGuardDatabaseRequest'
+      responses:
+        '200':
+          description: Database role updated successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: removeDataGuardDatabase
+      summary: Remove database from Data Guard
+      description: Removes a database from the Data Guard broker configuration.
+      tags:
+        - Data Guard
+      parameters:
+        - name: database
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Database removed successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/datapump/export:
+    post:
+      operationId: createExportJob
+      summary: Create a Data Pump export job
+      description: Creates a new Data Pump export job for data and metadata extraction.
+      tags:
+        - Data Pump
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataPumpExportRequest'
+      responses:
+        '201':
+          description: Export job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataPumpJob'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/datapump/import:
+    post:
+      operationId: createImportJob
+      summary: Create a Data Pump import job
+      description: Creates a new Data Pump import job for data and metadata loading.
+      tags:
+        - Data Pump
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataPumpImportRequest'
+      responses:
+        '201':
+          description: Import job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataPumpJob'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/datapump/jobs/:
+    get:
+      operationId: getDataPumpJobs
+      summary: Get all Data Pump jobs
+      description: Returns a list of all Data Pump jobs.
+      tags:
+        - Data Pump
+      responses:
+        '200':
+          description: Jobs retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataPumpJobList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/datapump/jobs/{owner_name},{job_name}/:
+    get:
+      operationId: getDataPumpJob
+      summary: Get a specific Data Pump job
+      description: Returns details about a specific Data Pump job.
+      tags:
+        - Data Pump
+      parameters:
+        - name: owner_name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: job_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataPumpJob'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/datapump/jobs/{owner_name},{job_name}/{filename}:
+    get:
+      operationId: getDataPumpJobFile
+      summary: Get a Data Pump job file
+      description: Returns the contents of a specific Data Pump job output file.
+      tags:
+        - Data Pump
+      parameters:
+        - name: owner_name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: job_name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: File contents retrieved successfully
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /ords/rest/modules/:
+    get:
+      operationId: getRESTModules
+      summary: Get all REST modules
+      description: Returns a list of all custom REST API modules.
+      tags:
+        - REST Services
+      responses:
+        '200':
+          description: REST modules retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RESTModuleList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRESTModule
+      summary: Create a REST module
+      description: Creates a new custom REST API module with SQL or PL/SQL handlers.
+      tags:
+        - REST Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRESTModuleRequest'
+      responses:
+        '201':
+          description: REST module created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RESTModule'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /ords/rest/modules/{id}:
+    put:
+      operationId: updateRESTModule
+      summary: Update a REST module
+      description: Updates an existing REST API module.
+      tags:
+        - REST Services
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRESTModuleRequest'
+      responses:
+        '200':
+          description: REST module updated successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /ords/rest/handlers/:
+    get:
+      operationId: getRESTHandlers
+      summary: Get all REST handlers
+      description: Returns a list of all REST API handlers.
+      tags:
+        - REST Services
+      responses:
+        '200':
+          description: REST handlers retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RESTHandlerList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createRESTHandler
+      summary: Create a REST handler
+      description: Creates a new REST API handler.
+      tags:
+        - REST Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRESTHandlerRequest'
+      responses:
+        '201':
+          description: REST handler created successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /ords/rest/handlers/{id}:
+    delete:
+      operationId: deleteRESTHandler
+      summary: Delete a REST handler
+      description: Deletes an existing REST API handler.
+      tags:
+        - REST Services
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: REST handler deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /ords/rest/clients/:
+    get:
+      operationId: getOAuthClients
+      summary: Get all OAuth clients
+      description: Returns a list of all registered OAuth clients.
+      tags:
+        - REST Services
+      responses:
+        '200':
+          description: OAuth clients retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthClientList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createOAuthClient
+      summary: Create an OAuth client
+      description: Registers a new OAuth client for REST API authentication.
+      tags:
+        - REST Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOAuthClientRequest'
+      responses:
+        '201':
+          description: OAuth client created successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /ords/rest/clients/{id}:
+    put:
+      operationId: updateOAuthClient
+      summary: Update an OAuth client
+      description: Updates an existing OAuth client registration.
+      tags:
+        - REST Services
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOAuthClientRequest'
+      responses:
+        '200':
+          description: OAuth client updated successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /ords/rest/privileges/:
+    post:
+      operationId: createPrivilege
+      summary: Create a REST privilege
+      description: Creates a new privilege for controlling access to REST resources.
+      tags:
+        - REST Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePrivilegeRequest'
+      responses:
+        '201':
+          description: Privilege created successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /ords/rest/roles/:
+    post:
+      operationId: createRole
+      summary: Create a REST role
+      description: Creates a new role for grouping REST privileges.
+      tags:
+        - REST Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRoleRequest'
+      responses:
+        '201':
+          description: Role created successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /ords/rest/autorest/:
+    post:
+      operationId: autoRESTEnableObject
+      summary: REST enable a database object
+      description: Enables automatic REST access for a database table, view, or PL/SQL object.
+      tags:
+        - REST Services
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AutoRESTRequest'
+      responses:
+        '201':
+          description: Object REST enabled successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /ords/properties/:
+    get:
+      operationId: getORDSProperties
+      summary: Get ORDS properties
+      description: Returns all ORDS configuration properties.
+      tags:
+        - REST Services
+      responses:
+        '200':
+          description: Properties retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ORDSPropertyList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /ords/properties/{key}:
+    put:
+      operationId: setORDSProperty
+      summary: Set an ORDS property
+      description: Sets or updates an ORDS configuration property.
+      tags:
+        - REST Services
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ORDSPropertyValue'
+      responses:
+        '200':
+          description: Property set successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: unsetORDSProperty
+      summary: Unset an ORDS property
+      description: Removes an ORDS configuration property, restoring the default value.
+      tags:
+        - REST Services
+      parameters:
+        - name: key
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Property unset successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/scheduler/jobs/:
+    get:
+      operationId: getSchedulerJobs
+      summary: Get all scheduler jobs
+      description: Returns a list of all Oracle Scheduler jobs.
+      tags:
+        - Scheduler
+      responses:
+        '200':
+          description: Scheduler jobs retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerJobList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/scheduler/jobs/{owner},{job_name}:
+    get:
+      operationId: getSchedulerJob
+      summary: Get a specific scheduler job
+      description: Returns details about a specific Oracle Scheduler job.
+      tags:
+        - Scheduler
+      parameters:
+        - name: owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: job_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Scheduler job details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SchedulerJob'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apex/workspaces/:
+    get:
+      operationId: getAPEXWorkspaces
+      summary: Get all APEX workspaces
+      description: Returns a list of all Oracle APEX workspaces.
+      tags:
+        - APEX
+      responses:
+        '200':
+          description: Workspaces retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXWorkspaceList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /apex/workspaces/{workspace_name}/:
+    get:
+      operationId: getAPEXWorkspace
+      summary: Get a specific APEX workspace
+      description: Returns details about a specific Oracle APEX workspace.
+      tags:
+        - APEX
+      parameters:
+        - name: workspace_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Workspace details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXWorkspace'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apex/workspaces/{workspace_name}/applications/:
+    get:
+      operationId: getAPEXApplications
+      summary: Get workspace applications
+      description: Returns applications in a specific APEX workspace.
+      tags:
+        - APEX
+      parameters:
+        - name: workspace_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Applications retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXApplicationList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /apex/workspaces/{workspace_name}/applications/{application_id}:
+    put:
+      operationId: createOrUpdateAPEXApplication
+      summary: Create or update an APEX application
+      description: Creates a new or updates an existing APEX application.
+      tags:
+        - APEX
+      parameters:
+        - name: workspace_name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/APEXApplicationRequest'
+      responses:
+        '200':
+          description: Application updated successfully
+        '201':
+          description: Application created successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteAPEXApplication
+      summary: Delete an APEX application
+      description: Deletes a specific APEX application.
+      tags:
+        - APEX
+      parameters:
+        - name: workspace_name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: application_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Application deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apex/statistics/overview:
+    get:
+      operationId: getAPEXOverview
+      summary: Get APEX instance overview
+      description: Returns overview statistics for the APEX instance.
+      tags:
+        - APEX
+      responses:
+        '200':
+          description: Overview statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXOverview'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/rdf/networks/:
+    get:
+      operationId: getRDFNetworks
+      summary: List all RDF networks
+      description: Returns a list of all RDF semantic networks.
+      tags:
+        - RDF Graph
+      responses:
+        '200':
+          description: RDF networks retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RDFNetworkList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/rdf/networks/{network_owner},{network_name}:
+    get:
+      operationId: getRDFNetwork
+      summary: Get RDF network information
+      description: Returns details about a specific RDF network.
+      tags:
+        - RDF Graph
+      parameters:
+        - name: network_owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: network_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: RDF network details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RDFNetwork'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: createRDFNetwork
+      summary: Create an RDF network
+      description: Creates a new RDF semantic network.
+      tags:
+        - RDF Graph
+      parameters:
+        - name: network_owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: network_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '201':
+          description: RDF network created successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/rdf/networks/{network_owner},{network_name}/models/:
+    get:
+      operationId: getRDFModels
+      summary: List RDF models
+      description: Returns a list of RDF models in the specified network.
+      tags:
+        - RDF Graph
+      parameters:
+        - name: network_owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: network_name
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: RDF models retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RDFModelList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/rdf/networks/{network_owner},{network_name}/models/{model_name}/sparql/1.1:
+    get:
+      operationId: executeSPARQLQueryGET
+      summary: Execute SPARQL query (GET)
+      description: Executes a SPARQL query against the specified RDF model using HTTP GET.
+      tags:
+        - RDF Graph
+      parameters:
+        - name: network_owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: network_name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: model_name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          description: The SPARQL query string
+          schema:
+            type: string
+      responses:
+        '200':
+          description: SPARQL query results
+          content:
+            application/sparql-results+json:
+              schema:
+                $ref: '#/components/schemas/SPARQLResults'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: executeSPARQLQueryPOST
+      summary: Execute SPARQL query (POST)
+      description: Executes a SPARQL query against the specified RDF model using HTTP POST.
+      tags:
+        - RDF Graph
+      parameters:
+        - name: network_owner
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: network_name
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: model_name
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/sparql-query:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: SPARQL query results
+          content:
+            application/sparql-results+json:
+              schema:
+                $ref: '#/components/schemas/SPARQLResults'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /openservicebroker/v2/catalog:
+    get:
+      operationId: getServiceCatalog
+      summary: Get service catalog
+      description: Returns the Open Service Broker catalog of available services.
+      tags:
+        - Open Service Broker
+      responses:
+        '200':
+          description: Service catalog retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCatalog'
+  /openservicebroker/v2/service_instances/{instance_id}:
+    put:
+      operationId: provisionServiceInstance
+      summary: Provision a service instance
+      description: Provisions a new Open Service Broker service instance.
+      tags:
+        - Open Service Broker
+      parameters:
+        - name: instance_id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProvisionRequest'
+      responses:
+        '200':
+          description: Service instance already exists
+        '201':
+          description: Service instance provisioned successfully
+    delete:
+      operationId: deprovisionServiceInstance
+      summary: Deprovision a service instance
+      description: Deprovisions an existing Open Service Broker service instance.
+      tags:
+        - Open Service Broker
+      parameters:
+        - name: instance_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Service instance deprovisioned successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /ords/{schema}/oauth/auth
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+    basicAuth:
+      type: http
+      scheme: basic
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
+    offsetParam:
+      name: offset
+      in: query
+      description: Number of items to skip before returning results
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    PaginatedResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items: {}
+        hasMore:
+          type: boolean
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+    DatabaseStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - OPEN
+            - MOUNTED
+            - STARTED
+        instance_name:
+          type: string
+        host_name:
+          type: string
+        database_role:
+          type: string
+        open_mode:
+          type: string
+    DatabaseVersion:
+      type: object
+      properties:
+        version:
+          type: string
+        version_full:
+          type: string
+        banner:
+          type: string
+    ComponentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              comp_id:
+                type: string
+              comp_name:
+                type: string
+              version:
+                type: string
+              status:
+                type: string
+    ParameterList:
+      allOf:
+        - $ref: '#/components/schemas/PaginatedResponse'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/DatabaseParameter'
+    DatabaseParameter:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        display_value:
+          type: string
+        isdefault:
+          type: string
+        ismodified:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+    UserList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              username:
+                type: string
+              account_status:
+                type: string
+              default_tablespace:
+                type: string
+              created:
+                type: string
+                format: date-time
+    StorageInfo:
+      type: object
+      properties:
+        total_bytes:
+          type: integer
+          format: int64
+        used_bytes:
+          type: integer
+          format: int64
+        free_bytes:
+          type: integer
+          format: int64
+    TablespaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tablespace'
+    Tablespace:
+      type: object
+      properties:
+        tablespace_name:
+          type: string
+        status:
+          type: string
+        contents:
+          type: string
+        block_size:
+          type: integer
+        allocated_bytes:
+          type: integer
+          format: int64
+        used_bytes:
+          type: integer
+          format: int64
+        free_bytes:
+          type: integer
+          format: int64
+    DatafileList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              file_name:
+                type: string
+              file_id:
+                type: integer
+              tablespace_name:
+                type: string
+              bytes:
+                type: integer
+                format: int64
+              status:
+                type: string
+    FeatureUsageList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              currently_used:
+                type: boolean
+              first_usage_date:
+                type: string
+                format: date-time
+              last_usage_date:
+                type: string
+                format: date-time
+    SessionlessTransaction:
+      type: object
+      properties:
+        sessionlessTransactionID:
+          type: string
+    TableList:
+      allOf:
+        - $ref: '#/components/schemas/PaginatedResponse'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/TableMetadata'
+    TableMetadata:
+      type: object
+      properties:
+        owner:
+          type: string
+        table_name:
+          type: string
+        tablespace_name:
+          type: string
+        num_rows:
+          type: integer
+          format: int64
+        last_analyzed:
+          type: string
+          format: date-time
+        status:
+          type: string
+        temporary:
+          type: string
+    ColumnList:
+      allOf:
+        - $ref: '#/components/schemas/PaginatedResponse'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/ColumnMetadata'
+    ColumnMetadata:
+      type: object
+      properties:
+        owner:
+          type: string
+        table_name:
+          type: string
+        column_name:
+          type: string
+        data_type:
+          type: string
+        data_length:
+          type: integer
+        nullable:
+          type: string
+        column_id:
+          type: integer
+    IndexList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndexMetadata'
+    IndexMetadata:
+      type: object
+      properties:
+        owner:
+          type: string
+        index_name:
+          type: string
+        table_name:
+          type: string
+        index_type:
+          type: string
+        uniqueness:
+          type: string
+        status:
+          type: string
+    FunctionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FunctionMetadata'
+    FunctionMetadata:
+      type: object
+      properties:
+        object_id:
+          type: integer
+        owner:
+          type: string
+        object_name:
+          type: string
+        object_type:
+          type: string
+        status:
+          type: string
+    ForeignKeyList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+              constraint_name:
+                type: string
+              table_name:
+                type: string
+              r_owner:
+                type: string
+              r_constraint_name:
+                type: string
+              status:
+                type: string
+    DatabaseLinkList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabaseLink'
+    DatabaseLink:
+      type: object
+      properties:
+        owner:
+          type: string
+        db_link:
+          type: string
+        username:
+          type: string
+        host:
+          type: string
+        created:
+          type: string
+          format: date-time
+    SessionList:
+      allOf:
+        - $ref: '#/components/schemas/PaginatedResponse'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/SessionDetail'
+    SessionDetail:
+      type: object
+      properties:
+        sid:
+          type: integer
+        serial_number:
+          type: integer
+        username:
+          type: string
+        status:
+          type: string
+        machine:
+          type: string
+        program:
+          type: string
+        sql_id:
+          type: string
+        event:
+          type: string
+        wait_class:
+          type: string
+        logon_time:
+          type: string
+          format: date-time
+    SessionLockList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sid:
+                type: integer
+              type:
+                type: string
+              mode_held:
+                type: string
+              mode_requested:
+                type: string
+              block:
+                type: integer
+    AlertList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              message_text:
+                type: string
+              message_level:
+                type: integer
+              originating_timestamp:
+                type: string
+                format: date-time
+    AlertSummaryList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              message_level:
+                type: integer
+              count:
+                type: integer
+    WaitClassMetricList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              wait_class:
+                type: string
+              average_waiter_count:
+                type: number
+              dbtime_in_wait:
+                type: number
+    WaitClassTotalList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              wait_class:
+                type: string
+              total_waits:
+                type: integer
+                format: int64
+              time_waited:
+                type: number
+    SessionLimitList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              resource_name:
+                type: string
+              current_utilization:
+                type: integer
+              max_utilization:
+                type: integer
+              limit_value:
+                type: string
+    SQLStatementList:
+      allOf:
+        - $ref: '#/components/schemas/PaginatedResponse'
+        - type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/SQLStatementDetail'
+    SQLStatementDetail:
+      type: object
+      properties:
+        sql_id:
+          type: string
+        sql_text:
+          type: string
+        executions:
+          type: integer
+          format: int64
+        cpu_time:
+          type: integer
+          format: int64
+        elapsed_time:
+          type: integer
+          format: int64
+        buffer_gets:
+          type: integer
+          format: int64
+        disk_reads:
+          type: integer
+          format: int64
+        rows_processed:
+          type: integer
+          format: int64
+    SQLText:
+      type: object
+      properties:
+        sql_id:
+          type: string
+        sql_fulltext:
+          type: string
+    ExecutionPlan:
+      type: object
+      properties:
+        sql_id:
+          type: string
+        plan_hash_value:
+          type: integer
+          format: int64
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              operation:
+                type: string
+              options:
+                type: string
+              object_name:
+                type: string
+              cost:
+                type: integer
+              cardinality:
+                type: integer
+    SQLHistoryList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sql_id:
+                type: string
+              snap_id:
+                type: integer
+              executions_delta:
+                type: integer
+              cpu_time_delta:
+                type: integer
+                format: int64
+              elapsed_time_delta:
+                type: integer
+                format: int64
+    ActiveSessionHistoryList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sample_time:
+                type: string
+                format: date-time
+              session_id:
+                type: integer
+              sql_id:
+                type: string
+              event:
+                type: string
+              wait_class:
+                type: string
+    ActiveSessionWaitList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              event:
+                type: string
+              wait_class:
+                type: string
+              total_waits:
+                type: integer
+              average_wait_ms:
+                type: number
+    PDBList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PDB'
+    PDB:
+      type: object
+      properties:
+        pdb_name:
+          type: string
+        pdb_id:
+          type: integer
+        status:
+          type: string
+        open_mode:
+          type: string
+        total_size:
+          type: integer
+          format: int64
+        creation_time:
+          type: string
+          format: date-time
+    CreatePDBRequest:
+      type: object
+      required:
+        - pdb_name
+        - admin_username
+        - admin_password
+      properties:
+        pdb_name:
+          type: string
+        admin_username:
+          type: string
+        admin_password:
+          type: string
+          format: password
+        file_name_convert:
+          type: string
+        storage_limit:
+          type: integer
+          format: int64
+    UpdatePDBRequest:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+            - OPEN
+            - CLOSE
+        open_mode:
+          type: string
+          enum:
+            - READ WRITE
+            - READ ONLY
+    SnapshotList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snapshot'
+    Snapshot:
+      type: object
+      properties:
+        snapshot_name:
+          type: string
+        snapshot_scn:
+          type: integer
+          format: int64
+        creation_time:
+          type: string
+          format: date-time
+        pdb_name:
+          type: string
+    AutoSnapshotConfig:
+      type: object
+      properties:
+        auto_snapshot_enabled:
+          type: boolean
+        snapshot_interval_minutes:
+          type: integer
+        max_snapshots:
+          type: integer
+    SnapshotMode:
+      type: object
+      properties:
+        snapshot_mode:
+          type: string
+    DataGuardConfiguration:
+      type: object
+      properties:
+        configuration_name:
+          type: string
+        protection_mode:
+          type: string
+        enabled:
+          type: boolean
+        databases:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataGuardDatabase'
+    CreateDataGuardConfigRequest:
+      type: object
+      required:
+        - configuration_name
+      properties:
+        configuration_name:
+          type: string
+        protection_mode:
+          type: string
+          enum:
+            - MAXIMUM_AVAILABILITY
+            - MAXIMUM_PERFORMANCE
+            - MAXIMUM_PROTECTION
+    UpdateDataGuardConfigRequest:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        protection_mode:
+          type: string
+    DataGuardDatabaseList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataGuardDatabase'
+    DataGuardDatabase:
+      type: object
+      properties:
+        database_name:
+          type: string
+        role:
+          type: string
+          enum:
+            - PRIMARY
+            - PHYSICAL_STANDBY
+            - LOGICAL_STANDBY
+            - SNAPSHOT_STANDBY
+        enabled:
+          type: boolean
+        transport_lag:
+          type: string
+        apply_lag:
+          type: string
+    AddDataGuardDatabaseRequest:
+      type: object
+      required:
+        - database_name
+        - connect_identifier
+      properties:
+        database_name:
+          type: string
+        connect_identifier:
+          type: string
+    UpdateDataGuardDatabaseRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+            - ENABLE
+            - DISABLE
+            - CONVERT
+            - SWITCHOVER
+            - FAILOVER
+    DataPumpExportRequest:
+      type: object
+      required:
+        - job_name
+      properties:
+        job_name:
+          type: string
+        schemas:
+          type: array
+          items:
+            type: string
+        tables:
+          type: array
+          items:
+            type: string
+        directory:
+          type: string
+        dumpfile:
+          type: string
+        logfile:
+          type: string
+    DataPumpImportRequest:
+      type: object
+      required:
+        - job_name
+      properties:
+        job_name:
+          type: string
+        directory:
+          type: string
+        dumpfile:
+          type: string
+        schemas:
+          type: array
+          items:
+            type: string
+        remap_schema:
+          type: string
+    DataPumpJob:
+      type: object
+      properties:
+        owner_name:
+          type: string
+        job_name:
+          type: string
+        operation:
+          type: string
+        job_mode:
+          type: string
+        state:
+          type: string
+        degree:
+          type: integer
+        attached_sessions:
+          type: integer
+    DataPumpJobList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataPumpJob'
+    RESTModuleList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RESTModule'
+    RESTModule:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        uri_prefix:
+          type: string
+        status:
+          type: string
+        items_per_page:
+          type: integer
+    CreateRESTModuleRequest:
+      type: object
+      required:
+        - name
+        - uri_prefix
+      properties:
+        name:
+          type: string
+        uri_prefix:
+          type: string
+        status:
+          type: string
+          enum:
+            - PUBLISHED
+            - NOT_PUBLISHED
+        items_per_page:
+          type: integer
+    RESTHandlerList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              method:
+                type: string
+              source_type:
+                type: string
+              source:
+                type: string
+    CreateRESTHandlerRequest:
+      type: object
+      required:
+        - method
+        - source_type
+        - source
+      properties:
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+        source_type:
+          type: string
+          enum:
+            - collection/query
+            - collection/feed
+            - query
+            - plsql
+        source:
+          type: string
+    OAuthClientList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              client_id:
+                type: string
+              grant_type:
+                type: string
+    CreateOAuthClientRequest:
+      type: object
+      required:
+        - name
+        - grant_type
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        grant_type:
+          type: string
+          enum:
+            - authorization_code
+            - client_credentials
+        redirect_uri:
+          type: string
+          format: uri
+    CreatePrivilegeRequest:
+      type: object
+      required:
+        - name
+        - label
+      properties:
+        name:
+          type: string
+        label:
+          type: string
+        description:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+    CreateRoleRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    AutoRESTRequest:
+      type: object
+      required:
+        - object_name
+        - object_type
+      properties:
+        object_name:
+          type: string
+        object_type:
+          type: string
+          enum:
+            - TABLE
+            - VIEW
+            - PACKAGE
+            - PROCEDURE
+            - FUNCTION
+        object_alias:
+          type: string
+        schema:
+          type: string
+    ORDSPropertyList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+    ORDSPropertyValue:
+      type: object
+      properties:
+        value:
+          type: string
+    SchedulerJobList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchedulerJob'
+    SchedulerJob:
+      type: object
+      properties:
+        owner:
+          type: string
+        job_name:
+          type: string
+        job_type:
+          type: string
+        state:
+          type: string
+        enabled:
+          type: boolean
+        next_run_date:
+          type: string
+          format: date-time
+        last_start_date:
+          type: string
+          format: date-time
+        repeat_interval:
+          type: string
+    APEXWorkspaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/APEXWorkspace'
+    APEXWorkspace:
+      type: object
+      properties:
+        workspace_name:
+          type: string
+        workspace_id:
+          type: integer
+        schemas:
+          type: array
+          items:
+            type: string
+    APEXApplicationList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              application_id:
+                type: integer
+              application_name:
+                type: string
+              workspace:
+                type: string
+              version:
+                type: string
+    APEXApplicationRequest:
+      type: object
+      properties:
+        application_name:
+          type: string
+        workspace:
+          type: string
+    APEXOverview:
+      type: object
+      properties:
+        total_workspaces:
+          type: integer
+        total_applications:
+          type: integer
+        total_developers:
+          type: integer
+    RDFNetworkList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RDFNetwork'
+    RDFNetwork:
+      type: object
+      properties:
+        network_owner:
+          type: string
+        network_name:
+          type: string
+    RDFModelList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              model_name:
+                type: string
+              network_owner:
+                type: string
+              network_name:
+                type: string
+    SPARQLResults:
+      type: object
+      properties:
+        head:
+          type: object
+          properties:
+            vars:
+              type: array
+              items:
+                type: string
+        results:
+          type: object
+          properties:
+            bindings:
+              type: array
+              items:
+                type: object
+    ServiceCatalog:
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              plans:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+    ProvisionRequest:
+      type: object
+      required:
+        - service_id
+        - plan_id
+      properties:
+        service_id:
+          type: string
+        plan_id:
+          type: string
+        parameters:
+          type: object

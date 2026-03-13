@@ -1,0 +1,412 @@
+asyncapi: 2.6.0
+info:
+  title: Oracle Transactional Event Queues (TxEventQ) API
+  description: >-
+    Oracle Transactional Event Queues provide Kafka-compatible event streaming
+    and message queuing capabilities built into Oracle Database. TxEventQ enables
+    event-driven architectures with transactional guarantees, supporting
+    publish-subscribe patterns, consumer groups, partitioned topics, and exactly-once
+    message delivery semantics. Accessible through ORDS REST endpoints and native
+    Kafka protocol compatibility.
+  version: 25.4.0
+  contact:
+    name: Oracle Support
+    url: https://support.oracle.com
+    email: support@oracle.com
+  license:
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+  externalDocs:
+    description: Oracle Transactional Event Queues Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/
+servers:
+  ords:
+    url: https://{host}:{port}/ords/{schema}
+    protocol: https
+    description: ORDS REST endpoint for TxEventQ management and message operations
+    variables:
+      host:
+        default: localhost
+        description: ORDS server hostname
+      port:
+        default: '8443'
+        description: ORDS server port
+      schema:
+        default: myschema
+        description: Database schema
+  kafka:
+    url: '{host}:{port}'
+    protocol: kafka
+    description: >-
+      Kafka-compatible protocol endpoint for native Kafka client connectivity.
+      Oracle TxEventQ supports the Apache Kafka protocol, allowing standard
+      Kafka producers and consumers to interact with Oracle Database event queues.
+    variables:
+      host:
+        default: localhost
+        description: Kafka protocol endpoint hostname
+      port:
+        default: '9092'
+        description: Kafka protocol endpoint port
+defaultContentType: application/json
+channels:
+  database/txeventq/topics/{topicName}:
+    description: >-
+      A TxEventQ topic represents an ordered, partitioned event stream stored
+      in Oracle Database. Topics support multiple producers and consumer groups
+      with exactly-once delivery semantics backed by database transactions.
+    parameters:
+      topicName:
+        description: The name of the TxEventQ topic
+        schema:
+          type: string
+    publish:
+      operationId: produceMessage
+      summary: Produce a message to a topic
+      description: >-
+        Publishes a message to the specified TxEventQ topic. Messages are
+        durably stored in Oracle Database with transactional guarantees.
+        Supports key-based partitioning for ordered delivery within partitions.
+      message:
+        $ref: '#/components/messages/ProduceMessage'
+      bindings:
+        kafka:
+          groupId:
+            type: string
+    subscribe:
+      operationId: consumeMessages
+      summary: Consume messages from a topic
+      description: >-
+        Subscribes to messages from the specified TxEventQ topic via a
+        consumer group. Supports at-least-once and exactly-once delivery
+        semantics. Consumer instances within a group share partition assignments.
+      message:
+        $ref: '#/components/messages/ConsumeMessage'
+      bindings:
+        kafka:
+          groupId:
+            type: string
+            description: Consumer group identifier
+
+  database/txeventq/topics:
+    description: Topic management channel for listing all available TxEventQ topics
+    subscribe:
+      operationId: listTopics
+      summary: List all TxEventQ topics
+      description: Returns a list of all available TxEventQ topics in the schema.
+      message:
+        $ref: '#/components/messages/TopicList'
+
+  database/txeventq/clusters/{clusterId}/topics:
+    description: Cluster-scoped topic management channel
+    parameters:
+      clusterId:
+        description: The TxEventQ cluster identifier
+        schema:
+          type: string
+    publish:
+      operationId: createTopic
+      summary: Create a new topic
+      description: >-
+        Creates a new TxEventQ topic in the specified cluster with the given
+        configuration including partition count, retention policy, and replication settings.
+      message:
+        $ref: '#/components/messages/CreateTopicRequest'
+
+  database/txeventq/clusters/{clusterId}/consumer-groups/{consumerGroupId}:
+    description: Consumer group management channel
+    parameters:
+      clusterId:
+        description: The TxEventQ cluster identifier
+        schema:
+          type: string
+      consumerGroupId:
+        description: The consumer group identifier
+        schema:
+          type: string
+    publish:
+      operationId: createConsumerGroup
+      summary: Create a consumer group
+      description: >-
+        Creates a new consumer group within the specified cluster.
+        Consumer groups enable parallel processing of topic messages
+        with automatic partition assignment.
+      message:
+        $ref: '#/components/messages/CreateConsumerGroupRequest'
+
+  database/txeventq/consumers/{groupName}/instances/{instanceId}/records:
+    description: Message consumption endpoint for fetching messages from a consumer instance
+    parameters:
+      groupName:
+        description: The consumer group name
+        schema:
+          type: string
+      instanceId:
+        description: The consumer instance identifier
+        schema:
+          type: string
+    subscribe:
+      operationId: fetchMessages
+      summary: Fetch messages from consumer instance
+      description: >-
+        Retrieves available messages for a specific consumer instance
+        within a consumer group. Returns messages from assigned partitions
+        with offset tracking.
+      message:
+        $ref: '#/components/messages/FetchedMessages'
+
+  database/txeventq/topics/{topicName}/partitions:
+    description: Topic partition information channel
+    parameters:
+      topicName:
+        description: The name of the TxEventQ topic
+        schema:
+          type: string
+    subscribe:
+      operationId: getPartitions
+      summary: Get topic partitions
+      description: Returns partition information for the specified topic.
+      message:
+        $ref: '#/components/messages/PartitionList'
+
+components:
+  messages:
+    ProduceMessage:
+      name: ProduceMessage
+      title: Produce Message
+      summary: A message to be published to a TxEventQ topic
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ProduceMessagePayload'
+
+    ConsumeMessage:
+      name: ConsumeMessage
+      title: Consumed Message
+      summary: A message consumed from a TxEventQ topic
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/ConsumedMessagePayload'
+
+    TopicList:
+      name: TopicList
+      title: Topic List
+      summary: List of available TxEventQ topics
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/TopicListPayload'
+
+    CreateTopicRequest:
+      name: CreateTopicRequest
+      title: Create Topic Request
+      summary: Request to create a new TxEventQ topic
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CreateTopicPayload'
+
+    CreateConsumerGroupRequest:
+      name: CreateConsumerGroupRequest
+      title: Create Consumer Group Request
+      summary: Request to create a new consumer group
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CreateConsumerGroupPayload'
+
+    FetchedMessages:
+      name: FetchedMessages
+      title: Fetched Messages
+      summary: Messages fetched from a consumer instance
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/FetchedMessagesPayload'
+
+    PartitionList:
+      name: PartitionList
+      title: Partition List
+      summary: List of partitions for a topic
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/PartitionListPayload'
+
+  schemas:
+    ProduceMessagePayload:
+      type: object
+      properties:
+        key:
+          type: string
+          description: >-
+            Message key used for partition assignment. Messages with the same
+            key are guaranteed to be delivered to the same partition in order.
+        value:
+          description: The message payload content
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+          description: Optional message headers for metadata
+        partition:
+          type: integer
+          description: Optional explicit partition number
+        timestamp:
+          type: string
+          format: date-time
+          description: Message timestamp (defaults to current time)
+      required:
+        - value
+
+    ConsumedMessagePayload:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Message key
+        value:
+          description: The message payload content
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        topic:
+          type: string
+          description: Source topic name
+        partition:
+          type: integer
+          description: Partition number the message was consumed from
+        offset:
+          type: integer
+          format: int64
+          description: Message offset within the partition
+        timestamp:
+          type: string
+          format: date-time
+          description: Message timestamp
+        timestampType:
+          type: string
+          enum:
+            - CREATE_TIME
+            - LOG_APPEND_TIME
+
+    TopicListPayload:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/TopicSummary'
+
+    TopicSummary:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Topic name
+        partitionCount:
+          type: integer
+          description: Number of partitions
+        replicationFactor:
+          type: integer
+          description: Replication factor
+        retentionMs:
+          type: integer
+          format: int64
+          description: Message retention period in milliseconds
+
+    CreateTopicPayload:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: Topic name
+        partitionCount:
+          type: integer
+          description: Number of partitions
+          default: 1
+        retentionMs:
+          type: integer
+          format: int64
+          description: Message retention time in milliseconds
+          default: 604800000
+        config:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional topic configuration properties
+
+    CreateConsumerGroupPayload:
+      type: object
+      required:
+        - groupId
+      properties:
+        groupId:
+          type: string
+          description: Consumer group identifier
+        autoOffsetReset:
+          type: string
+          enum:
+            - earliest
+            - latest
+          default: latest
+          description: Where to start consuming if no committed offset exists
+        enableAutoCommit:
+          type: boolean
+          default: true
+          description: Whether offsets are automatically committed
+
+    FetchedMessagesPayload:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsumedMessagePayload'
+        count:
+          type: integer
+          description: Number of messages returned
+
+    PartitionListPayload:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PartitionInfo'
+
+    PartitionInfo:
+      type: object
+      properties:
+        partitionId:
+          type: integer
+          description: Partition identifier
+        leader:
+          type: string
+          description: Leader node for this partition
+        beginOffset:
+          type: integer
+          format: int64
+          description: Earliest available offset
+        endOffset:
+          type: integer
+          format: int64
+          description: Latest offset (next offset to be assigned)
+
+    ConsumerLag:
+      type: object
+      properties:
+        topic:
+          type: string
+        partition:
+          type: integer
+        currentOffset:
+          type: integer
+          format: int64
+          description: Current consumer offset
+        logEndOffset:
+          type: integer
+          format: int64
+          description: Latest offset in the partition
+        lag:
+          type: integer
+          format: int64
+          description: Number of messages behind
