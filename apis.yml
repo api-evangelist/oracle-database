@@ -1,10 +1,15 @@
+aid: oracle-database
 name: Oracle Database APIs
 description: APIs and interfaces for Oracle Database management, querying, and administration
-image: https://www.oracle.com/asset/web/favicons/favicon-192.png
-created: 2024-01-20 00:00:00+00:00
-modified: '2026-03-04'
-specificationVersion: '0.18'
-url: https://www.oracle.com/database/apis.json
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+created: '2024-01-20'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/oracle-database/refs/heads/main/apis.yml
 apis:
 - name: Oracle REST Data Services (ORDS)
   description: RESTful API development and data access for Oracle Database
@@ -176,9 +181,8 @@ apis:
     email: support@oracle.com
     url: https://support.oracle.com
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-  url: https://apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
 common:
 - type: Portal
   url: https://www.oracle.com/database/technologies/appdev.html
