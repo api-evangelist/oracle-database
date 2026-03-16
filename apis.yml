@@ -1,5 +1,5 @@
 aid: oracle-database
-name: Oracle Database APIs
+name: Oracle Database
 description: APIs and interfaces for Oracle Database management, querying, and administration
 type: Index
 position: Consumer
