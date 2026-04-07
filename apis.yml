@@ -19,17 +19,15 @@ apis:
     humanUrl: https://www.oracle.com/database/technologies/appdev/rest.html
     baseUrl: https://example.oracle.com/ords/
     tags:
+      - Data Access
+      - Database
       - REST
       - SQL
-      - Database
-      - Data Access
     properties:
       - type: OpenAPI
-        url: 
-          https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
       - type: Documentation
-        url: 
-          https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
       - type: Swagger
         url: https://example.oracle.com/ords/metadata-catalog/
       - type: OpenAPI
@@ -51,10 +49,10 @@ apis:
     humanUrl: https://www.oracle.com/database/mongodb-api/
     baseUrl: https://example.oracle.com:27017/
     tags:
+      - Database
+      - JSON
       - MongoDB
       - NoSQL
-      - JSON
-      - Database
     properties:
       - type: Documentation
         url: https://docs.oracle.com/en/database/oracle/mongodb-api/
@@ -70,10 +68,10 @@ apis:
     humanUrl: https://docs.oracle.com/iaas/database/
     baseUrl: https://database.{region}.oraclecloud.com/
     tags:
+      - Autonomous Database
       - Cloud
       - Database Management
       - Infrastructure
-      - Autonomous Database
     properties:
       - type: OpenAPI
         url: https://docs.oracle.com/iaas/api/#/en/database/
@@ -101,17 +99,15 @@ apis:
     image: https://www.oracle.com/asset/web/favicons/favicon-192.png
     humanUrl: https://www.oracle.com/database/technologies/appdev/jdbc.html
     tags:
+      - Database Driver
       - Java
       - JDBC
-      - Database Driver
       - SQL
     properties:
       - type: Documentation
-        url: 
-          https://docs.oracle.com/en/database/oracle/oracle-database/21/jjdbc/
+        url: https://docs.oracle.com/en/database/oracle/oracle-database/21/jjdbc/
       - type: Downloads
-        url: 
-          https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
+        url: https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
       - type: GitHub
         url: https://github.com/oracle/oracle-db-examples/tree/master/java
   - name: Oracle Call Interface (OCI)
@@ -126,11 +122,9 @@ apis:
       - Native API
     properties:
       - type: Documentation
-        url: 
-          https://docs.oracle.com/en/database/oracle/oracle-database/21/lnoci/
+        url: https://docs.oracle.com/en/database/oracle/oracle-database/21/lnoci/
       - type: Programming Guide
-        url: 
-          https://docs.oracle.com/en/database/oracle/oracle-database/21/lnoci/introduction.html
+        url: https://docs.oracle.com/en/database/oracle/oracle-database/21/lnoci/introduction.html
   - name: Oracle SQL Developer REST API
     description: >-
       RESTful services for Oracle SQL Developer.
@@ -149,23 +143,19 @@ apis:
     description: >-
       NoSQL-style document API for Oracle Database.
     image: https://www.oracle.com/asset/web/favicons/favicon-192.png
-    humanUrl: 
-      https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+    humanUrl: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
     tags:
-      - NoSQL
-      - JSON
       - Document Database
+      - JSON
+      - NoSQL
       - REST
     properties:
       - type: Documentation
-        url: 
-          https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+        url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
       - type: REST API
-        url: 
-          https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+        url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
       - type: Java API
-        url: 
-          https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+        url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
       - type: OpenAPI
         url: openapi/oracle-database-soda-openapi.yml
       - type: JSONSchema
@@ -178,19 +168,17 @@ apis:
     description: >-
       Kafka-compatible event streaming and message queuing built into Oracle Database.
     image: https://www.oracle.com/asset/web/favicons/favicon-192.png
-    humanUrl: 
-      https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/
+    humanUrl: https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/
     baseUrl: https://example.oracle.com/ords/{schema}/database/txeventq/
     tags:
       - Event Streaming
-      - Messaging
       - Kafka
+      - Messaging
       - Pub/Sub
       - Queues
     properties:
       - type: Documentation
-        url: 
-          https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/
+        url: https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/
       - type: AsyncAPI
         url: asyncapi/oracle-database-txeventq-asyncapi.yml
       - type: JSONSchema
@@ -210,8 +198,7 @@ common:
   - type: Documentation
     url: https://docs.oracle.com/en/database/oracle/oracle-database/
   - type: Getting Started
-    url: 
-      https://www.oracle.com/database/technologies/appdev/quickstartsandtutorials.html
+    url: https://www.oracle.com/database/technologies/appdev/quickstartsandtutorials.html
   - type: Support
     url: https://www.oracle.com/support/
   - type: Status
@@ -237,12 +224,11 @@ common:
   - type: YouTube
     url: https://www.youtube.com/user/Oracle
   - type: Pricing
-    url: 
-      https://www.oracle.com/database/technologies/oracle-database-pricing.html
+    url: https://www.oracle.com/database/technologies/oracle-database-pricing.html
 tags:
+  - Cloud
   - Database
-  - SQL
+  - Enterprise
   - Oracle
   - REST API
-  - Cloud
-  - Enterprise
+  - SQL

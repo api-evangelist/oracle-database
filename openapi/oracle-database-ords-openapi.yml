@@ -33,38 +33,32 @@ security:
   - oauth2: []
   - basicAuth: []
 tags:
-  - name: General
-    description: Core database instance status, version, and configuration services
+  - name: APEX
+    description: Oracle APEX workspace and application management
   - name: Data Dictionary
     description: Database tables, views, columns, indexes, and object metadata
-  - name: Monitoring
-    description: Database session monitoring, locks, alerts, and wait metrics
-  - name: Performance
-    description: SQL performance analysis, execution plans, and active session history
-  - name: Pluggable Databases
-    description: PDB lifecycle management for multitenant environments
-  - name: PDB Snapshots
-    description: PDB snapshot carousel management
   - name: Data Guard
     description: Oracle Data Guard broker configuration and database management
   - name: Data Pump
     description: High-speed data and metadata export/import operations
-  - name: Data Tools
-    description: Data loading, cloud storage links, and survey operations
+  - name: General
+    description: Core database instance status, version, and configuration services
+  - name: Monitoring
+    description: Database session monitoring, locks, alerts, and wait metrics
+  - name: Open Service Broker
+    description: Open Service Broker API compliant service provisioning
+  - name: PDB Snapshots
+    description: PDB snapshot carousel management
+  - name: Performance
+    description: SQL performance analysis, execution plans, and active session history
+  - name: Pluggable Databases
+    description: PDB lifecycle management for multitenant environments
+  - name: RDF Graph
+    description: Knowledge graph management using W3C RDF, OWL, and SPARQL standards
   - name: REST Services
     description: Custom REST API module, handler, and OAuth management
   - name: Scheduler
     description: Oracle Scheduler job management
-  - name: APEX
-    description: Oracle APEX workspace and application management
-  - name: RDF Graph
-    description: Knowledge graph management using W3C RDF, OWL, and SPARQL standards
-  - name: Transactional Event Queues
-    description: Message queue and event streaming services
-  - name: Open Service Broker
-    description: Open Service Broker API compliant service provisioning
-  - name: Environment
-    description: Oracle Home and DBCA database creation services
 paths:
   /database/status:
     get:

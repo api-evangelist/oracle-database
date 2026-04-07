@@ -38,18 +38,18 @@ security:
   - oauth2: []
   - basicAuth: []
 tags:
+  - name: Bulk Operations
+    description: Bulk insert, delete, and update operations
   - name: Collections
     description: Collection management operations (create, list, delete)
   - name: Documents
     description: Document CRUD operations (get, insert, update, delete)
-  - name: Queries
-    description: Query by Example (QBE) and filter operations
-  - name: Bulk Operations
-    description: Bulk insert, delete, and update operations
   - name: Indexes
     description: Collection index management
   - name: Metadata
     description: Collection metadata and catalog operations
+  - name: Queries
+    description: Query by Example (QBE) and filter operations
 paths:
   /:
     get:

@@ -41,24 +41,18 @@ security:
 tags:
   - name: Autonomous Databases
     description: Manage Oracle Autonomous Database instances
-  - name: DB Systems
-    description: Manage Oracle Database Cloud Service DB Systems
-  - name: Databases
-    description: Manage databases within DB Systems
-  - name: Database Homes
-    description: Manage Oracle Database Home directories
   - name: Backups
     description: Manage database backups
   - name: Data Guard
     description: Manage Data Guard associations for high availability
-  - name: Exadata Infrastructure
-    description: Manage Exadata Cloud Infrastructure
-  - name: VM Clusters
-    description: Manage VM clusters on Exadata infrastructure
+  - name: Database Homes
+    description: Manage Oracle Database Home directories
+  - name: Databases
+    description: Manage databases within DB Systems
+  - name: DB Systems
+    description: Manage Oracle Database Cloud Service DB Systems
   - name: Pluggable Databases
     description: Manage pluggable databases in multitenant architecture
-  - name: Key Stores
-    description: Manage key stores for TDE encryption
 paths:
   /autonomousDatabases:
     get:
