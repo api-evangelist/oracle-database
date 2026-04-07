@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Oracle REST Data Services (ORDS) API
+  title: Oracle Database Oracle REST Data Services (ORDS) API
   description: >-
     RESTful API for Oracle Database management, monitoring, and data access
     through Oracle REST Data Services. Provides 300+ endpoints across 17
@@ -69,7 +69,7 @@ paths:
   /database/status:
     get:
       operationId: getDatabaseStatus
-      summary: Get database status
+      summary: Oracle Database Get database status
       description: Returns the current status of the Oracle Database instance.
       tags:
         - General
@@ -85,7 +85,7 @@ paths:
   /database/version:
     get:
       operationId: getDatabaseVersion
-      summary: Get database version
+      summary: Oracle Database Get database version
       description: Returns the version information of the Oracle Database instance.
       tags:
         - General
@@ -101,7 +101,7 @@ paths:
   /database/components/:
     get:
       operationId: getDatabaseComponents
-      summary: Get all database components
+      summary: Oracle Database Get all database components
       description: Returns a list of all installed database components and their status.
       tags:
         - General
@@ -117,7 +117,7 @@ paths:
   /database/parameters/:
     get:
       operationId: getDatabaseParameters
-      summary: Get all database parameters
+      summary: Oracle Database Get all database parameters
       description: Returns all database initialization parameters and their current values.
       tags:
         - General
@@ -136,7 +136,7 @@ paths:
   /database/parameters/{name}:
     get:
       operationId: getDatabaseParameter
-      summary: Get a specific database parameter
+      summary: Oracle Database Get a specific database parameter
       description: Returns the value and metadata for a specific database parameter.
       tags:
         - General
@@ -161,7 +161,7 @@ paths:
   /database/security/users/:
     get:
       operationId: getDatabaseUsers
-      summary: Get all database users
+      summary: Oracle Database Get all database users
       description: Returns a list of all database users and their properties.
       tags:
         - General
@@ -177,7 +177,7 @@ paths:
   /database/storage/bytes:
     get:
       operationId: getStorageBytes
-      summary: Get storage usage in bytes
+      summary: Oracle Database Get storage usage in bytes
       description: Returns the total storage usage of the database in bytes.
       tags:
         - General
@@ -193,7 +193,7 @@ paths:
   /database/storage/tablespaces/:
     get:
       operationId: getTablespaces
-      summary: Get all tablespaces storage information
+      summary: Oracle Database Get all tablespaces storage information
       description: Returns storage information for all tablespaces.
       tags:
         - General
@@ -209,7 +209,7 @@ paths:
   /database/storage/tablespaces/{tablespace_name}/:
     get:
       operationId: getTablespace
-      summary: Get tablespace details
+      summary: Oracle Database Get tablespace details
       description: Returns detailed storage information for a specific tablespace.
       tags:
         - General
@@ -233,7 +233,7 @@ paths:
   /database/storage/tablespaces/{tablespace_name}/datafiles/:
     get:
       operationId: getDatafiles
-      summary: Get tablespace datafiles
+      summary: Oracle Database Get tablespace datafiles
       description: Returns datafiles associated with a specific tablespace.
       tags:
         - General
@@ -255,7 +255,7 @@ paths:
   /database/feature_usage/:
     get:
       operationId: getFeatureUsage
-      summary: Get feature usage statistics
+      summary: Oracle Database Get feature usage statistics
       description: Returns usage statistics for database features.
       tags:
         - General
@@ -271,7 +271,7 @@ paths:
   /database/sessionless-transactions/:
     post:
       operationId: startSessionlessTransaction
-      summary: Start a sessionless transaction
+      summary: Oracle Database Start a sessionless transaction
       description: Starts a new sessionless transaction and returns its identifier.
       tags:
         - General
@@ -287,7 +287,7 @@ paths:
   /database/sessionless-transactions/{sessionlessTransactionID}:
     put:
       operationId: commitSessionlessTransaction
-      summary: Commit a sessionless transaction
+      summary: Oracle Database Commit a sessionless transaction
       description: Commits the specified sessionless transaction.
       tags:
         - General
@@ -306,7 +306,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: rollbackSessionlessTransaction
-      summary: Rollback a sessionless transaction
+      summary: Oracle Database Rollback a sessionless transaction
       description: Rolls back the specified sessionless transaction.
       tags:
         - General
@@ -326,7 +326,7 @@ paths:
   /database/objects/tables/:
     get:
       operationId: getTables
-      summary: Get all tables
+      summary: Oracle Database Get all tables
       description: Returns metadata for all database tables accessible to the current user.
       tags:
         - Data Dictionary
@@ -345,7 +345,7 @@ paths:
   /database/objects/tables/{owner},{table_name}:
     get:
       operationId: getTable
-      summary: Get a specific table
+      summary: Oracle Database Get a specific table
       description: Returns metadata for a specific database table.
       tags:
         - Data Dictionary
@@ -374,7 +374,7 @@ paths:
   /database/objects/columns/:
     get:
       operationId: getColumns
-      summary: Get all table columns
+      summary: Oracle Database Get all table columns
       description: Returns column metadata for all tables.
       tags:
         - Data Dictionary
@@ -393,7 +393,7 @@ paths:
   /database/objects/columns/{owner},{table_name},{column_name}:
     get:
       operationId: getColumn
-      summary: Get a specific column
+      summary: Oracle Database Get a specific column
       description: Returns metadata for a specific table column.
       tags:
         - Data Dictionary
@@ -427,7 +427,7 @@ paths:
   /database/objects/indexes/:
     get:
       operationId: getIndexes
-      summary: Get all indexes
+      summary: Oracle Database Get all indexes
       description: Returns metadata for all database indexes.
       tags:
         - Data Dictionary
@@ -446,7 +446,7 @@ paths:
   /database/objects/indexes/{owner},{index_name}:
     get:
       operationId: getIndex
-      summary: Get a specific index
+      summary: Oracle Database Get a specific index
       description: Returns metadata for a specific database index.
       tags:
         - Data Dictionary
@@ -475,7 +475,7 @@ paths:
   /database/objects/functions/:
     get:
       operationId: getFunctions
-      summary: Get all functions
+      summary: Oracle Database Get all functions
       description: Returns metadata for all database functions.
       tags:
         - Data Dictionary
@@ -491,7 +491,7 @@ paths:
   /database/objects/functions/{object_id}:
     get:
       operationId: getFunction
-      summary: Get a specific function
+      summary: Oracle Database Get a specific function
       description: Returns metadata for a specific database function.
       tags:
         - Data Dictionary
@@ -515,7 +515,7 @@ paths:
   /database/objects/foreign_keys/:
     get:
       operationId: getForeignKeys
-      summary: Get all foreign keys
+      summary: Oracle Database Get all foreign keys
       description: Returns metadata for all foreign key constraints.
       tags:
         - Data Dictionary
@@ -531,7 +531,7 @@ paths:
   /database/db_links/:
     get:
       operationId: getDatabaseLinks
-      summary: Get all database links
+      summary: Oracle Database Get all database links
       description: Returns metadata for all database links.
       tags:
         - Data Dictionary
@@ -547,7 +547,7 @@ paths:
   /database/db_links/{owner},{db_link}:
     get:
       operationId: getDatabaseLink
-      summary: Get a specific database link
+      summary: Oracle Database Get a specific database link
       description: Returns metadata for a specific database link.
       tags:
         - Data Dictionary
@@ -576,7 +576,7 @@ paths:
   /database/tablespaces/:
     get:
       operationId: getTablespacesDict
-      summary: Get all tablespaces
+      summary: Oracle Database Get all tablespaces
       description: Returns data dictionary information for all tablespaces.
       tags:
         - Data Dictionary
@@ -592,7 +592,7 @@ paths:
   /database/monitoring/sessions/:
     get:
       operationId: getSessions
-      summary: Get all sessions
+      summary: Oracle Database Get all sessions
       description: Returns information about all active database sessions.
       tags:
         - Monitoring
@@ -611,7 +611,7 @@ paths:
   /database/monitoring/sessions/{sid},{serial_number}/:
     get:
       operationId: getSession
-      summary: Get a specific session
+      summary: Oracle Database Get a specific session
       description: Returns detailed information about a specific database session.
       tags:
         - Monitoring
@@ -640,7 +640,7 @@ paths:
   /database/monitoring/session_locks/:
     get:
       operationId: getSessionLocks
-      summary: Get all session locks
+      summary: Oracle Database Get all session locks
       description: Returns information about all current session locks.
       tags:
         - Monitoring
@@ -656,7 +656,7 @@ paths:
   /database/monitoring/session_locks/holding/:
     get:
       operationId: getBlockingLocks
-      summary: Get blocking locks
+      summary: Oracle Database Get blocking locks
       description: Returns information about sessions holding locks that block others.
       tags:
         - Monitoring
@@ -672,7 +672,7 @@ paths:
   /database/monitoring/session_locks/waiting/:
     get:
       operationId: getWaitingLocks
-      summary: Get waiting locks
+      summary: Oracle Database Get waiting locks
       description: Returns information about sessions waiting to acquire locks.
       tags:
         - Monitoring
@@ -688,7 +688,7 @@ paths:
   /database/monitoring/alerts/:
     get:
       operationId: getAlerts
-      summary: Get all alerts
+      summary: Oracle Database Get all alerts
       description: Returns all database alerts and notifications.
       tags:
         - Monitoring
@@ -704,7 +704,7 @@ paths:
   /database/monitoring/alerts_summaries/by_message_level:
     get:
       operationId: getAlertSummaries
-      summary: Get alert summaries by message level
+      summary: Oracle Database Get alert summaries by message level
       description: Returns alert summary statistics grouped by message level.
       tags:
         - Monitoring
@@ -720,7 +720,7 @@ paths:
   /database/monitoring/wait_class_metrics:
     get:
       operationId: getWaitClassMetrics
-      summary: Get wait class metrics
+      summary: Oracle Database Get wait class metrics
       description: Returns database wait class performance metrics.
       tags:
         - Monitoring
@@ -736,7 +736,7 @@ paths:
   /database/monitoring/wait_class_totals:
     get:
       operationId: getWaitClassTotals
-      summary: Get wait class totals
+      summary: Oracle Database Get wait class totals
       description: Returns total wait time statistics by wait class.
       tags:
         - Monitoring
@@ -752,7 +752,7 @@ paths:
   /database/monitoring/session_limits:
     get:
       operationId: getSessionLimits
-      summary: Get session limits
+      summary: Oracle Database Get session limits
       description: Returns the configured session limits and current usage.
       tags:
         - Monitoring
@@ -768,7 +768,7 @@ paths:
   /database/performance/sql_statements/:
     get:
       operationId: getSQLStatements
-      summary: Get all SQL statements
+      summary: Oracle Database Get all SQL statements
       description: Returns performance statistics for all SQL statements in the shared pool.
       tags:
         - Performance
@@ -787,7 +787,7 @@ paths:
   /database/performance/top_sql_statements/:
     get:
       operationId: getTopSQLStatements
-      summary: Get top SQL by CPU usage
+      summary: Oracle Database Get top SQL by CPU usage
       description: Returns the top SQL statements ranked by CPU consumption.
       tags:
         - Performance
@@ -803,7 +803,7 @@ paths:
   /database/performance/sql_statements/{sql_id}/:
     get:
       operationId: getSQLStatementStats
-      summary: Get SQL statement statistics
+      summary: Oracle Database Get SQL statement statistics
       description: Returns detailed statistics for a specific SQL statement.
       tags:
         - Performance
@@ -827,7 +827,7 @@ paths:
   /database/performance/sql_statements/{sql_id}/text:
     get:
       operationId: getSQLStatementText
-      summary: Get SQL statement text
+      summary: Oracle Database Get SQL statement text
       description: Returns the full SQL text for a specific statement.
       tags:
         - Performance
@@ -851,7 +851,7 @@ paths:
   /database/performance/sql_statements/{sql_id}/plan:
     get:
       operationId: getSQLExecutionPlan
-      summary: Get SQL execution plan
+      summary: Oracle Database Get SQL execution plan
       description: Returns the execution plan for a specific SQL statement.
       tags:
         - Performance
@@ -875,7 +875,7 @@ paths:
   /database/performance/sql_statements/{sql_id}/history:
     get:
       operationId: getSQLHistory
-      summary: Get SQL statement history
+      summary: Oracle Database Get SQL statement history
       description: Returns historical performance data for a specific SQL statement.
       tags:
         - Performance
@@ -899,7 +899,7 @@ paths:
   /database/performance/active_sessions_history/:
     get:
       operationId: getActiveSessionsHistory
-      summary: Get active sessions history
+      summary: Oracle Database Get active sessions history
       description: Returns the active session history (ASH) data.
       tags:
         - Performance
@@ -915,7 +915,7 @@ paths:
   /database/performance/active_sessions_history_waits/:
     get:
       operationId: getActiveSessionsHistoryWaits
-      summary: Get active session history waits
+      summary: Oracle Database Get active session history waits
       description: Returns wait event data from the active session history.
       tags:
         - Performance
@@ -931,7 +931,7 @@ paths:
   /database/pdbs/:
     get:
       operationId: getPDBs
-      summary: Get all pluggable databases
+      summary: Oracle Database Get all pluggable databases
       description: Returns a list of all pluggable databases in the container database.
       tags:
         - Pluggable Databases
@@ -946,7 +946,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createPDB
-      summary: Create a pluggable database
+      summary: Oracle Database Create a pluggable database
       description: Creates a new pluggable database in the container database.
       tags:
         - Pluggable Databases
@@ -970,7 +970,7 @@ paths:
   /database/pdbs/{pdb_name}:
     get:
       operationId: getPDB
-      summary: Get a specific pluggable database
+      summary: Oracle Database Get a specific pluggable database
       description: Returns details about a specific pluggable database.
       tags:
         - Pluggable Databases
@@ -993,7 +993,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updatePDB
-      summary: Update a pluggable database
+      summary: Oracle Database Update a pluggable database
       description: Updates properties of a specific pluggable database including open/close state.
       tags:
         - Pluggable Databases
@@ -1022,7 +1022,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: dropPDB
-      summary: Drop a pluggable database
+      summary: Oracle Database Drop a pluggable database
       description: Drops the specified pluggable database from the container database.
       tags:
         - Pluggable Databases
@@ -1042,7 +1042,7 @@ paths:
   /database/snapshots/:
     get:
       operationId: getSnapshots
-      summary: Get all PDB snapshots
+      summary: Oracle Database Get all PDB snapshots
       description: Returns a list of all PDB snapshots.
       tags:
         - PDB Snapshots
@@ -1057,7 +1057,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createSnapshot
-      summary: Create a PDB snapshot
+      summary: Oracle Database Create a PDB snapshot
       description: Creates a new snapshot of the current pluggable database state.
       tags:
         - PDB Snapshots
@@ -1072,7 +1072,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     put:
       operationId: configureAutoSnapshots
-      summary: Configure automatic snapshots
+      summary: Oracle Database Configure automatic snapshots
       description: Configures automatic snapshot scheduling for the PDB.
       tags:
         - PDB Snapshots
@@ -1090,7 +1090,7 @@ paths:
   /database/snapshots/{snapshot_name}:
     get:
       operationId: getSnapshot
-      summary: Get a specific snapshot
+      summary: Oracle Database Get a specific snapshot
       description: Returns details about a specific PDB snapshot.
       tags:
         - PDB Snapshots
@@ -1113,7 +1113,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: createNamedSnapshot
-      summary: Create a named PDB snapshot
+      summary: Oracle Database Create a named PDB snapshot
       description: Creates a new snapshot with the specified name.
       tags:
         - PDB Snapshots
@@ -1134,7 +1134,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: deleteSnapshot
-      summary: Delete a PDB snapshot
+      summary: Oracle Database Delete a PDB snapshot
       description: Deletes the specified PDB snapshot.
       tags:
         - PDB Snapshots
@@ -1154,7 +1154,7 @@ paths:
   /database/snapshot_mode:
     get:
       operationId: getSnapshotMode
-      summary: Get snapshot mode
+      summary: Oracle Database Get snapshot mode
       description: Returns the current snapshot mode configuration.
       tags:
         - PDB Snapshots
@@ -1170,7 +1170,7 @@ paths:
   /database/dataguard/configuration/:
     get:
       operationId: getDataGuardConfiguration
-      summary: Get Data Guard broker configuration
+      summary: Oracle Database Get Data Guard broker configuration
       description: Returns the current Data Guard broker configuration.
       tags:
         - Data Guard
@@ -1185,7 +1185,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: addDataGuardConfiguration
-      summary: Add a Data Guard configuration
+      summary: Oracle Database Add a Data Guard configuration
       description: Creates a new Data Guard broker configuration.
       tags:
         - Data Guard
@@ -1206,7 +1206,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     put:
       operationId: updateDataGuardConfiguration
-      summary: Enable or disable Data Guard configuration
+      summary: Oracle Database Enable or disable Data Guard configuration
       description: Enables or disables the Data Guard broker configuration.
       tags:
         - Data Guard
@@ -1223,7 +1223,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: removeDataGuardConfiguration
-      summary: Remove Data Guard configuration
+      summary: Oracle Database Remove Data Guard configuration
       description: Removes the Data Guard broker configuration.
       tags:
         - Data Guard
@@ -1235,7 +1235,7 @@ paths:
   /database/dataguard/databases/:
     get:
       operationId: getDataGuardDatabases
-      summary: Get all Data Guard databases
+      summary: Oracle Database Get all Data Guard databases
       description: Returns all databases registered with the Data Guard broker.
       tags:
         - Data Guard
@@ -1250,7 +1250,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: addDataGuardDatabase
-      summary: Add a database to Data Guard
+      summary: Oracle Database Add a database to Data Guard
       description: Adds a database to the Data Guard broker configuration.
       tags:
         - Data Guard
@@ -1268,7 +1268,7 @@ paths:
   /database/dataguard/databases/{database}:
     put:
       operationId: updateDataGuardDatabase
-      summary: Update Data Guard database role
+      summary: Oracle Database Update Data Guard database role
       description: Converts, enables, or disables a database in the Data Guard configuration.
       tags:
         - Data Guard
@@ -1293,7 +1293,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: removeDataGuardDatabase
-      summary: Remove database from Data Guard
+      summary: Oracle Database Remove database from Data Guard
       description: Removes a database from the Data Guard broker configuration.
       tags:
         - Data Guard
@@ -1313,7 +1313,7 @@ paths:
   /database/datapump/export:
     post:
       operationId: createExportJob
-      summary: Create a Data Pump export job
+      summary: Oracle Database Create a Data Pump export job
       description: Creates a new Data Pump export job for data and metadata extraction.
       tags:
         - Data Pump
@@ -1337,7 +1337,7 @@ paths:
   /database/datapump/import:
     post:
       operationId: createImportJob
-      summary: Create a Data Pump import job
+      summary: Oracle Database Create a Data Pump import job
       description: Creates a new Data Pump import job for data and metadata loading.
       tags:
         - Data Pump
@@ -1361,7 +1361,7 @@ paths:
   /database/datapump/jobs/:
     get:
       operationId: getDataPumpJobs
-      summary: Get all Data Pump jobs
+      summary: Oracle Database Get all Data Pump jobs
       description: Returns a list of all Data Pump jobs.
       tags:
         - Data Pump
@@ -1377,7 +1377,7 @@ paths:
   /database/datapump/jobs/{owner_name},{job_name}/:
     get:
       operationId: getDataPumpJob
-      summary: Get a specific Data Pump job
+      summary: Oracle Database Get a specific Data Pump job
       description: Returns details about a specific Data Pump job.
       tags:
         - Data Pump
@@ -1406,7 +1406,7 @@ paths:
   /database/datapump/jobs/{owner_name},{job_name}/{filename}:
     get:
       operationId: getDataPumpJobFile
-      summary: Get a Data Pump job file
+      summary: Oracle Database Get a Data Pump job file
       description: Returns the contents of a specific Data Pump job output file.
       tags:
         - Data Pump
@@ -1441,7 +1441,7 @@ paths:
   /ords/rest/modules/:
     get:
       operationId: getRESTModules
-      summary: Get all REST modules
+      summary: Oracle Database Get all REST modules
       description: Returns a list of all custom REST API modules.
       tags:
         - REST Services
@@ -1456,7 +1456,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createRESTModule
-      summary: Create a REST module
+      summary: Oracle Database Create a REST module
       description: Creates a new custom REST API module with SQL or PL/SQL handlers.
       tags:
         - REST Services
@@ -1480,7 +1480,7 @@ paths:
   /ords/rest/modules/{id}:
     put:
       operationId: updateRESTModule
-      summary: Update a REST module
+      summary: Oracle Database Update a REST module
       description: Updates an existing REST API module.
       tags:
         - REST Services
@@ -1506,7 +1506,7 @@ paths:
   /ords/rest/handlers/:
     get:
       operationId: getRESTHandlers
-      summary: Get all REST handlers
+      summary: Oracle Database Get all REST handlers
       description: Returns a list of all REST API handlers.
       tags:
         - REST Services
@@ -1521,7 +1521,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createRESTHandler
-      summary: Create a REST handler
+      summary: Oracle Database Create a REST handler
       description: Creates a new REST API handler.
       tags:
         - REST Services
@@ -1539,7 +1539,7 @@ paths:
   /ords/rest/handlers/{id}:
     delete:
       operationId: deleteRESTHandler
-      summary: Delete a REST handler
+      summary: Oracle Database Delete a REST handler
       description: Deletes an existing REST API handler.
       tags:
         - REST Services
@@ -1559,7 +1559,7 @@ paths:
   /ords/rest/clients/:
     get:
       operationId: getOAuthClients
-      summary: Get all OAuth clients
+      summary: Oracle Database Get all OAuth clients
       description: Returns a list of all registered OAuth clients.
       tags:
         - REST Services
@@ -1574,7 +1574,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createOAuthClient
-      summary: Create an OAuth client
+      summary: Oracle Database Create an OAuth client
       description: Registers a new OAuth client for REST API authentication.
       tags:
         - REST Services
@@ -1592,7 +1592,7 @@ paths:
   /ords/rest/clients/{id}:
     put:
       operationId: updateOAuthClient
-      summary: Update an OAuth client
+      summary: Oracle Database Update an OAuth client
       description: Updates an existing OAuth client registration.
       tags:
         - REST Services
@@ -1618,7 +1618,7 @@ paths:
   /ords/rest/privileges/:
     post:
       operationId: createPrivilege
-      summary: Create a REST privilege
+      summary: Oracle Database Create a REST privilege
       description: Creates a new privilege for controlling access to REST resources.
       tags:
         - REST Services
@@ -1636,7 +1636,7 @@ paths:
   /ords/rest/roles/:
     post:
       operationId: createRole
-      summary: Create a REST role
+      summary: Oracle Database Create a REST role
       description: Creates a new role for grouping REST privileges.
       tags:
         - REST Services
@@ -1654,7 +1654,7 @@ paths:
   /ords/rest/autorest/:
     post:
       operationId: autoRESTEnableObject
-      summary: REST enable a database object
+      summary: Oracle Database REST enable a database object
       description: Enables automatic REST access for a database table, view, or PL/SQL object.
       tags:
         - REST Services
@@ -1672,7 +1672,7 @@ paths:
   /ords/properties/:
     get:
       operationId: getORDSProperties
-      summary: Get ORDS properties
+      summary: Oracle Database Get ORDS properties
       description: Returns all ORDS configuration properties.
       tags:
         - REST Services
@@ -1688,7 +1688,7 @@ paths:
   /ords/properties/{key}:
     put:
       operationId: setORDSProperty
-      summary: Set an ORDS property
+      summary: Oracle Database Set an ORDS property
       description: Sets or updates an ORDS configuration property.
       tags:
         - REST Services
@@ -1711,7 +1711,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: unsetORDSProperty
-      summary: Unset an ORDS property
+      summary: Oracle Database Unset an ORDS property
       description: Removes an ORDS configuration property, restoring the default value.
       tags:
         - REST Services
@@ -1729,7 +1729,7 @@ paths:
   /database/scheduler/jobs/:
     get:
       operationId: getSchedulerJobs
-      summary: Get all scheduler jobs
+      summary: Oracle Database Get all scheduler jobs
       description: Returns a list of all Oracle Scheduler jobs.
       tags:
         - Scheduler
@@ -1745,7 +1745,7 @@ paths:
   /database/scheduler/jobs/{owner},{job_name}:
     get:
       operationId: getSchedulerJob
-      summary: Get a specific scheduler job
+      summary: Oracle Database Get a specific scheduler job
       description: Returns details about a specific Oracle Scheduler job.
       tags:
         - Scheduler
@@ -1774,7 +1774,7 @@ paths:
   /apex/workspaces/:
     get:
       operationId: getAPEXWorkspaces
-      summary: Get all APEX workspaces
+      summary: Oracle Database Get all APEX workspaces
       description: Returns a list of all Oracle APEX workspaces.
       tags:
         - APEX
@@ -1790,7 +1790,7 @@ paths:
   /apex/workspaces/{workspace_name}/:
     get:
       operationId: getAPEXWorkspace
-      summary: Get a specific APEX workspace
+      summary: Oracle Database Get a specific APEX workspace
       description: Returns details about a specific Oracle APEX workspace.
       tags:
         - APEX
@@ -1814,7 +1814,7 @@ paths:
   /apex/workspaces/{workspace_name}/applications/:
     get:
       operationId: getAPEXApplications
-      summary: Get workspace applications
+      summary: Oracle Database Get workspace applications
       description: Returns applications in a specific APEX workspace.
       tags:
         - APEX
@@ -1836,7 +1836,7 @@ paths:
   /apex/workspaces/{workspace_name}/applications/{application_id}:
     put:
       operationId: createOrUpdateAPEXApplication
-      summary: Create or update an APEX application
+      summary: Oracle Database Create or update an APEX application
       description: Creates a new or updates an existing APEX application.
       tags:
         - APEX
@@ -1866,7 +1866,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: deleteAPEXApplication
-      summary: Delete an APEX application
+      summary: Oracle Database Delete an APEX application
       description: Deletes a specific APEX application.
       tags:
         - APEX
@@ -1891,7 +1891,7 @@ paths:
   /apex/statistics/overview:
     get:
       operationId: getAPEXOverview
-      summary: Get APEX instance overview
+      summary: Oracle Database Get APEX instance overview
       description: Returns overview statistics for the APEX instance.
       tags:
         - APEX
@@ -1907,7 +1907,7 @@ paths:
   /database/rdf/networks/:
     get:
       operationId: getRDFNetworks
-      summary: List all RDF networks
+      summary: Oracle Database List all RDF networks
       description: Returns a list of all RDF semantic networks.
       tags:
         - RDF Graph
@@ -1923,7 +1923,7 @@ paths:
   /database/rdf/networks/{network_owner},{network_name}:
     get:
       operationId: getRDFNetwork
-      summary: Get RDF network information
+      summary: Oracle Database Get RDF network information
       description: Returns details about a specific RDF network.
       tags:
         - RDF Graph
@@ -1951,7 +1951,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: createRDFNetwork
-      summary: Create an RDF network
+      summary: Oracle Database Create an RDF network
       description: Creates a new RDF semantic network.
       tags:
         - RDF Graph
@@ -1974,7 +1974,7 @@ paths:
   /database/rdf/networks/{network_owner},{network_name}/models/:
     get:
       operationId: getRDFModels
-      summary: List RDF models
+      summary: Oracle Database List RDF models
       description: Returns a list of RDF models in the specified network.
       tags:
         - RDF Graph
@@ -2001,7 +2001,7 @@ paths:
   /database/rdf/networks/{network_owner},{network_name}/models/{model_name}/sparql/1.1:
     get:
       operationId: executeSPARQLQueryGET
-      summary: Execute SPARQL query (GET)
+      summary: Oracle Database Execute SPARQL query (GET)
       description: Executes a SPARQL query against the specified RDF model using HTTP GET.
       tags:
         - RDF Graph
@@ -2040,7 +2040,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: executeSPARQLQueryPOST
-      summary: Execute SPARQL query (POST)
+      summary: Oracle Database Execute SPARQL query (POST)
       description: Executes a SPARQL query against the specified RDF model using HTTP POST.
       tags:
         - RDF Graph
@@ -2080,7 +2080,7 @@ paths:
   /openservicebroker/v2/catalog:
     get:
       operationId: getServiceCatalog
-      summary: Get service catalog
+      summary: Oracle Database Get service catalog
       description: Returns the Open Service Broker catalog of available services.
       tags:
         - Open Service Broker
@@ -2094,7 +2094,7 @@ paths:
   /openservicebroker/v2/service_instances/{instance_id}:
     put:
       operationId: provisionServiceInstance
-      summary: Provision a service instance
+      summary: Oracle Database Provision a service instance
       description: Provisions a new Open Service Broker service instance.
       tags:
         - Open Service Broker
@@ -2117,7 +2117,7 @@ paths:
           description: Service instance provisioned successfully
     delete:
       operationId: deprovisionServiceInstance
-      summary: Deprovision a service instance
+      summary: Oracle Database Deprovision a service instance
       description: Deprovisions an existing Open Service Broker service instance.
       tags:
         - Open Service Broker

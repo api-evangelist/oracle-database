@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Oracle Cloud Infrastructure Database API
+  title: Oracle Database Oracle Cloud Infrastructure Database API
   description: >-
     API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI).
     Provides management of DB Systems, Autonomous Databases, Exadata infrastructure,
@@ -63,7 +63,7 @@ paths:
   /autonomousDatabases:
     get:
       operationId: listAutonomousDatabases
-      summary: List Autonomous Databases
+      summary: Oracle Database List Autonomous Databases
       description: >-
         Returns a list of Autonomous Databases in the specified compartment.
         Results can be filtered by display name, lifecycle state, and other parameters.
@@ -133,7 +133,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: createAutonomousDatabase
-      summary: Create an Autonomous Database
+      summary: Oracle Database Create an Autonomous Database
       description: >-
         Creates a new Autonomous Database with the specified configuration.
         Supports OLTP, Data Warehouse, JSON Database, and APEX workload types.
@@ -171,7 +171,7 @@ paths:
   /autonomousDatabases/{autonomousDatabaseId}:
     get:
       operationId: getAutonomousDatabase
-      summary: Get an Autonomous Database
+      summary: Oracle Database Get an Autonomous Database
       description: Returns details about the specified Autonomous Database.
       tags:
         - Autonomous Databases
@@ -190,7 +190,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateAutonomousDatabase
-      summary: Update an Autonomous Database
+      summary: Oracle Database Update an Autonomous Database
       description: >-
         Updates the specified Autonomous Database. Supports scaling CPU,
         storage, and other configuration changes.
@@ -220,7 +220,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteAutonomousDatabase
-      summary: Delete an Autonomous Database
+      summary: Oracle Database Delete an Autonomous Database
       description: Terminates and deletes the specified Autonomous Database.
       tags:
         - Autonomous Databases
@@ -241,7 +241,7 @@ paths:
   /autonomousDatabases/{autonomousDatabaseId}/actions/start:
     post:
       operationId: startAutonomousDatabase
-      summary: Start an Autonomous Database
+      summary: Oracle Database Start an Autonomous Database
       description: Starts a stopped Autonomous Database.
       tags:
         - Autonomous Databases
@@ -262,7 +262,7 @@ paths:
   /autonomousDatabases/{autonomousDatabaseId}/actions/stop:
     post:
       operationId: stopAutonomousDatabase
-      summary: Stop an Autonomous Database
+      summary: Oracle Database Stop an Autonomous Database
       description: Stops a running Autonomous Database.
       tags:
         - Autonomous Databases
@@ -283,7 +283,7 @@ paths:
   /autonomousDatabases/{autonomousDatabaseId}/actions/restart:
     post:
       operationId: restartAutonomousDatabase
-      summary: Restart an Autonomous Database
+      summary: Oracle Database Restart an Autonomous Database
       description: Restarts the specified Autonomous Database.
       tags:
         - Autonomous Databases
@@ -304,7 +304,7 @@ paths:
   /autonomousDatabases/{autonomousDatabaseId}/actions/generateWallet:
     post:
       operationId: generateAutonomousDatabaseWallet
-      summary: Generate database wallet
+      summary: Oracle Database Generate database wallet
       description: >-
         Creates and downloads a wallet zip file containing credentials
         for connecting to the Autonomous Database.
@@ -333,7 +333,7 @@ paths:
   /autonomousDatabaseBackups:
     get:
       operationId: listAutonomousDatabaseBackups
-      summary: List Autonomous Database backups
+      summary: Oracle Database List Autonomous Database backups
       description: Returns a list of backups for the specified Autonomous Database.
       tags:
         - Autonomous Databases
@@ -359,7 +359,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createAutonomousDatabaseBackup
-      summary: Create an Autonomous Database backup
+      summary: Oracle Database Create an Autonomous Database backup
       description: Creates a new manual backup for the specified Autonomous Database.
       tags:
         - Autonomous Databases
@@ -381,7 +381,7 @@ paths:
   /dbSystems:
     get:
       operationId: listDbSystems
-      summary: List DB Systems
+      summary: Oracle Database List DB Systems
       description: Returns a list of DB Systems in the specified compartment.
       tags:
         - DB Systems
@@ -418,7 +418,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: launchDbSystem
-      summary: Launch a DB System
+      summary: Oracle Database Launch a DB System
       description: >-
         Creates and launches a new DB System with the specified configuration.
         This is a long-running operation tracked via work requests.
@@ -450,7 +450,7 @@ paths:
   /dbSystems/{dbSystemId}:
     get:
       operationId: getDbSystem
-      summary: Get a DB System
+      summary: Oracle Database Get a DB System
       description: Returns details about the specified DB System.
       tags:
         - DB Systems
@@ -469,7 +469,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateDbSystem
-      summary: Update a DB System
+      summary: Oracle Database Update a DB System
       description: Updates the specified DB System configuration.
       tags:
         - DB Systems
@@ -495,7 +495,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: terminateDbSystem
-      summary: Terminate a DB System
+      summary: Oracle Database Terminate a DB System
       description: Terminates and deletes the specified DB System.
       tags:
         - DB Systems
@@ -516,7 +516,7 @@ paths:
   /databases:
     get:
       operationId: listDatabases
-      summary: List databases
+      summary: Oracle Database List databases
       description: >-
         Returns a list of databases in the specified compartment
         or DB System.
@@ -547,7 +547,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createDatabase
-      summary: Create a database
+      summary: Oracle Database Create a database
       description: Creates a new database in the specified DB Home.
       tags:
         - Databases
@@ -569,7 +569,7 @@ paths:
   /databases/{databaseId}:
     get:
       operationId: getDatabase
-      summary: Get a database
+      summary: Oracle Database Get a database
       description: Returns details about the specified database.
       tags:
         - Databases
@@ -592,7 +592,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateDatabase
-      summary: Update a database
+      summary: Oracle Database Update a database
       description: Updates the specified database.
       tags:
         - Databases
@@ -622,7 +622,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteDatabase
-      summary: Delete a database
+      summary: Oracle Database Delete a database
       description: Deletes the specified database.
       tags:
         - Databases
@@ -643,7 +643,7 @@ paths:
   /dbHomes:
     get:
       operationId: listDbHomes
-      summary: List Database Homes
+      summary: Oracle Database List Database Homes
       description: Returns a list of Database Homes in the specified compartment.
       tags:
         - Database Homes
@@ -668,7 +668,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createDbHome
-      summary: Create a Database Home
+      summary: Oracle Database Create a Database Home
       description: Creates a new Database Home in the specified DB System.
       tags:
         - Database Homes
@@ -690,7 +690,7 @@ paths:
   /dbHomes/{dbHomeId}:
     get:
       operationId: getDbHome
-      summary: Get a Database Home
+      summary: Oracle Database Get a Database Home
       description: Returns details about the specified Database Home.
       tags:
         - Database Homes
@@ -713,7 +713,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteDbHome
-      summary: Delete a Database Home
+      summary: Oracle Database Delete a Database Home
       description: Deletes the specified Database Home.
       tags:
         - Database Homes
@@ -734,7 +734,7 @@ paths:
   /backups:
     get:
       operationId: listBackups
-      summary: List database backups
+      summary: Oracle Database List database backups
       description: Returns a list of backups for a database or compartment.
       tags:
         - Backups
@@ -759,7 +759,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createBackup
-      summary: Create a database backup
+      summary: Oracle Database Create a database backup
       description: Creates a new backup for the specified database.
       tags:
         - Backups
@@ -781,7 +781,7 @@ paths:
   /backups/{backupId}:
     get:
       operationId: getBackup
-      summary: Get a database backup
+      summary: Oracle Database Get a database backup
       description: Returns details about the specified backup.
       tags:
         - Backups
@@ -804,7 +804,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteBackup
-      summary: Delete a database backup
+      summary: Oracle Database Delete a database backup
       description: Deletes the specified backup.
       tags:
         - Backups
@@ -825,7 +825,7 @@ paths:
   /dataGuardAssociations:
     get:
       operationId: listDataGuardAssociations
-      summary: List Data Guard associations
+      summary: Oracle Database List Data Guard associations
       description: Returns Data Guard associations for the specified database.
       tags:
         - Data Guard
@@ -851,7 +851,7 @@ paths:
   /pluggableDatabases:
     get:
       operationId: listPluggableDatabases
-      summary: List pluggable databases
+      summary: Oracle Database List pluggable databases
       description: Returns a list of pluggable databases.
       tags:
         - Pluggable Databases
@@ -876,7 +876,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createPluggableDatabase
-      summary: Create a pluggable database
+      summary: Oracle Database Create a pluggable database
       description: Creates a new pluggable database.
       tags:
         - Pluggable Databases
@@ -898,7 +898,7 @@ paths:
   /pluggableDatabases/{pluggableDatabaseId}:
     get:
       operationId: getPluggableDatabase
-      summary: Get a pluggable database
+      summary: Oracle Database Get a pluggable database
       description: Returns details about the specified pluggable database.
       tags:
         - Pluggable Databases
@@ -921,7 +921,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updatePluggableDatabase
-      summary: Update a pluggable database
+      summary: Oracle Database Update a pluggable database
       description: Updates the specified pluggable database.
       tags:
         - Pluggable Databases
@@ -951,7 +951,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deletePluggableDatabase
-      summary: Delete a pluggable database
+      summary: Oracle Database Delete a pluggable database
       description: Deletes the specified pluggable database.
       tags:
         - Pluggable Databases

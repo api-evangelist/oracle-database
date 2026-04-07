@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Oracle SODA (Simple Oracle Document Access) REST API
+  title: Oracle Database Oracle SODA (Simple Oracle Document Access) REST API
   description: >-
     NoSQL-style document access API for Oracle Database. SODA for REST provides
     HTTP operations for managing JSON document collections, enabling CRUD
@@ -54,7 +54,7 @@ paths:
   /:
     get:
       operationId: listCollections
-      summary: List all collections
+      summary: Oracle Database List all collections
       description: >-
         Returns a list of collection names for the current database schema.
         Supports pagination through limit and fromID parameters.
@@ -88,7 +88,7 @@ paths:
   /metadata-catalog:
     get:
       operationId: getCatalog
-      summary: Get collection catalog with metadata
+      summary: Oracle Database Get collection catalog with metadata
       description: >-
         Lists all collections in the schema with full metadata and navigation links.
         Each collection includes its properties and links to the collection itself
@@ -121,7 +121,7 @@ paths:
   /metadata-catalog/{collection}:
     get:
       operationId: getCollectionSchema
-      summary: Get JSON schema for a collection
+      summary: Oracle Database Get JSON schema for a collection
       description: >-
         Retrieves the JSON schema describing the document structure for
         the specified collection, including collection properties and
@@ -144,7 +144,7 @@ paths:
   /custom-actions/:
     get:
       operationId: listCustomActions
-      summary: List available custom actions
+      summary: Oracle Database List available custom actions
       description: Returns a list of available custom actions for SODA collections.
       tags:
         - Metadata
@@ -170,7 +170,7 @@ paths:
   /{collection}:
     put:
       operationId: createCollection
-      summary: Create a collection
+      summary: Oracle Database Create a collection
       description: >-
         Creates a new document collection. This operation is idempotent - if
         the collection already exists, it returns 200 instead of 201. An
@@ -196,7 +196,7 @@ paths:
   /{collection}/:
     get:
       operationId: getCollection
-      summary: Get documents from a collection
+      summary: Oracle Database Get documents from a collection
       description: >-
         Retrieves documents from the specified collection with optional filtering,
         pagination, and field selection. Supports Query by Example (QBE) filter
@@ -275,7 +275,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: insertDocument
-      summary: Insert a new document
+      summary: Oracle Database Insert a new document
       description: >-
         Inserts a new JSON document into the collection with a server-assigned key.
         Returns the generated key, etag, and timestamps in the response.
@@ -307,7 +307,7 @@ paths:
           description: Unsupported operation
     put:
       operationId: putDocumentNoKey
-      summary: Insert or replace document (no key in URL)
+      summary: Oracle Database Insert or replace document (no key in URL)
       description: >-
         Inserts or replaces a document. Used with client-assigned keys
         included in the document body.
@@ -330,7 +330,7 @@ paths:
           description: Collection is read-only
     delete:
       operationId: deleteCollection
-      summary: Delete a collection
+      summary: Oracle Database Delete a collection
       description: >-
         Deletes the entire collection and all documents it contains.
         This operation cannot be undone.
@@ -348,7 +348,7 @@ paths:
   /{collection}/{key}:
     get:
       operationId: getDocument
-      summary: Get a document by key
+      summary: Oracle Database Get a document by key
       description: >-
         Retrieves a single document from the collection by its unique key.
         Supports conditional retrieval via If-Modified-Since and If-None-Match headers.
@@ -395,7 +395,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: putDocument
-      summary: Replace or insert a document by key
+      summary: Oracle Database Replace or insert a document by key
       description: >-
         Replaces an existing document or inserts a new one at the specified key.
         Used for client-assigned keys.
@@ -430,7 +430,7 @@ paths:
           description: Collection is read-only
     patch:
       operationId: patchDocument
-      summary: Patch a document using JSON Patch
+      summary: Oracle Database Patch a document using JSON Patch
       description: >-
         Updates a document using the JSON Patch specification (RFC 6902).
         The request body must contain an array of patch operations.
@@ -459,7 +459,7 @@ paths:
           description: Collection is read-only
     delete:
       operationId: deleteDocument
-      summary: Delete a document by key
+      summary: Oracle Database Delete a document by key
       description: Deletes a single document from the collection by its unique key.
       tags:
         - Documents
@@ -478,7 +478,7 @@ paths:
   /custom-actions/query/{collection}:
     post:
       operationId: queryCollection
-      summary: Query collection with QBE filter
+      summary: Oracle Database Query collection with QBE filter
       description: >-
         Queries the collection using a Query by Example (QBE) filter specification
         in the request body. Returns matching documents with optional pagination.
@@ -527,7 +527,7 @@ paths:
   /custom-actions/insert/{collection}:
     post:
       operationId: bulkInsert
-      summary: Bulk insert documents
+      summary: Oracle Database Bulk insert documents
       description: >-
         Inserts multiple documents into the collection in a single operation.
         Documents are provided as a JSON array. Server-assigned keys are
@@ -561,7 +561,7 @@ paths:
   /custom-actions/delete/{collection}:
     post:
       operationId: bulkDelete
-      summary: Bulk delete documents by filter
+      summary: Oracle Database Bulk delete documents by filter
       description: >-
         Deletes multiple documents matching a QBE filter specification.
         Returns the count of deleted documents.
@@ -592,7 +592,7 @@ paths:
   /custom-actions/truncate/{collection}:
     post:
       operationId: truncateCollection
-      summary: Truncate all documents from collection
+      summary: Oracle Database Truncate all documents from collection
       description: >-
         Removes all documents from the collection without deleting
         the collection itself. This is faster than deleting documents
@@ -617,7 +617,7 @@ paths:
   /custom-actions/update/{collection}:
     post:
       operationId: bulkUpdate
-      summary: Bulk update documents by filter
+      summary: Oracle Database Bulk update documents by filter
       description: >-
         Updates multiple documents matching a QBE filter using JSON Patch
         operations specified in the $patch field of the request body.
@@ -646,7 +646,7 @@ paths:
   /custom-actions/index/{collection}:
     post:
       operationId: createIndex
-      summary: Create a collection index
+      summary: Oracle Database Create a collection index
       description: >-
         Creates an index on the specified collection based on the SODA
         index specification provided in the request body.
@@ -671,7 +671,7 @@ paths:
   /custom-actions/unindex/{collection}:
     post:
       operationId: dropIndex
-      summary: Drop a collection index
+      summary: Oracle Database Drop a collection index
       description: Drops the specified index from the collection.
       tags:
         - Indexes
