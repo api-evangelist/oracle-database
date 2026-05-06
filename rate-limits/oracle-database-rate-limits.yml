@@ -4,122 +4,54 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Oracle Database
 providerId: oracle-database
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - Cloud
   - Database
-  - Enterprise
   - Oracle
-  - REST API
-  - SQL
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Oracle Database API surface. Captures per-tier
-  quotas, burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to
-  be replaced with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+notes: Oracle Database is on-prem / cloud software, not a hosted public API. Throughput is bounded by
+  the licensed processor count, the Resource Manager configuration, and (when accessed via REST through
+  ORDS) the ORDS connection pool and database settings. There are no upstream-published per-second numeric
+  limits.
+description: Oracle Database does not impose a global rate limit. Operators tune throughput via Database
+  Resource Manager (CPU / IO / parallel server limits), session-level resource limits, and (for REST access)
+  ORDS pool sizing. Cloud-managed variants (Autonomous DB, Base Database Service) inherit OCI service-level
+  throttling, surfaced as 429 / 503 with Retry-After.
+sources:
+  - https://docs.oracle.com/en/database/oracle/oracle-database/
+  - https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
+  unavailable: 503
+  conflict: 409
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Oracle REST Data Services (ORDS)
-      - Oracle Database API for MongoDB
-      - Oracle Cloud Infrastructure Database API
-      - Oracle Database JDBC
-      - Oracle Call Interface (OCI)
-      - Oracle SQL Developer REST API
-      - Oracle SODA (Simple Oracle Document Access)
-      - Oracle Transactional Event Queues (TxEventQ)
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Oracle REST Data Services (ORDS)
-      - Oracle Database API for MongoDB
-      - Oracle Cloud Infrastructure Database API
-      - Oracle Database JDBC
-      - Oracle Call Interface (OCI)
-      - Oracle SQL Developer REST API
-      - Oracle SODA (Simple Oracle Document Access)
-      - Oracle Transactional Event Queues (TxEventQ)
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Oracle REST Data Services (ORDS)
-      - Oracle Database API for MongoDB
-      - Oracle Cloud Infrastructure Database API
-      - Oracle Database JDBC
-      - Oracle Call Interface (OCI)
-      - Oracle SQL Developer REST API
-      - Oracle SODA (Simple Oracle Document Access)
-      - Oracle Transactional Event Queues (TxEventQ)
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Oracle REST Data Services (ORDS)
-      - Oracle Database API for MongoDB
-      - Oracle Cloud Infrastructure Database API
-      - Oracle Database JDBC
-      - Oracle Call Interface (OCI)
-      - Oracle SQL Developer REST API
-      - Oracle SODA (Simple Oracle Document Access)
-      - Oracle Transactional Event Queues (TxEventQ)
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Oracle REST Data Services (ORDS)
-      - Oracle Database API for MongoDB
-      - Oracle Cloud Infrastructure Database API
-      - Oracle Database JDBC
-      - Oracle Call Interface (OCI)
-      - Oracle SQL Developer REST API
-      - Oracle SODA (Simple Oracle Document Access)
-      - Oracle Transactional Event Queues (TxEventQ)
+  - name: Database Resource Manager
+    scope: database/consumer-group
+    metric: varies
+    limit: configured per consumer group
+    notes: CPU%, parallel servers, undo, idle time, etc. — operator-defined.
+  - name: Session resource limits
+    scope: session
+    metric: varies
+    limit: SESSIONS_PER_USER, CPU_PER_SESSION, etc.
+  - name: ORDS connection pool
+    scope: ORDS instance
+    metric: concurrent_connections
+    limit: jdbc.MaxLimit (operator-set)
+  - name: Autonomous Database (cloud)
+    scope: instance
+    metric: ECPU
+    limit: bounded by instance shape and auto-scale
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Resource Manager
+    description: Use Oracle Database Resource Manager to allocate CPU / IO / parallelism across consumer
+      groups; this is the primary throughput-shaping mechanism.
+  - name: ORDS tuning
+    description: For REST traffic, size jdbc.MaxLimit and jdbc.InitialLimit to match expected concurrency.
+  - name: Backoff
+    description: Honor 429 / 503 from cloud-managed services; for ORA- errors (e.g. ORA-04031, ORA-00018),
+      apply application-level backoff.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
