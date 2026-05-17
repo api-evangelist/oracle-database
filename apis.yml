@@ -56,7 +56,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.oracle.com/en/database/oracle/mongodb-api/
-      - type: Getting Started
+      - type: GettingStarted
         url: https://www.oracle.com/database/mongodb-api/get-started/
     contact:
       - FN: Oracle Support
@@ -79,7 +79,7 @@ apis:
         url: https://docs.oracle.com/iaas/Content/Database/home.htm
       - type: SDK
         url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
-      - type: API Reference
+      - type: APIReference
         url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
       - type: OpenAPI
         url: openapi/oracle-database-oci-openapi.yml
@@ -197,29 +197,29 @@ common:
     url: https://www.oracle.com/database/technologies/appdev.html
   - type: Documentation
     url: https://docs.oracle.com/en/database/oracle/oracle-database/
-  - type: Getting Started
+  - type: GettingStarted
     url: https://www.oracle.com/database/technologies/appdev/quickstartsandtutorials.html
   - type: Support
     url: https://www.oracle.com/support/
-  - type: Status
+  - type: StatusPage
     url: https://ocistatus.oraclecloud.com/
   - type: Blog
     url: https://blogs.oracle.com/database/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.oracle.com/legal/terms.html
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.oracle.com/legal/privacy/
   - type: Website
     url: https://www.oracle.com/database/
   - type: Console
     url: https://cloud.oracle.com/
-  - type: Sign Up
+  - type: SignUp
     url: https://signup.cloud.oracle.com/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/oracle
   - type: Community
     url: https://forums.oracle.com/ords/apexds/domain/dev-community
-  - type: Stack Overflow
+  - type: StackOverflow
     url: https://stackoverflow.com/questions/tagged/oracle
   - type: YouTube
     url: https://www.youtube.com/user/Oracle
