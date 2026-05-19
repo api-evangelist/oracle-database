@@ -1,0 +1,153 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle REST Data Services (ORDS) API — Open Service Broker
+  description: 'Oracle Database Oracle REST Data Services (ORDS) API — Open Service Broker. 3 operations. Lead operation:
+    Oracle Database Get service catalog. Self-contained Naftiko capability covering one Oracle Database business surface.'
+  tags:
+  - Oracle Database
+  - Open Service Broker
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ords-open-service-broker
+    baseUri: https://{host}:{port}/ords
+    description: Oracle Database Oracle REST Data Services (ORDS) API — Open Service Broker business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: openservicebroker-v2-catalog
+      path: /openservicebroker/v2/catalog
+      operations:
+      - name: getservicecatalog
+        method: GET
+        description: Oracle Database Get service catalog
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: openservicebroker-v2-service_instances-instance_id
+      path: /openservicebroker/v2/service_instances/{instance_id}
+      operations:
+      - name: provisionserviceinstance
+        method: PUT
+        description: Oracle Database Provision a service instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: instance_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deprovisionserviceinstance
+        method: DELETE
+        description: Oracle Database Deprovision a service instance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: instance_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ords-open-service-broker-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle REST Data Services (ORDS) API — Open Service Broker. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/openservicebroker/v2/catalog
+      name: openservicebroker-v2-catalog
+      description: REST surface for openservicebroker-v2-catalog.
+      operations:
+      - method: GET
+        name: getservicecatalog
+        description: Oracle Database Get service catalog
+        call: ords-open-service-broker.getservicecatalog
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/openservicebroker/v2/service-instances/{instance-id}
+      name: openservicebroker-v2-service-instances-instance-id
+      description: REST surface for openservicebroker-v2-service_instances-instance_id.
+      operations:
+      - method: PUT
+        name: provisionserviceinstance
+        description: Oracle Database Provision a service instance
+        call: ords-open-service-broker.provisionserviceinstance
+        with:
+          instance_id: rest.instance_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deprovisionserviceinstance
+        description: Oracle Database Deprovision a service instance
+        call: ords-open-service-broker.deprovisionserviceinstance
+        with:
+          instance_id: rest.instance_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ords-open-service-broker-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle REST Data Services (ORDS) API — Open Service Broker. One tool per
+      consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-get-service-catalog
+      description: Oracle Database Get service catalog
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-open-service-broker.getservicecatalog
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-provision-service-instance
+      description: Oracle Database Provision a service instance
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: ords-open-service-broker.provisionserviceinstance
+      with:
+        instance_id: tools.instance_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-deprovision-service-instance
+      description: Oracle Database Deprovision a service instance
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ords-open-service-broker.deprovisionserviceinstance
+      with:
+        instance_id: tools.instance_id
+      outputParameters:
+      - type: object
+        mapping: $.

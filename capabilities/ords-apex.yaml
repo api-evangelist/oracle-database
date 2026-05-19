@@ -1,0 +1,279 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle REST Data Services (ORDS) API — APEX
+  description: 'Oracle Database Oracle REST Data Services (ORDS) API — APEX. 6 operations. Lead operation: Oracle Database
+    Get APEX instance overview. Self-contained Naftiko capability covering one Oracle Database business surface.'
+  tags:
+  - Oracle Database
+  - APEX
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ords-apex
+    baseUri: https://{host}:{port}/ords
+    description: Oracle Database Oracle REST Data Services (ORDS) API — APEX business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: apex-statistics-overview
+      path: /apex/statistics/overview
+      operations:
+      - name: getapexoverview
+        method: GET
+        description: Oracle Database Get APEX instance overview
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: apex-workspaces
+      path: /apex/workspaces/
+      operations:
+      - name: getapexworkspaces
+        method: GET
+        description: Oracle Database Get all APEX workspaces
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: apex-workspaces-workspace_name
+      path: /apex/workspaces/{workspace_name}/
+      operations:
+      - name: getapexworkspace
+        method: GET
+        description: Oracle Database Get a specific APEX workspace
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace_name
+          in: path
+          type: string
+          required: true
+    - name: apex-workspaces-workspace_name-applications
+      path: /apex/workspaces/{workspace_name}/applications/
+      operations:
+      - name: getapexapplications
+        method: GET
+        description: Oracle Database Get workspace applications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace_name
+          in: path
+          type: string
+          required: true
+    - name: apex-workspaces-workspace_name-applications-application_id
+      path: /apex/workspaces/{workspace_name}/applications/{application_id}
+      operations:
+      - name: createorupdateapexapplication
+        method: PUT
+        description: Oracle Database Create or update an APEX application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace_name
+          in: path
+          type: string
+          required: true
+        - name: application_id
+          in: path
+          type: integer
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteapexapplication
+        method: DELETE
+        description: Oracle Database Delete an APEX application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workspace_name
+          in: path
+          type: string
+          required: true
+        - name: application_id
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ords-apex-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle REST Data Services (ORDS) API — APEX. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/apex/statistics/overview
+      name: apex-statistics-overview
+      description: REST surface for apex-statistics-overview.
+      operations:
+      - method: GET
+        name: getapexoverview
+        description: Oracle Database Get APEX instance overview
+        call: ords-apex.getapexoverview
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apex/workspaces
+      name: apex-workspaces
+      description: REST surface for apex-workspaces.
+      operations:
+      - method: GET
+        name: getapexworkspaces
+        description: Oracle Database Get all APEX workspaces
+        call: ords-apex.getapexworkspaces
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apex/workspaces/{workspace-name}
+      name: apex-workspaces-workspace-name
+      description: REST surface for apex-workspaces-workspace_name.
+      operations:
+      - method: GET
+        name: getapexworkspace
+        description: Oracle Database Get a specific APEX workspace
+        call: ords-apex.getapexworkspace
+        with:
+          workspace_name: rest.workspace_name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apex/workspaces/{workspace-name}/applications
+      name: apex-workspaces-workspace-name-applications
+      description: REST surface for apex-workspaces-workspace_name-applications.
+      operations:
+      - method: GET
+        name: getapexapplications
+        description: Oracle Database Get workspace applications
+        call: ords-apex.getapexapplications
+        with:
+          workspace_name: rest.workspace_name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/apex/workspaces/{workspace-name}/applications/{application-id}
+      name: apex-workspaces-workspace-name-applications-application-id
+      description: REST surface for apex-workspaces-workspace_name-applications-application_id.
+      operations:
+      - method: PUT
+        name: createorupdateapexapplication
+        description: Oracle Database Create or update an APEX application
+        call: ords-apex.createorupdateapexapplication
+        with:
+          workspace_name: rest.workspace_name
+          application_id: rest.application_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapexapplication
+        description: Oracle Database Delete an APEX application
+        call: ords-apex.deleteapexapplication
+        with:
+          workspace_name: rest.workspace_name
+          application_id: rest.application_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ords-apex-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle REST Data Services (ORDS) API — APEX. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-get-apex-instance
+      description: Oracle Database Get APEX instance overview
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-apex.getapexoverview
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-all-apex
+      description: Oracle Database Get all APEX workspaces
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-apex.getapexworkspaces
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-specific-apex
+      description: Oracle Database Get a specific APEX workspace
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-apex.getapexworkspace
+      with:
+        workspace_name: tools.workspace_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-workspace-applications
+      description: Oracle Database Get workspace applications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-apex.getapexapplications
+      with:
+        workspace_name: tools.workspace_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-create-update-apex
+      description: Oracle Database Create or update an APEX application
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: ords-apex.createorupdateapexapplication
+      with:
+        workspace_name: tools.workspace_name
+        application_id: tools.application_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-delete-apex-application
+      description: Oracle Database Delete an APEX application
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ords-apex.deleteapexapplication
+      with:
+        workspace_name: tools.workspace_name
+        application_id: tools.application_id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,255 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle REST Data Services (ORDS) API — Data Pump
+  description: 'Oracle Database Oracle REST Data Services (ORDS) API — Data Pump. 5 operations. Lead operation: Oracle Database
+    Create a Data Pump export job. Self-contained Naftiko capability covering one Oracle Database business surface.'
+  tags:
+  - Oracle Database
+  - Data Pump
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ords-data-pump
+    baseUri: https://{host}:{port}/ords
+    description: Oracle Database Oracle REST Data Services (ORDS) API — Data Pump business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: database-datapump-export
+      path: /database/datapump/export
+      operations:
+      - name: createexportjob
+        method: POST
+        description: Oracle Database Create a Data Pump export job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: database-datapump-import
+      path: /database/datapump/import
+      operations:
+      - name: createimportjob
+        method: POST
+        description: Oracle Database Create a Data Pump import job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: database-datapump-jobs
+      path: /database/datapump/jobs/
+      operations:
+      - name: getdatapumpjobs
+        method: GET
+        description: Oracle Database Get all Data Pump jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: database-datapump-jobs-owner_name},{job_name
+      path: /database/datapump/jobs/{owner_name},{job_name}/
+      operations:
+      - name: getdatapumpjob
+        method: GET
+        description: Oracle Database Get a specific Data Pump job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner_name
+          in: path
+          type: string
+          required: true
+        - name: job_name
+          in: path
+          type: string
+          required: true
+    - name: database-datapump-jobs-owner_name},{job_name-filename
+      path: /database/datapump/jobs/{owner_name},{job_name}/{filename}
+      operations:
+      - name: getdatapumpjobfile
+        method: GET
+        description: Oracle Database Get a Data Pump job file
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner_name
+          in: path
+          type: string
+          required: true
+        - name: job_name
+          in: path
+          type: string
+          required: true
+        - name: filename
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ords-data-pump-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle REST Data Services (ORDS) API — Data Pump. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/database/datapump/export
+      name: database-datapump-export
+      description: REST surface for database-datapump-export.
+      operations:
+      - method: POST
+        name: createexportjob
+        description: Oracle Database Create a Data Pump export job
+        call: ords-data-pump.createexportjob
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/datapump/import
+      name: database-datapump-import
+      description: REST surface for database-datapump-import.
+      operations:
+      - method: POST
+        name: createimportjob
+        description: Oracle Database Create a Data Pump import job
+        call: ords-data-pump.createimportjob
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/datapump/jobs
+      name: database-datapump-jobs
+      description: REST surface for database-datapump-jobs.
+      operations:
+      - method: GET
+        name: getdatapumpjobs
+        description: Oracle Database Get all Data Pump jobs
+        call: ords-data-pump.getdatapumpjobs
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/datapump/jobs/{owner-name-job-name}
+      name: database-datapump-jobs-owner-name-job-name
+      description: REST surface for database-datapump-jobs-owner_name},{job_name.
+      operations:
+      - method: GET
+        name: getdatapumpjob
+        description: Oracle Database Get a specific Data Pump job
+        call: ords-data-pump.getdatapumpjob
+        with:
+          owner_name: rest.owner_name
+          job_name: rest.job_name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/datapump/jobs/{owner-name-job-name}/{filename}
+      name: database-datapump-jobs-owner-name-job-name-filename
+      description: REST surface for database-datapump-jobs-owner_name},{job_name-filename.
+      operations:
+      - method: GET
+        name: getdatapumpjobfile
+        description: Oracle Database Get a Data Pump job file
+        call: ords-data-pump.getdatapumpjobfile
+        with:
+          owner_name: rest.owner_name
+          job_name: rest.job_name
+          filename: rest.filename
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ords-data-pump-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle REST Data Services (ORDS) API — Data Pump. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-create-data-pump
+      description: Oracle Database Create a Data Pump export job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ords-data-pump.createexportjob
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-create-data-pump-2
+      description: Oracle Database Create a Data Pump import job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ords-data-pump.createimportjob
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-all-data
+      description: Oracle Database Get all Data Pump jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-pump.getdatapumpjobs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-specific-data
+      description: Oracle Database Get a specific Data Pump job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-pump.getdatapumpjob
+      with:
+        owner_name: tools.owner_name
+        job_name: tools.job_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-data-pump
+      description: Oracle Database Get a Data Pump job file
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-pump.getdatapumpjobfile
+      with:
+        owner_name: tools.owner_name
+        job_name: tools.job_name
+        filename: tools.filename
+      outputParameters:
+      - type: object
+        mapping: $.

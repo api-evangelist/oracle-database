@@ -1,0 +1,498 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle REST Data Services (ORDS) API — Data Dictionary
+  description: 'Oracle Database Oracle REST Data Services (ORDS) API — Data Dictionary. 12 operations. Lead operation: Oracle
+    Database Get all database links. Self-contained Naftiko capability covering one Oracle Database business surface.'
+  tags:
+  - Oracle Database
+  - Data Dictionary
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ords-data-dictionary
+    baseUri: https://{host}:{port}/ords
+    description: Oracle Database Oracle REST Data Services (ORDS) API — Data Dictionary business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: database-db_links
+      path: /database/db_links/
+      operations:
+      - name: getdatabaselinks
+        method: GET
+        description: Oracle Database Get all database links
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: database-db_links-owner},{db_link
+      path: /database/db_links/{owner},{db_link}
+      operations:
+      - name: getdatabaselink
+        method: GET
+        description: Oracle Database Get a specific database link
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: db_link
+          in: path
+          type: string
+          required: true
+    - name: database-objects-columns
+      path: /database/objects/columns/
+      operations:
+      - name: getcolumns
+        method: GET
+        description: Oracle Database Get all table columns
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: database-objects-columns-owner},{table_name},{column_name
+      path: /database/objects/columns/{owner},{table_name},{column_name}
+      operations:
+      - name: getcolumn
+        method: GET
+        description: Oracle Database Get a specific column
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: table_name
+          in: path
+          type: string
+          required: true
+        - name: column_name
+          in: path
+          type: string
+          required: true
+    - name: database-objects-foreign_keys
+      path: /database/objects/foreign_keys/
+      operations:
+      - name: getforeignkeys
+        method: GET
+        description: Oracle Database Get all foreign keys
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: database-objects-functions
+      path: /database/objects/functions/
+      operations:
+      - name: getfunctions
+        method: GET
+        description: Oracle Database Get all functions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: database-objects-functions-object_id
+      path: /database/objects/functions/{object_id}
+      operations:
+      - name: getfunction
+        method: GET
+        description: Oracle Database Get a specific function
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: object_id
+          in: path
+          type: integer
+          required: true
+    - name: database-objects-indexes
+      path: /database/objects/indexes/
+      operations:
+      - name: getindexes
+        method: GET
+        description: Oracle Database Get all indexes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: database-objects-indexes-owner},{index_name
+      path: /database/objects/indexes/{owner},{index_name}
+      operations:
+      - name: getindex
+        method: GET
+        description: Oracle Database Get a specific index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: index_name
+          in: path
+          type: string
+          required: true
+    - name: database-objects-tables
+      path: /database/objects/tables/
+      operations:
+      - name: gettables
+        method: GET
+        description: Oracle Database Get all tables
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: database-objects-tables-owner},{table_name
+      path: /database/objects/tables/{owner},{table_name}
+      operations:
+      - name: gettable
+        method: GET
+        description: Oracle Database Get a specific table
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          required: true
+        - name: table_name
+          in: path
+          type: string
+          required: true
+    - name: database-tablespaces
+      path: /database/tablespaces/
+      operations:
+      - name: gettablespacesdict
+        method: GET
+        description: Oracle Database Get all tablespaces
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ords-data-dictionary-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle REST Data Services (ORDS) API — Data Dictionary. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/database/db-links
+      name: database-db-links
+      description: REST surface for database-db_links.
+      operations:
+      - method: GET
+        name: getdatabaselinks
+        description: Oracle Database Get all database links
+        call: ords-data-dictionary.getdatabaselinks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/db-links/{owner-db-link}
+      name: database-db-links-owner-db-link
+      description: REST surface for database-db_links-owner},{db_link.
+      operations:
+      - method: GET
+        name: getdatabaselink
+        description: Oracle Database Get a specific database link
+        call: ords-data-dictionary.getdatabaselink
+        with:
+          owner: rest.owner
+          db_link: rest.db_link
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/objects/columns
+      name: database-objects-columns
+      description: REST surface for database-objects-columns.
+      operations:
+      - method: GET
+        name: getcolumns
+        description: Oracle Database Get all table columns
+        call: ords-data-dictionary.getcolumns
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/objects/columns/{owner-table-name-column-name}
+      name: database-objects-columns-owner-table-name-column-name
+      description: REST surface for database-objects-columns-owner},{table_name},{column_name.
+      operations:
+      - method: GET
+        name: getcolumn
+        description: Oracle Database Get a specific column
+        call: ords-data-dictionary.getcolumn
+        with:
+          owner: rest.owner
+          table_name: rest.table_name
+          column_name: rest.column_name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/objects/foreign-keys
+      name: database-objects-foreign-keys
+      description: REST surface for database-objects-foreign_keys.
+      operations:
+      - method: GET
+        name: getforeignkeys
+        description: Oracle Database Get all foreign keys
+        call: ords-data-dictionary.getforeignkeys
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/objects/functions
+      name: database-objects-functions
+      description: REST surface for database-objects-functions.
+      operations:
+      - method: GET
+        name: getfunctions
+        description: Oracle Database Get all functions
+        call: ords-data-dictionary.getfunctions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/objects/functions/{object-id}
+      name: database-objects-functions-object-id
+      description: REST surface for database-objects-functions-object_id.
+      operations:
+      - method: GET
+        name: getfunction
+        description: Oracle Database Get a specific function
+        call: ords-data-dictionary.getfunction
+        with:
+          object_id: rest.object_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/objects/indexes
+      name: database-objects-indexes
+      description: REST surface for database-objects-indexes.
+      operations:
+      - method: GET
+        name: getindexes
+        description: Oracle Database Get all indexes
+        call: ords-data-dictionary.getindexes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/objects/indexes/{owner-index-name}
+      name: database-objects-indexes-owner-index-name
+      description: REST surface for database-objects-indexes-owner},{index_name.
+      operations:
+      - method: GET
+        name: getindex
+        description: Oracle Database Get a specific index
+        call: ords-data-dictionary.getindex
+        with:
+          owner: rest.owner
+          index_name: rest.index_name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/objects/tables
+      name: database-objects-tables
+      description: REST surface for database-objects-tables.
+      operations:
+      - method: GET
+        name: gettables
+        description: Oracle Database Get all tables
+        call: ords-data-dictionary.gettables
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/objects/tables/{owner-table-name}
+      name: database-objects-tables-owner-table-name
+      description: REST surface for database-objects-tables-owner},{table_name.
+      operations:
+      - method: GET
+        name: gettable
+        description: Oracle Database Get a specific table
+        call: ords-data-dictionary.gettable
+        with:
+          owner: rest.owner
+          table_name: rest.table_name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/tablespaces
+      name: database-tablespaces
+      description: REST surface for database-tablespaces.
+      operations:
+      - method: GET
+        name: gettablespacesdict
+        description: Oracle Database Get all tablespaces
+        call: ords-data-dictionary.gettablespacesdict
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ords-data-dictionary-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle REST Data Services (ORDS) API — Data Dictionary. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-get-all-database
+      description: Oracle Database Get all database links
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-dictionary.getdatabaselinks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-specific-database
+      description: Oracle Database Get a specific database link
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-dictionary.getdatabaselink
+      with:
+        owner: tools.owner
+        db_link: tools.db_link
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-all-table
+      description: Oracle Database Get all table columns
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-dictionary.getcolumns
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-specific-column
+      description: Oracle Database Get a specific column
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-dictionary.getcolumn
+      with:
+        owner: tools.owner
+        table_name: tools.table_name
+        column_name: tools.column_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-all-foreign
+      description: Oracle Database Get all foreign keys
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-dictionary.getforeignkeys
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-all-functions
+      description: Oracle Database Get all functions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-dictionary.getfunctions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-specific-function
+      description: Oracle Database Get a specific function
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-dictionary.getfunction
+      with:
+        object_id: tools.object_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-all-indexes
+      description: Oracle Database Get all indexes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-dictionary.getindexes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-specific-index
+      description: Oracle Database Get a specific index
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-dictionary.getindex
+      with:
+        owner: tools.owner
+        index_name: tools.index_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-all-tables
+      description: Oracle Database Get all tables
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-dictionary.gettables
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-specific-table
+      description: Oracle Database Get a specific table
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-dictionary.gettable
+      with:
+        owner: tools.owner
+        table_name: tools.table_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-all-tablespaces
+      description: Oracle Database Get all tablespaces
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-data-dictionary.gettablespacesdict
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,211 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle Cloud Infrastructure Database API — DB Systems
+  description: 'Oracle Database Oracle Cloud Infrastructure Database API — DB Systems. 5 operations. Lead operation: Oracle
+    Database List DB Systems. Self-contained Naftiko capability covering one Oracle Database business surface.'
+  tags:
+  - Oracle Database
+  - DB Systems
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: oci-db-systems
+    baseUri: https://database.{region}.oraclecloud.com/20160918
+    description: Oracle Database Oracle Cloud Infrastructure Database API — DB Systems business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: dbSystems
+      path: /dbSystems
+      operations:
+      - name: listdbsystems
+        method: GET
+        description: Oracle Database List DB Systems
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: displayName
+          in: query
+          type: string
+        - name: lifecycleState
+          in: query
+          type: string
+      - name: launchdbsystem
+        method: POST
+        description: Oracle Database Launch a DB System
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: dbSystems-dbSystemId
+      path: /dbSystems/{dbSystemId}
+      operations:
+      - name: getdbsystem
+        method: GET
+        description: Oracle Database Get a DB System
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatedbsystem
+        method: PUT
+        description: Oracle Database Update a DB System
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: terminatedbsystem
+        method: DELETE
+        description: Oracle Database Terminate a DB System
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: oci-db-systems-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle Cloud Infrastructure Database API — DB Systems. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/dbsystems
+      name: dbsystems
+      description: REST surface for dbSystems.
+      operations:
+      - method: GET
+        name: listdbsystems
+        description: Oracle Database List DB Systems
+        call: oci-db-systems.listdbsystems
+        with:
+          displayName: rest.displayName
+          lifecycleState: rest.lifecycleState
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: launchdbsystem
+        description: Oracle Database Launch a DB System
+        call: oci-db-systems.launchdbsystem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dbsystems/{dbsystemid}
+      name: dbsystems-dbsystemid
+      description: REST surface for dbSystems-dbSystemId.
+      operations:
+      - method: GET
+        name: getdbsystem
+        description: Oracle Database Get a DB System
+        call: oci-db-systems.getdbsystem
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatedbsystem
+        description: Oracle Database Update a DB System
+        call: oci-db-systems.updatedbsystem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: terminatedbsystem
+        description: Oracle Database Terminate a DB System
+        call: oci-db-systems.terminatedbsystem
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: oci-db-systems-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle Cloud Infrastructure Database API — DB Systems. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-list-db-systems
+      description: Oracle Database List DB Systems
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oci-db-systems.listdbsystems
+      with:
+        displayName: tools.displayName
+        lifecycleState: tools.lifecycleState
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-launch-db-system
+      description: Oracle Database Launch a DB System
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oci-db-systems.launchdbsystem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-db-system
+      description: Oracle Database Get a DB System
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oci-db-systems.getdbsystem
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-update-db-system
+      description: Oracle Database Update a DB System
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: oci-db-systems.updatedbsystem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-terminate-db-system
+      description: Oracle Database Terminate a DB System
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oci-db-systems.terminatedbsystem
+      outputParameters:
+      - type: object
+        mapping: $.

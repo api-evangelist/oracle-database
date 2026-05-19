@@ -1,0 +1,318 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle REST Data Services (ORDS) API — RDF Graph
+  description: 'Oracle Database Oracle REST Data Services (ORDS) API — RDF Graph. 6 operations. Lead operation: Oracle Database
+    List all RDF networks. Self-contained Naftiko capability covering one Oracle Database business surface.'
+  tags:
+  - Oracle Database
+  - RDF Graph
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ords-rdf-graph
+    baseUri: https://{host}:{port}/ords
+    description: Oracle Database Oracle REST Data Services (ORDS) API — RDF Graph business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: database-rdf-networks
+      path: /database/rdf/networks/
+      operations:
+      - name: getrdfnetworks
+        method: GET
+        description: Oracle Database List all RDF networks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: database-rdf-networks-network_owner},{network_name
+      path: /database/rdf/networks/{network_owner},{network_name}
+      operations:
+      - name: getrdfnetwork
+        method: GET
+        description: Oracle Database Get RDF network information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: network_owner
+          in: path
+          type: string
+          required: true
+        - name: network_name
+          in: path
+          type: string
+          required: true
+      - name: createrdfnetwork
+        method: PUT
+        description: Oracle Database Create an RDF network
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: network_owner
+          in: path
+          type: string
+          required: true
+        - name: network_name
+          in: path
+          type: string
+          required: true
+    - name: database-rdf-networks-network_owner},{network_name-models
+      path: /database/rdf/networks/{network_owner},{network_name}/models/
+      operations:
+      - name: getrdfmodels
+        method: GET
+        description: Oracle Database List RDF models
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: network_owner
+          in: path
+          type: string
+          required: true
+        - name: network_name
+          in: path
+          type: string
+          required: true
+    - name: database-rdf-networks-network_owner},{network_name-models-model_name-sparql-1.1
+      path: /database/rdf/networks/{network_owner},{network_name}/models/{model_name}/sparql/1.1
+      operations:
+      - name: executesparqlqueryget
+        method: GET
+        description: Oracle Database Execute SPARQL query (GET)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: network_owner
+          in: path
+          type: string
+          required: true
+        - name: network_name
+          in: path
+          type: string
+          required: true
+        - name: model_name
+          in: path
+          type: string
+          required: true
+        - name: query
+          in: query
+          type: string
+          description: The SPARQL query string
+          required: true
+      - name: executesparqlquerypost
+        method: POST
+        description: Oracle Database Execute SPARQL query (POST)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: network_owner
+          in: path
+          type: string
+          required: true
+        - name: network_name
+          in: path
+          type: string
+          required: true
+        - name: model_name
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ords-rdf-graph-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle REST Data Services (ORDS) API — RDF Graph. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/database/rdf/networks
+      name: database-rdf-networks
+      description: REST surface for database-rdf-networks.
+      operations:
+      - method: GET
+        name: getrdfnetworks
+        description: Oracle Database List all RDF networks
+        call: ords-rdf-graph.getrdfnetworks
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/rdf/networks/{network-owner-network-name}
+      name: database-rdf-networks-network-owner-network-name
+      description: REST surface for database-rdf-networks-network_owner},{network_name.
+      operations:
+      - method: GET
+        name: getrdfnetwork
+        description: Oracle Database Get RDF network information
+        call: ords-rdf-graph.getrdfnetwork
+        with:
+          network_owner: rest.network_owner
+          network_name: rest.network_name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: createrdfnetwork
+        description: Oracle Database Create an RDF network
+        call: ords-rdf-graph.createrdfnetwork
+        with:
+          network_owner: rest.network_owner
+          network_name: rest.network_name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/rdf/networks/{network-owner-network-name}/models
+      name: database-rdf-networks-network-owner-network-name-models
+      description: REST surface for database-rdf-networks-network_owner},{network_name-models.
+      operations:
+      - method: GET
+        name: getrdfmodels
+        description: Oracle Database List RDF models
+        call: ords-rdf-graph.getrdfmodels
+        with:
+          network_owner: rest.network_owner
+          network_name: rest.network_name
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/rdf/networks/{network-owner-network-name}/models/{model-name}/sparql/1-1
+      name: database-rdf-networks-network-owner-network-name-models-model-name-sparql-1-1
+      description: REST surface for database-rdf-networks-network_owner},{network_name-models-model_name-sparql-1.1.
+      operations:
+      - method: GET
+        name: executesparqlqueryget
+        description: Oracle Database Execute SPARQL query (GET)
+        call: ords-rdf-graph.executesparqlqueryget
+        with:
+          network_owner: rest.network_owner
+          network_name: rest.network_name
+          model_name: rest.model_name
+          query: rest.query
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: executesparqlquerypost
+        description: Oracle Database Execute SPARQL query (POST)
+        call: ords-rdf-graph.executesparqlquerypost
+        with:
+          network_owner: rest.network_owner
+          network_name: rest.network_name
+          model_name: rest.model_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ords-rdf-graph-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle REST Data Services (ORDS) API — RDF Graph. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-list-all-rdf
+      description: Oracle Database List all RDF networks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-rdf-graph.getrdfnetworks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-rdf-network
+      description: Oracle Database Get RDF network information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-rdf-graph.getrdfnetwork
+      with:
+        network_owner: tools.network_owner
+        network_name: tools.network_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-create-rdf-network
+      description: Oracle Database Create an RDF network
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: ords-rdf-graph.createrdfnetwork
+      with:
+        network_owner: tools.network_owner
+        network_name: tools.network_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-list-rdf-models
+      description: Oracle Database List RDF models
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-rdf-graph.getrdfmodels
+      with:
+        network_owner: tools.network_owner
+        network_name: tools.network_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-execute-sparql-query
+      description: Oracle Database Execute SPARQL query (GET)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-rdf-graph.executesparqlqueryget
+      with:
+        network_owner: tools.network_owner
+        network_name: tools.network_name
+        model_name: tools.model_name
+        query: tools.query
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-execute-sparql-query-2
+      description: Oracle Database Execute SPARQL query (POST)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: ords-rdf-graph.executesparqlquerypost
+      with:
+        network_owner: tools.network_owner
+        network_name: tools.network_name
+        model_name: tools.model_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

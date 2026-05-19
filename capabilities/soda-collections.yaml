@@ -1,0 +1,160 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Collections
+  description: 'Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Collections. 3 operations. Lead operation:
+    Oracle Database List all collections. Self-contained Naftiko capability covering one Oracle Database business surface.'
+  tags:
+  - Oracle Database
+  - Collections
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: soda-collections
+    baseUri: https://{host}:{port}/ords/{schema}/soda/{version}
+    description: Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Collections business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: root
+      path: /
+      operations:
+      - name: listcollections
+        method: GET
+        description: Oracle Database List all collections
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of collections to return
+        - name: fromID
+          in: query
+          type: string
+          description: Start listing from this collection name (inclusive)
+    - name: collection
+      path: /{collection}
+      operations:
+      - name: createcollection
+        method: PUT
+        description: Oracle Database Create a collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: collection
+      path: /{collection}/
+      operations:
+      - name: deletecollection
+        method: DELETE
+        description: Oracle Database Delete a collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: soda-collections-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Collections. One
+      Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1
+      name: root
+      description: REST surface for root.
+      operations:
+      - method: GET
+        name: listcollections
+        description: Oracle Database List all collections
+        call: soda-collections.listcollections
+        with:
+          limit: rest.limit
+          fromID: rest.fromID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{collection}
+      name: collection
+      description: REST surface for collection.
+      operations:
+      - method: PUT
+        name: createcollection
+        description: Oracle Database Create a collection
+        call: soda-collections.createcollection
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{collection}
+      name: collection
+      description: REST surface for collection.
+      operations:
+      - method: DELETE
+        name: deletecollection
+        description: Oracle Database Delete a collection
+        call: soda-collections.deletecollection
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: soda-collections-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Collections. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-list-all-collections
+      description: Oracle Database List all collections
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: soda-collections.listcollections
+      with:
+        limit: tools.limit
+        fromID: tools.fromID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-create-collection
+      description: Oracle Database Create a collection
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: soda-collections.createcollection
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-delete-collection
+      description: Oracle Database Delete a collection
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: soda-collections.deletecollection
+      outputParameters:
+      - type: object
+        mapping: $.

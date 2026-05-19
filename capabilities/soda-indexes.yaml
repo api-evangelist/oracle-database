@@ -1,0 +1,123 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Indexes
+  description: 'Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Indexes. 2 operations. Lead operation:
+    Oracle Database Create a collection index. Self-contained Naftiko capability covering one Oracle Database business surface.'
+  tags:
+  - Oracle Database
+  - Indexes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: soda-indexes
+    baseUri: https://{host}:{port}/ords/{schema}/soda/{version}
+    description: Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Indexes business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: custom-actions-index-collection
+      path: /custom-actions/index/{collection}
+      operations:
+      - name: createindex
+        method: POST
+        description: Oracle Database Create a collection index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: custom-actions-unindex-collection
+      path: /custom-actions/unindex/{collection}
+      operations:
+      - name: dropindex
+        method: POST
+        description: Oracle Database Drop a collection index
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: soda-indexes-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Indexes. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/custom-actions/index/{collection}
+      name: custom-actions-index-collection
+      description: REST surface for custom-actions-index-collection.
+      operations:
+      - method: POST
+        name: createindex
+        description: Oracle Database Create a collection index
+        call: soda-indexes.createindex
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/custom-actions/unindex/{collection}
+      name: custom-actions-unindex-collection
+      description: REST surface for custom-actions-unindex-collection.
+      operations:
+      - method: POST
+        name: dropindex
+        description: Oracle Database Drop a collection index
+        call: soda-indexes.dropindex
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: soda-indexes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Indexes. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-create-collection-index
+      description: Oracle Database Create a collection index
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: soda-indexes.createindex
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-drop-collection-index
+      description: Oracle Database Drop a collection index
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: soda-indexes.dropindex
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

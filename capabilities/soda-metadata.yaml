@@ -1,0 +1,151 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Metadata
+  description: 'Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Metadata. 3 operations. Lead operation:
+    Oracle Database List available custom actions. Self-contained Naftiko capability covering one Oracle Database business
+    surface.'
+  tags:
+  - Oracle Database
+  - Metadata
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: soda-metadata
+    baseUri: https://{host}:{port}/ords/{schema}/soda/{version}
+    description: Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Metadata business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: custom-actions
+      path: /custom-actions/
+      operations:
+      - name: listcustomactions
+        method: GET
+        description: Oracle Database List available custom actions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: metadata-catalog
+      path: /metadata-catalog
+      operations:
+      - name: getcatalog
+        method: GET
+        description: Oracle Database Get collection catalog with metadata
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of collections to return
+        - name: fromID
+          in: query
+          type: string
+          description: Start from this collection name (inclusive)
+    - name: metadata-catalog-collection
+      path: /metadata-catalog/{collection}
+      operations:
+      - name: getcollectionschema
+        method: GET
+        description: Oracle Database Get JSON schema for a collection
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: soda-metadata-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Metadata. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/custom-actions
+      name: custom-actions
+      description: REST surface for custom-actions.
+      operations:
+      - method: GET
+        name: listcustomactions
+        description: Oracle Database List available custom actions
+        call: soda-metadata.listcustomactions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/metadata-catalog
+      name: metadata-catalog
+      description: REST surface for metadata-catalog.
+      operations:
+      - method: GET
+        name: getcatalog
+        description: Oracle Database Get collection catalog with metadata
+        call: soda-metadata.getcatalog
+        with:
+          limit: rest.limit
+          fromID: rest.fromID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/metadata-catalog/{collection}
+      name: metadata-catalog-collection
+      description: REST surface for metadata-catalog-collection.
+      operations:
+      - method: GET
+        name: getcollectionschema
+        description: Oracle Database Get JSON schema for a collection
+        call: soda-metadata.getcollectionschema
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: soda-metadata-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Metadata. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-list-available-custom
+      description: Oracle Database List available custom actions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: soda-metadata.listcustomactions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-collection-catalog
+      description: Oracle Database Get collection catalog with metadata
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: soda-metadata.getcatalog
+      with:
+        limit: tools.limit
+        fromID: tools.fromID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-json-schema
+      description: Oracle Database Get JSON schema for a collection
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: soda-metadata.getcollectionschema
+      outputParameters:
+      - type: object
+        mapping: $.

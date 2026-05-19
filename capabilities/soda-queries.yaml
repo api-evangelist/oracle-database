@@ -1,0 +1,100 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Queries
+  description: 'Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Queries. 1 operations. Lead operation:
+    Oracle Database Query collection with QBE filter. Self-contained Naftiko capability covering one Oracle Database business
+    surface.'
+  tags:
+  - Oracle Database
+  - Queries
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: soda-queries
+    baseUri: https://{host}:{port}/ords/{schema}/soda/{version}
+    description: Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Queries business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: custom-actions-query-collection
+      path: /custom-actions/query/{collection}
+      operations:
+      - name: querycollection
+        method: POST
+        description: Oracle Database Query collection with QBE filter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of documents to return
+        - name: offset
+          in: query
+          type: integer
+          description: Number of documents to skip
+        - name: fields
+          in: query
+          type: string
+          description: Control which fields are returned
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: soda-queries-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Queries. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/custom-actions/query/{collection}
+      name: custom-actions-query-collection
+      description: REST surface for custom-actions-query-collection.
+      operations:
+      - method: POST
+        name: querycollection
+        description: Oracle Database Query collection with QBE filter
+        call: soda-queries.querycollection
+        with:
+          limit: rest.limit
+          offset: rest.offset
+          fields: rest.fields
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: soda-queries-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle SODA (Simple Oracle Document Access) REST API — Queries. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-query-collection-qbe
+      description: Oracle Database Query collection with QBE filter
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: soda-queries.querycollection
+      with:
+        limit: tools.limit
+        offset: tools.offset
+        fields: tools.fields
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

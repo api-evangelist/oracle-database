@@ -1,0 +1,434 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle Cloud Infrastructure Database API — Autonomous Databases
+  description: 'Oracle Database Oracle Cloud Infrastructure Database API — Autonomous Databases. 11 operations. Lead operation:
+    Oracle Database List Autonomous Database backups. Self-contained Naftiko capability covering one Oracle Database business
+    surface.'
+  tags:
+  - Oracle Database
+  - Autonomous Databases
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: oci-autonomous-databases
+    baseUri: https://database.{region}.oraclecloud.com/20160918
+    description: Oracle Database Oracle Cloud Infrastructure Database API — Autonomous Databases business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: autonomousDatabaseBackups
+      path: /autonomousDatabaseBackups
+      operations:
+      - name: listautonomousdatabasebackups
+        method: GET
+        description: Oracle Database List Autonomous Database backups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: autonomousDatabaseId
+          in: query
+          type: string
+          description: The Autonomous Database OCID
+      - name: createautonomousdatabasebackup
+        method: POST
+        description: Oracle Database Create an Autonomous Database backup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: autonomousDatabases
+      path: /autonomousDatabases
+      operations:
+      - name: listautonomousdatabases
+        method: GET
+        description: Oracle Database List Autonomous Databases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: displayName
+          in: query
+          type: string
+          description: Filter by display name
+        - name: lifecycleState
+          in: query
+          type: string
+          description: Filter by lifecycle state
+        - name: dbWorkload
+          in: query
+          type: string
+          description: Filter by workload type
+      - name: createautonomousdatabase
+        method: POST
+        description: Oracle Database Create an Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: autonomousDatabases-autonomousDatabaseId
+      path: /autonomousDatabases/{autonomousDatabaseId}
+      operations:
+      - name: getautonomousdatabase
+        method: GET
+        description: Oracle Database Get an Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateautonomousdatabase
+        method: PUT
+        description: Oracle Database Update an Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteautonomousdatabase
+        method: DELETE
+        description: Oracle Database Delete an Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: autonomousDatabases-autonomousDatabaseId-actions-generateWallet
+      path: /autonomousDatabases/{autonomousDatabaseId}/actions/generateWallet
+      operations:
+      - name: generateautonomousdatabasewallet
+        method: POST
+        description: Oracle Database Generate database wallet
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: autonomousDatabases-autonomousDatabaseId-actions-restart
+      path: /autonomousDatabases/{autonomousDatabaseId}/actions/restart
+      operations:
+      - name: restartautonomousdatabase
+        method: POST
+        description: Oracle Database Restart an Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: autonomousDatabases-autonomousDatabaseId-actions-start
+      path: /autonomousDatabases/{autonomousDatabaseId}/actions/start
+      operations:
+      - name: startautonomousdatabase
+        method: POST
+        description: Oracle Database Start an Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: autonomousDatabases-autonomousDatabaseId-actions-stop
+      path: /autonomousDatabases/{autonomousDatabaseId}/actions/stop
+      operations:
+      - name: stopautonomousdatabase
+        method: POST
+        description: Oracle Database Stop an Autonomous Database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: oci-autonomous-databases-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle Cloud Infrastructure Database API — Autonomous Databases. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/autonomousdatabasebackups
+      name: autonomousdatabasebackups
+      description: REST surface for autonomousDatabaseBackups.
+      operations:
+      - method: GET
+        name: listautonomousdatabasebackups
+        description: Oracle Database List Autonomous Database backups
+        call: oci-autonomous-databases.listautonomousdatabasebackups
+        with:
+          autonomousDatabaseId: rest.autonomousDatabaseId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createautonomousdatabasebackup
+        description: Oracle Database Create an Autonomous Database backup
+        call: oci-autonomous-databases.createautonomousdatabasebackup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/autonomousdatabases
+      name: autonomousdatabases
+      description: REST surface for autonomousDatabases.
+      operations:
+      - method: GET
+        name: listautonomousdatabases
+        description: Oracle Database List Autonomous Databases
+        call: oci-autonomous-databases.listautonomousdatabases
+        with:
+          displayName: rest.displayName
+          lifecycleState: rest.lifecycleState
+          dbWorkload: rest.dbWorkload
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createautonomousdatabase
+        description: Oracle Database Create an Autonomous Database
+        call: oci-autonomous-databases.createautonomousdatabase
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/autonomousdatabases/{autonomousdatabaseid}
+      name: autonomousdatabases-autonomousdatabaseid
+      description: REST surface for autonomousDatabases-autonomousDatabaseId.
+      operations:
+      - method: GET
+        name: getautonomousdatabase
+        description: Oracle Database Get an Autonomous Database
+        call: oci-autonomous-databases.getautonomousdatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateautonomousdatabase
+        description: Oracle Database Update an Autonomous Database
+        call: oci-autonomous-databases.updateautonomousdatabase
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteautonomousdatabase
+        description: Oracle Database Delete an Autonomous Database
+        call: oci-autonomous-databases.deleteautonomousdatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/autonomousdatabases/{autonomousdatabaseid}/actions/generatewallet
+      name: autonomousdatabases-autonomousdatabaseid-actions-generatewallet
+      description: REST surface for autonomousDatabases-autonomousDatabaseId-actions-generateWallet.
+      operations:
+      - method: POST
+        name: generateautonomousdatabasewallet
+        description: Oracle Database Generate database wallet
+        call: oci-autonomous-databases.generateautonomousdatabasewallet
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/autonomousdatabases/{autonomousdatabaseid}/actions/restart
+      name: autonomousdatabases-autonomousdatabaseid-actions-restart
+      description: REST surface for autonomousDatabases-autonomousDatabaseId-actions-restart.
+      operations:
+      - method: POST
+        name: restartautonomousdatabase
+        description: Oracle Database Restart an Autonomous Database
+        call: oci-autonomous-databases.restartautonomousdatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/autonomousdatabases/{autonomousdatabaseid}/actions/start
+      name: autonomousdatabases-autonomousdatabaseid-actions-start
+      description: REST surface for autonomousDatabases-autonomousDatabaseId-actions-start.
+      operations:
+      - method: POST
+        name: startautonomousdatabase
+        description: Oracle Database Start an Autonomous Database
+        call: oci-autonomous-databases.startautonomousdatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/autonomousdatabases/{autonomousdatabaseid}/actions/stop
+      name: autonomousdatabases-autonomousdatabaseid-actions-stop
+      description: REST surface for autonomousDatabases-autonomousDatabaseId-actions-stop.
+      operations:
+      - method: POST
+        name: stopautonomousdatabase
+        description: Oracle Database Stop an Autonomous Database
+        call: oci-autonomous-databases.stopautonomousdatabase
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: oci-autonomous-databases-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle Cloud Infrastructure Database API — Autonomous Databases. One tool
+      per consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-list-autonomous-database
+      description: Oracle Database List Autonomous Database backups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oci-autonomous-databases.listautonomousdatabasebackups
+      with:
+        autonomousDatabaseId: tools.autonomousDatabaseId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-create-autonomous-database
+      description: Oracle Database Create an Autonomous Database backup
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oci-autonomous-databases.createautonomousdatabasebackup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-list-autonomous-databases
+      description: Oracle Database List Autonomous Databases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oci-autonomous-databases.listautonomousdatabases
+      with:
+        displayName: tools.displayName
+        lifecycleState: tools.lifecycleState
+        dbWorkload: tools.dbWorkload
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-create-autonomous-database-2
+      description: Oracle Database Create an Autonomous Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oci-autonomous-databases.createautonomousdatabase
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-autonomous-database
+      description: Oracle Database Get an Autonomous Database
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oci-autonomous-databases.getautonomousdatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-update-autonomous-database
+      description: Oracle Database Update an Autonomous Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: oci-autonomous-databases.updateautonomousdatabase
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-delete-autonomous-database
+      description: Oracle Database Delete an Autonomous Database
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oci-autonomous-databases.deleteautonomousdatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-generate-database-wallet
+      description: Oracle Database Generate database wallet
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oci-autonomous-databases.generateautonomousdatabasewallet
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-restart-autonomous-database
+      description: Oracle Database Restart an Autonomous Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oci-autonomous-databases.restartautonomousdatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-start-autonomous-database
+      description: Oracle Database Start an Autonomous Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oci-autonomous-databases.startautonomousdatabase
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-stop-autonomous-database
+      description: Oracle Database Stop an Autonomous Database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oci-autonomous-databases.stopautonomousdatabase
+      outputParameters:
+      - type: object
+        mapping: $.

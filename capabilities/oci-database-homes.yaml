@@ -1,0 +1,189 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle Cloud Infrastructure Database API — Database Homes
+  description: 'Oracle Database Oracle Cloud Infrastructure Database API — Database Homes. 4 operations. Lead operation: Oracle
+    Database List Database Homes. Self-contained Naftiko capability covering one Oracle Database business surface.'
+  tags:
+  - Oracle Database
+  - Database Homes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: oci-database-homes
+    baseUri: https://database.{region}.oraclecloud.com/20160918
+    description: Oracle Database Oracle Cloud Infrastructure Database API — Database Homes business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: dbHomes
+      path: /dbHomes
+      operations:
+      - name: listdbhomes
+        method: GET
+        description: Oracle Database List Database Homes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: dbSystemId
+          in: query
+          type: string
+      - name: createdbhome
+        method: POST
+        description: Oracle Database Create a Database Home
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: dbHomes-dbHomeId
+      path: /dbHomes/{dbHomeId}
+      operations:
+      - name: getdbhome
+        method: GET
+        description: Oracle Database Get a Database Home
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: dbHomeId
+          in: path
+          type: string
+          required: true
+      - name: deletedbhome
+        method: DELETE
+        description: Oracle Database Delete a Database Home
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: dbHomeId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: oci-database-homes-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle Cloud Infrastructure Database API — Database Homes. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/dbhomes
+      name: dbhomes
+      description: REST surface for dbHomes.
+      operations:
+      - method: GET
+        name: listdbhomes
+        description: Oracle Database List Database Homes
+        call: oci-database-homes.listdbhomes
+        with:
+          dbSystemId: rest.dbSystemId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdbhome
+        description: Oracle Database Create a Database Home
+        call: oci-database-homes.createdbhome
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/dbhomes/{dbhomeid}
+      name: dbhomes-dbhomeid
+      description: REST surface for dbHomes-dbHomeId.
+      operations:
+      - method: GET
+        name: getdbhome
+        description: Oracle Database Get a Database Home
+        call: oci-database-homes.getdbhome
+        with:
+          dbHomeId: rest.dbHomeId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedbhome
+        description: Oracle Database Delete a Database Home
+        call: oci-database-homes.deletedbhome
+        with:
+          dbHomeId: rest.dbHomeId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: oci-database-homes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle Cloud Infrastructure Database API — Database Homes. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-list-database-homes
+      description: Oracle Database List Database Homes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oci-database-homes.listdbhomes
+      with:
+        dbSystemId: tools.dbSystemId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-create-database-home
+      description: Oracle Database Create a Database Home
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: oci-database-homes.createdbhome
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-database-home
+      description: Oracle Database Get a Database Home
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: oci-database-homes.getdbhome
+      with:
+        dbHomeId: tools.dbHomeId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-delete-database-home
+      description: Oracle Database Delete a Database Home
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: oci-database-homes.deletedbhome
+      with:
+        dbHomeId: tools.dbHomeId
+      outputParameters:
+      - type: object
+        mapping: $.

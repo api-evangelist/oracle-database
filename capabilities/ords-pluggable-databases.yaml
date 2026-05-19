@@ -1,0 +1,222 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Oracle Database Oracle REST Data Services (ORDS) API — Pluggable Databases
+  description: 'Oracle Database Oracle REST Data Services (ORDS) API — Pluggable Databases. 5 operations. Lead operation:
+    Oracle Database Get all pluggable databases. Self-contained Naftiko capability covering one Oracle Database business surface.'
+  tags:
+  - Oracle Database
+  - Pluggable Databases
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ORACLE_DATABASE_API_KEY: ORACLE_DATABASE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ords-pluggable-databases
+    baseUri: https://{host}:{port}/ords
+    description: Oracle Database Oracle REST Data Services (ORDS) API — Pluggable Databases business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: database-pdbs
+      path: /database/pdbs/
+      operations:
+      - name: getpdbs
+        method: GET
+        description: Oracle Database Get all pluggable databases
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpdb
+        method: POST
+        description: Oracle Database Create a pluggable database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: database-pdbs-pdb_name
+      path: /database/pdbs/{pdb_name}
+      operations:
+      - name: getpdb
+        method: GET
+        description: Oracle Database Get a specific pluggable database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pdb_name
+          in: path
+          type: string
+          required: true
+      - name: updatepdb
+        method: PATCH
+        description: Oracle Database Update a pluggable database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pdb_name
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: droppdb
+        method: DELETE
+        description: Oracle Database Drop a pluggable database
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pdb_name
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.ORACLE_DATABASE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ords-pluggable-databases-rest
+    port: 8080
+    description: REST adapter for Oracle Database Oracle REST Data Services (ORDS) API — Pluggable Databases. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/database/pdbs
+      name: database-pdbs
+      description: REST surface for database-pdbs.
+      operations:
+      - method: GET
+        name: getpdbs
+        description: Oracle Database Get all pluggable databases
+        call: ords-pluggable-databases.getpdbs
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpdb
+        description: Oracle Database Create a pluggable database
+        call: ords-pluggable-databases.createpdb
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/database/pdbs/{pdb-name}
+      name: database-pdbs-pdb-name
+      description: REST surface for database-pdbs-pdb_name.
+      operations:
+      - method: GET
+        name: getpdb
+        description: Oracle Database Get a specific pluggable database
+        call: ords-pluggable-databases.getpdb
+        with:
+          pdb_name: rest.pdb_name
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatepdb
+        description: Oracle Database Update a pluggable database
+        call: ords-pluggable-databases.updatepdb
+        with:
+          pdb_name: rest.pdb_name
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: droppdb
+        description: Oracle Database Drop a pluggable database
+        call: ords-pluggable-databases.droppdb
+        with:
+          pdb_name: rest.pdb_name
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ords-pluggable-databases-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Oracle Database Oracle REST Data Services (ORDS) API — Pluggable Databases. One tool per
+      consumed operation, routed inline through this capability's consumes block.
+    tools:
+    - name: oracle-database-get-all-pluggable
+      description: Oracle Database Get all pluggable databases
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-pluggable-databases.getpdbs
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-create-pluggable-database
+      description: Oracle Database Create a pluggable database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ords-pluggable-databases.createpdb
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-get-specific-pluggable
+      description: Oracle Database Get a specific pluggable database
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ords-pluggable-databases.getpdb
+      with:
+        pdb_name: tools.pdb_name
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-update-pluggable-database
+      description: Oracle Database Update a pluggable database
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: ords-pluggable-databases.updatepdb
+      with:
+        pdb_name: tools.pdb_name
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: oracle-database-drop-pluggable-database
+      description: Oracle Database Drop a pluggable database
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ords-pluggable-databases.droppdb
+      with:
+        pdb_name: tools.pdb_name
+      outputParameters:
+      - type: object
+        mapping: $.
