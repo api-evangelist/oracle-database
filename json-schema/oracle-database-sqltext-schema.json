@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SQLText",
+  "title": "SQLText",
+  "type": "object",
+  "properties": {
+    "sql_id": {
+      "type": "string"
+    },
+    "sql_fulltext": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GenerateAutonomousDatabaseWalletDetails",
+  "title": "GenerateAutonomousDatabaseWalletDetails",
+  "type": "object",
+  "required": [
+    "password"
+  ],
+  "properties": {
+    "password": {
+      "type": "string",
+      "format": "password",
+      "description": "Password to encrypt the wallet keys"
+    },
+    "generateType": {
+      "type": "string",
+      "enum": [
+        "ALL",
+        "SINGLE"
+      ]
+    }
+  }
+}

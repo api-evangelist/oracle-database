@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreatePDBRequest",
+  "title": "CreatePDBRequest",
+  "type": "object",
+  "required": [
+    "pdb_name",
+    "admin_username",
+    "admin_password"
+  ],
+  "properties": {
+    "pdb_name": {
+      "type": "string"
+    },
+    "admin_username": {
+      "type": "string"
+    },
+    "admin_password": {
+      "type": "string",
+      "format": "password"
+    },
+    "file_name_convert": {
+      "type": "string"
+    },
+    "storage_limit": {
+      "type": "integer",
+      "format": "int64"
+    }
+  }
+}

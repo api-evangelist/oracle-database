@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IndexMetadata",
+  "title": "IndexMetadata",
+  "type": "object",
+  "properties": {
+    "owner": {
+      "type": "string"
+    },
+    "index_name": {
+      "type": "string"
+    },
+    "table_name": {
+      "type": "string"
+    },
+    "index_type": {
+      "type": "string"
+    },
+    "uniqueness": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

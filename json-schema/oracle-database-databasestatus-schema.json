@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DatabaseStatus",
+  "title": "DatabaseStatus",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "MOUNTED",
+        "STARTED"
+      ]
+    },
+    "instance_name": {
+      "type": "string"
+    },
+    "host_name": {
+      "type": "string"
+    },
+    "database_role": {
+      "type": "string"
+    },
+    "open_mode": {
+      "type": "string"
+    }
+  }
+}

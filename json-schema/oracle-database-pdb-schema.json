@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PDB",
+  "title": "PDB",
+  "type": "object",
+  "properties": {
+    "pdb_name": {
+      "type": "string"
+    },
+    "pdb_id": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "string"
+    },
+    "open_mode": {
+      "type": "string"
+    },
+    "total_size": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "creation_time": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

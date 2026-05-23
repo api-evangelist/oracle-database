@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WaitClassTotalList",
+  "title": "WaitClassTotalList",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "wait_class": {
+            "type": "string"
+          },
+          "total_waits": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "time_waited": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

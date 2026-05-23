@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IndexSpecification",
+  "title": "IndexSpecification",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Index name"
+    },
+    "fields": {
+      "type": "array",
+      "description": "Fields to index",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "description": "JSON path to the field"
+          },
+          "datatype": {
+            "type": "string",
+            "description": "Data type for indexing",
+            "enum": [
+              "string",
+              "number",
+              "date",
+              "timestamp"
+            ]
+          },
+          "maxLength": {
+            "type": "integer",
+            "description": "Maximum length for string fields"
+          },
+          "order": {
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ]
+          }
+        }
+      }
+    },
+    "unique": {
+      "type": "boolean",
+      "description": "Whether the index enforces uniqueness"
+    },
+    "language": {
+      "type": "string",
+      "description": "Language for text indexes"
+    },
+    "spatial": {
+      "type": "string",
+      "description": "Spatial index specification"
+    },
+    "search_on": {
+      "type": "string",
+      "description": "Full-text search specification",
+      "enum": [
+        "none",
+        "text",
+        "text_value"
+      ]
+    }
+  }
+}

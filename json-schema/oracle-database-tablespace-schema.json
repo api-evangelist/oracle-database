@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Tablespace",
+  "title": "Tablespace",
+  "type": "object",
+  "properties": {
+    "tablespace_name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "contents": {
+      "type": "string"
+    },
+    "block_size": {
+      "type": "integer"
+    },
+    "allocated_bytes": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "used_bytes": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "free_bytes": {
+      "type": "integer",
+      "format": "int64"
+    }
+  }
+}

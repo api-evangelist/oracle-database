@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Snapshot",
+  "title": "Snapshot",
+  "type": "object",
+  "properties": {
+    "snapshot_name": {
+      "type": "string"
+    },
+    "snapshot_scn": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "creation_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "pdb_name": {
+      "type": "string"
+    }
+  }
+}

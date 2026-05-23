@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BackupSummary",
+  "title": "BackupSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "databaseId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "lifecycleState": {
+      "type": "string"
+    },
+    "timeStarted": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

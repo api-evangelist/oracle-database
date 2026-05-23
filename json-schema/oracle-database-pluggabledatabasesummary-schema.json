@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PluggableDatabaseSummary",
+  "title": "PluggableDatabaseSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "containerDatabaseId": {
+      "type": "string"
+    },
+    "pdbName": {
+      "type": "string"
+    },
+    "lifecycleState": {
+      "type": "string"
+    },
+    "openMode": {
+      "type": "string"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

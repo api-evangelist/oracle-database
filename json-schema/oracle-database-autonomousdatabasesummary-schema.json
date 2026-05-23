@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AutonomousDatabaseSummary",
+  "title": "AutonomousDatabaseSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "compartmentId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "dbName": {
+      "type": "string"
+    },
+    "dbWorkload": {
+      "type": "string"
+    },
+    "cpuCoreCount": {
+      "type": "integer"
+    },
+    "dataStorageSizeInTBs": {
+      "type": "integer"
+    },
+    "lifecycleState": {
+      "type": "string"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isFreeTier": {
+      "type": "boolean"
+    }
+  }
+}

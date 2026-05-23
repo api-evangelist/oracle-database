@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateDatabaseDetails",
+  "title": "UpdateDatabaseDetails",
+  "type": "object",
+  "properties": {
+    "dbBackupConfig": {
+      "type": "object",
+      "properties": {
+        "autoBackupEnabled": {
+          "type": "boolean"
+        },
+        "recoveryWindowInDays": {
+          "type": "integer"
+        }
+      }
+    },
+    "freeformTags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

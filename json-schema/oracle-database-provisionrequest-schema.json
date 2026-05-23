@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProvisionRequest",
+  "title": "ProvisionRequest",
+  "type": "object",
+  "required": [
+    "service_id",
+    "plan_id"
+  ],
+  "properties": {
+    "service_id": {
+      "type": "string"
+    },
+    "plan_id": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "object"
+    }
+  }
+}

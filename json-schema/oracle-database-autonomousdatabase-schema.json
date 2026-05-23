@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AutonomousDatabase",
+  "title": "AutonomousDatabase",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The OCID of the Autonomous Database"
+    },
+    "compartmentId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "dbName": {
+      "type": "string"
+    },
+    "dbVersion": {
+      "type": "string"
+    },
+    "dbWorkload": {
+      "type": "string",
+      "enum": [
+        "OLTP",
+        "DW",
+        "AJD",
+        "APEX"
+      ]
+    },
+    "cpuCoreCount": {
+      "type": "integer"
+    },
+    "dataStorageSizeInTBs": {
+      "type": "integer"
+    },
+    "dataStorageSizeInGBs": {
+      "type": "integer"
+    },
+    "isAutoScalingEnabled": {
+      "type": "boolean"
+    },
+    "isDedicated": {
+      "type": "boolean"
+    },
+    "isFreeTier": {
+      "type": "boolean"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": [
+        "PROVISIONING",
+        "AVAILABLE",
+        "STOPPING",
+        "STOPPED",
+        "STARTING",
+        "TERMINATING",
+        "TERMINATED",
+        "UNAVAILABLE",
+        "RESTORE_IN_PROGRESS",
+        "BACKUP_IN_PROGRESS",
+        "SCALE_IN_PROGRESS",
+        "UPDATING",
+        "MAINTENANCE_IN_PROGRESS"
+      ]
+    },
+    "connectionStrings": {
+      "type": "object",
+      "properties": {
+        "high": {
+          "type": "string"
+        },
+        "medium": {
+          "type": "string"
+        },
+        "low": {
+          "type": "string"
+        }
+      }
+    },
+    "connectionUrls": {
+      "type": "object",
+      "properties": {
+        "sqlDevWebUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "apexUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "machineLearningUserManagementUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "graphStudioUrl": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "licenseModel": {
+      "type": "string",
+      "enum": [
+        "LICENSE_INCLUDED",
+        "BRING_YOUR_OWN_LICENSE"
+      ]
+    },
+    "whitelistedIps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "freeformTags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "definedTags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    }
+  }
+}

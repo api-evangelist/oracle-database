@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/QBEFilter",
+  "title": "QBEFilter",
+  "type": "object",
+  "description": "Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.",
+  "additionalProperties": true,
+  "example": {
+    "name": "John",
+    "salary": {
+      "$gt": 50000
+    }
+  }
+}

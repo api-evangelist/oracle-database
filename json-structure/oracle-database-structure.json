@@ -1,0 +1,1465 @@
+{
+  "provider": "Oracle Database",
+  "providerId": "oracle-database",
+  "kind": "json-structure",
+  "description": "Structural overview of the Oracle Database API surface; extracted from openapi/.",
+  "schemaCount": 85,
+  "operationCount": 101,
+  "schemas": [
+    {
+      "name": "Error",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "PaginatedResponse",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "Link",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DatabaseStatus",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "DatabaseVersion",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ComponentList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ParameterList",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "DatabaseParameter",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "UserList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "StorageInfo",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "TablespaceList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Tablespace",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "DatafileList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "FeatureUsageList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SessionlessTransaction",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "TableList",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "TableMetadata",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "ColumnList",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ColumnMetadata",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "IndexList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "IndexMetadata",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "FunctionList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "FunctionMetadata",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "ForeignKeyList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DatabaseLinkList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DatabaseLink",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "SessionList",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SessionDetail",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "SessionLockList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "AlertList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "AlertSummaryList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "WaitClassMetricList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "WaitClassTotalList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SessionLimitList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SQLStatementList",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "SQLStatementDetail",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "SQLText",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ExecutionPlan",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "SQLHistoryList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ActiveSessionHistoryList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ActiveSessionWaitList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "PDBList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "PDB",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "CreatePDBRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "pdb_name",
+        "admin_username",
+        "admin_password"
+      ]
+    },
+    {
+      "name": "UpdatePDBRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "SnapshotList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "Snapshot",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "AutoSnapshotConfig",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "SnapshotMode",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DataGuardConfiguration",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "CreateDataGuardConfigRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "configuration_name"
+      ]
+    },
+    {
+      "name": "UpdateDataGuardConfigRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "DataGuardDatabaseList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DataGuardDatabase",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "AddDataGuardDatabaseRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "database_name",
+        "connect_identifier"
+      ]
+    },
+    {
+      "name": "UpdateDataGuardDatabaseRequest",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "DataPumpExportRequest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "job_name"
+      ]
+    },
+    {
+      "name": "DataPumpImportRequest",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "job_name"
+      ]
+    },
+    {
+      "name": "DataPumpJob",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "DataPumpJobList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "RESTModuleList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "RESTModule",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "CreateRESTModuleRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "uri_prefix"
+      ]
+    },
+    {
+      "name": "RESTHandlerList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CreateRESTHandlerRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "method",
+        "source_type",
+        "source"
+      ]
+    },
+    {
+      "name": "OAuthClientList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "CreateOAuthClientRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "grant_type"
+      ]
+    },
+    {
+      "name": "CreatePrivilegeRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "label"
+      ]
+    },
+    {
+      "name": "CreateRoleRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "AutoRESTRequest",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "object_name",
+        "object_type"
+      ]
+    },
+    {
+      "name": "ORDSPropertyList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ORDSPropertyValue",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SchedulerJobList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SchedulerJob",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "APEXWorkspaceList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "APEXWorkspace",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "APEXApplicationList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "APEXApplicationRequest",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "APEXOverview",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "RDFNetworkList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "RDFNetwork",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "RDFModelList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "SPARQLResults",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ServiceCatalog",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ProvisionRequest",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "service_id",
+        "plan_id"
+      ]
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/database/status",
+      "operationId": "getDatabaseStatus",
+      "summary": "Oracle Database Get database status",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/version",
+      "operationId": "getDatabaseVersion",
+      "summary": "Oracle Database Get database version",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/components/",
+      "operationId": "getDatabaseComponents",
+      "summary": "Oracle Database Get all database components",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/parameters/",
+      "operationId": "getDatabaseParameters",
+      "summary": "Oracle Database Get all database parameters",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/parameters/{name}",
+      "operationId": "getDatabaseParameter",
+      "summary": "Oracle Database Get a specific database parameter",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/security/users/",
+      "operationId": "getDatabaseUsers",
+      "summary": "Oracle Database Get all database users",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/storage/bytes",
+      "operationId": "getStorageBytes",
+      "summary": "Oracle Database Get storage usage in bytes",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/storage/tablespaces/",
+      "operationId": "getTablespaces",
+      "summary": "Oracle Database Get all tablespaces storage information",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/storage/tablespaces/{tablespace_name}/",
+      "operationId": "getTablespace",
+      "summary": "Oracle Database Get tablespace details",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/storage/tablespaces/{tablespace_name}/datafiles/",
+      "operationId": "getDatafiles",
+      "summary": "Oracle Database Get tablespace datafiles",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/feature_usage/",
+      "operationId": "getFeatureUsage",
+      "summary": "Oracle Database Get feature usage statistics",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/database/sessionless-transactions/",
+      "operationId": "startSessionlessTransaction",
+      "summary": "Oracle Database Start a sessionless transaction",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/database/sessionless-transactions/{sessionlessTransactionID}",
+      "operationId": "commitSessionlessTransaction",
+      "summary": "Oracle Database Commit a sessionless transaction",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/database/sessionless-transactions/{sessionlessTransactionID}",
+      "operationId": "rollbackSessionlessTransaction",
+      "summary": "Oracle Database Rollback a sessionless transaction",
+      "tags": [
+        "General"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/objects/tables/",
+      "operationId": "getTables",
+      "summary": "Oracle Database Get all tables",
+      "tags": [
+        "Data Dictionary"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/objects/tables/{owner},{table_name}",
+      "operationId": "getTable",
+      "summary": "Oracle Database Get a specific table",
+      "tags": [
+        "Data Dictionary"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/objects/columns/",
+      "operationId": "getColumns",
+      "summary": "Oracle Database Get all table columns",
+      "tags": [
+        "Data Dictionary"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/objects/columns/{owner},{table_name},{column_name}",
+      "operationId": "getColumn",
+      "summary": "Oracle Database Get a specific column",
+      "tags": [
+        "Data Dictionary"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/objects/indexes/",
+      "operationId": "getIndexes",
+      "summary": "Oracle Database Get all indexes",
+      "tags": [
+        "Data Dictionary"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/objects/indexes/{owner},{index_name}",
+      "operationId": "getIndex",
+      "summary": "Oracle Database Get a specific index",
+      "tags": [
+        "Data Dictionary"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/objects/functions/",
+      "operationId": "getFunctions",
+      "summary": "Oracle Database Get all functions",
+      "tags": [
+        "Data Dictionary"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/objects/functions/{object_id}",
+      "operationId": "getFunction",
+      "summary": "Oracle Database Get a specific function",
+      "tags": [
+        "Data Dictionary"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/objects/foreign_keys/",
+      "operationId": "getForeignKeys",
+      "summary": "Oracle Database Get all foreign keys",
+      "tags": [
+        "Data Dictionary"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/db_links/",
+      "operationId": "getDatabaseLinks",
+      "summary": "Oracle Database Get all database links",
+      "tags": [
+        "Data Dictionary"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/db_links/{owner},{db_link}",
+      "operationId": "getDatabaseLink",
+      "summary": "Oracle Database Get a specific database link",
+      "tags": [
+        "Data Dictionary"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/tablespaces/",
+      "operationId": "getTablespacesDict",
+      "summary": "Oracle Database Get all tablespaces",
+      "tags": [
+        "Data Dictionary"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/monitoring/sessions/",
+      "operationId": "getSessions",
+      "summary": "Oracle Database Get all sessions",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/monitoring/sessions/{sid},{serial_number}/",
+      "operationId": "getSession",
+      "summary": "Oracle Database Get a specific session",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/monitoring/session_locks/",
+      "operationId": "getSessionLocks",
+      "summary": "Oracle Database Get all session locks",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/monitoring/session_locks/holding/",
+      "operationId": "getBlockingLocks",
+      "summary": "Oracle Database Get blocking locks",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/monitoring/session_locks/waiting/",
+      "operationId": "getWaitingLocks",
+      "summary": "Oracle Database Get waiting locks",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/monitoring/alerts/",
+      "operationId": "getAlerts",
+      "summary": "Oracle Database Get all alerts",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/monitoring/alerts_summaries/by_message_level",
+      "operationId": "getAlertSummaries",
+      "summary": "Oracle Database Get alert summaries by message level",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/monitoring/wait_class_metrics",
+      "operationId": "getWaitClassMetrics",
+      "summary": "Oracle Database Get wait class metrics",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/monitoring/wait_class_totals",
+      "operationId": "getWaitClassTotals",
+      "summary": "Oracle Database Get wait class totals",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/monitoring/session_limits",
+      "operationId": "getSessionLimits",
+      "summary": "Oracle Database Get session limits",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/performance/sql_statements/",
+      "operationId": "getSQLStatements",
+      "summary": "Oracle Database Get all SQL statements",
+      "tags": [
+        "Performance"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/performance/top_sql_statements/",
+      "operationId": "getTopSQLStatements",
+      "summary": "Oracle Database Get top SQL by CPU usage",
+      "tags": [
+        "Performance"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/performance/sql_statements/{sql_id}/",
+      "operationId": "getSQLStatementStats",
+      "summary": "Oracle Database Get SQL statement statistics",
+      "tags": [
+        "Performance"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/performance/sql_statements/{sql_id}/text",
+      "operationId": "getSQLStatementText",
+      "summary": "Oracle Database Get SQL statement text",
+      "tags": [
+        "Performance"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/performance/sql_statements/{sql_id}/plan",
+      "operationId": "getSQLExecutionPlan",
+      "summary": "Oracle Database Get SQL execution plan",
+      "tags": [
+        "Performance"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/performance/sql_statements/{sql_id}/history",
+      "operationId": "getSQLHistory",
+      "summary": "Oracle Database Get SQL statement history",
+      "tags": [
+        "Performance"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/performance/active_sessions_history/",
+      "operationId": "getActiveSessionsHistory",
+      "summary": "Oracle Database Get active sessions history",
+      "tags": [
+        "Performance"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/performance/active_sessions_history_waits/",
+      "operationId": "getActiveSessionsHistoryWaits",
+      "summary": "Oracle Database Get active session history waits",
+      "tags": [
+        "Performance"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/pdbs/",
+      "operationId": "getPDBs",
+      "summary": "Oracle Database Get all pluggable databases",
+      "tags": [
+        "Pluggable Databases"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/database/pdbs/",
+      "operationId": "createPDB",
+      "summary": "Oracle Database Create a pluggable database",
+      "tags": [
+        "Pluggable Databases"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/pdbs/{pdb_name}",
+      "operationId": "getPDB",
+      "summary": "Oracle Database Get a specific pluggable database",
+      "tags": [
+        "Pluggable Databases"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/database/pdbs/{pdb_name}",
+      "operationId": "dropPDB",
+      "summary": "Oracle Database Drop a pluggable database",
+      "tags": [
+        "Pluggable Databases"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/database/pdbs/{pdb_name}",
+      "operationId": "updatePDB",
+      "summary": "Oracle Database Update a pluggable database",
+      "tags": [
+        "Pluggable Databases"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/snapshots/",
+      "operationId": "getSnapshots",
+      "summary": "Oracle Database Get all PDB snapshots",
+      "tags": [
+        "PDB Snapshots"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/database/snapshots/",
+      "operationId": "createSnapshot",
+      "summary": "Oracle Database Create a PDB snapshot",
+      "tags": [
+        "PDB Snapshots"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/database/snapshots/",
+      "operationId": "configureAutoSnapshots",
+      "summary": "Oracle Database Configure automatic snapshots",
+      "tags": [
+        "PDB Snapshots"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/snapshots/{snapshot_name}",
+      "operationId": "getSnapshot",
+      "summary": "Oracle Database Get a specific snapshot",
+      "tags": [
+        "PDB Snapshots"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/database/snapshots/{snapshot_name}",
+      "operationId": "createNamedSnapshot",
+      "summary": "Oracle Database Create a named PDB snapshot",
+      "tags": [
+        "PDB Snapshots"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/database/snapshots/{snapshot_name}",
+      "operationId": "deleteSnapshot",
+      "summary": "Oracle Database Delete a PDB snapshot",
+      "tags": [
+        "PDB Snapshots"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/snapshot_mode",
+      "operationId": "getSnapshotMode",
+      "summary": "Oracle Database Get snapshot mode",
+      "tags": [
+        "PDB Snapshots"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/dataguard/configuration/",
+      "operationId": "getDataGuardConfiguration",
+      "summary": "Oracle Database Get Data Guard broker configuration",
+      "tags": [
+        "Data Guard"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/database/dataguard/configuration/",
+      "operationId": "addDataGuardConfiguration",
+      "summary": "Oracle Database Add a Data Guard configuration",
+      "tags": [
+        "Data Guard"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/database/dataguard/configuration/",
+      "operationId": "updateDataGuardConfiguration",
+      "summary": "Oracle Database Enable or disable Data Guard configuration",
+      "tags": [
+        "Data Guard"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/database/dataguard/configuration/",
+      "operationId": "removeDataGuardConfiguration",
+      "summary": "Oracle Database Remove Data Guard configuration",
+      "tags": [
+        "Data Guard"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/dataguard/databases/",
+      "operationId": "getDataGuardDatabases",
+      "summary": "Oracle Database Get all Data Guard databases",
+      "tags": [
+        "Data Guard"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/database/dataguard/databases/",
+      "operationId": "addDataGuardDatabase",
+      "summary": "Oracle Database Add a database to Data Guard",
+      "tags": [
+        "Data Guard"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/database/dataguard/databases/{database}",
+      "operationId": "updateDataGuardDatabase",
+      "summary": "Oracle Database Update Data Guard database role",
+      "tags": [
+        "Data Guard"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/database/dataguard/databases/{database}",
+      "operationId": "removeDataGuardDatabase",
+      "summary": "Oracle Database Remove database from Data Guard",
+      "tags": [
+        "Data Guard"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/database/datapump/export",
+      "operationId": "createExportJob",
+      "summary": "Oracle Database Create a Data Pump export job",
+      "tags": [
+        "Data Pump"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/database/datapump/import",
+      "operationId": "createImportJob",
+      "summary": "Oracle Database Create a Data Pump import job",
+      "tags": [
+        "Data Pump"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/datapump/jobs/",
+      "operationId": "getDataPumpJobs",
+      "summary": "Oracle Database Get all Data Pump jobs",
+      "tags": [
+        "Data Pump"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/datapump/jobs/{owner_name},{job_name}/",
+      "operationId": "getDataPumpJob",
+      "summary": "Oracle Database Get a specific Data Pump job",
+      "tags": [
+        "Data Pump"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/datapump/jobs/{owner_name},{job_name}/{filename}",
+      "operationId": "getDataPumpJobFile",
+      "summary": "Oracle Database Get a Data Pump job file",
+      "tags": [
+        "Data Pump"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ords/rest/modules/",
+      "operationId": "getRESTModules",
+      "summary": "Oracle Database Get all REST modules",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ords/rest/modules/",
+      "operationId": "createRESTModule",
+      "summary": "Oracle Database Create a REST module",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/ords/rest/modules/{id}",
+      "operationId": "updateRESTModule",
+      "summary": "Oracle Database Update a REST module",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ords/rest/handlers/",
+      "operationId": "getRESTHandlers",
+      "summary": "Oracle Database Get all REST handlers",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ords/rest/handlers/",
+      "operationId": "createRESTHandler",
+      "summary": "Oracle Database Create a REST handler",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ords/rest/handlers/{id}",
+      "operationId": "deleteRESTHandler",
+      "summary": "Oracle Database Delete a REST handler",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ords/rest/clients/",
+      "operationId": "getOAuthClients",
+      "summary": "Oracle Database Get all OAuth clients",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ords/rest/clients/",
+      "operationId": "createOAuthClient",
+      "summary": "Oracle Database Create an OAuth client",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/ords/rest/clients/{id}",
+      "operationId": "updateOAuthClient",
+      "summary": "Oracle Database Update an OAuth client",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ords/rest/privileges/",
+      "operationId": "createPrivilege",
+      "summary": "Oracle Database Create a REST privilege",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ords/rest/roles/",
+      "operationId": "createRole",
+      "summary": "Oracle Database Create a REST role",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ords/rest/autorest/",
+      "operationId": "autoRESTEnableObject",
+      "summary": "Oracle Database REST enable a database object",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ords/properties/",
+      "operationId": "getORDSProperties",
+      "summary": "Oracle Database Get ORDS properties",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/ords/properties/{key}",
+      "operationId": "setORDSProperty",
+      "summary": "Oracle Database Set an ORDS property",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/ords/properties/{key}",
+      "operationId": "unsetORDSProperty",
+      "summary": "Oracle Database Unset an ORDS property",
+      "tags": [
+        "REST Services"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/scheduler/jobs/",
+      "operationId": "getSchedulerJobs",
+      "summary": "Oracle Database Get all scheduler jobs",
+      "tags": [
+        "Scheduler"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/scheduler/jobs/{owner},{job_name}",
+      "operationId": "getSchedulerJob",
+      "summary": "Oracle Database Get a specific scheduler job",
+      "tags": [
+        "Scheduler"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/apex/workspaces/",
+      "operationId": "getAPEXWorkspaces",
+      "summary": "Oracle Database Get all APEX workspaces",
+      "tags": [
+        "APEX"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/apex/workspaces/{workspace_name}/",
+      "operationId": "getAPEXWorkspace",
+      "summary": "Oracle Database Get a specific APEX workspace",
+      "tags": [
+        "APEX"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/apex/workspaces/{workspace_name}/applications/",
+      "operationId": "getAPEXApplications",
+      "summary": "Oracle Database Get workspace applications",
+      "tags": [
+        "APEX"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/apex/workspaces/{workspace_name}/applications/{application_id}",
+      "operationId": "createOrUpdateAPEXApplication",
+      "summary": "Oracle Database Create or update an APEX application",
+      "tags": [
+        "APEX"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/apex/workspaces/{workspace_name}/applications/{application_id}",
+      "operationId": "deleteAPEXApplication",
+      "summary": "Oracle Database Delete an APEX application",
+      "tags": [
+        "APEX"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/apex/statistics/overview",
+      "operationId": "getAPEXOverview",
+      "summary": "Oracle Database Get APEX instance overview",
+      "tags": [
+        "APEX"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/rdf/networks/",
+      "operationId": "getRDFNetworks",
+      "summary": "Oracle Database List all RDF networks",
+      "tags": [
+        "RDF Graph"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/rdf/networks/{network_owner},{network_name}",
+      "operationId": "getRDFNetwork",
+      "summary": "Oracle Database Get RDF network information",
+      "tags": [
+        "RDF Graph"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/database/rdf/networks/{network_owner},{network_name}",
+      "operationId": "createRDFNetwork",
+      "summary": "Oracle Database Create an RDF network",
+      "tags": [
+        "RDF Graph"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/rdf/networks/{network_owner},{network_name}/models/",
+      "operationId": "getRDFModels",
+      "summary": "Oracle Database List RDF models",
+      "tags": [
+        "RDF Graph"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/database/rdf/networks/{network_owner},{network_name}/models/{model_name}/sparql/1.1",
+      "operationId": "executeSPARQLQueryGET",
+      "summary": "Oracle Database Execute SPARQL query (GET)",
+      "tags": [
+        "RDF Graph"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/database/rdf/networks/{network_owner},{network_name}/models/{model_name}/sparql/1.1",
+      "operationId": "executeSPARQLQueryPOST",
+      "summary": "Oracle Database Execute SPARQL query (POST)",
+      "tags": [
+        "RDF Graph"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/openservicebroker/v2/catalog",
+      "operationId": "getServiceCatalog",
+      "summary": "Oracle Database Get service catalog",
+      "tags": [
+        "Open Service Broker"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/openservicebroker/v2/service_instances/{instance_id}",
+      "operationId": "provisionServiceInstance",
+      "summary": "Oracle Database Provision a service instance",
+      "tags": [
+        "Open Service Broker"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/openservicebroker/v2/service_instances/{instance_id}",
+      "operationId": "deprovisionServiceInstance",
+      "summary": "Oracle Database Deprovision a service instance",
+      "tags": [
+        "Open Service Broker"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SessionLimitList",
+  "title": "SessionLimitList",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "resource_name": {
+            "type": "string"
+          },
+          "current_utilization": {
+            "type": "integer"
+          },
+          "max_utilization": {
+            "type": "integer"
+          },
+          "limit_value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

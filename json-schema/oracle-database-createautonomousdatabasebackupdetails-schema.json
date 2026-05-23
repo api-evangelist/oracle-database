@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateAutonomousDatabaseBackupDetails",
+  "title": "CreateAutonomousDatabaseBackupDetails",
+  "type": "object",
+  "required": [
+    "autonomousDatabaseId",
+    "displayName"
+  ],
+  "properties": {
+    "autonomousDatabaseId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "isLongTermBackup": {
+      "type": "boolean"
+    },
+    "retentionPeriodInDays": {
+      "type": "integer"
+    }
+  }
+}

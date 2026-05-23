@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FeatureUsageList",
+  "title": "FeatureUsageList",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "currently_used": {
+            "type": "boolean"
+          },
+          "first_usage_date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "last_usage_date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}

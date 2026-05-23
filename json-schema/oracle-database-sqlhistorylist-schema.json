@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SQLHistoryList",
+  "title": "SQLHistoryList",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sql_id": {
+            "type": "string"
+          },
+          "snap_id": {
+            "type": "integer"
+          },
+          "executions_delta": {
+            "type": "integer"
+          },
+          "cpu_time_delta": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "elapsed_time_delta": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      }
+    }
+  }
+}

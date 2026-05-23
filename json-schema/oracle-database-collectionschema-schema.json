@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CollectionSchema",
+  "title": "CollectionSchema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Collection name"
+    },
+    "properties": {
+      "type": "object",
+      "properties": {
+        "schemaName": {
+          "type": "string",
+          "description": "Database schema name"
+        },
+        "tableName": {
+          "type": "string",
+          "description": "Underlying table name"
+        },
+        "keyColumn": {
+          "type": "object",
+          "description": "Key column configuration"
+        },
+        "contentColumn": {
+          "type": "object",
+          "description": "Content column configuration"
+        },
+        "versionColumn": {
+          "type": "object",
+          "description": "Version column configuration"
+        },
+        "lastModifiedColumn": {
+          "type": "object",
+          "description": "Last modified column configuration"
+        },
+        "readOnly": {
+          "type": "boolean",
+          "description": "Whether collection is read-only"
+        }
+      }
+    },
+    "schema": {
+      "type": "object",
+      "description": "JSON Schema describing document structure",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "properties": {
+          "type": "object"
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateDatabaseDetails",
+  "title": "CreateDatabaseDetails",
+  "type": "object",
+  "required": [
+    "dbHomeId",
+    "dbName",
+    "adminPassword"
+  ],
+  "properties": {
+    "dbHomeId": {
+      "type": "string"
+    },
+    "dbName": {
+      "type": "string"
+    },
+    "adminPassword": {
+      "type": "string",
+      "format": "password"
+    },
+    "characterSet": {
+      "type": "string"
+    },
+    "ncharacterSet": {
+      "type": "string"
+    },
+    "pdbName": {
+      "type": "string"
+    }
+  }
+}

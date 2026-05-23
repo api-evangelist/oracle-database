@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DbSystemSummary",
+  "title": "DbSystemSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "compartmentId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "shape": {
+      "type": "string"
+    },
+    "lifecycleState": {
+      "type": "string"
+    },
+    "databaseEdition": {
+      "type": "string"
+    },
+    "cpuCoreCount": {
+      "type": "integer"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

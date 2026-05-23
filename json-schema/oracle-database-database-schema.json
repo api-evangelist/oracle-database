@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Database",
+  "title": "Database",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "compartmentId": {
+      "type": "string"
+    },
+    "dbName": {
+      "type": "string"
+    },
+    "dbUniqueName": {
+      "type": "string"
+    },
+    "dbHomeId": {
+      "type": "string"
+    },
+    "dbSystemId": {
+      "type": "string"
+    },
+    "lifecycleState": {
+      "type": "string"
+    },
+    "characterSet": {
+      "type": "string"
+    },
+    "ncharacterSet": {
+      "type": "string"
+    },
+    "pdbName": {
+      "type": "string"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

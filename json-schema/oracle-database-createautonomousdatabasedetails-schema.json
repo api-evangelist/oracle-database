@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateAutonomousDatabaseDetails",
+  "title": "CreateAutonomousDatabaseDetails",
+  "type": "object",
+  "required": [
+    "compartmentId",
+    "dbName",
+    "cpuCoreCount",
+    "dataStorageSizeInTBs",
+    "adminPassword"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string"
+    },
+    "dbName": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "adminPassword": {
+      "type": "string",
+      "format": "password"
+    },
+    "cpuCoreCount": {
+      "type": "integer"
+    },
+    "dataStorageSizeInTBs": {
+      "type": "integer"
+    },
+    "dbWorkload": {
+      "type": "string",
+      "enum": [
+        "OLTP",
+        "DW",
+        "AJD",
+        "APEX"
+      ]
+    },
+    "isAutoScalingEnabled": {
+      "type": "boolean"
+    },
+    "isFreeTier": {
+      "type": "boolean"
+    },
+    "licenseModel": {
+      "type": "string",
+      "enum": [
+        "LICENSE_INCLUDED",
+        "BRING_YOUR_OWN_LICENSE"
+      ]
+    },
+    "whitelistedIps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "subnetId": {
+      "type": "string"
+    },
+    "freeformTags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

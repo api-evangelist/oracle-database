@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdatePDBRequest",
+  "title": "UpdatePDBRequest",
+  "type": "object",
+  "properties": {
+    "state": {
+      "type": "string",
+      "enum": [
+        "OPEN",
+        "CLOSE"
+      ]
+    },
+    "open_mode": {
+      "type": "string",
+      "enum": [
+        "READ WRITE",
+        "READ ONLY"
+      ]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/APEXWorkspace",
+  "title": "APEXWorkspace",
+  "type": "object",
+  "properties": {
+    "workspace_name": {
+      "type": "string"
+    },
+    "workspace_id": {
+      "type": "integer"
+    },
+    "schemas": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

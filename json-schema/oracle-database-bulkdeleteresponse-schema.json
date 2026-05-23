@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BulkDeleteResponse",
+  "title": "BulkDeleteResponse",
+  "type": "object",
+  "properties": {
+    "count": {
+      "type": "integer",
+      "description": "Number of documents affected"
+    },
+    "itemsDeleted": {
+      "type": "integer",
+      "description": "Number of documents deleted"
+    }
+  }
+}

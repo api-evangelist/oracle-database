@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ColumnMetadata",
+  "title": "ColumnMetadata",
+  "type": "object",
+  "properties": {
+    "owner": {
+      "type": "string"
+    },
+    "table_name": {
+      "type": "string"
+    },
+    "column_name": {
+      "type": "string"
+    },
+    "data_type": {
+      "type": "string"
+    },
+    "data_length": {
+      "type": "integer"
+    },
+    "nullable": {
+      "type": "string"
+    },
+    "column_id": {
+      "type": "integer"
+    }
+  }
+}

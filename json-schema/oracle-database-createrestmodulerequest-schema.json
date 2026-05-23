@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateRESTModuleRequest",
+  "title": "CreateRESTModuleRequest",
+  "type": "object",
+  "required": [
+    "name",
+    "uri_prefix"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "uri_prefix": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PUBLISHED",
+        "NOT_PUBLISHED"
+      ]
+    },
+    "items_per_page": {
+      "type": "integer"
+    }
+  }
+}

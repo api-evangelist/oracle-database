@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AutonomousDatabaseBackupSummary",
+  "title": "AutonomousDatabaseBackupSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "autonomousDatabaseId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string"
+    },
+    "lifecycleState": {
+      "type": "string"
+    },
+    "timeStarted": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "isAutomatic": {
+      "type": "boolean"
+    }
+  }
+}

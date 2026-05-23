@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateDataGuardConfigRequest",
+  "title": "CreateDataGuardConfigRequest",
+  "type": "object",
+  "required": [
+    "configuration_name"
+  ],
+  "properties": {
+    "configuration_name": {
+      "type": "string"
+    },
+    "protection_mode": {
+      "type": "string",
+      "enum": [
+        "MAXIMUM_AVAILABILITY",
+        "MAXIMUM_PERFORMANCE",
+        "MAXIMUM_PROTECTION"
+      ]
+    }
+  }
+}

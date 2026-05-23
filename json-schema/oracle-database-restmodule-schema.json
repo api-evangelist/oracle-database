@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RESTModule",
+  "title": "RESTModule",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "uri_prefix": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "items_per_page": {
+      "type": "integer"
+    }
+  }
+}

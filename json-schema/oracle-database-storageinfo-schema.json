@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StorageInfo",
+  "title": "StorageInfo",
+  "type": "object",
+  "properties": {
+    "total_bytes": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "used_bytes": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "free_bytes": {
+      "type": "integer",
+      "format": "int64"
+    }
+  }
+}

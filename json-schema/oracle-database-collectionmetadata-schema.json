@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CollectionMetadata",
+  "title": "CollectionMetadata",
+  "type": "object",
+  "description": "Optional collection configuration metadata",
+  "properties": {
+    "keyColumn": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "sqlType": {
+          "type": "string"
+        },
+        "maxLength": {
+          "type": "integer"
+        },
+        "assignmentMethod": {
+          "type": "string",
+          "enum": [
+            "UUID",
+            "GUID",
+            "SEQUENCE",
+            "CLIENT"
+          ]
+        }
+      }
+    },
+    "contentColumn": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "sqlType": {
+          "type": "string"
+        },
+        "compress": {
+          "type": "string"
+        },
+        "cache": {
+          "type": "boolean"
+        },
+        "encrypt": {
+          "type": "string"
+        },
+        "validation": {
+          "type": "string"
+        }
+      }
+    },
+    "versionColumn": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "UUID",
+            "TIMESTAMP",
+            "SHA256",
+            "MD5",
+            "NONE"
+          ]
+        }
+      }
+    },
+    "lastModifiedColumn": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "readOnly": {
+      "type": "boolean"
+    }
+  }
+}

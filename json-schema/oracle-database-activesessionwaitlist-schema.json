@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActiveSessionWaitList",
+  "title": "ActiveSessionWaitList",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "event": {
+            "type": "string"
+          },
+          "wait_class": {
+            "type": "string"
+          },
+          "total_waits": {
+            "type": "integer"
+          },
+          "average_wait_ms": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

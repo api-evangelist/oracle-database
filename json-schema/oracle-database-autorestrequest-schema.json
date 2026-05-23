@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AutoRESTRequest",
+  "title": "AutoRESTRequest",
+  "type": "object",
+  "required": [
+    "object_name",
+    "object_type"
+  ],
+  "properties": {
+    "object_name": {
+      "type": "string"
+    },
+    "object_type": {
+      "type": "string",
+      "enum": [
+        "TABLE",
+        "VIEW",
+        "PACKAGE",
+        "PROCEDURE",
+        "FUNCTION"
+      ]
+    },
+    "object_alias": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string"
+    }
+  }
+}

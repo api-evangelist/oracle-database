@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateRESTHandlerRequest",
+  "title": "CreateRESTHandlerRequest",
+  "type": "object",
+  "required": [
+    "method",
+    "source_type",
+    "source"
+  ],
+  "properties": {
+    "method": {
+      "type": "string",
+      "enum": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ]
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "collection/query",
+        "collection/feed",
+        "query",
+        "plsql"
+      ]
+    },
+    "source": {
+      "type": "string"
+    }
+  }
+}

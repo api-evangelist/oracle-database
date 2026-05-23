@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreatePluggableDatabaseDetails",
+  "title": "CreatePluggableDatabaseDetails",
+  "type": "object",
+  "required": [
+    "containerDatabaseId",
+    "pdbName"
+  ],
+  "properties": {
+    "containerDatabaseId": {
+      "type": "string"
+    },
+    "pdbName": {
+      "type": "string"
+    },
+    "pdbAdminPassword": {
+      "type": "string",
+      "format": "password"
+    },
+    "tdeWalletPassword": {
+      "type": "string",
+      "format": "password"
+    },
+    "freeformTags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+name: Oracle Database Domain Vocabulary
+provider: Oracle Database
+providerId: oracle-database
+description: Tag-derived vocabulary for the Oracle Database API surface; sourced from openapi/ tags.
+terms:
+- term: APEX
+  description: Oracle APEX workspace and application management
+- term: Data Dictionary
+  description: Database tables, views, columns, indexes, and object metadata
+- term: Data Guard
+  description: Oracle Data Guard broker configuration and database management
+- term: Data Pump
+  description: High-speed data and metadata export/import operations
+- term: General
+  description: Core database instance status, version, and configuration services
+- term: Monitoring
+  description: Database session monitoring, locks, alerts, and wait metrics
+- term: Open Service Broker
+  description: Open Service Broker API compliant service provisioning
+- term: PDB Snapshots
+  description: PDB snapshot carousel management
+- term: Performance
+  description: SQL performance analysis, execution plans, and active session history
+- term: Pluggable Databases
+  description: PDB lifecycle management for multitenant environments
+- term: RDF Graph
+  description: Knowledge graph management using W3C RDF, OWL, and SPARQL standards
+- term: REST Services
+  description: Custom REST API module, handler, and OAuth management
+- term: Scheduler
+  description: Oracle Scheduler job management

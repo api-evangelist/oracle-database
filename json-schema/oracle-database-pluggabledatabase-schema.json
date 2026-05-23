@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PluggableDatabase",
+  "title": "PluggableDatabase",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "containerDatabaseId": {
+      "type": "string"
+    },
+    "pdbName": {
+      "type": "string"
+    },
+    "compartmentId": {
+      "type": "string"
+    },
+    "lifecycleState": {
+      "type": "string",
+      "enum": [
+        "PROVISIONING",
+        "AVAILABLE",
+        "TERMINATING",
+        "TERMINATED",
+        "UPDATING",
+        "FAILED"
+      ]
+    },
+    "openMode": {
+      "type": "string",
+      "enum": [
+        "READ_ONLY",
+        "READ_WRITE",
+        "MOUNTED",
+        "MIGRATE"
+      ]
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "connectionStrings": {
+      "type": "object",
+      "properties": {
+        "pdbDefault": {
+          "type": "string"
+        },
+        "pdbIpDefault": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

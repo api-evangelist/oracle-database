@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Document",
+  "title": "Document",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique document key"
+    },
+    "etag": {
+      "type": "string",
+      "description": "Document version tag for optimistic concurrency"
+    },
+    "lastModified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "value": {
+      "type": "object",
+      "description": "Document content (when fields=value or fields=all)"
+    },
+    "mediaType": {
+      "type": "string",
+      "description": "Content type for non-JSON documents"
+    },
+    "bytes": {
+      "type": "integer",
+      "description": "Content length for non-JSON documents"
+    }
+  }
+}

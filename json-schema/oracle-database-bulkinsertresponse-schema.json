@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BulkInsertResponse",
+  "title": "BulkInsertResponse",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DocumentMetadata"
+      }
+    },
+    "hasMore": {
+      "type": "boolean"
+    }
+  }
+}

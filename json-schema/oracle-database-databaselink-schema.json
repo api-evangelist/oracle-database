@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DatabaseLink",
+  "title": "DatabaseLink",
+  "type": "object",
+  "properties": {
+    "owner": {
+      "type": "string"
+    },
+    "db_link": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "host": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

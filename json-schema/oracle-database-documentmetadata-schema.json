@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DocumentMetadata",
+  "title": "DocumentMetadata",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "etag": {
+      "type": "string"
+    },
+    "lastModified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

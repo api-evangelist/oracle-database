@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/JsonPatchOperation",
+  "title": "JsonPatchOperation",
+  "type": "object",
+  "required": [
+    "op",
+    "path"
+  ],
+  "properties": {
+    "op": {
+      "type": "string",
+      "enum": [
+        "add",
+        "remove",
+        "replace",
+        "move",
+        "copy",
+        "test"
+      ],
+      "description": "The patch operation to perform"
+    },
+    "path": {
+      "type": "string",
+      "description": "JSON Pointer path to the target field"
+    },
+    "value": {
+      "description": "The value to use for add, replace, or test operations"
+    },
+    "from": {
+      "type": "string",
+      "description": "JSON Pointer path for move and copy source"
+    }
+  }
+}

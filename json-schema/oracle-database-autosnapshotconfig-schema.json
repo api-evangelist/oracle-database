@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AutoSnapshotConfig",
+  "title": "AutoSnapshotConfig",
+  "type": "object",
+  "properties": {
+    "auto_snapshot_enabled": {
+      "type": "boolean"
+    },
+    "snapshot_interval_minutes": {
+      "type": "integer"
+    },
+    "max_snapshots": {
+      "type": "integer"
+    }
+  }
+}

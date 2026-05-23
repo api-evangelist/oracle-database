@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DbSystem",
+  "title": "DbSystem",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "compartmentId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "availabilityDomain": {
+      "type": "string"
+    },
+    "shape": {
+      "type": "string"
+    },
+    "cpuCoreCount": {
+      "type": "integer"
+    },
+    "nodeCount": {
+      "type": "integer"
+    },
+    "dataStorageSizeInGBs": {
+      "type": "integer"
+    },
+    "databaseEdition": {
+      "type": "string",
+      "enum": [
+        "STANDARD_EDITION",
+        "ENTERPRISE_EDITION",
+        "ENTERPRISE_EDITION_HIGH_PERFORMANCE",
+        "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
+      ]
+    },
+    "lifecycleState": {
+      "type": "string"
+    },
+    "hostname": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "subnetId": {
+      "type": "string"
+    },
+    "sshPublicKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "version": {
+      "type": "string"
+    },
+    "licenseModel": {
+      "type": "string"
+    },
+    "diskRedundancy": {
+      "type": "string",
+      "enum": [
+        "HIGH",
+        "NORMAL"
+      ]
+    }
+  }
+}

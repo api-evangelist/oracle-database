@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/APEXOverview",
+  "title": "APEXOverview",
+  "type": "object",
+  "properties": {
+    "total_workspaces": {
+      "type": "integer"
+    },
+    "total_applications": {
+      "type": "integer"
+    },
+    "total_developers": {
+      "type": "integer"
+    }
+  }
+}

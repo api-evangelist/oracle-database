@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataPumpImportRequest",
+  "title": "DataPumpImportRequest",
+  "type": "object",
+  "required": [
+    "job_name"
+  ],
+  "properties": {
+    "job_name": {
+      "type": "string"
+    },
+    "directory": {
+      "type": "string"
+    },
+    "dumpfile": {
+      "type": "string"
+    },
+    "schemas": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "remap_schema": {
+      "type": "string"
+    }
+  }
+}

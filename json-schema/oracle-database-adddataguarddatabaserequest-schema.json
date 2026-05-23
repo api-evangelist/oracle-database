@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AddDataGuardDatabaseRequest",
+  "title": "AddDataGuardDatabaseRequest",
+  "type": "object",
+  "required": [
+    "database_name",
+    "connect_identifier"
+  ],
+  "properties": {
+    "database_name": {
+      "type": "string"
+    },
+    "connect_identifier": {
+      "type": "string"
+    }
+  }
+}

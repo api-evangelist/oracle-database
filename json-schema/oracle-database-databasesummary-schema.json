@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DatabaseSummary",
+  "title": "DatabaseSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "compartmentId": {
+      "type": "string"
+    },
+    "dbName": {
+      "type": "string"
+    },
+    "dbHomeId": {
+      "type": "string"
+    },
+    "lifecycleState": {
+      "type": "string"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/APEXApplicationRequest",
+  "title": "APEXApplicationRequest",
+  "type": "object",
+  "properties": {
+    "application_name": {
+      "type": "string"
+    },
+    "workspace": {
+      "type": "string"
+    }
+  }
+}

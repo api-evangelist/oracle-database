@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExecutionPlan",
+  "title": "ExecutionPlan",
+  "type": "object",
+  "properties": {
+    "sql_id": {
+      "type": "string"
+    },
+    "plan_hash_value": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "operation": {
+            "type": "string"
+          },
+          "options": {
+            "type": "string"
+          },
+          "object_name": {
+            "type": "string"
+          },
+          "cost": {
+            "type": "integer"
+          },
+          "cardinality": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FunctionMetadata",
+  "title": "FunctionMetadata",
+  "type": "object",
+  "properties": {
+    "object_id": {
+      "type": "integer"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "object_name": {
+      "type": "string"
+    },
+    "object_type": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

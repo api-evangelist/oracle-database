@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Backup",
+  "title": "Backup",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "databaseId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "INCREMENTAL",
+        "FULL",
+        "VIRTUAL_FULL"
+      ]
+    },
+    "lifecycleState": {
+      "type": "string"
+    },
+    "databaseSizeInGBs": {
+      "type": "number"
+    },
+    "timeStarted": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "timeEnded": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

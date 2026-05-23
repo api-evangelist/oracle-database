@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ActiveSessionHistoryList",
+  "title": "ActiveSessionHistoryList",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "sample_time": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "session_id": {
+            "type": "integer"
+          },
+          "sql_id": {
+            "type": "string"
+          },
+          "event": {
+            "type": "string"
+          },
+          "wait_class": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

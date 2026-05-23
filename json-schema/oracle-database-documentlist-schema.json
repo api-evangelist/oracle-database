@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DocumentList",
+  "title": "DocumentList",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Document"
+      }
+    },
+    "hasMore": {
+      "type": "boolean",
+      "description": "Whether more documents exist beyond this page"
+    },
+    "limit": {
+      "type": "integer",
+      "description": "Server-imposed result limit"
+    },
+    "offset": {
+      "type": "integer",
+      "description": "Offset of first returned result"
+    },
+    "count": {
+      "type": "integer",
+      "description": "Number of documents in this response"
+    },
+    "totalResults": {
+      "type": "integer",
+      "description": "Total documents in collection (only if totalResults=true)"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Link"
+      }
+    }
+  }
+}

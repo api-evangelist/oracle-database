@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataPumpExportRequest",
+  "title": "DataPumpExportRequest",
+  "type": "object",
+  "required": [
+    "job_name"
+  ],
+  "properties": {
+    "job_name": {
+      "type": "string"
+    },
+    "schemas": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tables": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "directory": {
+      "type": "string"
+    },
+    "dumpfile": {
+      "type": "string"
+    },
+    "logfile": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TableMetadata",
+  "title": "TableMetadata",
+  "type": "object",
+  "properties": {
+    "owner": {
+      "type": "string"
+    },
+    "table_name": {
+      "type": "string"
+    },
+    "tablespace_name": {
+      "type": "string"
+    },
+    "num_rows": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "last_analyzed": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status": {
+      "type": "string"
+    },
+    "temporary": {
+      "type": "string"
+    }
+  }
+}

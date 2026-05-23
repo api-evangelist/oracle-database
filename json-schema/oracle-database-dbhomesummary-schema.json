@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DbHomeSummary",
+  "title": "DbHomeSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "compartmentId": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "dbVersion": {
+      "type": "string"
+    },
+    "lifecycleState": {
+      "type": "string"
+    }
+  }
+}

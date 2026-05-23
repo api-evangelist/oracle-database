@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CollectionList",
+  "title": "CollectionList",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Collection name"
+          },
+          "properties": {
+            "type": "object",
+            "description": "Collection metadata properties"
+          }
+        }
+      }
+    },
+    "hasMore": {
+      "type": "boolean",
+      "description": "Whether more collections exist beyond this page"
+    }
+  }
+}

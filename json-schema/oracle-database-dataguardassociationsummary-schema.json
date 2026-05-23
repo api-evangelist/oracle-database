@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataGuardAssociationSummary",
+  "title": "DataGuardAssociationSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "databaseId": {
+      "type": "string"
+    },
+    "peerDatabaseId": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "PRIMARY",
+        "STANDBY",
+        "DISABLED_STANDBY"
+      ]
+    },
+    "peerRole": {
+      "type": "string"
+    },
+    "lifecycleState": {
+      "type": "string"
+    },
+    "protectionMode": {
+      "type": "string",
+      "enum": [
+        "MAXIMUM_AVAILABILITY",
+        "MAXIMUM_PERFORMANCE",
+        "MAXIMUM_PROTECTION"
+      ]
+    },
+    "transportType": {
+      "type": "string",
+      "enum": [
+        "SYNC",
+        "ASYNC",
+        "FASTSYNC"
+      ]
+    },
+    "applyLag": {
+      "type": "string"
+    },
+    "applyRate": {
+      "type": "string"
+    },
+    "timeCreated": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

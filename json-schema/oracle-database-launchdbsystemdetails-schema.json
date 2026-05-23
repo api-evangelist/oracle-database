@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LaunchDbSystemDetails",
+  "title": "LaunchDbSystemDetails",
+  "type": "object",
+  "required": [
+    "compartmentId",
+    "availabilityDomain",
+    "shape",
+    "subnetId",
+    "sshPublicKeys",
+    "hostname",
+    "cpuCoreCount"
+  ],
+  "properties": {
+    "compartmentId": {
+      "type": "string"
+    },
+    "availabilityDomain": {
+      "type": "string"
+    },
+    "shape": {
+      "type": "string"
+    },
+    "subnetId": {
+      "type": "string"
+    },
+    "sshPublicKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "hostname": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "cpuCoreCount": {
+      "type": "integer"
+    },
+    "nodeCount": {
+      "type": "integer"
+    },
+    "initialDataStorageSizeInGB": {
+      "type": "integer"
+    },
+    "databaseEdition": {
+      "type": "string",
+      "enum": [
+        "STANDARD_EDITION",
+        "ENTERPRISE_EDITION",
+        "ENTERPRISE_EDITION_HIGH_PERFORMANCE",
+        "ENTERPRISE_EDITION_EXTREME_PERFORMANCE"
+      ]
+    },
+    "dbHome": {
+      "$ref": "#/components/schemas/CreateDbHomeDetails"
+    },
+    "licenseModel": {
+      "type": "string",
+      "enum": [
+        "LICENSE_INCLUDED",
+        "BRING_YOUR_OWN_LICENSE"
+      ]
+    },
+    "diskRedundancy": {
+      "type": "string",
+      "enum": [
+        "HIGH",
+        "NORMAL"
+      ]
+    }
+  }
+}

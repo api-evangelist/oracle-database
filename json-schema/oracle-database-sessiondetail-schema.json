@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SessionDetail",
+  "title": "SessionDetail",
+  "type": "object",
+  "properties": {
+    "sid": {
+      "type": "integer"
+    },
+    "serial_number": {
+      "type": "integer"
+    },
+    "username": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "machine": {
+      "type": "string"
+    },
+    "program": {
+      "type": "string"
+    },
+    "sql_id": {
+      "type": "string"
+    },
+    "event": {
+      "type": "string"
+    },
+    "wait_class": {
+      "type": "string"
+    },
+    "logon_time": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

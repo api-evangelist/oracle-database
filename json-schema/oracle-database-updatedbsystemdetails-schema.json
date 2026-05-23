@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateDbSystemDetails",
+  "title": "UpdateDbSystemDetails",
+  "type": "object",
+  "properties": {
+    "displayName": {
+      "type": "string"
+    },
+    "cpuCoreCount": {
+      "type": "integer"
+    },
+    "sshPublicKeys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dataStorageSizeInGBs": {
+      "type": "integer"
+    },
+    "freeformTags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BulkUpdateRequest",
+  "title": "BulkUpdateRequest",
+  "type": "object",
+  "description": "Combination of QBE filter fields and $patch operations. Filter fields identify documents to update, $patch contains the JSON Patch operations to apply.",
+  "properties": {
+    "$patch": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/JsonPatchOperation"
+      }
+    }
+  },
+  "additionalProperties": true,
+  "example": {
+    "department": "HR",
+    "$patch": [
+      {
+        "op": "replace",
+        "path": "/salary",
+        "value": 70000
+      }
+    ]
+  }
+}

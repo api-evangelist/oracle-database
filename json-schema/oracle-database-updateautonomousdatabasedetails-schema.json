@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateAutonomousDatabaseDetails",
+  "title": "UpdateAutonomousDatabaseDetails",
+  "type": "object",
+  "properties": {
+    "displayName": {
+      "type": "string"
+    },
+    "cpuCoreCount": {
+      "type": "integer"
+    },
+    "dataStorageSizeInTBs": {
+      "type": "integer"
+    },
+    "isAutoScalingEnabled": {
+      "type": "boolean"
+    },
+    "adminPassword": {
+      "type": "string",
+      "format": "password"
+    },
+    "whitelistedIps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "freeformTags": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

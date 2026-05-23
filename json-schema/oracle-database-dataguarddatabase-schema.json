@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DataGuardDatabase",
+  "title": "DataGuardDatabase",
+  "type": "object",
+  "properties": {
+    "database_name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "PRIMARY",
+        "PHYSICAL_STANDBY",
+        "LOGICAL_STANDBY",
+        "SNAPSHOT_STANDBY"
+      ]
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "transport_lag": {
+      "type": "string"
+    },
+    "apply_lag": {
+      "type": "string"
+    }
+  }
+}

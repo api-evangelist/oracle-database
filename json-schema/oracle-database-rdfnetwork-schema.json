@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RDFNetwork",
+  "title": "RDFNetwork",
+  "type": "object",
+  "properties": {
+    "network_owner": {
+      "type": "string"
+    },
+    "network_name": {
+      "type": "string"
+    }
+  }
+}

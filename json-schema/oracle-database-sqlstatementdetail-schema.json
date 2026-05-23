@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SQLStatementDetail",
+  "title": "SQLStatementDetail",
+  "type": "object",
+  "properties": {
+    "sql_id": {
+      "type": "string"
+    },
+    "sql_text": {
+      "type": "string"
+    },
+    "executions": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "cpu_time": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "elapsed_time": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "buffer_gets": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "disk_reads": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "rows_processed": {
+      "type": "integer",
+      "format": "int64"
+    }
+  }
+}

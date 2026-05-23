@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WaitClassMetricList",
+  "title": "WaitClassMetricList",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "wait_class": {
+            "type": "string"
+          },
+          "average_waiter_count": {
+            "type": "number"
+          },
+          "dbtime_in_wait": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}

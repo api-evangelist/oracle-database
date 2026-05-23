@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RDFModelList",
+  "title": "RDFModelList",
+  "type": "object",
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "model_name": {
+            "type": "string"
+          },
+          "network_owner": {
+            "type": "string"
+          },
+          "network_name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
