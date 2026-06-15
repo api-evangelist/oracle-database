@@ -1,0 +1,1796 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle REST Data Services (ORDS) API",
+    "version": "25.4.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "/ords/{schema}/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "General",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get database status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/status"
+          },
+          "docs": "Returns the current status of the Oracle Database instance."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get database version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/version"
+          },
+          "docs": "Returns the version information of the Oracle Database instance."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all database components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/components/"
+          },
+          "docs": "Returns a list of all installed database components and their status."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all database parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/parameters/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before returning results"
+              }
+            ]
+          },
+          "docs": "Returns all database initialization parameters and their current values."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific database parameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/parameters/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the database parameter"
+              }
+            ]
+          },
+          "docs": "Returns the value and metadata for a specific database parameter."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all database users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/security/users/"
+          },
+          "docs": "Returns a list of all database users and their properties."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get storage usage in bytes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/storage/bytes"
+          },
+          "docs": "Returns the total storage usage of the database in bytes."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all tablespaces storage information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/storage/tablespaces/"
+          },
+          "docs": "Returns storage information for all tablespaces."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get tablespace details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/storage/tablespaces/:tablespace_name/",
+            "params": [
+              {
+                "name": "tablespace_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed storage information for a specific tablespace."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get tablespace datafiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/storage/tablespaces/:tablespace_name/datafiles/",
+            "params": [
+              {
+                "name": "tablespace_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns datafiles associated with a specific tablespace."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get feature usage statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/feature_usage/"
+          },
+          "docs": "Returns usage statistics for database features."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Start a sessionless transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/database/sessionless-transactions/"
+          },
+          "docs": "Starts a new sessionless transaction and returns its identifier."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Commit a sessionless transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/database/sessionless-transactions/:sessionlessTransactionID",
+            "params": [
+              {
+                "name": "sessionlessTransactionID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Commits the specified sessionless transaction."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Rollback a sessionless transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/database/sessionless-transactions/:sessionlessTransactionID",
+            "params": [
+              {
+                "name": "sessionlessTransactionID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Rolls back the specified sessionless transaction."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Dictionary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/objects/tables/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before returning results"
+              }
+            ]
+          },
+          "docs": "Returns metadata for all database tables accessible to the current user."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/objects/tables/:owner,:table_name",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific database table."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all table columns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/objects/columns/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before returning results"
+              }
+            ]
+          },
+          "docs": "Returns column metadata for all tables."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific column",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/objects/columns/:owner,:table_name,:column_name",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "column_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific table column."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/objects/indexes/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before returning results"
+              }
+            ]
+          },
+          "docs": "Returns metadata for all database indexes."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/objects/indexes/:owner,:index_name",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "index_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific database index."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all functions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/objects/functions/"
+          },
+          "docs": "Returns metadata for all database functions."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific function",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/objects/functions/:object_id",
+            "params": [
+              {
+                "name": "object_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific database function."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all foreign keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/objects/foreign_keys/"
+          },
+          "docs": "Returns metadata for all foreign key constraints."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all database links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/db_links/"
+          },
+          "docs": "Returns metadata for all database links."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific database link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/db_links/:owner,:db_link",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "db_link",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific database link."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all tablespaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/tablespaces/"
+          },
+          "docs": "Returns data dictionary information for all tablespaces."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/monitoring/sessions/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before returning results"
+              }
+            ]
+          },
+          "docs": "Returns information about all active database sessions."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/monitoring/sessions/:sid,:serial_number/",
+            "params": [
+              {
+                "name": "sid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serial_number",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific database session."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all session locks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/monitoring/session_locks/"
+          },
+          "docs": "Returns information about all current session locks."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get blocking locks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/monitoring/session_locks/holding/"
+          },
+          "docs": "Returns information about sessions holding locks that block others."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get waiting locks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/monitoring/session_locks/waiting/"
+          },
+          "docs": "Returns information about sessions waiting to acquire locks."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/monitoring/alerts/"
+          },
+          "docs": "Returns all database alerts and notifications."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get alert summaries by message level",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/monitoring/alerts_summaries/by_message_level"
+          },
+          "docs": "Returns alert summary statistics grouped by message level."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get wait class metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/monitoring/wait_class_metrics"
+          },
+          "docs": "Returns database wait class performance metrics."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get wait class totals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/monitoring/wait_class_totals"
+          },
+          "docs": "Returns total wait time statistics by wait class."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get session limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/monitoring/session_limits"
+          },
+          "docs": "Returns the configured session limits and current usage."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Performance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all SQL statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/performance/sql_statements/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before returning results"
+              }
+            ]
+          },
+          "docs": "Returns performance statistics for all SQL statements in the shared pool."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get top SQL by CPU usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/performance/top_sql_statements/"
+          },
+          "docs": "Returns the top SQL statements ranked by CPU consumption."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get SQL statement statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/performance/sql_statements/:sql_id/",
+            "params": [
+              {
+                "name": "sql_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed statistics for a specific SQL statement."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get SQL statement text",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/performance/sql_statements/:sql_id/text",
+            "params": [
+              {
+                "name": "sql_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the full SQL text for a specific statement."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get SQL execution plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/performance/sql_statements/:sql_id/plan",
+            "params": [
+              {
+                "name": "sql_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the execution plan for a specific SQL statement."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get SQL statement history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/performance/sql_statements/:sql_id/history",
+            "params": [
+              {
+                "name": "sql_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns historical performance data for a specific SQL statement."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get active sessions history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/performance/active_sessions_history/"
+          },
+          "docs": "Returns the active session history (ASH) data."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get active session history waits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/performance/active_sessions_history_waits/"
+          },
+          "docs": "Returns wait event data from the active session history."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pluggable Databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all pluggable databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/pdbs/"
+          },
+          "docs": "Returns a list of all pluggable databases in the container database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/database/pdbs/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new pluggable database in the container database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/pdbs/:pdb_name",
+            "params": [
+              {
+                "name": "pdb_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about a specific pluggable database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{host}:{port}/ords/database/pdbs/:pdb_name",
+            "params": [
+              {
+                "name": "pdb_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates properties of a specific pluggable database including open/close state."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Drop a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/database/pdbs/:pdb_name",
+            "params": [
+              {
+                "name": "pdb_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Drops the specified pluggable database from the container database."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PDB Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all PDB snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/snapshots/"
+          },
+          "docs": "Returns a list of all PDB snapshots."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a PDB snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/database/snapshots/"
+          },
+          "docs": "Creates a new snapshot of the current pluggable database state."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Configure automatic snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/database/snapshots/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configures automatic snapshot scheduling for the PDB."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/snapshots/:snapshot_name",
+            "params": [
+              {
+                "name": "snapshot_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about a specific PDB snapshot."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a named PDB snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/database/snapshots/:snapshot_name",
+            "params": [
+              {
+                "name": "snapshot_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Creates a new snapshot with the specified name."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a PDB snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/database/snapshots/:snapshot_name",
+            "params": [
+              {
+                "name": "snapshot_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified PDB snapshot."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get snapshot mode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/snapshot_mode"
+          },
+          "docs": "Returns the current snapshot mode configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Guard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get Data Guard broker configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/dataguard/configuration/"
+          },
+          "docs": "Returns the current Data Guard broker configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Add a Data Guard configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/database/dataguard/configuration/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Data Guard broker configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Enable or disable Data Guard configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/database/dataguard/configuration/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enables or disables the Data Guard broker configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Remove Data Guard configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/database/dataguard/configuration/"
+          },
+          "docs": "Removes the Data Guard broker configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all Data Guard databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/dataguard/databases/"
+          },
+          "docs": "Returns all databases registered with the Data Guard broker."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Add a database to Data Guard",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/database/dataguard/databases/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a database to the Data Guard broker configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update Data Guard database role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/database/dataguard/databases/:database",
+            "params": [
+              {
+                "name": "database",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Converts, enables, or disables a database in the Data Guard configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Remove database from Data Guard",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/database/dataguard/databases/:database",
+            "params": [
+              {
+                "name": "database",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a database from the Data Guard broker configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Pump",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Create a Data Pump export job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/database/datapump/export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Data Pump export job for data and metadata extraction."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a Data Pump import job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/database/datapump/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Data Pump import job for data and metadata loading."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all Data Pump jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/datapump/jobs/"
+          },
+          "docs": "Returns a list of all Data Pump jobs."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific Data Pump job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/datapump/jobs/:owner_name,:job_name/",
+            "params": [
+              {
+                "name": "owner_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "job_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about a specific Data Pump job."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a Data Pump job file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/datapump/jobs/:owner_name,:job_name/:filename",
+            "params": [
+              {
+                "name": "owner_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "job_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filename",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the contents of a specific Data Pump job output file."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "REST Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all REST modules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/ords/rest/modules/"
+          },
+          "docs": "Returns a list of all custom REST API modules."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a REST module",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/ords/rest/modules/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new custom REST API module with SQL or PL/SQL handlers."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update a REST module",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/ords/rest/modules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing REST API module."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all REST handlers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/ords/rest/handlers/"
+          },
+          "docs": "Returns a list of all REST API handlers."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a REST handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/ords/rest/handlers/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new REST API handler."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a REST handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/ords/rest/handlers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an existing REST API handler."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all OAuth clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/ords/rest/clients/"
+          },
+          "docs": "Returns a list of all registered OAuth clients."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create an OAuth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/ords/rest/clients/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new OAuth client for REST API authentication."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update an OAuth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/ords/rest/clients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing OAuth client registration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a REST privilege",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/ords/rest/privileges/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new privilege for controlling access to REST resources."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a REST role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/ords/rest/roles/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new role for grouping REST privileges."
+        },
+        {
+          "info": {
+            "name": "Oracle Database REST enable a database object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/ords/rest/autorest/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enables automatic REST access for a database table, view, or PL/SQL object."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get ORDS properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/ords/properties/"
+          },
+          "docs": "Returns all ORDS configuration properties."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Set an ORDS property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/ords/properties/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets or updates an ORDS configuration property."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Unset an ORDS property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/ords/properties/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes an ORDS configuration property, restoring the default value."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scheduler",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all scheduler jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/scheduler/jobs/"
+          },
+          "docs": "Returns a list of all Oracle Scheduler jobs."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific scheduler job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/scheduler/jobs/:owner,:job_name",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "job_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about a specific Oracle Scheduler job."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "APEX",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all APEX workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/apex/workspaces/"
+          },
+          "docs": "Returns a list of all Oracle APEX workspaces."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific APEX workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/apex/workspaces/:workspace_name/",
+            "params": [
+              {
+                "name": "workspace_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about a specific Oracle APEX workspace."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get workspace applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/apex/workspaces/:workspace_name/applications/",
+            "params": [
+              {
+                "name": "workspace_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns applications in a specific APEX workspace."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create or update an APEX application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/apex/workspaces/:workspace_name/applications/:application_id",
+            "params": [
+              {
+                "name": "workspace_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new or updates an existing APEX application."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete an APEX application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/apex/workspaces/:workspace_name/applications/:application_id",
+            "params": [
+              {
+                "name": "workspace_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a specific APEX application."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get APEX instance overview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/apex/statistics/overview"
+          },
+          "docs": "Returns overview statistics for the APEX instance."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "RDF Graph",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List all RDF networks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/rdf/networks/"
+          },
+          "docs": "Returns a list of all RDF semantic networks."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get RDF network information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/rdf/networks/:network_owner,:network_name",
+            "params": [
+              {
+                "name": "network_owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about a specific RDF network."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create an RDF network",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/database/rdf/networks/:network_owner,:network_name",
+            "params": [
+              {
+                "name": "network_owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Creates a new RDF semantic network."
+        },
+        {
+          "info": {
+            "name": "Oracle Database List RDF models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/rdf/networks/:network_owner,:network_name/models/",
+            "params": [
+              {
+                "name": "network_owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a list of RDF models in the specified network."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Execute SPARQL query (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/database/rdf/networks/:network_owner,:network_name/models/:model_name/sparql/1.1",
+            "params": [
+              {
+                "name": "network_owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "model_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The SPARQL query string"
+              }
+            ]
+          },
+          "docs": "Executes a SPARQL query against the specified RDF model using HTTP GET."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Execute SPARQL query (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/database/rdf/networks/:network_owner,:network_name/models/:model_name/sparql/1.1",
+            "params": [
+              {
+                "name": "network_owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "model_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Executes a SPARQL query against the specified RDF model using HTTP POST."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Open Service Broker",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get service catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/openservicebroker/v2/catalog"
+          },
+          "docs": "Returns the Open Service Broker catalog of available services."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Provision a service instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/openservicebroker/v2/service_instances/:instance_id",
+            "params": [
+              {
+                "name": "instance_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provisions a new Open Service Broker service instance."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Deprovision a service instance",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/openservicebroker/v2/service_instances/:instance_id",
+            "params": [
+              {
+                "name": "instance_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deprovisions an existing Open Service Broker service instance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

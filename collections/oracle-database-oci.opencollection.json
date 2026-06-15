@@ -1,0 +1,967 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Autonomous Databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List Autonomous Databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "",
+                "type": "query",
+                "description": "The OCID of the compartment"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              },
+              {
+                "name": "displayName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by display name"
+              },
+              {
+                "name": "lifecycleState",
+                "value": "",
+                "type": "query",
+                "description": "Filter by lifecycle state"
+              },
+              {
+                "name": "dbWorkload",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workload type"
+              }
+            ]
+          },
+          "docs": "Returns a list of Autonomous Databases in the specified compartment. Results can be filtered by display name, lifecycle state, and other parameters."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases",
+            "headers": [
+              {
+                "name": "opc-retry-token",
+                "value": ""
+              },
+              {
+                "name": "opc-request-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Autonomous Database with the specified configuration. Supports OLTP, Data Warehouse, JSON Database, and APEX workload types."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId",
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ]
+          },
+          "docs": "Returns details about the specified Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified Autonomous Database. Supports scaling CPU, storage, and other configuration changes."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ]
+          },
+          "docs": "Terminates and deletes the specified Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Start an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId/actions/start",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ]
+          },
+          "docs": "Starts a stopped Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Stop an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId/actions/stop",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ]
+          },
+          "docs": "Stops a running Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Restart an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId/actions/restart",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ]
+          },
+          "docs": "Restarts the specified Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Generate database wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId/actions/generateWallet",
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates and downloads a wallet zip file containing credentials for connecting to the Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database List Autonomous Database backups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabaseBackups",
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "query",
+                "description": "The Autonomous Database OCID"
+              },
+              {
+                "name": "compartmentId",
+                "value": "",
+                "type": "query",
+                "description": "The OCID of the compartment"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              }
+            ]
+          },
+          "docs": "Returns a list of backups for the specified Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create an Autonomous Database backup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabaseBackups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new manual backup for the specified Autonomous Database."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "DB Systems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List DB Systems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbSystems",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "",
+                "type": "query",
+                "description": "The OCID of the compartment"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              },
+              {
+                "name": "displayName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lifecycleState",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of DB Systems in the specified compartment."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Launch a DB System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbSystems",
+            "headers": [
+              {
+                "name": "opc-retry-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates and launches a new DB System with the specified configuration. This is a long-running operation tracked via work requests."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a DB System",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbSystems/:dbSystemId",
+            "params": [
+              {
+                "name": "dbSystemId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the DB System"
+              }
+            ]
+          },
+          "docs": "Returns details about the specified DB System."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update a DB System",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbSystems/:dbSystemId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dbSystemId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the DB System"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified DB System configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Terminate a DB System",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbSystems/:dbSystemId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dbSystemId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the DB System"
+              }
+            ]
+          },
+          "docs": "Terminates and deletes the specified DB System."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/databases",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "",
+                "type": "query",
+                "description": "The OCID of the compartment"
+              },
+              {
+                "name": "dbHomeId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "systemId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              }
+            ]
+          },
+          "docs": "Returns a list of databases in the specified compartment or DB System."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/databases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new database in the specified DB Home."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/databases/:databaseId",
+            "params": [
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update a database",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/databases/:databaseId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a database",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/databases/:databaseId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified database."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Database Homes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List Database Homes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbHomes",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "",
+                "type": "query",
+                "description": "The OCID of the compartment"
+              },
+              {
+                "name": "dbSystemId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              }
+            ]
+          },
+          "docs": "Returns a list of Database Homes in the specified compartment."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a Database Home",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbHomes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Database Home in the specified DB System."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a Database Home",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbHomes/:dbHomeId",
+            "params": [
+              {
+                "name": "dbHomeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about the specified Database Home."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a Database Home",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbHomes/:dbHomeId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dbHomeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified Database Home."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Backups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List database backups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/backups",
+            "params": [
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "compartmentId",
+                "value": "",
+                "type": "query",
+                "description": "The OCID of the compartment"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              }
+            ]
+          },
+          "docs": "Returns a list of backups for a database or compartment."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a database backup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/backups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new backup for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a database backup",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/backups/:backupId",
+            "params": [
+              {
+                "name": "backupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about the specified backup."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a database backup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/backups/:backupId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "backupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified backup."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Data Guard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List Data Guard associations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dataGuardAssociations",
+            "params": [
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              }
+            ]
+          },
+          "docs": "Returns Data Guard associations for the specified database."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pluggable Databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List pluggable databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/pluggableDatabases",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "",
+                "type": "query",
+                "description": "The OCID of the compartment"
+              },
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              }
+            ]
+          },
+          "docs": "Returns a list of pluggable databases."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/pluggableDatabases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new pluggable database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/pluggableDatabases/:pluggableDatabaseId",
+            "params": [
+              {
+                "name": "pluggableDatabaseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about the specified pluggable database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/pluggableDatabases/:pluggableDatabaseId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pluggableDatabaseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified pluggable database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/pluggableDatabases/:pluggableDatabaseId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pluggableDatabaseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified pluggable database."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

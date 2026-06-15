@@ -1,0 +1,603 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle SODA (Simple Oracle Document Access) REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "/ords/{schema}/oauth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List all collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of collections to return"
+              },
+              {
+                "name": "fromID",
+                "value": "",
+                "type": "query",
+                "description": "Start listing from this collection name (inclusive)"
+              }
+            ]
+          },
+          "docs": "Returns a list of collection names for the current database schema. Supports pagination through limit and fromID parameters."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new document collection. This operation is idempotent - if the collection already exists, it returns 200 instead of 201. An optional request body can specify collection metadata configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/:collection/",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ]
+          },
+          "docs": "Deletes the entire collection and all documents it contains. This operation cannot be undone."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get collection catalog with metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/metadata-catalog",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of collections to return"
+              },
+              {
+                "name": "fromID",
+                "value": "",
+                "type": "query",
+                "description": "Start from this collection name (inclusive)"
+              }
+            ]
+          },
+          "docs": "Lists all collections in the schema with full metadata and navigation links. Each collection includes its properties and links to the collection itself and its JSON schema."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get JSON schema for a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/metadata-catalog/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ]
+          },
+          "docs": "Retrieves the JSON schema describing the document structure for the specified collection, including collection properties and column configurations."
+        },
+        {
+          "info": {
+            "name": "Oracle Database List available custom actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/custom-actions/"
+          },
+          "docs": "Returns a list of available custom actions for SODA collections."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get documents from a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/:collection/",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of documents to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of documents to skip (default 0)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Control which fields are returned"
+              },
+              {
+                "name": "totalResults",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response (may be slow on large collections)"
+              },
+              {
+                "name": "fromID",
+                "value": "",
+                "type": "query",
+                "description": "Start after this key (ascending order)"
+              },
+              {
+                "name": "toID",
+                "value": "",
+                "type": "query",
+                "description": "Stop before this key (descending order)"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Only return documents modified after this timestamp"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "Only return documents modified before this timestamp"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "QBE filter specification as a JSON object"
+              }
+            ]
+          },
+          "docs": "Retrieves documents from the specified collection with optional filtering, pagination, and field selection. Supports Query by Example (QBE) filter specifications via the q parameter."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Insert a new document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/:collection/",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Inserts a new JSON document into the collection with a server-assigned key. Returns the generated key, etag, and timestamps in the response."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Insert or replace document (no key in URL)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/:collection/",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Inserts or replaces a document. Used with client-assigned keys included in the document body."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a document by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/:collection/:key",
+            "headers": [
+              {
+                "name": "If-Modified-Since",
+                "value": ""
+              },
+              {
+                "name": "If-None-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the document"
+              }
+            ]
+          },
+          "docs": "Retrieves a single document from the collection by its unique key. Supports conditional retrieval via If-Modified-Since and If-None-Match headers."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Replace or insert a document by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/:collection/:key",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces an existing document or inserts a new one at the specified key. Used for client-assigned keys."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Patch a document using JSON Patch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/:collection/:key",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a document using the JSON Patch specification (RFC 6902). The request body must contain an array of patch operations."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a document by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/:collection/:key",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the document"
+              }
+            ]
+          },
+          "docs": "Deletes a single document from the collection by its unique key."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Query collection with QBE filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/custom-actions/query/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of documents to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of documents to skip"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Control which fields are returned"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Queries the collection using a Query by Example (QBE) filter specification in the request body. Returns matching documents with optional pagination. This endpoint is equivalent to /{collection}/?action=query."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Bulk Operations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Bulk insert documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/custom-actions/insert/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Inserts multiple documents into the collection in a single operation. Documents are provided as a JSON array. Server-assigned keys are generated for each document."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Bulk delete documents by filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/custom-actions/delete/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes multiple documents matching a QBE filter specification. Returns the count of deleted documents."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Truncate all documents from collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/custom-actions/truncate/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ]
+          },
+          "docs": "Removes all documents from the collection without deleting the collection itself. This is faster than deleting documents one by one or with a filter."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Bulk update documents by filter",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/custom-actions/update/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates multiple documents matching a QBE filter using JSON Patch operations specified in the $patch field of the request body."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Indexes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Create a collection index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/custom-actions/index/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an index on the specified collection based on the SODA index specification provided in the request body."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Drop a collection index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{host}:{port}/ords/{schema}/soda/{version}/custom-actions/unindex/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Drops the specified index from the collection."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
