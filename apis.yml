@@ -72,7 +72,7 @@ apis:
         url: https://docs.oracle.com/iaas/api/#/en/database/
       - type: Documentation
         url: https://docs.oracle.com/iaas/Content/Database/home.htm
-      - type: SDK
+      - type: SDKs
         url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
       - type: APIReference
         url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
@@ -205,7 +205,7 @@ common:
     url: https://www.oracle.com/database/
   - type: Console
     url: https://cloud.oracle.com/
-  - type: SignUp
+  - type: Signup
     url: https://signup.cloud.oracle.com/
   - type: GitHubOrganization
     url: https://github.com/oracle

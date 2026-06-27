@@ -2,17 +2,11 @@
   "repo": "oracle-database",
   "feeds": [
     {
-      "source": "https://blogs.oracle.com/database/feed",
-      "error": "HTTPError"
-    },
-    {
-      "source": "https://ocistatus.oraclecloud.com/",
-      "feed_url": "https://ocistatus.oraclecloud.com/",
-      "title": "",
+      "source": "https://blogs.oracle.com/database/",
       "saved": 0,
-      "method": "none"
+      "error": "HTTP 403 Forbidden"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:58:25Z"
 }
