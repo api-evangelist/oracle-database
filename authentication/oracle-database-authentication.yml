@@ -1,0 +1,43 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/oracle-database-oci-openapi.yml, openapi/oracle-database-ords-openapi.yml, openapi/oracle-database-soda-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+schemes:
+- name: ociSignature
+  type: http
+  scheme: bearer
+  description: OCI request signature authentication using API signing keys
+  sources:
+  - openapi/oracle-database-oci-openapi.yml
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /ords/{schema}/oauth/token
+    scopes: 0
+  - flow: authorizationCode
+    authorizationUrl: /ords/{schema}/oauth/auth
+    tokenUrl: /ords/{schema}/oauth/token
+    scopes: 0
+  sources:
+  - openapi/oracle-database-ords-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/oracle-database-ords-openapi.yml
+  - openapi/oracle-database-soda-openapi.yml
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /ords/{schema}/oauth/token
+    scopes: 0
+  sources:
+  - openapi/oracle-database-soda-openapi.yml

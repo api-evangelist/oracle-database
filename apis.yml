@@ -183,6 +183,10 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: DomainSecurity
+    url: security/oracle-database-domain-security.yml
+  - type: Authentication
+    url: authentication/oracle-database-authentication.yml
   - type: OAuthScopes
     url: scopes/oracle-database-scopes.yml
   - type: LinkedIn
