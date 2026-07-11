@@ -183,6 +183,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: OAuthScopes
+    url: scopes/oracle-database-scopes.yml
   - type: LinkedIn
     url: https://www.linkedin.com/showcase/oracleautonomousdatabase
   - type: Portal

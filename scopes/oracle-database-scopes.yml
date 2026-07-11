@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/oracle-database-ords-openapi.yml, openapi/oracle-database-soda-openapi.yml
+docs: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.2/orddg/developing-REST-applications.html
+note: ORDS publishes no fixed OAuth scope catalog — scopes are the user-defined ORDS
+  privilege names protecting each REST module (JWT scope claims must match the privilege
+  name), per https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.2/orddg/developing-REST-applications.html.
+schemes:
+- name: oauth2
+  source: openapi/oracle-database-ords-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /ords/{schema}/oauth/token
+  - flow: authorizationCode
+    authorizationUrl: /ords/{schema}/oauth/auth
+    tokenUrl: /ords/{schema}/oauth/token
+- name: oauth2
+  source: openapi/oracle-database-soda-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /ords/{schema}/oauth/token
+scopes: []
