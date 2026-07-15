@@ -183,6 +183,8 @@ maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/oracle-database-agentic-access.yml
   - type: DomainSecurity
     url: security/oracle-database-domain-security.yml
   - type: Authentication
