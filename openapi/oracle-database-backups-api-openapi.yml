@@ -1,0 +1,237 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Backups API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Backups
+  description: Manage database backups
+paths:
+  /backups:
+    get:
+      operationId: listBackups
+      summary: Oracle Database List database backups
+      description: Returns a list of backups for a database or compartment.
+      tags:
+      - Backups
+      parameters:
+      - name: databaseId
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/compartmentIdParam'
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/pageParam'
+      responses:
+        '200':
+          description: Backups listed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BackupSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createBackup
+      summary: Oracle Database Create a database backup
+      description: Creates a new backup for the specified database.
+      tags:
+      - Backups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBackupDetails'
+      responses:
+        '200':
+          description: Backup creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Backup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /backups/{backupId}:
+    get:
+      operationId: getBackup
+      summary: Oracle Database Get a database backup
+      description: Returns details about the specified backup.
+      tags:
+      - Backups
+      parameters:
+      - name: backupId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Backup details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Backup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteBackup
+      summary: Oracle Database Delete a database backup
+      description: Deletes the specified backup.
+      tags:
+      - Backups
+      parameters:
+      - name: backupId
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '202':
+          description: Deletion accepted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Backup:
+      type: object
+      properties:
+        id:
+          type: string
+        databaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+          enum:
+          - INCREMENTAL
+          - FULL
+          - VIRTUAL_FULL
+        lifecycleState:
+          type: string
+        databaseSizeInGBs:
+          type: number
+        timeStarted:
+          type: string
+          format: date-time
+        timeEnded:
+          type: string
+          format: date-time
+    BackupSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        databaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+        lifecycleState:
+          type: string
+        timeStarted:
+          type: string
+          format: date-time
+    CreateBackupDetails:
+      type: object
+      required:
+      - databaseId
+      - displayName
+      properties:
+        databaseId:
+          type: string
+        displayName:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

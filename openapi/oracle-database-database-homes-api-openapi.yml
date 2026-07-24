@@ -1,0 +1,248 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Database Homes API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Database Homes
+  description: Manage Oracle Database Home directories
+paths:
+  /dbHomes:
+    get:
+      operationId: listDbHomes
+      summary: Oracle Database List Database Homes
+      description: Returns a list of Database Homes in the specified compartment.
+      tags:
+      - Database Homes
+      parameters:
+      - $ref: '#/components/parameters/compartmentIdParam'
+      - name: dbSystemId
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/pageParam'
+      responses:
+        '200':
+          description: Database Homes listed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DbHomeSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createDbHome
+      summary: Oracle Database Create a Database Home
+      description: Creates a new Database Home in the specified DB System.
+      tags:
+      - Database Homes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDbHomeDetails'
+      responses:
+        '200':
+          description: Database Home creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DbHome'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /dbHomes/{dbHomeId}:
+    get:
+      operationId: getDbHome
+      summary: Oracle Database Get a Database Home
+      description: Returns details about the specified Database Home.
+      tags:
+      - Database Homes
+      parameters:
+      - name: dbHomeId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Database Home details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DbHome'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDbHome
+      summary: Oracle Database Delete a Database Home
+      description: Deletes the specified Database Home.
+      tags:
+      - Database Homes
+      parameters:
+      - name: dbHomeId
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '202':
+          description: Deletion accepted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    CreateDatabaseDetails:
+      type: object
+      required:
+      - dbHomeId
+      - dbName
+      - adminPassword
+      properties:
+        dbHomeId:
+          type: string
+        dbName:
+          type: string
+        adminPassword:
+          type: string
+          format: password
+        characterSet:
+          type: string
+        ncharacterSet:
+          type: string
+        pdbName:
+          type: string
+    CreateDbHomeDetails:
+      type: object
+      required:
+      - dbVersion
+      properties:
+        dbVersion:
+          type: string
+        displayName:
+          type: string
+        database:
+          $ref: '#/components/schemas/CreateDatabaseDetails'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    DbHome:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        dbSystemId:
+          type: string
+        dbVersion:
+          type: string
+        lifecycleState:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+    DbHomeSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        dbVersion:
+          type: string
+        lifecycleState:
+          type: string
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

@@ -1,0 +1,411 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Monitoring API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Monitoring
+  description: Database session monitoring, locks, alerts, and wait metrics
+paths:
+  /database/monitoring/sessions/:
+    get:
+      operationId: getSessions
+      summary: Oracle Database Get all sessions
+      description: Returns information about all active database sessions.
+      tags:
+      - Monitoring
+      parameters:
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: Sessions retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/sessions/{sid},{serial_number}/:
+    get:
+      operationId: getSession
+      summary: Oracle Database Get a specific session
+      description: Returns detailed information about a specific database session.
+      tags:
+      - Monitoring
+      parameters:
+      - name: sid
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: serial_number
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Session details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/monitoring/session_locks/:
+    get:
+      operationId: getSessionLocks
+      summary: Oracle Database Get all session locks
+      description: Returns information about all current session locks.
+      tags:
+      - Monitoring
+      responses:
+        '200':
+          description: Session locks retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionLockList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/session_locks/holding/:
+    get:
+      operationId: getBlockingLocks
+      summary: Oracle Database Get blocking locks
+      description: Returns information about sessions holding locks that block others.
+      tags:
+      - Monitoring
+      responses:
+        '200':
+          description: Blocking locks retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionLockList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/session_locks/waiting/:
+    get:
+      operationId: getWaitingLocks
+      summary: Oracle Database Get waiting locks
+      description: Returns information about sessions waiting to acquire locks.
+      tags:
+      - Monitoring
+      responses:
+        '200':
+          description: Waiting locks retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionLockList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/alerts/:
+    get:
+      operationId: getAlerts
+      summary: Oracle Database Get all alerts
+      description: Returns all database alerts and notifications.
+      tags:
+      - Monitoring
+      responses:
+        '200':
+          description: Alerts retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/alerts_summaries/by_message_level:
+    get:
+      operationId: getAlertSummaries
+      summary: Oracle Database Get alert summaries by message level
+      description: Returns alert summary statistics grouped by message level.
+      tags:
+      - Monitoring
+      responses:
+        '200':
+          description: Alert summaries retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertSummaryList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/wait_class_metrics:
+    get:
+      operationId: getWaitClassMetrics
+      summary: Oracle Database Get wait class metrics
+      description: Returns database wait class performance metrics.
+      tags:
+      - Monitoring
+      responses:
+        '200':
+          description: Wait class metrics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaitClassMetricList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/wait_class_totals:
+    get:
+      operationId: getWaitClassTotals
+      summary: Oracle Database Get wait class totals
+      description: Returns total wait time statistics by wait class.
+      tags:
+      - Monitoring
+      responses:
+        '200':
+          description: Wait class totals retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaitClassTotalList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/monitoring/session_limits:
+    get:
+      operationId: getSessionLimits
+      summary: Oracle Database Get session limits
+      description: Returns the configured session limits and current usage.
+      tags:
+      - Monitoring
+      responses:
+        '200':
+          description: Session limits retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionLimitList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    AlertSummaryList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              message_level:
+                type: integer
+              count:
+                type: integer
+    WaitClassTotalList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              wait_class:
+                type: string
+              total_waits:
+                type: integer
+                format: int64
+              time_waited:
+                type: number
+    SessionList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SessionDetail'
+    SessionLimitList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              resource_name:
+                type: string
+              current_utilization:
+                type: integer
+              max_utilization:
+                type: integer
+              limit_value:
+                type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    SessionDetail:
+      type: object
+      properties:
+        sid:
+          type: integer
+        serial_number:
+          type: integer
+        username:
+          type: string
+        status:
+          type: string
+        machine:
+          type: string
+        program:
+          type: string
+        sql_id:
+          type: string
+        event:
+          type: string
+        wait_class:
+          type: string
+        logon_time:
+          type: string
+          format: date-time
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+    PaginatedResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items: {}
+        hasMore:
+          type: boolean
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    WaitClassMetricList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              wait_class:
+                type: string
+              average_waiter_count:
+                type: number
+              dbtime_in_wait:
+                type: number
+    AlertList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              message_text:
+                type: string
+              message_level:
+                type: integer
+              originating_timestamp:
+                type: string
+                format: date-time
+    SessionLockList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sid:
+                type: integer
+              type:
+                type: string
+              mode_held:
+                type: string
+              mode_requested:
+                type: string
+              block:
+                type: integer
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
+    offsetParam:
+      name: offset
+      in: query
+      description: Number of items to skip before returning results
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

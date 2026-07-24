@@ -1,0 +1,224 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Collections API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Collections
+  description: Collection management operations (create, list, delete)
+paths:
+  /:
+    get:
+      operationId: listCollections
+      summary: Oracle Database List all collections
+      description: Returns a list of collection names for the current database schema. Supports pagination through limit and fromID parameters.
+      tags:
+      - Collections
+      parameters:
+      - name: limit
+        in: query
+        description: Maximum number of collections to return
+        schema:
+          type: integer
+          minimum: 1
+      - name: fromID
+        in: query
+        description: Start listing from this collection name (inclusive)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Collections retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Schema not found
+  /{collection}:
+    put:
+      operationId: createCollection
+      summary: Oracle Database Create a collection
+      description: Creates a new document collection. This operation is idempotent - if the collection already exists, it returns 200 instead of 201. An optional request body can specify collection metadata configuration.
+      tags:
+      - Collections
+      parameters:
+      - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        description: Optional collection metadata specification
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CollectionMetadata'
+      responses:
+        '200':
+          description: Collection already exists
+        '201':
+          description: Collection created successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /{collection}/:
+    delete:
+      operationId: deleteCollection
+      summary: Oracle Database Delete a collection
+      description: Deletes the entire collection and all documents it contains. This operation cannot be undone.
+      tags:
+      - Collections
+      parameters:
+      - $ref: '#/components/parameters/collectionParam'
+      responses:
+        '200':
+          description: Collection deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    CollectionMetadata:
+      type: object
+      description: Optional collection configuration metadata
+      properties:
+        keyColumn:
+          type: object
+          properties:
+            name:
+              type: string
+            sqlType:
+              type: string
+            maxLength:
+              type: integer
+            assignmentMethod:
+              type: string
+              enum:
+              - UUID
+              - GUID
+              - SEQUENCE
+              - CLIENT
+        contentColumn:
+          type: object
+          properties:
+            name:
+              type: string
+            sqlType:
+              type: string
+            compress:
+              type: string
+            cache:
+              type: boolean
+            encrypt:
+              type: string
+            validation:
+              type: string
+        versionColumn:
+          type: object
+          properties:
+            name:
+              type: string
+            method:
+              type: string
+              enum:
+              - UUID
+              - TIMESTAMP
+              - SHA256
+              - MD5
+              - NONE
+        lastModifiedColumn:
+          type: object
+          properties:
+            name:
+              type: string
+        readOnly:
+          type: boolean
+    CollectionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Collection name
+              properties:
+                type: object
+                description: Collection metadata properties
+        hasMore:
+          type: boolean
+          description: Whether more collections exist beyond this page
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameter value
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

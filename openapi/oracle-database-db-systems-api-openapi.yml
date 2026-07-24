@@ -1,0 +1,417 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX DB Systems API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: DB Systems
+  description: Manage Oracle Database Cloud Service DB Systems
+paths:
+  /dbSystems:
+    get:
+      operationId: listDbSystems
+      summary: Oracle Database List DB Systems
+      description: Returns a list of DB Systems in the specified compartment.
+      tags:
+      - DB Systems
+      parameters:
+      - $ref: '#/components/parameters/compartmentIdParam'
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/pageParam'
+      - name: displayName
+        in: query
+        schema:
+          type: string
+      - name: lifecycleState
+        in: query
+        schema:
+          type: string
+          enum:
+          - PROVISIONING
+          - AVAILABLE
+          - UPDATING
+          - TERMINATING
+          - TERMINATED
+          - FAILED
+          - MIGRATED
+      responses:
+        '200':
+          description: DB Systems listed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DbSystemSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: launchDbSystem
+      summary: Oracle Database Launch a DB System
+      description: Creates and launches a new DB System with the specified configuration. This is a long-running operation tracked via work requests.
+      tags:
+      - DB Systems
+      parameters:
+      - $ref: '#/components/parameters/opcRetryTokenParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LaunchDbSystemDetails'
+      responses:
+        '200':
+          description: DB System launch initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DbSystem'
+          headers:
+            opc-work-request-id:
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /dbSystems/{dbSystemId}:
+    get:
+      operationId: getDbSystem
+      summary: Oracle Database Get a DB System
+      description: Returns details about the specified DB System.
+      tags:
+      - DB Systems
+      parameters:
+      - $ref: '#/components/parameters/dbSystemIdParam'
+      responses:
+        '200':
+          description: DB System details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DbSystem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateDbSystem
+      summary: Oracle Database Update a DB System
+      description: Updates the specified DB System configuration.
+      tags:
+      - DB Systems
+      parameters:
+      - $ref: '#/components/parameters/dbSystemIdParam'
+      - $ref: '#/components/parameters/ifMatchParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDbSystemDetails'
+      responses:
+        '200':
+          description: DB System update initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DbSystem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: terminateDbSystem
+      summary: Oracle Database Terminate a DB System
+      description: Terminates and deletes the specified DB System.
+      tags:
+      - DB Systems
+      parameters:
+      - $ref: '#/components/parameters/dbSystemIdParam'
+      - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '202':
+          description: Termination accepted
+          headers:
+            opc-work-request-id:
+              schema:
+                type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    CreateDatabaseDetails:
+      type: object
+      required:
+      - dbHomeId
+      - dbName
+      - adminPassword
+      properties:
+        dbHomeId:
+          type: string
+        dbName:
+          type: string
+        adminPassword:
+          type: string
+          format: password
+        characterSet:
+          type: string
+        ncharacterSet:
+          type: string
+        pdbName:
+          type: string
+    UpdateDbSystemDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+        cpuCoreCount:
+          type: integer
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        dataStorageSizeInGBs:
+          type: integer
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    LaunchDbSystemDetails:
+      type: object
+      required:
+      - compartmentId
+      - availabilityDomain
+      - shape
+      - subnetId
+      - sshPublicKeys
+      - hostname
+      - cpuCoreCount
+      properties:
+        compartmentId:
+          type: string
+        availabilityDomain:
+          type: string
+        shape:
+          type: string
+        subnetId:
+          type: string
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        hostname:
+          type: string
+        displayName:
+          type: string
+        cpuCoreCount:
+          type: integer
+        nodeCount:
+          type: integer
+        initialDataStorageSizeInGB:
+          type: integer
+        databaseEdition:
+          type: string
+          enum:
+          - STANDARD_EDITION
+          - ENTERPRISE_EDITION
+          - ENTERPRISE_EDITION_HIGH_PERFORMANCE
+          - ENTERPRISE_EDITION_EXTREME_PERFORMANCE
+        dbHome:
+          $ref: '#/components/schemas/CreateDbHomeDetails'
+        licenseModel:
+          type: string
+          enum:
+          - LICENSE_INCLUDED
+          - BRING_YOUR_OWN_LICENSE
+        diskRedundancy:
+          type: string
+          enum:
+          - HIGH
+          - NORMAL
+    CreateDbHomeDetails:
+      type: object
+      required:
+      - dbVersion
+      properties:
+        dbVersion:
+          type: string
+        displayName:
+          type: string
+        database:
+          $ref: '#/components/schemas/CreateDatabaseDetails'
+    DbSystem:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        availabilityDomain:
+          type: string
+        shape:
+          type: string
+        cpuCoreCount:
+          type: integer
+        nodeCount:
+          type: integer
+        dataStorageSizeInGBs:
+          type: integer
+        databaseEdition:
+          type: string
+          enum:
+          - STANDARD_EDITION
+          - ENTERPRISE_EDITION
+          - ENTERPRISE_EDITION_HIGH_PERFORMANCE
+          - ENTERPRISE_EDITION_EXTREME_PERFORMANCE
+        lifecycleState:
+          type: string
+        hostname:
+          type: string
+        domain:
+          type: string
+        subnetId:
+          type: string
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        timeCreated:
+          type: string
+          format: date-time
+        version:
+          type: string
+        licenseModel:
+          type: string
+        diskRedundancy:
+          type: string
+          enum:
+          - HIGH
+          - NORMAL
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    DbSystemSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        shape:
+          type: string
+        lifecycleState:
+          type: string
+        databaseEdition:
+          type: string
+        cpuCoreCount:
+          type: integer
+        timeCreated:
+          type: string
+          format: date-time
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    opcRetryTokenParam:
+      name: opc-retry-token
+      in: header
+      description: Unique retry token to prevent duplicate requests
+      schema:
+        type: string
+    dbSystemIdParam:
+      name: dbSystemId
+      in: path
+      required: true
+      description: The OCID of the DB System
+      schema:
+        type: string
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

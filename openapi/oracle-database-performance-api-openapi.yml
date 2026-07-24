@@ -1,0 +1,396 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Performance API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Performance
+  description: SQL performance analysis, execution plans, and active session history
+paths:
+  /database/performance/sql_statements/:
+    get:
+      operationId: getSQLStatements
+      summary: Oracle Database Get all SQL statements
+      description: Returns performance statistics for all SQL statements in the shared pool.
+      tags:
+      - Performance
+      parameters:
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: SQL statements retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SQLStatementList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/performance/top_sql_statements/:
+    get:
+      operationId: getTopSQLStatements
+      summary: Oracle Database Get top SQL by CPU usage
+      description: Returns the top SQL statements ranked by CPU consumption.
+      tags:
+      - Performance
+      responses:
+        '200':
+          description: Top SQL statements retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SQLStatementList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/performance/sql_statements/{sql_id}/:
+    get:
+      operationId: getSQLStatementStats
+      summary: Oracle Database Get SQL statement statistics
+      description: Returns detailed statistics for a specific SQL statement.
+      tags:
+      - Performance
+      parameters:
+      - name: sql_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: SQL statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SQLStatementDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/performance/sql_statements/{sql_id}/text:
+    get:
+      operationId: getSQLStatementText
+      summary: Oracle Database Get SQL statement text
+      description: Returns the full SQL text for a specific statement.
+      tags:
+      - Performance
+      parameters:
+      - name: sql_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: SQL text retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SQLText'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/performance/sql_statements/{sql_id}/plan:
+    get:
+      operationId: getSQLExecutionPlan
+      summary: Oracle Database Get SQL execution plan
+      description: Returns the execution plan for a specific SQL statement.
+      tags:
+      - Performance
+      parameters:
+      - name: sql_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Execution plan retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExecutionPlan'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/performance/sql_statements/{sql_id}/history:
+    get:
+      operationId: getSQLHistory
+      summary: Oracle Database Get SQL statement history
+      description: Returns historical performance data for a specific SQL statement.
+      tags:
+      - Performance
+      parameters:
+      - name: sql_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: SQL history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SQLHistoryList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/performance/active_sessions_history/:
+    get:
+      operationId: getActiveSessionsHistory
+      summary: Oracle Database Get active sessions history
+      description: Returns the active session history (ASH) data.
+      tags:
+      - Performance
+      responses:
+        '200':
+          description: Active sessions history retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveSessionHistoryList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/performance/active_sessions_history_waits/:
+    get:
+      operationId: getActiveSessionsHistoryWaits
+      summary: Oracle Database Get active session history waits
+      description: Returns wait event data from the active session history.
+      tags:
+      - Performance
+      responses:
+        '200':
+          description: Wait data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActiveSessionWaitList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    ActiveSessionHistoryList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sample_time:
+                type: string
+                format: date-time
+              session_id:
+                type: integer
+              sql_id:
+                type: string
+              event:
+                type: string
+              wait_class:
+                type: string
+    ExecutionPlan:
+      type: object
+      properties:
+        sql_id:
+          type: string
+        plan_hash_value:
+          type: integer
+          format: int64
+        steps:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              operation:
+                type: string
+              options:
+                type: string
+              object_name:
+                type: string
+              cost:
+                type: integer
+              cardinality:
+                type: integer
+    SQLHistoryList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sql_id:
+                type: string
+              snap_id:
+                type: integer
+              executions_delta:
+                type: integer
+              cpu_time_delta:
+                type: integer
+                format: int64
+              elapsed_time_delta:
+                type: integer
+                format: int64
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+    ActiveSessionWaitList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              event:
+                type: string
+              wait_class:
+                type: string
+              total_waits:
+                type: integer
+              average_wait_ms:
+                type: number
+    SQLStatementDetail:
+      type: object
+      properties:
+        sql_id:
+          type: string
+        sql_text:
+          type: string
+        executions:
+          type: integer
+          format: int64
+        cpu_time:
+          type: integer
+          format: int64
+        elapsed_time:
+          type: integer
+          format: int64
+        buffer_gets:
+          type: integer
+          format: int64
+        disk_reads:
+          type: integer
+          format: int64
+        rows_processed:
+          type: integer
+          format: int64
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    PaginatedResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items: {}
+        hasMore:
+          type: boolean
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    SQLText:
+      type: object
+      properties:
+        sql_id:
+          type: string
+        sql_fulltext:
+          type: string
+    SQLStatementList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SQLStatementDetail'
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
+    offsetParam:
+      name: offset
+      in: query
+      description: Number of items to skip before returning results
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

@@ -1,0 +1,176 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Indexes API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Indexes
+  description: Collection index management
+paths:
+  /custom-actions/index/{collection}:
+    post:
+      operationId: createIndex
+      summary: Oracle Database Create a collection index
+      description: Creates an index on the specified collection based on the SODA index specification provided in the request body.
+      tags:
+      - Indexes
+      parameters:
+      - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        required: true
+        description: SODA index specification
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndexSpecification'
+      responses:
+        '200':
+          description: Index created successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /custom-actions/unindex/{collection}:
+    post:
+      operationId: dropIndex
+      summary: Oracle Database Drop a collection index
+      description: Drops the specified index from the collection.
+      tags:
+      - Indexes
+      parameters:
+      - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        required: true
+        description: Index to drop
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  description: Name of the index to drop
+      responses:
+        '200':
+          description: Index dropped successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
+  schemas:
+    IndexSpecification:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Index name
+        fields:
+          type: array
+          description: Fields to index
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+                description: JSON path to the field
+              datatype:
+                type: string
+                description: Data type for indexing
+                enum:
+                - string
+                - number
+                - date
+                - timestamp
+              maxLength:
+                type: integer
+                description: Maximum length for string fields
+              order:
+                type: string
+                enum:
+                - asc
+                - desc
+        unique:
+          type: boolean
+          description: Whether the index enforces uniqueness
+        language:
+          type: string
+          description: Language for text indexes
+        spatial:
+          type: string
+          description: Spatial index specification
+        search_on:
+          type: string
+          description: Full-text search specification
+          enum:
+          - none
+          - text
+          - text_value
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  responses:
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

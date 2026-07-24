@@ -1,0 +1,231 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX PDB Snapshots API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: PDB Snapshots
+  description: PDB snapshot carousel management
+paths:
+  /database/snapshots/:
+    get:
+      operationId: getSnapshots
+      summary: Oracle Database Get all PDB snapshots
+      description: Returns a list of all PDB snapshots.
+      tags:
+      - PDB Snapshots
+      responses:
+        '200':
+          description: Snapshots retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSnapshot
+      summary: Oracle Database Create a PDB snapshot
+      description: Creates a new snapshot of the current pluggable database state.
+      tags:
+      - PDB Snapshots
+      responses:
+        '201':
+          description: Snapshot created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snapshot'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      operationId: configureAutoSnapshots
+      summary: Oracle Database Configure automatic snapshots
+      description: Configures automatic snapshot scheduling for the PDB.
+      tags:
+      - PDB Snapshots
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AutoSnapshotConfig'
+      responses:
+        '200':
+          description: Auto snapshot configuration updated successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/snapshots/{snapshot_name}:
+    get:
+      operationId: getSnapshot
+      summary: Oracle Database Get a specific snapshot
+      description: Returns details about a specific PDB snapshot.
+      tags:
+      - PDB Snapshots
+      parameters:
+      - name: snapshot_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Snapshot details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snapshot'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createNamedSnapshot
+      summary: Oracle Database Create a named PDB snapshot
+      description: Creates a new snapshot with the specified name.
+      tags:
+      - PDB Snapshots
+      parameters:
+      - name: snapshot_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: Named snapshot created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Snapshot'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteSnapshot
+      summary: Oracle Database Delete a PDB snapshot
+      description: Deletes the specified PDB snapshot.
+      tags:
+      - PDB Snapshots
+      parameters:
+      - name: snapshot_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Snapshot deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/snapshot_mode:
+    get:
+      operationId: getSnapshotMode
+      summary: Oracle Database Get snapshot mode
+      description: Returns the current snapshot mode configuration.
+      tags:
+      - PDB Snapshots
+      responses:
+        '200':
+          description: Snapshot mode retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SnapshotMode'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    AutoSnapshotConfig:
+      type: object
+      properties:
+        auto_snapshot_enabled:
+          type: boolean
+        snapshot_interval_minutes:
+          type: integer
+        max_snapshots:
+          type: integer
+    SnapshotMode:
+      type: object
+      properties:
+        snapshot_mode:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    Snapshot:
+      type: object
+      properties:
+        snapshot_name:
+          type: string
+        snapshot_scn:
+          type: integer
+          format: int64
+        creation_time:
+          type: string
+          format: date-time
+        pdb_name:
+          type: string
+    SnapshotList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snapshot'
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

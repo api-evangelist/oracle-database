@@ -1,0 +1,194 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Queries API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Queries
+  description: Query by Example (QBE) and filter operations
+paths:
+  /custom-actions/query/{collection}:
+    post:
+      operationId: queryCollection
+      summary: Oracle Database Query collection with QBE filter
+      description: Queries the collection using a Query by Example (QBE) filter specification in the request body. Returns matching documents with optional pagination. This endpoint is equivalent to /{collection}/?action=query.
+      tags:
+      - Queries
+      parameters:
+      - $ref: '#/components/parameters/collectionParam'
+      - name: limit
+        in: query
+        description: Maximum number of documents to return
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        description: Number of documents to skip
+        schema:
+          type: integer
+      - name: fields
+        in: query
+        description: Control which fields are returned
+        schema:
+          type: string
+          enum:
+          - id
+          - value
+          - all
+      requestBody:
+        required: true
+        description: QBE filter specification
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QBEFilter'
+      responses:
+        '200':
+          description: Query results returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique document key
+        etag:
+          type: string
+          description: Document version tag for optimistic concurrency
+        lastModified:
+          type: string
+          format: date-time
+          description: Last modification timestamp
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        value:
+          type: object
+          description: Document content (when fields=value or fields=all)
+        mediaType:
+          type: string
+          description: Content type for non-JSON documents
+        bytes:
+          type: integer
+          description: Content length for non-JSON documents
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: Link URL
+        mediaType:
+          type: string
+          description: Media type of the linked resource
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    DocumentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        hasMore:
+          type: boolean
+          description: Whether more documents exist beyond this page
+        limit:
+          type: integer
+          description: Server-imposed result limit
+        offset:
+          type: integer
+          description: Offset of first returned result
+        count:
+          type: integer
+          description: Number of documents in this response
+        totalResults:
+          type: integer
+          description: Total documents in collection (only if totalResults=true)
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    QBEFilter:
+      type: object
+      description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
+      additionalProperties: true
+      example:
+        name: John
+        salary:
+          $gt: 50000
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

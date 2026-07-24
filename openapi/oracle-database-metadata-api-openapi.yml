@@ -1,0 +1,232 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Metadata API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Metadata
+  description: Collection metadata and catalog operations
+paths:
+  /metadata-catalog:
+    get:
+      operationId: getCatalog
+      summary: Oracle Database Get collection catalog with metadata
+      description: Lists all collections in the schema with full metadata and navigation links. Each collection includes its properties and links to the collection itself and its JSON schema.
+      tags:
+      - Metadata
+      parameters:
+      - name: limit
+        in: query
+        description: Maximum number of collections to return
+        schema:
+          type: integer
+          minimum: 1
+      - name: fromID
+        in: query
+        description: Start from this collection name (inclusive)
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Catalog retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CatalogResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /metadata-catalog/{collection}:
+    get:
+      operationId: getCollectionSchema
+      summary: Oracle Database Get JSON schema for a collection
+      description: Retrieves the JSON schema describing the document structure for the specified collection, including collection properties and column configurations.
+      tags:
+      - Metadata
+      parameters:
+      - $ref: '#/components/parameters/collectionParam'
+      responses:
+        '200':
+          description: Collection schema retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CollectionSchema'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /custom-actions/:
+    get:
+      operationId: listCustomActions
+      summary: Oracle Database List available custom actions
+      description: Returns a list of available custom actions for SODA collections.
+      tags:
+      - Metadata
+      responses:
+        '200':
+          description: Custom actions retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        description:
+                          type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
+  schemas:
+    CollectionSchema:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Collection name
+        properties:
+          type: object
+          properties:
+            schemaName:
+              type: string
+              description: Database schema name
+            tableName:
+              type: string
+              description: Underlying table name
+            keyColumn:
+              type: object
+              description: Key column configuration
+            contentColumn:
+              type: object
+              description: Content column configuration
+            versionColumn:
+              type: object
+              description: Version column configuration
+            lastModifiedColumn:
+              type: object
+              description: Last modified column configuration
+            readOnly:
+              type: boolean
+              description: Whether collection is read-only
+        schema:
+          type: object
+          description: JSON Schema describing document structure
+          properties:
+            type:
+              type: string
+            properties:
+              type: object
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: Link URL
+        mediaType:
+          type: string
+          description: Media type of the linked resource
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    CatalogResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Collection name
+              properties:
+                type: object
+                description: Collection metadata properties
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+        hasMore:
+          type: boolean
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameter value
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

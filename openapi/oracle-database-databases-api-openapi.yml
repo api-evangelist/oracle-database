@@ -1,0 +1,296 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Databases API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Databases
+  description: Manage databases within DB Systems
+paths:
+  /databases:
+    get:
+      operationId: listDatabases
+      summary: Oracle Database List databases
+      description: Returns a list of databases in the specified compartment or DB System.
+      tags:
+      - Databases
+      parameters:
+      - $ref: '#/components/parameters/compartmentIdParam'
+      - name: dbHomeId
+        in: query
+        schema:
+          type: string
+      - name: systemId
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/pageParam'
+      responses:
+        '200':
+          description: Databases listed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DatabaseSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createDatabase
+      summary: Oracle Database Create a database
+      description: Creates a new database in the specified DB Home.
+      tags:
+      - Databases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDatabaseDetails'
+      responses:
+        '200':
+          description: Database creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /databases/{databaseId}:
+    get:
+      operationId: getDatabase
+      summary: Oracle Database Get a database
+      description: Returns details about the specified database.
+      tags:
+      - Databases
+      parameters:
+      - name: databaseId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Database details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateDatabase
+      summary: Oracle Database Update a database
+      description: Updates the specified database.
+      tags:
+      - Databases
+      parameters:
+      - name: databaseId
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ifMatchParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDatabaseDetails'
+      responses:
+        '200':
+          description: Database update initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Database'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDatabase
+      summary: Oracle Database Delete a database
+      description: Deletes the specified database.
+      tags:
+      - Databases
+      parameters:
+      - name: databaseId
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '202':
+          description: Deletion accepted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    CreateDatabaseDetails:
+      type: object
+      required:
+      - dbHomeId
+      - dbName
+      - adminPassword
+      properties:
+        dbHomeId:
+          type: string
+        dbName:
+          type: string
+        adminPassword:
+          type: string
+          format: password
+        characterSet:
+          type: string
+        ncharacterSet:
+          type: string
+        pdbName:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    DatabaseSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        dbName:
+          type: string
+        dbHomeId:
+          type: string
+        lifecycleState:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+    UpdateDatabaseDetails:
+      type: object
+      properties:
+        dbBackupConfig:
+          type: object
+          properties:
+            autoBackupEnabled:
+              type: boolean
+            recoveryWindowInDays:
+              type: integer
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    Database:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        dbName:
+          type: string
+        dbUniqueName:
+          type: string
+        dbHomeId:
+          type: string
+        dbSystemId:
+          type: string
+        lifecycleState:
+          type: string
+        characterSet:
+          type: string
+        ncharacterSet:
+          type: string
+        pdbName:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

@@ -1,0 +1,542 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Data Dictionary API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Data Dictionary
+  description: Database tables, views, columns, indexes, and object metadata
+paths:
+  /database/objects/tables/:
+    get:
+      operationId: getTables
+      summary: Oracle Database Get all tables
+      description: Returns metadata for all database tables accessible to the current user.
+      tags:
+      - Data Dictionary
+      parameters:
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: Tables retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/objects/tables/{owner},{table_name}:
+    get:
+      operationId: getTable
+      summary: Oracle Database Get a specific table
+      description: Returns metadata for a specific database table.
+      tags:
+      - Data Dictionary
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: table_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Table metadata retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TableMetadata'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/objects/columns/:
+    get:
+      operationId: getColumns
+      summary: Oracle Database Get all table columns
+      description: Returns column metadata for all tables.
+      tags:
+      - Data Dictionary
+      parameters:
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: Columns retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ColumnList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/objects/columns/{owner},{table_name},{column_name}:
+    get:
+      operationId: getColumn
+      summary: Oracle Database Get a specific column
+      description: Returns metadata for a specific table column.
+      tags:
+      - Data Dictionary
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: table_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: column_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Column metadata retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ColumnMetadata'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/objects/indexes/:
+    get:
+      operationId: getIndexes
+      summary: Oracle Database Get all indexes
+      description: Returns metadata for all database indexes.
+      tags:
+      - Data Dictionary
+      parameters:
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: Indexes retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/objects/indexes/{owner},{index_name}:
+    get:
+      operationId: getIndex
+      summary: Oracle Database Get a specific index
+      description: Returns metadata for a specific database index.
+      tags:
+      - Data Dictionary
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: index_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Index metadata retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IndexMetadata'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/objects/functions/:
+    get:
+      operationId: getFunctions
+      summary: Oracle Database Get all functions
+      description: Returns metadata for all database functions.
+      tags:
+      - Data Dictionary
+      responses:
+        '200':
+          description: Functions retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FunctionList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/objects/functions/{object_id}:
+    get:
+      operationId: getFunction
+      summary: Oracle Database Get a specific function
+      description: Returns metadata for a specific database function.
+      tags:
+      - Data Dictionary
+      parameters:
+      - name: object_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Function metadata retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FunctionMetadata'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/objects/foreign_keys/:
+    get:
+      operationId: getForeignKeys
+      summary: Oracle Database Get all foreign keys
+      description: Returns metadata for all foreign key constraints.
+      tags:
+      - Data Dictionary
+      responses:
+        '200':
+          description: Foreign keys retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForeignKeyList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/db_links/:
+    get:
+      operationId: getDatabaseLinks
+      summary: Oracle Database Get all database links
+      description: Returns metadata for all database links.
+      tags:
+      - Data Dictionary
+      responses:
+        '200':
+          description: Database links retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseLinkList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/db_links/{owner},{db_link}:
+    get:
+      operationId: getDatabaseLink
+      summary: Oracle Database Get a specific database link
+      description: Returns metadata for a specific database link.
+      tags:
+      - Data Dictionary
+      parameters:
+      - name: owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: db_link
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Database link retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseLink'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/tablespaces/:
+    get:
+      operationId: getTablespacesDict
+      summary: Oracle Database Get all tablespaces
+      description: Returns data dictionary information for all tablespaces.
+      tags:
+      - Data Dictionary
+      responses:
+        '200':
+          description: Tablespaces retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TablespaceList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    FunctionMetadata:
+      type: object
+      properties:
+        object_id:
+          type: integer
+        owner:
+          type: string
+        object_name:
+          type: string
+        object_type:
+          type: string
+        status:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+    ForeignKeyList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+              constraint_name:
+                type: string
+              table_name:
+                type: string
+              r_owner:
+                type: string
+              r_constraint_name:
+                type: string
+              status:
+                type: string
+    FunctionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FunctionMetadata'
+    TableList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/TableMetadata'
+    ColumnList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/ColumnMetadata'
+    IndexMetadata:
+      type: object
+      properties:
+        owner:
+          type: string
+        index_name:
+          type: string
+        table_name:
+          type: string
+        index_type:
+          type: string
+        uniqueness:
+          type: string
+        status:
+          type: string
+    PaginatedResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items: {}
+        hasMore:
+          type: boolean
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    TablespaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tablespace'
+    IndexList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndexMetadata'
+    ColumnMetadata:
+      type: object
+      properties:
+        owner:
+          type: string
+        table_name:
+          type: string
+        column_name:
+          type: string
+        data_type:
+          type: string
+        data_length:
+          type: integer
+        nullable:
+          type: string
+        column_id:
+          type: integer
+    DatabaseLinkList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabaseLink'
+    DatabaseLink:
+      type: object
+      properties:
+        owner:
+          type: string
+        db_link:
+          type: string
+        username:
+          type: string
+        host:
+          type: string
+        created:
+          type: string
+          format: date-time
+    TableMetadata:
+      type: object
+      properties:
+        owner:
+          type: string
+        table_name:
+          type: string
+        tablespace_name:
+          type: string
+        num_rows:
+          type: integer
+          format: int64
+        last_analyzed:
+          type: string
+          format: date-time
+        status:
+          type: string
+        temporary:
+          type: string
+    Tablespace:
+      type: object
+      properties:
+        tablespace_name:
+          type: string
+        status:
+          type: string
+        contents:
+          type: string
+        block_size:
+          type: integer
+        allocated_bytes:
+          type: integer
+          format: int64
+        used_bytes:
+          type: integer
+          format: int64
+        free_bytes:
+          type: integer
+          format: int64
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
+    offsetParam:
+      name: offset
+      in: query
+      description: Number of items to skip before returning results
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

@@ -1,0 +1,494 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Pluggable Databases API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Pluggable Databases
+  description: Manage pluggable databases in multitenant architecture
+paths:
+  /pluggableDatabases:
+    get:
+      operationId: listPluggableDatabases
+      summary: Oracle Database List pluggable databases
+      description: Returns a list of pluggable databases.
+      tags:
+      - Pluggable Databases
+      parameters:
+      - $ref: '#/components/parameters/compartmentIdParam'
+      - name: databaseId
+        in: query
+        schema:
+          type: string
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/pageParam'
+      responses:
+        '200':
+          description: Pluggable databases listed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PluggableDatabaseSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createPluggableDatabase
+      summary: Oracle Database Create a pluggable database
+      description: Creates a new pluggable database.
+      tags:
+      - Pluggable Databases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePluggableDatabaseDetails'
+      responses:
+        '200':
+          description: Pluggable database creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluggableDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /pluggableDatabases/{pluggableDatabaseId}:
+    get:
+      operationId: getPluggableDatabase
+      summary: Oracle Database Get a pluggable database
+      description: Returns details about the specified pluggable database.
+      tags:
+      - Pluggable Databases
+      parameters:
+      - name: pluggableDatabaseId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Pluggable database details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluggableDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updatePluggableDatabase
+      summary: Oracle Database Update a pluggable database
+      description: Updates the specified pluggable database.
+      tags:
+      - Pluggable Databases
+      parameters:
+      - name: pluggableDatabaseId
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ifMatchParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePluggableDatabaseDetails'
+      responses:
+        '200':
+          description: Pluggable database updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PluggableDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deletePluggableDatabase
+      summary: Oracle Database Delete a pluggable database
+      description: Deletes the specified pluggable database.
+      tags:
+      - Pluggable Databases
+      parameters:
+      - name: pluggableDatabaseId
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '202':
+          description: Deletion accepted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/pdbs/:
+    get:
+      operationId: getPDBs
+      summary: Oracle Database Get all pluggable databases
+      description: Returns a list of all pluggable databases in the container database.
+      tags:
+      - Pluggable Databases
+      responses:
+        '200':
+          description: PDBs retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PDBList'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+    post:
+      operationId: createPDB
+      summary: Oracle Database Create a pluggable database
+      description: Creates a new pluggable database in the container database.
+      tags:
+      - Pluggable Databases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePDBRequest'
+      responses:
+        '201':
+          description: PDB created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PDB'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+  /database/pdbs/{pdb_name}:
+    get:
+      operationId: getPDB
+      summary: Oracle Database Get a specific pluggable database
+      description: Returns details about a specific pluggable database.
+      tags:
+      - Pluggable Databases
+      parameters:
+      - name: pdb_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: PDB details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PDB'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound_2'
+    patch:
+      operationId: updatePDB
+      summary: Oracle Database Update a pluggable database
+      description: Updates properties of a specific pluggable database including open/close state.
+      tags:
+      - Pluggable Databases
+      parameters:
+      - name: pdb_name
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePDBRequest'
+      responses:
+        '200':
+          description: PDB updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PDB'
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound_2'
+    delete:
+      operationId: dropPDB
+      summary: Oracle Database Drop a pluggable database
+      description: Drops the specified pluggable database from the container database.
+      tags:
+      - Pluggable Databases
+      parameters:
+      - name: pdb_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: PDB dropped successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized_2'
+        '404':
+          $ref: '#/components/responses/NotFound_2'
+components:
+  schemas:
+    Error_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    UpdatePluggableDatabaseDetails:
+      type: object
+      properties:
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+        definedTags:
+          type: object
+          additionalProperties:
+            type: object
+    PluggableDatabase:
+      type: object
+      properties:
+        id:
+          type: string
+        containerDatabaseId:
+          type: string
+        pdbName:
+          type: string
+        compartmentId:
+          type: string
+        lifecycleState:
+          type: string
+          enum:
+          - PROVISIONING
+          - AVAILABLE
+          - TERMINATING
+          - TERMINATED
+          - UPDATING
+          - FAILED
+        openMode:
+          type: string
+          enum:
+          - READ_ONLY
+          - READ_WRITE
+          - MOUNTED
+          - MIGRATE
+        timeCreated:
+          type: string
+          format: date-time
+        connectionStrings:
+          type: object
+          properties:
+            pdbDefault:
+              type: string
+            pdbIpDefault:
+              type: string
+    UpdatePDBRequest:
+      type: object
+      properties:
+        state:
+          type: string
+          enum:
+          - OPEN
+          - CLOSE
+        open_mode:
+          type: string
+          enum:
+          - READ WRITE
+          - READ ONLY
+    PDB:
+      type: object
+      properties:
+        pdb_name:
+          type: string
+        pdb_id:
+          type: integer
+        status:
+          type: string
+        open_mode:
+          type: string
+        total_size:
+          type: integer
+          format: int64
+        creation_time:
+          type: string
+          format: date-time
+    PluggableDatabaseSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        containerDatabaseId:
+          type: string
+        pdbName:
+          type: string
+        lifecycleState:
+          type: string
+        openMode:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+    PDBList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PDB'
+    CreatePDBRequest:
+      type: object
+      required:
+      - pdb_name
+      - admin_username
+      - admin_password
+      properties:
+        pdb_name:
+          type: string
+        admin_username:
+          type: string
+        admin_password:
+          type: string
+          format: password
+        file_name_convert:
+          type: string
+        storage_limit:
+          type: integer
+          format: int64
+    CreatePluggableDatabaseDetails:
+      type: object
+      required:
+      - containerDatabaseId
+      - pdbName
+      properties:
+        containerDatabaseId:
+          type: string
+        pdbName:
+          type: string
+        pdbAdminPassword:
+          type: string
+          format: password
+        tdeWalletPassword:
+          type: string
+          format: password
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized_2:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound_2:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+  parameters:
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

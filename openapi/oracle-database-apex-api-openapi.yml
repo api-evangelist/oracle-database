@@ -1,0 +1,252 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: APEX
+  description: Oracle APEX workspace and application management
+paths:
+  /apex/workspaces/:
+    get:
+      operationId: getAPEXWorkspaces
+      summary: Oracle Database Get all APEX workspaces
+      description: Returns a list of all Oracle APEX workspaces.
+      tags:
+      - APEX
+      responses:
+        '200':
+          description: Workspaces retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXWorkspaceList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /apex/workspaces/{workspace_name}/:
+    get:
+      operationId: getAPEXWorkspace
+      summary: Oracle Database Get a specific APEX workspace
+      description: Returns details about a specific Oracle APEX workspace.
+      tags:
+      - APEX
+      parameters:
+      - name: workspace_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Workspace details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXWorkspace'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apex/workspaces/{workspace_name}/applications/:
+    get:
+      operationId: getAPEXApplications
+      summary: Oracle Database Get workspace applications
+      description: Returns applications in a specific APEX workspace.
+      tags:
+      - APEX
+      parameters:
+      - name: workspace_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Applications retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXApplicationList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /apex/workspaces/{workspace_name}/applications/{application_id}:
+    put:
+      operationId: createOrUpdateAPEXApplication
+      summary: Oracle Database Create or update an APEX application
+      description: Creates a new or updates an existing APEX application.
+      tags:
+      - APEX
+      parameters:
+      - name: workspace_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: application_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/APEXApplicationRequest'
+      responses:
+        '200':
+          description: Application updated successfully
+        '201':
+          description: Application created successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteAPEXApplication
+      summary: Oracle Database Delete an APEX application
+      description: Deletes a specific APEX application.
+      tags:
+      - APEX
+      parameters:
+      - name: workspace_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: application_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Application deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /apex/statistics/overview:
+    get:
+      operationId: getAPEXOverview
+      summary: Oracle Database Get APEX instance overview
+      description: Returns overview statistics for the APEX instance.
+      tags:
+      - APEX
+      responses:
+        '200':
+          description: Overview statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXOverview'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    APEXApplicationRequest:
+      type: object
+      properties:
+        application_name:
+          type: string
+        workspace:
+          type: string
+    APEXWorkspace:
+      type: object
+      properties:
+        workspace_name:
+          type: string
+        workspace_id:
+          type: integer
+        schemas:
+          type: array
+          items:
+            type: string
+    APEXWorkspaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/APEXWorkspace'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    APEXApplicationList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              application_id:
+                type: integer
+              application_name:
+                type: string
+              workspace:
+                type: string
+              version:
+                type: string
+    APEXOverview:
+      type: object
+      properties:
+        total_workspaces:
+          type: integer
+        total_applications:
+          type: integer
+        total_developers:
+          type: integer
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

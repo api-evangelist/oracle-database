@@ -1,0 +1,265 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Data Pump API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Data Pump
+  description: High-speed data and metadata export/import operations
+paths:
+  /database/datapump/export:
+    post:
+      operationId: createExportJob
+      summary: Oracle Database Create a Data Pump export job
+      description: Creates a new Data Pump export job for data and metadata extraction.
+      tags:
+      - Data Pump
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataPumpExportRequest'
+      responses:
+        '201':
+          description: Export job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataPumpJob'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/datapump/import:
+    post:
+      operationId: createImportJob
+      summary: Oracle Database Create a Data Pump import job
+      description: Creates a new Data Pump import job for data and metadata loading.
+      tags:
+      - Data Pump
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DataPumpImportRequest'
+      responses:
+        '201':
+          description: Import job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataPumpJob'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/datapump/jobs/:
+    get:
+      operationId: getDataPumpJobs
+      summary: Oracle Database Get all Data Pump jobs
+      description: Returns a list of all Data Pump jobs.
+      tags:
+      - Data Pump
+      responses:
+        '200':
+          description: Jobs retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataPumpJobList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/datapump/jobs/{owner_name},{job_name}/:
+    get:
+      operationId: getDataPumpJob
+      summary: Oracle Database Get a specific Data Pump job
+      description: Returns details about a specific Data Pump job.
+      tags:
+      - Data Pump
+      parameters:
+      - name: owner_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: job_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataPumpJob'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/datapump/jobs/{owner_name},{job_name}/{filename}:
+    get:
+      operationId: getDataPumpJobFile
+      summary: Oracle Database Get a Data Pump job file
+      description: Returns the contents of a specific Data Pump job output file.
+      tags:
+      - Data Pump
+      parameters:
+      - name: owner_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: job_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: filename
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: File contents retrieved successfully
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    DataPumpJob:
+      type: object
+      properties:
+        owner_name:
+          type: string
+        job_name:
+          type: string
+        operation:
+          type: string
+        job_mode:
+          type: string
+        state:
+          type: string
+        degree:
+          type: integer
+        attached_sessions:
+          type: integer
+    DataPumpJobList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataPumpJob'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    DataPumpExportRequest:
+      type: object
+      required:
+      - job_name
+      properties:
+        job_name:
+          type: string
+        schemas:
+          type: array
+          items:
+            type: string
+        tables:
+          type: array
+          items:
+            type: string
+        directory:
+          type: string
+        dumpfile:
+          type: string
+        logfile:
+          type: string
+    DataPumpImportRequest:
+      type: object
+      required:
+      - job_name
+      properties:
+        job_name:
+          type: string
+        directory:
+          type: string
+        dumpfile:
+          type: string
+        schemas:
+          type: array
+          items:
+            type: string
+        remap_schema:
+          type: string
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

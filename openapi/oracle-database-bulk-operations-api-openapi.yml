@@ -1,0 +1,271 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Bulk Operations API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Bulk Operations
+  description: Bulk insert, delete, and update operations
+paths:
+  /custom-actions/insert/{collection}:
+    post:
+      operationId: bulkInsert
+      summary: Oracle Database Bulk insert documents
+      description: Inserts multiple documents into the collection in a single operation. Documents are provided as a JSON array. Server-assigned keys are generated for each document.
+      tags:
+      - Bulk Operations
+      parameters:
+      - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        required: true
+        description: Array of JSON documents to insert
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+      responses:
+        '200':
+          description: Documents inserted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkInsertResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          description: Collection is read-only
+  /custom-actions/delete/{collection}:
+    post:
+      operationId: bulkDelete
+      summary: Oracle Database Bulk delete documents by filter
+      description: Deletes multiple documents matching a QBE filter specification. Returns the count of deleted documents.
+      tags:
+      - Bulk Operations
+      parameters:
+      - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        required: true
+        description: QBE filter to identify documents to delete
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QBEFilter'
+      responses:
+        '200':
+          description: Documents deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkDeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          description: Collection is read-only
+  /custom-actions/truncate/{collection}:
+    post:
+      operationId: truncateCollection
+      summary: Oracle Database Truncate all documents from collection
+      description: Removes all documents from the collection without deleting the collection itself. This is faster than deleting documents one by one or with a filter.
+      tags:
+      - Bulk Operations
+      parameters:
+      - $ref: '#/components/parameters/collectionParam'
+      responses:
+        '200':
+          description: Collection truncated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkDeleteResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '405':
+          description: Collection is read-only
+  /custom-actions/update/{collection}:
+    post:
+      operationId: bulkUpdate
+      summary: Oracle Database Bulk update documents by filter
+      description: Updates multiple documents matching a QBE filter using JSON Patch operations specified in the $patch field of the request body.
+      tags:
+      - Bulk Operations
+      parameters:
+      - $ref: '#/components/parameters/collectionParam'
+      requestBody:
+        required: true
+        description: QBE filter with $patch operations
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BulkUpdateRequest'
+      responses:
+        '200':
+          description: Documents updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BulkUpdateResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '405':
+          description: Collection is read-only
+components:
+  schemas:
+    BulkUpdateResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of documents matched
+        itemsUpdated:
+          type: integer
+          description: Number of documents updated
+    DocumentMetadata:
+      type: object
+      properties:
+        id:
+          type: string
+        etag:
+          type: string
+        lastModified:
+          type: string
+          format: date-time
+        created:
+          type: string
+          format: date-time
+    JsonPatchOperation:
+      type: object
+      required:
+      - op
+      - path
+      properties:
+        op:
+          type: string
+          enum:
+          - add
+          - remove
+          - replace
+          - move
+          - copy
+          - test
+          description: The patch operation to perform
+        path:
+          type: string
+          description: JSON Pointer path to the target field
+        value:
+          description: The value to use for add, replace, or test operations
+        from:
+          type: string
+          description: JSON Pointer path for move and copy source
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    BulkUpdateRequest:
+      type: object
+      description: Combination of QBE filter fields and $patch operations. Filter fields identify documents to update, $patch contains the JSON Patch operations to apply.
+      properties:
+        $patch:
+          type: array
+          items:
+            $ref: '#/components/schemas/JsonPatchOperation'
+      additionalProperties: true
+      example:
+        department: HR
+        $patch:
+        - op: replace
+          path: /salary
+          value: 70000
+    BulkDeleteResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of documents affected
+        itemsDeleted:
+          type: integer
+          description: Number of documents deleted
+    BulkInsertResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentMetadata'
+        hasMore:
+          type: boolean
+    QBEFilter:
+      type: object
+      description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
+      additionalProperties: true
+      example:
+        name: John
+        salary:
+          $gt: 50000
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

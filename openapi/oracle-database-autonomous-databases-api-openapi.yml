@@ -1,0 +1,690 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Autonomous Databases API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Autonomous Databases
+  description: Manage Oracle Autonomous Database instances
+paths:
+  /autonomousDatabases:
+    get:
+      operationId: listAutonomousDatabases
+      summary: Oracle Database List Autonomous Databases
+      description: Returns a list of Autonomous Databases in the specified compartment. Results can be filtered by display name, lifecycle state, and other parameters.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - $ref: '#/components/parameters/compartmentIdParam'
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/pageParam'
+      - name: displayName
+        in: query
+        description: Filter by display name
+        schema:
+          type: string
+      - name: lifecycleState
+        in: query
+        description: Filter by lifecycle state
+        schema:
+          type: string
+          enum:
+          - PROVISIONING
+          - AVAILABLE
+          - STOPPING
+          - STOPPED
+          - STARTING
+          - TERMINATING
+          - TERMINATED
+          - UNAVAILABLE
+          - RESTORE_IN_PROGRESS
+          - BACKUP_IN_PROGRESS
+          - SCALE_IN_PROGRESS
+          - UPDATING
+          - MAINTENANCE_IN_PROGRESS
+      - name: dbWorkload
+        in: query
+        description: Filter by workload type
+        schema:
+          type: string
+          enum:
+          - OLTP
+          - DW
+          - AJD
+          - APEX
+      responses:
+        '200':
+          description: Autonomous Databases listed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AutonomousDatabaseSummary'
+          headers:
+            opc-next-page:
+              description: Pagination token for next page
+              schema:
+                type: string
+            opc-request-id:
+              description: Unique request identifier
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createAutonomousDatabase
+      summary: Oracle Database Create an Autonomous Database
+      description: Creates a new Autonomous Database with the specified configuration. Supports OLTP, Data Warehouse, JSON Database, and APEX workload types.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - $ref: '#/components/parameters/opcRetryTokenParam'
+      - $ref: '#/components/parameters/opcRequestIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAutonomousDatabaseDetails'
+      responses:
+        '200':
+          description: Autonomous Database creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+          headers:
+            etag:
+              description: Entity tag for optimistic concurrency
+              schema:
+                type: string
+            opc-work-request-id:
+              description: Work request identifier for tracking
+              schema:
+                type: string
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /autonomousDatabases/{autonomousDatabaseId}:
+    get:
+      operationId: getAutonomousDatabase
+      summary: Oracle Database Get an Autonomous Database
+      description: Returns details about the specified Autonomous Database.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+      responses:
+        '200':
+          description: Autonomous Database details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateAutonomousDatabase
+      summary: Oracle Database Update an Autonomous Database
+      description: Updates the specified Autonomous Database. Supports scaling CPU, storage, and other configuration changes.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+      - $ref: '#/components/parameters/ifMatchParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAutonomousDatabaseDetails'
+      responses:
+        '200':
+          description: Autonomous Database update initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteAutonomousDatabase
+      summary: Oracle Database Delete an Autonomous Database
+      description: Terminates and deletes the specified Autonomous Database.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+      - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '202':
+          description: Delete request accepted
+          headers:
+            opc-work-request-id:
+              schema:
+                type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /autonomousDatabases/{autonomousDatabaseId}/actions/start:
+    post:
+      operationId: startAutonomousDatabase
+      summary: Oracle Database Start an Autonomous Database
+      description: Starts a stopped Autonomous Database.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+      - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '200':
+          description: Start initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /autonomousDatabases/{autonomousDatabaseId}/actions/stop:
+    post:
+      operationId: stopAutonomousDatabase
+      summary: Oracle Database Stop an Autonomous Database
+      description: Stops a running Autonomous Database.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+      - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '200':
+          description: Stop initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /autonomousDatabases/{autonomousDatabaseId}/actions/restart:
+    post:
+      operationId: restartAutonomousDatabase
+      summary: Oracle Database Restart an Autonomous Database
+      description: Restarts the specified Autonomous Database.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+      - $ref: '#/components/parameters/ifMatchParam'
+      responses:
+        '200':
+          description: Restart initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabase'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /autonomousDatabases/{autonomousDatabaseId}/actions/generateWallet:
+    post:
+      operationId: generateAutonomousDatabaseWallet
+      summary: Oracle Database Generate database wallet
+      description: Creates and downloads a wallet zip file containing credentials for connecting to the Autonomous Database.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - $ref: '#/components/parameters/autonomousDatabaseIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateAutonomousDatabaseWalletDetails'
+      responses:
+        '200':
+          description: Wallet generated successfully
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /autonomousDatabaseBackups:
+    get:
+      operationId: listAutonomousDatabaseBackups
+      summary: Oracle Database List Autonomous Database backups
+      description: Returns a list of backups for the specified Autonomous Database.
+      tags:
+      - Autonomous Databases
+      parameters:
+      - name: autonomousDatabaseId
+        in: query
+        description: The Autonomous Database OCID
+        schema:
+          type: string
+      - $ref: '#/components/parameters/compartmentIdParam'
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/pageParam'
+      responses:
+        '200':
+          description: Backups listed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AutonomousDatabaseBackupSummary'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAutonomousDatabaseBackup
+      summary: Oracle Database Create an Autonomous Database backup
+      description: Creates a new manual backup for the specified Autonomous Database.
+      tags:
+      - Autonomous Databases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAutonomousDatabaseBackupDetails'
+      responses:
+        '200':
+          description: Backup creation initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutonomousDatabaseBackup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    CreateAutonomousDatabaseDetails:
+      type: object
+      required:
+      - compartmentId
+      - dbName
+      - cpuCoreCount
+      - dataStorageSizeInTBs
+      - adminPassword
+      properties:
+        compartmentId:
+          type: string
+        dbName:
+          type: string
+        displayName:
+          type: string
+        adminPassword:
+          type: string
+          format: password
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        dbWorkload:
+          type: string
+          enum:
+          - OLTP
+          - DW
+          - AJD
+          - APEX
+        isAutoScalingEnabled:
+          type: boolean
+        isFreeTier:
+          type: boolean
+        licenseModel:
+          type: string
+          enum:
+          - LICENSE_INCLUDED
+          - BRING_YOUR_OWN_LICENSE
+        whitelistedIps:
+          type: array
+          items:
+            type: string
+        subnetId:
+          type: string
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    AutonomousDatabaseBackup:
+      type: object
+      properties:
+        id:
+          type: string
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+          enum:
+          - INCREMENTAL
+          - FULL
+          - LONG_TERM
+        lifecycleState:
+          type: string
+        databaseSizeInTBs:
+          type: number
+        timeStarted:
+          type: string
+          format: date-time
+        timeEnded:
+          type: string
+          format: date-time
+        isAutomatic:
+          type: boolean
+    UpdateAutonomousDatabaseDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        isAutoScalingEnabled:
+          type: boolean
+        adminPassword:
+          type: string
+          format: password
+        whitelistedIps:
+          type: array
+          items:
+            type: string
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    AutonomousDatabaseSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        dbName:
+          type: string
+        dbWorkload:
+          type: string
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        lifecycleState:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+        isFreeTier:
+          type: boolean
+    CreateAutonomousDatabaseBackupDetails:
+      type: object
+      required:
+      - autonomousDatabaseId
+      - displayName
+      properties:
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        isLongTermBackup:
+          type: boolean
+        retentionPeriodInDays:
+          type: integer
+    GenerateAutonomousDatabaseWalletDetails:
+      type: object
+      required:
+      - password
+      properties:
+        password:
+          type: string
+          format: password
+          description: Password to encrypt the wallet keys
+        generateType:
+          type: string
+          enum:
+          - ALL
+          - SINGLE
+    AutonomousDatabaseBackupSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+        lifecycleState:
+          type: string
+        timeStarted:
+          type: string
+          format: date-time
+        isAutomatic:
+          type: boolean
+    AutonomousDatabase:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The OCID of the Autonomous Database
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        dbName:
+          type: string
+        dbVersion:
+          type: string
+        dbWorkload:
+          type: string
+          enum:
+          - OLTP
+          - DW
+          - AJD
+          - APEX
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        dataStorageSizeInGBs:
+          type: integer
+        isAutoScalingEnabled:
+          type: boolean
+        isDedicated:
+          type: boolean
+        isFreeTier:
+          type: boolean
+        lifecycleState:
+          type: string
+          enum:
+          - PROVISIONING
+          - AVAILABLE
+          - STOPPING
+          - STOPPED
+          - STARTING
+          - TERMINATING
+          - TERMINATED
+          - UNAVAILABLE
+          - RESTORE_IN_PROGRESS
+          - BACKUP_IN_PROGRESS
+          - SCALE_IN_PROGRESS
+          - UPDATING
+          - MAINTENANCE_IN_PROGRESS
+        connectionStrings:
+          type: object
+          properties:
+            high:
+              type: string
+            medium:
+              type: string
+            low:
+              type: string
+        connectionUrls:
+          type: object
+          properties:
+            sqlDevWebUrl:
+              type: string
+              format: uri
+            apexUrl:
+              type: string
+              format: uri
+            machineLearningUserManagementUrl:
+              type: string
+              format: uri
+            graphStudioUrl:
+              type: string
+              format: uri
+        timeCreated:
+          type: string
+          format: date-time
+        licenseModel:
+          type: string
+          enum:
+          - LICENSE_INCLUDED
+          - BRING_YOUR_OWN_LICENSE
+        whitelistedIps:
+          type: array
+          items:
+            type: string
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+        definedTags:
+          type: object
+          additionalProperties:
+            type: object
+  parameters:
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    autonomousDatabaseIdParam:
+      name: autonomousDatabaseId
+      in: path
+      required: true
+      description: The OCID of the Autonomous Database
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    opcRequestIdParam:
+      name: opc-request-id
+      in: header
+      description: Unique request identifier for tracing
+      schema:
+        type: string
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+    opcRetryTokenParam:
+      name: opc-retry-token
+      in: header
+      description: Unique retry token to prevent duplicate requests
+      schema:
+        type: string
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

@@ -1,0 +1,293 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX RDF Graph API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: RDF Graph
+  description: Knowledge graph management using W3C RDF, OWL, and SPARQL standards
+paths:
+  /database/rdf/networks/:
+    get:
+      operationId: getRDFNetworks
+      summary: Oracle Database List all RDF networks
+      description: Returns a list of all RDF semantic networks.
+      tags:
+      - RDF Graph
+      responses:
+        '200':
+          description: RDF networks retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RDFNetworkList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/rdf/networks/{network_owner},{network_name}:
+    get:
+      operationId: getRDFNetwork
+      summary: Oracle Database Get RDF network information
+      description: Returns details about a specific RDF network.
+      tags:
+      - RDF Graph
+      parameters:
+      - name: network_owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: network_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: RDF network details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RDFNetwork'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: createRDFNetwork
+      summary: Oracle Database Create an RDF network
+      description: Creates a new RDF semantic network.
+      tags:
+      - RDF Graph
+      parameters:
+      - name: network_owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: network_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '201':
+          description: RDF network created successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/rdf/networks/{network_owner},{network_name}/models/:
+    get:
+      operationId: getRDFModels
+      summary: Oracle Database List RDF models
+      description: Returns a list of RDF models in the specified network.
+      tags:
+      - RDF Graph
+      parameters:
+      - name: network_owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: network_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: RDF models retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RDFModelList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/rdf/networks/{network_owner},{network_name}/models/{model_name}/sparql/1.1:
+    get:
+      operationId: executeSPARQLQueryGET
+      summary: Oracle Database Execute SPARQL query (GET)
+      description: Executes a SPARQL query against the specified RDF model using HTTP GET.
+      tags:
+      - RDF Graph
+      parameters:
+      - name: network_owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: network_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: model_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: query
+        in: query
+        required: true
+        description: The SPARQL query string
+        schema:
+          type: string
+      responses:
+        '200':
+          description: SPARQL query results
+          content:
+            application/sparql-results+json:
+              schema:
+                $ref: '#/components/schemas/SPARQLResults'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: executeSPARQLQueryPOST
+      summary: Oracle Database Execute SPARQL query (POST)
+      description: Executes a SPARQL query against the specified RDF model using HTTP POST.
+      tags:
+      - RDF Graph
+      parameters:
+      - name: network_owner
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: network_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: model_name
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/sparql-query:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: SPARQL query results
+          content:
+            application/sparql-results+json:
+              schema:
+                $ref: '#/components/schemas/SPARQLResults'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    RDFNetworkList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RDFNetwork'
+    RDFNetwork:
+      type: object
+      properties:
+        network_owner:
+          type: string
+        network_name:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    SPARQLResults:
+      type: object
+      properties:
+        head:
+          type: object
+          properties:
+            vars:
+              type: array
+              items:
+                type: string
+        results:
+          type: object
+          properties:
+            bindings:
+              type: array
+              items:
+                type: object
+    RDFModelList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              model_name:
+                type: string
+              network_owner:
+                type: string
+              network_name:
+                type: string
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

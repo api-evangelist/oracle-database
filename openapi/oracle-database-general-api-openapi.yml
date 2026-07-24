@@ -1,0 +1,535 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX General API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: General
+  description: Core database instance status, version, and configuration services
+paths:
+  /database/status:
+    get:
+      operationId: getDatabaseStatus
+      summary: Oracle Database Get database status
+      description: Returns the current status of the Oracle Database instance.
+      tags:
+      - General
+      responses:
+        '200':
+          description: Database status retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseStatus'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/version:
+    get:
+      operationId: getDatabaseVersion
+      summary: Oracle Database Get database version
+      description: Returns the version information of the Oracle Database instance.
+      tags:
+      - General
+      responses:
+        '200':
+          description: Database version retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseVersion'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/components/:
+    get:
+      operationId: getDatabaseComponents
+      summary: Oracle Database Get all database components
+      description: Returns a list of all installed database components and their status.
+      tags:
+      - General
+      responses:
+        '200':
+          description: Components retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComponentList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/parameters/:
+    get:
+      operationId: getDatabaseParameters
+      summary: Oracle Database Get all database parameters
+      description: Returns all database initialization parameters and their current values.
+      tags:
+      - General
+      parameters:
+      - $ref: '#/components/parameters/limitParam'
+      - $ref: '#/components/parameters/offsetParam'
+      responses:
+        '200':
+          description: Parameters retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ParameterList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/parameters/{name}:
+    get:
+      operationId: getDatabaseParameter
+      summary: Oracle Database Get a specific database parameter
+      description: Returns the value and metadata for a specific database parameter.
+      tags:
+      - General
+      parameters:
+      - name: name
+        in: path
+        required: true
+        description: The name of the database parameter
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Parameter retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseParameter'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/security/users/:
+    get:
+      operationId: getDatabaseUsers
+      summary: Oracle Database Get all database users
+      description: Returns a list of all database users and their properties.
+      tags:
+      - General
+      responses:
+        '200':
+          description: Users retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/storage/bytes:
+    get:
+      operationId: getStorageBytes
+      summary: Oracle Database Get storage usage in bytes
+      description: Returns the total storage usage of the database in bytes.
+      tags:
+      - General
+      responses:
+        '200':
+          description: Storage information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/storage/tablespaces/:
+    get:
+      operationId: getTablespaces
+      summary: Oracle Database Get all tablespaces storage information
+      description: Returns storage information for all tablespaces.
+      tags:
+      - General
+      responses:
+        '200':
+          description: Tablespace storage information retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TablespaceList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/storage/tablespaces/{tablespace_name}/:
+    get:
+      operationId: getTablespace
+      summary: Oracle Database Get tablespace details
+      description: Returns detailed storage information for a specific tablespace.
+      tags:
+      - General
+      parameters:
+      - name: tablespace_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tablespace details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tablespace'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /database/storage/tablespaces/{tablespace_name}/datafiles/:
+    get:
+      operationId: getDatafiles
+      summary: Oracle Database Get tablespace datafiles
+      description: Returns datafiles associated with a specific tablespace.
+      tags:
+      - General
+      parameters:
+      - name: tablespace_name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Datafiles retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatafileList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/feature_usage/:
+    get:
+      operationId: getFeatureUsage
+      summary: Oracle Database Get feature usage statistics
+      description: Returns usage statistics for database features.
+      tags:
+      - General
+      responses:
+        '200':
+          description: Feature usage retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeatureUsageList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/sessionless-transactions/:
+    post:
+      operationId: startSessionlessTransaction
+      summary: Oracle Database Start a sessionless transaction
+      description: Starts a new sessionless transaction and returns its identifier.
+      tags:
+      - General
+      responses:
+        '201':
+          description: Transaction started successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionlessTransaction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /database/sessionless-transactions/{sessionlessTransactionID}:
+    put:
+      operationId: commitSessionlessTransaction
+      summary: Oracle Database Commit a sessionless transaction
+      description: Commits the specified sessionless transaction.
+      tags:
+      - General
+      parameters:
+      - name: sessionlessTransactionID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction committed successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: rollbackSessionlessTransaction
+      summary: Oracle Database Rollback a sessionless transaction
+      description: Rolls back the specified sessionless transaction.
+      tags:
+      - General
+      parameters:
+      - name: sessionlessTransactionID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction rolled back successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    UserList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              username:
+                type: string
+              account_status:
+                type: string
+              default_tablespace:
+                type: string
+              created:
+                type: string
+                format: date-time
+    DatafileList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              file_name:
+                type: string
+              file_id:
+                type: integer
+              tablespace_name:
+                type: string
+              bytes:
+                type: integer
+                format: int64
+              status:
+                type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+    DatabaseParameter:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        display_value:
+          type: string
+        isdefault:
+          type: string
+        ismodified:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+    SessionlessTransaction:
+      type: object
+      properties:
+        sessionlessTransactionID:
+          type: string
+    PaginatedResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items: {}
+        hasMore:
+          type: boolean
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    TablespaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tablespace'
+    ComponentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              comp_id:
+                type: string
+              comp_name:
+                type: string
+              version:
+                type: string
+              status:
+                type: string
+    ParameterList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/DatabaseParameter'
+    DatabaseVersion:
+      type: object
+      properties:
+        version:
+          type: string
+        version_full:
+          type: string
+        banner:
+          type: string
+    DatabaseStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - OPEN
+          - MOUNTED
+          - STARTED
+        instance_name:
+          type: string
+        host_name:
+          type: string
+        database_role:
+          type: string
+        open_mode:
+          type: string
+    Tablespace:
+      type: object
+      properties:
+        tablespace_name:
+          type: string
+        status:
+          type: string
+        contents:
+          type: string
+        block_size:
+          type: integer
+        allocated_bytes:
+          type: integer
+          format: int64
+        used_bytes:
+          type: integer
+          format: int64
+        free_bytes:
+          type: integer
+          format: int64
+    StorageInfo:
+      type: object
+      properties:
+        total_bytes:
+          type: integer
+          format: int64
+        used_bytes:
+          type: integer
+          format: int64
+        free_bytes:
+          type: integer
+          format: int64
+    FeatureUsageList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              currently_used:
+                type: boolean
+              first_usage_date:
+                type: string
+                format: date-time
+              last_usage_date:
+                type: string
+                format: date-time
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
+    offsetParam:
+      name: offset
+      in: query
+      description: Number of items to skip before returning results
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/

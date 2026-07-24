@@ -1,0 +1,155 @@
+openapi: 3.1.0
+info:
+  title: Oracle Database Oracle Cloud Infrastructure Database APEX Open Service Broker API
+  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
+  version: '20160918'
+  contact:
+    name: Oracle Cloud Support
+    url: https://support.oracle.com
+    email: cloud-support@oracle.com
+  license:
+    name: Oracle Cloud Infrastructure Terms
+    url: https://www.oracle.com/cloud/free/oci-terms.html
+  termsOfService: https://www.oracle.com/legal/terms.html
+servers:
+- url: https://database.{region}.oraclecloud.com/20160918
+  description: OCI Database Service Regional Endpoint
+  variables:
+    region:
+      default: us-ashburn-1
+      description: OCI region identifier
+      enum:
+      - us-ashburn-1
+      - us-phoenix-1
+      - eu-frankfurt-1
+      - uk-london-1
+      - ap-tokyo-1
+      - ap-mumbai-1
+      - ca-toronto-1
+      - ap-sydney-1
+      - sa-saopaulo-1
+      - ap-seoul-1
+security:
+- ociSignature: []
+tags:
+- name: Open Service Broker
+  description: Open Service Broker API compliant service provisioning
+paths:
+  /openservicebroker/v2/catalog:
+    get:
+      operationId: getServiceCatalog
+      summary: Oracle Database Get service catalog
+      description: Returns the Open Service Broker catalog of available services.
+      tags:
+      - Open Service Broker
+      responses:
+        '200':
+          description: Service catalog retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceCatalog'
+  /openservicebroker/v2/service_instances/{instance_id}:
+    put:
+      operationId: provisionServiceInstance
+      summary: Oracle Database Provision a service instance
+      description: Provisions a new Open Service Broker service instance.
+      tags:
+      - Open Service Broker
+      parameters:
+      - name: instance_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProvisionRequest'
+      responses:
+        '200':
+          description: Service instance already exists
+        '201':
+          description: Service instance provisioned successfully
+    delete:
+      operationId: deprovisionServiceInstance
+      summary: Oracle Database Deprovision a service instance
+      description: Deprovisions an existing Open Service Broker service instance.
+      tags:
+      - Open Service Broker
+      parameters:
+      - name: instance_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Service instance deprovisioned successfully
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    ProvisionRequest:
+      type: object
+      required:
+      - service_id
+      - plan_id
+      properties:
+        service_id:
+          type: string
+        plan_id:
+          type: string
+        parameters:
+          type: object
+    ServiceCatalog:
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              plans:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    description:
+                      type: string
+  securitySchemes:
+    ociSignature:
+      type: http
+      scheme: bearer
+      description: OCI request signature authentication using API signing keys
+externalDocs:
+  description: OCI Database Service API Documentation
+  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
