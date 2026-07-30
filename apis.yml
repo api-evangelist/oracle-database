@@ -2,187 +2,982 @@ aid: oracle-database
 name: Oracle Database
 description: APIs and interfaces for Oracle Database management, querying, and administration.
 type: Index
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/oracle-database.png
 created: '2024-01-20'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 url: https://raw.githubusercontent.com/api-evangelist/oracle-database/refs/heads/main/apis.yml
 apis:
-  - name: Oracle REST Data Services (ORDS)
-    description: RESTful API development and data access for Oracle Database.
-    image: https://www.oracle.com/asset/web/favicons/favicon-192.png
-    humanUrl: https://www.oracle.com/database/technologies/appdev/rest.html
-    baseUrl: https://example.oracle.com/ords/
-    tags:
-      - Data Access
-      - Database
-      - REST
-      - SQL
-    properties:
-      - type: OpenAPI
-        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
-      - type: Documentation
-        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
-      - type: Swagger
-        url: https://example.oracle.com/ords/metadata-catalog/
-      - type: OpenAPI
-        url: openapi/oracle-database-ords-openapi.yml
-      - type: JSONSchema
-        url: json-schema/oracle-database-table.json
-      - type: JSONSchema
-        url: json-schema/oracle-database-pluggable-database.json
-      - type: JSONLD
-        url: json-ld/oracle-database-context.jsonld
-    contact:
-      - FN: Oracle Support
-        email: support@oracle.com
-        url: https://support.oracle.com
-  - name: Oracle Database API for MongoDB
-    description: MongoDB-compatible API for Oracle Database.
-    image: https://www.oracle.com/asset/web/favicons/favicon-192.png
-    humanUrl: https://www.oracle.com/database/mongodb-api/
-    baseUrl: https://example.oracle.com:27017/
-    tags:
-      - Database
-      - JSON
-      - MongoDB
-      - NoSQL
-    properties:
-      - type: Documentation
-        url: https://docs.oracle.com/en/database/oracle/mongodb-api/
-      - type: GettingStarted
-        url: https://www.oracle.com/database/mongodb-api/get-started/
-    contact:
-      - FN: Oracle Support
-        email: support@oracle.com
-  - name: Oracle Cloud Infrastructure Database API
-    description: API for managing Oracle Database services in Oracle Cloud Infrastructure.
-    image: https://www.oracle.com/asset/web/favicons/favicon-192.png
-    humanUrl: https://docs.oracle.com/iaas/database/
-    baseUrl: https://database.{region}.oraclecloud.com/
-    tags:
-      - Autonomous Database
-      - Cloud
-      - Database Management
-      - Infrastructure
-    properties:
-      - type: OpenAPI
-        url: https://docs.oracle.com/iaas/api/#/en/database/
-      - type: Documentation
-        url: https://docs.oracle.com/iaas/Content/Database/home.htm
-      - type: SDKs
-        url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
-      - type: APIReference
-        url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
-      - type: OpenAPI
-        url: openapi/oracle-database-oci-openapi.yml
-      - type: JSONSchema
-        url: json-schema/oracle-database-autonomous-database.json
-      - type: JSONSchema
-        url: json-schema/oracle-database-pluggable-database.json
-      - type: JSONLD
-        url: json-ld/oracle-database-context.jsonld
-    contact:
-      - FN: Oracle Cloud Support
-        email: cloud-support@oracle.com
-        url: https://support.oracle.com
-  - name: Oracle Database JDBC
-    description: Java Database Connectivity API for Oracle Database.
-    image: https://www.oracle.com/asset/web/favicons/favicon-192.png
-    humanUrl: https://www.oracle.com/database/technologies/appdev/jdbc.html
-    tags:
-      - Database Driver
-      - Java
-      - JDBC
-      - SQL
-    properties:
-      - type: Documentation
-        url: https://docs.oracle.com/en/database/oracle/oracle-database/21/jjdbc/
-      - type: Downloads
-        url: https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
-      - type: GitHub
-        url: https://github.com/oracle/oracle-db-examples/tree/master/java
-  - name: Oracle Call Interface (OCI)
-    description: C/C++ API for Oracle Database access.
-    image: https://www.oracle.com/asset/web/favicons/favicon-192.png
-    humanUrl: https://www.oracle.com/database/technologies/appdev/oci.html
-    tags:
-      - C
-      - C++
-      - Database Driver
-      - Native API
-    properties:
-      - type: Documentation
-        url: https://docs.oracle.com/en/database/oracle/oracle-database/21/lnoci/
-      - type: Programming Guide
-        url: https://docs.oracle.com/en/database/oracle/oracle-database/21/lnoci/introduction.html
-  - name: Oracle SQL Developer REST API
-    description: RESTful services for Oracle SQL Developer.
-    image: https://www.oracle.com/asset/web/favicons/favicon-192.png
-    humanUrl: https://www.oracle.com/database/sqldeveloper/
-    tags:
-      - Development Tools
-      - REST
-      - SQL
-    properties:
-      - type: Documentation
-        url: https://docs.oracle.com/en/database/oracle/sql-developer/
-      - type: User Guide
-        url: https://docs.oracle.com/en/database/oracle/sql-developer/latest/
-  - name: Oracle SODA (Simple Oracle Document Access)
-    description: NoSQL-style document API for Oracle Database.
-    image: https://www.oracle.com/asset/web/favicons/favicon-192.png
-    humanUrl: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
-    tags:
-      - Document Database
-      - JSON
-      - NoSQL
-      - REST
-    properties:
-      - type: Documentation
-        url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
-      - type: REST API
-        url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
-      - type: Java API
-        url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
-      - type: OpenAPI
-        url: openapi/oracle-database-soda-openapi.yml
-      - type: JSONSchema
-        url: json-schema/oracle-database-document.json
-      - type: JSONSchema
-        url: json-schema/oracle-database-collection.json
-      - type: JSONLD
-        url: json-ld/oracle-database-context.jsonld
-  - name: Oracle Transactional Event Queues (TxEventQ)
-    description: Kafka-compatible event streaming and message queuing built into Oracle Database.
-    image: https://www.oracle.com/asset/web/favicons/favicon-192.png
-    humanUrl: https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/
-    baseUrl: https://example.oracle.com/ords/{schema}/database/txeventq/
-    tags:
-      - Event Streaming
-      - Kafka
-      - Messaging
-      - Pub/Sub
-      - Queues
-    properties:
-      - type: Documentation
-        url: https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/
-      - type: AsyncAPI
-        url: asyncapi/oracle-database-txeventq-asyncapi.yml
-      - type: JSONSchema
-        url: json-schema/oracle-database-event-message.json
-      - type: JSONLD
-        url: json-ld/oracle-database-context.jsonld
-    contact:
-      - FN: Oracle Support
-        email: support@oracle.com
-        url: https://support.oracle.com
+- name: Oracle Database API for MongoDB
+  description: MongoDB-compatible API for Oracle Database.
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://www.oracle.com/database/mongodb-api/
+  baseUrl: https://example.oracle.com:27017/
+  tags:
+  - Database
+  - JSON
+  - MongoDB
+  - NoSQL
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/mongodb-api/
+  - type: GettingStarted
+    url: https://www.oracle.com/database/mongodb-api/get-started/
+  contact:
+  - FN: Oracle Support
+    email: support@oracle.com
+- name: Oracle Database JDBC
+  description: Java Database Connectivity API for Oracle Database.
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://www.oracle.com/database/technologies/appdev/jdbc.html
+  tags:
+  - Database Driver
+  - Java
+  - JDBC
+  - SQL
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-database/21/jjdbc/
+  - type: Downloads
+    url: https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html
+  - type: GitHub
+    url: https://github.com/oracle/oracle-db-examples/tree/master/java
+- name: Oracle Call Interface (OCI)
+  description: C/C++ API for Oracle Database access.
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://www.oracle.com/database/technologies/appdev/oci.html
+  tags:
+  - C
+  - C++
+  - Database Driver
+  - Native API
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-database/21/lnoci/
+  - type: Programming Guide
+    url: https://docs.oracle.com/en/database/oracle/oracle-database/21/lnoci/introduction.html
+- name: Oracle SQL Developer REST API
+  description: RESTful services for Oracle SQL Developer.
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://www.oracle.com/database/sqldeveloper/
+  tags:
+  - Development Tools
+  - REST
+  - SQL
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/sql-developer/
+  - type: User Guide
+    url: https://docs.oracle.com/en/database/oracle/sql-developer/latest/
+- name: Oracle Transactional Event Queues (TxEventQ)
+  description: Kafka-compatible event streaming and message queuing built into Oracle Database.
+  image: https://www.oracle.com/asset/web/favicons/favicon-192.png
+  humanUrl: https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/
+  baseUrl: https://example.oracle.com/ords/{schema}/database/txeventq/
+  tags:
+  - Event Streaming
+  - Kafka
+  - Messaging
+  - Pub/Sub
+  - Queues
+  properties:
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/
+  - type: AsyncAPI
+    url: asyncapi/oracle-database-txeventq-asyncapi.yml
+  - type: JSONSchema
+    url: json-schema/oracle-database-event-message.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  contact:
+  - FN: Oracle Support
+    email: support@oracle.com
+    url: https://support.oracle.com
+- aid: oracle-database:oracle-database-apex-api
+  name: Oracle Database APEX API
+  description: Oracle APEX workspace and application management
+  tags:
+  - APEX
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-apex-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-autonomous-databases-api
+  name: Oracle Database Autonomous Databases API
+  description: Manage Oracle Autonomous Database instances
+  tags:
+  - Autonomous Databases
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-autonomous-databases-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-backups-api
+  name: Oracle Database Backups API
+  description: Manage database backups
+  tags:
+  - Backups
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-backups-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-bulk-operations-api
+  name: Oracle Database Bulk Operations API
+  description: Bulk insert, delete, and update operations
+  tags:
+  - Bulk Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-bulk-operations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-collections-api
+  name: Oracle Database Collections API
+  description: Collection management operations (create, list, delete)
+  tags:
+  - Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-collections-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-data-dictionary-api
+  name: Oracle Database Data Dictionary API
+  description: Database tables, views, columns, indexes, and object metadata
+  tags:
+  - Data Dictionary
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-data-dictionary-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-data-guard-api
+  name: Oracle Database Data Guard API
+  description: Manage Data Guard associations for high availability
+  tags:
+  - Data Guard
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-data-guard-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-data-pump-api
+  name: Oracle Database Data Pump API
+  description: High-speed data and metadata export/import operations
+  tags:
+  - Data Pump
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-data-pump-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-database-homes-api
+  name: Oracle Database Database Homes API
+  description: Manage Oracle Database Home directories
+  tags:
+  - Database Homes
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-database-homes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-databases-api
+  name: Oracle Database Databases API
+  description: Manage databases within DB Systems
+  tags:
+  - Databases
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-databases-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-db-systems-api
+  name: Oracle Database DB Systems API
+  description: Manage Oracle Database Cloud Service DB Systems
+  tags:
+  - DB Systems
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-db-systems-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-documents-api
+  name: Oracle Database Documents API
+  description: Document CRUD operations (get, insert, update, delete)
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-documents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-general-api
+  name: Oracle Database General API
+  description: Core database instance status, version, and configuration services
+  tags:
+  - General
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-general-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-indexes-api
+  name: Oracle Database Indexes API
+  description: Collection index management
+  tags:
+  - Indexes
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-indexes-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-metadata-api
+  name: Oracle Database Metadata API
+  description: Collection metadata and catalog operations
+  tags:
+  - Metadata
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-metadata-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-monitoring-api
+  name: Oracle Database Monitoring API
+  description: Database session monitoring, locks, alerts, and wait metrics
+  tags:
+  - Monitoring
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-monitoring-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-open-service-broker-api
+  name: Oracle Database Open Service Broker API
+  description: Open Service Broker API compliant service provisioning
+  tags:
+  - Open Service Broker
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-open-service-broker-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-pdb-snapshots-api
+  name: Oracle Database PDB Snapshots API
+  description: PDB snapshot carousel management
+  tags:
+  - PDB Snapshots
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-pdb-snapshots-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-performance-api
+  name: Oracle Database Performance API
+  description: SQL performance analysis, execution plans, and active session history
+  tags:
+  - Performance
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-performance-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-pluggable-databases-api
+  name: Oracle Database Pluggable Databases API
+  description: Manage pluggable databases in multitenant architecture
+  tags:
+  - Pluggable Databases
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-pluggable-databases-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-queries-api
+  name: Oracle Database Queries API
+  description: Query by Example (QBE) and filter operations
+  tags:
+  - Queries
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-queries-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-rdf-graph-api
+  name: Oracle Database RDF Graph API
+  description: Knowledge graph management using W3C RDF, OWL, and SPARQL standards
+  tags:
+  - RDF Graph
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-rdf-graph-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-rest-services-api
+  name: Oracle Database REST Services API
+  description: Custom REST API module, handler, and OAuth management
+  tags:
+  - REST Services
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-rest-services-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-scheduler-api
+  name: Oracle Database Scheduler API
+  description: Oracle Scheduler job management
+  tags:
+  - Scheduler
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-scheduler-api-openapi.yml
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/
+  - type: Swagger
+    url: https://example.oracle.com/ords/metadata-catalog/
+  - type: JSONSchema
+    url: json-schema/oracle-database-table.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-pluggable-database.json
+  - type: JSONLD
+    url: json-ld/oracle-database-context.jsonld
+  - type: Documentation
+    url: https://docs.oracle.com/iaas/Content/Database/home.htm
+  - type: SDKs
+    url: https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm
+  - type: APIReference
+    url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  - type: JSONSchema
+    url: json-schema/oracle-database-autonomous-database.json
+  - type: Documentation
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/
+  - type: REST API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/
+  - type: Java API
+    url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/
+  - type: JSONSchema
+    url: json-schema/oracle-database-document.json
+  - type: JSONSchema
+    url: json-schema/oracle-database-collection.json
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/oracle-database/overview
   - type: AgenticAccess
     url: agentic-access/oracle-database-agentic-access.yml
   - type: DomainSecurity
