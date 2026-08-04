@@ -1,0 +1,695 @@
+{
+  "info": {
+    "_postman_id": "3d7bdfb2-89c1-46bb-b6aa-715e63ebdc3d",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Collections API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:24.000Z",
+    "updatedAt": "2026-07-28T02:27:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3d7bdfb2-89c1-46bb-b6aa-715e63ebdc3d"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "Oracle Database List all collections",
+          "id": "ee8b6d8d-c632-4990-8529-bb214d8251a1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/?limit=<integer>&fromID=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of collections to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Start listing from this collection name (inclusive)",
+                  "key": "fromID",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of collection names for the current database schema. Supports pagination through limit and fromID parameters."
+          },
+          "response": [
+            {
+              "id": "8874e652-ff85-496b-b6f1-6f85b1784f6e",
+              "name": "Collections retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?limit=<integer>&fromID=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of collections to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Start listing from this collection name (inclusive)",
+                      "key": "fromID",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"properties\": {}\n    },\n    {\n      \"name\": \"<string>\",\n      \"properties\": {}\n    }\n  ],\n  \"hasMore\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:27:24.000Z",
+              "updatedAt": "2026-07-28T02:27:24.000Z",
+              "uid": "35240-8874e652-ff85-496b-b6f1-6f85b1784f6e"
+            },
+            {
+              "id": "cc321ab4-676b-4ef3-9a13-76a8c137d7a3",
+              "name": "Bad request - invalid parameter value",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?limit=<integer>&fromID=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of collections to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Start listing from this collection name (inclusive)",
+                      "key": "fromID",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:24.000Z",
+              "updatedAt": "2026-07-28T02:27:24.000Z",
+              "uid": "35240-cc321ab4-676b-4ef3-9a13-76a8c137d7a3"
+            },
+            {
+              "id": "3623af14-1054-4b6b-b21c-0a6f53e18bd0",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?limit=<integer>&fromID=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of collections to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Start listing from this collection name (inclusive)",
+                      "key": "fromID",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:24.000Z",
+              "updatedAt": "2026-07-28T02:27:24.000Z",
+              "uid": "35240-3623af14-1054-4b6b-b21c-0a6f53e18bd0"
+            },
+            {
+              "id": "0ea1ea6f-2995-4026-8a25-80f4f3f1947b",
+              "name": "Schema not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/?limit=<integer>&fromID=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of collections to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Start listing from this collection name (inclusive)",
+                      "key": "fromID",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:27:24.000Z",
+              "updatedAt": "2026-07-28T02:27:24.000Z",
+              "uid": "35240-0ea1ea6f-2995-4026-8a25-80f4f3f1947b"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:24.000Z",
+          "updatedAt": "2026-07-28T02:27:24.000Z",
+          "uid": "35240-ee8b6d8d-c632-4990-8529-bb214d8251a1"
+        }
+      ],
+      "id": "6d731dd2-c9bc-4255-aede-3939db6b9ecc",
+      "createdAt": "2026-07-28T02:27:24.000Z",
+      "updatedAt": "2026-07-28T02:27:24.000Z",
+      "uid": "35240-6d731dd2-c9bc-4255-aede-3939db6b9ecc"
+    },
+    {
+      "name": "{collection}",
+      "item": [
+        {
+          "name": "Oracle Database Create a collection",
+          "id": "045031b9-f26f-4357-b6f8-33cc9720b11c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"keyColumn\": {\n    \"name\": \"<string>\",\n    \"sqlType\": \"<string>\",\n    \"maxLength\": \"<integer>\",\n    \"assignmentMethod\": \"GUID\"\n  },\n  \"contentColumn\": {\n    \"name\": \"<string>\",\n    \"sqlType\": \"<string>\",\n    \"compress\": \"<string>\",\n    \"cache\": \"<boolean>\",\n    \"encrypt\": \"<string>\",\n    \"validation\": \"<string>\"\n  },\n  \"versionColumn\": {\n    \"name\": \"<string>\",\n    \"method\": \"TIMESTAMP\"\n  },\n  \"lastModifiedColumn\": {\n    \"name\": \"<string>\"\n  },\n  \"readOnly\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:collection",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":collection"
+              ],
+              "variable": [
+                {
+                  "id": "8f0dc3e7-ecd1-4d9d-b4fc-db8670150f4d",
+                  "key": "collection",
+                  "value": "<string>",
+                  "description": "(Required) The name of the SODA collection"
+                }
+              ]
+            },
+            "description": "Creates a new document collection. This operation is idempotent - if the collection already exists, it returns 200 instead of 201. An optional request body can specify collection metadata configuration."
+          },
+          "response": [
+            {
+              "id": "00df21b1-4f1d-4e41-8a80-f3e1d1f44b88",
+              "name": "Collection already exists",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"keyColumn\": {\n    \"name\": \"<string>\",\n    \"sqlType\": \"<string>\",\n    \"maxLength\": \"<integer>\",\n    \"assignmentMethod\": \"GUID\"\n  },\n  \"contentColumn\": {\n    \"name\": \"<string>\",\n    \"sqlType\": \"<string>\",\n    \"compress\": \"<string>\",\n    \"cache\": \"<boolean>\",\n    \"encrypt\": \"<string>\",\n    \"validation\": \"<string>\"\n  },\n  \"versionColumn\": {\n    \"name\": \"<string>\",\n    \"method\": \"TIMESTAMP\"\n  },\n  \"lastModifiedColumn\": {\n    \"name\": \"<string>\"\n  },\n  \"readOnly\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection"
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:27:24.000Z",
+              "updatedAt": "2026-07-28T02:27:24.000Z",
+              "uid": "35240-00df21b1-4f1d-4e41-8a80-f3e1d1f44b88"
+            },
+            {
+              "id": "d1669954-753c-47eb-8951-315606baa8f6",
+              "name": "Collection created successfully",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"keyColumn\": {\n    \"name\": \"<string>\",\n    \"sqlType\": \"<string>\",\n    \"maxLength\": \"<integer>\",\n    \"assignmentMethod\": \"GUID\"\n  },\n  \"contentColumn\": {\n    \"name\": \"<string>\",\n    \"sqlType\": \"<string>\",\n    \"compress\": \"<string>\",\n    \"cache\": \"<boolean>\",\n    \"encrypt\": \"<string>\",\n    \"validation\": \"<string>\"\n  },\n  \"versionColumn\": {\n    \"name\": \"<string>\",\n    \"method\": \"TIMESTAMP\"\n  },\n  \"lastModifiedColumn\": {\n    \"name\": \"<string>\"\n  },\n  \"readOnly\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection"
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:27:24.000Z",
+              "updatedAt": "2026-07-28T02:27:24.000Z",
+              "uid": "35240-d1669954-753c-47eb-8951-315606baa8f6"
+            },
+            {
+              "id": "2a472793-aefb-493a-86a4-0493420a12f2",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"keyColumn\": {\n    \"name\": \"<string>\",\n    \"sqlType\": \"<string>\",\n    \"maxLength\": \"<integer>\",\n    \"assignmentMethod\": \"GUID\"\n  },\n  \"contentColumn\": {\n    \"name\": \"<string>\",\n    \"sqlType\": \"<string>\",\n    \"compress\": \"<string>\",\n    \"cache\": \"<boolean>\",\n    \"encrypt\": \"<string>\",\n    \"validation\": \"<string>\"\n  },\n  \"versionColumn\": {\n    \"name\": \"<string>\",\n    \"method\": \"TIMESTAMP\"\n  },\n  \"lastModifiedColumn\": {\n    \"name\": \"<string>\"\n  },\n  \"readOnly\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection"
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:24.000Z",
+              "updatedAt": "2026-07-28T02:27:24.000Z",
+              "uid": "35240-2a472793-aefb-493a-86a4-0493420a12f2"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:24.000Z",
+          "updatedAt": "2026-07-28T02:27:24.000Z",
+          "uid": "35240-045031b9-f26f-4357-b6f8-33cc9720b11c"
+        },
+        {
+          "name": "Oracle Database Delete a collection",
+          "id": "56016973-9865-4bd4-ab87-077b8da5b4c7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:collection/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":collection",
+                ""
+              ],
+              "variable": [
+                {
+                  "id": "1c5524bb-777f-44ae-8e5a-d607647fd3f2",
+                  "key": "collection",
+                  "value": "<string>",
+                  "description": "(Required) The name of the SODA collection"
+                }
+              ]
+            },
+            "description": "Deletes the entire collection and all documents it contains. This operation cannot be undone."
+          },
+          "response": [
+            {
+              "id": "403b42ea-4457-4fa6-8355-e47738e71767",
+              "name": "Collection deleted successfully",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:27:24.000Z",
+              "updatedAt": "2026-07-28T02:27:24.000Z",
+              "uid": "35240-403b42ea-4457-4fa6-8355-e47738e71767"
+            },
+            {
+              "id": "e2cb0702-8e86-47f4-9e4d-b90065ae7a66",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:24.000Z",
+              "updatedAt": "2026-07-28T02:27:24.000Z",
+              "uid": "35240-e2cb0702-8e86-47f4-9e4d-b90065ae7a66"
+            },
+            {
+              "id": "78d8c073-46d7-40ce-ab5c-28f53f125206",
+              "name": "The specified collection or document was not found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:24.000Z",
+              "updatedAt": "2026-07-28T02:27:24.000Z",
+              "uid": "35240-78d8c073-46d7-40ce-ab5c-28f53f125206"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:24.000Z",
+          "updatedAt": "2026-07-28T02:27:24.000Z",
+          "uid": "35240-56016973-9865-4bd4-ab87-077b8da5b4c7"
+        }
+      ],
+      "id": "c6aa62ee-254d-4ef7-b856-e67489bbe71c",
+      "createdAt": "2026-07-28T02:27:24.000Z",
+      "updatedAt": "2026-07-28T02:27:24.000Z",
+      "uid": "35240-c6aa62ee-254d-4ef7-b856-e67489bbe71c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

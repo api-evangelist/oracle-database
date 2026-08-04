@@ -1,0 +1,766 @@
+{
+  "info": {
+    "_postman_id": "a6f2b7ce-9365-438b-883c-3ad7f5671aec",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Database Homes API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:28.000Z",
+    "updatedAt": "2026-07-28T02:27:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a6f2b7ce-9365-438b-883c-3ad7f5671aec"
+  },
+  "item": [
+    {
+      "name": "dbHomes",
+      "item": [
+        {
+          "name": "{dbHomeId}",
+          "item": [
+            {
+              "name": "Oracle Database Get a Database Home",
+              "id": "dd9fff3c-ba22-434c-91eb-5c99db5e97e5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dbHomes/:dbHomeId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbHomes",
+                    ":dbHomeId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "2820c4ca-8fad-49ab-b6b6-af012a0a877a",
+                      "key": "dbHomeId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns details about the specified Database Home."
+              },
+              "response": [
+                {
+                  "id": "4c4ed185-2e12-4e32-9b67-0f7d841e03c2",
+                  "name": "Database Home details retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbHomes/:dbHomeId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbHomes",
+                        ":dbHomeId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbHomeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbSystemId\": \"<string>\",\n  \"dbVersion\": \"<string>\",\n  \"lifecycleState\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:27:28.000Z",
+                  "updatedAt": "2026-07-28T02:27:28.000Z",
+                  "uid": "35240-4c4ed185-2e12-4e32-9b67-0f7d841e03c2"
+                },
+                {
+                  "id": "4ec0875a-4954-4af4-b46a-2c98579bcf44",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbHomes/:dbHomeId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbHomes",
+                        ":dbHomeId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbHomeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:28.000Z",
+                  "updatedAt": "2026-07-28T02:27:28.000Z",
+                  "uid": "35240-4ec0875a-4954-4af4-b46a-2c98579bcf44"
+                },
+                {
+                  "id": "18632348-5b06-4fa1-b029-399f4cd3eb50",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbHomes/:dbHomeId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbHomes",
+                        ":dbHomeId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbHomeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:28.000Z",
+                  "updatedAt": "2026-07-28T02:27:28.000Z",
+                  "uid": "35240-18632348-5b06-4fa1-b029-399f4cd3eb50"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:28.000Z",
+              "updatedAt": "2026-07-28T02:27:28.000Z",
+              "uid": "35240-dd9fff3c-ba22-434c-91eb-5c99db5e97e5"
+            },
+            {
+              "name": "Oracle Database Delete a Database Home",
+              "id": "620dcd23-b7d0-46da-88ea-b86113eba2f4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dbHomes/:dbHomeId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbHomes",
+                    ":dbHomeId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d4f25c5c-2835-48aa-a241-39ee8999c54f",
+                      "key": "dbHomeId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Deletes the specified Database Home."
+              },
+              "response": [
+                {
+                  "id": "c76e19ba-ebbd-411b-b14f-dd79a36d39bf",
+                  "name": "Deletion accepted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbHomes/:dbHomeId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbHomes",
+                        ":dbHomeId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbHomeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:28.000Z",
+                  "updatedAt": "2026-07-28T02:27:28.000Z",
+                  "uid": "35240-c76e19ba-ebbd-411b-b14f-dd79a36d39bf"
+                },
+                {
+                  "id": "0b762eeb-babc-4d17-9938-130a68de5472",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbHomes/:dbHomeId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbHomes",
+                        ":dbHomeId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbHomeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:28.000Z",
+                  "updatedAt": "2026-07-28T02:27:28.000Z",
+                  "uid": "35240-0b762eeb-babc-4d17-9938-130a68de5472"
+                },
+                {
+                  "id": "25e95fba-0da2-432e-afdd-d247dc86b9e8",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbHomes/:dbHomeId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbHomes",
+                        ":dbHomeId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbHomeId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:28.000Z",
+                  "updatedAt": "2026-07-28T02:27:28.000Z",
+                  "uid": "35240-25e95fba-0da2-432e-afdd-d247dc86b9e8"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:28.000Z",
+              "updatedAt": "2026-07-28T02:27:28.000Z",
+              "uid": "35240-620dcd23-b7d0-46da-88ea-b86113eba2f4"
+            }
+          ],
+          "id": "96a24f7f-17a1-4a13-abfc-17eaf0a97da3",
+          "createdAt": "2026-07-28T02:27:28.000Z",
+          "updatedAt": "2026-07-28T02:27:28.000Z",
+          "uid": "35240-96a24f7f-17a1-4a13-abfc-17eaf0a97da3"
+        },
+        {
+          "name": "Oracle Database List Database Homes",
+          "id": "b09b8011-afda-435e-ae70-6118b16d3f18",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/dbHomes?compartmentId=<string>&dbSystemId=<string>&limit=<integer>&page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dbHomes"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "dbSystemId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token from a previous response",
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of Database Homes in the specified compartment."
+          },
+          "response": [
+            {
+              "id": "92aaac6a-bd8d-4b83-9e04-f007009905f6",
+              "name": "Database Homes listed successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dbHomes?compartmentId=<string>&dbSystemId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbHomes"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbSystemId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"dbVersion\": \"<string>\",\n    \"lifecycleState\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"dbVersion\": \"<string>\",\n    \"lifecycleState\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:27:28.000Z",
+              "updatedAt": "2026-07-28T02:27:28.000Z",
+              "uid": "35240-92aaac6a-bd8d-4b83-9e04-f007009905f6"
+            },
+            {
+              "id": "22bc392c-6ba3-4e6f-996a-bdc22c2f2a34",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dbHomes?compartmentId=<string>&dbSystemId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbHomes"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbSystemId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:28.000Z",
+              "updatedAt": "2026-07-28T02:27:28.000Z",
+              "uid": "35240-22bc392c-6ba3-4e6f-996a-bdc22c2f2a34"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:28.000Z",
+          "updatedAt": "2026-07-28T02:27:28.000Z",
+          "uid": "35240-b09b8011-afda-435e-ae70-6118b16d3f18"
+        },
+        {
+          "name": "Oracle Database Create a Database Home",
+          "id": "373f1911-aa1c-4be9-98b7-cb745e52f185",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dbVersion\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"database\": {\n    \"dbHomeId\": \"<string>\",\n    \"dbName\": \"<string>\",\n    \"adminPassword\": \"<string>\",\n    \"characterSet\": \"<string>\",\n    \"ncharacterSet\": \"<string>\",\n    \"pdbName\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/dbHomes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dbHomes"
+              ]
+            },
+            "description": "Creates a new Database Home in the specified DB System."
+          },
+          "response": [
+            {
+              "id": "09bd342c-9f18-4a4a-8977-f1a351e455df",
+              "name": "Database Home creation initiated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dbVersion\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"database\": {\n    \"dbHomeId\": \"<string>\",\n    \"dbName\": \"<string>\",\n    \"adminPassword\": \"<string>\",\n    \"characterSet\": \"<string>\",\n    \"ncharacterSet\": \"<string>\",\n    \"pdbName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/dbHomes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbHomes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbSystemId\": \"<string>\",\n  \"dbVersion\": \"<string>\",\n  \"lifecycleState\": \"<string>\",\n  \"timeCreated\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T02:27:28.000Z",
+              "updatedAt": "2026-07-28T02:27:28.000Z",
+              "uid": "35240-09bd342c-9f18-4a4a-8977-f1a351e455df"
+            },
+            {
+              "id": "8a9f74e0-f55b-4acf-9852-e3d04938bb94",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dbVersion\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"database\": {\n    \"dbHomeId\": \"<string>\",\n    \"dbName\": \"<string>\",\n    \"adminPassword\": \"<string>\",\n    \"characterSet\": \"<string>\",\n    \"ncharacterSet\": \"<string>\",\n    \"pdbName\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/dbHomes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbHomes"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:28.000Z",
+              "updatedAt": "2026-07-28T02:27:28.000Z",
+              "uid": "35240-8a9f74e0-f55b-4acf-9852-e3d04938bb94"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:28.000Z",
+          "updatedAt": "2026-07-28T02:27:28.000Z",
+          "uid": "35240-373f1911-aa1c-4be9-98b7-cb745e52f185"
+        }
+      ],
+      "id": "4d0293fd-a154-41f1-aa16-f8a27518e44a",
+      "createdAt": "2026-07-28T02:27:28.000Z",
+      "updatedAt": "2026-07-28T02:27:28.000Z",
+      "uid": "35240-4d0293fd-a154-41f1-aa16-f8a27518e44a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

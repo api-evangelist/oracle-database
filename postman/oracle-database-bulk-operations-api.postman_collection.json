@@ -1,0 +1,1174 @@
+{
+  "info": {
+    "_postman_id": "e67fecf2-1992-4ad3-a984-a1961e6009b8",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Bulk Operations API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:23.000Z",
+    "updatedAt": "2026-07-28T02:27:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e67fecf2-1992-4ad3-a984-a1961e6009b8"
+  },
+  "item": [
+    {
+      "name": "custom-actions",
+      "item": [
+        {
+          "name": "insert",
+          "item": [
+            {
+              "name": "{collection}",
+              "item": [
+                {
+                  "name": "Oracle Database Bulk insert documents",
+                  "id": "ab5a6816-d1d2-4197-be01-00561556c40e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/custom-actions/insert/:collection",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "custom-actions",
+                        "insert",
+                        ":collection"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d2b1b075-e1ad-489f-bb96-da974af63c95",
+                          "key": "collection",
+                          "value": "<string>",
+                          "description": "(Required) The name of the SODA collection"
+                        }
+                      ]
+                    },
+                    "description": "Inserts multiple documents into the collection in a single operation. Documents are provided as a JSON array. Server-assigned keys are generated for each document."
+                  },
+                  "response": [
+                    {
+                      "id": "9ad296f4-ee67-4eba-b310-dcd3116fd7c0",
+                      "name": "Documents inserted successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/insert/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "insert",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"lastModified\": \"<dateTime>\",\n      \"created\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"lastModified\": \"<dateTime>\",\n      \"created\": \"<dateTime>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-9ad296f4-ee67-4eba-b310-dcd3116fd7c0"
+                    },
+                    {
+                      "id": "702b0ed2-21e5-4b1d-9917-3142d98ebbbe",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/insert/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "insert",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-702b0ed2-21e5-4b1d-9917-3142d98ebbbe"
+                    },
+                    {
+                      "id": "e0407600-fa26-4fd6-939b-18b7fd147a9a",
+                      "name": "The specified collection or document was not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/insert/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "insert",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-e0407600-fa26-4fd6-939b-18b7fd147a9a"
+                    },
+                    {
+                      "id": "62b119ef-f98f-4e21-b6c3-676ef165e859",
+                      "name": "Collection is read-only",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/insert/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "insert",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-62b119ef-f98f-4e21-b6c3-676ef165e859"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:23.000Z",
+                  "updatedAt": "2026-07-28T02:27:23.000Z",
+                  "uid": "35240-ab5a6816-d1d2-4197-be01-00561556c40e"
+                }
+              ],
+              "id": "77f26fd3-737b-4df3-b834-dca6ce12beb3",
+              "createdAt": "2026-07-28T02:27:23.000Z",
+              "updatedAt": "2026-07-28T02:27:23.000Z",
+              "uid": "35240-77f26fd3-737b-4df3-b834-dca6ce12beb3"
+            }
+          ],
+          "id": "79410c4a-c679-4048-ae55-cf9c87521f3c",
+          "createdAt": "2026-07-28T02:27:23.000Z",
+          "updatedAt": "2026-07-28T02:27:23.000Z",
+          "uid": "35240-79410c4a-c679-4048-ae55-cf9c87521f3c"
+        },
+        {
+          "name": "delete",
+          "item": [
+            {
+              "name": "{collection}",
+              "item": [
+                {
+                  "name": "Oracle Database Bulk delete documents by filter",
+                  "id": "286e3904-3006-40b5-9dce-632028e3510c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"veniam_f15\": -93597374,\n  \"tempor2\": true,\n  \"sunt_62_\": -5703070\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/custom-actions/delete/:collection",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "custom-actions",
+                        "delete",
+                        ":collection"
+                      ],
+                      "variable": [
+                        {
+                          "id": "1555eee2-f91d-4d50-b676-ff653050663f",
+                          "key": "collection",
+                          "value": "<string>",
+                          "description": "(Required) The name of the SODA collection"
+                        }
+                      ]
+                    },
+                    "description": "Deletes multiple documents matching a QBE filter specification. Returns the count of deleted documents."
+                  },
+                  "response": [
+                    {
+                      "id": "0aa0b667-84fd-48e8-a152-11112729c423",
+                      "name": "Documents deleted successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"veniam_f15\": -93597374,\n  \"tempor2\": true,\n  \"sunt_62_\": -5703070\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/delete/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "delete",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"itemsDeleted\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-0aa0b667-84fd-48e8-a152-11112729c423"
+                    },
+                    {
+                      "id": "402e8169-d9fb-4d25-b90a-f5bb6320db29",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"veniam_f15\": -93597374,\n  \"tempor2\": true,\n  \"sunt_62_\": -5703070\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/delete/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "delete",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-402e8169-d9fb-4d25-b90a-f5bb6320db29"
+                    },
+                    {
+                      "id": "2b8aa83f-9a00-4041-b4d0-ca42d1342c7b",
+                      "name": "The specified collection or document was not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"veniam_f15\": -93597374,\n  \"tempor2\": true,\n  \"sunt_62_\": -5703070\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/delete/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "delete",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-2b8aa83f-9a00-4041-b4d0-ca42d1342c7b"
+                    },
+                    {
+                      "id": "360b5f0e-1512-47ad-941f-f57824e053af",
+                      "name": "Collection is read-only",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"veniam_f15\": -93597374,\n  \"tempor2\": true,\n  \"sunt_62_\": -5703070\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/delete/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "delete",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-360b5f0e-1512-47ad-941f-f57824e053af"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:23.000Z",
+                  "updatedAt": "2026-07-28T02:27:23.000Z",
+                  "uid": "35240-286e3904-3006-40b5-9dce-632028e3510c"
+                }
+              ],
+              "id": "bd9de7ac-a263-438d-b64f-a46dfc898ed6",
+              "createdAt": "2026-07-28T02:27:23.000Z",
+              "updatedAt": "2026-07-28T02:27:23.000Z",
+              "uid": "35240-bd9de7ac-a263-438d-b64f-a46dfc898ed6"
+            }
+          ],
+          "id": "637cd27a-02b4-4222-b42f-ea0fb8432da4",
+          "createdAt": "2026-07-28T02:27:23.000Z",
+          "updatedAt": "2026-07-28T02:27:23.000Z",
+          "uid": "35240-637cd27a-02b4-4222-b42f-ea0fb8432da4"
+        },
+        {
+          "name": "truncate",
+          "item": [
+            {
+              "name": "{collection}",
+              "item": [
+                {
+                  "name": "Oracle Database Truncate all documents from collection",
+                  "id": "847dbefe-79ca-4354-9760-1c065cb42eca",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/custom-actions/truncate/:collection",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "custom-actions",
+                        "truncate",
+                        ":collection"
+                      ],
+                      "variable": [
+                        {
+                          "id": "317e00a3-968b-4ea1-bca2-07dffa4f4b2f",
+                          "key": "collection",
+                          "value": "<string>",
+                          "description": "(Required) The name of the SODA collection"
+                        }
+                      ]
+                    },
+                    "description": "Removes all documents from the collection without deleting the collection itself. This is faster than deleting documents one by one or with a filter."
+                  },
+                  "response": [
+                    {
+                      "id": "51546228-a066-46f0-b088-09f16c30ff72",
+                      "name": "Collection truncated successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/truncate/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "truncate",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"itemsDeleted\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-51546228-a066-46f0-b088-09f16c30ff72"
+                    },
+                    {
+                      "id": "75e4aaa8-201c-4cc9-bae9-1d4a45d0e26c",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/truncate/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "truncate",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-75e4aaa8-201c-4cc9-bae9-1d4a45d0e26c"
+                    },
+                    {
+                      "id": "43f2c4c5-dcd7-4908-abed-b1e5c84d87a4",
+                      "name": "The specified collection or document was not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/truncate/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "truncate",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-43f2c4c5-dcd7-4908-abed-b1e5c84d87a4"
+                    },
+                    {
+                      "id": "9046a6ca-98ec-40b8-ba25-1b466ddc5a5e",
+                      "name": "Collection is read-only",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/truncate/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "truncate",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-9046a6ca-98ec-40b8-ba25-1b466ddc5a5e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:23.000Z",
+                  "updatedAt": "2026-07-28T02:27:23.000Z",
+                  "uid": "35240-847dbefe-79ca-4354-9760-1c065cb42eca"
+                }
+              ],
+              "id": "f70e595f-75d7-4b36-bd0d-a04ec8d13df9",
+              "createdAt": "2026-07-28T02:27:23.000Z",
+              "updatedAt": "2026-07-28T02:27:23.000Z",
+              "uid": "35240-f70e595f-75d7-4b36-bd0d-a04ec8d13df9"
+            }
+          ],
+          "id": "3c1a7d68-3494-4454-95dc-61a0cf5cbd1b",
+          "createdAt": "2026-07-28T02:27:23.000Z",
+          "updatedAt": "2026-07-28T02:27:23.000Z",
+          "uid": "35240-3c1a7d68-3494-4454-95dc-61a0cf5cbd1b"
+        },
+        {
+          "name": "update",
+          "item": [
+            {
+              "name": "{collection}",
+              "item": [
+                {
+                  "name": "Oracle Database Bulk update documents by filter",
+                  "id": "f91eb091-f098-493d-8198-0f5969a5b337",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"$patch\": [\n    {\n      \"op\": \"test\",\n      \"path\": \"<string>\",\n      \"value\": {\n        \"description\": \"The value to use for add, replace, or test operations\"\n      },\n      \"from\": \"<string>\"\n    },\n    {\n      \"op\": \"copy\",\n      \"path\": \"<string>\",\n      \"value\": {\n        \"description\": \"The value to use for add, replace, or test operations\"\n      },\n      \"from\": \"<string>\"\n    }\n  ],\n  \"adipisicing_e8\": 2308601,\n  \"incididunt_9\": false,\n  \"sunt0\": -6671354.828226671\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/custom-actions/update/:collection",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "custom-actions",
+                        "update",
+                        ":collection"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7751af88-83a0-4e0a-ae45-dccc33b51f19",
+                          "key": "collection",
+                          "value": "<string>",
+                          "description": "(Required) The name of the SODA collection"
+                        }
+                      ]
+                    },
+                    "description": "Updates multiple documents matching a QBE filter using JSON Patch operations specified in the $patch field of the request body."
+                  },
+                  "response": [
+                    {
+                      "id": "f62bc168-1a27-4a1f-825c-cc9205e90439",
+                      "name": "Documents updated successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"$patch\": [\n    {\n      \"op\": \"test\",\n      \"path\": \"<string>\",\n      \"value\": {\n        \"description\": \"The value to use for add, replace, or test operations\"\n      },\n      \"from\": \"<string>\"\n    },\n    {\n      \"op\": \"copy\",\n      \"path\": \"<string>\",\n      \"value\": {\n        \"description\": \"The value to use for add, replace, or test operations\"\n      },\n      \"from\": \"<string>\"\n    }\n  ],\n  \"adipisicing_e8\": 2308601,\n  \"incididunt_9\": false,\n  \"sunt0\": -6671354.828226671\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/update/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "update",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"count\": \"<integer>\",\n  \"itemsUpdated\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-f62bc168-1a27-4a1f-825c-cc9205e90439"
+                    },
+                    {
+                      "id": "a1f86abe-1f89-4e32-b856-dcc8f5fa9640",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"$patch\": [\n    {\n      \"op\": \"test\",\n      \"path\": \"<string>\",\n      \"value\": {\n        \"description\": \"The value to use for add, replace, or test operations\"\n      },\n      \"from\": \"<string>\"\n    },\n    {\n      \"op\": \"copy\",\n      \"path\": \"<string>\",\n      \"value\": {\n        \"description\": \"The value to use for add, replace, or test operations\"\n      },\n      \"from\": \"<string>\"\n    }\n  ],\n  \"adipisicing_e8\": 2308601,\n  \"incididunt_9\": false,\n  \"sunt0\": -6671354.828226671\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/update/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "update",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-a1f86abe-1f89-4e32-b856-dcc8f5fa9640"
+                    },
+                    {
+                      "id": "debe887d-c52c-43c5-b6b7-5ae0213dcdf7",
+                      "name": "Collection is read-only",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"$patch\": [\n    {\n      \"op\": \"test\",\n      \"path\": \"<string>\",\n      \"value\": {\n        \"description\": \"The value to use for add, replace, or test operations\"\n      },\n      \"from\": \"<string>\"\n    },\n    {\n      \"op\": \"copy\",\n      \"path\": \"<string>\",\n      \"value\": {\n        \"description\": \"The value to use for add, replace, or test operations\"\n      },\n      \"from\": \"<string>\"\n    }\n  ],\n  \"adipisicing_e8\": 2308601,\n  \"incididunt_9\": false,\n  \"sunt0\": -6671354.828226671\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/update/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "update",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Method Not Allowed",
+                      "code": 405,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:23.000Z",
+                      "updatedAt": "2026-07-28T02:27:23.000Z",
+                      "uid": "35240-debe887d-c52c-43c5-b6b7-5ae0213dcdf7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:23.000Z",
+                  "updatedAt": "2026-07-28T02:27:23.000Z",
+                  "uid": "35240-f91eb091-f098-493d-8198-0f5969a5b337"
+                }
+              ],
+              "id": "97717f64-cea3-43c5-bd46-da7d73e5e631",
+              "createdAt": "2026-07-28T02:27:23.000Z",
+              "updatedAt": "2026-07-28T02:27:23.000Z",
+              "uid": "35240-97717f64-cea3-43c5-bd46-da7d73e5e631"
+            }
+          ],
+          "id": "be10b3dd-a543-43de-922a-ee383a2046bc",
+          "createdAt": "2026-07-28T02:27:23.000Z",
+          "updatedAt": "2026-07-28T02:27:23.000Z",
+          "uid": "35240-be10b3dd-a543-43de-922a-ee383a2046bc"
+        }
+      ],
+      "id": "c1eda422-2b35-46cb-a984-28c83160529f",
+      "createdAt": "2026-07-28T02:27:23.000Z",
+      "updatedAt": "2026-07-28T02:27:23.000Z",
+      "uid": "35240-c1eda422-2b35-46cb-a984-28c83160529f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

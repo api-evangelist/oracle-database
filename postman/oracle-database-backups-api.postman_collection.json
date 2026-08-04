@@ -1,0 +1,766 @@
+{
+  "info": {
+    "_postman_id": "e8b153d4-d96b-49ad-8d4a-3ae7f99af4b7",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Backups API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:22.000Z",
+    "updatedAt": "2026-07-28T02:27:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e8b153d4-d96b-49ad-8d4a-3ae7f99af4b7"
+  },
+  "item": [
+    {
+      "name": "backups",
+      "item": [
+        {
+          "name": "{backupId}",
+          "item": [
+            {
+              "name": "Oracle Database Get a database backup",
+              "id": "11379425-34ef-4db3-8e61-5ed2bb6a01ab",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/backups/:backupId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "backups",
+                    ":backupId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d72cb9e3-048d-4dbd-95e2-0220fc6da472",
+                      "key": "backupId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns details about the specified backup."
+              },
+              "response": [
+                {
+                  "id": "107ddf65-1737-4a9c-9717-24bb0ef6d88f",
+                  "name": "Backup details retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/backups/:backupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "backups",
+                        ":backupId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "backupId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"databaseId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"type\": \"FULL\",\n  \"lifecycleState\": \"<string>\",\n  \"databaseSizeInGBs\": \"<number>\",\n  \"timeStarted\": \"<dateTime>\",\n  \"timeEnded\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:27:22.000Z",
+                  "updatedAt": "2026-07-28T02:27:22.000Z",
+                  "uid": "35240-107ddf65-1737-4a9c-9717-24bb0ef6d88f"
+                },
+                {
+                  "id": "eb93f0a6-7d3d-4e85-b721-80232ef7d3c3",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/backups/:backupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "backups",
+                        ":backupId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "backupId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:22.000Z",
+                  "updatedAt": "2026-07-28T02:27:22.000Z",
+                  "uid": "35240-eb93f0a6-7d3d-4e85-b721-80232ef7d3c3"
+                },
+                {
+                  "id": "150d34db-b0b1-4dcd-9f26-89afb0817dfe",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/backups/:backupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "backups",
+                        ":backupId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "backupId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:22.000Z",
+                  "updatedAt": "2026-07-28T02:27:22.000Z",
+                  "uid": "35240-150d34db-b0b1-4dcd-9f26-89afb0817dfe"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:22.000Z",
+              "updatedAt": "2026-07-28T02:27:22.000Z",
+              "uid": "35240-11379425-34ef-4db3-8e61-5ed2bb6a01ab"
+            },
+            {
+              "name": "Oracle Database Delete a database backup",
+              "id": "6e8f724f-420a-457a-b8f4-e4fd86d8127a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/backups/:backupId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "backups",
+                    ":backupId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e3bfd5c4-70cd-4c97-9df3-ec28296922a2",
+                      "key": "backupId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Deletes the specified backup."
+              },
+              "response": [
+                {
+                  "id": "e4160c63-6178-495d-9304-9bd3a55e01ae",
+                  "name": "Deletion accepted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/backups/:backupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "backups",
+                        ":backupId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "backupId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:22.000Z",
+                  "updatedAt": "2026-07-28T02:27:22.000Z",
+                  "uid": "35240-e4160c63-6178-495d-9304-9bd3a55e01ae"
+                },
+                {
+                  "id": "899621a5-b496-48fc-8ba2-12a5b991f439",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/backups/:backupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "backups",
+                        ":backupId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "backupId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:22.000Z",
+                  "updatedAt": "2026-07-28T02:27:22.000Z",
+                  "uid": "35240-899621a5-b496-48fc-8ba2-12a5b991f439"
+                },
+                {
+                  "id": "1ec029ec-2687-41c2-841e-89d46075be4d",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/backups/:backupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "backups",
+                        ":backupId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "backupId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:22.000Z",
+                  "updatedAt": "2026-07-28T02:27:22.000Z",
+                  "uid": "35240-1ec029ec-2687-41c2-841e-89d46075be4d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:22.000Z",
+              "updatedAt": "2026-07-28T02:27:22.000Z",
+              "uid": "35240-6e8f724f-420a-457a-b8f4-e4fd86d8127a"
+            }
+          ],
+          "id": "4e702af7-d99b-4b0f-a89a-088968655182",
+          "createdAt": "2026-07-28T02:27:22.000Z",
+          "updatedAt": "2026-07-28T02:27:22.000Z",
+          "uid": "35240-4e702af7-d99b-4b0f-a89a-088968655182"
+        },
+        {
+          "name": "Oracle Database List database backups",
+          "id": "33fda64c-235e-4a9b-884a-d864289aa420",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/backups?databaseId=<string>&compartmentId=<string>&limit=<integer>&page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "backups"
+              ],
+              "query": [
+                {
+                  "key": "databaseId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) The OCID of the compartment",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token from a previous response",
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of backups for a database or compartment."
+          },
+          "response": [
+            {
+              "id": "1d8a95f9-5971-4687-a555-3a7739af9325",
+              "name": "Backups listed successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/backups?databaseId=<string>&compartmentId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "backups"
+                  ],
+                  "query": [
+                    {
+                      "key": "databaseId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"databaseId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"type\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeStarted\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"databaseId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"type\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeStarted\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:27:22.000Z",
+              "updatedAt": "2026-07-28T02:27:22.000Z",
+              "uid": "35240-1d8a95f9-5971-4687-a555-3a7739af9325"
+            },
+            {
+              "id": "5f09a003-b1f5-4198-90ef-104b98b51538",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/backups?databaseId=<string>&compartmentId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "backups"
+                  ],
+                  "query": [
+                    {
+                      "key": "databaseId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:22.000Z",
+              "updatedAt": "2026-07-28T02:27:22.000Z",
+              "uid": "35240-5f09a003-b1f5-4198-90ef-104b98b51538"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:22.000Z",
+          "updatedAt": "2026-07-28T02:27:22.000Z",
+          "uid": "35240-33fda64c-235e-4a9b-884a-d864289aa420"
+        },
+        {
+          "name": "Oracle Database Create a database backup",
+          "id": "3a3ba4d6-e932-4dc2-84bc-d6b85231cc64",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"databaseId\": \"<string>\",\n  \"displayName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/backups",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "backups"
+              ]
+            },
+            "description": "Creates a new backup for the specified database."
+          },
+          "response": [
+            {
+              "id": "b7658970-b63e-4c64-8ef6-7ea0215e036e",
+              "name": "Backup creation initiated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseId\": \"<string>\",\n  \"displayName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/backups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "backups"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"databaseId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"type\": \"FULL\",\n  \"lifecycleState\": \"<string>\",\n  \"databaseSizeInGBs\": \"<number>\",\n  \"timeStarted\": \"<dateTime>\",\n  \"timeEnded\": \"<dateTime>\"\n}",
+              "createdAt": "2026-07-28T02:27:22.000Z",
+              "updatedAt": "2026-07-28T02:27:22.000Z",
+              "uid": "35240-b7658970-b63e-4c64-8ef6-7ea0215e036e"
+            },
+            {
+              "id": "7ee5129a-11ed-4edb-a08b-8aa3df6e3e6b",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"databaseId\": \"<string>\",\n  \"displayName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/backups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "backups"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:22.000Z",
+              "updatedAt": "2026-07-28T02:27:22.000Z",
+              "uid": "35240-7ee5129a-11ed-4edb-a08b-8aa3df6e3e6b"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:22.000Z",
+          "updatedAt": "2026-07-28T02:27:22.000Z",
+          "uid": "35240-3a3ba4d6-e932-4dc2-84bc-d6b85231cc64"
+        }
+      ],
+      "id": "29206034-ed7f-4e5f-84cb-af938aa31274",
+      "createdAt": "2026-07-28T02:27:22.000Z",
+      "updatedAt": "2026-07-28T02:27:22.000Z",
+      "uid": "35240-29206034-ed7f-4e5f-84cb-af938aa31274"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

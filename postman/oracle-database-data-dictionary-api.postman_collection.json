@@ -1,0 +1,2014 @@
+{
+  "info": {
+    "_postman_id": "95022bad-d9cd-4e6e-8e95-21479e1298e6",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Data Dictionary API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:25.000Z",
+    "updatedAt": "2026-07-28T02:27:25.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-95022bad-d9cd-4e6e-8e95-21479e1298e6"
+  },
+  "item": [
+    {
+      "name": "database",
+      "item": [
+        {
+          "name": "objects",
+          "item": [
+            {
+              "name": "tables",
+              "item": [
+                {
+                  "name": "{owner},{table_name}",
+                  "item": [
+                    {
+                      "name": "Oracle Database Get a specific table",
+                      "id": "7ddd5675-2b08-4380-9cb5-36dc55e63fef",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/tables/{{owner}},{{table_name}}",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "tables",
+                            "{{owner}},{{table_name}}"
+                          ]
+                        },
+                        "description": "Returns metadata for a specific database table."
+                      },
+                      "response": [
+                        {
+                          "id": "5ce55c53-0b61-4532-8906-78d05dfe8eca",
+                          "name": "Table metadata retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/objects/tables/{{owner}},{{table_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "objects",
+                                "tables",
+                                "{{owner}},{{table_name}}"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"owner\": \"<string>\",\n  \"table_name\": \"<string>\",\n  \"tablespace_name\": \"<string>\",\n  \"num_rows\": \"<long>\",\n  \"last_analyzed\": \"<dateTime>\",\n  \"status\": \"<string>\",\n  \"temporary\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:25.000Z",
+                          "updatedAt": "2026-07-28T02:27:25.000Z",
+                          "uid": "35240-5ce55c53-0b61-4532-8906-78d05dfe8eca"
+                        },
+                        {
+                          "id": "3f81ba0c-c638-4237-9f04-c2da0f02438c",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/objects/tables/{{owner}},{{table_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "objects",
+                                "tables",
+                                "{{owner}},{{table_name}}"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:25.000Z",
+                          "updatedAt": "2026-07-28T02:27:25.000Z",
+                          "uid": "35240-3f81ba0c-c638-4237-9f04-c2da0f02438c"
+                        },
+                        {
+                          "id": "89ec27a7-a359-42bb-9249-7d1ccc4e2ef5",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/objects/tables/{{owner}},{{table_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "objects",
+                                "tables",
+                                "{{owner}},{{table_name}}"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:25.000Z",
+                          "updatedAt": "2026-07-28T02:27:25.000Z",
+                          "uid": "35240-89ec27a7-a359-42bb-9249-7d1ccc4e2ef5"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-7ddd5675-2b08-4380-9cb5-36dc55e63fef"
+                    }
+                  ],
+                  "id": "83991b8e-b1ba-4c0f-93b4-0e6781a125c3",
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-83991b8e-b1ba-4c0f-93b4-0e6781a125c3"
+                },
+                {
+                  "name": "Oracle Database Get all tables",
+                  "id": "c993ebe3-2250-4b6e-b171-e39851a79644",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/objects/tables/?limit=25&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "objects",
+                        "tables",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Number of items to skip before returning results",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    "description": "Returns metadata for all database tables accessible to the current user."
+                  },
+                  "response": [
+                    {
+                      "id": "48318be3-a6de-4539-8b36-345b7e1024f4",
+                      "name": "Tables retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/tables/?limit=25&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "tables",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Number of items to skip before returning results",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"owner\": \"<string>\",\n      \"table_name\": \"<string>\",\n      \"tablespace_name\": \"<string>\",\n      \"num_rows\": \"<long>\",\n      \"last_analyzed\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"temporary\": \"<string>\"\n    },\n    {\n      \"owner\": \"<string>\",\n      \"table_name\": \"<string>\",\n      \"tablespace_name\": \"<string>\",\n      \"num_rows\": \"<long>\",\n      \"last_analyzed\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"temporary\": \"<string>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\",\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-48318be3-a6de-4539-8b36-345b7e1024f4"
+                    },
+                    {
+                      "id": "96671129-6e4b-459e-b66e-8f368b9b8245",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/tables/?limit=25&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "tables",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Number of items to skip before returning results",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-96671129-6e4b-459e-b66e-8f368b9b8245"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-c993ebe3-2250-4b6e-b171-e39851a79644"
+                }
+              ],
+              "id": "104ec309-3ad0-4157-a441-a9237761194a",
+              "createdAt": "2026-07-28T02:27:25.000Z",
+              "updatedAt": "2026-07-28T02:27:25.000Z",
+              "uid": "35240-104ec309-3ad0-4157-a441-a9237761194a"
+            },
+            {
+              "name": "columns",
+              "item": [
+                {
+                  "name": "{owner},{table_name},{column_name}",
+                  "item": [
+                    {
+                      "name": "Oracle Database Get a specific column",
+                      "id": "14d50fce-9be4-437b-8eac-2b4d5818178f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/columns/{{owner}},{{table_name}},{{column_name}}",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "columns",
+                            "{{owner}},{{table_name}},{{column_name}}"
+                          ]
+                        },
+                        "description": "Returns metadata for a specific table column."
+                      },
+                      "response": [
+                        {
+                          "id": "5ce10afe-4b48-4bd4-b266-6ab9190200f5",
+                          "name": "Column metadata retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/objects/columns/{{owner}},{{table_name}},{{column_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "objects",
+                                "columns",
+                                "{{owner}},{{table_name}},{{column_name}}"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"owner\": \"<string>\",\n  \"table_name\": \"<string>\",\n  \"column_name\": \"<string>\",\n  \"data_type\": \"<string>\",\n  \"data_length\": \"<integer>\",\n  \"nullable\": \"<string>\",\n  \"column_id\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:27:25.000Z",
+                          "updatedAt": "2026-07-28T02:27:25.000Z",
+                          "uid": "35240-5ce10afe-4b48-4bd4-b266-6ab9190200f5"
+                        },
+                        {
+                          "id": "77a1ed29-cef0-44d3-85d4-9c25128203fd",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/objects/columns/{{owner}},{{table_name}},{{column_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "objects",
+                                "columns",
+                                "{{owner}},{{table_name}},{{column_name}}"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:25.000Z",
+                          "updatedAt": "2026-07-28T02:27:25.000Z",
+                          "uid": "35240-77a1ed29-cef0-44d3-85d4-9c25128203fd"
+                        },
+                        {
+                          "id": "58bcc4a4-e16d-4782-bbdf-3c51e54cd892",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/objects/columns/{{owner}},{{table_name}},{{column_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "objects",
+                                "columns",
+                                "{{owner}},{{table_name}},{{column_name}}"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:25.000Z",
+                          "updatedAt": "2026-07-28T02:27:25.000Z",
+                          "uid": "35240-58bcc4a4-e16d-4782-bbdf-3c51e54cd892"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-14d50fce-9be4-437b-8eac-2b4d5818178f"
+                    }
+                  ],
+                  "id": "8b07d484-efd6-4b7a-bc52-3eb3a1733b31",
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-8b07d484-efd6-4b7a-bc52-3eb3a1733b31"
+                },
+                {
+                  "name": "Oracle Database Get all table columns",
+                  "id": "13e769c6-9c29-429b-a0eb-afa5815d8166",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/objects/columns/?limit=25&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "objects",
+                        "columns",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Number of items to skip before returning results",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    "description": "Returns column metadata for all tables."
+                  },
+                  "response": [
+                    {
+                      "id": "da79c065-19f0-4bd9-8805-c8b5003ac475",
+                      "name": "Columns retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/columns/?limit=25&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "columns",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Number of items to skip before returning results",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"owner\": \"<string>\",\n      \"table_name\": \"<string>\",\n      \"column_name\": \"<string>\",\n      \"data_type\": \"<string>\",\n      \"data_length\": \"<integer>\",\n      \"nullable\": \"<string>\",\n      \"column_id\": \"<integer>\"\n    },\n    {\n      \"owner\": \"<string>\",\n      \"table_name\": \"<string>\",\n      \"column_name\": \"<string>\",\n      \"data_type\": \"<string>\",\n      \"data_length\": \"<integer>\",\n      \"nullable\": \"<string>\",\n      \"column_id\": \"<integer>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\",\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-da79c065-19f0-4bd9-8805-c8b5003ac475"
+                    },
+                    {
+                      "id": "a60f2f9b-cf7e-4184-bd3e-7cc2309b5d3d",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/columns/?limit=25&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "columns",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Number of items to skip before returning results",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-a60f2f9b-cf7e-4184-bd3e-7cc2309b5d3d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-13e769c6-9c29-429b-a0eb-afa5815d8166"
+                }
+              ],
+              "id": "8c6ee74f-0e66-45ef-ae34-5c953d12955c",
+              "createdAt": "2026-07-28T02:27:25.000Z",
+              "updatedAt": "2026-07-28T02:27:25.000Z",
+              "uid": "35240-8c6ee74f-0e66-45ef-ae34-5c953d12955c"
+            },
+            {
+              "name": "indexes",
+              "item": [
+                {
+                  "name": "{owner},{index_name}",
+                  "item": [
+                    {
+                      "name": "Oracle Database Get a specific index",
+                      "id": "bb339378-4a8d-4d8d-bf1d-c72dc21d423d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/indexes/{{owner}},{{index_name}}",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "indexes",
+                            "{{owner}},{{index_name}}"
+                          ]
+                        },
+                        "description": "Returns metadata for a specific database index."
+                      },
+                      "response": [
+                        {
+                          "id": "4cd7b422-3605-450e-a70f-ff3bbd27b6b1",
+                          "name": "Index metadata retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/objects/indexes/{{owner}},{{index_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "objects",
+                                "indexes",
+                                "{{owner}},{{index_name}}"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"owner\": \"<string>\",\n  \"index_name\": \"<string>\",\n  \"table_name\": \"<string>\",\n  \"index_type\": \"<string>\",\n  \"uniqueness\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:25.000Z",
+                          "updatedAt": "2026-07-28T02:27:25.000Z",
+                          "uid": "35240-4cd7b422-3605-450e-a70f-ff3bbd27b6b1"
+                        },
+                        {
+                          "id": "90080dc6-ba8a-4d82-a40b-471ac25c5b98",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/objects/indexes/{{owner}},{{index_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "objects",
+                                "indexes",
+                                "{{owner}},{{index_name}}"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:25.000Z",
+                          "updatedAt": "2026-07-28T02:27:25.000Z",
+                          "uid": "35240-90080dc6-ba8a-4d82-a40b-471ac25c5b98"
+                        },
+                        {
+                          "id": "669987b3-540c-44cb-a414-a8748d9eaae5",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/objects/indexes/{{owner}},{{index_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "objects",
+                                "indexes",
+                                "{{owner}},{{index_name}}"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:25.000Z",
+                          "updatedAt": "2026-07-28T02:27:25.000Z",
+                          "uid": "35240-669987b3-540c-44cb-a414-a8748d9eaae5"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-bb339378-4a8d-4d8d-bf1d-c72dc21d423d"
+                    }
+                  ],
+                  "id": "7a994671-6634-4926-b440-1cb2c8766931",
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-7a994671-6634-4926-b440-1cb2c8766931"
+                },
+                {
+                  "name": "Oracle Database Get all indexes",
+                  "id": "03e3838c-1ac0-461b-90fd-60ea0529c5b8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/objects/indexes/?limit=25&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "objects",
+                        "indexes",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Number of items to skip before returning results",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    "description": "Returns metadata for all database indexes."
+                  },
+                  "response": [
+                    {
+                      "id": "210c5c10-3097-4794-8b9f-4ce372c540d4",
+                      "name": "Indexes retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/indexes/?limit=25&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "indexes",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Number of items to skip before returning results",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"owner\": \"<string>\",\n      \"index_name\": \"<string>\",\n      \"table_name\": \"<string>\",\n      \"index_type\": \"<string>\",\n      \"uniqueness\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"owner\": \"<string>\",\n      \"index_name\": \"<string>\",\n      \"table_name\": \"<string>\",\n      \"index_type\": \"<string>\",\n      \"uniqueness\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-210c5c10-3097-4794-8b9f-4ce372c540d4"
+                    },
+                    {
+                      "id": "3abab8bd-8faa-4707-9fea-b6626204a593",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/indexes/?limit=25&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "indexes",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Number of items to skip before returning results",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-3abab8bd-8faa-4707-9fea-b6626204a593"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-03e3838c-1ac0-461b-90fd-60ea0529c5b8"
+                }
+              ],
+              "id": "1cfd70ba-29d1-4058-a602-2d6f1d87aec8",
+              "createdAt": "2026-07-28T02:27:25.000Z",
+              "updatedAt": "2026-07-28T02:27:25.000Z",
+              "uid": "35240-1cfd70ba-29d1-4058-a602-2d6f1d87aec8"
+            },
+            {
+              "name": "functions",
+              "item": [
+                {
+                  "name": "{object_id}",
+                  "item": [
+                    {
+                      "name": "Oracle Database Get a specific function",
+                      "id": "036ab5c1-3ef7-403d-9785-4d28ee00bbba",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/functions/:object_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "functions",
+                            ":object_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9545424a-ec16-4a83-8e66-6d8f9cd0f7c1",
+                              "key": "object_id",
+                              "value": "<integer>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns metadata for a specific database function."
+                      },
+                      "response": [
+                        {
+                          "id": "f23e960c-db6c-4c2b-ae1d-fefa377681e2",
+                          "name": "Function metadata retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/objects/functions/:object_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "objects",
+                                "functions",
+                                ":object_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "object_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"object_id\": \"<integer>\",\n  \"owner\": \"<string>\",\n  \"object_name\": \"<string>\",\n  \"object_type\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:25.000Z",
+                          "updatedAt": "2026-07-28T02:27:25.000Z",
+                          "uid": "35240-f23e960c-db6c-4c2b-ae1d-fefa377681e2"
+                        },
+                        {
+                          "id": "2fe45b6d-32ae-4c89-b16a-a6f50a7333da",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/objects/functions/:object_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "objects",
+                                "functions",
+                                ":object_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "object_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:25.000Z",
+                          "updatedAt": "2026-07-28T02:27:25.000Z",
+                          "uid": "35240-2fe45b6d-32ae-4c89-b16a-a6f50a7333da"
+                        },
+                        {
+                          "id": "4fb7e752-df6c-4830-bfe2-5588cb9c8064",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/objects/functions/:object_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "objects",
+                                "functions",
+                                ":object_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "object_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:25.000Z",
+                          "updatedAt": "2026-07-28T02:27:25.000Z",
+                          "uid": "35240-4fb7e752-df6c-4830-bfe2-5588cb9c8064"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-036ab5c1-3ef7-403d-9785-4d28ee00bbba"
+                    }
+                  ],
+                  "id": "176e46df-c7dd-435c-8af5-633585bbbc34",
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-176e46df-c7dd-435c-8af5-633585bbbc34"
+                },
+                {
+                  "name": "Oracle Database Get all functions",
+                  "id": "5db62c0b-100a-48d6-993a-984fa392b9eb",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/objects/functions/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "objects",
+                        "functions",
+                        ""
+                      ]
+                    },
+                    "description": "Returns metadata for all database functions."
+                  },
+                  "response": [
+                    {
+                      "id": "4da639be-10a1-4091-9b06-8e47a1e3b6bb",
+                      "name": "Functions retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/functions/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "functions",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"object_id\": \"<integer>\",\n      \"owner\": \"<string>\",\n      \"object_name\": \"<string>\",\n      \"object_type\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"object_id\": \"<integer>\",\n      \"owner\": \"<string>\",\n      \"object_name\": \"<string>\",\n      \"object_type\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-4da639be-10a1-4091-9b06-8e47a1e3b6bb"
+                    },
+                    {
+                      "id": "fab9e8be-50cb-40e7-91f3-a342535f2b48",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/functions/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "functions",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-fab9e8be-50cb-40e7-91f3-a342535f2b48"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-5db62c0b-100a-48d6-993a-984fa392b9eb"
+                }
+              ],
+              "id": "3e2d5c1d-bfae-445d-974a-334b425b1328",
+              "createdAt": "2026-07-28T02:27:25.000Z",
+              "updatedAt": "2026-07-28T02:27:25.000Z",
+              "uid": "35240-3e2d5c1d-bfae-445d-974a-334b425b1328"
+            },
+            {
+              "name": "foreign_keys",
+              "item": [
+                {
+                  "name": "Oracle Database Get all foreign keys",
+                  "id": "696f8207-61c0-4031-ba39-5b37b371e1c2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/objects/foreign_keys/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "objects",
+                        "foreign_keys",
+                        ""
+                      ]
+                    },
+                    "description": "Returns metadata for all foreign key constraints."
+                  },
+                  "response": [
+                    {
+                      "id": "16ef4d08-c562-4d28-a394-cf6a4c68d239",
+                      "name": "Foreign keys retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/foreign_keys/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "foreign_keys",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"owner\": \"<string>\",\n      \"constraint_name\": \"<string>\",\n      \"table_name\": \"<string>\",\n      \"r_owner\": \"<string>\",\n      \"r_constraint_name\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"owner\": \"<string>\",\n      \"constraint_name\": \"<string>\",\n      \"table_name\": \"<string>\",\n      \"r_owner\": \"<string>\",\n      \"r_constraint_name\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-16ef4d08-c562-4d28-a394-cf6a4c68d239"
+                    },
+                    {
+                      "id": "319dc82c-b0bf-4992-baa0-5779eb6697db",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/objects/foreign_keys/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "objects",
+                            "foreign_keys",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-319dc82c-b0bf-4992-baa0-5779eb6697db"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-696f8207-61c0-4031-ba39-5b37b371e1c2"
+                }
+              ],
+              "id": "e4b66897-5618-49c6-87be-9cd019c5ac69",
+              "createdAt": "2026-07-28T02:27:25.000Z",
+              "updatedAt": "2026-07-28T02:27:25.000Z",
+              "uid": "35240-e4b66897-5618-49c6-87be-9cd019c5ac69"
+            }
+          ],
+          "id": "acfde46b-e809-4813-b67a-029d9a31331e",
+          "createdAt": "2026-07-28T02:27:25.000Z",
+          "updatedAt": "2026-07-28T02:27:25.000Z",
+          "uid": "35240-acfde46b-e809-4813-b67a-029d9a31331e"
+        },
+        {
+          "name": "db_links",
+          "item": [
+            {
+              "name": "{owner},{db_link}",
+              "item": [
+                {
+                  "name": "Oracle Database Get a specific database link",
+                  "id": "f0474af7-c8f6-4930-b3b1-cf9c77c00ce5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/db_links/{{owner}},{{db_link}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "db_links",
+                        "{{owner}},{{db_link}}"
+                      ]
+                    },
+                    "description": "Returns metadata for a specific database link."
+                  },
+                  "response": [
+                    {
+                      "id": "90262282-c9b3-4ce4-b0dc-e9f40243ca67",
+                      "name": "Database link retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/db_links/{{owner}},{{db_link}}",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "db_links",
+                            "{{owner}},{{db_link}}"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"owner\": \"<string>\",\n  \"db_link\": \"<string>\",\n  \"username\": \"<string>\",\n  \"host\": \"<string>\",\n  \"created\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-90262282-c9b3-4ce4-b0dc-e9f40243ca67"
+                    },
+                    {
+                      "id": "1dbc8ecd-6b36-44e2-a4ca-704f39a4a47f",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/db_links/{{owner}},{{db_link}}",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "db_links",
+                            "{{owner}},{{db_link}}"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-1dbc8ecd-6b36-44e2-a4ca-704f39a4a47f"
+                    },
+                    {
+                      "id": "dc2777e5-2f30-43a9-adf8-e200b1eade9a",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/db_links/{{owner}},{{db_link}}",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "db_links",
+                            "{{owner}},{{db_link}}"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:25.000Z",
+                      "updatedAt": "2026-07-28T02:27:25.000Z",
+                      "uid": "35240-dc2777e5-2f30-43a9-adf8-e200b1eade9a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-f0474af7-c8f6-4930-b3b1-cf9c77c00ce5"
+                }
+              ],
+              "id": "f5f61e57-9a59-40e0-b4de-0009aef79d03",
+              "createdAt": "2026-07-28T02:27:25.000Z",
+              "updatedAt": "2026-07-28T02:27:25.000Z",
+              "uid": "35240-f5f61e57-9a59-40e0-b4de-0009aef79d03"
+            },
+            {
+              "name": "Oracle Database Get all database links",
+              "id": "932013fc-d02c-4120-ae3c-7d8c920c2857",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/database/db_links/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "db_links",
+                    ""
+                  ]
+                },
+                "description": "Returns metadata for all database links."
+              },
+              "response": [
+                {
+                  "id": "40672b84-a5cd-48f4-a258-3f062b1acbf7",
+                  "name": "Database links retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/db_links/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "db_links",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"owner\": \"<string>\",\n      \"db_link\": \"<string>\",\n      \"username\": \"<string>\",\n      \"host\": \"<string>\",\n      \"created\": \"<dateTime>\"\n    },\n    {\n      \"owner\": \"<string>\",\n      \"db_link\": \"<string>\",\n      \"username\": \"<string>\",\n      \"host\": \"<string>\",\n      \"created\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-40672b84-a5cd-48f4-a258-3f062b1acbf7"
+                },
+                {
+                  "id": "917bba37-3719-4ced-81cf-215b9639c4c4",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/db_links/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "db_links",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-917bba37-3719-4ced-81cf-215b9639c4c4"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:25.000Z",
+              "updatedAt": "2026-07-28T02:27:25.000Z",
+              "uid": "35240-932013fc-d02c-4120-ae3c-7d8c920c2857"
+            }
+          ],
+          "id": "ec96c2e3-7fda-4ada-9f4b-fd05aec8434b",
+          "createdAt": "2026-07-28T02:27:25.000Z",
+          "updatedAt": "2026-07-28T02:27:25.000Z",
+          "uid": "35240-ec96c2e3-7fda-4ada-9f4b-fd05aec8434b"
+        },
+        {
+          "name": "tablespaces",
+          "item": [
+            {
+              "name": "Oracle Database Get all tablespaces",
+              "id": "c549b3a9-f19a-4ffd-ba00-f19fe5f9f701",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/database/tablespaces/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "tablespaces",
+                    ""
+                  ]
+                },
+                "description": "Returns data dictionary information for all tablespaces."
+              },
+              "response": [
+                {
+                  "id": "4dfc5392-e3f0-4546-b55f-f8d48fb0a06c",
+                  "name": "Tablespaces retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/tablespaces/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "tablespaces",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"tablespace_name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"contents\": \"<string>\",\n      \"block_size\": \"<integer>\",\n      \"allocated_bytes\": \"<long>\",\n      \"used_bytes\": \"<long>\",\n      \"free_bytes\": \"<long>\"\n    },\n    {\n      \"tablespace_name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"contents\": \"<string>\",\n      \"block_size\": \"<integer>\",\n      \"allocated_bytes\": \"<long>\",\n      \"used_bytes\": \"<long>\",\n      \"free_bytes\": \"<long>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-4dfc5392-e3f0-4546-b55f-f8d48fb0a06c"
+                },
+                {
+                  "id": "52423849-4397-4448-8ebe-17cb5118ecc9",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/tablespaces/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "tablespaces",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:25.000Z",
+                  "updatedAt": "2026-07-28T02:27:25.000Z",
+                  "uid": "35240-52423849-4397-4448-8ebe-17cb5118ecc9"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:25.000Z",
+              "updatedAt": "2026-07-28T02:27:25.000Z",
+              "uid": "35240-c549b3a9-f19a-4ffd-ba00-f19fe5f9f701"
+            }
+          ],
+          "id": "b8b32e78-462c-452c-b42d-1f00a53911ec",
+          "createdAt": "2026-07-28T02:27:25.000Z",
+          "updatedAt": "2026-07-28T02:27:25.000Z",
+          "uid": "35240-b8b32e78-462c-452c-b42d-1f00a53911ec"
+        }
+      ],
+      "id": "ef1569ba-4d72-4112-8a84-75ec951a2f6a",
+      "createdAt": "2026-07-28T02:27:25.000Z",
+      "updatedAt": "2026-07-28T02:27:25.000Z",
+      "uid": "35240-ef1569ba-4d72-4112-8a84-75ec951a2f6a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    },
+    {
+      "key": "owner",
+      "value": "<string>"
+    },
+    {
+      "key": "table_name",
+      "value": "<string>"
+    },
+    {
+      "key": "column_name",
+      "value": "<string>"
+    },
+    {
+      "key": "index_name",
+      "value": "<string>"
+    },
+    {
+      "key": "db_link",
+      "value": "<string>"
+    }
+  ]
+}

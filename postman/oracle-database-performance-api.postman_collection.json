@@ -1,0 +1,1440 @@
+{
+  "info": {
+    "_postman_id": "41bfacbd-a65a-449d-b011-44102d6f0216",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Performance API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:55.000Z",
+    "updatedAt": "2026-07-28T02:27:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-41bfacbd-a65a-449d-b011-44102d6f0216"
+  },
+  "item": [
+    {
+      "name": "database",
+      "item": [
+        {
+          "name": "performance",
+          "item": [
+            {
+              "name": "sql_statements",
+              "item": [
+                {
+                  "name": "{sql_id}",
+                  "item": [
+                    {
+                      "name": "text",
+                      "item": [
+                        {
+                          "name": "Oracle Database Get SQL statement text",
+                          "id": "ca0e8063-0ab8-4c58-9dd1-61f8e66766f6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/text",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "performance",
+                                "sql_statements",
+                                ":sql_id",
+                                "text"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "091d9492-8a17-4572-9f25-2236973a0717",
+                                  "key": "sql_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns the full SQL text for a specific statement."
+                          },
+                          "response": [
+                            {
+                              "id": "94fc6f36-3891-4219-8919-654dbb8480c3",
+                              "name": "SQL text retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/text",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "performance",
+                                    "sql_statements",
+                                    ":sql_id",
+                                    "text"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "sql_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"sql_id\": \"<string>\",\n  \"sql_fulltext\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:56.000Z",
+                              "updatedAt": "2026-07-28T02:27:56.000Z",
+                              "uid": "35240-94fc6f36-3891-4219-8919-654dbb8480c3"
+                            },
+                            {
+                              "id": "84295d9c-ffc6-4719-bb8e-195627adf25f",
+                              "name": "Authentication required or credentials invalid",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/text",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "performance",
+                                    "sql_statements",
+                                    ":sql_id",
+                                    "text"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "sql_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:56.000Z",
+                              "updatedAt": "2026-07-28T02:27:56.000Z",
+                              "uid": "35240-84295d9c-ffc6-4719-bb8e-195627adf25f"
+                            },
+                            {
+                              "id": "a7c9ee81-88db-4983-af62-81074a4dfdb4",
+                              "name": "The specified resource was not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/text",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "performance",
+                                    "sql_statements",
+                                    ":sql_id",
+                                    "text"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "sql_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:56.000Z",
+                              "updatedAt": "2026-07-28T02:27:56.000Z",
+                              "uid": "35240-a7c9ee81-88db-4983-af62-81074a4dfdb4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:56.000Z",
+                          "updatedAt": "2026-07-28T02:27:56.000Z",
+                          "uid": "35240-ca0e8063-0ab8-4c58-9dd1-61f8e66766f6"
+                        }
+                      ],
+                      "id": "5a3b09f5-f972-45e0-b74b-1703d782e89e",
+                      "createdAt": "2026-07-28T02:27:56.000Z",
+                      "updatedAt": "2026-07-28T02:27:56.000Z",
+                      "uid": "35240-5a3b09f5-f972-45e0-b74b-1703d782e89e"
+                    },
+                    {
+                      "name": "plan",
+                      "item": [
+                        {
+                          "name": "Oracle Database Get SQL execution plan",
+                          "id": "2bb8d6c7-2021-4601-9833-720c930e928e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/plan",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "performance",
+                                "sql_statements",
+                                ":sql_id",
+                                "plan"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "fdea0d9d-0fc8-465a-a4d7-07df795df75f",
+                                  "key": "sql_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns the execution plan for a specific SQL statement."
+                          },
+                          "response": [
+                            {
+                              "id": "76cbd03d-2f27-43b2-942b-59ef7e5a15b2",
+                              "name": "Execution plan retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/plan",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "performance",
+                                    "sql_statements",
+                                    ":sql_id",
+                                    "plan"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "sql_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"sql_id\": \"<string>\",\n  \"plan_hash_value\": \"<long>\",\n  \"steps\": [\n    {\n      \"id\": \"<integer>\",\n      \"operation\": \"<string>\",\n      \"options\": \"<string>\",\n      \"object_name\": \"<string>\",\n      \"cost\": \"<integer>\",\n      \"cardinality\": \"<integer>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"operation\": \"<string>\",\n      \"options\": \"<string>\",\n      \"object_name\": \"<string>\",\n      \"cost\": \"<integer>\",\n      \"cardinality\": \"<integer>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:27:56.000Z",
+                              "updatedAt": "2026-07-28T02:27:56.000Z",
+                              "uid": "35240-76cbd03d-2f27-43b2-942b-59ef7e5a15b2"
+                            },
+                            {
+                              "id": "b6f0c5af-b197-4bb5-a326-83fcb1c3e697",
+                              "name": "Authentication required or credentials invalid",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/plan",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "performance",
+                                    "sql_statements",
+                                    ":sql_id",
+                                    "plan"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "sql_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:56.000Z",
+                              "updatedAt": "2026-07-28T02:27:56.000Z",
+                              "uid": "35240-b6f0c5af-b197-4bb5-a326-83fcb1c3e697"
+                            },
+                            {
+                              "id": "410985a6-db8e-4a77-ba12-dc50a8300116",
+                              "name": "The specified resource was not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/plan",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "performance",
+                                    "sql_statements",
+                                    ":sql_id",
+                                    "plan"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "sql_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:56.000Z",
+                              "updatedAt": "2026-07-28T02:27:56.000Z",
+                              "uid": "35240-410985a6-db8e-4a77-ba12-dc50a8300116"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:56.000Z",
+                          "updatedAt": "2026-07-28T02:27:56.000Z",
+                          "uid": "35240-2bb8d6c7-2021-4601-9833-720c930e928e"
+                        }
+                      ],
+                      "id": "25d23d80-e1de-4641-bc73-3ba075049566",
+                      "createdAt": "2026-07-28T02:27:56.000Z",
+                      "updatedAt": "2026-07-28T02:27:56.000Z",
+                      "uid": "35240-25d23d80-e1de-4641-bc73-3ba075049566"
+                    },
+                    {
+                      "name": "history",
+                      "item": [
+                        {
+                          "name": "Oracle Database Get SQL statement history",
+                          "id": "f1080317-8b7d-4b70-803b-75ad4096d785",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/history",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "performance",
+                                "sql_statements",
+                                ":sql_id",
+                                "history"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5d22a41f-0d33-4fe5-a826-471727a35cc5",
+                                  "key": "sql_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns historical performance data for a specific SQL statement."
+                          },
+                          "response": [
+                            {
+                              "id": "887ce1c9-02e7-4bbb-be9f-f6f92ef94fb8",
+                              "name": "SQL history retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/history",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "performance",
+                                    "sql_statements",
+                                    ":sql_id",
+                                    "history"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "sql_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"sql_id\": \"<string>\",\n      \"snap_id\": \"<integer>\",\n      \"executions_delta\": \"<integer>\",\n      \"cpu_time_delta\": \"<long>\",\n      \"elapsed_time_delta\": \"<long>\"\n    },\n    {\n      \"sql_id\": \"<string>\",\n      \"snap_id\": \"<integer>\",\n      \"executions_delta\": \"<integer>\",\n      \"cpu_time_delta\": \"<long>\",\n      \"elapsed_time_delta\": \"<long>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:27:56.000Z",
+                              "updatedAt": "2026-07-28T02:27:56.000Z",
+                              "uid": "35240-887ce1c9-02e7-4bbb-be9f-f6f92ef94fb8"
+                            },
+                            {
+                              "id": "42fc06f6-e5d0-4449-86db-1e8fb44cd39e",
+                              "name": "Authentication required or credentials invalid",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/history",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "performance",
+                                    "sql_statements",
+                                    ":sql_id",
+                                    "history"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "sql_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:56.000Z",
+                              "updatedAt": "2026-07-28T02:27:56.000Z",
+                              "uid": "35240-42fc06f6-e5d0-4449-86db-1e8fb44cd39e"
+                            },
+                            {
+                              "id": "d19a2ba0-bf42-4a85-8aa4-9d5e432855cf",
+                              "name": "The specified resource was not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/history",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "performance",
+                                    "sql_statements",
+                                    ":sql_id",
+                                    "history"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "sql_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:56.000Z",
+                              "updatedAt": "2026-07-28T02:27:56.000Z",
+                              "uid": "35240-d19a2ba0-bf42-4a85-8aa4-9d5e432855cf"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:56.000Z",
+                          "updatedAt": "2026-07-28T02:27:56.000Z",
+                          "uid": "35240-f1080317-8b7d-4b70-803b-75ad4096d785"
+                        }
+                      ],
+                      "id": "0410c018-afbc-487e-9227-4f20405e950d",
+                      "createdAt": "2026-07-28T02:27:56.000Z",
+                      "updatedAt": "2026-07-28T02:27:56.000Z",
+                      "uid": "35240-0410c018-afbc-487e-9227-4f20405e950d"
+                    },
+                    {
+                      "name": "Oracle Database Get SQL statement statistics",
+                      "id": "b01e0617-8161-4bad-b70e-6937562029c7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "performance",
+                            "sql_statements",
+                            ":sql_id",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "a60a8768-6941-4b38-a59d-ddafe16b9224",
+                              "key": "sql_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns detailed statistics for a specific SQL statement."
+                      },
+                      "response": [
+                        {
+                          "id": "bdc8a9ed-c7a2-45af-9072-940c035d84c3",
+                          "name": "SQL statistics retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "performance",
+                                "sql_statements",
+                                ":sql_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sql_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"sql_id\": \"<string>\",\n  \"sql_text\": \"<string>\",\n  \"executions\": \"<long>\",\n  \"cpu_time\": \"<long>\",\n  \"elapsed_time\": \"<long>\",\n  \"buffer_gets\": \"<long>\",\n  \"disk_reads\": \"<long>\",\n  \"rows_processed\": \"<long>\"\n}",
+                          "createdAt": "2026-07-28T02:27:56.000Z",
+                          "updatedAt": "2026-07-28T02:27:56.000Z",
+                          "uid": "35240-bdc8a9ed-c7a2-45af-9072-940c035d84c3"
+                        },
+                        {
+                          "id": "cb1eecb9-c6e6-4681-9540-6e691339f694",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "performance",
+                                "sql_statements",
+                                ":sql_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sql_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:56.000Z",
+                          "updatedAt": "2026-07-28T02:27:56.000Z",
+                          "uid": "35240-cb1eecb9-c6e6-4681-9540-6e691339f694"
+                        },
+                        {
+                          "id": "cc0304d2-afc0-4ba2-8b98-e8214dd61ce6",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/performance/sql_statements/:sql_id/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "performance",
+                                "sql_statements",
+                                ":sql_id",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sql_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:56.000Z",
+                          "updatedAt": "2026-07-28T02:27:56.000Z",
+                          "uid": "35240-cc0304d2-afc0-4ba2-8b98-e8214dd61ce6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:56.000Z",
+                      "updatedAt": "2026-07-28T02:27:56.000Z",
+                      "uid": "35240-b01e0617-8161-4bad-b70e-6937562029c7"
+                    }
+                  ],
+                  "id": "066eb551-1a67-4cb7-ac72-ce097dd04edd",
+                  "createdAt": "2026-07-28T02:27:56.000Z",
+                  "updatedAt": "2026-07-28T02:27:56.000Z",
+                  "uid": "35240-066eb551-1a67-4cb7-ac72-ce097dd04edd"
+                },
+                {
+                  "name": "Oracle Database Get all SQL statements",
+                  "id": "31b041e4-d209-4003-8248-41a184177bc8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/performance/sql_statements/?limit=25&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "performance",
+                        "sql_statements",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Number of items to skip before returning results",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    "description": "Returns performance statistics for all SQL statements in the shared pool."
+                  },
+                  "response": [
+                    {
+                      "id": "0f59acdd-b19a-4446-a10d-f54e7abc5aab",
+                      "name": "SQL statements retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/performance/sql_statements/?limit=25&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "performance",
+                            "sql_statements",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Number of items to skip before returning results",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"sql_id\": \"<string>\",\n      \"sql_text\": \"<string>\",\n      \"executions\": \"<long>\",\n      \"cpu_time\": \"<long>\",\n      \"elapsed_time\": \"<long>\",\n      \"buffer_gets\": \"<long>\",\n      \"disk_reads\": \"<long>\",\n      \"rows_processed\": \"<long>\"\n    },\n    {\n      \"sql_id\": \"<string>\",\n      \"sql_text\": \"<string>\",\n      \"executions\": \"<long>\",\n      \"cpu_time\": \"<long>\",\n      \"elapsed_time\": \"<long>\",\n      \"buffer_gets\": \"<long>\",\n      \"disk_reads\": \"<long>\",\n      \"rows_processed\": \"<long>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\",\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:56.000Z",
+                      "updatedAt": "2026-07-28T02:27:56.000Z",
+                      "uid": "35240-0f59acdd-b19a-4446-a10d-f54e7abc5aab"
+                    },
+                    {
+                      "id": "afea1edb-6403-4a2f-92cd-923f5d53f636",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/performance/sql_statements/?limit=25&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "performance",
+                            "sql_statements",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Number of items to skip before returning results",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:56.000Z",
+                      "updatedAt": "2026-07-28T02:27:56.000Z",
+                      "uid": "35240-afea1edb-6403-4a2f-92cd-923f5d53f636"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:56.000Z",
+                  "updatedAt": "2026-07-28T02:27:56.000Z",
+                  "uid": "35240-31b041e4-d209-4003-8248-41a184177bc8"
+                }
+              ],
+              "id": "cad6dcd7-f7dc-45c3-aa5b-feecc5e9d45d",
+              "createdAt": "2026-07-28T02:27:56.000Z",
+              "updatedAt": "2026-07-28T02:27:56.000Z",
+              "uid": "35240-cad6dcd7-f7dc-45c3-aa5b-feecc5e9d45d"
+            },
+            {
+              "name": "top_sql_statements",
+              "item": [
+                {
+                  "name": "Oracle Database Get top SQL by CPU usage",
+                  "id": "a0efdd9b-4880-4ed1-9dba-5ad06053def0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/performance/top_sql_statements/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "performance",
+                        "top_sql_statements",
+                        ""
+                      ]
+                    },
+                    "description": "Returns the top SQL statements ranked by CPU consumption."
+                  },
+                  "response": [
+                    {
+                      "id": "08a74aca-f8b7-457d-ae7d-75288ea5300e",
+                      "name": "Top SQL statements retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/performance/top_sql_statements/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "performance",
+                            "top_sql_statements",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"sql_id\": \"<string>\",\n      \"sql_text\": \"<string>\",\n      \"executions\": \"<long>\",\n      \"cpu_time\": \"<long>\",\n      \"elapsed_time\": \"<long>\",\n      \"buffer_gets\": \"<long>\",\n      \"disk_reads\": \"<long>\",\n      \"rows_processed\": \"<long>\"\n    },\n    {\n      \"sql_id\": \"<string>\",\n      \"sql_text\": \"<string>\",\n      \"executions\": \"<long>\",\n      \"cpu_time\": \"<long>\",\n      \"elapsed_time\": \"<long>\",\n      \"buffer_gets\": \"<long>\",\n      \"disk_reads\": \"<long>\",\n      \"rows_processed\": \"<long>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\",\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:56.000Z",
+                      "updatedAt": "2026-07-28T02:27:56.000Z",
+                      "uid": "35240-08a74aca-f8b7-457d-ae7d-75288ea5300e"
+                    },
+                    {
+                      "id": "00e6e2c5-5cd8-46f5-b967-d6f641308275",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/performance/top_sql_statements/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "performance",
+                            "top_sql_statements",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:56.000Z",
+                      "updatedAt": "2026-07-28T02:27:56.000Z",
+                      "uid": "35240-00e6e2c5-5cd8-46f5-b967-d6f641308275"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:56.000Z",
+                  "updatedAt": "2026-07-28T02:27:56.000Z",
+                  "uid": "35240-a0efdd9b-4880-4ed1-9dba-5ad06053def0"
+                }
+              ],
+              "id": "2473a62d-7466-46da-b7fd-daac9b1fae8b",
+              "createdAt": "2026-07-28T02:27:56.000Z",
+              "updatedAt": "2026-07-28T02:27:56.000Z",
+              "uid": "35240-2473a62d-7466-46da-b7fd-daac9b1fae8b"
+            },
+            {
+              "name": "active_sessions_history",
+              "item": [
+                {
+                  "name": "Oracle Database Get active sessions history",
+                  "id": "55567b7e-ff02-4347-806e-00ccc312b1fa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/performance/active_sessions_history/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "performance",
+                        "active_sessions_history",
+                        ""
+                      ]
+                    },
+                    "description": "Returns the active session history (ASH) data."
+                  },
+                  "response": [
+                    {
+                      "id": "80ee2b86-ffb9-4e57-aebf-86af764c76f0",
+                      "name": "Active sessions history retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/performance/active_sessions_history/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "performance",
+                            "active_sessions_history",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"sample_time\": \"<dateTime>\",\n      \"session_id\": \"<integer>\",\n      \"sql_id\": \"<string>\",\n      \"event\": \"<string>\",\n      \"wait_class\": \"<string>\"\n    },\n    {\n      \"sample_time\": \"<dateTime>\",\n      \"session_id\": \"<integer>\",\n      \"sql_id\": \"<string>\",\n      \"event\": \"<string>\",\n      \"wait_class\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:56.000Z",
+                      "updatedAt": "2026-07-28T02:27:56.000Z",
+                      "uid": "35240-80ee2b86-ffb9-4e57-aebf-86af764c76f0"
+                    },
+                    {
+                      "id": "7e134950-6201-44e2-911f-d426da69811f",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/performance/active_sessions_history/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "performance",
+                            "active_sessions_history",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:56.000Z",
+                      "updatedAt": "2026-07-28T02:27:56.000Z",
+                      "uid": "35240-7e134950-6201-44e2-911f-d426da69811f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:56.000Z",
+                  "updatedAt": "2026-07-28T02:27:56.000Z",
+                  "uid": "35240-55567b7e-ff02-4347-806e-00ccc312b1fa"
+                }
+              ],
+              "id": "99cd4951-d728-4b75-afd5-d176d9de5454",
+              "createdAt": "2026-07-28T02:27:56.000Z",
+              "updatedAt": "2026-07-28T02:27:56.000Z",
+              "uid": "35240-99cd4951-d728-4b75-afd5-d176d9de5454"
+            },
+            {
+              "name": "active_sessions_history_waits",
+              "item": [
+                {
+                  "name": "Oracle Database Get active session history waits",
+                  "id": "e639e8c8-d5d5-4372-b077-0aa6f1bc066c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/performance/active_sessions_history_waits/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "performance",
+                        "active_sessions_history_waits",
+                        ""
+                      ]
+                    },
+                    "description": "Returns wait event data from the active session history."
+                  },
+                  "response": [
+                    {
+                      "id": "7a8722a5-57e8-4b05-87f9-91e6804f1d8f",
+                      "name": "Wait data retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/performance/active_sessions_history_waits/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "performance",
+                            "active_sessions_history_waits",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"event\": \"<string>\",\n      \"wait_class\": \"<string>\",\n      \"total_waits\": \"<integer>\",\n      \"average_wait_ms\": \"<number>\"\n    },\n    {\n      \"event\": \"<string>\",\n      \"wait_class\": \"<string>\",\n      \"total_waits\": \"<integer>\",\n      \"average_wait_ms\": \"<number>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:56.000Z",
+                      "updatedAt": "2026-07-28T02:27:56.000Z",
+                      "uid": "35240-7a8722a5-57e8-4b05-87f9-91e6804f1d8f"
+                    },
+                    {
+                      "id": "29d094df-83ed-4647-afa9-cd499dd5fc42",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/performance/active_sessions_history_waits/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "performance",
+                            "active_sessions_history_waits",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:56.000Z",
+                      "updatedAt": "2026-07-28T02:27:56.000Z",
+                      "uid": "35240-29d094df-83ed-4647-afa9-cd499dd5fc42"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:56.000Z",
+                  "updatedAt": "2026-07-28T02:27:56.000Z",
+                  "uid": "35240-e639e8c8-d5d5-4372-b077-0aa6f1bc066c"
+                }
+              ],
+              "id": "542bedfc-7862-491f-abd3-db868cd082c5",
+              "createdAt": "2026-07-28T02:27:56.000Z",
+              "updatedAt": "2026-07-28T02:27:56.000Z",
+              "uid": "35240-542bedfc-7862-491f-abd3-db868cd082c5"
+            }
+          ],
+          "id": "14d163c1-c9cd-4924-a8c0-2fba37915dac",
+          "createdAt": "2026-07-28T02:27:56.000Z",
+          "updatedAt": "2026-07-28T02:27:56.000Z",
+          "uid": "35240-14d163c1-c9cd-4924-a8c0-2fba37915dac"
+        }
+      ],
+      "id": "a0c24d8d-b3d2-458b-8eba-d7d36c7381a8",
+      "createdAt": "2026-07-28T02:27:56.000Z",
+      "updatedAt": "2026-07-28T02:27:56.000Z",
+      "uid": "35240-a0c24d8d-b3d2-458b-8eba-d7d36c7381a8"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

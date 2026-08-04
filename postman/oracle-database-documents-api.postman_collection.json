@@ -1,0 +1,2284 @@
+{
+  "info": {
+    "_postman_id": "ec90311e-1947-4a0e-b274-32604fe97faa",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Documents API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:31.000Z",
+    "updatedAt": "2026-07-28T02:27:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ec90311e-1947-4a0e-b274-32604fe97faa"
+  },
+  "item": [
+    {
+      "name": "{collection}",
+      "item": [
+        {
+          "name": "{key}",
+          "item": [
+            {
+              "name": "Oracle Database Get a document by key",
+              "id": "9ec54700-854f-4e57-b5b8-29aef68970c7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Return 304 if document has not been modified since this timestamp",
+                    "key": "If-Modified-Since",
+                    "value": "<dateTime>"
+                  },
+                  {
+                    "description": "Return 304 if document etag matches this value",
+                    "key": "If-None-Match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/:key",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ":key"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4117a31d-3b2b-44f8-9367-84e05aa8980d",
+                      "key": "collection",
+                      "value": "<string>",
+                      "description": "(Required) The name of the SODA collection"
+                    },
+                    {
+                      "id": "789a6b07-90c7-4942-ba3d-166f69da1954",
+                      "key": "key",
+                      "value": "<string>",
+                      "description": "(Required) The unique key of the document"
+                    }
+                  ]
+                },
+                "description": "Retrieves a single document from the collection by its unique key. Supports conditional retrieval via If-Modified-Since and If-None-Match headers."
+              },
+              "response": [
+                {
+                  "id": "35b1ebe0-3c3c-4f54-a1b3-f69982de7f9b",
+                  "name": "Document retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Return 304 if document has not been modified since this timestamp",
+                        "key": "If-Modified-Since",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "description": "Return 304 if document etag matches this value",
+                        "key": "If-None-Match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Document version tag",
+                        "type": "text/plain"
+                      },
+                      "key": "ETag",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Last modification timestamp",
+                        "type": "text/plain"
+                      },
+                      "key": "Last-Modified",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-35b1ebe0-3c3c-4f54-a1b3-f69982de7f9b"
+                },
+                {
+                  "id": "afe09291-ba5e-4e94-af2b-222834edf254",
+                  "name": "Document exists but has null content",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Return 304 if document has not been modified since this timestamp",
+                        "key": "If-Modified-Since",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "description": "Return 304 if document etag matches this value",
+                        "key": "If-None-Match",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-afe09291-ba5e-4e94-af2b-222834edf254"
+                },
+                {
+                  "id": "a5694190-0c51-451e-89f9-c089c8d86251",
+                  "name": "Document has not been modified",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Return 304 if document has not been modified since this timestamp",
+                        "key": "If-Modified-Since",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "description": "Return 304 if document etag matches this value",
+                        "key": "If-None-Match",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Modified",
+                  "code": 304,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-a5694190-0c51-451e-89f9-c089c8d86251"
+                },
+                {
+                  "id": "f9f05aba-1cee-4425-b532-ec3ada73c3c9",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Return 304 if document has not been modified since this timestamp",
+                        "key": "If-Modified-Since",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "description": "Return 304 if document etag matches this value",
+                        "key": "If-None-Match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-f9f05aba-1cee-4425-b532-ec3ada73c3c9"
+                },
+                {
+                  "id": "8d7e0e90-e108-4c4b-9b4a-59a91c91ad70",
+                  "name": "The specified collection or document was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Return 304 if document has not been modified since this timestamp",
+                        "key": "If-Modified-Since",
+                        "value": "<dateTime>"
+                      },
+                      {
+                        "description": "Return 304 if document etag matches this value",
+                        "key": "If-None-Match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-8d7e0e90-e108-4c4b-9b4a-59a91c91ad70"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-9ec54700-854f-4e57-b5b8-29aef68970c7"
+            },
+            {
+              "name": "Oracle Database Replace or insert a document by key",
+              "id": "e9dd8abb-bf8b-4f69-96ca-f26516a792e4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/:key",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ":key"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3ea5a99a-e26a-43e1-971d-1da563efa003",
+                      "key": "collection",
+                      "value": "<string>",
+                      "description": "(Required) The name of the SODA collection"
+                    },
+                    {
+                      "id": "8a6777c5-7037-418e-8f3b-5b80d6ea39c7",
+                      "key": "key",
+                      "value": "<string>",
+                      "description": "(Required) The unique key of the document"
+                    }
+                  ]
+                },
+                "description": "Replaces an existing document or inserts a new one at the specified key. Used for client-assigned keys."
+              },
+              "response": [
+                {
+                  "id": "904443fd-896b-4db9-94dc-9041a90b7f0c",
+                  "name": "Document replaced successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"lastModified\": \"<dateTime>\",\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-904443fd-896b-4db9-94dc-9041a90b7f0c"
+                },
+                {
+                  "id": "9901d41a-61ee-4340-8a27-5aa279c36986",
+                  "name": "Document inserted successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"etag\": \"<string>\",\n  \"lastModified\": \"<dateTime>\",\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-9901d41a-61ee-4340-8a27-5aa279c36986"
+                },
+                {
+                  "id": "64fc3cc6-670f-4ca1-9863-ce0df5cf7017",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-64fc3cc6-670f-4ca1-9863-ce0df5cf7017"
+                },
+                {
+                  "id": "2cc7d5fa-ea7e-43b2-8690-7718c58e9d96",
+                  "name": "Collection is read-only",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Method Not Allowed",
+                  "code": 405,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-2cc7d5fa-ea7e-43b2-8690-7718c58e9d96"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-e9dd8abb-bf8b-4f69-96ca-f26516a792e4"
+            },
+            {
+              "name": "Oracle Database Patch a document using JSON Patch",
+              "id": "59192d26-435d-4bd4-b841-c4bcebac7132",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json-patch+json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"description\": \"The value to use for add, replace, or test operations\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"move\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"description\": \"The value to use for add, replace, or test operations\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/:key",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ":key"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4e3f6d34-39f5-4308-89f7-49fbafcb5e7e",
+                      "key": "collection",
+                      "value": "<string>",
+                      "description": "(Required) The name of the SODA collection"
+                    },
+                    {
+                      "id": "dd3d378f-8e76-440b-8fea-acd9af654664",
+                      "key": "key",
+                      "value": "<string>",
+                      "description": "(Required) The unique key of the document"
+                    }
+                  ]
+                },
+                "description": "Updates a document using the JSON Patch specification (RFC 6902). The request body must contain an array of patch operations."
+              },
+              "response": [
+                {
+                  "id": "e2dcbafa-911b-4bbf-a1c5-05085e6eadb9",
+                  "name": "Document patched successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json-patch+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"description\": \"The value to use for add, replace, or test operations\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"move\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"description\": \"The value to use for add, replace, or test operations\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-e2dcbafa-911b-4bbf-a1c5-05085e6eadb9"
+                },
+                {
+                  "id": "01510e0b-9ad5-4db3-99e5-0ed890b5c433",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json-patch+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"description\": \"The value to use for add, replace, or test operations\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"move\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"description\": \"The value to use for add, replace, or test operations\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-01510e0b-9ad5-4db3-99e5-0ed890b5c433"
+                },
+                {
+                  "id": "ad1b9e7f-9a2d-4dfc-a681-92f1a494b70d",
+                  "name": "The specified collection or document was not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json-patch+json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"description\": \"The value to use for add, replace, or test operations\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"move\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"description\": \"The value to use for add, replace, or test operations\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-ad1b9e7f-9a2d-4dfc-a681-92f1a494b70d"
+                },
+                {
+                  "id": "8e438c21-ccf9-4773-a51f-5c5bdcb5f5de",
+                  "name": "Collection is read-only",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json-patch+json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"description\": \"The value to use for add, replace, or test operations\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"move\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"description\": \"The value to use for add, replace, or test operations\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Method Not Allowed",
+                  "code": 405,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-8e438c21-ccf9-4773-a51f-5c5bdcb5f5de"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-59192d26-435d-4bd4-b841-c4bcebac7132"
+            },
+            {
+              "name": "Oracle Database Delete a document by key",
+              "id": "d3bf0630-95f1-4c60-9ab4-767f94653a93",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/:key",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ":key"
+                  ],
+                  "variable": [
+                    {
+                      "id": "c0477492-8d40-4867-8d2d-6bb49e8d30df",
+                      "key": "collection",
+                      "value": "<string>",
+                      "description": "(Required) The name of the SODA collection"
+                    },
+                    {
+                      "id": "b2e9b5c0-2955-4fbe-8c1f-de075e902bd2",
+                      "key": "key",
+                      "value": "<string>",
+                      "description": "(Required) The unique key of the document"
+                    }
+                  ]
+                },
+                "description": "Deletes a single document from the collection by its unique key."
+              },
+              "response": [
+                {
+                  "id": "424e4d72-ae9f-4ccc-99dd-722ffb0502ad",
+                  "name": "Document deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-424e4d72-ae9f-4ccc-99dd-722ffb0502ad"
+                },
+                {
+                  "id": "12950ffd-3a06-4844-be41-9e4649ab41b8",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-12950ffd-3a06-4844-be41-9e4649ab41b8"
+                },
+                {
+                  "id": "53a7a174-7ca4-49a9-9b8c-2193b5eb5349",
+                  "name": "The specified collection or document was not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-53a7a174-7ca4-49a9-9b8c-2193b5eb5349"
+                },
+                {
+                  "id": "86b683fd-6873-4bc3-829a-e4860fc34c97",
+                  "name": "Collection is read-only",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/:collection/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":collection",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        },
+                        {
+                          "key": "key"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Method Not Allowed",
+                  "code": 405,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:31.000Z",
+                  "updatedAt": "2026-07-28T02:27:31.000Z",
+                  "uid": "35240-86b683fd-6873-4bc3-829a-e4860fc34c97"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-d3bf0630-95f1-4c60-9ab4-767f94653a93"
+            }
+          ],
+          "id": "42e838b6-c177-4ea2-b3a0-994ec28ff7f8",
+          "createdAt": "2026-07-28T02:27:31.000Z",
+          "updatedAt": "2026-07-28T02:27:31.000Z",
+          "uid": "35240-42e838b6-c177-4ea2-b3a0-994ec28ff7f8"
+        },
+        {
+          "name": "Oracle Database Get documents from a collection",
+          "id": "0fcf5cbc-8875-48dd-aa6f-69769b0816db",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:collection/?limit=<integer>&offset=0&fields=value&totalResults=false&fromID=<string>&toID=<string>&since=<dateTime>&until=<dateTime>&q=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":collection",
+                ""
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of documents to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Number of documents to skip (default 0)",
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "description": "Control which fields are returned",
+                  "key": "fields",
+                  "value": "value"
+                },
+                {
+                  "description": "Include total count in response (may be slow on large collections)",
+                  "key": "totalResults",
+                  "value": "false"
+                },
+                {
+                  "description": "Start after this key (ascending order)",
+                  "key": "fromID",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Stop before this key (descending order)",
+                  "key": "toID",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Only return documents modified after this timestamp",
+                  "key": "since",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Only return documents modified before this timestamp",
+                  "key": "until",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "QBE filter specification as a JSON object",
+                  "key": "q",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "id": "94f2a002-801b-4de2-903a-5af71146ac51",
+                  "key": "collection",
+                  "value": "<string>",
+                  "description": "(Required) The name of the SODA collection"
+                }
+              ]
+            },
+            "description": "Retrieves documents from the specified collection with optional filtering, pagination, and field selection. Supports Query by Example (QBE) filter specifications via the q parameter."
+          },
+          "response": [
+            {
+              "id": "52cf7497-0ee1-433a-83da-68c2ab5abb70",
+              "name": "Documents retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/?limit=<integer>&offset=0&fields=value&totalResults=false&fromID=<string>&toID=<string>&since=<dateTime>&until=<dateTime>&q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of documents to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of documents to skip (default 0)",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Control which fields are returned",
+                      "key": "fields",
+                      "value": "value"
+                    },
+                    {
+                      "description": "Include total count in response (may be slow on large collections)",
+                      "key": "totalResults",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Start after this key (ascending order)",
+                      "key": "fromID",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Stop before this key (descending order)",
+                      "key": "toID",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Only return documents modified after this timestamp",
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Only return documents modified before this timestamp",
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "QBE filter specification as a JSON object",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"lastModified\": \"<dateTime>\",\n      \"created\": \"<dateTime>\",\n      \"value\": {},\n      \"mediaType\": \"<string>\",\n      \"bytes\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"lastModified\": \"<dateTime>\",\n      \"created\": \"<dateTime>\",\n      \"value\": {},\n      \"mediaType\": \"<string>\",\n      \"bytes\": \"<integer>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\",\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"totalResults\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"mediaType\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"mediaType\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-52cf7497-0ee1-433a-83da-68c2ab5abb70"
+            },
+            {
+              "id": "e6133ef0-4ffd-490d-96d5-4defc55de86e",
+              "name": "Bad request - invalid parameter value",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/?limit=<integer>&offset=0&fields=value&totalResults=false&fromID=<string>&toID=<string>&since=<dateTime>&until=<dateTime>&q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of documents to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of documents to skip (default 0)",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Control which fields are returned",
+                      "key": "fields",
+                      "value": "value"
+                    },
+                    {
+                      "description": "Include total count in response (may be slow on large collections)",
+                      "key": "totalResults",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Start after this key (ascending order)",
+                      "key": "fromID",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Stop before this key (descending order)",
+                      "key": "toID",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Only return documents modified after this timestamp",
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Only return documents modified before this timestamp",
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "QBE filter specification as a JSON object",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-e6133ef0-4ffd-490d-96d5-4defc55de86e"
+            },
+            {
+              "id": "91522595-0d05-45e6-87d5-782c4e8b7e7d",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/?limit=<integer>&offset=0&fields=value&totalResults=false&fromID=<string>&toID=<string>&since=<dateTime>&until=<dateTime>&q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of documents to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of documents to skip (default 0)",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Control which fields are returned",
+                      "key": "fields",
+                      "value": "value"
+                    },
+                    {
+                      "description": "Include total count in response (may be slow on large collections)",
+                      "key": "totalResults",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Start after this key (ascending order)",
+                      "key": "fromID",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Stop before this key (descending order)",
+                      "key": "toID",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Only return documents modified after this timestamp",
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Only return documents modified before this timestamp",
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "QBE filter specification as a JSON object",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-91522595-0d05-45e6-87d5-782c4e8b7e7d"
+            },
+            {
+              "id": "f414bee2-e3ff-4b54-a082-49940e400cb0",
+              "name": "The specified collection or document was not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/?limit=<integer>&offset=0&fields=value&totalResults=false&fromID=<string>&toID=<string>&since=<dateTime>&until=<dateTime>&q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of documents to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Number of documents to skip (default 0)",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Control which fields are returned",
+                      "key": "fields",
+                      "value": "value"
+                    },
+                    {
+                      "description": "Include total count in response (may be slow on large collections)",
+                      "key": "totalResults",
+                      "value": "false"
+                    },
+                    {
+                      "description": "Start after this key (ascending order)",
+                      "key": "fromID",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Stop before this key (descending order)",
+                      "key": "toID",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Only return documents modified after this timestamp",
+                      "key": "since",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Only return documents modified before this timestamp",
+                      "key": "until",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "QBE filter specification as a JSON object",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-f414bee2-e3ff-4b54-a082-49940e400cb0"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:31.000Z",
+          "updatedAt": "2026-07-28T02:27:31.000Z",
+          "uid": "35240-0fcf5cbc-8875-48dd-aa6f-69769b0816db"
+        },
+        {
+          "name": "Oracle Database Insert a new document",
+          "id": "99d05150-aa0a-4dc8-8dc5-ed6dc611305a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:collection/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":collection",
+                ""
+              ],
+              "variable": [
+                {
+                  "id": "999fce44-818a-48b6-859e-b0dc1b90910e",
+                  "key": "collection",
+                  "value": "<string>",
+                  "description": "(Required) The name of the SODA collection"
+                }
+              ]
+            },
+            "description": "Inserts a new JSON document into the collection with a server-assigned key. Returns the generated key, etag, and timestamps in the response."
+          },
+          "response": [
+            {
+              "id": "53d8587d-75dc-49ac-ab6b-0eb496b38045",
+              "name": "Document inserted successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"lastModified\": \"<dateTime>\",\n      \"created\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"lastModified\": \"<dateTime>\",\n      \"created\": \"<dateTime>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-53d8587d-75dc-49ac-ab6b-0eb496b38045"
+            },
+            {
+              "id": "6a7aa7d3-0d18-476f-a44a-59596f69d000",
+              "name": "Accepted for asynchronous insertion",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-6a7aa7d3-0d18-476f-a44a-59596f69d000"
+            },
+            {
+              "id": "f3d923fe-834b-48d7-b307-08af9693dd3c",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-f3d923fe-834b-48d7-b307-08af9693dd3c"
+            },
+            {
+              "id": "896c88b9-953c-4171-8111-680066ff0989",
+              "name": "Collection is read-only",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-896c88b9-953c-4171-8111-680066ff0989"
+            },
+            {
+              "id": "c11bef65-0ec9-481b-8afd-aa24618071c6",
+              "name": "Unsupported operation",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Implemented",
+              "code": 501,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-c11bef65-0ec9-481b-8afd-aa24618071c6"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:31.000Z",
+          "updatedAt": "2026-07-28T02:27:31.000Z",
+          "uid": "35240-99d05150-aa0a-4dc8-8dc5-ed6dc611305a"
+        },
+        {
+          "name": "Oracle Database Insert or replace document (no key in URL)",
+          "id": "b4af4e49-a554-40b8-a6e2-bc9c290e90df",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:collection/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":collection",
+                ""
+              ],
+              "variable": [
+                {
+                  "id": "307c0baa-7660-469b-94c6-2453b56e134d",
+                  "key": "collection",
+                  "value": "<string>",
+                  "description": "(Required) The name of the SODA collection"
+                }
+              ]
+            },
+            "description": "Inserts or replaces a document. Used with client-assigned keys included in the document body."
+          },
+          "response": [
+            {
+              "id": "cfa5cca6-e888-4185-be6e-6f97d08cd53c",
+              "name": "Document replaced successfully",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-cfa5cca6-e888-4185-be6e-6f97d08cd53c"
+            },
+            {
+              "id": "eeb2befd-3730-4af1-8a2b-ca5eaeced6f6",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-eeb2befd-3730-4af1-8a2b-ca5eaeced6f6"
+            },
+            {
+              "id": "78bbeacb-1706-492d-ace6-b03c67d8d825",
+              "name": "Collection is read-only",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:collection/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":collection",
+                    ""
+                  ],
+                  "variable": [
+                    {
+                      "key": "collection"
+                    }
+                  ]
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:27:31.000Z",
+              "updatedAt": "2026-07-28T02:27:31.000Z",
+              "uid": "35240-78bbeacb-1706-492d-ace6-b03c67d8d825"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:31.000Z",
+          "updatedAt": "2026-07-28T02:27:31.000Z",
+          "uid": "35240-b4af4e49-a554-40b8-a6e2-bc9c290e90df"
+        }
+      ],
+      "id": "1a32cfbb-b64a-4f24-800b-f88e75f43f1d",
+      "createdAt": "2026-07-28T02:27:31.000Z",
+      "updatedAt": "2026-07-28T02:27:31.000Z",
+      "uid": "35240-1a32cfbb-b64a-4f24-800b-f88e75f43f1d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

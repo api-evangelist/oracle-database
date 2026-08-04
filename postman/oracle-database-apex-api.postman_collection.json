@@ -1,0 +1,1127 @@
+{
+  "info": {
+    "_postman_id": "5ec54111-75ea-4397-bc2a-91b7c743a1ba",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:06.000Z",
+    "updatedAt": "2026-07-28T02:27:06.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5ec54111-75ea-4397-bc2a-91b7c743a1ba"
+  },
+  "item": [
+    {
+      "name": "apex",
+      "item": [
+        {
+          "name": "workspaces",
+          "item": [
+            {
+              "name": "{workspace_name}",
+              "item": [
+                {
+                  "name": "applications",
+                  "item": [
+                    {
+                      "name": "{application_id}",
+                      "item": [
+                        {
+                          "name": "Oracle Database Create or update an APEX application",
+                          "id": "94d7e92a-c5ca-446d-a189-7728de22ee92",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"application_name\": \"<string>\",\n  \"workspace\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/applications/:application_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apex",
+                                "workspaces",
+                                ":workspace_name",
+                                "applications",
+                                ":application_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1be3c057-17fe-4b88-8af5-8fdd889a170c",
+                                  "key": "workspace_name",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "a009d409-63c7-4a2d-bdca-942c04130150",
+                                  "key": "application_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Creates a new or updates an existing APEX application."
+                          },
+                          "response": [
+                            {
+                              "id": "fc9bb874-14ab-4d7a-825e-3cc0c500d618",
+                              "name": "Application updated successfully",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"application_name\": \"<string>\",\n  \"workspace\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/applications/:application_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apex",
+                                    "workspaces",
+                                    ":workspace_name",
+                                    "applications",
+                                    ":application_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace_name"
+                                    },
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:27:06.000Z",
+                              "updatedAt": "2026-07-28T02:27:06.000Z",
+                              "uid": "35240-fc9bb874-14ab-4d7a-825e-3cc0c500d618"
+                            },
+                            {
+                              "id": "f4681774-1be6-4c52-8f64-03109af950a8",
+                              "name": "Application created successfully",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"application_name\": \"<string>\",\n  \"workspace\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/applications/:application_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apex",
+                                    "workspaces",
+                                    ":workspace_name",
+                                    "applications",
+                                    ":application_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace_name"
+                                    },
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:27:06.000Z",
+                              "updatedAt": "2026-07-28T02:27:06.000Z",
+                              "uid": "35240-f4681774-1be6-4c52-8f64-03109af950a8"
+                            },
+                            {
+                              "id": "6bdc8791-4f7d-4da4-8fae-8b88b479a6e6",
+                              "name": "Authentication required or credentials invalid",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"application_name\": \"<string>\",\n  \"workspace\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/applications/:application_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apex",
+                                    "workspaces",
+                                    ":workspace_name",
+                                    "applications",
+                                    ":application_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace_name"
+                                    },
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:06.000Z",
+                              "updatedAt": "2026-07-28T02:27:06.000Z",
+                              "uid": "35240-6bdc8791-4f7d-4da4-8fae-8b88b479a6e6"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:06.000Z",
+                          "updatedAt": "2026-07-28T02:27:06.000Z",
+                          "uid": "35240-94d7e92a-c5ca-446d-a189-7728de22ee92"
+                        },
+                        {
+                          "name": "Oracle Database Delete an APEX application",
+                          "id": "482238e0-e23d-49ac-83ca-b97352582b14",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/applications/:application_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apex",
+                                "workspaces",
+                                ":workspace_name",
+                                "applications",
+                                ":application_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8b6bdbc1-a3be-45cc-91a8-7263167905d2",
+                                  "key": "workspace_name",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                },
+                                {
+                                  "id": "ef419bfc-7e87-41c1-a819-bff65e646c53",
+                                  "key": "application_id",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Deletes a specific APEX application."
+                          },
+                          "response": [
+                            {
+                              "id": "6e2ac652-3896-4592-8a51-6bf2df425a3a",
+                              "name": "Application deleted successfully",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/applications/:application_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apex",
+                                    "workspaces",
+                                    ":workspace_name",
+                                    "applications",
+                                    ":application_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace_name"
+                                    },
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:27:06.000Z",
+                              "updatedAt": "2026-07-28T02:27:06.000Z",
+                              "uid": "35240-6e2ac652-3896-4592-8a51-6bf2df425a3a"
+                            },
+                            {
+                              "id": "6b34355a-5bc1-4ef9-9801-6ebfdc4e1890",
+                              "name": "Authentication required or credentials invalid",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/applications/:application_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apex",
+                                    "workspaces",
+                                    ":workspace_name",
+                                    "applications",
+                                    ":application_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace_name"
+                                    },
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:06.000Z",
+                              "updatedAt": "2026-07-28T02:27:06.000Z",
+                              "uid": "35240-6b34355a-5bc1-4ef9-9801-6ebfdc4e1890"
+                            },
+                            {
+                              "id": "9aadba93-2774-48f0-949a-f9662c6d423f",
+                              "name": "The specified resource was not found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/applications/:application_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "apex",
+                                    "workspaces",
+                                    ":workspace_name",
+                                    "applications",
+                                    ":application_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace_name"
+                                    },
+                                    {
+                                      "key": "application_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:06.000Z",
+                              "updatedAt": "2026-07-28T02:27:06.000Z",
+                              "uid": "35240-9aadba93-2774-48f0-949a-f9662c6d423f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:06.000Z",
+                          "updatedAt": "2026-07-28T02:27:06.000Z",
+                          "uid": "35240-482238e0-e23d-49ac-83ca-b97352582b14"
+                        }
+                      ],
+                      "id": "6c4c4180-be24-484f-ac88-3d4e018783c2",
+                      "createdAt": "2026-07-28T02:27:06.000Z",
+                      "updatedAt": "2026-07-28T02:27:06.000Z",
+                      "uid": "35240-6c4c4180-be24-484f-ac88-3d4e018783c2"
+                    },
+                    {
+                      "name": "Oracle Database Get workspace applications",
+                      "id": "375688c3-2349-4758-8473-82b38fc16994",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/applications/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apex",
+                            "workspaces",
+                            ":workspace_name",
+                            "applications",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "8bba85df-eeb5-4e43-aee1-c46dca5dab46",
+                              "key": "workspace_name",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns applications in a specific APEX workspace."
+                      },
+                      "response": [
+                        {
+                          "id": "9d58d028-0210-4598-b1d4-10923195b358",
+                          "name": "Applications retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/applications/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apex",
+                                "workspaces",
+                                ":workspace_name",
+                                "applications",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"application_id\": \"<integer>\",\n      \"application_name\": \"<string>\",\n      \"workspace\": \"<string>\",\n      \"version\": \"<string>\"\n    },\n    {\n      \"application_id\": \"<integer>\",\n      \"application_name\": \"<string>\",\n      \"workspace\": \"<string>\",\n      \"version\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:27:06.000Z",
+                          "updatedAt": "2026-07-28T02:27:06.000Z",
+                          "uid": "35240-9d58d028-0210-4598-b1d4-10923195b358"
+                        },
+                        {
+                          "id": "4a1c921c-8980-4580-b968-b937ddafef91",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/applications/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "apex",
+                                "workspaces",
+                                ":workspace_name",
+                                "applications",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:06.000Z",
+                          "updatedAt": "2026-07-28T02:27:06.000Z",
+                          "uid": "35240-4a1c921c-8980-4580-b968-b937ddafef91"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:06.000Z",
+                      "updatedAt": "2026-07-28T02:27:06.000Z",
+                      "uid": "35240-375688c3-2349-4758-8473-82b38fc16994"
+                    }
+                  ],
+                  "id": "b752f6de-dae2-40e7-9b55-573ef7802655",
+                  "createdAt": "2026-07-28T02:27:06.000Z",
+                  "updatedAt": "2026-07-28T02:27:06.000Z",
+                  "uid": "35240-b752f6de-dae2-40e7-9b55-573ef7802655"
+                },
+                {
+                  "name": "Oracle Database Get a specific APEX workspace",
+                  "id": "4c25a443-02a1-44b2-8023-a0ffee7126d7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apex",
+                        "workspaces",
+                        ":workspace_name",
+                        ""
+                      ],
+                      "variable": [
+                        {
+                          "id": "53bfaec4-50e9-49ac-871c-a4b59aa894e9",
+                          "key": "workspace_name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns details about a specific Oracle APEX workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "de6f0723-9b67-4dfd-bcf9-814c5eb20e5a",
+                      "name": "Workspace details retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apex",
+                            "workspaces",
+                            ":workspace_name",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"workspace_name\": \"<string>\",\n  \"workspace_id\": \"<integer>\",\n  \"schemas\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:06.000Z",
+                      "updatedAt": "2026-07-28T02:27:06.000Z",
+                      "uid": "35240-de6f0723-9b67-4dfd-bcf9-814c5eb20e5a"
+                    },
+                    {
+                      "id": "cf8a00c8-dcdc-4356-9ee2-b2d88bb3f293",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apex",
+                            "workspaces",
+                            ":workspace_name",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:06.000Z",
+                      "updatedAt": "2026-07-28T02:27:06.000Z",
+                      "uid": "35240-cf8a00c8-dcdc-4356-9ee2-b2d88bb3f293"
+                    },
+                    {
+                      "id": "a655712b-fa48-418e-8088-81ce571e0329",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apex/workspaces/:workspace_name/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apex",
+                            "workspaces",
+                            ":workspace_name",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:06.000Z",
+                      "updatedAt": "2026-07-28T02:27:06.000Z",
+                      "uid": "35240-a655712b-fa48-418e-8088-81ce571e0329"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:06.000Z",
+                  "updatedAt": "2026-07-28T02:27:06.000Z",
+                  "uid": "35240-4c25a443-02a1-44b2-8023-a0ffee7126d7"
+                }
+              ],
+              "id": "76431a89-4811-4355-ad42-d3b318f713fc",
+              "createdAt": "2026-07-28T02:27:06.000Z",
+              "updatedAt": "2026-07-28T02:27:06.000Z",
+              "uid": "35240-76431a89-4811-4355-ad42-d3b318f713fc"
+            },
+            {
+              "name": "Oracle Database Get all APEX workspaces",
+              "id": "ecd715ca-d2dc-4bf6-b045-443108ea3c9a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/apex/workspaces/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "apex",
+                    "workspaces",
+                    ""
+                  ]
+                },
+                "description": "Returns a list of all Oracle APEX workspaces."
+              },
+              "response": [
+                {
+                  "id": "687be46a-e035-4440-8853-8574e4ef294d",
+                  "name": "Workspaces retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apex/workspaces/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apex",
+                        "workspaces",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"workspace_name\": \"<string>\",\n      \"workspace_id\": \"<integer>\",\n      \"schemas\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"workspace_name\": \"<string>\",\n      \"workspace_id\": \"<integer>\",\n      \"schemas\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:27:06.000Z",
+                  "updatedAt": "2026-07-28T02:27:06.000Z",
+                  "uid": "35240-687be46a-e035-4440-8853-8574e4ef294d"
+                },
+                {
+                  "id": "2e9787a3-4bd2-4032-8d4d-a0d8aed5648e",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apex/workspaces/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apex",
+                        "workspaces",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:06.000Z",
+                  "updatedAt": "2026-07-28T02:27:06.000Z",
+                  "uid": "35240-2e9787a3-4bd2-4032-8d4d-a0d8aed5648e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:06.000Z",
+              "updatedAt": "2026-07-28T02:27:06.000Z",
+              "uid": "35240-ecd715ca-d2dc-4bf6-b045-443108ea3c9a"
+            }
+          ],
+          "id": "7d31b374-415b-435b-b08a-3106d657e4cb",
+          "createdAt": "2026-07-28T02:27:06.000Z",
+          "updatedAt": "2026-07-28T02:27:06.000Z",
+          "uid": "35240-7d31b374-415b-435b-b08a-3106d657e4cb"
+        },
+        {
+          "name": "statistics",
+          "item": [
+            {
+              "name": "overview",
+              "item": [
+                {
+                  "name": "Oracle Database Get APEX instance overview",
+                  "id": "162f487a-fdac-417f-b5ff-a2aa64db88e0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/apex/statistics/overview",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "apex",
+                        "statistics",
+                        "overview"
+                      ]
+                    },
+                    "description": "Returns overview statistics for the APEX instance."
+                  },
+                  "response": [
+                    {
+                      "id": "39fbff4d-92d6-48e1-a717-ed2e97c4a8d3",
+                      "name": "Overview statistics retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apex/statistics/overview",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apex",
+                            "statistics",
+                            "overview"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total_workspaces\": \"<integer>\",\n  \"total_applications\": \"<integer>\",\n  \"total_developers\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:27:06.000Z",
+                      "updatedAt": "2026-07-28T02:27:06.000Z",
+                      "uid": "35240-39fbff4d-92d6-48e1-a717-ed2e97c4a8d3"
+                    },
+                    {
+                      "id": "c1bea228-5656-414f-8b53-c2b4a75616dd",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/apex/statistics/overview",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "apex",
+                            "statistics",
+                            "overview"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:06.000Z",
+                      "updatedAt": "2026-07-28T02:27:06.000Z",
+                      "uid": "35240-c1bea228-5656-414f-8b53-c2b4a75616dd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:06.000Z",
+                  "updatedAt": "2026-07-28T02:27:06.000Z",
+                  "uid": "35240-162f487a-fdac-417f-b5ff-a2aa64db88e0"
+                }
+              ],
+              "id": "febe6c2c-e748-4d70-a7d7-1c651ada6d00",
+              "createdAt": "2026-07-28T02:27:06.000Z",
+              "updatedAt": "2026-07-28T02:27:06.000Z",
+              "uid": "35240-febe6c2c-e748-4d70-a7d7-1c651ada6d00"
+            }
+          ],
+          "id": "c06b0ecb-cdd7-4189-807e-b2f5547d9c40",
+          "createdAt": "2026-07-28T02:27:06.000Z",
+          "updatedAt": "2026-07-28T02:27:06.000Z",
+          "uid": "35240-c06b0ecb-cdd7-4189-807e-b2f5547d9c40"
+        }
+      ],
+      "id": "1a1dcece-32e3-43e6-b2d4-883b2ed1f7b4",
+      "createdAt": "2026-07-28T02:27:06.000Z",
+      "updatedAt": "2026-07-28T02:27:06.000Z",
+      "uid": "35240-1a1dcece-32e3-43e6-b2d4-883b2ed1f7b4"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

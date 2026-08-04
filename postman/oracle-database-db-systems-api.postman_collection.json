@@ -1,0 +1,1133 @@
+{
+  "info": {
+    "_postman_id": "1acc1685-6aca-4017-8dea-18231e935084",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX DB Systems API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:30.000Z",
+    "updatedAt": "2026-07-28T02:27:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1acc1685-6aca-4017-8dea-18231e935084"
+  },
+  "item": [
+    {
+      "name": "dbSystems",
+      "item": [
+        {
+          "name": "{dbSystemId}",
+          "item": [
+            {
+              "name": "Oracle Database Get a DB System",
+              "id": "5f4ddc97-99bf-4fd2-aa61-bfbf222c560d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "53afb0dc-625e-4a0f-a773-82aca51b4cee",
+                      "key": "dbSystemId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the DB System"
+                    }
+                  ]
+                },
+                "description": "Returns details about the specified DB System."
+              },
+              "response": [
+                {
+                  "id": "b118ecc6-f21a-4ff3-b832-57c56a4e546b",
+                  "name": "DB System details retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbSystems",
+                        ":dbSystemId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbSystemId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"nodeCount\": \"<integer>\",\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"databaseEdition\": \"ENTERPRISE_EDITION_HIGH_PERFORMANCE\",\n  \"lifecycleState\": \"<string>\",\n  \"hostname\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeCreated\": \"<dateTime>\",\n  \"version\": \"<string>\",\n  \"licenseModel\": \"<string>\",\n  \"diskRedundancy\": \"HIGH\"\n}",
+                  "createdAt": "2026-07-28T02:27:30.000Z",
+                  "updatedAt": "2026-07-28T02:27:30.000Z",
+                  "uid": "35240-b118ecc6-f21a-4ff3-b832-57c56a4e546b"
+                },
+                {
+                  "id": "366423fe-3867-4819-ba39-d974cbccd5ea",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbSystems",
+                        ":dbSystemId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbSystemId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:30.000Z",
+                  "updatedAt": "2026-07-28T02:27:30.000Z",
+                  "uid": "35240-366423fe-3867-4819-ba39-d974cbccd5ea"
+                },
+                {
+                  "id": "bf90df59-da44-422b-aa45-418eebf5ea24",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbSystems",
+                        ":dbSystemId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbSystemId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:30.000Z",
+                  "updatedAt": "2026-07-28T02:27:30.000Z",
+                  "uid": "35240-bf90df59-da44-422b-aa45-418eebf5ea24"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:30.000Z",
+              "updatedAt": "2026-07-28T02:27:30.000Z",
+              "uid": "35240-5f4ddc97-99bf-4fd2-aa61-bfbf222c560d"
+            },
+            {
+              "name": "Oracle Database Update a DB System",
+              "id": "ae812a34-e49a-4871-bd6c-5802f2e0450f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"freeformTags\": {\n    \"pariatur_2e2\": \"<string>\",\n    \"Lorem_0c2\": \"<string>\",\n    \"cillum_\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "62ec4a11-e9d7-46a5-b1f7-20ae86776177",
+                      "key": "dbSystemId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the DB System"
+                    }
+                  ]
+                },
+                "description": "Updates the specified DB System configuration."
+              },
+              "response": [
+                {
+                  "id": "6c9f2da2-0bef-4688-b07b-6cd9f79dd0ac",
+                  "name": "DB System update initiated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"freeformTags\": {\n    \"pariatur_2e2\": \"<string>\",\n    \"Lorem_0c2\": \"<string>\",\n    \"cillum_\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbSystems",
+                        ":dbSystemId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbSystemId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"nodeCount\": \"<integer>\",\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"databaseEdition\": \"ENTERPRISE_EDITION_HIGH_PERFORMANCE\",\n  \"lifecycleState\": \"<string>\",\n  \"hostname\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeCreated\": \"<dateTime>\",\n  \"version\": \"<string>\",\n  \"licenseModel\": \"<string>\",\n  \"diskRedundancy\": \"HIGH\"\n}",
+                  "createdAt": "2026-07-28T02:27:30.000Z",
+                  "updatedAt": "2026-07-28T02:27:30.000Z",
+                  "uid": "35240-6c9f2da2-0bef-4688-b07b-6cd9f79dd0ac"
+                },
+                {
+                  "id": "4b549ef4-6c87-4283-8dea-765b19cc54bb",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"freeformTags\": {\n    \"pariatur_2e2\": \"<string>\",\n    \"Lorem_0c2\": \"<string>\",\n    \"cillum_\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbSystems",
+                        ":dbSystemId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbSystemId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:30.000Z",
+                  "updatedAt": "2026-07-28T02:27:30.000Z",
+                  "uid": "35240-4b549ef4-6c87-4283-8dea-765b19cc54bb"
+                },
+                {
+                  "id": "babc48e4-2b15-4739-8e85-92f86f22a612",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"freeformTags\": {\n    \"pariatur_2e2\": \"<string>\",\n    \"Lorem_0c2\": \"<string>\",\n    \"cillum_\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbSystems",
+                        ":dbSystemId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbSystemId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:30.000Z",
+                  "updatedAt": "2026-07-28T02:27:30.000Z",
+                  "uid": "35240-babc48e4-2b15-4739-8e85-92f86f22a612"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:30.000Z",
+              "updatedAt": "2026-07-28T02:27:30.000Z",
+              "uid": "35240-ae812a34-e49a-4871-bd6c-5802f2e0450f"
+            },
+            {
+              "name": "Oracle Database Terminate a DB System",
+              "id": "b52be3bb-4f38-4a86-bea1-d4c64bd66a02",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "bc7bb5cd-47d9-454c-b6ee-40fd5bbe2c18",
+                      "key": "dbSystemId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the DB System"
+                    }
+                  ]
+                },
+                "description": "Terminates and deletes the specified DB System."
+              },
+              "response": [
+                {
+                  "id": "2c8676ca-0241-42bf-bacf-609fb32c182d",
+                  "name": "Termination accepted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbSystems",
+                        ":dbSystemId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbSystemId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "opc-work-request-id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:30.000Z",
+                  "updatedAt": "2026-07-28T02:27:30.000Z",
+                  "uid": "35240-2c8676ca-0241-42bf-bacf-609fb32c182d"
+                },
+                {
+                  "id": "755b60f8-e9fb-4888-9074-def060f28c73",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbSystems",
+                        ":dbSystemId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbSystemId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:30.000Z",
+                  "updatedAt": "2026-07-28T02:27:30.000Z",
+                  "uid": "35240-755b60f8-e9fb-4888-9074-def060f28c73"
+                },
+                {
+                  "id": "f94360cd-b135-4784-9b52-02982260e302",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dbSystems/:dbSystemId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dbSystems",
+                        ":dbSystemId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dbSystemId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:30.000Z",
+                  "updatedAt": "2026-07-28T02:27:30.000Z",
+                  "uid": "35240-f94360cd-b135-4784-9b52-02982260e302"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:30.000Z",
+              "updatedAt": "2026-07-28T02:27:30.000Z",
+              "uid": "35240-b52be3bb-4f38-4a86-bea1-d4c64bd66a02"
+            }
+          ],
+          "id": "05db9671-1ea7-4a7a-a302-7ca8c83c9fff",
+          "createdAt": "2026-07-28T02:27:30.000Z",
+          "updatedAt": "2026-07-28T02:27:30.000Z",
+          "uid": "35240-05db9671-1ea7-4a7a-a302-7ca8c83c9fff"
+        },
+        {
+          "name": "Oracle Database List DB Systems",
+          "id": "4e5b3e96-b5eb-4a8a-a3c7-1055de24844e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/dbSystems?compartmentId=<string>&limit=<integer>&page=<string>&displayName=<string>&lifecycleState=TERMINATING",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dbSystems"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token from a previous response",
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "key": "displayName",
+                  "value": "<string>"
+                },
+                {
+                  "key": "lifecycleState",
+                  "value": "TERMINATING"
+                }
+              ]
+            },
+            "description": "Returns a list of DB Systems in the specified compartment."
+          },
+          "response": [
+            {
+              "id": "d907a1a6-6e5d-4e03-a4bb-904ce55dfaf7",
+              "name": "DB Systems listed successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dbSystems?compartmentId=<string>&limit=<integer>&page=<string>&displayName=<string>&lifecycleState=TERMINATING",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbSystems"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lifecycleState",
+                      "value": "TERMINATING"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"databaseEdition\": \"<string>\",\n    \"cpuCoreCount\": \"<integer>\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"shape\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"databaseEdition\": \"<string>\",\n    \"cpuCoreCount\": \"<integer>\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:27:30.000Z",
+              "updatedAt": "2026-07-28T02:27:30.000Z",
+              "uid": "35240-d907a1a6-6e5d-4e03-a4bb-904ce55dfaf7"
+            },
+            {
+              "id": "77e3dd98-8e25-425e-a3ac-6235027968c4",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dbSystems?compartmentId=<string>&limit=<integer>&page=<string>&displayName=<string>&lifecycleState=TERMINATING",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbSystems"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lifecycleState",
+                      "value": "TERMINATING"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:30.000Z",
+              "updatedAt": "2026-07-28T02:27:30.000Z",
+              "uid": "35240-77e3dd98-8e25-425e-a3ac-6235027968c4"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:30.000Z",
+          "updatedAt": "2026-07-28T02:27:30.000Z",
+          "uid": "35240-4e5b3e96-b5eb-4a8a-a3c7-1055de24844e"
+        },
+        {
+          "name": "Oracle Database Launch a DB System",
+          "id": "38fc1755-61cd-4a38-aa96-7a0f0c90da0a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "Unique retry token to prevent duplicate requests",
+                "key": "opc-retry-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hostname\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"displayName\": \"<string>\",\n  \"nodeCount\": \"<integer>\",\n  \"initialDataStorageSizeInGB\": \"<integer>\",\n  \"databaseEdition\": \"ENTERPRISE_EDITION_EXTREME_PERFORMANCE\",\n  \"dbHome\": {\n    \"dbVersion\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"database\": {\n      \"dbHomeId\": \"<string>\",\n      \"dbName\": \"<string>\",\n      \"adminPassword\": \"<string>\",\n      \"characterSet\": \"<string>\",\n      \"ncharacterSet\": \"<string>\",\n      \"pdbName\": \"<string>\"\n    }\n  },\n  \"licenseModel\": \"BRING_YOUR_OWN_LICENSE\",\n  \"diskRedundancy\": \"HIGH\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/dbSystems",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dbSystems"
+              ]
+            },
+            "description": "Creates and launches a new DB System with the specified configuration. This is a long-running operation tracked via work requests."
+          },
+          "response": [
+            {
+              "id": "ee1e8853-0160-4a53-a5d0-a2253d6551a9",
+              "name": "DB System launch initiated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Unique retry token to prevent duplicate requests",
+                    "key": "opc-retry-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hostname\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"displayName\": \"<string>\",\n  \"nodeCount\": \"<integer>\",\n  \"initialDataStorageSizeInGB\": \"<integer>\",\n  \"databaseEdition\": \"ENTERPRISE_EDITION_EXTREME_PERFORMANCE\",\n  \"dbHome\": {\n    \"dbVersion\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"database\": {\n      \"dbHomeId\": \"<string>\",\n      \"dbName\": \"<string>\",\n      \"adminPassword\": \"<string>\",\n      \"characterSet\": \"<string>\",\n      \"ncharacterSet\": \"<string>\",\n      \"pdbName\": \"<string>\"\n    }\n  },\n  \"licenseModel\": \"BRING_YOUR_OWN_LICENSE\",\n  \"diskRedundancy\": \"HIGH\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/dbSystems",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbSystems"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "opc-work-request-id",
+                  "value": "<string>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"nodeCount\": \"<integer>\",\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"databaseEdition\": \"ENTERPRISE_EDITION_HIGH_PERFORMANCE\",\n  \"lifecycleState\": \"<string>\",\n  \"hostname\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeCreated\": \"<dateTime>\",\n  \"version\": \"<string>\",\n  \"licenseModel\": \"<string>\",\n  \"diskRedundancy\": \"HIGH\"\n}",
+              "createdAt": "2026-07-28T02:27:30.000Z",
+              "updatedAt": "2026-07-28T02:27:30.000Z",
+              "uid": "35240-ee1e8853-0160-4a53-a5d0-a2253d6551a9"
+            },
+            {
+              "id": "2dd6ec05-194a-4630-ae59-678f7d0a97b2",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Unique retry token to prevent duplicate requests",
+                    "key": "opc-retry-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hostname\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"displayName\": \"<string>\",\n  \"nodeCount\": \"<integer>\",\n  \"initialDataStorageSizeInGB\": \"<integer>\",\n  \"databaseEdition\": \"ENTERPRISE_EDITION_EXTREME_PERFORMANCE\",\n  \"dbHome\": {\n    \"dbVersion\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"database\": {\n      \"dbHomeId\": \"<string>\",\n      \"dbName\": \"<string>\",\n      \"adminPassword\": \"<string>\",\n      \"characterSet\": \"<string>\",\n      \"ncharacterSet\": \"<string>\",\n      \"pdbName\": \"<string>\"\n    }\n  },\n  \"licenseModel\": \"BRING_YOUR_OWN_LICENSE\",\n  \"diskRedundancy\": \"HIGH\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/dbSystems",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbSystems"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:30.000Z",
+              "updatedAt": "2026-07-28T02:27:30.000Z",
+              "uid": "35240-2dd6ec05-194a-4630-ae59-678f7d0a97b2"
+            },
+            {
+              "id": "708aff07-137f-4598-aa96-b2af7f3fe387",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Unique retry token to prevent duplicate requests",
+                    "key": "opc-retry-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hostname\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"displayName\": \"<string>\",\n  \"nodeCount\": \"<integer>\",\n  \"initialDataStorageSizeInGB\": \"<integer>\",\n  \"databaseEdition\": \"ENTERPRISE_EDITION_EXTREME_PERFORMANCE\",\n  \"dbHome\": {\n    \"dbVersion\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"database\": {\n      \"dbHomeId\": \"<string>\",\n      \"dbName\": \"<string>\",\n      \"adminPassword\": \"<string>\",\n      \"characterSet\": \"<string>\",\n      \"ncharacterSet\": \"<string>\",\n      \"pdbName\": \"<string>\"\n    }\n  },\n  \"licenseModel\": \"BRING_YOUR_OWN_LICENSE\",\n  \"diskRedundancy\": \"HIGH\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/dbSystems",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dbSystems"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:30.000Z",
+              "updatedAt": "2026-07-28T02:27:30.000Z",
+              "uid": "35240-708aff07-137f-4598-aa96-b2af7f3fe387"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:30.000Z",
+          "updatedAt": "2026-07-28T02:27:30.000Z",
+          "uid": "35240-38fc1755-61cd-4a38-aa96-7a0f0c90da0a"
+        }
+      ],
+      "id": "e9325dff-fe09-475f-b426-cb0b97ae356f",
+      "createdAt": "2026-07-28T02:27:30.000Z",
+      "updatedAt": "2026-07-28T02:27:30.000Z",
+      "uid": "35240-e9325dff-fe09-475f-b426-cb0b97ae356f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

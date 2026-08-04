@@ -1,0 +1,1519 @@
+{
+  "info": {
+    "_postman_id": "44f30c49-a313-48fa-8dcf-12896302de70",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Data Guard API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:26.000Z",
+    "updatedAt": "2026-07-28T02:27:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-44f30c49-a313-48fa-8dcf-12896302de70"
+  },
+  "item": [
+    {
+      "name": "dataGuardAssociations",
+      "item": [
+        {
+          "name": "Oracle Database List Data Guard associations",
+          "id": "663b793b-b343-4599-b43b-6da4890594f2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/dataGuardAssociations?databaseId=<string>&limit=<integer>&page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dataGuardAssociations"
+              ],
+              "query": [
+                {
+                  "description": "(Required) ",
+                  "key": "databaseId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token from a previous response",
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns Data Guard associations for the specified database."
+          },
+          "response": [
+            {
+              "id": "a19e7ac3-0bad-4b3d-9ba4-e7d25a98f382",
+              "name": "Data Guard associations listed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dataGuardAssociations?databaseId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dataGuardAssociations"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "databaseId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"databaseId\": \"<string>\",\n    \"peerDatabaseId\": \"<string>\",\n    \"role\": \"STANDBY\",\n    \"peerRole\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"protectionMode\": \"MAXIMUM_AVAILABILITY\",\n    \"transportType\": \"ASYNC\",\n    \"applyLag\": \"<string>\",\n    \"applyRate\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"databaseId\": \"<string>\",\n    \"peerDatabaseId\": \"<string>\",\n    \"role\": \"PRIMARY\",\n    \"peerRole\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"protectionMode\": \"MAXIMUM_PROTECTION\",\n    \"transportType\": \"SYNC\",\n    \"applyLag\": \"<string>\",\n    \"applyRate\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:27:26.000Z",
+              "updatedAt": "2026-07-28T02:27:26.000Z",
+              "uid": "35240-a19e7ac3-0bad-4b3d-9ba4-e7d25a98f382"
+            },
+            {
+              "id": "678dd082-f6e7-453c-bb49-cf809c39ae07",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dataGuardAssociations?databaseId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dataGuardAssociations"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "databaseId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:26.000Z",
+              "updatedAt": "2026-07-28T02:27:26.000Z",
+              "uid": "35240-678dd082-f6e7-453c-bb49-cf809c39ae07"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:26.000Z",
+          "updatedAt": "2026-07-28T02:27:26.000Z",
+          "uid": "35240-663b793b-b343-4599-b43b-6da4890594f2"
+        }
+      ],
+      "id": "57ff6d3e-af89-4f2b-bc18-b0a186421406",
+      "createdAt": "2026-07-28T02:27:26.000Z",
+      "updatedAt": "2026-07-28T02:27:26.000Z",
+      "uid": "35240-57ff6d3e-af89-4f2b-bc18-b0a186421406"
+    },
+    {
+      "name": "database",
+      "item": [
+        {
+          "name": "dataguard",
+          "item": [
+            {
+              "name": "configuration",
+              "item": [
+                {
+                  "name": "Oracle Database Get Data Guard broker configuration",
+                  "id": "404de1bf-ae6c-4bf5-b48e-57330add8a00",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/dataguard/configuration/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "dataguard",
+                        "configuration",
+                        ""
+                      ]
+                    },
+                    "description": "Returns the current Data Guard broker configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "08b2ce7b-7e1d-4e00-a4d1-defe9403901f",
+                      "name": "Configuration retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/configuration/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "configuration",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"configuration_name\": \"<string>\",\n  \"protection_mode\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"databases\": [\n    {\n      \"database_name\": \"<string>\",\n      \"role\": \"PHYSICAL_STANDBY\",\n      \"enabled\": \"<boolean>\",\n      \"transport_lag\": \"<string>\",\n      \"apply_lag\": \"<string>\"\n    },\n    {\n      \"database_name\": \"<string>\",\n      \"role\": \"SNAPSHOT_STANDBY\",\n      \"enabled\": \"<boolean>\",\n      \"transport_lag\": \"<string>\",\n      \"apply_lag\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-08b2ce7b-7e1d-4e00-a4d1-defe9403901f"
+                    },
+                    {
+                      "id": "cb24ae12-48dd-46d1-b69b-acbd73b41e2f",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/configuration/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "configuration",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-cb24ae12-48dd-46d1-b69b-acbd73b41e2f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-404de1bf-ae6c-4bf5-b48e-57330add8a00"
+                },
+                {
+                  "name": "Oracle Database Add a Data Guard configuration",
+                  "id": "a48fbb72-ce2a-4ba9-be5b-e052576dbb39",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"configuration_name\": \"<string>\",\n  \"protection_mode\": \"MAXIMUM_AVAILABILITY\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/database/dataguard/configuration/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "dataguard",
+                        "configuration",
+                        ""
+                      ]
+                    },
+                    "description": "Creates a new Data Guard broker configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "f92684f0-b95e-4e5a-b712-2b47ec7ebebc",
+                      "name": "Configuration added successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"configuration_name\": \"<string>\",\n  \"protection_mode\": \"MAXIMUM_AVAILABILITY\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/configuration/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "configuration",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"configuration_name\": \"<string>\",\n  \"protection_mode\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"databases\": [\n    {\n      \"database_name\": \"<string>\",\n      \"role\": \"PHYSICAL_STANDBY\",\n      \"enabled\": \"<boolean>\",\n      \"transport_lag\": \"<string>\",\n      \"apply_lag\": \"<string>\"\n    },\n    {\n      \"database_name\": \"<string>\",\n      \"role\": \"SNAPSHOT_STANDBY\",\n      \"enabled\": \"<boolean>\",\n      \"transport_lag\": \"<string>\",\n      \"apply_lag\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-f92684f0-b95e-4e5a-b712-2b47ec7ebebc"
+                    },
+                    {
+                      "id": "b22cf29d-defa-4b59-aa22-742821ec96b0",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"configuration_name\": \"<string>\",\n  \"protection_mode\": \"MAXIMUM_AVAILABILITY\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/configuration/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "configuration",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-b22cf29d-defa-4b59-aa22-742821ec96b0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-a48fbb72-ce2a-4ba9-be5b-e052576dbb39"
+                },
+                {
+                  "name": "Oracle Database Enable or disable Data Guard configuration",
+                  "id": "8456ff9a-e438-405c-8e07-841f8fa15afa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"protection_mode\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/database/dataguard/configuration/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "dataguard",
+                        "configuration",
+                        ""
+                      ]
+                    },
+                    "description": "Enables or disables the Data Guard broker configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "89afe0c5-0e96-4b59-ac60-a92aa2b8b6f4",
+                      "name": "Configuration updated successfully",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"protection_mode\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/configuration/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "configuration",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-89afe0c5-0e96-4b59-ac60-a92aa2b8b6f4"
+                    },
+                    {
+                      "id": "9852e05b-e8b0-4491-b1e9-41394227bc2e",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"enabled\": \"<boolean>\",\n  \"protection_mode\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/configuration/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "configuration",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-9852e05b-e8b0-4491-b1e9-41394227bc2e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-8456ff9a-e438-405c-8e07-841f8fa15afa"
+                },
+                {
+                  "name": "Oracle Database Remove Data Guard configuration",
+                  "id": "df1325bd-4c61-4e1a-b088-1d9b40cd879c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/dataguard/configuration/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "dataguard",
+                        "configuration",
+                        ""
+                      ]
+                    },
+                    "description": "Removes the Data Guard broker configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "b5db1347-4077-43e9-8593-22665ce9f96b",
+                      "name": "Configuration removed successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/configuration/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "configuration",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-b5db1347-4077-43e9-8593-22665ce9f96b"
+                    },
+                    {
+                      "id": "94d5ce1e-2500-4c9b-b6ea-b76d0adf91e2",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/configuration/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "configuration",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-94d5ce1e-2500-4c9b-b6ea-b76d0adf91e2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-df1325bd-4c61-4e1a-b088-1d9b40cd879c"
+                }
+              ],
+              "id": "b3bb6781-1e22-4629-84b9-2dbb518bd0d0",
+              "createdAt": "2026-07-28T02:27:26.000Z",
+              "updatedAt": "2026-07-28T02:27:26.000Z",
+              "uid": "35240-b3bb6781-1e22-4629-84b9-2dbb518bd0d0"
+            },
+            {
+              "name": "databases",
+              "item": [
+                {
+                  "name": "{database}",
+                  "item": [
+                    {
+                      "name": "Oracle Database Update Data Guard database role",
+                      "id": "a4ad252c-0254-45b4-8832-b0f073370869",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"action\": \"FAILOVER\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/databases/:database",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "databases",
+                            ":database"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e63c0bca-61fb-4261-82c1-8fb77815cb9d",
+                              "key": "database",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Converts, enables, or disables a database in the Data Guard configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "f1dd7dbd-e8ad-49a9-92d5-4277a4f9a7dc",
+                          "name": "Database role updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"FAILOVER\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/database/dataguard/databases/:database",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "dataguard",
+                                "databases",
+                                ":database"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "database"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:27:26.000Z",
+                          "updatedAt": "2026-07-28T02:27:26.000Z",
+                          "uid": "35240-f1dd7dbd-e8ad-49a9-92d5-4277a4f9a7dc"
+                        },
+                        {
+                          "id": "51b77096-1909-474d-b3b2-5bfca05a8b2b",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"FAILOVER\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/database/dataguard/databases/:database",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "dataguard",
+                                "databases",
+                                ":database"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "database"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:26.000Z",
+                          "updatedAt": "2026-07-28T02:27:26.000Z",
+                          "uid": "35240-51b77096-1909-474d-b3b2-5bfca05a8b2b"
+                        },
+                        {
+                          "id": "ced6a3ed-a656-41cf-a641-dc3c56b65f63",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"FAILOVER\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/database/dataguard/databases/:database",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "dataguard",
+                                "databases",
+                                ":database"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "database"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:26.000Z",
+                          "updatedAt": "2026-07-28T02:27:26.000Z",
+                          "uid": "35240-ced6a3ed-a656-41cf-a641-dc3c56b65f63"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-a4ad252c-0254-45b4-8832-b0f073370869"
+                    },
+                    {
+                      "name": "Oracle Database Remove database from Data Guard",
+                      "id": "6b57b22a-b7df-4479-9564-dab99134f086",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/databases/:database",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "databases",
+                            ":database"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3985c569-f9bb-412d-8a48-f3320f3270a0",
+                              "key": "database",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Removes a database from the Data Guard broker configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "d4bd0ecc-ba0e-480b-bdb5-01b205add752",
+                          "name": "Database removed successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/dataguard/databases/:database",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "dataguard",
+                                "databases",
+                                ":database"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "database"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:27:26.000Z",
+                          "updatedAt": "2026-07-28T02:27:26.000Z",
+                          "uid": "35240-d4bd0ecc-ba0e-480b-bdb5-01b205add752"
+                        },
+                        {
+                          "id": "3b86a6af-00a6-41d5-ba7b-b2e38fdfd51b",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/dataguard/databases/:database",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "dataguard",
+                                "databases",
+                                ":database"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "database"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:26.000Z",
+                          "updatedAt": "2026-07-28T02:27:26.000Z",
+                          "uid": "35240-3b86a6af-00a6-41d5-ba7b-b2e38fdfd51b"
+                        },
+                        {
+                          "id": "0af82f9d-f7e5-4c2e-ac0e-f7b244f905cc",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/dataguard/databases/:database",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "dataguard",
+                                "databases",
+                                ":database"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "database"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:26.000Z",
+                          "updatedAt": "2026-07-28T02:27:26.000Z",
+                          "uid": "35240-0af82f9d-f7e5-4c2e-ac0e-f7b244f905cc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-6b57b22a-b7df-4479-9564-dab99134f086"
+                    }
+                  ],
+                  "id": "93b27ec5-2078-41a0-9488-533a51f4e3ac",
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-93b27ec5-2078-41a0-9488-533a51f4e3ac"
+                },
+                {
+                  "name": "Oracle Database Get all Data Guard databases",
+                  "id": "0afa759f-eeaf-4fab-904b-9082035604c8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/dataguard/databases/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "dataguard",
+                        "databases",
+                        ""
+                      ]
+                    },
+                    "description": "Returns all databases registered with the Data Guard broker."
+                  },
+                  "response": [
+                    {
+                      "id": "b7f4acc7-9d97-410c-9417-b4913f2c8a63",
+                      "name": "Databases retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/databases/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "databases",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"database_name\": \"<string>\",\n      \"role\": \"LOGICAL_STANDBY\",\n      \"enabled\": \"<boolean>\",\n      \"transport_lag\": \"<string>\",\n      \"apply_lag\": \"<string>\"\n    },\n    {\n      \"database_name\": \"<string>\",\n      \"role\": \"LOGICAL_STANDBY\",\n      \"enabled\": \"<boolean>\",\n      \"transport_lag\": \"<string>\",\n      \"apply_lag\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-b7f4acc7-9d97-410c-9417-b4913f2c8a63"
+                    },
+                    {
+                      "id": "7dff7134-6dfd-48b3-9dfd-33b29a078a3c",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/databases/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "databases",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-7dff7134-6dfd-48b3-9dfd-33b29a078a3c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-0afa759f-eeaf-4fab-904b-9082035604c8"
+                },
+                {
+                  "name": "Oracle Database Add a database to Data Guard",
+                  "id": "1d321fc0-40b4-4fc8-a7b2-3ecd8760e82e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"database_name\": \"<string>\",\n  \"connect_identifier\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/database/dataguard/databases/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "dataguard",
+                        "databases",
+                        ""
+                      ]
+                    },
+                    "description": "Adds a database to the Data Guard broker configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "299c5dd3-5cf4-4bb9-bb18-0fe7e9bf634f",
+                      "name": "Database added successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"database_name\": \"<string>\",\n  \"connect_identifier\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/databases/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "databases",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-299c5dd3-5cf4-4bb9-bb18-0fe7e9bf634f"
+                    },
+                    {
+                      "id": "40fb252d-9ce8-4d52-8fb9-0356f86cca15",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"database_name\": \"<string>\",\n  \"connect_identifier\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/dataguard/databases/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "dataguard",
+                            "databases",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:26.000Z",
+                      "updatedAt": "2026-07-28T02:27:26.000Z",
+                      "uid": "35240-40fb252d-9ce8-4d52-8fb9-0356f86cca15"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:26.000Z",
+                  "updatedAt": "2026-07-28T02:27:26.000Z",
+                  "uid": "35240-1d321fc0-40b4-4fc8-a7b2-3ecd8760e82e"
+                }
+              ],
+              "id": "cb7353d5-99b6-45e9-bba3-bc590da1d2fc",
+              "createdAt": "2026-07-28T02:27:26.000Z",
+              "updatedAt": "2026-07-28T02:27:26.000Z",
+              "uid": "35240-cb7353d5-99b6-45e9-bba3-bc590da1d2fc"
+            }
+          ],
+          "id": "f057694e-2be9-4f8a-94b1-163b78d762f1",
+          "createdAt": "2026-07-28T02:27:26.000Z",
+          "updatedAt": "2026-07-28T02:27:26.000Z",
+          "uid": "35240-f057694e-2be9-4f8a-94b1-163b78d762f1"
+        }
+      ],
+      "id": "1b6a6028-dafb-4cd1-96ea-29164f397105",
+      "createdAt": "2026-07-28T02:27:26.000Z",
+      "updatedAt": "2026-07-28T02:27:26.000Z",
+      "uid": "35240-1b6a6028-dafb-4cd1-96ea-29164f397105"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

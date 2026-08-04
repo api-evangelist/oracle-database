@@ -1,0 +1,371 @@
+{
+  "info": {
+    "_postman_id": "c147cd49-f49f-48d2-89e7-4c6e0df5d625",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Scheduler API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:03.000Z",
+    "updatedAt": "2026-07-28T02:28:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c147cd49-f49f-48d2-89e7-4c6e0df5d625"
+  },
+  "item": [
+    {
+      "name": "database",
+      "item": [
+        {
+          "name": "scheduler",
+          "item": [
+            {
+              "name": "jobs",
+              "item": [
+                {
+                  "name": "{owner},{job_name}",
+                  "item": [
+                    {
+                      "name": "Oracle Database Get a specific scheduler job",
+                      "id": "accf62e0-8db7-4d32-9279-3dcd3b9e7b57",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/scheduler/jobs/{{owner}},{{job_name}}",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "scheduler",
+                            "jobs",
+                            "{{owner}},{{job_name}}"
+                          ]
+                        },
+                        "description": "Returns details about a specific Oracle Scheduler job."
+                      },
+                      "response": [
+                        {
+                          "id": "d5a09f75-a65d-4dc9-85c0-3896c778dfa5",
+                          "name": "Scheduler job details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/scheduler/jobs/{{owner}},{{job_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "scheduler",
+                                "jobs",
+                                "{{owner}},{{job_name}}"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"owner\": \"<string>\",\n  \"job_name\": \"<string>\",\n  \"job_type\": \"<string>\",\n  \"state\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"next_run_date\": \"<dateTime>\",\n  \"last_start_date\": \"<dateTime>\",\n  \"repeat_interval\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-d5a09f75-a65d-4dc9-85c0-3896c778dfa5"
+                        },
+                        {
+                          "id": "7ca06ee0-dcca-4e95-a3dc-d739304c3516",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/scheduler/jobs/{{owner}},{{job_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "scheduler",
+                                "jobs",
+                                "{{owner}},{{job_name}}"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-7ca06ee0-dcca-4e95-a3dc-d739304c3516"
+                        },
+                        {
+                          "id": "1d788128-e0fd-46d6-bb31-445cbf83f8ad",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/scheduler/jobs/{{owner}},{{job_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "scheduler",
+                                "jobs",
+                                "{{owner}},{{job_name}}"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:04.000Z",
+                          "updatedAt": "2026-07-28T02:28:04.000Z",
+                          "uid": "35240-1d788128-e0fd-46d6-bb31-445cbf83f8ad"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-accf62e0-8db7-4d32-9279-3dcd3b9e7b57"
+                    }
+                  ],
+                  "id": "e4d5283c-9830-49bf-8db3-d78b58c6d984",
+                  "createdAt": "2026-07-28T02:28:04.000Z",
+                  "updatedAt": "2026-07-28T02:28:04.000Z",
+                  "uid": "35240-e4d5283c-9830-49bf-8db3-d78b58c6d984"
+                },
+                {
+                  "name": "Oracle Database Get all scheduler jobs",
+                  "id": "527ce4aa-dbcb-441f-a32b-76bed56ade4e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/scheduler/jobs/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "scheduler",
+                        "jobs",
+                        ""
+                      ]
+                    },
+                    "description": "Returns a list of all Oracle Scheduler jobs."
+                  },
+                  "response": [
+                    {
+                      "id": "dc8ebe2e-6c85-4e89-a753-04198124d4d5",
+                      "name": "Scheduler jobs retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/scheduler/jobs/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "scheduler",
+                            "jobs",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"owner\": \"<string>\",\n      \"job_name\": \"<string>\",\n      \"job_type\": \"<string>\",\n      \"state\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"next_run_date\": \"<dateTime>\",\n      \"last_start_date\": \"<dateTime>\",\n      \"repeat_interval\": \"<string>\"\n    },\n    {\n      \"owner\": \"<string>\",\n      \"job_name\": \"<string>\",\n      \"job_type\": \"<string>\",\n      \"state\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"next_run_date\": \"<dateTime>\",\n      \"last_start_date\": \"<dateTime>\",\n      \"repeat_interval\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-dc8ebe2e-6c85-4e89-a753-04198124d4d5"
+                    },
+                    {
+                      "id": "eefbe474-1ebf-4919-b5c6-f7ab7c73149d",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/scheduler/jobs/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "scheduler",
+                            "jobs",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:04.000Z",
+                      "updatedAt": "2026-07-28T02:28:04.000Z",
+                      "uid": "35240-eefbe474-1ebf-4919-b5c6-f7ab7c73149d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:04.000Z",
+                  "updatedAt": "2026-07-28T02:28:04.000Z",
+                  "uid": "35240-527ce4aa-dbcb-441f-a32b-76bed56ade4e"
+                }
+              ],
+              "id": "b996ffc9-a176-4397-88b1-579d50c8b8d7",
+              "createdAt": "2026-07-28T02:28:04.000Z",
+              "updatedAt": "2026-07-28T02:28:04.000Z",
+              "uid": "35240-b996ffc9-a176-4397-88b1-579d50c8b8d7"
+            }
+          ],
+          "id": "7062261b-eb62-420b-8c9b-0c427aa5e15f",
+          "createdAt": "2026-07-28T02:28:04.000Z",
+          "updatedAt": "2026-07-28T02:28:04.000Z",
+          "uid": "35240-7062261b-eb62-420b-8c9b-0c427aa5e15f"
+        }
+      ],
+      "id": "27606fa5-8763-496e-9003-cfd53a497667",
+      "createdAt": "2026-07-28T02:28:04.000Z",
+      "updatedAt": "2026-07-28T02:28:04.000Z",
+      "uid": "35240-27606fa5-8763-496e-9003-cfd53a497667"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    },
+    {
+      "key": "owner",
+      "value": "<string>"
+    },
+    {
+      "key": "job_name",
+      "value": "<string>"
+    }
+  ]
+}

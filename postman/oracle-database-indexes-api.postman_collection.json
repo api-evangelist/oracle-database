@@ -1,0 +1,549 @@
+{
+  "info": {
+    "_postman_id": "12f58414-8c94-4afd-8570-f985ae94295b",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Indexes API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:36.000Z",
+    "updatedAt": "2026-07-28T02:27:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-12f58414-8c94-4afd-8570-f985ae94295b"
+  },
+  "item": [
+    {
+      "name": "custom-actions",
+      "item": [
+        {
+          "name": "index",
+          "item": [
+            {
+              "name": "{collection}",
+              "item": [
+                {
+                  "name": "Oracle Database Create a collection index",
+                  "id": "2c6bb6bf-a04c-4d48-9423-152e695e8675",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"fields\": [\n    {\n      \"path\": \"<string>\",\n      \"datatype\": \"timestamp\",\n      \"maxLength\": \"<integer>\",\n      \"order\": \"desc\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"datatype\": \"timestamp\",\n      \"maxLength\": \"<integer>\",\n      \"order\": \"desc\"\n    }\n  ],\n  \"unique\": \"<boolean>\",\n  \"language\": \"<string>\",\n  \"spatial\": \"<string>\",\n  \"search_on\": \"text_value\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/custom-actions/index/:collection",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "custom-actions",
+                        "index",
+                        ":collection"
+                      ],
+                      "variable": [
+                        {
+                          "id": "48317d03-1b57-4173-9b6b-a51cb1e90c35",
+                          "key": "collection",
+                          "value": "<string>",
+                          "description": "(Required) The name of the SODA collection"
+                        }
+                      ]
+                    },
+                    "description": "Creates an index on the specified collection based on the SODA index specification provided in the request body."
+                  },
+                  "response": [
+                    {
+                      "id": "494914f1-91da-454a-bb10-35da7b6d2537",
+                      "name": "Index created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"fields\": [\n    {\n      \"path\": \"<string>\",\n      \"datatype\": \"timestamp\",\n      \"maxLength\": \"<integer>\",\n      \"order\": \"desc\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"datatype\": \"timestamp\",\n      \"maxLength\": \"<integer>\",\n      \"order\": \"desc\"\n    }\n  ],\n  \"unique\": \"<boolean>\",\n  \"language\": \"<string>\",\n  \"spatial\": \"<string>\",\n  \"search_on\": \"text_value\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/index/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "index",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:36.000Z",
+                      "updatedAt": "2026-07-28T02:27:36.000Z",
+                      "uid": "35240-494914f1-91da-454a-bb10-35da7b6d2537"
+                    },
+                    {
+                      "id": "43aeeb2f-8a02-4cf2-96a2-1e397de41057",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"fields\": [\n    {\n      \"path\": \"<string>\",\n      \"datatype\": \"timestamp\",\n      \"maxLength\": \"<integer>\",\n      \"order\": \"desc\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"datatype\": \"timestamp\",\n      \"maxLength\": \"<integer>\",\n      \"order\": \"desc\"\n    }\n  ],\n  \"unique\": \"<boolean>\",\n  \"language\": \"<string>\",\n  \"spatial\": \"<string>\",\n  \"search_on\": \"text_value\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/index/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "index",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:36.000Z",
+                      "updatedAt": "2026-07-28T02:27:36.000Z",
+                      "uid": "35240-43aeeb2f-8a02-4cf2-96a2-1e397de41057"
+                    },
+                    {
+                      "id": "96cb6871-5fa0-4239-8691-05754fbbb363",
+                      "name": "The specified collection or document was not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"fields\": [\n    {\n      \"path\": \"<string>\",\n      \"datatype\": \"timestamp\",\n      \"maxLength\": \"<integer>\",\n      \"order\": \"desc\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"datatype\": \"timestamp\",\n      \"maxLength\": \"<integer>\",\n      \"order\": \"desc\"\n    }\n  ],\n  \"unique\": \"<boolean>\",\n  \"language\": \"<string>\",\n  \"spatial\": \"<string>\",\n  \"search_on\": \"text_value\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/index/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "index",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:36.000Z",
+                      "updatedAt": "2026-07-28T02:27:36.000Z",
+                      "uid": "35240-96cb6871-5fa0-4239-8691-05754fbbb363"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:36.000Z",
+                  "updatedAt": "2026-07-28T02:27:36.000Z",
+                  "uid": "35240-2c6bb6bf-a04c-4d48-9423-152e695e8675"
+                }
+              ],
+              "id": "46fcfd9e-4efa-4d38-856c-bb2983ccd7cc",
+              "createdAt": "2026-07-28T02:27:36.000Z",
+              "updatedAt": "2026-07-28T02:27:36.000Z",
+              "uid": "35240-46fcfd9e-4efa-4d38-856c-bb2983ccd7cc"
+            }
+          ],
+          "id": "1a5f08e3-baef-4788-89d2-908405297283",
+          "createdAt": "2026-07-28T02:27:36.000Z",
+          "updatedAt": "2026-07-28T02:27:36.000Z",
+          "uid": "35240-1a5f08e3-baef-4788-89d2-908405297283"
+        },
+        {
+          "name": "unindex",
+          "item": [
+            {
+              "name": "{collection}",
+              "item": [
+                {
+                  "name": "Oracle Database Drop a collection index",
+                  "id": "7912ef7f-e80f-4076-8edc-8e41e9f1f2a1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/custom-actions/unindex/:collection",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "custom-actions",
+                        "unindex",
+                        ":collection"
+                      ],
+                      "variable": [
+                        {
+                          "id": "62736cce-3414-4c1f-9719-ea58ea69c29e",
+                          "key": "collection",
+                          "value": "<string>",
+                          "description": "(Required) The name of the SODA collection"
+                        }
+                      ]
+                    },
+                    "description": "Drops the specified index from the collection."
+                  },
+                  "response": [
+                    {
+                      "id": "223d614b-155e-48be-a0df-fec069b256d8",
+                      "name": "Index dropped successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/unindex/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "unindex",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:36.000Z",
+                      "updatedAt": "2026-07-28T02:27:36.000Z",
+                      "uid": "35240-223d614b-155e-48be-a0df-fec069b256d8"
+                    },
+                    {
+                      "id": "75899b99-6ac8-4191-a1f9-b50a21b80732",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/unindex/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "unindex",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:36.000Z",
+                      "updatedAt": "2026-07-28T02:27:36.000Z",
+                      "uid": "35240-75899b99-6ac8-4191-a1f9-b50a21b80732"
+                    },
+                    {
+                      "id": "e93aa6a5-7259-4057-819b-4cef5c00cb7b",
+                      "name": "The specified collection or document was not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/unindex/:collection",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "unindex",
+                            ":collection"
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:36.000Z",
+                      "updatedAt": "2026-07-28T02:27:36.000Z",
+                      "uid": "35240-e93aa6a5-7259-4057-819b-4cef5c00cb7b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:36.000Z",
+                  "updatedAt": "2026-07-28T02:27:36.000Z",
+                  "uid": "35240-7912ef7f-e80f-4076-8edc-8e41e9f1f2a1"
+                }
+              ],
+              "id": "f3552f4f-107e-4321-96fe-6e717c5e6842",
+              "createdAt": "2026-07-28T02:27:36.000Z",
+              "updatedAt": "2026-07-28T02:27:36.000Z",
+              "uid": "35240-f3552f4f-107e-4321-96fe-6e717c5e6842"
+            }
+          ],
+          "id": "ed6965a8-ceeb-4cfb-af21-a862d933f2b7",
+          "createdAt": "2026-07-28T02:27:36.000Z",
+          "updatedAt": "2026-07-28T02:27:36.000Z",
+          "uid": "35240-ed6965a8-ceeb-4cfb-af21-a862d933f2b7"
+        }
+      ],
+      "id": "dcbc35b6-48da-4314-9711-ec2ec31eb9ec",
+      "createdAt": "2026-07-28T02:27:36.000Z",
+      "updatedAt": "2026-07-28T02:27:36.000Z",
+      "uid": "35240-dcbc35b6-48da-4314-9711-ec2ec31eb9ec"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

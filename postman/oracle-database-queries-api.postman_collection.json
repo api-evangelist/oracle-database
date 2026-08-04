@@ -1,0 +1,373 @@
+{
+  "info": {
+    "_postman_id": "49783a9e-e2a2-485a-9230-db6d9402da3c",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Queries API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:59.000Z",
+    "updatedAt": "2026-07-28T02:28:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-49783a9e-e2a2-485a-9230-db6d9402da3c"
+  },
+  "item": [
+    {
+      "name": "custom-actions",
+      "item": [
+        {
+          "name": "query",
+          "item": [
+            {
+              "name": "{collection}",
+              "item": [
+                {
+                  "name": "Oracle Database Query collection with QBE filter",
+                  "id": "b6c38f58-8f0c-4947-b618-ff579cf12908",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ad1b\": false,\n  \"dolor_613\": -28819822\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/custom-actions/query/:collection?limit=<integer>&offset=<integer>&fields=all",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "custom-actions",
+                        "query",
+                        ":collection"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of documents to return",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Number of documents to skip",
+                          "key": "offset",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Control which fields are returned",
+                          "key": "fields",
+                          "value": "all"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "afbf900c-26ac-4947-8855-b889b7268e5a",
+                          "key": "collection",
+                          "value": "<string>",
+                          "description": "(Required) The name of the SODA collection"
+                        }
+                      ]
+                    },
+                    "description": "Queries the collection using a Query by Example (QBE) filter specification in the request body. Returns matching documents with optional pagination. This endpoint is equivalent to /{collection}/?action=query."
+                  },
+                  "response": [
+                    {
+                      "id": "fa11824b-69c5-4306-b5c4-9f1994dfc2e7",
+                      "name": "Query results returned successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ad1b\": false,\n  \"dolor_613\": -28819822\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/query/:collection?limit=<integer>&offset=<integer>&fields=all",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "query",
+                            ":collection"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of documents to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of documents to skip",
+                              "key": "offset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Control which fields are returned",
+                              "key": "fields",
+                              "value": "all"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"lastModified\": \"<dateTime>\",\n      \"created\": \"<dateTime>\",\n      \"value\": {},\n      \"mediaType\": \"<string>\",\n      \"bytes\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"etag\": \"<string>\",\n      \"lastModified\": \"<dateTime>\",\n      \"created\": \"<dateTime>\",\n      \"value\": {},\n      \"mediaType\": \"<string>\",\n      \"bytes\": \"<integer>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\",\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"totalResults\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"mediaType\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"mediaType\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:28:00.000Z",
+                      "updatedAt": "2026-07-28T02:28:00.000Z",
+                      "uid": "35240-fa11824b-69c5-4306-b5c4-9f1994dfc2e7"
+                    },
+                    {
+                      "id": "ead388cc-3a92-4bf2-9a34-094acbe4e484",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ad1b\": false,\n  \"dolor_613\": -28819822\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/query/:collection?limit=<integer>&offset=<integer>&fields=all",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "query",
+                            ":collection"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of documents to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of documents to skip",
+                              "key": "offset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Control which fields are returned",
+                              "key": "fields",
+                              "value": "all"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:00.000Z",
+                      "updatedAt": "2026-07-28T02:28:00.000Z",
+                      "uid": "35240-ead388cc-3a92-4bf2-9a34-094acbe4e484"
+                    },
+                    {
+                      "id": "651d215f-6362-46ed-9180-c0e58aa3a957",
+                      "name": "The specified collection or document was not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ad1b\": false,\n  \"dolor_613\": -28819822\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/custom-actions/query/:collection?limit=<integer>&offset=<integer>&fields=all",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "custom-actions",
+                            "query",
+                            ":collection"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of documents to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Number of documents to skip",
+                              "key": "offset",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Control which fields are returned",
+                              "key": "fields",
+                              "value": "all"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "collection"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:00.000Z",
+                      "updatedAt": "2026-07-28T02:28:00.000Z",
+                      "uid": "35240-651d215f-6362-46ed-9180-c0e58aa3a957"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:00.000Z",
+                  "updatedAt": "2026-07-28T02:28:00.000Z",
+                  "uid": "35240-b6c38f58-8f0c-4947-b618-ff579cf12908"
+                }
+              ],
+              "id": "6c466262-3802-4c30-a600-aa375523af79",
+              "createdAt": "2026-07-28T02:28:00.000Z",
+              "updatedAt": "2026-07-28T02:28:00.000Z",
+              "uid": "35240-6c466262-3802-4c30-a600-aa375523af79"
+            }
+          ],
+          "id": "3b75778e-27ee-4291-996b-c32a5ae0a8f3",
+          "createdAt": "2026-07-28T02:28:00.000Z",
+          "updatedAt": "2026-07-28T02:28:00.000Z",
+          "uid": "35240-3b75778e-27ee-4291-996b-c32a5ae0a8f3"
+        }
+      ],
+      "id": "41a8cdfb-ccfb-4248-a0d6-4f4321de22c6",
+      "createdAt": "2026-07-28T02:28:00.000Z",
+      "updatedAt": "2026-07-28T02:28:00.000Z",
+      "uid": "35240-41a8cdfb-ccfb-4248-a0d6-4f4321de22c6"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

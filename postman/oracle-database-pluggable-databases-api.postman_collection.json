@@ -1,0 +1,2006 @@
+{
+  "info": {
+    "_postman_id": "eadd9564-e3f6-4c8b-8fc9-0d6dc3d44c4b",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Pluggable Databases API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:57.000Z",
+    "updatedAt": "2026-07-28T02:27:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-eadd9564-e3f6-4c8b-8fc9-0d6dc3d44c4b"
+  },
+  "item": [
+    {
+      "name": "pluggableDatabases",
+      "item": [
+        {
+          "name": "{pluggableDatabaseId}",
+          "item": [
+            {
+              "name": "Oracle Database Get a pluggable database",
+              "id": "d75d5675-ce96-4dcc-9dbb-68efb9e218e4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/pluggableDatabases/:pluggableDatabaseId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pluggableDatabases",
+                    ":pluggableDatabaseId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8eaf4021-7ddb-4345-9d9b-f9a7724b0fa0",
+                      "key": "pluggableDatabaseId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Returns details about the specified pluggable database."
+              },
+              "response": [
+                {
+                  "id": "a989fc7c-b908-40bb-8ac1-5f626a6b4895",
+                  "name": "Pluggable database details retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pluggableDatabases/:pluggableDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pluggableDatabases",
+                        ":pluggableDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "pluggableDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"containerDatabaseId\": \"<string>\",\n  \"pdbName\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"openMode\": \"READ_ONLY\",\n  \"timeCreated\": \"<dateTime>\",\n  \"connectionStrings\": {\n    \"pdbDefault\": \"<string>\",\n    \"pdbIpDefault\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-a989fc7c-b908-40bb-8ac1-5f626a6b4895"
+                },
+                {
+                  "id": "d436e908-8fd4-49a5-b607-026e6b98c77c",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pluggableDatabases/:pluggableDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pluggableDatabases",
+                        ":pluggableDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "pluggableDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-d436e908-8fd4-49a5-b607-026e6b98c77c"
+                },
+                {
+                  "id": "e3dd2a0f-1484-437f-91fd-037983369648",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pluggableDatabases/:pluggableDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pluggableDatabases",
+                        ":pluggableDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "pluggableDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-e3dd2a0f-1484-437f-91fd-037983369648"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-d75d5675-ce96-4dcc-9dbb-68efb9e218e4"
+            },
+            {
+              "name": "Oracle Database Update a pluggable database",
+              "id": "7acd95e4-d3f9-4359-b0c3-672e9632b544",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"freeformTags\": {\n    \"voluptate_0\": \"<string>\",\n    \"id_00\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"nisi_b8\": {}\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/pluggableDatabases/:pluggableDatabaseId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pluggableDatabases",
+                    ":pluggableDatabaseId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8dc4b626-fd83-444f-8d2f-cafe0bec99d1",
+                      "key": "pluggableDatabaseId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Updates the specified pluggable database."
+              },
+              "response": [
+                {
+                  "id": "f80aa378-5ab9-46c6-b5ca-ef0b03268a83",
+                  "name": "Pluggable database updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"freeformTags\": {\n    \"voluptate_0\": \"<string>\",\n    \"id_00\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"nisi_b8\": {}\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/pluggableDatabases/:pluggableDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pluggableDatabases",
+                        ":pluggableDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "pluggableDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"containerDatabaseId\": \"<string>\",\n  \"pdbName\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"openMode\": \"READ_ONLY\",\n  \"timeCreated\": \"<dateTime>\",\n  \"connectionStrings\": {\n    \"pdbDefault\": \"<string>\",\n    \"pdbIpDefault\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-f80aa378-5ab9-46c6-b5ca-ef0b03268a83"
+                },
+                {
+                  "id": "e99b89ee-2f1d-454f-9c69-ededb578a067",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"freeformTags\": {\n    \"voluptate_0\": \"<string>\",\n    \"id_00\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"nisi_b8\": {}\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/pluggableDatabases/:pluggableDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pluggableDatabases",
+                        ":pluggableDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "pluggableDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-e99b89ee-2f1d-454f-9c69-ededb578a067"
+                },
+                {
+                  "id": "fa574f7f-eef2-439f-a68b-538e5a737e6f",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"freeformTags\": {\n    \"voluptate_0\": \"<string>\",\n    \"id_00\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"nisi_b8\": {}\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/pluggableDatabases/:pluggableDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pluggableDatabases",
+                        ":pluggableDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "pluggableDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-fa574f7f-eef2-439f-a68b-538e5a737e6f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-7acd95e4-d3f9-4359-b0c3-672e9632b544"
+            },
+            {
+              "name": "Oracle Database Delete a pluggable database",
+              "id": "63db8c94-10f8-4f48-9a05-a47cd814347f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/pluggableDatabases/:pluggableDatabaseId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pluggableDatabases",
+                    ":pluggableDatabaseId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "22cb19a0-1d19-40ec-9a07-518809c5e34f",
+                      "key": "pluggableDatabaseId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Deletes the specified pluggable database."
+              },
+              "response": [
+                {
+                  "id": "2323e3a6-97ab-4219-bf02-e9a0f9cce4ab",
+                  "name": "Deletion accepted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pluggableDatabases/:pluggableDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pluggableDatabases",
+                        ":pluggableDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "pluggableDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-2323e3a6-97ab-4219-bf02-e9a0f9cce4ab"
+                },
+                {
+                  "id": "ebc38edd-6c00-417d-a7b4-362e1f516502",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pluggableDatabases/:pluggableDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pluggableDatabases",
+                        ":pluggableDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "pluggableDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-ebc38edd-6c00-417d-a7b4-362e1f516502"
+                },
+                {
+                  "id": "031300f8-3056-4c4e-82f0-54291b6e4ff5",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/pluggableDatabases/:pluggableDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "pluggableDatabases",
+                        ":pluggableDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "pluggableDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-031300f8-3056-4c4e-82f0-54291b6e4ff5"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-63db8c94-10f8-4f48-9a05-a47cd814347f"
+            }
+          ],
+          "id": "9fbd85a6-dbf3-411d-9329-1ac8cfd562cd",
+          "createdAt": "2026-07-28T02:27:57.000Z",
+          "updatedAt": "2026-07-28T02:27:57.000Z",
+          "uid": "35240-9fbd85a6-dbf3-411d-9329-1ac8cfd562cd"
+        },
+        {
+          "name": "Oracle Database List pluggable databases",
+          "id": "5b58f4c3-285b-4e20-a48b-bb04e94097b2",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pluggableDatabases?compartmentId=<string>&databaseId=<string>&limit=<integer>&page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pluggableDatabases"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "databaseId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token from a previous response",
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of pluggable databases."
+          },
+          "response": [
+            {
+              "id": "00188d61-c555-422b-aec4-19da0fa23330",
+              "name": "Pluggable databases listed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/pluggableDatabases?compartmentId=<string>&databaseId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pluggableDatabases"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "databaseId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"containerDatabaseId\": \"<string>\",\n    \"pdbName\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"openMode\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"containerDatabaseId\": \"<string>\",\n    \"pdbName\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"openMode\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-00188d61-c555-422b-aec4-19da0fa23330"
+            },
+            {
+              "id": "21d2ece4-4d37-4ea9-af11-52b59a907f39",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/pluggableDatabases?compartmentId=<string>&databaseId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pluggableDatabases"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "databaseId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-21d2ece4-4d37-4ea9-af11-52b59a907f39"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:57.000Z",
+          "updatedAt": "2026-07-28T02:27:57.000Z",
+          "uid": "35240-5b58f4c3-285b-4e20-a48b-bb04e94097b2"
+        },
+        {
+          "name": "Oracle Database Create a pluggable database",
+          "id": "a1ecb2e5-95cc-4202-8b26-6fbc5f9780fa",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"containerDatabaseId\": \"<string>\",\n  \"pdbName\": \"<string>\",\n  \"pdbAdminPassword\": \"<string>\",\n  \"tdeWalletPassword\": \"<string>\",\n  \"freeformTags\": {\n    \"quisee\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/pluggableDatabases",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pluggableDatabases"
+              ]
+            },
+            "description": "Creates a new pluggable database."
+          },
+          "response": [
+            {
+              "id": "f4b2845d-1eb2-4dac-b595-5492b94dc00f",
+              "name": "Pluggable database creation initiated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"containerDatabaseId\": \"<string>\",\n  \"pdbName\": \"<string>\",\n  \"pdbAdminPassword\": \"<string>\",\n  \"tdeWalletPassword\": \"<string>\",\n  \"freeformTags\": {\n    \"quisee\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/pluggableDatabases",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pluggableDatabases"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"containerDatabaseId\": \"<string>\",\n  \"pdbName\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"lifecycleState\": \"PROVISIONING\",\n  \"openMode\": \"READ_ONLY\",\n  \"timeCreated\": \"<dateTime>\",\n  \"connectionStrings\": {\n    \"pdbDefault\": \"<string>\",\n    \"pdbIpDefault\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-f4b2845d-1eb2-4dac-b595-5492b94dc00f"
+            },
+            {
+              "id": "1ac082fc-834b-41b3-869e-a42c11f9cc63",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"containerDatabaseId\": \"<string>\",\n  \"pdbName\": \"<string>\",\n  \"pdbAdminPassword\": \"<string>\",\n  \"tdeWalletPassword\": \"<string>\",\n  \"freeformTags\": {\n    \"quisee\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/pluggableDatabases",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pluggableDatabases"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-1ac082fc-834b-41b3-869e-a42c11f9cc63"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:57.000Z",
+          "updatedAt": "2026-07-28T02:27:57.000Z",
+          "uid": "35240-a1ecb2e5-95cc-4202-8b26-6fbc5f9780fa"
+        }
+      ],
+      "id": "39fc7687-e737-4c62-9a97-e57d79f0a516",
+      "createdAt": "2026-07-28T02:27:57.000Z",
+      "updatedAt": "2026-07-28T02:27:57.000Z",
+      "uid": "35240-39fc7687-e737-4c62-9a97-e57d79f0a516"
+    },
+    {
+      "name": "database",
+      "item": [
+        {
+          "name": "pdbs",
+          "item": [
+            {
+              "name": "{pdb_name}",
+              "item": [
+                {
+                  "name": "Oracle Database Get a specific pluggable database",
+                  "id": "807cae4c-08ed-4db0-9069-792b5c2387dd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/pdbs/:pdb_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "pdbs",
+                        ":pdb_name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3eae2568-109e-40f2-944d-dfd3f4b58644",
+                          "key": "pdb_name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns details about a specific pluggable database."
+                  },
+                  "response": [
+                    {
+                      "id": "d0022414-da14-4555-9a35-a4d6fcf7fc4b",
+                      "name": "PDB details retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/pdbs/:pdb_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "pdbs",
+                            ":pdb_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pdb_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"pdb_name\": \"<string>\",\n  \"pdb_id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"open_mode\": \"<string>\",\n  \"total_size\": \"<long>\",\n  \"creation_time\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-d0022414-da14-4555-9a35-a4d6fcf7fc4b"
+                    },
+                    {
+                      "id": "599220cb-a5d2-4909-ac01-b6a42db63cd1",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/pdbs/:pdb_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "pdbs",
+                            ":pdb_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pdb_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-599220cb-a5d2-4909-ac01-b6a42db63cd1"
+                    },
+                    {
+                      "id": "0af2ab5d-2570-4447-9234-4d30e35d557c",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/pdbs/:pdb_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "pdbs",
+                            ":pdb_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pdb_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-0af2ab5d-2570-4447-9234-4d30e35d557c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-807cae4c-08ed-4db0-9069-792b5c2387dd"
+                },
+                {
+                  "name": "Oracle Database Update a pluggable database",
+                  "id": "22fda8ef-6a69-4379-8957-51338e387fc9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"OPEN\",\n  \"open_mode\": \"READ WRITE\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/database/pdbs/:pdb_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "pdbs",
+                        ":pdb_name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "23795ba3-ff27-4e79-902f-f32a4820128d",
+                          "key": "pdb_name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Updates properties of a specific pluggable database including open/close state."
+                  },
+                  "response": [
+                    {
+                      "id": "8a1fa2ce-9543-407f-b5fd-3defcca95be9",
+                      "name": "PDB updated successfully",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"OPEN\",\n  \"open_mode\": \"READ WRITE\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/pdbs/:pdb_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "pdbs",
+                            ":pdb_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pdb_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"pdb_name\": \"<string>\",\n  \"pdb_id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"open_mode\": \"<string>\",\n  \"total_size\": \"<long>\",\n  \"creation_time\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-8a1fa2ce-9543-407f-b5fd-3defcca95be9"
+                    },
+                    {
+                      "id": "53824948-eae6-4fba-880c-3482f13be826",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"OPEN\",\n  \"open_mode\": \"READ WRITE\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/pdbs/:pdb_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "pdbs",
+                            ":pdb_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pdb_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-53824948-eae6-4fba-880c-3482f13be826"
+                    },
+                    {
+                      "id": "931d18cc-f3dd-4472-8fed-7fc4d94dc27c",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"OPEN\",\n  \"open_mode\": \"READ WRITE\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/pdbs/:pdb_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "pdbs",
+                            ":pdb_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pdb_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-931d18cc-f3dd-4472-8fed-7fc4d94dc27c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-22fda8ef-6a69-4379-8957-51338e387fc9"
+                },
+                {
+                  "name": "Oracle Database Drop a pluggable database",
+                  "id": "9afd0682-3f51-4980-bc65-1c305c74d97b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/pdbs/:pdb_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "pdbs",
+                        ":pdb_name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "78416c14-7e35-4261-a052-eedd109a37d1",
+                          "key": "pdb_name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Drops the specified pluggable database from the container database."
+                  },
+                  "response": [
+                    {
+                      "id": "6f0cdf36-3798-47a8-9127-3ff55d5923a7",
+                      "name": "PDB dropped successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/pdbs/:pdb_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "pdbs",
+                            ":pdb_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pdb_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-6f0cdf36-3798-47a8-9127-3ff55d5923a7"
+                    },
+                    {
+                      "id": "c27e078a-60db-4a3f-95da-66d0c03c2368",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/pdbs/:pdb_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "pdbs",
+                            ":pdb_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pdb_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-c27e078a-60db-4a3f-95da-66d0c03c2368"
+                    },
+                    {
+                      "id": "bf2cc6a7-aa81-4b4b-a922-f72110b6aed2",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/pdbs/:pdb_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "pdbs",
+                            ":pdb_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pdb_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:57.000Z",
+                      "updatedAt": "2026-07-28T02:27:57.000Z",
+                      "uid": "35240-bf2cc6a7-aa81-4b4b-a922-f72110b6aed2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-9afd0682-3f51-4980-bc65-1c305c74d97b"
+                }
+              ],
+              "id": "157373ec-4891-4b20-9c79-f3b2bebf7667",
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-157373ec-4891-4b20-9c79-f3b2bebf7667"
+            },
+            {
+              "name": "Oracle Database Get all pluggable databases",
+              "id": "4e7c99f9-d23a-4632-8041-bbcb2c18208e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/database/pdbs/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "pdbs",
+                    ""
+                  ]
+                },
+                "description": "Returns a list of all pluggable databases in the container database."
+              },
+              "response": [
+                {
+                  "id": "54f1ad48-1f8c-4a76-805c-daf23eea65fa",
+                  "name": "PDBs retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/pdbs/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "pdbs",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"pdb_name\": \"<string>\",\n      \"pdb_id\": \"<integer>\",\n      \"status\": \"<string>\",\n      \"open_mode\": \"<string>\",\n      \"total_size\": \"<long>\",\n      \"creation_time\": \"<dateTime>\"\n    },\n    {\n      \"pdb_name\": \"<string>\",\n      \"pdb_id\": \"<integer>\",\n      \"status\": \"<string>\",\n      \"open_mode\": \"<string>\",\n      \"total_size\": \"<long>\",\n      \"creation_time\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-54f1ad48-1f8c-4a76-805c-daf23eea65fa"
+                },
+                {
+                  "id": "63bf2c82-c54c-4747-934e-c1b13865cecb",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/pdbs/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "pdbs",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-63bf2c82-c54c-4747-934e-c1b13865cecb"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-4e7c99f9-d23a-4632-8041-bbcb2c18208e"
+            },
+            {
+              "name": "Oracle Database Create a pluggable database",
+              "id": "3db17231-bfc7-48b8-a801-3c77b3078514",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"pdb_name\": \"<string>\",\n  \"admin_username\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"file_name_convert\": \"<string>\",\n  \"storage_limit\": \"<long>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/database/pdbs/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "pdbs",
+                    ""
+                  ]
+                },
+                "description": "Creates a new pluggable database in the container database."
+              },
+              "response": [
+                {
+                  "id": "11bed83a-460d-4413-a261-af3808b7c927",
+                  "name": "PDB created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"pdb_name\": \"<string>\",\n  \"admin_username\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"file_name_convert\": \"<string>\",\n  \"storage_limit\": \"<long>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/database/pdbs/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "pdbs",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"pdb_name\": \"<string>\",\n  \"pdb_id\": \"<integer>\",\n  \"status\": \"<string>\",\n  \"open_mode\": \"<string>\",\n  \"total_size\": \"<long>\",\n  \"creation_time\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-11bed83a-460d-4413-a261-af3808b7c927"
+                },
+                {
+                  "id": "06985d4d-735e-42cf-8f02-e2ebddb0af08",
+                  "name": "Bad request - invalid parameters or request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"pdb_name\": \"<string>\",\n  \"admin_username\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"file_name_convert\": \"<string>\",\n  \"storage_limit\": \"<long>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/database/pdbs/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "pdbs",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-06985d4d-735e-42cf-8f02-e2ebddb0af08"
+                },
+                {
+                  "id": "8996f610-ec03-44c0-96d9-ddce8516097d",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"pdb_name\": \"<string>\",\n  \"admin_username\": \"<string>\",\n  \"admin_password\": \"<string>\",\n  \"file_name_convert\": \"<string>\",\n  \"storage_limit\": \"<long>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/database/pdbs/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "pdbs",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:57.000Z",
+                  "updatedAt": "2026-07-28T02:27:57.000Z",
+                  "uid": "35240-8996f610-ec03-44c0-96d9-ddce8516097d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:57.000Z",
+              "updatedAt": "2026-07-28T02:27:57.000Z",
+              "uid": "35240-3db17231-bfc7-48b8-a801-3c77b3078514"
+            }
+          ],
+          "id": "09d7b65b-8910-466d-8eaf-e58a417c619a",
+          "createdAt": "2026-07-28T02:27:57.000Z",
+          "updatedAt": "2026-07-28T02:27:57.000Z",
+          "uid": "35240-09d7b65b-8910-466d-8eaf-e58a417c619a"
+        }
+      ],
+      "id": "bf44e6fd-502d-4b5e-87ab-ca8eadcf7dcd",
+      "createdAt": "2026-07-28T02:27:57.000Z",
+      "updatedAt": "2026-07-28T02:27:57.000Z",
+      "uid": "35240-bf44e6fd-502d-4b5e-87ab-ca8eadcf7dcd"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

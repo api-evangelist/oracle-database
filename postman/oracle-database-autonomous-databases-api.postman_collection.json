@@ -1,0 +1,2692 @@
+{
+  "info": {
+    "_postman_id": "597eb453-f9f3-4aa2-a5c1-0bcdf7bcba5f",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Autonomous Databases API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:21.000Z",
+    "updatedAt": "2026-07-28T02:27:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-597eb453-f9f3-4aa2-a5c1-0bcdf7bcba5f"
+  },
+  "item": [
+    {
+      "name": "autonomousDatabases",
+      "item": [
+        {
+          "name": "{autonomousDatabaseId}",
+          "item": [
+            {
+              "name": "actions",
+              "item": [
+                {
+                  "name": "start",
+                  "item": [
+                    {
+                      "name": "Oracle Database Start an Autonomous Database",
+                      "id": "704c100c-f69b-4ac5-968b-4159d47e44dc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "ETag value for optimistic concurrency control",
+                            "key": "if-match",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/start",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "autonomousDatabases",
+                            ":autonomousDatabaseId",
+                            "actions",
+                            "start"
+                          ],
+                          "variable": [
+                            {
+                              "id": "bedae6f6-1c4e-49f9-a824-c4065b80610f",
+                              "key": "autonomousDatabaseId",
+                              "value": "<string>",
+                              "description": "(Required) The OCID of the Autonomous Database"
+                            }
+                          ]
+                        },
+                        "description": "Starts a stopped Autonomous Database."
+                      },
+                      "response": [
+                        {
+                          "id": "deed5c8b-784c-4475-83bc-b126fb375a1e",
+                          "name": "Start initiated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "ETag value for optimistic concurrency control",
+                                "key": "if-match",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/start",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "start"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"dbVersion\": \"<string>\",\n  \"dbWorkload\": \"OLTP\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isDedicated\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"lifecycleState\": \"STOPPED\",\n  \"connectionStrings\": {\n    \"high\": \"<string>\",\n    \"medium\": \"<string>\",\n    \"low\": \"<string>\"\n  },\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"<uri>\",\n    \"apexUrl\": \"<uri>\",\n    \"machineLearningUserManagementUrl\": \"<uri>\",\n    \"graphStudioUrl\": \"<uri>\"\n  },\n  \"timeCreated\": \"<dateTime>\",\n  \"licenseModel\": \"BRING_YOUR_OWN_LICENSE\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"eiusmod_5\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"culpa_f7\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-deed5c8b-784c-4475-83bc-b126fb375a1e"
+                        },
+                        {
+                          "id": "65822a95-2583-4ef3-97a3-a2adfc555d09",
+                          "name": "Not authenticated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "ETag value for optimistic concurrency control",
+                                "key": "if-match",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/start",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "start"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-65822a95-2583-4ef3-97a3-a2adfc555d09"
+                        },
+                        {
+                          "id": "1dee51a0-9019-4f56-a08c-0865f07a4e65",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "ETag value for optimistic concurrency control",
+                                "key": "if-match",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/start",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "start"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-1dee51a0-9019-4f56-a08c-0865f07a4e65"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-704c100c-f69b-4ac5-968b-4159d47e44dc"
+                    }
+                  ],
+                  "id": "9b0d619c-c66a-46b4-b9cb-43a694d4d8ab",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-9b0d619c-c66a-46b4-b9cb-43a694d4d8ab"
+                },
+                {
+                  "name": "stop",
+                  "item": [
+                    {
+                      "name": "Oracle Database Stop an Autonomous Database",
+                      "id": "820a5814-f0fb-443a-9297-689c0cf123d6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "ETag value for optimistic concurrency control",
+                            "key": "if-match",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/stop",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "autonomousDatabases",
+                            ":autonomousDatabaseId",
+                            "actions",
+                            "stop"
+                          ],
+                          "variable": [
+                            {
+                              "id": "96c22cb0-74aa-4bf4-94ca-5821fc3a545a",
+                              "key": "autonomousDatabaseId",
+                              "value": "<string>",
+                              "description": "(Required) The OCID of the Autonomous Database"
+                            }
+                          ]
+                        },
+                        "description": "Stops a running Autonomous Database."
+                      },
+                      "response": [
+                        {
+                          "id": "9d168ab4-cddf-4868-8878-c8fc605c240b",
+                          "name": "Stop initiated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "ETag value for optimistic concurrency control",
+                                "key": "if-match",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/stop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "stop"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"dbVersion\": \"<string>\",\n  \"dbWorkload\": \"OLTP\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isDedicated\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"lifecycleState\": \"STOPPED\",\n  \"connectionStrings\": {\n    \"high\": \"<string>\",\n    \"medium\": \"<string>\",\n    \"low\": \"<string>\"\n  },\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"<uri>\",\n    \"apexUrl\": \"<uri>\",\n    \"machineLearningUserManagementUrl\": \"<uri>\",\n    \"graphStudioUrl\": \"<uri>\"\n  },\n  \"timeCreated\": \"<dateTime>\",\n  \"licenseModel\": \"BRING_YOUR_OWN_LICENSE\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"eiusmod_5\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"culpa_f7\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-9d168ab4-cddf-4868-8878-c8fc605c240b"
+                        },
+                        {
+                          "id": "45273b7a-5e4f-4749-bb2e-27e071823b50",
+                          "name": "Not authenticated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "ETag value for optimistic concurrency control",
+                                "key": "if-match",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/stop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "stop"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-45273b7a-5e4f-4749-bb2e-27e071823b50"
+                        },
+                        {
+                          "id": "7e1ae651-bc50-4236-b451-06e6b78eb979",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "ETag value for optimistic concurrency control",
+                                "key": "if-match",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/stop",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "stop"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-7e1ae651-bc50-4236-b451-06e6b78eb979"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-820a5814-f0fb-443a-9297-689c0cf123d6"
+                    }
+                  ],
+                  "id": "5809333c-6b44-45e6-82d2-96ca4c49eee1",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-5809333c-6b44-45e6-82d2-96ca4c49eee1"
+                },
+                {
+                  "name": "restart",
+                  "item": [
+                    {
+                      "name": "Oracle Database Restart an Autonomous Database",
+                      "id": "2ae7d11e-6424-4e11-98b5-a565109f09d2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "ETag value for optimistic concurrency control",
+                            "key": "if-match",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/restart",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "autonomousDatabases",
+                            ":autonomousDatabaseId",
+                            "actions",
+                            "restart"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7f359a70-1dcd-4182-ba12-c0704c5ff6ca",
+                              "key": "autonomousDatabaseId",
+                              "value": "<string>",
+                              "description": "(Required) The OCID of the Autonomous Database"
+                            }
+                          ]
+                        },
+                        "description": "Restarts the specified Autonomous Database."
+                      },
+                      "response": [
+                        {
+                          "id": "25042728-03f1-489a-954f-5c9c65d8eaec",
+                          "name": "Restart initiated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "ETag value for optimistic concurrency control",
+                                "key": "if-match",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/restart",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "restart"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"dbVersion\": \"<string>\",\n  \"dbWorkload\": \"OLTP\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isDedicated\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"lifecycleState\": \"STOPPED\",\n  \"connectionStrings\": {\n    \"high\": \"<string>\",\n    \"medium\": \"<string>\",\n    \"low\": \"<string>\"\n  },\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"<uri>\",\n    \"apexUrl\": \"<uri>\",\n    \"machineLearningUserManagementUrl\": \"<uri>\",\n    \"graphStudioUrl\": \"<uri>\"\n  },\n  \"timeCreated\": \"<dateTime>\",\n  \"licenseModel\": \"BRING_YOUR_OWN_LICENSE\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"eiusmod_5\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"culpa_f7\": {}\n  }\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-25042728-03f1-489a-954f-5c9c65d8eaec"
+                        },
+                        {
+                          "id": "e154680d-3be4-4e36-bf7c-1a159987b8a1",
+                          "name": "Not authenticated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "ETag value for optimistic concurrency control",
+                                "key": "if-match",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/restart",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "restart"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-e154680d-3be4-4e36-bf7c-1a159987b8a1"
+                        },
+                        {
+                          "id": "3dc5c30d-9613-4014-9d0a-46552ff11ed2",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "ETag value for optimistic concurrency control",
+                                "key": "if-match",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/restart",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "restart"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-3dc5c30d-9613-4014-9d0a-46552ff11ed2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-2ae7d11e-6424-4e11-98b5-a565109f09d2"
+                    }
+                  ],
+                  "id": "08f29eb9-4ef8-4b18-a6c4-1107184c7e2e",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-08f29eb9-4ef8-4b18-a6c4-1107184c7e2e"
+                },
+                {
+                  "name": "generateWallet",
+                  "item": [
+                    {
+                      "name": "Oracle Database Generate database wallet",
+                      "id": "0a81be9e-ff5f-4b9f-b0e7-4055575b91d3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/octet-stream"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"password\": \"<string>\",\n  \"generateType\": \"ALL\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/generateWallet",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "autonomousDatabases",
+                            ":autonomousDatabaseId",
+                            "actions",
+                            "generateWallet"
+                          ],
+                          "variable": [
+                            {
+                              "id": "55e0f180-5eca-4499-bd41-bde58d9aa033",
+                              "key": "autonomousDatabaseId",
+                              "value": "<string>",
+                              "description": "(Required) The OCID of the Autonomous Database"
+                            }
+                          ]
+                        },
+                        "description": "Creates and downloads a wallet zip file containing credentials for connecting to the Autonomous Database."
+                      },
+                      "response": [
+                        {
+                          "id": "7551868e-c626-4d67-abfe-94dba807e96a",
+                          "name": "Wallet generated successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"password\": \"<string>\",\n  \"generateType\": \"ALL\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/generateWallet",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "generateWallet"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/octet-stream"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<binary>",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-7551868e-c626-4d67-abfe-94dba807e96a"
+                        },
+                        {
+                          "id": "92d051a8-2bf1-4818-962f-7e1b8ba579ae",
+                          "name": "Not authenticated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"password\": \"<string>\",\n  \"generateType\": \"ALL\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/generateWallet",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "generateWallet"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-92d051a8-2bf1-4818-962f-7e1b8ba579ae"
+                        },
+                        {
+                          "id": "4c8eeff3-0a7b-4e58-90f1-c619da6f686e",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"password\": \"<string>\",\n  \"generateType\": \"ALL\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId/actions/generateWallet",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "autonomousDatabases",
+                                ":autonomousDatabaseId",
+                                "actions",
+                                "generateWallet"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "autonomousDatabaseId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:21.000Z",
+                          "updatedAt": "2026-07-28T02:27:21.000Z",
+                          "uid": "35240-4c8eeff3-0a7b-4e58-90f1-c619da6f686e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:21.000Z",
+                      "updatedAt": "2026-07-28T02:27:21.000Z",
+                      "uid": "35240-0a81be9e-ff5f-4b9f-b0e7-4055575b91d3"
+                    }
+                  ],
+                  "id": "86e0b509-b8e6-4ff4-aa43-8b74bd029c3d",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-86e0b509-b8e6-4ff4-aa43-8b74bd029c3d"
+                }
+              ],
+              "id": "21937fa0-a66e-47da-8744-fd28f0c1be32",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-21937fa0-a66e-47da-8744-fd28f0c1be32"
+            },
+            {
+              "name": "Oracle Database Get an Autonomous Database",
+              "id": "199f6c71-f836-42be-97ec-9f057c8ca612",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "67120895-cb80-4c15-99ef-25cacacce836",
+                      "key": "autonomousDatabaseId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    }
+                  ]
+                },
+                "description": "Returns details about the specified Autonomous Database."
+              },
+              "response": [
+                {
+                  "id": "a757c77b-db39-40fa-84b9-d092d475f5c2",
+                  "name": "Autonomous Database details retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"dbVersion\": \"<string>\",\n  \"dbWorkload\": \"OLTP\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isDedicated\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"lifecycleState\": \"STOPPED\",\n  \"connectionStrings\": {\n    \"high\": \"<string>\",\n    \"medium\": \"<string>\",\n    \"low\": \"<string>\"\n  },\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"<uri>\",\n    \"apexUrl\": \"<uri>\",\n    \"machineLearningUserManagementUrl\": \"<uri>\",\n    \"graphStudioUrl\": \"<uri>\"\n  },\n  \"timeCreated\": \"<dateTime>\",\n  \"licenseModel\": \"BRING_YOUR_OWN_LICENSE\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"eiusmod_5\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"culpa_f7\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-a757c77b-db39-40fa-84b9-d092d475f5c2"
+                },
+                {
+                  "id": "16b72517-7c9e-450b-bb0e-c19e83dac95a",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-16b72517-7c9e-450b-bb0e-c19e83dac95a"
+                },
+                {
+                  "id": "b8df4d8e-7de4-4462-8513-cb0dd16cbcdf",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-b8df4d8e-7de4-4462-8513-cb0dd16cbcdf"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-199f6c71-f836-42be-97ec-9f057c8ca612"
+            },
+            {
+              "name": "Oracle Database Update an Autonomous Database",
+              "id": "b9a9e646-2b73-42dc-8a62-294fd045bad3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<string>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"in_b2\": \"<string>\",\n    \"officia2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "db3418aa-c498-4636-833f-3edae3b92065",
+                      "key": "autonomousDatabaseId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    }
+                  ]
+                },
+                "description": "Updates the specified Autonomous Database. Supports scaling CPU, storage, and other configuration changes."
+              },
+              "response": [
+                {
+                  "id": "d02747ae-23c3-403a-a0e1-9be26cc4c7eb",
+                  "name": "Autonomous Database update initiated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<string>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"in_b2\": \"<string>\",\n    \"officia2\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"dbVersion\": \"<string>\",\n  \"dbWorkload\": \"OLTP\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isDedicated\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"lifecycleState\": \"STOPPED\",\n  \"connectionStrings\": {\n    \"high\": \"<string>\",\n    \"medium\": \"<string>\",\n    \"low\": \"<string>\"\n  },\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"<uri>\",\n    \"apexUrl\": \"<uri>\",\n    \"machineLearningUserManagementUrl\": \"<uri>\",\n    \"graphStudioUrl\": \"<uri>\"\n  },\n  \"timeCreated\": \"<dateTime>\",\n  \"licenseModel\": \"BRING_YOUR_OWN_LICENSE\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"eiusmod_5\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"culpa_f7\": {}\n  }\n}",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-d02747ae-23c3-403a-a0e1-9be26cc4c7eb"
+                },
+                {
+                  "id": "f8cb860d-d655-44ff-9fd7-ee68f2e09845",
+                  "name": "Bad request",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<string>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"in_b2\": \"<string>\",\n    \"officia2\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-f8cb860d-d655-44ff-9fd7-ee68f2e09845"
+                },
+                {
+                  "id": "369d4f3c-25ce-4962-95e9-dba6c58d17f0",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<string>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"in_b2\": \"<string>\",\n    \"officia2\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-369d4f3c-25ce-4962-95e9-dba6c58d17f0"
+                },
+                {
+                  "id": "64f18690-8ad4-4aa2-bc8b-dc353352ff42",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<string>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"in_b2\": \"<string>\",\n    \"officia2\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-64f18690-8ad4-4aa2-bc8b-dc353352ff42"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-b9a9e646-2b73-42dc-8a62-294fd045bad3"
+            },
+            {
+              "name": "Oracle Database Delete an Autonomous Database",
+              "id": "0d5c9766-7ed4-4906-9221-89e32b1eb1ad",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9b9e8934-66ac-4728-82cf-b2ddb7ec8030",
+                      "key": "autonomousDatabaseId",
+                      "value": "<string>",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    }
+                  ]
+                },
+                "description": "Terminates and deletes the specified Autonomous Database."
+              },
+              "response": [
+                {
+                  "id": "a41c565f-6a78-4f43-9339-3f18aa289eb0",
+                  "name": "Delete request accepted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "opc-work-request-id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-a41c565f-6a78-4f43-9339-3f18aa289eb0"
+                },
+                {
+                  "id": "2064bab2-afa3-4dad-a717-f634a63fd020",
+                  "name": "Not authenticated",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-2064bab2-afa3-4dad-a717-f634a63fd020"
+                },
+                {
+                  "id": "d9de3e55-b000-40d6-b37b-182d4616134e",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "ETag value for optimistic concurrency control",
+                        "key": "if-match",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/autonomousDatabases/:autonomousDatabaseId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "autonomousDatabases",
+                        ":autonomousDatabaseId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "autonomousDatabaseId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:21.000Z",
+                  "updatedAt": "2026-07-28T02:27:21.000Z",
+                  "uid": "35240-d9de3e55-b000-40d6-b37b-182d4616134e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-0d5c9766-7ed4-4906-9221-89e32b1eb1ad"
+            }
+          ],
+          "id": "e5cc1a40-233c-49fb-904b-06c48ac4c2e0",
+          "createdAt": "2026-07-28T02:27:21.000Z",
+          "updatedAt": "2026-07-28T02:27:21.000Z",
+          "uid": "35240-e5cc1a40-233c-49fb-904b-06c48ac4c2e0"
+        },
+        {
+          "name": "Oracle Database List Autonomous Databases",
+          "id": "6381bf73-eead-4bb2-ab7e-96487b860076",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/autonomousDatabases?compartmentId=<string>&limit=<integer>&page=<string>&displayName=<string>&lifecycleState=TERMINATING&dbWorkload=AJD",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "autonomousDatabases"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The OCID of the compartment",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token from a previous response",
+                  "key": "page",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by display name",
+                  "key": "displayName",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter by lifecycle state",
+                  "key": "lifecycleState",
+                  "value": "TERMINATING"
+                },
+                {
+                  "description": "Filter by workload type",
+                  "key": "dbWorkload",
+                  "value": "AJD"
+                }
+              ]
+            },
+            "description": "Returns a list of Autonomous Databases in the specified compartment. Results can be filtered by display name, lifecycle state, and other parameters."
+          },
+          "response": [
+            {
+              "id": "aa253e17-1b1f-4522-bb9b-eeace9e23fc0",
+              "name": "Autonomous Databases listed successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases?compartmentId=<string>&limit=<integer>&page=<string>&displayName=<string>&lifecycleState=TERMINATING&dbWorkload=AJD",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by display name",
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by lifecycle state",
+                      "key": "lifecycleState",
+                      "value": "TERMINATING"
+                    },
+                    {
+                      "description": "Filter by workload type",
+                      "key": "dbWorkload",
+                      "value": "AJD"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Pagination token for next page",
+                    "type": "text/plain"
+                  },
+                  "key": "opc-next-page",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Unique request identifier",
+                    "type": "text/plain"
+                  },
+                  "key": "opc-request-id",
+                  "value": "<string>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"dbName\": \"<string>\",\n    \"dbWorkload\": \"<string>\",\n    \"cpuCoreCount\": \"<integer>\",\n    \"dataStorageSizeInTBs\": \"<integer>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\",\n    \"isFreeTier\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"compartmentId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"dbName\": \"<string>\",\n    \"dbWorkload\": \"<string>\",\n    \"cpuCoreCount\": \"<integer>\",\n    \"dataStorageSizeInTBs\": \"<integer>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeCreated\": \"<dateTime>\",\n    \"isFreeTier\": \"<boolean>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-aa253e17-1b1f-4522-bb9b-eeace9e23fc0"
+            },
+            {
+              "id": "809b197f-269d-405b-a3e7-80ff83b1b54f",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases?compartmentId=<string>&limit=<integer>&page=<string>&displayName=<string>&lifecycleState=TERMINATING&dbWorkload=AJD",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by display name",
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by lifecycle state",
+                      "key": "lifecycleState",
+                      "value": "TERMINATING"
+                    },
+                    {
+                      "description": "Filter by workload type",
+                      "key": "dbWorkload",
+                      "value": "AJD"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-809b197f-269d-405b-a3e7-80ff83b1b54f"
+            },
+            {
+              "id": "678ff307-25bc-49dd-8927-de7723de150f",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases?compartmentId=<string>&limit=<integer>&page=<string>&displayName=<string>&lifecycleState=TERMINATING&dbWorkload=AJD",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by display name",
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by lifecycle state",
+                      "key": "lifecycleState",
+                      "value": "TERMINATING"
+                    },
+                    {
+                      "description": "Filter by workload type",
+                      "key": "dbWorkload",
+                      "value": "AJD"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-678ff307-25bc-49dd-8927-de7723de150f"
+            },
+            {
+              "id": "ae5a34c6-64e0-453d-8da2-4161e52cb670",
+              "name": "Resource not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases?compartmentId=<string>&limit=<integer>&page=<string>&displayName=<string>&lifecycleState=TERMINATING&dbWorkload=AJD",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by display name",
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by lifecycle state",
+                      "key": "lifecycleState",
+                      "value": "TERMINATING"
+                    },
+                    {
+                      "description": "Filter by workload type",
+                      "key": "dbWorkload",
+                      "value": "AJD"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-ae5a34c6-64e0-453d-8da2-4161e52cb670"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:21.000Z",
+          "updatedAt": "2026-07-28T02:27:21.000Z",
+          "uid": "35240-6381bf73-eead-4bb2-ab7e-96487b860076"
+        },
+        {
+          "name": "Oracle Database Create an Autonomous Database",
+          "id": "d0592c9e-e3d2-453f-b0b3-b5845267e969",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "description": "Unique retry token to prevent duplicate requests",
+                "key": "opc-retry-token",
+                "value": "<string>"
+              },
+              {
+                "description": "Unique request identifier for tracing",
+                "key": "opc-request-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"adminPassword\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbWorkload\": \"APEX\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"licenseModel\": \"LICENSE_INCLUDED\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subnetId\": \"<string>\",\n  \"freeformTags\": {\n    \"velit_fa\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/autonomousDatabases",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "autonomousDatabases"
+              ]
+            },
+            "description": "Creates a new Autonomous Database with the specified configuration. Supports OLTP, Data Warehouse, JSON Database, and APEX workload types."
+          },
+          "response": [
+            {
+              "id": "69a4b2d0-fcf8-4a54-805e-720337b48a04",
+              "name": "Autonomous Database creation initiated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Unique retry token to prevent duplicate requests",
+                    "key": "opc-retry-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Unique request identifier for tracing",
+                    "key": "opc-request-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"adminPassword\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbWorkload\": \"APEX\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"licenseModel\": \"LICENSE_INCLUDED\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subnetId\": \"<string>\",\n  \"freeformTags\": {\n    \"velit_fa\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Entity tag for optimistic concurrency",
+                    "type": "text/plain"
+                  },
+                  "key": "etag",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "Work request identifier for tracking",
+                    "type": "text/plain"
+                  },
+                  "key": "opc-work-request-id",
+                  "value": "<string>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"compartmentId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"dbVersion\": \"<string>\",\n  \"dbWorkload\": \"OLTP\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isDedicated\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"lifecycleState\": \"STOPPED\",\n  \"connectionStrings\": {\n    \"high\": \"<string>\",\n    \"medium\": \"<string>\",\n    \"low\": \"<string>\"\n  },\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"<uri>\",\n    \"apexUrl\": \"<uri>\",\n    \"machineLearningUserManagementUrl\": \"<uri>\",\n    \"graphStudioUrl\": \"<uri>\"\n  },\n  \"timeCreated\": \"<dateTime>\",\n  \"licenseModel\": \"BRING_YOUR_OWN_LICENSE\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"eiusmod_5\": \"<string>\"\n  },\n  \"definedTags\": {\n    \"culpa_f7\": {}\n  }\n}",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-69a4b2d0-fcf8-4a54-805e-720337b48a04"
+            },
+            {
+              "id": "38644a0c-ce27-4eab-a2f5-655736a8ee90",
+              "name": "Bad request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Unique retry token to prevent duplicate requests",
+                    "key": "opc-retry-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Unique request identifier for tracing",
+                    "key": "opc-request-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"adminPassword\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbWorkload\": \"APEX\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"licenseModel\": \"LICENSE_INCLUDED\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subnetId\": \"<string>\",\n  \"freeformTags\": {\n    \"velit_fa\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-38644a0c-ce27-4eab-a2f5-655736a8ee90"
+            },
+            {
+              "id": "c8de9b2c-7b35-45ad-a87a-9471cb1b124a",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "description": "Unique retry token to prevent duplicate requests",
+                    "key": "opc-retry-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "description": "Unique request identifier for tracing",
+                    "key": "opc-request-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"adminPassword\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"dbWorkload\": \"APEX\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"licenseModel\": \"LICENSE_INCLUDED\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subnetId\": \"<string>\",\n  \"freeformTags\": {\n    \"velit_fa\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabases",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabases"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-c8de9b2c-7b35-45ad-a87a-9471cb1b124a"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:21.000Z",
+          "updatedAt": "2026-07-28T02:27:21.000Z",
+          "uid": "35240-d0592c9e-e3d2-453f-b0b3-b5845267e969"
+        }
+      ],
+      "id": "a576ea3d-8e4b-4652-82ef-ac8aba03c1e9",
+      "createdAt": "2026-07-28T02:27:21.000Z",
+      "updatedAt": "2026-07-28T02:27:21.000Z",
+      "uid": "35240-a576ea3d-8e4b-4652-82ef-ac8aba03c1e9"
+    },
+    {
+      "name": "autonomousDatabaseBackups",
+      "item": [
+        {
+          "name": "Oracle Database List Autonomous Database backups",
+          "id": "7bc03be9-6be1-4494-b59f-e78063705ff4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/autonomousDatabaseBackups?autonomousDatabaseId=<string>&compartmentId=<string>&limit=<integer>&page=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "autonomousDatabaseBackups"
+              ],
+              "query": [
+                {
+                  "description": "The Autonomous Database OCID",
+                  "key": "autonomousDatabaseId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "(Required) The OCID of the compartment",
+                  "key": "compartmentId",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Maximum number of items to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Pagination token from a previous response",
+                  "key": "page",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Returns a list of backups for the specified Autonomous Database."
+          },
+          "response": [
+            {
+              "id": "efc3077b-44ce-4b06-8f20-57cb45c02c10",
+              "name": "Backups listed successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabaseBackups?autonomousDatabaseId=<string>&compartmentId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabaseBackups"
+                  ],
+                  "query": [
+                    {
+                      "description": "The Autonomous Database OCID",
+                      "key": "autonomousDatabaseId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"autonomousDatabaseId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"type\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeStarted\": \"<dateTime>\",\n    \"isAutomatic\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"autonomousDatabaseId\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"type\": \"<string>\",\n    \"lifecycleState\": \"<string>\",\n    \"timeStarted\": \"<dateTime>\",\n    \"isAutomatic\": \"<boolean>\"\n  }\n]",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-efc3077b-44ce-4b06-8f20-57cb45c02c10"
+            },
+            {
+              "id": "35fd3dcb-e255-435b-9082-7e8d01cdfa54",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabaseBackups?autonomousDatabaseId=<string>&compartmentId=<string>&limit=<integer>&page=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabaseBackups"
+                  ],
+                  "query": [
+                    {
+                      "description": "The Autonomous Database OCID",
+                      "key": "autonomousDatabaseId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) The OCID of the compartment",
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Pagination token from a previous response",
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-35fd3dcb-e255-435b-9082-7e8d01cdfa54"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:21.000Z",
+          "updatedAt": "2026-07-28T02:27:21.000Z",
+          "uid": "35240-7bc03be9-6be1-4494-b59f-e78063705ff4"
+        },
+        {
+          "name": "Oracle Database Create an Autonomous Database backup",
+          "id": "b8b9a699-f589-4f23-ad7a-5004dca132a3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"autonomousDatabaseId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"isLongTermBackup\": \"<boolean>\",\n  \"retentionPeriodInDays\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/autonomousDatabaseBackups",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "autonomousDatabaseBackups"
+              ]
+            },
+            "description": "Creates a new manual backup for the specified Autonomous Database."
+          },
+          "response": [
+            {
+              "id": "536e6272-9294-4ee5-905b-b587ba27b85b",
+              "name": "Backup creation initiated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"autonomousDatabaseId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"isLongTermBackup\": \"<boolean>\",\n  \"retentionPeriodInDays\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabaseBackups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabaseBackups"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"autonomousDatabaseId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"type\": \"FULL\",\n  \"lifecycleState\": \"<string>\",\n  \"databaseSizeInTBs\": \"<number>\",\n  \"timeStarted\": \"<dateTime>\",\n  \"timeEnded\": \"<dateTime>\",\n  \"isAutomatic\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-536e6272-9294-4ee5-905b-b587ba27b85b"
+            },
+            {
+              "id": "0f1c20f6-83b9-400c-a346-10488c82f36b",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"autonomousDatabaseId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"isLongTermBackup\": \"<boolean>\",\n  \"retentionPeriodInDays\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/autonomousDatabaseBackups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "autonomousDatabaseBackups"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:21.000Z",
+              "updatedAt": "2026-07-28T02:27:21.000Z",
+              "uid": "35240-0f1c20f6-83b9-400c-a346-10488c82f36b"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:21.000Z",
+          "updatedAt": "2026-07-28T02:27:21.000Z",
+          "uid": "35240-b8b9a699-f589-4f23-ad7a-5004dca132a3"
+        }
+      ],
+      "id": "399d9717-aebd-48e4-9665-7dcea25429a5",
+      "createdAt": "2026-07-28T02:27:21.000Z",
+      "updatedAt": "2026-07-28T02:27:21.000Z",
+      "uid": "35240-399d9717-aebd-48e4-9665-7dcea25429a5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

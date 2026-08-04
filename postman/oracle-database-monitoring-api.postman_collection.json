@@ -1,0 +1,1481 @@
+{
+  "info": {
+    "_postman_id": "f988f356-897a-41bc-8427-5d5929c95fd3",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Monitoring API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:39.000Z",
+    "updatedAt": "2026-07-28T02:27:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f988f356-897a-41bc-8427-5d5929c95fd3"
+  },
+  "item": [
+    {
+      "name": "database",
+      "item": [
+        {
+          "name": "monitoring",
+          "item": [
+            {
+              "name": "sessions",
+              "item": [
+                {
+                  "name": "{sid},{serial_number}",
+                  "item": [
+                    {
+                      "name": "Oracle Database Get a specific session",
+                      "id": "29fd4960-61c9-42e9-85dc-4f520dfd8c55",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/sessions/{{sid}},{{serial_number}}/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "sessions",
+                            "{{sid}},{{serial_number}}",
+                            ""
+                          ]
+                        },
+                        "description": "Returns detailed information about a specific database session."
+                      },
+                      "response": [
+                        {
+                          "id": "ac8003f4-9f95-47d8-889b-a650be516ceb",
+                          "name": "Session details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/monitoring/sessions/{{sid}},{{serial_number}}/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "monitoring",
+                                "sessions",
+                                "{{sid}},{{serial_number}}",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"sid\": \"<integer>\",\n  \"serial_number\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"status\": \"<string>\",\n  \"machine\": \"<string>\",\n  \"program\": \"<string>\",\n  \"sql_id\": \"<string>\",\n  \"event\": \"<string>\",\n  \"wait_class\": \"<string>\",\n  \"logon_time\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:27:39.000Z",
+                          "updatedAt": "2026-07-28T02:27:39.000Z",
+                          "uid": "35240-ac8003f4-9f95-47d8-889b-a650be516ceb"
+                        },
+                        {
+                          "id": "322b9999-3626-49df-8ccc-e961db43d897",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/monitoring/sessions/{{sid}},{{serial_number}}/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "monitoring",
+                                "sessions",
+                                "{{sid}},{{serial_number}}",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:39.000Z",
+                          "updatedAt": "2026-07-28T02:27:39.000Z",
+                          "uid": "35240-322b9999-3626-49df-8ccc-e961db43d897"
+                        },
+                        {
+                          "id": "e2e59e07-854d-4391-8bd0-5dcce7797a9e",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/monitoring/sessions/{{sid}},{{serial_number}}/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "monitoring",
+                                "sessions",
+                                "{{sid}},{{serial_number}}",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:39.000Z",
+                          "updatedAt": "2026-07-28T02:27:39.000Z",
+                          "uid": "35240-e2e59e07-854d-4391-8bd0-5dcce7797a9e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-29fd4960-61c9-42e9-85dc-4f520dfd8c55"
+                    }
+                  ],
+                  "id": "07e4f89b-6160-496c-a52c-f6aa4d311411",
+                  "createdAt": "2026-07-28T02:27:39.000Z",
+                  "updatedAt": "2026-07-28T02:27:39.000Z",
+                  "uid": "35240-07e4f89b-6160-496c-a52c-f6aa4d311411"
+                },
+                {
+                  "name": "Oracle Database Get all sessions",
+                  "id": "972a0d6d-f8e1-4f31-ab97-90d005991230",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/monitoring/sessions/?limit=25&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "monitoring",
+                        "sessions",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Number of items to skip before returning results",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    },
+                    "description": "Returns information about all active database sessions."
+                  },
+                  "response": [
+                    {
+                      "id": "a6b17772-3398-4cfb-b56b-23a23012e87c",
+                      "name": "Sessions retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/sessions/?limit=25&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "sessions",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Number of items to skip before returning results",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"sid\": \"<integer>\",\n      \"serial_number\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"status\": \"<string>\",\n      \"machine\": \"<string>\",\n      \"program\": \"<string>\",\n      \"sql_id\": \"<string>\",\n      \"event\": \"<string>\",\n      \"wait_class\": \"<string>\",\n      \"logon_time\": \"<dateTime>\"\n    },\n    {\n      \"sid\": \"<integer>\",\n      \"serial_number\": \"<integer>\",\n      \"username\": \"<string>\",\n      \"status\": \"<string>\",\n      \"machine\": \"<string>\",\n      \"program\": \"<string>\",\n      \"sql_id\": \"<string>\",\n      \"event\": \"<string>\",\n      \"wait_class\": \"<string>\",\n      \"logon_time\": \"<dateTime>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\",\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-a6b17772-3398-4cfb-b56b-23a23012e87c"
+                    },
+                    {
+                      "id": "96381889-58e5-4205-b353-9cbe60283b5a",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/sessions/?limit=25&offset=0",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "sessions",
+                            ""
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of items to return",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Number of items to skip before returning results",
+                              "key": "offset",
+                              "value": "0"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-96381889-58e5-4205-b353-9cbe60283b5a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:39.000Z",
+                  "updatedAt": "2026-07-28T02:27:39.000Z",
+                  "uid": "35240-972a0d6d-f8e1-4f31-ab97-90d005991230"
+                }
+              ],
+              "id": "01d05052-b473-479c-bab3-0dd9d51ec1d7",
+              "createdAt": "2026-07-28T02:27:39.000Z",
+              "updatedAt": "2026-07-28T02:27:39.000Z",
+              "uid": "35240-01d05052-b473-479c-bab3-0dd9d51ec1d7"
+            },
+            {
+              "name": "session_locks",
+              "item": [
+                {
+                  "name": "holding",
+                  "item": [
+                    {
+                      "name": "Oracle Database Get blocking locks",
+                      "id": "4c2877dd-7aef-4efa-8439-10d57724cd71",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/session_locks/holding/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "session_locks",
+                            "holding",
+                            ""
+                          ]
+                        },
+                        "description": "Returns information about sessions holding locks that block others."
+                      },
+                      "response": [
+                        {
+                          "id": "7a09587b-367d-44bd-a77d-5bf949adb437",
+                          "name": "Blocking locks retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/monitoring/session_locks/holding/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "monitoring",
+                                "session_locks",
+                                "holding",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"sid\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"mode_held\": \"<string>\",\n      \"mode_requested\": \"<string>\",\n      \"block\": \"<integer>\"\n    },\n    {\n      \"sid\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"mode_held\": \"<string>\",\n      \"mode_requested\": \"<string>\",\n      \"block\": \"<integer>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:27:39.000Z",
+                          "updatedAt": "2026-07-28T02:27:39.000Z",
+                          "uid": "35240-7a09587b-367d-44bd-a77d-5bf949adb437"
+                        },
+                        {
+                          "id": "32e68b00-5036-4e8b-b13d-07bcced92b0b",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/monitoring/session_locks/holding/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "monitoring",
+                                "session_locks",
+                                "holding",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:39.000Z",
+                          "updatedAt": "2026-07-28T02:27:39.000Z",
+                          "uid": "35240-32e68b00-5036-4e8b-b13d-07bcced92b0b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-4c2877dd-7aef-4efa-8439-10d57724cd71"
+                    }
+                  ],
+                  "id": "0d6de145-7130-4053-b86a-988f27d22016",
+                  "createdAt": "2026-07-28T02:27:39.000Z",
+                  "updatedAt": "2026-07-28T02:27:39.000Z",
+                  "uid": "35240-0d6de145-7130-4053-b86a-988f27d22016"
+                },
+                {
+                  "name": "waiting",
+                  "item": [
+                    {
+                      "name": "Oracle Database Get waiting locks",
+                      "id": "63c6b344-f3b2-4846-89e2-870208521b8f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/session_locks/waiting/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "session_locks",
+                            "waiting",
+                            ""
+                          ]
+                        },
+                        "description": "Returns information about sessions waiting to acquire locks."
+                      },
+                      "response": [
+                        {
+                          "id": "61158402-bad3-462b-b604-c0a8dc612a67",
+                          "name": "Waiting locks retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/monitoring/session_locks/waiting/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "monitoring",
+                                "session_locks",
+                                "waiting",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"sid\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"mode_held\": \"<string>\",\n      \"mode_requested\": \"<string>\",\n      \"block\": \"<integer>\"\n    },\n    {\n      \"sid\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"mode_held\": \"<string>\",\n      \"mode_requested\": \"<string>\",\n      \"block\": \"<integer>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:27:39.000Z",
+                          "updatedAt": "2026-07-28T02:27:39.000Z",
+                          "uid": "35240-61158402-bad3-462b-b604-c0a8dc612a67"
+                        },
+                        {
+                          "id": "c7f9a540-b288-4479-9f18-d1d2ea51bde0",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/monitoring/session_locks/waiting/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "monitoring",
+                                "session_locks",
+                                "waiting",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:39.000Z",
+                          "updatedAt": "2026-07-28T02:27:39.000Z",
+                          "uid": "35240-c7f9a540-b288-4479-9f18-d1d2ea51bde0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-63c6b344-f3b2-4846-89e2-870208521b8f"
+                    }
+                  ],
+                  "id": "dfac1086-a5c1-4cc4-977c-952b19b858ed",
+                  "createdAt": "2026-07-28T02:27:39.000Z",
+                  "updatedAt": "2026-07-28T02:27:39.000Z",
+                  "uid": "35240-dfac1086-a5c1-4cc4-977c-952b19b858ed"
+                },
+                {
+                  "name": "Oracle Database Get all session locks",
+                  "id": "3ea0a6a0-f294-4945-9b15-e5df77d19168",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/monitoring/session_locks/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "monitoring",
+                        "session_locks",
+                        ""
+                      ]
+                    },
+                    "description": "Returns information about all current session locks."
+                  },
+                  "response": [
+                    {
+                      "id": "a8070993-6733-477c-b5be-f758312930c4",
+                      "name": "Session locks retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/session_locks/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "session_locks",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"sid\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"mode_held\": \"<string>\",\n      \"mode_requested\": \"<string>\",\n      \"block\": \"<integer>\"\n    },\n    {\n      \"sid\": \"<integer>\",\n      \"type\": \"<string>\",\n      \"mode_held\": \"<string>\",\n      \"mode_requested\": \"<string>\",\n      \"block\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-a8070993-6733-477c-b5be-f758312930c4"
+                    },
+                    {
+                      "id": "ad531973-4ee6-4b36-b826-d1e488a4b8b4",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/session_locks/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "session_locks",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-ad531973-4ee6-4b36-b826-d1e488a4b8b4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:39.000Z",
+                  "updatedAt": "2026-07-28T02:27:39.000Z",
+                  "uid": "35240-3ea0a6a0-f294-4945-9b15-e5df77d19168"
+                }
+              ],
+              "id": "709154bc-51de-4b7d-8c7a-dc62d85e15e9",
+              "createdAt": "2026-07-28T02:27:39.000Z",
+              "updatedAt": "2026-07-28T02:27:39.000Z",
+              "uid": "35240-709154bc-51de-4b7d-8c7a-dc62d85e15e9"
+            },
+            {
+              "name": "alerts",
+              "item": [
+                {
+                  "name": "Oracle Database Get all alerts",
+                  "id": "f3685b9d-bfa7-48dc-a581-15081b6683ac",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/monitoring/alerts/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "monitoring",
+                        "alerts",
+                        ""
+                      ]
+                    },
+                    "description": "Returns all database alerts and notifications."
+                  },
+                  "response": [
+                    {
+                      "id": "3db0d88b-dbe3-4ac2-9714-d82c749c0f49",
+                      "name": "Alerts retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/alerts/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "alerts",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"message_text\": \"<string>\",\n      \"message_level\": \"<integer>\",\n      \"originating_timestamp\": \"<dateTime>\"\n    },\n    {\n      \"message_text\": \"<string>\",\n      \"message_level\": \"<integer>\",\n      \"originating_timestamp\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-3db0d88b-dbe3-4ac2-9714-d82c749c0f49"
+                    },
+                    {
+                      "id": "252b00f2-f4eb-42dc-bf76-926460643f91",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/alerts/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "alerts",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-252b00f2-f4eb-42dc-bf76-926460643f91"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:39.000Z",
+                  "updatedAt": "2026-07-28T02:27:39.000Z",
+                  "uid": "35240-f3685b9d-bfa7-48dc-a581-15081b6683ac"
+                }
+              ],
+              "id": "210abfbc-85f7-429e-90dd-034a387232d7",
+              "createdAt": "2026-07-28T02:27:39.000Z",
+              "updatedAt": "2026-07-28T02:27:39.000Z",
+              "uid": "35240-210abfbc-85f7-429e-90dd-034a387232d7"
+            },
+            {
+              "name": "alerts_summaries",
+              "item": [
+                {
+                  "name": "by_message_level",
+                  "item": [
+                    {
+                      "name": "Oracle Database Get alert summaries by message level",
+                      "id": "d4175225-7698-4e8f-89e5-47228a342a80",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/alerts_summaries/by_message_level",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "alerts_summaries",
+                            "by_message_level"
+                          ]
+                        },
+                        "description": "Returns alert summary statistics grouped by message level."
+                      },
+                      "response": [
+                        {
+                          "id": "1edf3d0a-f90e-446a-8340-f86526e33ba5",
+                          "name": "Alert summaries retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/monitoring/alerts_summaries/by_message_level",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "monitoring",
+                                "alerts_summaries",
+                                "by_message_level"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"items\": [\n    {\n      \"message_level\": \"<integer>\",\n      \"count\": \"<integer>\"\n    },\n    {\n      \"message_level\": \"<integer>\",\n      \"count\": \"<integer>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:27:39.000Z",
+                          "updatedAt": "2026-07-28T02:27:39.000Z",
+                          "uid": "35240-1edf3d0a-f90e-446a-8340-f86526e33ba5"
+                        },
+                        {
+                          "id": "3ad8c1ef-2753-464c-bc84-4d669e571556",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/monitoring/alerts_summaries/by_message_level",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "monitoring",
+                                "alerts_summaries",
+                                "by_message_level"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:39.000Z",
+                          "updatedAt": "2026-07-28T02:27:39.000Z",
+                          "uid": "35240-3ad8c1ef-2753-464c-bc84-4d669e571556"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-d4175225-7698-4e8f-89e5-47228a342a80"
+                    }
+                  ],
+                  "id": "d314e1df-e278-4dd5-8b8e-a1a791b93f07",
+                  "createdAt": "2026-07-28T02:27:39.000Z",
+                  "updatedAt": "2026-07-28T02:27:39.000Z",
+                  "uid": "35240-d314e1df-e278-4dd5-8b8e-a1a791b93f07"
+                }
+              ],
+              "id": "0dd6cecd-f730-48fd-88fe-57a516a09e22",
+              "createdAt": "2026-07-28T02:27:39.000Z",
+              "updatedAt": "2026-07-28T02:27:39.000Z",
+              "uid": "35240-0dd6cecd-f730-48fd-88fe-57a516a09e22"
+            },
+            {
+              "name": "wait_class_metrics",
+              "item": [
+                {
+                  "name": "Oracle Database Get wait class metrics",
+                  "id": "f4a0a9cb-b596-4177-9ecc-2712f5cba0e3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/monitoring/wait_class_metrics",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "monitoring",
+                        "wait_class_metrics"
+                      ]
+                    },
+                    "description": "Returns database wait class performance metrics."
+                  },
+                  "response": [
+                    {
+                      "id": "06731fe9-b16b-495f-8bc8-539b4605129d",
+                      "name": "Wait class metrics retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/wait_class_metrics",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "wait_class_metrics"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"wait_class\": \"<string>\",\n      \"average_waiter_count\": \"<number>\",\n      \"dbtime_in_wait\": \"<number>\"\n    },\n    {\n      \"wait_class\": \"<string>\",\n      \"average_waiter_count\": \"<number>\",\n      \"dbtime_in_wait\": \"<number>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-06731fe9-b16b-495f-8bc8-539b4605129d"
+                    },
+                    {
+                      "id": "8ac207b2-931c-4068-8994-f2f753919cb4",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/wait_class_metrics",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "wait_class_metrics"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-8ac207b2-931c-4068-8994-f2f753919cb4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:39.000Z",
+                  "updatedAt": "2026-07-28T02:27:39.000Z",
+                  "uid": "35240-f4a0a9cb-b596-4177-9ecc-2712f5cba0e3"
+                }
+              ],
+              "id": "54346553-04b2-4a6f-8a0a-819ed964c096",
+              "createdAt": "2026-07-28T02:27:39.000Z",
+              "updatedAt": "2026-07-28T02:27:39.000Z",
+              "uid": "35240-54346553-04b2-4a6f-8a0a-819ed964c096"
+            },
+            {
+              "name": "wait_class_totals",
+              "item": [
+                {
+                  "name": "Oracle Database Get wait class totals",
+                  "id": "101cbbc2-64fb-4507-8a4c-d1ca6252d74f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/monitoring/wait_class_totals",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "monitoring",
+                        "wait_class_totals"
+                      ]
+                    },
+                    "description": "Returns total wait time statistics by wait class."
+                  },
+                  "response": [
+                    {
+                      "id": "0e2ac02d-72c6-48ed-8efc-c9a587458edb",
+                      "name": "Wait class totals retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/wait_class_totals",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "wait_class_totals"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"wait_class\": \"<string>\",\n      \"total_waits\": \"<long>\",\n      \"time_waited\": \"<number>\"\n    },\n    {\n      \"wait_class\": \"<string>\",\n      \"total_waits\": \"<long>\",\n      \"time_waited\": \"<number>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-0e2ac02d-72c6-48ed-8efc-c9a587458edb"
+                    },
+                    {
+                      "id": "6d8876bc-40be-4c5a-9e90-32f0dbbe8bf6",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/wait_class_totals",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "wait_class_totals"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-6d8876bc-40be-4c5a-9e90-32f0dbbe8bf6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:39.000Z",
+                  "updatedAt": "2026-07-28T02:27:39.000Z",
+                  "uid": "35240-101cbbc2-64fb-4507-8a4c-d1ca6252d74f"
+                }
+              ],
+              "id": "bef164b5-e709-4810-ae18-de58b8ba28dc",
+              "createdAt": "2026-07-28T02:27:39.000Z",
+              "updatedAt": "2026-07-28T02:27:39.000Z",
+              "uid": "35240-bef164b5-e709-4810-ae18-de58b8ba28dc"
+            },
+            {
+              "name": "session_limits",
+              "item": [
+                {
+                  "name": "Oracle Database Get session limits",
+                  "id": "9c34946c-2b30-44d0-913d-1b79b0dcca7b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/monitoring/session_limits",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "monitoring",
+                        "session_limits"
+                      ]
+                    },
+                    "description": "Returns the configured session limits and current usage."
+                  },
+                  "response": [
+                    {
+                      "id": "ff8cce7b-1d6f-4093-b9c1-dd68727fa18a",
+                      "name": "Session limits retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/session_limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "session_limits"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"resource_name\": \"<string>\",\n      \"current_utilization\": \"<integer>\",\n      \"max_utilization\": \"<integer>\",\n      \"limit_value\": \"<string>\"\n    },\n    {\n      \"resource_name\": \"<string>\",\n      \"current_utilization\": \"<integer>\",\n      \"max_utilization\": \"<integer>\",\n      \"limit_value\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-ff8cce7b-1d6f-4093-b9c1-dd68727fa18a"
+                    },
+                    {
+                      "id": "cf5e6ac7-da13-4377-99a9-ca2a53453995",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/monitoring/session_limits",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "monitoring",
+                            "session_limits"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:39.000Z",
+                      "updatedAt": "2026-07-28T02:27:39.000Z",
+                      "uid": "35240-cf5e6ac7-da13-4377-99a9-ca2a53453995"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:39.000Z",
+                  "updatedAt": "2026-07-28T02:27:39.000Z",
+                  "uid": "35240-9c34946c-2b30-44d0-913d-1b79b0dcca7b"
+                }
+              ],
+              "id": "90838d3e-37d8-425c-a388-01932105aeb0",
+              "createdAt": "2026-07-28T02:27:39.000Z",
+              "updatedAt": "2026-07-28T02:27:39.000Z",
+              "uid": "35240-90838d3e-37d8-425c-a388-01932105aeb0"
+            }
+          ],
+          "id": "7ff8930a-854e-4e7a-8088-8895b410c70b",
+          "createdAt": "2026-07-28T02:27:39.000Z",
+          "updatedAt": "2026-07-28T02:27:39.000Z",
+          "uid": "35240-7ff8930a-854e-4e7a-8088-8895b410c70b"
+        }
+      ],
+      "id": "921668c6-e026-4ead-975a-26682cda9965",
+      "createdAt": "2026-07-28T02:27:39.000Z",
+      "updatedAt": "2026-07-28T02:27:39.000Z",
+      "uid": "35240-921668c6-e026-4ead-975a-26682cda9965"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    },
+    {
+      "key": "sid",
+      "value": "<integer>"
+    },
+    {
+      "key": "serial_number",
+      "value": "<integer>"
+    }
+  ]
+}

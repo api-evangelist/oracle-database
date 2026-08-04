@@ -1,0 +1,1040 @@
+{
+  "info": {
+    "_postman_id": "52cf3fc1-ace0-438a-92be-bd02916e76bf",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Data Pump API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:27.000Z",
+    "updatedAt": "2026-07-28T02:27:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-52cf3fc1-ace0-438a-92be-bd02916e76bf"
+  },
+  "item": [
+    {
+      "name": "database",
+      "item": [
+        {
+          "name": "datapump",
+          "item": [
+            {
+              "name": "export",
+              "item": [
+                {
+                  "name": "Oracle Database Create a Data Pump export job",
+                  "id": "8f40efa3-be91-4abf-ac8c-f32435693042",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"job_name\": \"<string>\",\n  \"schemas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"directory\": \"<string>\",\n  \"dumpfile\": \"<string>\",\n  \"logfile\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/database/datapump/export",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "datapump",
+                        "export"
+                      ]
+                    },
+                    "description": "Creates a new Data Pump export job for data and metadata extraction."
+                  },
+                  "response": [
+                    {
+                      "id": "a589ab9e-6bcc-463b-a794-9164df08dcc7",
+                      "name": "Export job created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"job_name\": \"<string>\",\n  \"schemas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"directory\": \"<string>\",\n  \"dumpfile\": \"<string>\",\n  \"logfile\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/datapump/export",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "datapump",
+                            "export"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"owner_name\": \"<string>\",\n  \"job_name\": \"<string>\",\n  \"operation\": \"<string>\",\n  \"job_mode\": \"<string>\",\n  \"state\": \"<string>\",\n  \"degree\": \"<integer>\",\n  \"attached_sessions\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-a589ab9e-6bcc-463b-a794-9164df08dcc7"
+                    },
+                    {
+                      "id": "166e9fef-a419-42cd-af23-af55fea05c17",
+                      "name": "Bad request - invalid parameters or request body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"job_name\": \"<string>\",\n  \"schemas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"directory\": \"<string>\",\n  \"dumpfile\": \"<string>\",\n  \"logfile\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/datapump/export",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "datapump",
+                            "export"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-166e9fef-a419-42cd-af23-af55fea05c17"
+                    },
+                    {
+                      "id": "452c5efb-cba4-43b5-b4b3-796a61390fe9",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"job_name\": \"<string>\",\n  \"schemas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tables\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"directory\": \"<string>\",\n  \"dumpfile\": \"<string>\",\n  \"logfile\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/datapump/export",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "datapump",
+                            "export"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-452c5efb-cba4-43b5-b4b3-796a61390fe9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:27.000Z",
+                  "updatedAt": "2026-07-28T02:27:27.000Z",
+                  "uid": "35240-8f40efa3-be91-4abf-ac8c-f32435693042"
+                }
+              ],
+              "id": "35b6c096-c56a-4e92-a508-845670c6ca57",
+              "createdAt": "2026-07-28T02:27:27.000Z",
+              "updatedAt": "2026-07-28T02:27:27.000Z",
+              "uid": "35240-35b6c096-c56a-4e92-a508-845670c6ca57"
+            },
+            {
+              "name": "import",
+              "item": [
+                {
+                  "name": "Oracle Database Create a Data Pump import job",
+                  "id": "19b6c5fc-ed3e-467e-a6a9-19ebf38e9ac3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"job_name\": \"<string>\",\n  \"directory\": \"<string>\",\n  \"dumpfile\": \"<string>\",\n  \"schemas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"remap_schema\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/database/datapump/import",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "datapump",
+                        "import"
+                      ]
+                    },
+                    "description": "Creates a new Data Pump import job for data and metadata loading."
+                  },
+                  "response": [
+                    {
+                      "id": "2f7b225a-2c3d-4890-ab77-15fce73f07b2",
+                      "name": "Import job created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"job_name\": \"<string>\",\n  \"directory\": \"<string>\",\n  \"dumpfile\": \"<string>\",\n  \"schemas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"remap_schema\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/datapump/import",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "datapump",
+                            "import"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"owner_name\": \"<string>\",\n  \"job_name\": \"<string>\",\n  \"operation\": \"<string>\",\n  \"job_mode\": \"<string>\",\n  \"state\": \"<string>\",\n  \"degree\": \"<integer>\",\n  \"attached_sessions\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-2f7b225a-2c3d-4890-ab77-15fce73f07b2"
+                    },
+                    {
+                      "id": "494264df-0712-40fd-bd07-9b1e89f8b87d",
+                      "name": "Bad request - invalid parameters or request body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"job_name\": \"<string>\",\n  \"directory\": \"<string>\",\n  \"dumpfile\": \"<string>\",\n  \"schemas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"remap_schema\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/datapump/import",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "datapump",
+                            "import"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-494264df-0712-40fd-bd07-9b1e89f8b87d"
+                    },
+                    {
+                      "id": "28932348-2b8d-42b2-90b6-03749a0b9f37",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"job_name\": \"<string>\",\n  \"directory\": \"<string>\",\n  \"dumpfile\": \"<string>\",\n  \"schemas\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"remap_schema\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/database/datapump/import",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "datapump",
+                            "import"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-28932348-2b8d-42b2-90b6-03749a0b9f37"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:27.000Z",
+                  "updatedAt": "2026-07-28T02:27:27.000Z",
+                  "uid": "35240-19b6c5fc-ed3e-467e-a6a9-19ebf38e9ac3"
+                }
+              ],
+              "id": "86d217de-867a-4161-ad93-9c69607b06fa",
+              "createdAt": "2026-07-28T02:27:27.000Z",
+              "updatedAt": "2026-07-28T02:27:27.000Z",
+              "uid": "35240-86d217de-867a-4161-ad93-9c69607b06fa"
+            },
+            {
+              "name": "jobs",
+              "item": [
+                {
+                  "name": "{owner_name},{job_name}",
+                  "item": [
+                    {
+                      "name": "{filename}",
+                      "item": [
+                        {
+                          "name": "Oracle Database Get a Data Pump job file",
+                          "id": "752382d4-2b4e-4afb-bb70-0e8a8cc29f0c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/octet-stream"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/datapump/jobs/{{owner_name}},{{job_name}}/:filename",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "datapump",
+                                "jobs",
+                                "{{owner_name}},{{job_name}}",
+                                ":filename"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "be4eaad1-35b7-4c7d-bdd2-c21e05a7857c",
+                                  "key": "filename",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns the contents of a specific Data Pump job output file."
+                          },
+                          "response": [
+                            {
+                              "id": "04390496-5327-465c-9006-e6c37fdd5178",
+                              "name": "File contents retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/octet-stream"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/datapump/jobs/{{owner_name}},{{job_name}}/:filename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "datapump",
+                                    "jobs",
+                                    "{{owner_name}},{{job_name}}",
+                                    ":filename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "filename"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/octet-stream"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<binary>",
+                              "createdAt": "2026-07-28T02:27:27.000Z",
+                              "updatedAt": "2026-07-28T02:27:27.000Z",
+                              "uid": "35240-04390496-5327-465c-9006-e6c37fdd5178"
+                            },
+                            {
+                              "id": "42ab0367-a311-4293-ac48-f46ba474e546",
+                              "name": "Authentication required or credentials invalid",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/datapump/jobs/{{owner_name}},{{job_name}}/:filename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "datapump",
+                                    "jobs",
+                                    "{{owner_name}},{{job_name}}",
+                                    ":filename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "filename"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:27.000Z",
+                              "updatedAt": "2026-07-28T02:27:27.000Z",
+                              "uid": "35240-42ab0367-a311-4293-ac48-f46ba474e546"
+                            },
+                            {
+                              "id": "88f7e7fe-c93d-4eab-86b2-576ae78a3fd3",
+                              "name": "The specified resource was not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/datapump/jobs/{{owner_name}},{{job_name}}/:filename",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "datapump",
+                                    "jobs",
+                                    "{{owner_name}},{{job_name}}",
+                                    ":filename"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "filename"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:27.000Z",
+                              "updatedAt": "2026-07-28T02:27:27.000Z",
+                              "uid": "35240-88f7e7fe-c93d-4eab-86b2-576ae78a3fd3"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:27.000Z",
+                          "updatedAt": "2026-07-28T02:27:27.000Z",
+                          "uid": "35240-752382d4-2b4e-4afb-bb70-0e8a8cc29f0c"
+                        }
+                      ],
+                      "id": "6be23d7a-ad5d-474b-b2c7-f5eb9de1a57c",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-6be23d7a-ad5d-474b-b2c7-f5eb9de1a57c"
+                    },
+                    {
+                      "name": "Oracle Database Get a specific Data Pump job",
+                      "id": "7aa52520-33d9-4863-98ff-f1d257107c48",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/datapump/jobs/{{owner_name}},{{job_name}}/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "datapump",
+                            "jobs",
+                            "{{owner_name}},{{job_name}}",
+                            ""
+                          ]
+                        },
+                        "description": "Returns details about a specific Data Pump job."
+                      },
+                      "response": [
+                        {
+                          "id": "659bef9f-1650-42c6-972c-b7537465a11b",
+                          "name": "Job details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/datapump/jobs/{{owner_name}},{{job_name}}/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "datapump",
+                                "jobs",
+                                "{{owner_name}},{{job_name}}",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"owner_name\": \"<string>\",\n  \"job_name\": \"<string>\",\n  \"operation\": \"<string>\",\n  \"job_mode\": \"<string>\",\n  \"state\": \"<string>\",\n  \"degree\": \"<integer>\",\n  \"attached_sessions\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:27:27.000Z",
+                          "updatedAt": "2026-07-28T02:27:27.000Z",
+                          "uid": "35240-659bef9f-1650-42c6-972c-b7537465a11b"
+                        },
+                        {
+                          "id": "688b10b9-530b-45f8-a9b6-701c6af107b3",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/datapump/jobs/{{owner_name}},{{job_name}}/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "datapump",
+                                "jobs",
+                                "{{owner_name}},{{job_name}}",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:27.000Z",
+                          "updatedAt": "2026-07-28T02:27:27.000Z",
+                          "uid": "35240-688b10b9-530b-45f8-a9b6-701c6af107b3"
+                        },
+                        {
+                          "id": "8b72f256-596b-49bb-997e-e937b9a6587b",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/datapump/jobs/{{owner_name}},{{job_name}}/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "datapump",
+                                "jobs",
+                                "{{owner_name}},{{job_name}}",
+                                ""
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:27.000Z",
+                          "updatedAt": "2026-07-28T02:27:27.000Z",
+                          "uid": "35240-8b72f256-596b-49bb-997e-e937b9a6587b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-7aa52520-33d9-4863-98ff-f1d257107c48"
+                    }
+                  ],
+                  "id": "4b1eee40-1380-4910-a948-6ec2c77077aa",
+                  "createdAt": "2026-07-28T02:27:27.000Z",
+                  "updatedAt": "2026-07-28T02:27:27.000Z",
+                  "uid": "35240-4b1eee40-1380-4910-a948-6ec2c77077aa"
+                },
+                {
+                  "name": "Oracle Database Get all Data Pump jobs",
+                  "id": "c44442c0-b166-4065-8780-53845b0e8cd8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/datapump/jobs/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "datapump",
+                        "jobs",
+                        ""
+                      ]
+                    },
+                    "description": "Returns a list of all Data Pump jobs."
+                  },
+                  "response": [
+                    {
+                      "id": "ce7a0e47-0f50-4192-b57e-aa1916938edc",
+                      "name": "Jobs retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/datapump/jobs/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "datapump",
+                            "jobs",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"owner_name\": \"<string>\",\n      \"job_name\": \"<string>\",\n      \"operation\": \"<string>\",\n      \"job_mode\": \"<string>\",\n      \"state\": \"<string>\",\n      \"degree\": \"<integer>\",\n      \"attached_sessions\": \"<integer>\"\n    },\n    {\n      \"owner_name\": \"<string>\",\n      \"job_name\": \"<string>\",\n      \"operation\": \"<string>\",\n      \"job_mode\": \"<string>\",\n      \"state\": \"<string>\",\n      \"degree\": \"<integer>\",\n      \"attached_sessions\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-ce7a0e47-0f50-4192-b57e-aa1916938edc"
+                    },
+                    {
+                      "id": "173c4429-8eca-4f8b-be43-f7154f17e64b",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/datapump/jobs/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "datapump",
+                            "jobs",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:27.000Z",
+                      "updatedAt": "2026-07-28T02:27:27.000Z",
+                      "uid": "35240-173c4429-8eca-4f8b-be43-f7154f17e64b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:27.000Z",
+                  "updatedAt": "2026-07-28T02:27:27.000Z",
+                  "uid": "35240-c44442c0-b166-4065-8780-53845b0e8cd8"
+                }
+              ],
+              "id": "2ee1319a-4ede-4ef6-ad8f-472b16996f25",
+              "createdAt": "2026-07-28T02:27:27.000Z",
+              "updatedAt": "2026-07-28T02:27:27.000Z",
+              "uid": "35240-2ee1319a-4ede-4ef6-ad8f-472b16996f25"
+            }
+          ],
+          "id": "a7faea39-88fd-4127-9268-f95c20e24dbd",
+          "createdAt": "2026-07-28T02:27:27.000Z",
+          "updatedAt": "2026-07-28T02:27:27.000Z",
+          "uid": "35240-a7faea39-88fd-4127-9268-f95c20e24dbd"
+        }
+      ],
+      "id": "fe563abc-9c3b-4b97-b8da-25dc7ce5f6c3",
+      "createdAt": "2026-07-28T02:27:27.000Z",
+      "updatedAt": "2026-07-28T02:27:27.000Z",
+      "uid": "35240-fe563abc-9c3b-4b97-b8da-25dc7ce5f6c3"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    },
+    {
+      "key": "owner_name",
+      "value": "<string>"
+    },
+    {
+      "key": "job_name",
+      "value": "<string>"
+    }
+  ]
+}

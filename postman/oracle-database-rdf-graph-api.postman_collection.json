@@ -1,0 +1,1128 @@
+{
+  "info": {
+    "_postman_id": "d44024d0-6934-498c-ab89-01f9129987ae",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX RDF Graph API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:00.000Z",
+    "updatedAt": "2026-07-28T02:28:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d44024d0-6934-498c-ab89-01f9129987ae"
+  },
+  "item": [
+    {
+      "name": "database",
+      "item": [
+        {
+          "name": "rdf",
+          "item": [
+            {
+              "name": "networks",
+              "item": [
+                {
+                  "name": "{network_owner},{network_name}",
+                  "item": [
+                    {
+                      "name": "models",
+                      "item": [
+                        {
+                          "name": "{model_name}",
+                          "item": [
+                            {
+                              "name": "sparql",
+                              "item": [
+                                {
+                                  "name": "1.1",
+                                  "item": [
+                                    {
+                                      "name": "Oracle Database Execute SPARQL query (GET)",
+                                      "id": "40343313-0293-458a-8d17-640e6265d2d2",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/sparql-results+json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}/models/:model_name/sparql/1.1?query=<string>",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "database",
+                                            "rdf",
+                                            "networks",
+                                            "{{network_owner}},{{network_name}}",
+                                            "models",
+                                            ":model_name",
+                                            "sparql",
+                                            "1.1"
+                                          ],
+                                          "query": [
+                                            {
+                                              "description": "(Required) The SPARQL query string",
+                                              "key": "query",
+                                              "value": "<string>"
+                                            }
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "cb9749ae-58aa-47f6-a0ae-ea182997d895",
+                                              "key": "model_name",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "Executes a SPARQL query against the specified RDF model using HTTP GET."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "1b003322-c3c6-41c7-b222-5e0693d84023",
+                                          "name": "SPARQL query results",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/sparql-results+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}/models/:model_name/sparql/1.1?query=<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "database",
+                                                "rdf",
+                                                "networks",
+                                                "{{network_owner}},{{network_name}}",
+                                                "models",
+                                                ":model_name",
+                                                "sparql",
+                                                "1.1"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) The SPARQL query string",
+                                                  "key": "query",
+                                                  "value": "<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "model_name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/sparql-results+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"head\": {\n    \"vars\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"results\": {}\n}",
+                                          "createdAt": "2026-07-28T02:28:01.000Z",
+                                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                                          "uid": "35240-1b003322-c3c6-41c7-b222-5e0693d84023"
+                                        },
+                                        {
+                                          "id": "0f50fb3d-2902-4aa7-8d11-1a70e945c6ed",
+                                          "name": "Bad request - invalid parameters or request body",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}/models/:model_name/sparql/1.1?query=<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "database",
+                                                "rdf",
+                                                "networks",
+                                                "{{network_owner}},{{network_name}}",
+                                                "models",
+                                                ":model_name",
+                                                "sparql",
+                                                "1.1"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) The SPARQL query string",
+                                                  "key": "query",
+                                                  "value": "<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "model_name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Bad Request",
+                                          "code": 400,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:28:01.000Z",
+                                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                                          "uid": "35240-0f50fb3d-2902-4aa7-8d11-1a70e945c6ed"
+                                        },
+                                        {
+                                          "id": "6d795084-1444-454a-afba-29da666fdea2",
+                                          "name": "Authentication required or credentials invalid",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}/models/:model_name/sparql/1.1?query=<string>",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "database",
+                                                "rdf",
+                                                "networks",
+                                                "{{network_owner}},{{network_name}}",
+                                                "models",
+                                                ":model_name",
+                                                "sparql",
+                                                "1.1"
+                                              ],
+                                              "query": [
+                                                {
+                                                  "description": "(Required) The SPARQL query string",
+                                                  "key": "query",
+                                                  "value": "<string>"
+                                                }
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "model_name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:28:01.000Z",
+                                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                                          "uid": "35240-6d795084-1444-454a-afba-29da666fdea2"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T02:28:01.000Z",
+                                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                                      "uid": "35240-40343313-0293-458a-8d17-640e6265d2d2"
+                                    },
+                                    {
+                                      "name": "Oracle Database Execute SPARQL query (POST)",
+                                      "id": "b37d3d11-7ef8-4cab-8c45-a5c4a7107fc8",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "POST",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/sparql-query"
+                                          },
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/sparql-results+json"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "<string>"
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}/models/:model_name/sparql/1.1",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "database",
+                                            "rdf",
+                                            "networks",
+                                            "{{network_owner}},{{network_name}}",
+                                            "models",
+                                            ":model_name",
+                                            "sparql",
+                                            "1.1"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "5b1f29a6-9c26-4994-b212-186b7e47f740",
+                                              "key": "model_name",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "Executes a SPARQL query against the specified RDF model using HTTP POST."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "a2b1be55-b776-4a9e-8536-60cfd2a3caa4",
+                                          "name": "SPARQL query results",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/sparql-query"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/sparql-results+json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "<string>"
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}/models/:model_name/sparql/1.1",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "database",
+                                                "rdf",
+                                                "networks",
+                                                "{{network_owner}},{{network_name}}",
+                                                "models",
+                                                ":model_name",
+                                                "sparql",
+                                                "1.1"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "model_name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/sparql-results+json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"head\": {\n    \"vars\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"results\": {}\n}",
+                                          "createdAt": "2026-07-28T02:28:01.000Z",
+                                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                                          "uid": "35240-a2b1be55-b776-4a9e-8536-60cfd2a3caa4"
+                                        },
+                                        {
+                                          "id": "af39b6c7-20fd-493c-9833-195e84754ec0",
+                                          "name": "Bad request - invalid parameters or request body",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/sparql-query"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "<string>"
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}/models/:model_name/sparql/1.1",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "database",
+                                                "rdf",
+                                                "networks",
+                                                "{{network_owner}},{{network_name}}",
+                                                "models",
+                                                ":model_name",
+                                                "sparql",
+                                                "1.1"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "model_name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Bad Request",
+                                          "code": 400,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:28:01.000Z",
+                                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                                          "uid": "35240-af39b6c7-20fd-493c-9833-195e84754ec0"
+                                        },
+                                        {
+                                          "id": "d6e147e1-21c6-4b35-8407-d9a612f049e1",
+                                          "name": "Authentication required or credentials invalid",
+                                          "originalRequest": {
+                                            "method": "POST",
+                                            "header": [
+                                              {
+                                                "key": "Content-Type",
+                                                "value": "application/sparql-query"
+                                              },
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "body": {
+                                              "mode": "raw",
+                                              "raw": "<string>"
+                                            },
+                                            "url": {
+                                              "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}/models/:model_name/sparql/1.1",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "database",
+                                                "rdf",
+                                                "networks",
+                                                "{{network_owner}},{{network_name}}",
+                                                "models",
+                                                ":model_name",
+                                                "sparql",
+                                                "1.1"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "model_name"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                                          "createdAt": "2026-07-28T02:28:01.000Z",
+                                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                                          "uid": "35240-d6e147e1-21c6-4b35-8407-d9a612f049e1"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T02:28:01.000Z",
+                                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                                      "uid": "35240-b37d3d11-7ef8-4cab-8c45-a5c4a7107fc8"
+                                    }
+                                  ],
+                                  "id": "bb5f6aca-e181-458f-8855-d8eba871b207",
+                                  "createdAt": "2026-07-28T02:28:01.000Z",
+                                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                                  "uid": "35240-bb5f6aca-e181-458f-8855-d8eba871b207"
+                                }
+                              ],
+                              "id": "0f579b5a-1f55-4df4-8623-e77a9c70661a",
+                              "createdAt": "2026-07-28T02:28:01.000Z",
+                              "updatedAt": "2026-07-28T02:28:01.000Z",
+                              "uid": "35240-0f579b5a-1f55-4df4-8623-e77a9c70661a"
+                            }
+                          ],
+                          "id": "5797cba7-8018-43a7-8bdd-ec0333bb5732",
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-5797cba7-8018-43a7-8bdd-ec0333bb5732"
+                        },
+                        {
+                          "name": "Oracle Database List RDF models",
+                          "id": "a0cab36f-d855-4a9e-8460-1686da6e2027",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}/models/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "rdf",
+                                "networks",
+                                "{{network_owner}},{{network_name}}",
+                                "models",
+                                ""
+                              ]
+                            },
+                            "description": "Returns a list of RDF models in the specified network."
+                          },
+                          "response": [
+                            {
+                              "id": "630267cc-6c02-4e7b-bd68-59c052458890",
+                              "name": "RDF models retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}/models/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "rdf",
+                                    "networks",
+                                    "{{network_owner}},{{network_name}}",
+                                    "models",
+                                    ""
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"model_name\": \"<string>\",\n      \"network_owner\": \"<string>\",\n      \"network_name\": \"<string>\"\n    },\n    {\n      \"model_name\": \"<string>\",\n      \"network_owner\": \"<string>\",\n      \"network_name\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:28:01.000Z",
+                              "updatedAt": "2026-07-28T02:28:01.000Z",
+                              "uid": "35240-630267cc-6c02-4e7b-bd68-59c052458890"
+                            },
+                            {
+                              "id": "7f9f6b29-7fa0-4ee7-b2d2-c7a0fd68f203",
+                              "name": "Authentication required or credentials invalid",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}/models/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "rdf",
+                                    "networks",
+                                    "{{network_owner}},{{network_name}}",
+                                    "models",
+                                    ""
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:28:01.000Z",
+                              "updatedAt": "2026-07-28T02:28:01.000Z",
+                              "uid": "35240-7f9f6b29-7fa0-4ee7-b2d2-c7a0fd68f203"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-a0cab36f-d855-4a9e-8460-1686da6e2027"
+                        }
+                      ],
+                      "id": "2e09f4a7-5983-4d15-b22d-ea21229de8ad",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-2e09f4a7-5983-4d15-b22d-ea21229de8ad"
+                    },
+                    {
+                      "name": "Oracle Database Get RDF network information",
+                      "id": "77a1b057-6509-491c-8850-f0a4a805b090",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "rdf",
+                            "networks",
+                            "{{network_owner}},{{network_name}}"
+                          ]
+                        },
+                        "description": "Returns details about a specific RDF network."
+                      },
+                      "response": [
+                        {
+                          "id": "51d1cffd-78b4-4c0d-8cd9-072df6653971",
+                          "name": "RDF network details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "rdf",
+                                "networks",
+                                "{{network_owner}},{{network_name}}"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"network_owner\": \"<string>\",\n  \"network_name\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-51d1cffd-78b4-4c0d-8cd9-072df6653971"
+                        },
+                        {
+                          "id": "fdd28bc5-2570-4474-98d9-c4afafc0e14a",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "rdf",
+                                "networks",
+                                "{{network_owner}},{{network_name}}"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-fdd28bc5-2570-4474-98d9-c4afafc0e14a"
+                        },
+                        {
+                          "id": "1061c71e-a3e7-4e00-8238-d019debf20f2",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "rdf",
+                                "networks",
+                                "{{network_owner}},{{network_name}}"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-1061c71e-a3e7-4e00-8238-d019debf20f2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-77a1b057-6509-491c-8850-f0a4a805b090"
+                    },
+                    {
+                      "name": "Oracle Database Create an RDF network",
+                      "id": "a54a25c0-9889-4991-b74f-ee354569c4f6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "rdf",
+                            "networks",
+                            "{{network_owner}},{{network_name}}"
+                          ]
+                        },
+                        "description": "Creates a new RDF semantic network."
+                      },
+                      "response": [
+                        {
+                          "id": "7f83dc26-f37a-4b09-8761-95e0135349dc",
+                          "name": "RDF network created successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "rdf",
+                                "networks",
+                                "{{network_owner}},{{network_name}}"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-7f83dc26-f37a-4b09-8761-95e0135349dc"
+                        },
+                        {
+                          "id": "a67ba93f-cbda-4a0a-bd36-8eeceea0443b",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/rdf/networks/{{network_owner}},{{network_name}}",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "rdf",
+                                "networks",
+                                "{{network_owner}},{{network_name}}"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:01.000Z",
+                          "updatedAt": "2026-07-28T02:28:01.000Z",
+                          "uid": "35240-a67ba93f-cbda-4a0a-bd36-8eeceea0443b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-a54a25c0-9889-4991-b74f-ee354569c4f6"
+                    }
+                  ],
+                  "id": "07863f17-0a82-41f9-ad73-9828717d96de",
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-07863f17-0a82-41f9-ad73-9828717d96de"
+                },
+                {
+                  "name": "Oracle Database List all RDF networks",
+                  "id": "761aee08-f7cf-40f5-a476-77c9bf7c2c5b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/rdf/networks/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "rdf",
+                        "networks",
+                        ""
+                      ]
+                    },
+                    "description": "Returns a list of all RDF semantic networks."
+                  },
+                  "response": [
+                    {
+                      "id": "a33d2588-897e-4457-a9b4-61969c8a705f",
+                      "name": "RDF networks retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/rdf/networks/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "rdf",
+                            "networks",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"network_owner\": \"<string>\",\n      \"network_name\": \"<string>\"\n    },\n    {\n      \"network_owner\": \"<string>\",\n      \"network_name\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-a33d2588-897e-4457-a9b4-61969c8a705f"
+                    },
+                    {
+                      "id": "8d662df4-8d76-45ff-9d57-965b65dda1ce",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/rdf/networks/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "rdf",
+                            "networks",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:01.000Z",
+                      "updatedAt": "2026-07-28T02:28:01.000Z",
+                      "uid": "35240-8d662df4-8d76-45ff-9d57-965b65dda1ce"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:01.000Z",
+                  "updatedAt": "2026-07-28T02:28:01.000Z",
+                  "uid": "35240-761aee08-f7cf-40f5-a476-77c9bf7c2c5b"
+                }
+              ],
+              "id": "3c1fa140-ad7d-49d9-b958-3134c84fcdc9",
+              "createdAt": "2026-07-28T02:28:01.000Z",
+              "updatedAt": "2026-07-28T02:28:01.000Z",
+              "uid": "35240-3c1fa140-ad7d-49d9-b958-3134c84fcdc9"
+            }
+          ],
+          "id": "9626e686-e7fc-4dcd-95d2-367f7e8eecdd",
+          "createdAt": "2026-07-28T02:28:01.000Z",
+          "updatedAt": "2026-07-28T02:28:01.000Z",
+          "uid": "35240-9626e686-e7fc-4dcd-95d2-367f7e8eecdd"
+        }
+      ],
+      "id": "96f73244-dbf9-4adc-8ecc-7efce6ec1c29",
+      "createdAt": "2026-07-28T02:28:01.000Z",
+      "updatedAt": "2026-07-28T02:28:01.000Z",
+      "uid": "35240-96f73244-dbf9-4adc-8ecc-7efce6ec1c29"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    },
+    {
+      "key": "network_owner",
+      "value": "<string>"
+    },
+    {
+      "key": "network_name",
+      "value": "<string>"
+    }
+  ]
+}

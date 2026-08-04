@@ -1,0 +1,568 @@
+{
+  "info": {
+    "_postman_id": "402e399b-5f18-4dec-9324-2f3d5d31e419",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Metadata API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:37.000Z",
+    "updatedAt": "2026-07-28T02:27:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-402e399b-5f18-4dec-9324-2f3d5d31e419"
+  },
+  "item": [
+    {
+      "name": "metadata-catalog",
+      "item": [
+        {
+          "name": "{collection}",
+          "item": [
+            {
+              "name": "Oracle Database Get JSON schema for a collection",
+              "id": "62824b3b-2c1f-428e-9ed0-39a829dd65c3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/metadata-catalog/:collection",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metadata-catalog",
+                    ":collection"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e4a1a282-1372-403a-addb-8a229e317ec2",
+                      "key": "collection",
+                      "value": "<string>",
+                      "description": "(Required) The name of the SODA collection"
+                    }
+                  ]
+                },
+                "description": "Retrieves the JSON schema describing the document structure for the specified collection, including collection properties and column configurations."
+              },
+              "response": [
+                {
+                  "id": "5e1c53c5-4dc8-45a4-984e-84a2cc32e58f",
+                  "name": "Collection schema retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/metadata-catalog/:collection",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "metadata-catalog",
+                        ":collection"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"properties\": {\n    \"schemaName\": \"<string>\",\n    \"tableName\": \"<string>\",\n    \"keyColumn\": {},\n    \"contentColumn\": {},\n    \"versionColumn\": {},\n    \"lastModifiedColumn\": {},\n    \"readOnly\": \"<boolean>\"\n  },\n  \"schema\": {\n    \"type\": \"<string>\",\n    \"properties\": {}\n  },\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"mediaType\": \"<string>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\",\n      \"mediaType\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:27:37.000Z",
+                  "updatedAt": "2026-07-28T02:27:37.000Z",
+                  "uid": "35240-5e1c53c5-4dc8-45a4-984e-84a2cc32e58f"
+                },
+                {
+                  "id": "6a589396-0a87-42ee-a466-b63fab371db5",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/metadata-catalog/:collection",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "metadata-catalog",
+                        ":collection"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:37.000Z",
+                  "updatedAt": "2026-07-28T02:27:37.000Z",
+                  "uid": "35240-6a589396-0a87-42ee-a466-b63fab371db5"
+                },
+                {
+                  "id": "12d0ae24-5d21-49ee-8c58-cc789d19b54e",
+                  "name": "The specified collection or document was not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/metadata-catalog/:collection",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "metadata-catalog",
+                        ":collection"
+                      ],
+                      "variable": [
+                        {
+                          "key": "collection"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:37.000Z",
+                  "updatedAt": "2026-07-28T02:27:37.000Z",
+                  "uid": "35240-12d0ae24-5d21-49ee-8c58-cc789d19b54e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:37.000Z",
+              "updatedAt": "2026-07-28T02:27:37.000Z",
+              "uid": "35240-62824b3b-2c1f-428e-9ed0-39a829dd65c3"
+            }
+          ],
+          "id": "e37660ca-b8e6-445f-9f10-62c38023f3e9",
+          "createdAt": "2026-07-28T02:27:37.000Z",
+          "updatedAt": "2026-07-28T02:27:37.000Z",
+          "uid": "35240-e37660ca-b8e6-445f-9f10-62c38023f3e9"
+        },
+        {
+          "name": "Oracle Database Get collection catalog with metadata",
+          "id": "7927e725-ba17-49f9-8eac-43782b307e52",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/metadata-catalog?limit=<integer>&fromID=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "metadata-catalog"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of collections to return",
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "description": "Start from this collection name (inclusive)",
+                  "key": "fromID",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Lists all collections in the schema with full metadata and navigation links. Each collection includes its properties and links to the collection itself and its JSON schema."
+          },
+          "response": [
+            {
+              "id": "08ed9264-597f-4bbe-93c2-60b073e02b49",
+              "name": "Catalog retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/metadata-catalog?limit=<integer>&fromID=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metadata-catalog"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of collections to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Start from this collection name (inclusive)",
+                      "key": "fromID",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"properties\": {},\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"mediaType\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"mediaType\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"properties\": {},\n      \"links\": [\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"mediaType\": \"<string>\"\n        },\n        {\n          \"rel\": \"<string>\",\n          \"href\": \"<uri>\",\n          \"mediaType\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"hasMore\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T02:27:37.000Z",
+              "updatedAt": "2026-07-28T02:27:37.000Z",
+              "uid": "35240-08ed9264-597f-4bbe-93c2-60b073e02b49"
+            },
+            {
+              "id": "634dbe82-3a36-4e97-aa94-e364909b58dd",
+              "name": "Bad request - invalid parameter value",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/metadata-catalog?limit=<integer>&fromID=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metadata-catalog"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of collections to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Start from this collection name (inclusive)",
+                      "key": "fromID",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:37.000Z",
+              "updatedAt": "2026-07-28T02:27:37.000Z",
+              "uid": "35240-634dbe82-3a36-4e97-aa94-e364909b58dd"
+            },
+            {
+              "id": "9b4c4fc7-1e69-45c7-b7e8-7d7f1e58a1fb",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/metadata-catalog?limit=<integer>&fromID=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "metadata-catalog"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of collections to return",
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Start from this collection name (inclusive)",
+                      "key": "fromID",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:37.000Z",
+              "updatedAt": "2026-07-28T02:27:37.000Z",
+              "uid": "35240-9b4c4fc7-1e69-45c7-b7e8-7d7f1e58a1fb"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:37.000Z",
+          "updatedAt": "2026-07-28T02:27:37.000Z",
+          "uid": "35240-7927e725-ba17-49f9-8eac-43782b307e52"
+        }
+      ],
+      "id": "58ece5f8-0ff2-4abe-a66d-9827b3aa9593",
+      "createdAt": "2026-07-28T02:27:37.000Z",
+      "updatedAt": "2026-07-28T02:27:37.000Z",
+      "uid": "35240-58ece5f8-0ff2-4abe-a66d-9827b3aa9593"
+    },
+    {
+      "name": "custom-actions",
+      "item": [
+        {
+          "name": "Oracle Database List available custom actions",
+          "id": "9a90d293-51ad-4930-81fb-19d94144859f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/custom-actions/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "custom-actions",
+                ""
+              ]
+            },
+            "description": "Returns a list of available custom actions for SODA collections."
+          },
+          "response": [
+            {
+              "id": "ea2aea3d-3654-4973-a414-b71e3b5b828f",
+              "name": "Custom actions retrieved successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/custom-actions/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "custom-actions",
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T02:27:37.000Z",
+              "updatedAt": "2026-07-28T02:27:37.000Z",
+              "uid": "35240-ea2aea3d-3654-4973-a414-b71e3b5b828f"
+            },
+            {
+              "id": "8fd1730b-a5b5-494d-a5f7-613bfb060e26",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/custom-actions/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "custom-actions",
+                    ""
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T02:27:37.000Z",
+              "updatedAt": "2026-07-28T02:27:37.000Z",
+              "uid": "35240-8fd1730b-a5b5-494d-a5f7-613bfb060e26"
+            }
+          ],
+          "createdAt": "2026-07-28T02:27:37.000Z",
+          "updatedAt": "2026-07-28T02:27:37.000Z",
+          "uid": "35240-9a90d293-51ad-4930-81fb-19d94144859f"
+        }
+      ],
+      "id": "d49548b9-5c85-46f2-bd7d-38203e83d46d",
+      "createdAt": "2026-07-28T02:27:37.000Z",
+      "updatedAt": "2026-07-28T02:27:37.000Z",
+      "uid": "35240-d49548b9-5c85-46f2-bd7d-38203e83d46d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

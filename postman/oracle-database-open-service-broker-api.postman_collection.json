@@ -1,0 +1,451 @@
+{
+  "info": {
+    "_postman_id": "39ab49b2-6f33-40a3-82be-f38a1dedc0a9",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Open Service Broker API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:53.000Z",
+    "updatedAt": "2026-07-28T02:27:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-39ab49b2-6f33-40a3-82be-f38a1dedc0a9"
+  },
+  "item": [
+    {
+      "name": "openservicebroker",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "catalog",
+              "item": [
+                {
+                  "name": "Oracle Database Get service catalog",
+                  "id": "6f954ffd-efb6-4680-a97e-a31be5881e8c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/openservicebroker/v2/catalog",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "openservicebroker",
+                        "v2",
+                        "catalog"
+                      ]
+                    },
+                    "description": "Returns the Open Service Broker catalog of available services."
+                  },
+                  "response": [
+                    {
+                      "id": "09e36640-84ea-4457-91b3-9c013c185384",
+                      "name": "Service catalog retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openservicebroker/v2/catalog",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openservicebroker",
+                            "v2",
+                            "catalog"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"services\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"plans\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"plans\": [\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"description\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:54.000Z",
+                      "updatedAt": "2026-07-28T02:27:54.000Z",
+                      "uid": "35240-09e36640-84ea-4457-91b3-9c013c185384"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:54.000Z",
+                  "updatedAt": "2026-07-28T02:27:54.000Z",
+                  "uid": "35240-6f954ffd-efb6-4680-a97e-a31be5881e8c"
+                }
+              ],
+              "id": "69fca153-d273-4c24-81e0-e72cce3f3c13",
+              "createdAt": "2026-07-28T02:27:54.000Z",
+              "updatedAt": "2026-07-28T02:27:54.000Z",
+              "uid": "35240-69fca153-d273-4c24-81e0-e72cce3f3c13"
+            },
+            {
+              "name": "service_instances",
+              "item": [
+                {
+                  "name": "{instance_id}",
+                  "item": [
+                    {
+                      "name": "Oracle Database Provision a service instance",
+                      "id": "8ab300a3-4fab-4d8b-9462-6d135e11eda4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"service_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"parameters\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/openservicebroker/v2/service_instances/:instance_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openservicebroker",
+                            "v2",
+                            "service_instances",
+                            ":instance_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4e41c66a-99f3-4d7e-8735-41729e321dbb",
+                              "key": "instance_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Provisions a new Open Service Broker service instance."
+                      },
+                      "response": [
+                        {
+                          "id": "382ac485-8329-49fa-b6ad-142bcc256961",
+                          "name": "Service instance already exists",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"service_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"parameters\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/openservicebroker/v2/service_instances/:instance_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openservicebroker",
+                                "v2",
+                                "service_instances",
+                                ":instance_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "instance_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:27:54.000Z",
+                          "updatedAt": "2026-07-28T02:27:54.000Z",
+                          "uid": "35240-382ac485-8329-49fa-b6ad-142bcc256961"
+                        },
+                        {
+                          "id": "b0286d72-4cd1-462a-a32f-088728db026f",
+                          "name": "Service instance provisioned successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"service_id\": \"<string>\",\n  \"plan_id\": \"<string>\",\n  \"parameters\": {}\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/openservicebroker/v2/service_instances/:instance_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openservicebroker",
+                                "v2",
+                                "service_instances",
+                                ":instance_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "instance_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:27:54.000Z",
+                          "updatedAt": "2026-07-28T02:27:54.000Z",
+                          "uid": "35240-b0286d72-4cd1-462a-a32f-088728db026f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:54.000Z",
+                      "updatedAt": "2026-07-28T02:27:54.000Z",
+                      "uid": "35240-8ab300a3-4fab-4d8b-9462-6d135e11eda4"
+                    },
+                    {
+                      "name": "Oracle Database Deprovision a service instance",
+                      "id": "17ce9f30-6b68-4033-af94-846c3250ba74",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/openservicebroker/v2/service_instances/:instance_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "openservicebroker",
+                            "v2",
+                            "service_instances",
+                            ":instance_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "332e1bbc-e4e4-47b5-8aa8-f835a0f4ce89",
+                              "key": "instance_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Deprovisions an existing Open Service Broker service instance."
+                      },
+                      "response": [
+                        {
+                          "id": "1338145a-d347-4e05-835f-2a95b5050ce6",
+                          "name": "Service instance deprovisioned successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/openservicebroker/v2/service_instances/:instance_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openservicebroker",
+                                "v2",
+                                "service_instances",
+                                ":instance_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "instance_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:27:54.000Z",
+                          "updatedAt": "2026-07-28T02:27:54.000Z",
+                          "uid": "35240-1338145a-d347-4e05-835f-2a95b5050ce6"
+                        },
+                        {
+                          "id": "a7f7b759-eee2-4c07-bd74-127539094389",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/openservicebroker/v2/service_instances/:instance_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "openservicebroker",
+                                "v2",
+                                "service_instances",
+                                ":instance_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "instance_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:54.000Z",
+                          "updatedAt": "2026-07-28T02:27:54.000Z",
+                          "uid": "35240-a7f7b759-eee2-4c07-bd74-127539094389"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:54.000Z",
+                      "updatedAt": "2026-07-28T02:27:54.000Z",
+                      "uid": "35240-17ce9f30-6b68-4033-af94-846c3250ba74"
+                    }
+                  ],
+                  "id": "0652483b-dbde-4e2b-a872-9acb8a1df80f",
+                  "createdAt": "2026-07-28T02:27:54.000Z",
+                  "updatedAt": "2026-07-28T02:27:54.000Z",
+                  "uid": "35240-0652483b-dbde-4e2b-a872-9acb8a1df80f"
+                }
+              ],
+              "id": "2c9340cc-4b53-4615-8498-b779f60ed1b3",
+              "createdAt": "2026-07-28T02:27:54.000Z",
+              "updatedAt": "2026-07-28T02:27:54.000Z",
+              "uid": "35240-2c9340cc-4b53-4615-8498-b779f60ed1b3"
+            }
+          ],
+          "id": "d47324cb-a8bb-42e0-8aa0-bc885fb15406",
+          "createdAt": "2026-07-28T02:27:54.000Z",
+          "updatedAt": "2026-07-28T02:27:54.000Z",
+          "uid": "35240-d47324cb-a8bb-42e0-8aa0-bc885fb15406"
+        }
+      ],
+      "id": "e2ee036c-58cf-4c9b-9ab7-9879b823f3ed",
+      "createdAt": "2026-07-28T02:27:54.000Z",
+      "updatedAt": "2026-07-28T02:27:54.000Z",
+      "uid": "35240-e2ee036c-58cf-4c9b-9ab7-9879b823f3ed"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

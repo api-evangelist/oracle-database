@@ -1,0 +1,1090 @@
+{
+  "info": {
+    "_postman_id": "43362d64-ba76-4e75-931d-9baea339ef75",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX PDB Snapshots API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:54.000Z",
+    "updatedAt": "2026-07-28T02:27:54.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-43362d64-ba76-4e75-931d-9baea339ef75"
+  },
+  "item": [
+    {
+      "name": "database",
+      "item": [
+        {
+          "name": "snapshots",
+          "item": [
+            {
+              "name": "{snapshot_name}",
+              "item": [
+                {
+                  "name": "Oracle Database Get a specific snapshot",
+                  "id": "fe967568-fd0c-43cb-8742-187c61c28e51",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/snapshots/:snapshot_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "snapshots",
+                        ":snapshot_name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "dfb14431-ba55-4fa6-a4a3-0ced2d14b0f0",
+                          "key": "snapshot_name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns details about a specific PDB snapshot."
+                  },
+                  "response": [
+                    {
+                      "id": "779375d7-2a8d-44d5-a52e-cf29352ea52b",
+                      "name": "Snapshot details retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/snapshots/:snapshot_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "snapshots",
+                            ":snapshot_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "snapshot_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"snapshot_name\": \"<string>\",\n  \"snapshot_scn\": \"<long>\",\n  \"creation_time\": \"<dateTime>\",\n  \"pdb_name\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:55.000Z",
+                      "updatedAt": "2026-07-28T02:27:55.000Z",
+                      "uid": "35240-779375d7-2a8d-44d5-a52e-cf29352ea52b"
+                    },
+                    {
+                      "id": "62233b5e-349a-4227-8287-64a75b681100",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/snapshots/:snapshot_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "snapshots",
+                            ":snapshot_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "snapshot_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:55.000Z",
+                      "updatedAt": "2026-07-28T02:27:55.000Z",
+                      "uid": "35240-62233b5e-349a-4227-8287-64a75b681100"
+                    },
+                    {
+                      "id": "bc1d96ad-8691-44d3-9000-a0f2150a1521",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/snapshots/:snapshot_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "snapshots",
+                            ":snapshot_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "snapshot_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:55.000Z",
+                      "updatedAt": "2026-07-28T02:27:55.000Z",
+                      "uid": "35240-bc1d96ad-8691-44d3-9000-a0f2150a1521"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:55.000Z",
+                  "updatedAt": "2026-07-28T02:27:55.000Z",
+                  "uid": "35240-fe967568-fd0c-43cb-8742-187c61c28e51"
+                },
+                {
+                  "name": "Oracle Database Create a named PDB snapshot",
+                  "id": "e2e0e868-3264-4ccc-893e-a6eb145775d4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/snapshots/:snapshot_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "snapshots",
+                        ":snapshot_name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a0778670-a300-4ec7-b343-0bf241935dc3",
+                          "key": "snapshot_name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Creates a new snapshot with the specified name."
+                  },
+                  "response": [
+                    {
+                      "id": "b5d097b1-9c4c-4210-89be-e8ff16eb6b17",
+                      "name": "Named snapshot created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/snapshots/:snapshot_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "snapshots",
+                            ":snapshot_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "snapshot_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"snapshot_name\": \"<string>\",\n  \"snapshot_scn\": \"<long>\",\n  \"creation_time\": \"<dateTime>\",\n  \"pdb_name\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:55.000Z",
+                      "updatedAt": "2026-07-28T02:27:55.000Z",
+                      "uid": "35240-b5d097b1-9c4c-4210-89be-e8ff16eb6b17"
+                    },
+                    {
+                      "id": "115671f8-9931-49ce-bb9d-7448fea25995",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/snapshots/:snapshot_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "snapshots",
+                            ":snapshot_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "snapshot_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:55.000Z",
+                      "updatedAt": "2026-07-28T02:27:55.000Z",
+                      "uid": "35240-115671f8-9931-49ce-bb9d-7448fea25995"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:55.000Z",
+                  "updatedAt": "2026-07-28T02:27:55.000Z",
+                  "uid": "35240-e2e0e868-3264-4ccc-893e-a6eb145775d4"
+                },
+                {
+                  "name": "Oracle Database Delete a PDB snapshot",
+                  "id": "7b67a401-22da-406c-9afd-c854b0c4e951",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/snapshots/:snapshot_name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "snapshots",
+                        ":snapshot_name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "71e2a73a-7a31-4dfe-a4d3-b52eef67d996",
+                          "key": "snapshot_name",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Deletes the specified PDB snapshot."
+                  },
+                  "response": [
+                    {
+                      "id": "cab86370-25d7-4a06-ac37-9812992fdacb",
+                      "name": "Snapshot deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/snapshots/:snapshot_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "snapshots",
+                            ":snapshot_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "snapshot_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:55.000Z",
+                      "updatedAt": "2026-07-28T02:27:55.000Z",
+                      "uid": "35240-cab86370-25d7-4a06-ac37-9812992fdacb"
+                    },
+                    {
+                      "id": "4063dd01-7b42-4aef-ad8b-c7a003382c13",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/snapshots/:snapshot_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "snapshots",
+                            ":snapshot_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "snapshot_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:55.000Z",
+                      "updatedAt": "2026-07-28T02:27:55.000Z",
+                      "uid": "35240-4063dd01-7b42-4aef-ad8b-c7a003382c13"
+                    },
+                    {
+                      "id": "d37d7235-b861-4a1a-abf3-1141d73bae5a",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/snapshots/:snapshot_name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "snapshots",
+                            ":snapshot_name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "snapshot_name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:55.000Z",
+                      "updatedAt": "2026-07-28T02:27:55.000Z",
+                      "uid": "35240-d37d7235-b861-4a1a-abf3-1141d73bae5a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:55.000Z",
+                  "updatedAt": "2026-07-28T02:27:55.000Z",
+                  "uid": "35240-7b67a401-22da-406c-9afd-c854b0c4e951"
+                }
+              ],
+              "id": "ebe577a8-c3fb-42ef-b356-e7e92f327a46",
+              "createdAt": "2026-07-28T02:27:55.000Z",
+              "updatedAt": "2026-07-28T02:27:55.000Z",
+              "uid": "35240-ebe577a8-c3fb-42ef-b356-e7e92f327a46"
+            },
+            {
+              "name": "Oracle Database Get all PDB snapshots",
+              "id": "0b047ce8-0986-41b5-90d9-363fb1a2e656",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/database/snapshots/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "snapshots",
+                    ""
+                  ]
+                },
+                "description": "Returns a list of all PDB snapshots."
+              },
+              "response": [
+                {
+                  "id": "795a3571-44cb-4f58-b077-8ce5d830dd3a",
+                  "name": "Snapshots retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/snapshots/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "snapshots",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"snapshot_name\": \"<string>\",\n      \"snapshot_scn\": \"<long>\",\n      \"creation_time\": \"<dateTime>\",\n      \"pdb_name\": \"<string>\"\n    },\n    {\n      \"snapshot_name\": \"<string>\",\n      \"snapshot_scn\": \"<long>\",\n      \"creation_time\": \"<dateTime>\",\n      \"pdb_name\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:27:55.000Z",
+                  "updatedAt": "2026-07-28T02:27:55.000Z",
+                  "uid": "35240-795a3571-44cb-4f58-b077-8ce5d830dd3a"
+                },
+                {
+                  "id": "6a782aa2-6747-4707-8e89-3b1777940d94",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/snapshots/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "snapshots",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:55.000Z",
+                  "updatedAt": "2026-07-28T02:27:55.000Z",
+                  "uid": "35240-6a782aa2-6747-4707-8e89-3b1777940d94"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:55.000Z",
+              "updatedAt": "2026-07-28T02:27:55.000Z",
+              "uid": "35240-0b047ce8-0986-41b5-90d9-363fb1a2e656"
+            },
+            {
+              "name": "Oracle Database Create a PDB snapshot",
+              "id": "cff766e6-c706-4532-83ae-0aa64eabb5fb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/database/snapshots/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "snapshots",
+                    ""
+                  ]
+                },
+                "description": "Creates a new snapshot of the current pluggable database state."
+              },
+              "response": [
+                {
+                  "id": "64f4c9e1-d8d7-49f0-b442-fb2b04f4d544",
+                  "name": "Snapshot created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/snapshots/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "snapshots",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"snapshot_name\": \"<string>\",\n  \"snapshot_scn\": \"<long>\",\n  \"creation_time\": \"<dateTime>\",\n  \"pdb_name\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:55.000Z",
+                  "updatedAt": "2026-07-28T02:27:55.000Z",
+                  "uid": "35240-64f4c9e1-d8d7-49f0-b442-fb2b04f4d544"
+                },
+                {
+                  "id": "c9effc65-fafc-4829-9ecd-1eeba3abb26f",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/snapshots/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "snapshots",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:55.000Z",
+                  "updatedAt": "2026-07-28T02:27:55.000Z",
+                  "uid": "35240-c9effc65-fafc-4829-9ecd-1eeba3abb26f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:55.000Z",
+              "updatedAt": "2026-07-28T02:27:55.000Z",
+              "uid": "35240-cff766e6-c706-4532-83ae-0aa64eabb5fb"
+            },
+            {
+              "name": "Oracle Database Configure automatic snapshots",
+              "id": "d491e6d0-4d97-4b5e-9a86-e37148c5c40e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"auto_snapshot_enabled\": \"<boolean>\",\n  \"snapshot_interval_minutes\": \"<integer>\",\n  \"max_snapshots\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/database/snapshots/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "snapshots",
+                    ""
+                  ]
+                },
+                "description": "Configures automatic snapshot scheduling for the PDB."
+              },
+              "response": [
+                {
+                  "id": "5ce146de-65ef-4b98-8c5b-5777761b6e89",
+                  "name": "Auto snapshot configuration updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"auto_snapshot_enabled\": \"<boolean>\",\n  \"snapshot_interval_minutes\": \"<integer>\",\n  \"max_snapshots\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/database/snapshots/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "snapshots",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T02:27:55.000Z",
+                  "updatedAt": "2026-07-28T02:27:55.000Z",
+                  "uid": "35240-5ce146de-65ef-4b98-8c5b-5777761b6e89"
+                },
+                {
+                  "id": "c90c4e4b-887a-40f7-83c1-b0de21fc49a8",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"auto_snapshot_enabled\": \"<boolean>\",\n  \"snapshot_interval_minutes\": \"<integer>\",\n  \"max_snapshots\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/database/snapshots/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "snapshots",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:55.000Z",
+                  "updatedAt": "2026-07-28T02:27:55.000Z",
+                  "uid": "35240-c90c4e4b-887a-40f7-83c1-b0de21fc49a8"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:55.000Z",
+              "updatedAt": "2026-07-28T02:27:55.000Z",
+              "uid": "35240-d491e6d0-4d97-4b5e-9a86-e37148c5c40e"
+            }
+          ],
+          "id": "b0239893-790e-4957-8a00-6a6d6abfc9d0",
+          "createdAt": "2026-07-28T02:27:55.000Z",
+          "updatedAt": "2026-07-28T02:27:55.000Z",
+          "uid": "35240-b0239893-790e-4957-8a00-6a6d6abfc9d0"
+        },
+        {
+          "name": "snapshot_mode",
+          "item": [
+            {
+              "name": "Oracle Database Get snapshot mode",
+              "id": "bacbf892-4295-49ca-91f9-e5ef3f16b654",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/database/snapshot_mode",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "snapshot_mode"
+                  ]
+                },
+                "description": "Returns the current snapshot mode configuration."
+              },
+              "response": [
+                {
+                  "id": "e999c6b6-6013-45ed-8c46-911ccdd505b4",
+                  "name": "Snapshot mode retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/snapshot_mode",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "snapshot_mode"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"snapshot_mode\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:55.000Z",
+                  "updatedAt": "2026-07-28T02:27:55.000Z",
+                  "uid": "35240-e999c6b6-6013-45ed-8c46-911ccdd505b4"
+                },
+                {
+                  "id": "7bdb49f5-92d0-4f98-bdc6-ae75584ea7ba",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/snapshot_mode",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "snapshot_mode"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:55.000Z",
+                  "updatedAt": "2026-07-28T02:27:55.000Z",
+                  "uid": "35240-7bdb49f5-92d0-4f98-bdc6-ae75584ea7ba"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:55.000Z",
+              "updatedAt": "2026-07-28T02:27:55.000Z",
+              "uid": "35240-bacbf892-4295-49ca-91f9-e5ef3f16b654"
+            }
+          ],
+          "id": "21ad27cc-728f-4b97-875c-fc037b65602c",
+          "createdAt": "2026-07-28T02:27:55.000Z",
+          "updatedAt": "2026-07-28T02:27:55.000Z",
+          "uid": "35240-21ad27cc-728f-4b97-875c-fc037b65602c"
+        }
+      ],
+      "id": "e1f0a0ab-1148-4530-abf7-b48908e013a6",
+      "createdAt": "2026-07-28T02:27:55.000Z",
+      "updatedAt": "2026-07-28T02:27:55.000Z",
+      "uid": "35240-e1f0a0ab-1148-4530-abf7-b48908e013a6"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

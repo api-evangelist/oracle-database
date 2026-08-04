@@ -1,0 +1,2193 @@
+{
+  "info": {
+    "_postman_id": "ef2d6fcf-c05a-4980-ae4e-0fde4f80f5ee",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX General API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:27:32.000Z",
+    "updatedAt": "2026-07-28T02:27:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ef2d6fcf-c05a-4980-ae4e-0fde4f80f5ee"
+  },
+  "item": [
+    {
+      "name": "database",
+      "item": [
+        {
+          "name": "status",
+          "item": [
+            {
+              "name": "Oracle Database Get database status",
+              "id": "f55d7e4e-032c-45f3-9044-b14933d522aa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/database/status",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "status"
+                  ]
+                },
+                "description": "Returns the current status of the Oracle Database instance."
+              },
+              "response": [
+                {
+                  "id": "0684529e-1085-4c6b-9088-7036e8a8a0d7",
+                  "name": "Database status retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "status"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"MOUNTED\",\n  \"instance_name\": \"<string>\",\n  \"host_name\": \"<string>\",\n  \"database_role\": \"<string>\",\n  \"open_mode\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-0684529e-1085-4c6b-9088-7036e8a8a0d7"
+                },
+                {
+                  "id": "dfbe999a-2cce-4794-8637-7687115e708b",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "status"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-dfbe999a-2cce-4794-8637-7687115e708b"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:32.000Z",
+              "updatedAt": "2026-07-28T02:27:32.000Z",
+              "uid": "35240-f55d7e4e-032c-45f3-9044-b14933d522aa"
+            }
+          ],
+          "id": "27cad892-873e-4ef7-8b7f-e43c28a0a9f4",
+          "createdAt": "2026-07-28T02:27:32.000Z",
+          "updatedAt": "2026-07-28T02:27:32.000Z",
+          "uid": "35240-27cad892-873e-4ef7-8b7f-e43c28a0a9f4"
+        },
+        {
+          "name": "version",
+          "item": [
+            {
+              "name": "Oracle Database Get database version",
+              "id": "c9abfbf8-58af-441e-8c0b-6a928ec8a327",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/database/version",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "version"
+                  ]
+                },
+                "description": "Returns the version information of the Oracle Database instance."
+              },
+              "response": [
+                {
+                  "id": "b4891be2-d3eb-4b76-846d-604668d70cd4",
+                  "name": "Database version retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/version",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "version"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"version\": \"<string>\",\n  \"version_full\": \"<string>\",\n  \"banner\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-b4891be2-d3eb-4b76-846d-604668d70cd4"
+                },
+                {
+                  "id": "5ff2f12a-bf03-4570-8216-de68667812dc",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/version",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "version"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-5ff2f12a-bf03-4570-8216-de68667812dc"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:32.000Z",
+              "updatedAt": "2026-07-28T02:27:32.000Z",
+              "uid": "35240-c9abfbf8-58af-441e-8c0b-6a928ec8a327"
+            }
+          ],
+          "id": "1ad744ed-21e7-477e-96f3-c6432d881fa8",
+          "createdAt": "2026-07-28T02:27:32.000Z",
+          "updatedAt": "2026-07-28T02:27:32.000Z",
+          "uid": "35240-1ad744ed-21e7-477e-96f3-c6432d881fa8"
+        },
+        {
+          "name": "components",
+          "item": [
+            {
+              "name": "Oracle Database Get all database components",
+              "id": "bc0ca419-489a-4afc-8529-0c0639863e9a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/database/components/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "components",
+                    ""
+                  ]
+                },
+                "description": "Returns a list of all installed database components and their status."
+              },
+              "response": [
+                {
+                  "id": "bc53f25a-0510-4494-8fd1-b7ea5b8b389b",
+                  "name": "Components retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/components/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "components",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"comp_id\": \"<string>\",\n      \"comp_name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"comp_id\": \"<string>\",\n      \"comp_name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-bc53f25a-0510-4494-8fd1-b7ea5b8b389b"
+                },
+                {
+                  "id": "e7df2905-8841-4abd-9399-7aa20f9d726f",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/components/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "components",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-e7df2905-8841-4abd-9399-7aa20f9d726f"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:32.000Z",
+              "updatedAt": "2026-07-28T02:27:32.000Z",
+              "uid": "35240-bc0ca419-489a-4afc-8529-0c0639863e9a"
+            }
+          ],
+          "id": "65a9a450-6ec5-46c7-b961-c7654374fe21",
+          "createdAt": "2026-07-28T02:27:32.000Z",
+          "updatedAt": "2026-07-28T02:27:32.000Z",
+          "uid": "35240-65a9a450-6ec5-46c7-b961-c7654374fe21"
+        },
+        {
+          "name": "parameters",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "Oracle Database Get a specific database parameter",
+                  "id": "c787784e-9354-43dc-9709-91c304e9d8df",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/parameters/:name",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "parameters",
+                        ":name"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8a9b693b-b30e-442a-bdbb-e4b4a948a9ee",
+                          "key": "name",
+                          "value": "<string>",
+                          "description": "(Required) The name of the database parameter"
+                        }
+                      ]
+                    },
+                    "description": "Returns the value and metadata for a specific database parameter."
+                  },
+                  "response": [
+                    {
+                      "id": "47f5c2df-eac7-4c2a-a617-5c4b1da8d152",
+                      "name": "Parameter retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/parameters/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "parameters",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\",\n  \"display_value\": \"<string>\",\n  \"isdefault\": \"<string>\",\n  \"ismodified\": \"<string>\",\n  \"type\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-47f5c2df-eac7-4c2a-a617-5c4b1da8d152"
+                    },
+                    {
+                      "id": "5ff1cfe9-d464-4214-8ec5-a799229e9709",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/parameters/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "parameters",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-5ff1cfe9-d464-4214-8ec5-a799229e9709"
+                    },
+                    {
+                      "id": "04868c04-ddad-4150-85ac-522e444030ea",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/parameters/:name",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "parameters",
+                            ":name"
+                          ],
+                          "variable": [
+                            {
+                              "key": "name"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-04868c04-ddad-4150-85ac-522e444030ea"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-c787784e-9354-43dc-9709-91c304e9d8df"
+                }
+              ],
+              "id": "4791ae65-3000-4130-bf1a-5e0930e065e7",
+              "createdAt": "2026-07-28T02:27:32.000Z",
+              "updatedAt": "2026-07-28T02:27:32.000Z",
+              "uid": "35240-4791ae65-3000-4130-bf1a-5e0930e065e7"
+            },
+            {
+              "name": "Oracle Database Get all database parameters",
+              "id": "7262b938-cd19-4722-8183-8a74d7a95b03",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/database/parameters/?limit=25&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "parameters",
+                    ""
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of items to return",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Number of items to skip before returning results",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                },
+                "description": "Returns all database initialization parameters and their current values."
+              },
+              "response": [
+                {
+                  "id": "b0814fe8-4d86-46ae-ba05-a581724b3149",
+                  "name": "Parameters retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/parameters/?limit=25&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "parameters",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Number of items to skip before returning results",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"display_value\": \"<string>\",\n      \"isdefault\": \"<string>\",\n      \"ismodified\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\",\n      \"display_value\": \"<string>\",\n      \"isdefault\": \"<string>\",\n      \"ismodified\": \"<string>\",\n      \"type\": \"<string>\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"hasMore\": \"<boolean>\",\n  \"limit\": \"<integer>\",\n  \"offset\": \"<integer>\",\n  \"count\": \"<integer>\",\n  \"links\": [\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    },\n    {\n      \"rel\": \"<string>\",\n      \"href\": \"<uri>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-b0814fe8-4d86-46ae-ba05-a581724b3149"
+                },
+                {
+                  "id": "8e5c0d51-6adc-4abe-ac42-8e3a5875d67e",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/parameters/?limit=25&offset=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "parameters",
+                        ""
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of items to return",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Number of items to skip before returning results",
+                          "key": "offset",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-8e5c0d51-6adc-4abe-ac42-8e3a5875d67e"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:32.000Z",
+              "updatedAt": "2026-07-28T02:27:32.000Z",
+              "uid": "35240-7262b938-cd19-4722-8183-8a74d7a95b03"
+            }
+          ],
+          "id": "ed7108ce-574e-491d-9761-7c9071f941cc",
+          "createdAt": "2026-07-28T02:27:32.000Z",
+          "updatedAt": "2026-07-28T02:27:32.000Z",
+          "uid": "35240-ed7108ce-574e-491d-9761-7c9071f941cc"
+        },
+        {
+          "name": "security",
+          "item": [
+            {
+              "name": "users",
+              "item": [
+                {
+                  "name": "Oracle Database Get all database users",
+                  "id": "ff1efe48-db18-432d-a9d6-0863939fa8d8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/security/users/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "security",
+                        "users",
+                        ""
+                      ]
+                    },
+                    "description": "Returns a list of all database users and their properties."
+                  },
+                  "response": [
+                    {
+                      "id": "95732177-8df4-4b2a-b564-328e36c32f8e",
+                      "name": "Users retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/security/users/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "security",
+                            "users",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"username\": \"<string>\",\n      \"account_status\": \"<string>\",\n      \"default_tablespace\": \"<string>\",\n      \"created\": \"<dateTime>\"\n    },\n    {\n      \"username\": \"<string>\",\n      \"account_status\": \"<string>\",\n      \"default_tablespace\": \"<string>\",\n      \"created\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-95732177-8df4-4b2a-b564-328e36c32f8e"
+                    },
+                    {
+                      "id": "70685980-c8b4-4f37-9f9b-e0861df1504c",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/security/users/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "security",
+                            "users",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-70685980-c8b4-4f37-9f9b-e0861df1504c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-ff1efe48-db18-432d-a9d6-0863939fa8d8"
+                }
+              ],
+              "id": "d40797e7-3f30-4297-9811-be6d240b285d",
+              "createdAt": "2026-07-28T02:27:32.000Z",
+              "updatedAt": "2026-07-28T02:27:32.000Z",
+              "uid": "35240-d40797e7-3f30-4297-9811-be6d240b285d"
+            }
+          ],
+          "id": "d01763fe-f36d-4e0e-b015-07554bec145e",
+          "createdAt": "2026-07-28T02:27:32.000Z",
+          "updatedAt": "2026-07-28T02:27:32.000Z",
+          "uid": "35240-d01763fe-f36d-4e0e-b015-07554bec145e"
+        },
+        {
+          "name": "storage",
+          "item": [
+            {
+              "name": "bytes",
+              "item": [
+                {
+                  "name": "Oracle Database Get storage usage in bytes",
+                  "id": "5196d5cf-aac9-40c9-b889-d3ee620733f1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/storage/bytes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "storage",
+                        "bytes"
+                      ]
+                    },
+                    "description": "Returns the total storage usage of the database in bytes."
+                  },
+                  "response": [
+                    {
+                      "id": "a163c17e-89bd-4867-a07e-155ae85e95ad",
+                      "name": "Storage information retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/storage/bytes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "storage",
+                            "bytes"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total_bytes\": \"<long>\",\n  \"used_bytes\": \"<long>\",\n  \"free_bytes\": \"<long>\"\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-a163c17e-89bd-4867-a07e-155ae85e95ad"
+                    },
+                    {
+                      "id": "77bded46-36a3-4937-a314-bc0a534afa62",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/storage/bytes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "storage",
+                            "bytes"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-77bded46-36a3-4937-a314-bc0a534afa62"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-5196d5cf-aac9-40c9-b889-d3ee620733f1"
+                }
+              ],
+              "id": "d69152ef-d29f-4b61-b060-63f13abd0bd2",
+              "createdAt": "2026-07-28T02:27:32.000Z",
+              "updatedAt": "2026-07-28T02:27:32.000Z",
+              "uid": "35240-d69152ef-d29f-4b61-b060-63f13abd0bd2"
+            },
+            {
+              "name": "tablespaces",
+              "item": [
+                {
+                  "name": "{tablespace_name}",
+                  "item": [
+                    {
+                      "name": "datafiles",
+                      "item": [
+                        {
+                          "name": "Oracle Database Get tablespace datafiles",
+                          "id": "035b2e72-922a-467c-a50e-7c4278c881bf",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/storage/tablespaces/:tablespace_name/datafiles/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "storage",
+                                "tablespaces",
+                                ":tablespace_name",
+                                "datafiles",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "id": "50a10894-5b1a-4206-b1fc-5fa6dc20249a",
+                                  "key": "tablespace_name",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Returns datafiles associated with a specific tablespace."
+                          },
+                          "response": [
+                            {
+                              "id": "412f4dcc-b8df-45b5-97fb-9bb6eb7711c3",
+                              "name": "Datafiles retrieved successfully",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/storage/tablespaces/:tablespace_name/datafiles/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "storage",
+                                    "tablespaces",
+                                    ":tablespace_name",
+                                    "datafiles",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tablespace_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"items\": [\n    {\n      \"file_name\": \"<string>\",\n      \"file_id\": \"<integer>\",\n      \"tablespace_name\": \"<string>\",\n      \"bytes\": \"<long>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"file_name\": \"<string>\",\n      \"file_id\": \"<integer>\",\n      \"tablespace_name\": \"<string>\",\n      \"bytes\": \"<long>\",\n      \"status\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:27:32.000Z",
+                              "updatedAt": "2026-07-28T02:27:32.000Z",
+                              "uid": "35240-412f4dcc-b8df-45b5-97fb-9bb6eb7711c3"
+                            },
+                            {
+                              "id": "b669d7da-772f-4650-8c7a-f2837c04a419",
+                              "name": "Authentication required or credentials invalid",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/database/storage/tablespaces/:tablespace_name/datafiles/",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "database",
+                                    "storage",
+                                    "tablespaces",
+                                    ":tablespace_name",
+                                    "datafiles",
+                                    ""
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tablespace_name"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T02:27:32.000Z",
+                              "updatedAt": "2026-07-28T02:27:32.000Z",
+                              "uid": "35240-b669d7da-772f-4650-8c7a-f2837c04a419"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:27:32.000Z",
+                          "updatedAt": "2026-07-28T02:27:32.000Z",
+                          "uid": "35240-035b2e72-922a-467c-a50e-7c4278c881bf"
+                        }
+                      ],
+                      "id": "b73970c2-e303-41d3-afdd-a121655bb902",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-b73970c2-e303-41d3-afdd-a121655bb902"
+                    },
+                    {
+                      "name": "Oracle Database Get tablespace details",
+                      "id": "ab23e4e7-69f6-45a5-820d-6df55568f43c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/storage/tablespaces/:tablespace_name/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "storage",
+                            "tablespaces",
+                            ":tablespace_name",
+                            ""
+                          ],
+                          "variable": [
+                            {
+                              "id": "5692dd19-a1b5-46a4-8c25-de4ef8dbe2bd",
+                              "key": "tablespace_name",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns detailed storage information for a specific tablespace."
+                      },
+                      "response": [
+                        {
+                          "id": "145b28d8-4159-47de-9ffc-a04c91877eee",
+                          "name": "Tablespace details retrieved successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/storage/tablespaces/:tablespace_name/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "storage",
+                                "tablespaces",
+                                ":tablespace_name",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tablespace_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"tablespace_name\": \"<string>\",\n  \"status\": \"<string>\",\n  \"contents\": \"<string>\",\n  \"block_size\": \"<integer>\",\n  \"allocated_bytes\": \"<long>\",\n  \"used_bytes\": \"<long>\",\n  \"free_bytes\": \"<long>\"\n}",
+                          "createdAt": "2026-07-28T02:27:32.000Z",
+                          "updatedAt": "2026-07-28T02:27:32.000Z",
+                          "uid": "35240-145b28d8-4159-47de-9ffc-a04c91877eee"
+                        },
+                        {
+                          "id": "98efd769-0d48-42c8-8e1b-11b7210fd633",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/storage/tablespaces/:tablespace_name/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "storage",
+                                "tablespaces",
+                                ":tablespace_name",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tablespace_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:32.000Z",
+                          "updatedAt": "2026-07-28T02:27:32.000Z",
+                          "uid": "35240-98efd769-0d48-42c8-8e1b-11b7210fd633"
+                        },
+                        {
+                          "id": "74b3aec7-01a0-4331-93f1-9a933234b980",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/database/storage/tablespaces/:tablespace_name/",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "database",
+                                "storage",
+                                "tablespaces",
+                                ":tablespace_name",
+                                ""
+                              ],
+                              "variable": [
+                                {
+                                  "key": "tablespace_name"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:27:32.000Z",
+                          "updatedAt": "2026-07-28T02:27:32.000Z",
+                          "uid": "35240-74b3aec7-01a0-4331-93f1-9a933234b980"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-ab23e4e7-69f6-45a5-820d-6df55568f43c"
+                    }
+                  ],
+                  "id": "c45b09c7-2e41-40f4-8a73-2e868a4aa7aa",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-c45b09c7-2e41-40f4-8a73-2e868a4aa7aa"
+                },
+                {
+                  "name": "Oracle Database Get all tablespaces storage information",
+                  "id": "1d72f20b-3755-4ed0-9359-a5634304a24b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/storage/tablespaces/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "storage",
+                        "tablespaces",
+                        ""
+                      ]
+                    },
+                    "description": "Returns storage information for all tablespaces."
+                  },
+                  "response": [
+                    {
+                      "id": "2df538d1-ceb7-44fc-9575-4943938e9deb",
+                      "name": "Tablespace storage information retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/storage/tablespaces/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "storage",
+                            "tablespaces",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"tablespace_name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"contents\": \"<string>\",\n      \"block_size\": \"<integer>\",\n      \"allocated_bytes\": \"<long>\",\n      \"used_bytes\": \"<long>\",\n      \"free_bytes\": \"<long>\"\n    },\n    {\n      \"tablespace_name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"contents\": \"<string>\",\n      \"block_size\": \"<integer>\",\n      \"allocated_bytes\": \"<long>\",\n      \"used_bytes\": \"<long>\",\n      \"free_bytes\": \"<long>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-2df538d1-ceb7-44fc-9575-4943938e9deb"
+                    },
+                    {
+                      "id": "2971233e-4f44-4638-80a6-90567434e164",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/storage/tablespaces/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "storage",
+                            "tablespaces",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-2971233e-4f44-4638-80a6-90567434e164"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-1d72f20b-3755-4ed0-9359-a5634304a24b"
+                }
+              ],
+              "id": "1430240e-e6ed-45d1-80b6-fbbd6c1188c4",
+              "createdAt": "2026-07-28T02:27:32.000Z",
+              "updatedAt": "2026-07-28T02:27:32.000Z",
+              "uid": "35240-1430240e-e6ed-45d1-80b6-fbbd6c1188c4"
+            }
+          ],
+          "id": "f3b6cef4-3328-4256-86d2-242bf263bb86",
+          "createdAt": "2026-07-28T02:27:32.000Z",
+          "updatedAt": "2026-07-28T02:27:32.000Z",
+          "uid": "35240-f3b6cef4-3328-4256-86d2-242bf263bb86"
+        },
+        {
+          "name": "feature_usage",
+          "item": [
+            {
+              "name": "Oracle Database Get feature usage statistics",
+              "id": "17bf6e2b-0885-4761-bbc4-eba8ec7f0f5c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/database/feature_usage/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "feature_usage",
+                    ""
+                  ]
+                },
+                "description": "Returns usage statistics for database features."
+              },
+              "response": [
+                {
+                  "id": "926facec-b04b-42c7-b67f-a6117ade2a2a",
+                  "name": "Feature usage retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/feature_usage/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "feature_usage",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"currently_used\": \"<boolean>\",\n      \"first_usage_date\": \"<dateTime>\",\n      \"last_usage_date\": \"<dateTime>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"currently_used\": \"<boolean>\",\n      \"first_usage_date\": \"<dateTime>\",\n      \"last_usage_date\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-926facec-b04b-42c7-b67f-a6117ade2a2a"
+                },
+                {
+                  "id": "e73fa46f-e6b9-4a4c-b09f-66ee8b759961",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/feature_usage/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "feature_usage",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-e73fa46f-e6b9-4a4c-b09f-66ee8b759961"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:32.000Z",
+              "updatedAt": "2026-07-28T02:27:32.000Z",
+              "uid": "35240-17bf6e2b-0885-4761-bbc4-eba8ec7f0f5c"
+            }
+          ],
+          "id": "e8809711-c99d-432a-af26-598b71ea3d87",
+          "createdAt": "2026-07-28T02:27:32.000Z",
+          "updatedAt": "2026-07-28T02:27:32.000Z",
+          "uid": "35240-e8809711-c99d-432a-af26-598b71ea3d87"
+        },
+        {
+          "name": "sessionless-transactions",
+          "item": [
+            {
+              "name": "{sessionlessTransactionID}",
+              "item": [
+                {
+                  "name": "Oracle Database Commit a sessionless transaction",
+                  "id": "b79b3499-c047-4ad2-86b6-e168b3351c24",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/sessionless-transactions/:sessionlessTransactionID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "sessionless-transactions",
+                        ":sessionlessTransactionID"
+                      ],
+                      "variable": [
+                        {
+                          "id": "dc5df4fe-b6c6-4791-afb6-e1ef696e4247",
+                          "key": "sessionlessTransactionID",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Commits the specified sessionless transaction."
+                  },
+                  "response": [
+                    {
+                      "id": "61d81f09-681a-47df-a739-3ab778d4df65",
+                      "name": "Transaction committed successfully",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/sessionless-transactions/:sessionlessTransactionID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "sessionless-transactions",
+                            ":sessionlessTransactionID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sessionlessTransactionID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-61d81f09-681a-47df-a739-3ab778d4df65"
+                    },
+                    {
+                      "id": "5f4e2487-2e1e-4905-b541-471f8e265981",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/sessionless-transactions/:sessionlessTransactionID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "sessionless-transactions",
+                            ":sessionlessTransactionID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sessionlessTransactionID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-5f4e2487-2e1e-4905-b541-471f8e265981"
+                    },
+                    {
+                      "id": "b941d170-ef2a-428b-b865-dd0c480ab670",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/sessionless-transactions/:sessionlessTransactionID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "sessionless-transactions",
+                            ":sessionlessTransactionID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sessionlessTransactionID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-b941d170-ef2a-428b-b865-dd0c480ab670"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-b79b3499-c047-4ad2-86b6-e168b3351c24"
+                },
+                {
+                  "name": "Oracle Database Rollback a sessionless transaction",
+                  "id": "67d793cd-f5d8-4ff0-895e-108c568451e3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/sessionless-transactions/:sessionlessTransactionID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "sessionless-transactions",
+                        ":sessionlessTransactionID"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2e0b9027-f38d-44fb-aef6-e1b9965f6c0d",
+                          "key": "sessionlessTransactionID",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Rolls back the specified sessionless transaction."
+                  },
+                  "response": [
+                    {
+                      "id": "fe15403d-379c-4132-9188-fe56f4a8e268",
+                      "name": "Transaction rolled back successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/sessionless-transactions/:sessionlessTransactionID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "sessionless-transactions",
+                            ":sessionlessTransactionID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sessionlessTransactionID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-fe15403d-379c-4132-9188-fe56f4a8e268"
+                    },
+                    {
+                      "id": "3011c74c-c459-45e1-92cd-cf95cbaa6968",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/sessionless-transactions/:sessionlessTransactionID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "sessionless-transactions",
+                            ":sessionlessTransactionID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sessionlessTransactionID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-3011c74c-c459-45e1-92cd-cf95cbaa6968"
+                    },
+                    {
+                      "id": "fe8ef8df-36a0-4298-8116-573f9a7a05c2",
+                      "name": "The specified resource was not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/database/sessionless-transactions/:sessionlessTransactionID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "database",
+                            "sessionless-transactions",
+                            ":sessionlessTransactionID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sessionlessTransactionID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:27:32.000Z",
+                      "updatedAt": "2026-07-28T02:27:32.000Z",
+                      "uid": "35240-fe8ef8df-36a0-4298-8116-573f9a7a05c2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-67d793cd-f5d8-4ff0-895e-108c568451e3"
+                }
+              ],
+              "id": "2efdde0a-e74b-4a02-a665-34b633da5845",
+              "createdAt": "2026-07-28T02:27:32.000Z",
+              "updatedAt": "2026-07-28T02:27:32.000Z",
+              "uid": "35240-2efdde0a-e74b-4a02-a665-34b633da5845"
+            },
+            {
+              "name": "Oracle Database Start a sessionless transaction",
+              "id": "73b3e84d-dee7-4968-bbcc-c24ac28dbe92",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/database/sessionless-transactions/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "database",
+                    "sessionless-transactions",
+                    ""
+                  ]
+                },
+                "description": "Starts a new sessionless transaction and returns its identifier."
+              },
+              "response": [
+                {
+                  "id": "6f17887d-56a6-4ec1-9c27-8c07cc3db166",
+                  "name": "Transaction started successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/sessionless-transactions/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "sessionless-transactions",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"sessionlessTransactionID\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-6f17887d-56a6-4ec1-9c27-8c07cc3db166"
+                },
+                {
+                  "id": "9f51decb-5b3d-414b-a5f7-b4d991e17869",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/database/sessionless-transactions/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "database",
+                        "sessionless-transactions",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:27:32.000Z",
+                  "updatedAt": "2026-07-28T02:27:32.000Z",
+                  "uid": "35240-9f51decb-5b3d-414b-a5f7-b4d991e17869"
+                }
+              ],
+              "createdAt": "2026-07-28T02:27:32.000Z",
+              "updatedAt": "2026-07-28T02:27:32.000Z",
+              "uid": "35240-73b3e84d-dee7-4968-bbcc-c24ac28dbe92"
+            }
+          ],
+          "id": "f49b1afb-4abd-4285-9f81-50e85eb8ec4e",
+          "createdAt": "2026-07-28T02:27:32.000Z",
+          "updatedAt": "2026-07-28T02:27:32.000Z",
+          "uid": "35240-f49b1afb-4abd-4285-9f81-50e85eb8ec4e"
+        }
+      ],
+      "id": "babbe3fc-61ff-4f16-b1aa-b24bb5ff6f49",
+      "createdAt": "2026-07-28T02:27:32.000Z",
+      "updatedAt": "2026-07-28T02:27:32.000Z",
+      "uid": "35240-babbe3fc-61ff-4f16-b1aa-b24bb5ff6f49"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}

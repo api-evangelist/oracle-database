@@ -1,0 +1,2617 @@
+{
+  "info": {
+    "_postman_id": "84e881d8-9cf6-4f3a-a74d-c3226beff57a",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX REST Services API",
+    "description": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:28:02.000Z",
+    "updatedAt": "2026-07-28T02:28:02.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-84e881d8-9cf6-4f3a-a74d-c3226beff57a"
+  },
+  "item": [
+    {
+      "name": "ords",
+      "item": [
+        {
+          "name": "rest",
+          "item": [
+            {
+              "name": "modules",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Oracle Database Update a REST module",
+                      "id": "eea07cf3-6893-408f-82c7-9999b7390ed4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"uri_prefix\": \"<string>\",\n  \"status\": \"PUBLISHED\",\n  \"items_per_page\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/modules/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "modules",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f4efe98e-0893-441a-bf11-039f879f94cf",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Updates an existing REST API module."
+                      },
+                      "response": [
+                        {
+                          "id": "20293b68-9459-4908-821b-1eb0ab584708",
+                          "name": "REST module updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"uri_prefix\": \"<string>\",\n  \"status\": \"PUBLISHED\",\n  \"items_per_page\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/ords/rest/modules/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ords",
+                                "rest",
+                                "modules",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:28:02.000Z",
+                          "updatedAt": "2026-07-28T02:28:02.000Z",
+                          "uid": "35240-20293b68-9459-4908-821b-1eb0ab584708"
+                        },
+                        {
+                          "id": "3f84fb2d-8cba-4da1-a335-bd04ce7f1dc9",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"uri_prefix\": \"<string>\",\n  \"status\": \"PUBLISHED\",\n  \"items_per_page\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/ords/rest/modules/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ords",
+                                "rest",
+                                "modules",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:02.000Z",
+                          "updatedAt": "2026-07-28T02:28:02.000Z",
+                          "uid": "35240-3f84fb2d-8cba-4da1-a335-bd04ce7f1dc9"
+                        },
+                        {
+                          "id": "d5d82563-1f38-4bc0-9e81-0531ffa2e5e9",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"uri_prefix\": \"<string>\",\n  \"status\": \"PUBLISHED\",\n  \"items_per_page\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/ords/rest/modules/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ords",
+                                "rest",
+                                "modules",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:02.000Z",
+                          "updatedAt": "2026-07-28T02:28:02.000Z",
+                          "uid": "35240-d5d82563-1f38-4bc0-9e81-0531ffa2e5e9"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-eea07cf3-6893-408f-82c7-9999b7390ed4"
+                    }
+                  ],
+                  "id": "fece4559-38d5-48a5-91c1-85caf9ae074b",
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-fece4559-38d5-48a5-91c1-85caf9ae074b"
+                },
+                {
+                  "name": "Oracle Database Get all REST modules",
+                  "id": "5cd726db-534c-4716-b139-2bab0fa192de",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/rest/modules/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "rest",
+                        "modules",
+                        ""
+                      ]
+                    },
+                    "description": "Returns a list of all custom REST API modules."
+                  },
+                  "response": [
+                    {
+                      "id": "11d6a378-0634-42be-b258-ceb0956ce16c",
+                      "name": "REST modules retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/modules/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "modules",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"uri_prefix\": \"<string>\",\n      \"status\": \"<string>\",\n      \"items_per_page\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"uri_prefix\": \"<string>\",\n      \"status\": \"<string>\",\n      \"items_per_page\": \"<integer>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-11d6a378-0634-42be-b258-ceb0956ce16c"
+                    },
+                    {
+                      "id": "caffdf1b-132c-4ab9-9d18-0c2237d238e7",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/modules/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "modules",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-caffdf1b-132c-4ab9-9d18-0c2237d238e7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-5cd726db-534c-4716-b139-2bab0fa192de"
+                },
+                {
+                  "name": "Oracle Database Create a REST module",
+                  "id": "5a47883c-b169-4750-b637-b9392b188cc0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"uri_prefix\": \"<string>\",\n  \"status\": \"PUBLISHED\",\n  \"items_per_page\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/rest/modules/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "rest",
+                        "modules",
+                        ""
+                      ]
+                    },
+                    "description": "Creates a new custom REST API module with SQL or PL/SQL handlers."
+                  },
+                  "response": [
+                    {
+                      "id": "3b96eb13-3b21-45d2-af8f-d99f33253d6a",
+                      "name": "REST module created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"uri_prefix\": \"<string>\",\n  \"status\": \"PUBLISHED\",\n  \"items_per_page\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/modules/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "modules",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"uri_prefix\": \"<string>\",\n  \"status\": \"<string>\",\n  \"items_per_page\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-3b96eb13-3b21-45d2-af8f-d99f33253d6a"
+                    },
+                    {
+                      "id": "7813d027-20dc-4db5-b416-9b4b7a130e17",
+                      "name": "Bad request - invalid parameters or request body",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"uri_prefix\": \"<string>\",\n  \"status\": \"PUBLISHED\",\n  \"items_per_page\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/modules/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "modules",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-7813d027-20dc-4db5-b416-9b4b7a130e17"
+                    },
+                    {
+                      "id": "c20240d0-b7be-4984-9514-4e62418a95c0",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"uri_prefix\": \"<string>\",\n  \"status\": \"PUBLISHED\",\n  \"items_per_page\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/modules/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "modules",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-c20240d0-b7be-4984-9514-4e62418a95c0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-5a47883c-b169-4750-b637-b9392b188cc0"
+                }
+              ],
+              "id": "a73455da-4c25-4ce7-bcb6-8ea3b0d0fc6f",
+              "createdAt": "2026-07-28T02:28:02.000Z",
+              "updatedAt": "2026-07-28T02:28:02.000Z",
+              "uid": "35240-a73455da-4c25-4ce7-bcb6-8ea3b0d0fc6f"
+            },
+            {
+              "name": "handlers",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Oracle Database Delete a REST handler",
+                      "id": "061685b4-467f-4688-b861-204719c1fd11",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/handlers/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "handlers",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e24c80f7-ebae-4355-9c05-bb95b96243b2",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Deletes an existing REST API handler."
+                      },
+                      "response": [
+                        {
+                          "id": "78a92728-35d5-483b-982a-4c9e9ae9f77b",
+                          "name": "REST handler deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/ords/rest/handlers/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ords",
+                                "rest",
+                                "handlers",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:28:02.000Z",
+                          "updatedAt": "2026-07-28T02:28:02.000Z",
+                          "uid": "35240-78a92728-35d5-483b-982a-4c9e9ae9f77b"
+                        },
+                        {
+                          "id": "541dfee1-7487-4bde-ab98-3a958f55271a",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/ords/rest/handlers/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ords",
+                                "rest",
+                                "handlers",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:02.000Z",
+                          "updatedAt": "2026-07-28T02:28:02.000Z",
+                          "uid": "35240-541dfee1-7487-4bde-ab98-3a958f55271a"
+                        },
+                        {
+                          "id": "1b6c9249-d9c1-4df0-bd5d-ee819d805920",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/ords/rest/handlers/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ords",
+                                "rest",
+                                "handlers",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:02.000Z",
+                          "updatedAt": "2026-07-28T02:28:02.000Z",
+                          "uid": "35240-1b6c9249-d9c1-4df0-bd5d-ee819d805920"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-061685b4-467f-4688-b861-204719c1fd11"
+                    }
+                  ],
+                  "id": "01437584-55d0-4a2a-8576-459e65bfa5a2",
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-01437584-55d0-4a2a-8576-459e65bfa5a2"
+                },
+                {
+                  "name": "Oracle Database Get all REST handlers",
+                  "id": "63958e64-3da1-4c7b-b39b-d15044b867f2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/rest/handlers/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "rest",
+                        "handlers",
+                        ""
+                      ]
+                    },
+                    "description": "Returns a list of all REST API handlers."
+                  },
+                  "response": [
+                    {
+                      "id": "e18c4db8-2c80-4f49-a422-74f6d7352007",
+                      "name": "REST handlers retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/handlers/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "handlers",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"method\": \"<string>\",\n      \"source_type\": \"<string>\",\n      \"source\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"method\": \"<string>\",\n      \"source_type\": \"<string>\",\n      \"source\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-e18c4db8-2c80-4f49-a422-74f6d7352007"
+                    },
+                    {
+                      "id": "c4c5b046-488c-47f2-81c5-41a31989be1b",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/handlers/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "handlers",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-c4c5b046-488c-47f2-81c5-41a31989be1b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-63958e64-3da1-4c7b-b39b-d15044b867f2"
+                },
+                {
+                  "name": "Oracle Database Create a REST handler",
+                  "id": "f9e21f93-3a59-44f9-949e-83fa7285b7a2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"method\": \"DELETE\",\n  \"source_type\": \"collection/query\",\n  \"source\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/rest/handlers/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "rest",
+                        "handlers",
+                        ""
+                      ]
+                    },
+                    "description": "Creates a new REST API handler."
+                  },
+                  "response": [
+                    {
+                      "id": "ac5dd3ed-52a5-4ec6-943f-b84c7e8fd138",
+                      "name": "REST handler created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"method\": \"DELETE\",\n  \"source_type\": \"collection/query\",\n  \"source\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/handlers/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "handlers",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-ac5dd3ed-52a5-4ec6-943f-b84c7e8fd138"
+                    },
+                    {
+                      "id": "ae236ce3-4e42-47f5-9747-8551290cf398",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"method\": \"DELETE\",\n  \"source_type\": \"collection/query\",\n  \"source\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/handlers/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "handlers",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-ae236ce3-4e42-47f5-9747-8551290cf398"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-f9e21f93-3a59-44f9-949e-83fa7285b7a2"
+                }
+              ],
+              "id": "3e3346d5-ce98-4283-87c7-389fea2c29fa",
+              "createdAt": "2026-07-28T02:28:02.000Z",
+              "updatedAt": "2026-07-28T02:28:02.000Z",
+              "uid": "35240-3e3346d5-ce98-4283-87c7-389fea2c29fa"
+            },
+            {
+              "name": "clients",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Oracle Database Update an OAuth client",
+                      "id": "e7690fa9-4f14-41fa-9c30-90ff148e4905",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"grant_type\": \"authorization_code\",\n  \"description\": \"<string>\",\n  \"redirect_uri\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/clients/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "clients",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ec616d5c-6f34-4e2c-a691-628fbeebecf3",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Updates an existing OAuth client registration."
+                      },
+                      "response": [
+                        {
+                          "id": "99f88f57-13a2-40d4-92d5-cfa0f537567b",
+                          "name": "OAuth client updated successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"grant_type\": \"authorization_code\",\n  \"description\": \"<string>\",\n  \"redirect_uri\": \"<uri>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/ords/rest/clients/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ords",
+                                "rest",
+                                "clients",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:28:02.000Z",
+                          "updatedAt": "2026-07-28T02:28:02.000Z",
+                          "uid": "35240-99f88f57-13a2-40d4-92d5-cfa0f537567b"
+                        },
+                        {
+                          "id": "994101b7-c6e5-4ef9-b41d-8e1f62a7f304",
+                          "name": "Authentication required or credentials invalid",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"grant_type\": \"authorization_code\",\n  \"description\": \"<string>\",\n  \"redirect_uri\": \"<uri>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/ords/rest/clients/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ords",
+                                "rest",
+                                "clients",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:02.000Z",
+                          "updatedAt": "2026-07-28T02:28:02.000Z",
+                          "uid": "35240-994101b7-c6e5-4ef9-b41d-8e1f62a7f304"
+                        },
+                        {
+                          "id": "6840eab7-b586-49aa-a5e6-ef49c6c91881",
+                          "name": "The specified resource was not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"grant_type\": \"authorization_code\",\n  \"description\": \"<string>\",\n  \"redirect_uri\": \"<uri>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/ords/rest/clients/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ords",
+                                "rest",
+                                "clients",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T02:28:02.000Z",
+                          "updatedAt": "2026-07-28T02:28:02.000Z",
+                          "uid": "35240-6840eab7-b586-49aa-a5e6-ef49c6c91881"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-e7690fa9-4f14-41fa-9c30-90ff148e4905"
+                    }
+                  ],
+                  "id": "11d6ed16-1a6a-4163-84ba-19b0b4431763",
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-11d6ed16-1a6a-4163-84ba-19b0b4431763"
+                },
+                {
+                  "name": "Oracle Database Get all OAuth clients",
+                  "id": "d94c3c05-2a8b-441e-8dbb-12f64e0c2f6f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/rest/clients/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "rest",
+                        "clients",
+                        ""
+                      ]
+                    },
+                    "description": "Returns a list of all registered OAuth clients."
+                  },
+                  "response": [
+                    {
+                      "id": "3c1cbce3-830f-45fe-9a46-36e5c0af198e",
+                      "name": "OAuth clients retrieved successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/clients/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "clients",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"grant_type\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"client_id\": \"<string>\",\n      \"grant_type\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-3c1cbce3-830f-45fe-9a46-36e5c0af198e"
+                    },
+                    {
+                      "id": "56949862-dcc3-4f55-b9e7-06d60c6578d0",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/clients/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "clients",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-56949862-dcc3-4f55-b9e7-06d60c6578d0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-d94c3c05-2a8b-441e-8dbb-12f64e0c2f6f"
+                },
+                {
+                  "name": "Oracle Database Create an OAuth client",
+                  "id": "ab524094-9451-45f5-bfdd-2380e7e20bc5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"grant_type\": \"authorization_code\",\n  \"description\": \"<string>\",\n  \"redirect_uri\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/rest/clients/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "rest",
+                        "clients",
+                        ""
+                      ]
+                    },
+                    "description": "Registers a new OAuth client for REST API authentication."
+                  },
+                  "response": [
+                    {
+                      "id": "8bc525cf-f6fc-485b-ba0f-1369a1925c4a",
+                      "name": "OAuth client created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"grant_type\": \"authorization_code\",\n  \"description\": \"<string>\",\n  \"redirect_uri\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/clients/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "clients",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-8bc525cf-f6fc-485b-ba0f-1369a1925c4a"
+                    },
+                    {
+                      "id": "6b45389e-8833-4d58-9aed-9f147aa45637",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"grant_type\": \"authorization_code\",\n  \"description\": \"<string>\",\n  \"redirect_uri\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/clients/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "clients",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-6b45389e-8833-4d58-9aed-9f147aa45637"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-ab524094-9451-45f5-bfdd-2380e7e20bc5"
+                }
+              ],
+              "id": "926a7741-a25f-4d43-aeae-140197529b20",
+              "createdAt": "2026-07-28T02:28:02.000Z",
+              "updatedAt": "2026-07-28T02:28:02.000Z",
+              "uid": "35240-926a7741-a25f-4d43-aeae-140197529b20"
+            },
+            {
+              "name": "privileges",
+              "item": [
+                {
+                  "name": "Oracle Database Create a REST privilege",
+                  "id": "32c7e370-b906-4cf8-b18a-71be3f8d12ff",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"label\": \"<string>\",\n  \"description\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/rest/privileges/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "rest",
+                        "privileges",
+                        ""
+                      ]
+                    },
+                    "description": "Creates a new privilege for controlling access to REST resources."
+                  },
+                  "response": [
+                    {
+                      "id": "d3cda40c-12f2-4987-9672-38d285ab0496",
+                      "name": "Privilege created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"label\": \"<string>\",\n  \"description\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/privileges/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "privileges",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-d3cda40c-12f2-4987-9672-38d285ab0496"
+                    },
+                    {
+                      "id": "e5d3ecd4-3270-46b7-8fee-2706403bf4db",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"label\": \"<string>\",\n  \"description\": \"<string>\",\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/privileges/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "privileges",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-e5d3ecd4-3270-46b7-8fee-2706403bf4db"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-32c7e370-b906-4cf8-b18a-71be3f8d12ff"
+                }
+              ],
+              "id": "ddad7d7d-4d22-48c0-97b9-d7ca609e6d8c",
+              "createdAt": "2026-07-28T02:28:02.000Z",
+              "updatedAt": "2026-07-28T02:28:02.000Z",
+              "uid": "35240-ddad7d7d-4d22-48c0-97b9-d7ca609e6d8c"
+            },
+            {
+              "name": "roles",
+              "item": [
+                {
+                  "name": "Oracle Database Create a REST role",
+                  "id": "e63f88e6-445a-4085-9539-5ffe4e4c9ed7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/rest/roles/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "rest",
+                        "roles",
+                        ""
+                      ]
+                    },
+                    "description": "Creates a new role for grouping REST privileges."
+                  },
+                  "response": [
+                    {
+                      "id": "de8dc356-0a41-4ee8-9926-864d6c8e5be8",
+                      "name": "Role created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/roles/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "roles",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-de8dc356-0a41-4ee8-9926-864d6c8e5be8"
+                    },
+                    {
+                      "id": "895f0abd-f3bc-48a3-8b6f-b9b7baf27911",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/roles/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "roles",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-895f0abd-f3bc-48a3-8b6f-b9b7baf27911"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-e63f88e6-445a-4085-9539-5ffe4e4c9ed7"
+                }
+              ],
+              "id": "ed05cc6d-741e-4893-a4ff-3b34e8e1b371",
+              "createdAt": "2026-07-28T02:28:02.000Z",
+              "updatedAt": "2026-07-28T02:28:02.000Z",
+              "uid": "35240-ed05cc6d-741e-4893-a4ff-3b34e8e1b371"
+            },
+            {
+              "name": "autorest",
+              "item": [
+                {
+                  "name": "Oracle Database REST enable a database object",
+                  "id": "aaf4bf68-24cb-4e0a-98a6-1d06f861071c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"object_name\": \"<string>\",\n  \"object_type\": \"PACKAGE\",\n  \"object_alias\": \"<string>\",\n  \"schema\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/rest/autorest/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "rest",
+                        "autorest",
+                        ""
+                      ]
+                    },
+                    "description": "Enables automatic REST access for a database table, view, or PL/SQL object."
+                  },
+                  "response": [
+                    {
+                      "id": "9d457924-dca5-4f2b-a726-fa72115dd109",
+                      "name": "Object REST enabled successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"object_name\": \"<string>\",\n  \"object_type\": \"PACKAGE\",\n  \"object_alias\": \"<string>\",\n  \"schema\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/autorest/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "autorest",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-9d457924-dca5-4f2b-a726-fa72115dd109"
+                    },
+                    {
+                      "id": "80b54e68-22b1-4735-97e2-88f4e336db14",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"object_name\": \"<string>\",\n  \"object_type\": \"PACKAGE\",\n  \"object_alias\": \"<string>\",\n  \"schema\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/rest/autorest/",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "rest",
+                            "autorest",
+                            ""
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-80b54e68-22b1-4735-97e2-88f4e336db14"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-aaf4bf68-24cb-4e0a-98a6-1d06f861071c"
+                }
+              ],
+              "id": "31da41e3-5c86-4112-bcf4-af56ca3dc2b8",
+              "createdAt": "2026-07-28T02:28:02.000Z",
+              "updatedAt": "2026-07-28T02:28:02.000Z",
+              "uid": "35240-31da41e3-5c86-4112-bcf4-af56ca3dc2b8"
+            }
+          ],
+          "id": "f3a0ae50-8619-45ab-86a7-29c8f1764c90",
+          "createdAt": "2026-07-28T02:28:02.000Z",
+          "updatedAt": "2026-07-28T02:28:02.000Z",
+          "uid": "35240-f3a0ae50-8619-45ab-86a7-29c8f1764c90"
+        },
+        {
+          "name": "properties",
+          "item": [
+            {
+              "name": "{key}",
+              "item": [
+                {
+                  "name": "Oracle Database Set an ORDS property",
+                  "id": "0993cbc7-0d5b-4d5f-adda-f7a1421b244d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"value\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/properties/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "properties",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e48dd48a-4b3e-4b3c-aa9e-de38e3729790",
+                          "key": "key",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Sets or updates an ORDS configuration property."
+                  },
+                  "response": [
+                    {
+                      "id": "ee3dda26-9af9-45ce-8667-b1098efab85c",
+                      "name": "Property set successfully",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"value\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/properties/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "properties",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-ee3dda26-9af9-45ce-8667-b1098efab85c"
+                    },
+                    {
+                      "id": "7127e8a5-604a-4571-89d8-70d73445ac98",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"value\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/properties/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "properties",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-7127e8a5-604a-4571-89d8-70d73445ac98"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-0993cbc7-0d5b-4d5f-adda-f7a1421b244d"
+                },
+                {
+                  "name": "Oracle Database Unset an ORDS property",
+                  "id": "a32d5225-7bfd-4360-9e3b-02d926c94789",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/properties/:key",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "properties",
+                        ":key"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4c9e8e15-365a-4393-b027-b43721d451fd",
+                          "key": "key",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Removes an ORDS configuration property, restoring the default value."
+                  },
+                  "response": [
+                    {
+                      "id": "951933a2-e44d-4fa8-8c81-ce64dbbabef2",
+                      "name": "Property unset successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/properties/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "properties",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-951933a2-e44d-4fa8-8c81-ce64dbbabef2"
+                    },
+                    {
+                      "id": "9af7eae8-ead0-40d3-bd02-e36bd5982204",
+                      "name": "Authentication required or credentials invalid",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/ords/properties/:key",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ords",
+                            "properties",
+                            ":key"
+                          ],
+                          "variable": [
+                            {
+                              "key": "key"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:28:02.000Z",
+                      "updatedAt": "2026-07-28T02:28:02.000Z",
+                      "uid": "35240-9af7eae8-ead0-40d3-bd02-e36bd5982204"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-a32d5225-7bfd-4360-9e3b-02d926c94789"
+                }
+              ],
+              "id": "e504124d-cedc-44a4-b3ac-47ff04defae2",
+              "createdAt": "2026-07-28T02:28:02.000Z",
+              "updatedAt": "2026-07-28T02:28:02.000Z",
+              "uid": "35240-e504124d-cedc-44a4-b3ac-47ff04defae2"
+            },
+            {
+              "name": "Oracle Database Get ORDS properties",
+              "id": "46f14d5e-89ee-40c9-87c4-afe04552aa1e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/ords/properties/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ords",
+                    "properties",
+                    ""
+                  ]
+                },
+                "description": "Returns all ORDS configuration properties."
+              },
+              "response": [
+                {
+                  "id": "c33ec300-e631-4010-9af6-2b78970b1af6",
+                  "name": "Properties retrieved successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/properties/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "properties",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"items\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-c33ec300-e631-4010-9af6-2b78970b1af6"
+                },
+                {
+                  "id": "22ac64eb-7e61-4c97-af0f-bfb430972f1d",
+                  "name": "Authentication required or credentials invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ords/properties/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ords",
+                        "properties",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:28:02.000Z",
+                  "updatedAt": "2026-07-28T02:28:02.000Z",
+                  "uid": "35240-22ac64eb-7e61-4c97-af0f-bfb430972f1d"
+                }
+              ],
+              "createdAt": "2026-07-28T02:28:02.000Z",
+              "updatedAt": "2026-07-28T02:28:02.000Z",
+              "uid": "35240-46f14d5e-89ee-40c9-87c4-afe04552aa1e"
+            }
+          ],
+          "id": "dd7da3f2-5462-4251-9e63-081a61b58b25",
+          "createdAt": "2026-07-28T02:28:02.000Z",
+          "updatedAt": "2026-07-28T02:28:02.000Z",
+          "uid": "35240-dd7da3f2-5462-4251-9e63-081a61b58b25"
+        }
+      ],
+      "id": "011de73a-282c-4344-ab45-fe304bb33da5",
+      "createdAt": "2026-07-28T02:28:02.000Z",
+      "updatedAt": "2026-07-28T02:28:02.000Z",
+      "uid": "35240-011de73a-282c-4344-ab45-fe304bb33da5"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "region",
+      "value": "us-ashburn-1"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918"
+    }
+  ]
+}
