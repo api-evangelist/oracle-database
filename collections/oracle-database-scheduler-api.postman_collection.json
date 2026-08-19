@@ -1,0 +1,425 @@
+{
+  "item": [
+    {
+      "id": "95cd1a8c-afac-4be7-bb25-9c4cba90c859",
+      "name": "Scheduler",
+      "description": {
+        "content": "Oracle Scheduler job management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "505e8c18-e702-4544-9374-b6a9f451a4d9",
+          "name": "Oracle Database Get all scheduler jobs",
+          "request": {
+            "name": "Oracle Database Get all scheduler jobs",
+            "description": {
+              "content": "Returns a list of all Oracle Scheduler jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "scheduler",
+                "jobs",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "571f3931-565c-4af1-b1e9-ea015195f5cd",
+              "name": "Scheduler jobs retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "scheduler",
+                    "jobs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"owner\": \"string\",\n      \"job_name\": \"string\",\n      \"job_type\": \"string\",\n      \"state\": \"string\",\n      \"enabled\": true,\n      \"next_run_date\": \"1998-05-24T23:03:54.834Z\",\n      \"last_start_date\": \"2021-10-10T04:24:56.381Z\",\n      \"repeat_interval\": \"string\"\n    },\n    {\n      \"owner\": \"string\",\n      \"job_name\": \"string\",\n      \"job_type\": \"string\",\n      \"state\": \"string\",\n      \"enabled\": false,\n      \"next_run_date\": \"2012-11-23T16:08:25.980Z\",\n      \"last_start_date\": \"1957-11-01T14:51:07.721Z\",\n      \"repeat_interval\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "816f26c6-8d01-43b4-8509-c276eca44801",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "scheduler",
+                    "jobs",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4891,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f60e588-070d-4fdd-8148-282c4c9700c5",
+          "name": "Oracle Database Get a specific scheduler job",
+          "request": {
+            "name": "Oracle Database Get a specific scheduler job",
+            "description": {
+              "content": "Returns details about a specific Oracle Scheduler job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "scheduler",
+                "jobs",
+                "{{owner}},{{job_name}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34b5394d-53dd-45f8-bda0-8bce15e1c95b",
+              "name": "Scheduler job details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "scheduler",
+                    "jobs",
+                    "{{owner}},{{job_name}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"owner\": \"string\",\n  \"job_name\": \"string\",\n  \"job_type\": \"string\",\n  \"state\": \"string\",\n  \"enabled\": false,\n  \"next_run_date\": \"2016-04-12T16:10:15.889Z\",\n  \"last_start_date\": \"1965-01-12T01:18:13.149Z\",\n  \"repeat_interval\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ef6b892-7d21-4f4e-992e-7106c2ad263e",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "scheduler",
+                    "jobs",
+                    "{{owner}},{{job_name}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4891,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8f56620-cd3c-4223-88a7-0d6991820949",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "scheduler",
+                    "jobs",
+                    "{{owner}},{{job_name}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 4891,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "owner"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) ",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "job_name"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8d14674b-d23f-4a16-9dfc-93750ead4eed",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Scheduler API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+      "type": "text/plain"
+    }
+  }
+}

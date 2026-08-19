@@ -1,0 +1,2503 @@
+{
+  "item": [
+    {
+      "id": "2c7672ed-0975-4e3e-92dd-0121cb8fa9a7",
+      "name": "General",
+      "description": {
+        "content": "Core database instance status, version, and configuration services",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b84f2d7-5643-4931-b0fe-de85ffb78b74",
+          "name": "Oracle Database Get database status",
+          "request": {
+            "name": "Oracle Database Get database status",
+            "description": {
+              "content": "Returns the current status of the Oracle Database instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55abbe9e-36f2-4f1f-9472-36a9237001ee",
+              "name": "Database status retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"MOUNTED\",\n  \"instance_name\": \"string\",\n  \"host_name\": \"string\",\n  \"database_role\": \"string\",\n  \"open_mode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b5b64e5-a54b-4452-9f8e-df36d9c2f17e",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b36d01fc-6275-4122-a5d4-46409a5f4c13",
+          "name": "Oracle Database Get database version",
+          "request": {
+            "name": "Oracle Database Get database version",
+            "description": {
+              "content": "Returns the version information of the Oracle Database instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "66e79057-a930-42eb-b959-2fc835b8ab72",
+              "name": "Database version retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"version_full\": \"string\",\n  \"banner\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b2dad0c-260a-42db-bbe3-41257d675727",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e211b1bd-4f7c-4fd6-92c3-eb0c6c0f4b7b",
+          "name": "Oracle Database Get all database components",
+          "request": {
+            "name": "Oracle Database Get all database components",
+            "description": {
+              "content": "Returns a list of all installed database components and their status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "components",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a86a46f-3027-4618-b8a1-20f87eb458c7",
+              "name": "Components retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "components",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"comp_id\": \"string\",\n      \"comp_name\": \"string\",\n      \"version\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"comp_id\": \"string\",\n      \"comp_name\": \"string\",\n      \"version\": \"string\",\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9347cb63-3c5f-4c50-abaf-b46a027fa35f",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "components",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d1e87d7-e77d-4f5f-81ed-7bdac9b177c6",
+          "name": "Oracle Database Get all database parameters",
+          "request": {
+            "name": "Oracle Database Get all database parameters",
+            "description": {
+              "content": "Returns all database initialization parameters and their current values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "parameters",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Number of items to skip before returning results"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4bdc77a-420f-403e-b175-ddf120fd49b0",
+              "name": "Parameters retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "parameters",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"value\": \"string\",\n      \"display_value\": \"string\",\n      \"isdefault\": \"string\",\n      \"ismodified\": \"string\",\n      \"type\": \"string\",\n      \"description\": \"string\"\n    },\n    {\n      \"name\": \"string\",\n      \"value\": \"string\",\n      \"display_value\": \"string\",\n      \"isdefault\": \"string\",\n      \"ismodified\": \"string\",\n      \"type\": \"string\",\n      \"description\": \"string\"\n    }\n  ],\n  \"hasMore\": true,\n  \"limit\": 2329,\n  \"offset\": 654,\n  \"count\": 9598,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://rtFGWNgrZOxZAtVlgF.cxnDsYxi,nxpLEvBLOx2bbcXNrjbXsr+q2GKHizwLFeGHz42YZDomU\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://TQMglAuTpXYhTnTV.haRUDGqJMEP3V8GqJa.\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3aa432d7-c1b8-405c-91f2-2473066ae59b",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "parameters",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2fd00b6d-1275-4b0c-ad38-4da53dbf3ae0",
+          "name": "Oracle Database Get a specific database parameter",
+          "request": {
+            "name": "Oracle Database Get a specific database parameter",
+            "description": {
+              "content": "Returns the value and metadata for a specific database parameter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "parameters",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) The name of the database parameter"
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "246a47e4-3baa-4472-996a-9a0317324243",
+              "name": "Parameter retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "parameters",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the database parameter"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"value\": \"string\",\n  \"display_value\": \"string\",\n  \"isdefault\": \"string\",\n  \"ismodified\": \"string\",\n  \"type\": \"string\",\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7361822f-c46c-4004-a046-bb2ef4479fdd",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "parameters",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the database parameter"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9199f1bc-f45a-48b9-927b-ab2817a767d0",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "parameters",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) The name of the database parameter"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "755d4c69-a282-4411-9542-1c21ebba2c38",
+          "name": "Oracle Database Get all database users",
+          "request": {
+            "name": "Oracle Database Get all database users",
+            "description": {
+              "content": "Returns a list of all database users and their properties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "security",
+                "users",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81e1e870-27a7-448b-a9b9-f3c7aacccbb0",
+              "name": "Users retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "security",
+                    "users",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"username\": \"string\",\n      \"account_status\": \"string\",\n      \"default_tablespace\": \"string\",\n      \"created\": \"1990-11-25T07:59:02.791Z\"\n    },\n    {\n      \"username\": \"string\",\n      \"account_status\": \"string\",\n      \"default_tablespace\": \"string\",\n      \"created\": \"2008-12-17T04:55:53.407Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b00fd982-b155-4f4f-a6d1-b2d6caf1b438",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "security",
+                    "users",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5ca49195-a90a-41f2-9f23-959a281bf7a5",
+          "name": "Oracle Database Get storage usage in bytes",
+          "request": {
+            "name": "Oracle Database Get storage usage in bytes",
+            "description": {
+              "content": "Returns the total storage usage of the database in bytes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "storage",
+                "bytes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27006bd6-404e-4992-a59a-ccbecc1a8a1c",
+              "name": "Storage information retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "storage",
+                    "bytes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_bytes\": 539,\n  \"used_bytes\": 4175,\n  \"free_bytes\": 6176\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36077d12-5d2e-45f5-a36b-8a476f3cafa0",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "storage",
+                    "bytes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95035056-cc32-4679-9749-a89579ef9121",
+          "name": "Oracle Database Get all tablespaces storage information",
+          "request": {
+            "name": "Oracle Database Get all tablespaces storage information",
+            "description": {
+              "content": "Returns storage information for all tablespaces.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "storage",
+                "tablespaces",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4240933f-6ba3-4e73-b268-1bab5a10cbd5",
+              "name": "Tablespace storage information retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "storage",
+                    "tablespaces",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"tablespace_name\": \"string\",\n      \"status\": \"string\",\n      \"contents\": \"string\",\n      \"block_size\": 9922,\n      \"allocated_bytes\": 4146,\n      \"used_bytes\": 4518,\n      \"free_bytes\": 7685\n    },\n    {\n      \"tablespace_name\": \"string\",\n      \"status\": \"string\",\n      \"contents\": \"string\",\n      \"block_size\": 3062,\n      \"allocated_bytes\": 9000,\n      \"used_bytes\": 8561,\n      \"free_bytes\": 52\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac919e91-1b73-4f95-a758-da327b2c4e59",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "storage",
+                    "tablespaces",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c391114-ae34-4475-af21-5e461bd1b356",
+          "name": "Oracle Database Get tablespace details",
+          "request": {
+            "name": "Oracle Database Get tablespace details",
+            "description": {
+              "content": "Returns detailed storage information for a specific tablespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "storage",
+                "tablespaces",
+                ":tablespace_name",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tablespace_name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06538c7a-24ef-4648-aece-6aefbf7c2fe7",
+              "name": "Tablespace details retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "storage",
+                    "tablespaces",
+                    ":tablespace_name",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tablespace_name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tablespace_name\": \"string\",\n  \"status\": \"string\",\n  \"contents\": \"string\",\n  \"block_size\": 7496,\n  \"allocated_bytes\": 8076,\n  \"used_bytes\": 2764,\n  \"free_bytes\": 6712\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37423f55-c05b-4655-a486-cd6a826d52f5",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "storage",
+                    "tablespaces",
+                    ":tablespace_name",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tablespace_name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5077846-c310-4af8-a340-d09c8d9fbbef",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "storage",
+                    "tablespaces",
+                    ":tablespace_name",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tablespace_name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "015abdc4-0a9c-4a11-9820-1698bd6cd116",
+          "name": "Oracle Database Get tablespace datafiles",
+          "request": {
+            "name": "Oracle Database Get tablespace datafiles",
+            "description": {
+              "content": "Returns datafiles associated with a specific tablespace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "storage",
+                "tablespaces",
+                ":tablespace_name",
+                "datafiles",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tablespace_name",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1684ca0e-4e96-47bc-92a3-53435a35a556",
+              "name": "Datafiles retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "storage",
+                    "tablespaces",
+                    ":tablespace_name",
+                    "datafiles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tablespace_name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"file_name\": \"string\",\n      \"file_id\": 6071,\n      \"tablespace_name\": \"string\",\n      \"bytes\": 4311,\n      \"status\": \"string\"\n    },\n    {\n      \"file_name\": \"string\",\n      \"file_id\": 6819,\n      \"tablespace_name\": \"string\",\n      \"bytes\": 4612,\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7c2d3fd-9d94-4641-9d14-ff7f5e300ada",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "storage",
+                    "tablespaces",
+                    ":tablespace_name",
+                    "datafiles",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tablespace_name",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ae321c36-92bf-4fb3-8648-df438127100c",
+          "name": "Oracle Database Get feature usage statistics",
+          "request": {
+            "name": "Oracle Database Get feature usage statistics",
+            "description": {
+              "content": "Returns usage statistics for database features.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "feature_usage",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a7796fd-c5b7-4e27-849e-3a6a23561508",
+              "name": "Feature usage retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "feature_usage",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"name\": \"string\",\n      \"currently_used\": true,\n      \"first_usage_date\": \"2024-12-19T23:27:38.273Z\",\n      \"last_usage_date\": \"1986-04-17T09:28:53.736Z\"\n    },\n    {\n      \"name\": \"string\",\n      \"currently_used\": false,\n      \"first_usage_date\": \"1960-01-25T06:08:31.964Z\",\n      \"last_usage_date\": \"1989-10-04T03:03:03.016Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc97ae80-6956-4d25-8070-cbe95f70c408",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "feature_usage",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bf73425-217a-403d-a593-6d583b49eb1a",
+          "name": "Oracle Database Start a sessionless transaction",
+          "request": {
+            "name": "Oracle Database Start a sessionless transaction",
+            "description": {
+              "content": "Starts a new sessionless transaction and returns its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "sessionless-transactions",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e5566cc6-6b68-4801-ae05-ee261eda527f",
+              "name": "Transaction started successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "sessionless-transactions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionlessTransactionID\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9fc331e1-88f6-40c9-8908-23de049bb1f5",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "sessionless-transactions",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1314c74a-3475-4040-abf4-260ade128e22",
+          "name": "Oracle Database Commit a sessionless transaction",
+          "request": {
+            "name": "Oracle Database Commit a sessionless transaction",
+            "description": {
+              "content": "Commits the specified sessionless transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "sessionless-transactions",
+                ":sessionlessTransactionID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionlessTransactionID",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1612026d-3dd5-45c1-9669-f56162dfbdb1",
+              "name": "Transaction committed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "sessionless-transactions",
+                    ":sessionlessTransactionID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionlessTransactionID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "67a154b6-227d-4ab0-b7e0-b19ebc8e5e14",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "sessionless-transactions",
+                    ":sessionlessTransactionID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionlessTransactionID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc73c45f-5977-4d9b-b227-a4a2246a1b7b",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "sessionless-transactions",
+                    ":sessionlessTransactionID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionlessTransactionID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4308dbcf-4d16-4227-a836-1cb9b4c08a89",
+          "name": "Oracle Database Rollback a sessionless transaction",
+          "request": {
+            "name": "Oracle Database Rollback a sessionless transaction",
+            "description": {
+              "content": "Rolls back the specified sessionless transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "database",
+                "sessionless-transactions",
+                ":sessionlessTransactionID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sessionlessTransactionID",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "75b6df66-8bec-4960-9ca1-d56931a26265",
+              "name": "Transaction rolled back successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "sessionless-transactions",
+                    ":sessionlessTransactionID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionlessTransactionID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d56c8276-7381-41dd-bc89-f7460b91ab1a",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "sessionless-transactions",
+                    ":sessionlessTransactionID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionlessTransactionID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f87abc41-005b-4126-a927-db53d246f746",
+              "name": "The specified resource was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "database",
+                    "sessionless-transactions",
+                    ":sessionlessTransactionID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sessionlessTransactionID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 8709,\n  \"message\": \"string\",\n  \"type\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dccf83fc-216a-4d41-96e3-7ca56f376a05",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX General API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+      "type": "text/plain"
+    }
+  }
+}

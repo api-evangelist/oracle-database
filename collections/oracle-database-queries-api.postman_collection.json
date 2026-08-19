@@ -1,0 +1,373 @@
+{
+  "item": [
+    {
+      "id": "da46d8b3-87ac-4c4b-8958-141c23e6e03f",
+      "name": "Queries",
+      "description": {
+        "content": "Query by Example (QBE) and filter operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aca988f0-85cf-470d-802e-9519ce4bd04d",
+          "name": "Oracle Database Query collection with QBE filter",
+          "request": {
+            "name": "Oracle Database Query collection with QBE filter",
+            "description": {
+              "content": "Queries the collection using a Query by Example (QBE) filter specification in the request body. Returns matching documents with optional pagination. This endpoint is equivalent to /{collection}/?action=query.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "custom-actions",
+                "query",
+                ":collection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of documents to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Number of documents to skip"
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Control which fields are returned"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "collection",
+                  "description": "(Required) The name of the SODA collection"
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": \"string\",\n  \"key_1\": true,\n  \"key_2\": 5970\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "131983ab-b921-4b6b-9d2e-a1ba0205b09d",
+              "name": "Query results returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom-actions",
+                    "query",
+                    ":collection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection",
+                      "description": "(Required) The name of the SODA collection"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"John\",\n  \"salary\": {\n    \"$gt\": 50000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"etag\": \"string\",\n      \"lastModified\": \"1967-04-14T08:49:23.299Z\",\n      \"created\": \"1985-08-22T12:52:58.118Z\",\n      \"value\": {},\n      \"mediaType\": \"string\",\n      \"bytes\": 9250\n    },\n    {\n      \"id\": \"string\",\n      \"etag\": \"string\",\n      \"lastModified\": \"2016-06-20T16:46:18.428Z\",\n      \"created\": \"2012-06-17T19:32:12.940Z\",\n      \"value\": {},\n      \"mediaType\": \"string\",\n      \"bytes\": 6916\n    }\n  ],\n  \"hasMore\": true,\n  \"limit\": 2009,\n  \"offset\": 2306,\n  \"count\": 1930,\n  \"totalResults\": 8561,\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://oaLualFgwtLvxSFqYUt.uylma20dO\",\n      \"mediaType\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"https://BZztsAnnAzCTMlBfkexprpN.xyEoRoP7e+\",\n      \"mediaType\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8d7439f-53fa-47bc-9c50-a92400cf6fe6",
+              "name": "Authentication required or credentials invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom-actions",
+                    "query",
+                    ":collection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection",
+                      "description": "(Required) The name of the SODA collection"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"John\",\n  \"salary\": {\n    \"$gt\": 50000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3096,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc112c96-7d50-4cbb-9e0f-d566a6b3f65e",
+              "name": "The specified collection or document was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "custom-actions",
+                    "query",
+                    ":collection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "collection",
+                      "description": "(Required) The name of the SODA collection"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"John\",\n  \"salary\": {\n    \"$gt\": 50000\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 3096,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "094f3128-4c2e-4194-85e2-4b3495b43d96",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Queries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+      "type": "text/plain"
+    }
+  }
+}

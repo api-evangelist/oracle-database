@@ -1,0 +1,258 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Data Dictionary API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Dictionary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all tables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/objects/tables/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before returning results"
+              }
+            ]
+          },
+          "docs": "Returns metadata for all database tables accessible to the current user."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific table",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/objects/tables/:owner,:table_name",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific database table."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all table columns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/objects/columns/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before returning results"
+              }
+            ]
+          },
+          "docs": "Returns column metadata for all tables."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific column",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/objects/columns/:owner,:table_name,:column_name",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "table_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "column_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific table column."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all indexes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/objects/indexes/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before returning results"
+              }
+            ]
+          },
+          "docs": "Returns metadata for all database indexes."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/objects/indexes/:owner,:index_name",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "index_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific database index."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all functions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/objects/functions/"
+          },
+          "docs": "Returns metadata for all database functions."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific function",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/objects/functions/:object_id",
+            "params": [
+              {
+                "name": "object_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific database function."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all foreign keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/objects/foreign_keys/"
+          },
+          "docs": "Returns metadata for all foreign key constraints."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all database links",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/db_links/"
+          },
+          "docs": "Returns metadata for all database links."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific database link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/db_links/:owner,:db_link",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "db_link",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns metadata for a specific database link."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all tablespaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/tablespaces/"
+          },
+          "docs": "Returns data dictionary information for all tablespaces."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

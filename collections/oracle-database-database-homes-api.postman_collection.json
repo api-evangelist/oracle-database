@@ -1,0 +1,889 @@
+{
+  "item": [
+    {
+      "id": "5f8b8bb3-0c38-4ca9-a763-d9a7d3525ed0",
+      "name": "Database Homes",
+      "description": {
+        "content": "Manage Oracle Database Home directories",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "538b52f1-0226-493a-9a97-2ed0ccaf5c14",
+          "name": "Oracle Database List Database Homes",
+          "request": {
+            "name": "Oracle Database List Database Homes",
+            "description": {
+              "content": "Returns a list of Database Homes in the specified compartment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dbHomes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment"
+                },
+                {
+                  "disabled": false,
+                  "key": "dbSystemId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Pagination token from a previous response"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34b129c6-f106-48c4-bbbc-4a1de3be5ade",
+              "name": "Database Homes listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbHomes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbSystemId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"compartmentId\": \"string\",\n    \"displayName\": \"string\",\n    \"dbVersion\": \"string\",\n    \"lifecycleState\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"compartmentId\": \"string\",\n    \"displayName\": \"string\",\n    \"dbVersion\": \"string\",\n    \"lifecycleState\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1fb8adb7-4e62-4177-8ecf-d3d1d63e5069",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbHomes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbSystemId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e59792df-effc-409a-9cee-82b5594710a1",
+          "name": "Oracle Database Create a Database Home",
+          "request": {
+            "name": "Oracle Database Create a Database Home",
+            "description": {
+              "content": "Creates a new Database Home in the specified DB System.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dbHomes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dbVersion\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"database\": {\n    \"dbHomeId\": \"<string>\",\n    \"dbName\": \"<string>\",\n    \"adminPassword\": \"<password>\",\n    \"characterSet\": \"<string>\",\n    \"ncharacterSet\": \"<string>\",\n    \"pdbName\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f7d0b38-bc22-4ebc-ad77-e7ef0243f72b",
+              "name": "Database Home creation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbHomes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dbVersion\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"database\": {\n    \"dbHomeId\": \"string\",\n    \"dbName\": \"string\",\n    \"adminPassword\": \"string\",\n    \"characterSet\": \"string\",\n    \"ncharacterSet\": \"string\",\n    \"pdbName\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"compartmentId\": \"string\",\n  \"displayName\": \"string\",\n  \"dbSystemId\": \"string\",\n  \"dbVersion\": \"string\",\n  \"lifecycleState\": \"string\",\n  \"timeCreated\": \"1984-05-30T17:00:12.236Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e96c3ec0-0974-4e67-89b4-ae11627355f3",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbHomes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dbVersion\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"database\": {\n    \"dbHomeId\": \"string\",\n    \"dbName\": \"string\",\n    \"adminPassword\": \"string\",\n    \"characterSet\": \"string\",\n    \"ncharacterSet\": \"string\",\n    \"pdbName\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2d1f72b-bcd1-44bc-a8ac-fa688b6f8dfb",
+          "name": "Oracle Database Get a Database Home",
+          "request": {
+            "name": "Oracle Database Get a Database Home",
+            "description": {
+              "content": "Returns details about the specified Database Home.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dbHomes",
+                ":dbHomeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dbHomeId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "916873c6-c942-4afb-a953-e19d56945793",
+              "name": "Database Home details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbHomes",
+                    ":dbHomeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbHomeId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"compartmentId\": \"string\",\n  \"displayName\": \"string\",\n  \"dbSystemId\": \"string\",\n  \"dbVersion\": \"string\",\n  \"lifecycleState\": \"string\",\n  \"timeCreated\": \"1984-05-30T17:00:12.236Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83c866d2-bd7b-43c1-a1e4-84c218062a58",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbHomes",
+                    ":dbHomeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbHomeId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8049ae6-3cb7-4e8f-ad68-ba5c3c556e28",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbHomes",
+                    ":dbHomeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbHomeId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "670cc228-65b0-4bb0-a3d7-46105148175b",
+          "name": "Oracle Database Delete a Database Home",
+          "request": {
+            "name": "Oracle Database Delete a Database Home",
+            "description": {
+              "content": "Deletes the specified Database Home.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dbHomes",
+                ":dbHomeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dbHomeId",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "ETag value for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5db78944-890b-42cc-897c-072f0e38ff9d",
+              "name": "Deletion accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbHomes",
+                    ":dbHomeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbHomeId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "937c86fd-e317-4865-9827-639d882112bb",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbHomes",
+                    ":dbHomeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbHomeId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18e730dd-21a0-4dd6-b009-7a1275b4ed66",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbHomes",
+                    ":dbHomeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbHomeId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "33af18e0-90ef-43ac-96d4-30b22741fb05",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Database Homes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Documents API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get documents from a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/:collection/",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of documents to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of documents to skip (default 0)"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Control which fields are returned"
+              },
+              {
+                "name": "totalResults",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response (may be slow on large collections)"
+              },
+              {
+                "name": "fromID",
+                "value": "",
+                "type": "query",
+                "description": "Start after this key (ascending order)"
+              },
+              {
+                "name": "toID",
+                "value": "",
+                "type": "query",
+                "description": "Stop before this key (descending order)"
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Only return documents modified after this timestamp"
+              },
+              {
+                "name": "until",
+                "value": "",
+                "type": "query",
+                "description": "Only return documents modified before this timestamp"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "QBE filter specification as a JSON object"
+              }
+            ]
+          },
+          "docs": "Retrieves documents from the specified collection with optional filtering, pagination, and field selection. Supports Query by Example (QBE) filter specifications via the q parameter."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Insert a new document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/:collection/",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Inserts a new JSON document into the collection with a server-assigned key. Returns the generated key, etag, and timestamps in the response."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Insert or replace document (no key in URL)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/:collection/",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Inserts or replaces a document. Used with client-assigned keys included in the document body."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a document by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/:collection/:key",
+            "headers": [
+              {
+                "name": "If-Modified-Since",
+                "value": ""
+              },
+              {
+                "name": "If-None-Match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the document"
+              }
+            ]
+          },
+          "docs": "Retrieves a single document from the collection by its unique key. Supports conditional retrieval via If-Modified-Since and If-None-Match headers."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Replace or insert a document by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/:collection/:key",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces an existing document or inserts a new one at the specified key. Used for client-assigned keys."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Patch a document using JSON Patch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://database.{region}.oraclecloud.com/20160918/:collection/:key",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a document using the JSON Patch specification (RFC 6902). The request body must contain an array of patch operations."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a document by key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/:collection/:key",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "The unique key of the document"
+              }
+            ]
+          },
+          "docs": "Deletes a single document from the collection by its unique key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

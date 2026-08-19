@@ -1,0 +1,1281 @@
+{
+  "item": [
+    {
+      "id": "71068683-d9eb-4897-84a0-567768f3bdc5",
+      "name": "DB Systems",
+      "description": {
+        "content": "Manage Oracle Database Cloud Service DB Systems",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2fd69ea1-de69-4d60-b4de-0af8575a094e",
+          "name": "Oracle Database List DB Systems",
+          "request": {
+            "name": "Oracle Database List DB Systems",
+            "description": {
+              "content": "Returns a list of DB Systems in the specified compartment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dbSystems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Pagination token from a previous response"
+                },
+                {
+                  "disabled": false,
+                  "key": "displayName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "lifecycleState",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d8184fa-6dc2-461d-bb93-4e22c38841e4",
+              "name": "DB Systems listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lifecycleState",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"compartmentId\": \"string\",\n    \"displayName\": \"string\",\n    \"shape\": \"string\",\n    \"lifecycleState\": \"string\",\n    \"databaseEdition\": \"string\",\n    \"cpuCoreCount\": 6034,\n    \"timeCreated\": \"1969-07-23T17:01:31.105Z\"\n  },\n  {\n    \"id\": \"string\",\n    \"compartmentId\": \"string\",\n    \"displayName\": \"string\",\n    \"shape\": \"string\",\n    \"lifecycleState\": \"string\",\n    \"databaseEdition\": \"string\",\n    \"cpuCoreCount\": 5696,\n    \"timeCreated\": \"1956-04-02T22:09:27.718Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86251787-4483-45df-a1cf-c768a06c0f60",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lifecycleState",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc642148-e275-4d75-abb3-262cf0678274",
+          "name": "Oracle Database Launch a DB System",
+          "request": {
+            "name": "Oracle Database Launch a DB System",
+            "description": {
+              "content": "Creates and launches a new DB System with the specified configuration. This is a long-running operation tracked via work requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dbSystems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Unique retry token to prevent duplicate requests",
+                "key": "opc-retry-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hostname\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"displayName\": \"<string>\",\n  \"nodeCount\": \"<integer>\",\n  \"initialDataStorageSizeInGB\": \"<integer>\",\n  \"databaseEdition\": \"<string>\",\n  \"dbHome\": {\n    \"dbVersion\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"database\": {\n      \"dbHomeId\": \"<string>\",\n      \"dbName\": \"<string>\",\n      \"adminPassword\": \"<password>\",\n      \"characterSet\": \"<string>\",\n      \"ncharacterSet\": \"<string>\",\n      \"pdbName\": \"<string>\"\n    }\n  },\n  \"licenseModel\": \"<string>\",\n  \"diskRedundancy\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2d105687-c1ab-4fc9-92e8-4624cbab365c",
+              "name": "DB System launch initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique retry token to prevent duplicate requests",
+                    "key": "opc-retry-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hostname\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"displayName\": \"<string>\",\n  \"nodeCount\": \"<integer>\",\n  \"initialDataStorageSizeInGB\": \"<integer>\",\n  \"databaseEdition\": \"<string>\",\n  \"dbHome\": {\n    \"dbVersion\": \"string\",\n    \"displayName\": \"string\",\n    \"database\": {\n      \"dbHomeId\": \"string\",\n      \"dbName\": \"string\",\n      \"adminPassword\": \"string\",\n      \"characterSet\": \"string\",\n      \"ncharacterSet\": \"string\",\n      \"pdbName\": \"string\"\n    }\n  },\n  \"licenseModel\": \"<string>\",\n  \"diskRedundancy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "opc-work-request-id",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"compartmentId\": \"string\",\n  \"displayName\": \"string\",\n  \"availabilityDomain\": \"string\",\n  \"shape\": \"string\",\n  \"cpuCoreCount\": 8294,\n  \"nodeCount\": 6524,\n  \"dataStorageSizeInGBs\": 4222,\n  \"databaseEdition\": \"ENTERPRISE_EDITION\",\n  \"lifecycleState\": \"string\",\n  \"hostname\": \"string\",\n  \"domain\": \"string\",\n  \"subnetId\": \"string\",\n  \"sshPublicKeys\": [\n    \"string\",\n    \"string\"\n  ],\n  \"timeCreated\": \"1976-06-19T00:07:07.401Z\",\n  \"version\": \"string\",\n  \"licenseModel\": \"string\",\n  \"diskRedundancy\": \"NORMAL\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b99563ff-e6ef-478c-b8d8-b8b9a12ad600",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique retry token to prevent duplicate requests",
+                    "key": "opc-retry-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hostname\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"displayName\": \"<string>\",\n  \"nodeCount\": \"<integer>\",\n  \"initialDataStorageSizeInGB\": \"<integer>\",\n  \"databaseEdition\": \"<string>\",\n  \"dbHome\": {\n    \"dbVersion\": \"string\",\n    \"displayName\": \"string\",\n    \"database\": {\n      \"dbHomeId\": \"string\",\n      \"dbName\": \"string\",\n      \"adminPassword\": \"string\",\n      \"characterSet\": \"string\",\n      \"ncharacterSet\": \"string\",\n      \"pdbName\": \"string\"\n    }\n  },\n  \"licenseModel\": \"<string>\",\n  \"diskRedundancy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83760b47-fe95-46f8-bfe5-27b55849ba95",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique retry token to prevent duplicate requests",
+                    "key": "opc-retry-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"availabilityDomain\": \"<string>\",\n  \"shape\": \"<string>\",\n  \"subnetId\": \"<string>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"hostname\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"displayName\": \"<string>\",\n  \"nodeCount\": \"<integer>\",\n  \"initialDataStorageSizeInGB\": \"<integer>\",\n  \"databaseEdition\": \"<string>\",\n  \"dbHome\": {\n    \"dbVersion\": \"string\",\n    \"displayName\": \"string\",\n    \"database\": {\n      \"dbHomeId\": \"string\",\n      \"dbName\": \"string\",\n      \"adminPassword\": \"string\",\n      \"characterSet\": \"string\",\n      \"ncharacterSet\": \"string\",\n      \"pdbName\": \"string\"\n    }\n  },\n  \"licenseModel\": \"<string>\",\n  \"diskRedundancy\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c21a98f-281a-415b-ac66-9aa4f68ddf05",
+          "name": "Oracle Database Get a DB System",
+          "request": {
+            "name": "Oracle Database Get a DB System",
+            "description": {
+              "content": "Returns details about the specified DB System.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dbSystems",
+                ":dbSystemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dbSystemId",
+                  "description": "(Required) The OCID of the DB System"
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "92c58a20-71e9-4a8e-9f7e-493601f13926",
+              "name": "DB System details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbSystemId",
+                      "description": "(Required) The OCID of the DB System"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"compartmentId\": \"string\",\n  \"displayName\": \"string\",\n  \"availabilityDomain\": \"string\",\n  \"shape\": \"string\",\n  \"cpuCoreCount\": 8294,\n  \"nodeCount\": 6524,\n  \"dataStorageSizeInGBs\": 4222,\n  \"databaseEdition\": \"ENTERPRISE_EDITION\",\n  \"lifecycleState\": \"string\",\n  \"hostname\": \"string\",\n  \"domain\": \"string\",\n  \"subnetId\": \"string\",\n  \"sshPublicKeys\": [\n    \"string\",\n    \"string\"\n  ],\n  \"timeCreated\": \"1976-06-19T00:07:07.401Z\",\n  \"version\": \"string\",\n  \"licenseModel\": \"string\",\n  \"diskRedundancy\": \"NORMAL\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83b7d04f-1c74-4354-8cc1-b920a12b8185",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbSystemId",
+                      "description": "(Required) The OCID of the DB System"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5016600-a1e5-4f8a-8a55-9772b7e4088d",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbSystemId",
+                      "description": "(Required) The OCID of the DB System"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "496ea0f2-31f4-4306-b165-6fcaf8000ee4",
+          "name": "Oracle Database Update a DB System",
+          "request": {
+            "name": "Oracle Database Update a DB System",
+            "description": {
+              "content": "Updates the specified DB System configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dbSystems",
+                ":dbSystemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dbSystemId",
+                  "description": "(Required) The OCID of the DB System"
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "ETag value for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"freeformTags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f2d9fa0-041c-465c-9ec1-1d5122ec11af",
+              "name": "DB System update initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbSystemId",
+                      "description": "(Required) The OCID of the DB System"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"freeformTags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"compartmentId\": \"string\",\n  \"displayName\": \"string\",\n  \"availabilityDomain\": \"string\",\n  \"shape\": \"string\",\n  \"cpuCoreCount\": 8294,\n  \"nodeCount\": 6524,\n  \"dataStorageSizeInGBs\": 4222,\n  \"databaseEdition\": \"ENTERPRISE_EDITION\",\n  \"lifecycleState\": \"string\",\n  \"hostname\": \"string\",\n  \"domain\": \"string\",\n  \"subnetId\": \"string\",\n  \"sshPublicKeys\": [\n    \"string\",\n    \"string\"\n  ],\n  \"timeCreated\": \"1976-06-19T00:07:07.401Z\",\n  \"version\": \"string\",\n  \"licenseModel\": \"string\",\n  \"diskRedundancy\": \"NORMAL\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a58b628-3135-42eb-8fa6-bb898842b85d",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbSystemId",
+                      "description": "(Required) The OCID of the DB System"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"freeformTags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "353d2d57-4299-4b1f-9961-8b4aeec7d2c5",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbSystemId",
+                      "description": "(Required) The OCID of the DB System"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"sshPublicKeys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"dataStorageSizeInGBs\": \"<integer>\",\n  \"freeformTags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84ebd9d3-5431-4b2c-80cb-1606740372f8",
+          "name": "Oracle Database Terminate a DB System",
+          "request": {
+            "name": "Oracle Database Terminate a DB System",
+            "description": {
+              "content": "Terminates and deletes the specified DB System.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dbSystems",
+                ":dbSystemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dbSystemId",
+                  "description": "(Required) The OCID of the DB System"
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "ETag value for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa689b40-917e-460e-9470-5ba80c0f0069",
+              "name": "Termination accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbSystemId",
+                      "description": "(Required) The OCID of the DB System"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "opc-work-request-id",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "09924442-5881-4571-b1e7-18beca0633aa",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbSystemId",
+                      "description": "(Required) The OCID of the DB System"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5182f561-0744-4aa7-8d04-e6ccf1f29ba0",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dbSystems",
+                    ":dbSystemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dbSystemId",
+                      "description": "(Required) The OCID of the DB System"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "11614f4f-272b-44c2-9dcc-27b1bcd15cd6",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX DB Systems API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+      "type": "text/plain"
+    }
+  }
+}

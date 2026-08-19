@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX DB Systems API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DB Systems",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List DB Systems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbSystems",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "",
+                "type": "query",
+                "description": "The OCID of the compartment"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              },
+              {
+                "name": "displayName",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "lifecycleState",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of DB Systems in the specified compartment."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Launch a DB System",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbSystems",
+            "headers": [
+              {
+                "name": "opc-retry-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates and launches a new DB System with the specified configuration. This is a long-running operation tracked via work requests."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a DB System",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbSystems/:dbSystemId",
+            "params": [
+              {
+                "name": "dbSystemId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the DB System"
+              }
+            ]
+          },
+          "docs": "Returns details about the specified DB System."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update a DB System",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbSystems/:dbSystemId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dbSystemId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the DB System"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified DB System configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Terminate a DB System",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbSystems/:dbSystemId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dbSystemId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the DB System"
+              }
+            ]
+          },
+          "docs": "Terminates and deletes the specified DB System."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

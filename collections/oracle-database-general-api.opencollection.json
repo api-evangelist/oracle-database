@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX General API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "General",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get database status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/status"
+          },
+          "docs": "Returns the current status of the Oracle Database instance."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get database version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/version"
+          },
+          "docs": "Returns the version information of the Oracle Database instance."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all database components",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/components/"
+          },
+          "docs": "Returns a list of all installed database components and their status."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all database parameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/parameters/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before returning results"
+              }
+            ]
+          },
+          "docs": "Returns all database initialization parameters and their current values."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific database parameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/parameters/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the database parameter"
+              }
+            ]
+          },
+          "docs": "Returns the value and metadata for a specific database parameter."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all database users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/security/users/"
+          },
+          "docs": "Returns a list of all database users and their properties."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get storage usage in bytes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/storage/bytes"
+          },
+          "docs": "Returns the total storage usage of the database in bytes."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all tablespaces storage information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/storage/tablespaces/"
+          },
+          "docs": "Returns storage information for all tablespaces."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get tablespace details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/storage/tablespaces/:tablespace_name/",
+            "params": [
+              {
+                "name": "tablespace_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed storage information for a specific tablespace."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get tablespace datafiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/storage/tablespaces/:tablespace_name/datafiles/",
+            "params": [
+              {
+                "name": "tablespace_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns datafiles associated with a specific tablespace."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get feature usage statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/feature_usage/"
+          },
+          "docs": "Returns usage statistics for database features."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Start a sessionless transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/sessionless-transactions/"
+          },
+          "docs": "Starts a new sessionless transaction and returns its identifier."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Commit a sessionless transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/sessionless-transactions/:sessionlessTransactionID",
+            "params": [
+              {
+                "name": "sessionlessTransactionID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Commits the specified sessionless transaction."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Rollback a sessionless transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/sessionless-transactions/:sessionlessTransactionID",
+            "params": [
+              {
+                "name": "sessionlessTransactionID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Rolls back the specified sessionless transaction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

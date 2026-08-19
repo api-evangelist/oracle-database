@@ -1,0 +1,229 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Pluggable Databases API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pluggable Databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List pluggable databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/pluggableDatabases",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "",
+                "type": "query",
+                "description": "The OCID of the compartment"
+              },
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              }
+            ]
+          },
+          "docs": "Returns a list of pluggable databases."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/pluggableDatabases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new pluggable database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/pluggableDatabases/:pluggableDatabaseId",
+            "params": [
+              {
+                "name": "pluggableDatabaseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about the specified pluggable database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/pluggableDatabases/:pluggableDatabaseId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pluggableDatabaseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified pluggable database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/pluggableDatabases/:pluggableDatabaseId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "pluggableDatabaseId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified pluggable database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all pluggable databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/pdbs/"
+          },
+          "docs": "Returns a list of all pluggable databases in the container database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/pdbs/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new pluggable database in the container database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/pdbs/:pdb_name",
+            "params": [
+              {
+                "name": "pdb_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about a specific pluggable database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/pdbs/:pdb_name",
+            "params": [
+              {
+                "name": "pdb_name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates properties of a specific pluggable database including open/close state."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Drop a pluggable database",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/pdbs/:pdb_name",
+            "params": [
+              {
+                "name": "pdb_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Drops the specified pluggable database from the container database."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

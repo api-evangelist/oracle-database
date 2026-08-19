@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Metadata API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metadata",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get collection catalog with metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/metadata-catalog",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of collections to return"
+              },
+              {
+                "name": "fromID",
+                "value": "",
+                "type": "query",
+                "description": "Start from this collection name (inclusive)"
+              }
+            ]
+          },
+          "docs": "Lists all collections in the schema with full metadata and navigation links. Each collection includes its properties and links to the collection itself and its JSON schema."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get JSON schema for a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/metadata-catalog/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ]
+          },
+          "docs": "Retrieves the JSON schema describing the document structure for the specified collection, including collection properties and column configurations."
+        },
+        {
+          "info": {
+            "name": "Oracle Database List available custom actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/custom-actions/"
+          },
+          "docs": "Returns a list of available custom actions for SODA collections."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Collections API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List all collections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of collections to return"
+              },
+              {
+                "name": "fromID",
+                "value": "",
+                "type": "query",
+                "description": "Start listing from this collection name (inclusive)"
+              }
+            ]
+          },
+          "docs": "Returns a list of collection names for the current database schema. Supports pagination through limit and fromID parameters."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/:collection",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new document collection. This operation is idempotent - if the collection already exists, it returns 200 instead of 201. An optional request body can specify collection metadata configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/:collection/",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path",
+                "description": "The name of the SODA collection"
+              }
+            ]
+          },
+          "docs": "Deletes the entire collection and all documents it contains. This operation cannot be undone."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

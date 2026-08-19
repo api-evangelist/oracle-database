@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Database Homes API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Database Homes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List Database Homes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbHomes",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "",
+                "type": "query",
+                "description": "The OCID of the compartment"
+              },
+              {
+                "name": "dbSystemId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              }
+            ]
+          },
+          "docs": "Returns a list of Database Homes in the specified compartment."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a Database Home",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbHomes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Database Home in the specified DB System."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a Database Home",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbHomes/:dbHomeId",
+            "params": [
+              {
+                "name": "dbHomeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about the specified Database Home."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a Database Home",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dbHomes/:dbHomeId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "dbHomeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified Database Home."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

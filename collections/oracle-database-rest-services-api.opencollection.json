@@ -1,0 +1,260 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX REST Services API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "REST Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all REST modules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/rest/modules/"
+          },
+          "docs": "Returns a list of all custom REST API modules."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a REST module",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/rest/modules/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new custom REST API module with SQL or PL/SQL handlers."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update a REST module",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/rest/modules/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing REST API module."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all REST handlers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/rest/handlers/"
+          },
+          "docs": "Returns a list of all REST API handlers."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a REST handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/rest/handlers/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new REST API handler."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a REST handler",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/rest/handlers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes an existing REST API handler."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all OAuth clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/rest/clients/"
+          },
+          "docs": "Returns a list of all registered OAuth clients."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create an OAuth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/rest/clients/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new OAuth client for REST API authentication."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update an OAuth client",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/rest/clients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing OAuth client registration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a REST privilege",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/rest/privileges/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new privilege for controlling access to REST resources."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a REST role",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/rest/roles/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new role for grouping REST privileges."
+        },
+        {
+          "info": {
+            "name": "Oracle Database REST enable a database object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/rest/autorest/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enables automatic REST access for a database table, view, or PL/SQL object."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get ORDS properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/properties/"
+          },
+          "docs": "Returns all ORDS configuration properties."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Set an ORDS property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/properties/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets or updates an ORDS configuration property."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Unset an ORDS property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/ords/properties/:key",
+            "params": [
+              {
+                "name": "key",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes an ORDS configuration property, restoring the default value."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "APEX",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all APEX workspaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/apex/workspaces/"
+          },
+          "docs": "Returns a list of all Oracle APEX workspaces."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific APEX workspace",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/apex/workspaces/:workspace_name/",
+            "params": [
+              {
+                "name": "workspace_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about a specific Oracle APEX workspace."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get workspace applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/apex/workspaces/:workspace_name/applications/",
+            "params": [
+              {
+                "name": "workspace_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns applications in a specific APEX workspace."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create or update an APEX application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/apex/workspaces/:workspace_name/applications/:application_id",
+            "params": [
+              {
+                "name": "workspace_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new or updates an existing APEX application."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete an APEX application",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/apex/workspaces/:workspace_name/applications/:application_id",
+            "params": [
+              {
+                "name": "workspace_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes a specific APEX application."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get APEX instance overview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/apex/statistics/overview"
+          },
+          "docs": "Returns overview statistics for the APEX instance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

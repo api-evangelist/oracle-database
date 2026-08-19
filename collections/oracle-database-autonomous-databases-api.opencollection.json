@@ -1,0 +1,321 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Autonomous Databases API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Autonomous Databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List Autonomous Databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases",
+            "params": [
+              {
+                "name": "compartmentId",
+                "value": "",
+                "type": "query",
+                "description": "The OCID of the compartment"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              },
+              {
+                "name": "displayName",
+                "value": "",
+                "type": "query",
+                "description": "Filter by display name"
+              },
+              {
+                "name": "lifecycleState",
+                "value": "",
+                "type": "query",
+                "description": "Filter by lifecycle state"
+              },
+              {
+                "name": "dbWorkload",
+                "value": "",
+                "type": "query",
+                "description": "Filter by workload type"
+              }
+            ]
+          },
+          "docs": "Returns a list of Autonomous Databases in the specified compartment. Results can be filtered by display name, lifecycle state, and other parameters."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases",
+            "headers": [
+              {
+                "name": "opc-retry-token",
+                "value": ""
+              },
+              {
+                "name": "opc-request-id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Autonomous Database with the specified configuration. Supports OLTP, Data Warehouse, JSON Database, and APEX workload types."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId",
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ]
+          },
+          "docs": "Returns details about the specified Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified Autonomous Database. Supports scaling CPU, storage, and other configuration changes."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ]
+          },
+          "docs": "Terminates and deletes the specified Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Start an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId/actions/start",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ]
+          },
+          "docs": "Starts a stopped Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Stop an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId/actions/stop",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ]
+          },
+          "docs": "Stops a running Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Restart an Autonomous Database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId/actions/restart",
+            "headers": [
+              {
+                "name": "if-match",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ]
+          },
+          "docs": "Restarts the specified Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Generate database wallet",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabases/:autonomousDatabaseId/actions/generateWallet",
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "path",
+                "description": "The OCID of the Autonomous Database"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates and downloads a wallet zip file containing credentials for connecting to the Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database List Autonomous Database backups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabaseBackups",
+            "params": [
+              {
+                "name": "autonomousDatabaseId",
+                "value": "",
+                "type": "query",
+                "description": "The Autonomous Database OCID"
+              },
+              {
+                "name": "compartmentId",
+                "value": "",
+                "type": "query",
+                "description": "The OCID of the compartment"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              }
+            ]
+          },
+          "docs": "Returns a list of backups for the specified Autonomous Database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create an Autonomous Database backup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/autonomousDatabaseBackups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new manual backup for the specified Autonomous Database."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

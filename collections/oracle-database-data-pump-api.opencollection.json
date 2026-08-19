@@ -1,0 +1,116 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Data Pump API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Pump",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Create a Data Pump export job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/datapump/export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Data Pump export job for data and metadata extraction."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a Data Pump import job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/datapump/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Data Pump import job for data and metadata loading."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all Data Pump jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/datapump/jobs/"
+          },
+          "docs": "Returns a list of all Data Pump jobs."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific Data Pump job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/datapump/jobs/:owner_name,:job_name/",
+            "params": [
+              {
+                "name": "owner_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "job_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about a specific Data Pump job."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a Data Pump job file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/datapump/jobs/:owner_name,:job_name/:filename",
+            "params": [
+              {
+                "name": "owner_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "job_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "filename",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the contents of a specific Data Pump job output file."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

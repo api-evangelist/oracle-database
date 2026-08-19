@@ -1,0 +1,126 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX PDB Snapshots API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PDB Snapshots",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all PDB snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/snapshots/"
+          },
+          "docs": "Returns a list of all PDB snapshots."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a PDB snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/snapshots/"
+          },
+          "docs": "Creates a new snapshot of the current pluggable database state."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Configure automatic snapshots",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/snapshots/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Configures automatic snapshot scheduling for the PDB."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/snapshots/:snapshot_name",
+            "params": [
+              {
+                "name": "snapshot_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about a specific PDB snapshot."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create a named PDB snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/snapshots/:snapshot_name",
+            "params": [
+              {
+                "name": "snapshot_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Creates a new snapshot with the specified name."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Delete a PDB snapshot",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/snapshots/:snapshot_name",
+            "params": [
+              {
+                "name": "snapshot_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified PDB snapshot."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get snapshot mode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/snapshot_mode"
+          },
+          "docs": "Returns the current snapshot mode configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,154 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Performance API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Performance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all SQL statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/performance/sql_statements/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before returning results"
+              }
+            ]
+          },
+          "docs": "Returns performance statistics for all SQL statements in the shared pool."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get top SQL by CPU usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/performance/top_sql_statements/"
+          },
+          "docs": "Returns the top SQL statements ranked by CPU consumption."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get SQL statement statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/performance/sql_statements/:sql_id/",
+            "params": [
+              {
+                "name": "sql_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed statistics for a specific SQL statement."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get SQL statement text",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/performance/sql_statements/:sql_id/text",
+            "params": [
+              {
+                "name": "sql_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the full SQL text for a specific statement."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get SQL execution plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/performance/sql_statements/:sql_id/plan",
+            "params": [
+              {
+                "name": "sql_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the execution plan for a specific SQL statement."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get SQL statement history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/performance/sql_statements/:sql_id/history",
+            "params": [
+              {
+                "name": "sql_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns historical performance data for a specific SQL statement."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get active sessions history",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/performance/active_sessions_history/"
+          },
+          "docs": "Returns the active session history (ASH) data."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get active session history waits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/performance/active_sessions_history_waits/"
+          },
+          "docs": "Returns wait event data from the active session history."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

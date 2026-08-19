@@ -1,0 +1,2970 @@
+{
+  "item": [
+    {
+      "id": "92814675-f7d7-4a09-b143-de83965d27f6",
+      "name": "Autonomous Databases",
+      "description": {
+        "content": "Manage Oracle Autonomous Database instances",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8213c25e-c8d8-46a4-b6b2-2d514e19fbba",
+          "name": "Oracle Database List Autonomous Databases",
+          "request": {
+            "name": "Oracle Database List Autonomous Databases",
+            "description": {
+              "content": "Returns a list of Autonomous Databases in the specified compartment. Results can be filtered by display name, lifecycle state, and other parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Pagination token from a previous response"
+                },
+                {
+                  "disabled": false,
+                  "key": "displayName",
+                  "value": "<string>",
+                  "description": "Filter by display name"
+                },
+                {
+                  "disabled": false,
+                  "key": "lifecycleState",
+                  "value": "<string>",
+                  "description": "Filter by lifecycle state"
+                },
+                {
+                  "disabled": false,
+                  "key": "dbWorkload",
+                  "value": "<string>",
+                  "description": "Filter by workload type"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24ca370f-904f-4c2a-ba91-8121f24a8e52",
+              "name": "Autonomous Databases listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lifecycleState",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbWorkload",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Pagination token for next page",
+                  "key": "opc-next-page",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Unique request identifier",
+                  "key": "opc-request-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"compartmentId\": \"string\",\n    \"displayName\": \"string\",\n    \"dbName\": \"string\",\n    \"dbWorkload\": \"string\",\n    \"cpuCoreCount\": 4570,\n    \"dataStorageSizeInTBs\": 1507,\n    \"lifecycleState\": \"string\",\n    \"timeCreated\": \"2020-09-23T02:45:45.158Z\",\n    \"isFreeTier\": false\n  },\n  {\n    \"id\": \"string\",\n    \"compartmentId\": \"string\",\n    \"displayName\": \"string\",\n    \"dbName\": \"string\",\n    \"dbWorkload\": \"string\",\n    \"cpuCoreCount\": 9897,\n    \"dataStorageSizeInTBs\": 5535,\n    \"lifecycleState\": \"string\",\n    \"timeCreated\": \"2023-08-23T14:31:17.048Z\",\n    \"isFreeTier\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6aba7d8b-e2d6-4f7e-aa03-ecadadbc8251",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lifecycleState",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbWorkload",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a93d8d7-b9a0-467b-a761-5ea17a805bae",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lifecycleState",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbWorkload",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e223c1c2-fbe9-4f9c-a663-f379790a95dc",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "displayName",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lifecycleState",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dbWorkload",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3c91abd-ed93-4e88-8e9e-cf96d903c51b",
+          "name": "Oracle Database Create an Autonomous Database",
+          "request": {
+            "name": "Oracle Database Create an Autonomous Database",
+            "description": {
+              "content": "Creates a new Autonomous Database with the specified configuration. Supports OLTP, Data Warehouse, JSON Database, and APEX workload types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Unique retry token to prevent duplicate requests",
+                "key": "opc-retry-token",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Unique request identifier for tracing",
+                "key": "opc-request-id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"adminPassword\": \"<password>\",\n  \"displayName\": \"<string>\",\n  \"dbWorkload\": \"<string>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"licenseModel\": \"<string>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subnetId\": \"<string>\",\n  \"freeformTags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "25215687-76bf-453a-aea7-2d8631445a53",
+              "name": "Autonomous Database creation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique retry token to prevent duplicate requests",
+                    "key": "opc-retry-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique request identifier for tracing",
+                    "key": "opc-request-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"adminPassword\": \"<password>\",\n  \"displayName\": \"<string>\",\n  \"dbWorkload\": \"<string>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"licenseModel\": \"<string>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subnetId\": \"<string>\",\n  \"freeformTags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Entity tag for optimistic concurrency",
+                  "key": "etag",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Work request identifier for tracking",
+                  "key": "opc-work-request-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"compartmentId\": \"string\",\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"dbVersion\": \"string\",\n  \"dbWorkload\": \"APEX\",\n  \"cpuCoreCount\": 1814,\n  \"dataStorageSizeInTBs\": 7159,\n  \"dataStorageSizeInGBs\": 4538,\n  \"isAutoScalingEnabled\": false,\n  \"isDedicated\": true,\n  \"isFreeTier\": false,\n  \"lifecycleState\": \"AVAILABLE\",\n  \"connectionStrings\": {\n    \"high\": \"string\",\n    \"medium\": \"string\",\n    \"low\": \"string\"\n  },\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"http://jsJMceEmlJ.ogLNcO3+rCBjtDZ6RjoPapZFeF.wKcYmePbFlUA1hkaHRsj,-xaEJ.fd--NS-bhZ4u8VvA33E.PYxXU7i\",\n    \"apexUrl\": \"https://uyLtBvdyYUulhQUiMfzCwjGevUK.kdkcmBW2h5iKo+vmybr,iDr.oCYUFb1Pk1DZPMv9NDwcf9yi,4nRZCx1p\",\n    \"machineLearningUserManagementUrl\": \"http://cBLSRdfgHJa.ebtaYx0F\",\n    \"graphStudioUrl\": \"http://OlutN.qojcZWWmd+ir8IBNawb0l9deW,KEQSkVaP0ogyCB\"\n  },\n  \"timeCreated\": \"1957-03-11T16:57:41.708Z\",\n  \"licenseModel\": \"LICENSE_INCLUDED\",\n  \"whitelistedIps\": [\n    \"string\",\n    \"string\"\n  ],\n  \"freeformTags\": {\n    \"key_0\": \"string\"\n  },\n  \"definedTags\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee72d1a4-fe0d-44a3-a298-80ac2f498182",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique retry token to prevent duplicate requests",
+                    "key": "opc-retry-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique request identifier for tracing",
+                    "key": "opc-request-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"adminPassword\": \"<password>\",\n  \"displayName\": \"<string>\",\n  \"dbWorkload\": \"<string>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"licenseModel\": \"<string>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subnetId\": \"<string>\",\n  \"freeformTags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6edee5fe-04d4-4b2e-a4d6-efd83e03c691",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique retry token to prevent duplicate requests",
+                    "key": "opc-retry-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique request identifier for tracing",
+                    "key": "opc-request-id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compartmentId\": \"<string>\",\n  \"dbName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"adminPassword\": \"<password>\",\n  \"displayName\": \"<string>\",\n  \"dbWorkload\": \"<string>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"isFreeTier\": \"<boolean>\",\n  \"licenseModel\": \"<string>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"subnetId\": \"<string>\",\n  \"freeformTags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6919d5d9-cf50-4bd6-b814-99696f6327f9",
+          "name": "Oracle Database Get an Autonomous Database",
+          "request": {
+            "name": "Oracle Database Get an Autonomous Database",
+            "description": {
+              "content": "Returns details about the specified Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases",
+                ":autonomousDatabaseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autonomousDatabaseId",
+                  "description": "(Required) The OCID of the Autonomous Database"
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c19432f-2886-4b37-9bb1-3bdb7e44abf4",
+              "name": "Autonomous Database details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"compartmentId\": \"string\",\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"dbVersion\": \"string\",\n  \"dbWorkload\": \"APEX\",\n  \"cpuCoreCount\": 1814,\n  \"dataStorageSizeInTBs\": 7159,\n  \"dataStorageSizeInGBs\": 4538,\n  \"isAutoScalingEnabled\": false,\n  \"isDedicated\": true,\n  \"isFreeTier\": false,\n  \"lifecycleState\": \"AVAILABLE\",\n  \"connectionStrings\": {\n    \"high\": \"string\",\n    \"medium\": \"string\",\n    \"low\": \"string\"\n  },\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"http://jsJMceEmlJ.ogLNcO3+rCBjtDZ6RjoPapZFeF.wKcYmePbFlUA1hkaHRsj,-xaEJ.fd--NS-bhZ4u8VvA33E.PYxXU7i\",\n    \"apexUrl\": \"https://uyLtBvdyYUulhQUiMfzCwjGevUK.kdkcmBW2h5iKo+vmybr,iDr.oCYUFb1Pk1DZPMv9NDwcf9yi,4nRZCx1p\",\n    \"machineLearningUserManagementUrl\": \"http://cBLSRdfgHJa.ebtaYx0F\",\n    \"graphStudioUrl\": \"http://OlutN.qojcZWWmd+ir8IBNawb0l9deW,KEQSkVaP0ogyCB\"\n  },\n  \"timeCreated\": \"1957-03-11T16:57:41.708Z\",\n  \"licenseModel\": \"LICENSE_INCLUDED\",\n  \"whitelistedIps\": [\n    \"string\",\n    \"string\"\n  ],\n  \"freeformTags\": {\n    \"key_0\": \"string\"\n  },\n  \"definedTags\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c96c77a7-582f-4471-8f8d-5b474bf57a48",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb2e7baf-2d0e-4c76-a54c-d37f0758838e",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "34f7dbd7-0006-49ae-bad5-57f8d68645df",
+          "name": "Oracle Database Update an Autonomous Database",
+          "request": {
+            "name": "Oracle Database Update an Autonomous Database",
+            "description": {
+              "content": "Updates the specified Autonomous Database. Supports scaling CPU, storage, and other configuration changes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases",
+                ":autonomousDatabaseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autonomousDatabaseId",
+                  "description": "(Required) The OCID of the Autonomous Database"
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "ETag value for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<password>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8e2c5bbd-4b02-4d47-ac1a-0c1555e57cc0",
+              "name": "Autonomous Database update initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<password>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"compartmentId\": \"string\",\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"dbVersion\": \"string\",\n  \"dbWorkload\": \"APEX\",\n  \"cpuCoreCount\": 1814,\n  \"dataStorageSizeInTBs\": 7159,\n  \"dataStorageSizeInGBs\": 4538,\n  \"isAutoScalingEnabled\": false,\n  \"isDedicated\": true,\n  \"isFreeTier\": false,\n  \"lifecycleState\": \"AVAILABLE\",\n  \"connectionStrings\": {\n    \"high\": \"string\",\n    \"medium\": \"string\",\n    \"low\": \"string\"\n  },\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"http://jsJMceEmlJ.ogLNcO3+rCBjtDZ6RjoPapZFeF.wKcYmePbFlUA1hkaHRsj,-xaEJ.fd--NS-bhZ4u8VvA33E.PYxXU7i\",\n    \"apexUrl\": \"https://uyLtBvdyYUulhQUiMfzCwjGevUK.kdkcmBW2h5iKo+vmybr,iDr.oCYUFb1Pk1DZPMv9NDwcf9yi,4nRZCx1p\",\n    \"machineLearningUserManagementUrl\": \"http://cBLSRdfgHJa.ebtaYx0F\",\n    \"graphStudioUrl\": \"http://OlutN.qojcZWWmd+ir8IBNawb0l9deW,KEQSkVaP0ogyCB\"\n  },\n  \"timeCreated\": \"1957-03-11T16:57:41.708Z\",\n  \"licenseModel\": \"LICENSE_INCLUDED\",\n  \"whitelistedIps\": [\n    \"string\",\n    \"string\"\n  ],\n  \"freeformTags\": {\n    \"key_0\": \"string\"\n  },\n  \"definedTags\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03ca9950-ac87-42ff-a7b7-6f531bb4c534",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<password>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8783d6e9-e290-432a-9bb1-c078174fdb39",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<password>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "843e9746-d440-449c-be14-b26cca1ed3b5",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\",\n  \"cpuCoreCount\": \"<integer>\",\n  \"dataStorageSizeInTBs\": \"<integer>\",\n  \"isAutoScalingEnabled\": \"<boolean>\",\n  \"adminPassword\": \"<password>\",\n  \"whitelistedIps\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"freeformTags\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62b42c09-1d95-4fe9-ad34-ab96320ae59f",
+          "name": "Oracle Database Delete an Autonomous Database",
+          "request": {
+            "name": "Oracle Database Delete an Autonomous Database",
+            "description": {
+              "content": "Terminates and deletes the specified Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases",
+                ":autonomousDatabaseId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autonomousDatabaseId",
+                  "description": "(Required) The OCID of the Autonomous Database"
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "ETag value for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37f68e02-bc42-45ae-8de3-de1da4fec303",
+              "name": "Delete request accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "opc-work-request-id",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1b06aa0c-4372-4b69-ac8a-e5fca252931e",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1034f4e3-1157-4ca5-87b7-f9ced9dd4c67",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67f6b4b6-9673-4a4b-b0be-d2129035834f",
+          "name": "Oracle Database Start an Autonomous Database",
+          "request": {
+            "name": "Oracle Database Start an Autonomous Database",
+            "description": {
+              "content": "Starts a stopped Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases",
+                ":autonomousDatabaseId",
+                "actions",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autonomousDatabaseId",
+                  "description": "(Required) The OCID of the Autonomous Database"
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "ETag value for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5295e84f-66f6-4e05-957a-2e5dadf08ab6",
+              "name": "Start initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"compartmentId\": \"string\",\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"dbVersion\": \"string\",\n  \"dbWorkload\": \"APEX\",\n  \"cpuCoreCount\": 1814,\n  \"dataStorageSizeInTBs\": 7159,\n  \"dataStorageSizeInGBs\": 4538,\n  \"isAutoScalingEnabled\": false,\n  \"isDedicated\": true,\n  \"isFreeTier\": false,\n  \"lifecycleState\": \"AVAILABLE\",\n  \"connectionStrings\": {\n    \"high\": \"string\",\n    \"medium\": \"string\",\n    \"low\": \"string\"\n  },\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"http://jsJMceEmlJ.ogLNcO3+rCBjtDZ6RjoPapZFeF.wKcYmePbFlUA1hkaHRsj,-xaEJ.fd--NS-bhZ4u8VvA33E.PYxXU7i\",\n    \"apexUrl\": \"https://uyLtBvdyYUulhQUiMfzCwjGevUK.kdkcmBW2h5iKo+vmybr,iDr.oCYUFb1Pk1DZPMv9NDwcf9yi,4nRZCx1p\",\n    \"machineLearningUserManagementUrl\": \"http://cBLSRdfgHJa.ebtaYx0F\",\n    \"graphStudioUrl\": \"http://OlutN.qojcZWWmd+ir8IBNawb0l9deW,KEQSkVaP0ogyCB\"\n  },\n  \"timeCreated\": \"1957-03-11T16:57:41.708Z\",\n  \"licenseModel\": \"LICENSE_INCLUDED\",\n  \"whitelistedIps\": [\n    \"string\",\n    \"string\"\n  ],\n  \"freeformTags\": {\n    \"key_0\": \"string\"\n  },\n  \"definedTags\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "191f4670-1779-4652-a117-9148ff0bb47b",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9003e97e-8d43-490d-9a9c-9fefff3caba8",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28dca3d2-1398-44ff-b26e-4b8a5860b66d",
+          "name": "Oracle Database Stop an Autonomous Database",
+          "request": {
+            "name": "Oracle Database Stop an Autonomous Database",
+            "description": {
+              "content": "Stops a running Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases",
+                ":autonomousDatabaseId",
+                "actions",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autonomousDatabaseId",
+                  "description": "(Required) The OCID of the Autonomous Database"
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "ETag value for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af248b38-904e-48f2-acaf-5c73cb9dcb46",
+              "name": "Stop initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"compartmentId\": \"string\",\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"dbVersion\": \"string\",\n  \"dbWorkload\": \"APEX\",\n  \"cpuCoreCount\": 1814,\n  \"dataStorageSizeInTBs\": 7159,\n  \"dataStorageSizeInGBs\": 4538,\n  \"isAutoScalingEnabled\": false,\n  \"isDedicated\": true,\n  \"isFreeTier\": false,\n  \"lifecycleState\": \"AVAILABLE\",\n  \"connectionStrings\": {\n    \"high\": \"string\",\n    \"medium\": \"string\",\n    \"low\": \"string\"\n  },\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"http://jsJMceEmlJ.ogLNcO3+rCBjtDZ6RjoPapZFeF.wKcYmePbFlUA1hkaHRsj,-xaEJ.fd--NS-bhZ4u8VvA33E.PYxXU7i\",\n    \"apexUrl\": \"https://uyLtBvdyYUulhQUiMfzCwjGevUK.kdkcmBW2h5iKo+vmybr,iDr.oCYUFb1Pk1DZPMv9NDwcf9yi,4nRZCx1p\",\n    \"machineLearningUserManagementUrl\": \"http://cBLSRdfgHJa.ebtaYx0F\",\n    \"graphStudioUrl\": \"http://OlutN.qojcZWWmd+ir8IBNawb0l9deW,KEQSkVaP0ogyCB\"\n  },\n  \"timeCreated\": \"1957-03-11T16:57:41.708Z\",\n  \"licenseModel\": \"LICENSE_INCLUDED\",\n  \"whitelistedIps\": [\n    \"string\",\n    \"string\"\n  ],\n  \"freeformTags\": {\n    \"key_0\": \"string\"\n  },\n  \"definedTags\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d99d36c7-35e8-46d1-b3d6-5f7edaa08af1",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f0c8f67-4552-400c-aff9-b0977a8a945c",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08baec49-5617-4498-a041-856d9b37fd22",
+          "name": "Oracle Database Restart an Autonomous Database",
+          "request": {
+            "name": "Oracle Database Restart an Autonomous Database",
+            "description": {
+              "content": "Restarts the specified Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases",
+                ":autonomousDatabaseId",
+                "actions",
+                "restart"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autonomousDatabaseId",
+                  "description": "(Required) The OCID of the Autonomous Database"
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "ETag value for optimistic concurrency control",
+                "key": "if-match",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "15e8395d-ab3c-43eb-881f-2e328ecac6aa",
+              "name": "Restart initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "restart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"compartmentId\": \"string\",\n  \"displayName\": \"string\",\n  \"dbName\": \"string\",\n  \"dbVersion\": \"string\",\n  \"dbWorkload\": \"APEX\",\n  \"cpuCoreCount\": 1814,\n  \"dataStorageSizeInTBs\": 7159,\n  \"dataStorageSizeInGBs\": 4538,\n  \"isAutoScalingEnabled\": false,\n  \"isDedicated\": true,\n  \"isFreeTier\": false,\n  \"lifecycleState\": \"AVAILABLE\",\n  \"connectionStrings\": {\n    \"high\": \"string\",\n    \"medium\": \"string\",\n    \"low\": \"string\"\n  },\n  \"connectionUrls\": {\n    \"sqlDevWebUrl\": \"http://jsJMceEmlJ.ogLNcO3+rCBjtDZ6RjoPapZFeF.wKcYmePbFlUA1hkaHRsj,-xaEJ.fd--NS-bhZ4u8VvA33E.PYxXU7i\",\n    \"apexUrl\": \"https://uyLtBvdyYUulhQUiMfzCwjGevUK.kdkcmBW2h5iKo+vmybr,iDr.oCYUFb1Pk1DZPMv9NDwcf9yi,4nRZCx1p\",\n    \"machineLearningUserManagementUrl\": \"http://cBLSRdfgHJa.ebtaYx0F\",\n    \"graphStudioUrl\": \"http://OlutN.qojcZWWmd+ir8IBNawb0l9deW,KEQSkVaP0ogyCB\"\n  },\n  \"timeCreated\": \"1957-03-11T16:57:41.708Z\",\n  \"licenseModel\": \"LICENSE_INCLUDED\",\n  \"whitelistedIps\": [\n    \"string\",\n    \"string\"\n  ],\n  \"freeformTags\": {\n    \"key_0\": \"string\"\n  },\n  \"definedTags\": {\n    \"key_0\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35ecbae9-dc91-42e5-be2d-5b4a1fb8b7c4",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "restart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "153d34f9-f010-42a8-b294-72c09d67e647",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "restart"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "ETag value for optimistic concurrency control",
+                    "key": "if-match",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "355e779a-6fed-414a-8a42-0877aaf47b74",
+          "name": "Oracle Database Generate database wallet",
+          "request": {
+            "name": "Oracle Database Generate database wallet",
+            "description": {
+              "content": "Creates and downloads a wallet zip file containing credentials for connecting to the Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabases",
+                ":autonomousDatabaseId",
+                "actions",
+                "generateWallet"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "autonomousDatabaseId",
+                  "description": "(Required) The OCID of the Autonomous Database"
+                },
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<password>\",\n  \"generateType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "174062d0-d103-44dc-ae9c-52a359e0bc99",
+              "name": "Wallet generated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "generateWallet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<password>\",\n  \"generateType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "64f11366-7565-4f64-aa18-e287a13bbe6d",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "generateWallet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<password>\",\n  \"generateType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f68fd31-7f82-4d9f-94f5-8cf6759b879d",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabases",
+                    ":autonomousDatabaseId",
+                    "actions",
+                    "generateWallet"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "autonomousDatabaseId",
+                      "description": "(Required) The OCID of the Autonomous Database"
+                    },
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<password>\",\n  \"generateType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1adc9b10-404c-4d7d-85e8-b36bccf06435",
+          "name": "Oracle Database List Autonomous Database backups",
+          "request": {
+            "name": "Oracle Database List Autonomous Database backups",
+            "description": {
+              "content": "Returns a list of backups for the specified Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabaseBackups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "autonomousDatabaseId",
+                  "value": "<string>",
+                  "description": "The Autonomous Database OCID"
+                },
+                {
+                  "disabled": false,
+                  "key": "compartmentId",
+                  "value": "<string>",
+                  "description": "(Required) The OCID of the compartment"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of items to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<string>",
+                  "description": "Pagination token from a previous response"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "df8bb4a4-7274-4827-91de-f29cccc77238",
+              "name": "Backups listed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabaseBackups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "autonomousDatabaseId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"autonomousDatabaseId\": \"string\",\n    \"displayName\": \"string\",\n    \"type\": \"string\",\n    \"lifecycleState\": \"string\",\n    \"timeStarted\": \"1970-08-04T22:12:15.064Z\",\n    \"isAutomatic\": true\n  },\n  {\n    \"id\": \"string\",\n    \"autonomousDatabaseId\": \"string\",\n    \"displayName\": \"string\",\n    \"type\": \"string\",\n    \"lifecycleState\": \"string\",\n    \"timeStarted\": \"1987-12-16T05:15:59.651Z\",\n    \"isAutomatic\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d303d030-0b8e-40e7-9ece-a803034e79f2",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabaseBackups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "autonomousDatabaseId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "compartmentId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e3bea6e-c0ee-4c4f-9e95-239c074decb1",
+          "name": "Oracle Database Create an Autonomous Database backup",
+          "request": {
+            "name": "Oracle Database Create an Autonomous Database backup",
+            "description": {
+              "content": "Creates a new manual backup for the specified Autonomous Database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "autonomousDatabaseBackups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                  "type": "any",
+                  "value": "{{region}}",
+                  "key": "region"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"autonomousDatabaseId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"isLongTermBackup\": \"<boolean>\",\n  \"retentionPeriodInDays\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e5c782e-2a05-451e-919e-39841eb95e6e",
+              "name": "Backup creation initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabaseBackups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"autonomousDatabaseId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"isLongTermBackup\": \"<boolean>\",\n  \"retentionPeriodInDays\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"autonomousDatabaseId\": \"string\",\n  \"displayName\": \"string\",\n  \"type\": \"LONG_TERM\",\n  \"lifecycleState\": \"string\",\n  \"databaseSizeInTBs\": 2788.578230767247,\n  \"timeStarted\": \"2005-12-03T02:09:13.991Z\",\n  \"timeEnded\": \"1987-12-10T12:37:59.742Z\",\n  \"isAutomatic\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9168c39-bfcd-4aca-b1c6-a592a71d7033",
+              "name": "Not authenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "autonomousDatabaseBackups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+                      "type": "any",
+                      "value": "{{region}}",
+                      "key": "region"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"autonomousDatabaseId\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"isLongTermBackup\": \"<boolean>\",\n  \"retentionPeriodInDays\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "OCI region identifier (This can only be one of us-ashburn-1,us-phoenix-1,eu-frankfurt-1,uk-london-1,ap-tokyo-1,ap-mumbai-1,ca-toronto-1,ap-sydney-1,sa-saopaulo-1,ap-seoul-1)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "us-ashburn-1",
+      "key": "region"
+    },
+    {
+      "type": "string",
+      "value": "https://database.{{region}}.oraclecloud.com/20160918",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7fe80469-eaf8-4933-b7b9-def61ad34396",
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Autonomous Databases API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.\n\nContact Support:\n Name: Oracle Cloud Support\n Email: cloud-support@oracle.com",
+      "type": "text/plain"
+    }
+  }
+}

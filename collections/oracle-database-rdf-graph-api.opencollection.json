@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX RDF Graph API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RDF Graph",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List all RDF networks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/rdf/networks/"
+          },
+          "docs": "Returns a list of all RDF semantic networks."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get RDF network information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/rdf/networks/:network_owner,:network_name",
+            "params": [
+              {
+                "name": "network_owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns details about a specific RDF network."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Create an RDF network",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/rdf/networks/:network_owner,:network_name",
+            "params": [
+              {
+                "name": "network_owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Creates a new RDF semantic network."
+        },
+        {
+          "info": {
+            "name": "Oracle Database List RDF models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/rdf/networks/:network_owner,:network_name/models/",
+            "params": [
+              {
+                "name": "network_owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a list of RDF models in the specified network."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Execute SPARQL query (GET)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/rdf/networks/:network_owner,:network_name/models/:model_name/sparql/1.1",
+            "params": [
+              {
+                "name": "network_owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "model_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "The SPARQL query string"
+              }
+            ]
+          },
+          "docs": "Executes a SPARQL query against the specified RDF model using HTTP GET."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Execute SPARQL query (POST)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/rdf/networks/:network_owner,:network_name/models/:model_name/sparql/1.1",
+            "params": [
+              {
+                "name": "network_owner",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "network_name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "model_name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Executes a SPARQL query against the specified RDF model using HTTP POST."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

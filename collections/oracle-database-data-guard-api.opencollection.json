@@ -1,0 +1,172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Data Guard API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Guard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database List Data Guard associations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/dataGuardAssociations",
+            "params": [
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Pagination token from a previous response"
+              }
+            ]
+          },
+          "docs": "Returns Data Guard associations for the specified database."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get Data Guard broker configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/dataguard/configuration/"
+          },
+          "docs": "Returns the current Data Guard broker configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Add a Data Guard configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/dataguard/configuration/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Data Guard broker configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Enable or disable Data Guard configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/dataguard/configuration/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enables or disables the Data Guard broker configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Remove Data Guard configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/dataguard/configuration/"
+          },
+          "docs": "Removes the Data Guard broker configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all Data Guard databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/dataguard/databases/"
+          },
+          "docs": "Returns all databases registered with the Data Guard broker."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Add a database to Data Guard",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/dataguard/databases/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a database to the Data Guard broker configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Update Data Guard database role",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/dataguard/databases/:database",
+            "params": [
+              {
+                "name": "database",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Converts, enables, or disables a database in the Data Guard configuration."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Remove database from Data Guard",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/dataguard/databases/:database",
+            "params": [
+              {
+                "name": "database",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Removes a database from the Data Guard broker configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

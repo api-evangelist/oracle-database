@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Oracle Database Oracle Cloud Infrastructure Database APEX Monitoring API",
+    "version": "20160918"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Oracle Database Get all sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/monitoring/sessions/",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Number of items to skip before returning results"
+              }
+            ]
+          },
+          "docs": "Returns information about all active database sessions."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get a specific session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/monitoring/sessions/:sid,:serial_number/",
+            "params": [
+              {
+                "name": "sid",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "serial_number",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about a specific database session."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all session locks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/monitoring/session_locks/"
+          },
+          "docs": "Returns information about all current session locks."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get blocking locks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/monitoring/session_locks/holding/"
+          },
+          "docs": "Returns information about sessions holding locks that block others."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get waiting locks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/monitoring/session_locks/waiting/"
+          },
+          "docs": "Returns information about sessions waiting to acquire locks."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get all alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/monitoring/alerts/"
+          },
+          "docs": "Returns all database alerts and notifications."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get alert summaries by message level",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/monitoring/alerts_summaries/by_message_level"
+          },
+          "docs": "Returns alert summary statistics grouped by message level."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get wait class metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/monitoring/wait_class_metrics"
+          },
+          "docs": "Returns database wait class performance metrics."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get wait class totals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/monitoring/wait_class_totals"
+          },
+          "docs": "Returns total wait time statistics by wait class."
+        },
+        {
+          "info": {
+            "name": "Oracle Database Get session limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://database.{region}.oraclecloud.com/20160918/database/monitoring/session_limits"
+          },
+          "docs": "Returns the configured session limits and current usage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
