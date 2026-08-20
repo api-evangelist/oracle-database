@@ -93,6 +93,12 @@ apis:
   - Event Streaming
   - Kafka
   - Messaging
+  - Pub-Sub
+  - Queues
+  tags_raw:
+  - Event Streaming
+  - Kafka
+  - Messaging
   - Pub/Sub
   - Queues
   properties:
@@ -256,6 +262,8 @@ apis:
   name: Oracle Database Collections API
   description: Collection management operations (create, list, delete)
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -543,7 +551,8 @@ apis:
 - aid: oracle-database:oracle-database-general-api
   name: Oracle Database General API
   description: Core database instance status, version, and configuration services
-  tags:
+  tags: []
+  tags_raw:
   - General
   properties:
   - type: OpenAPI
@@ -832,6 +841,8 @@ apis:
   name: Oracle Database Queries API
   description: Query by Example (QBE) and filter operations
   tags:
+  - Query
+  tags_raw:
   - Queries
   properties:
   - type: OpenAPI
