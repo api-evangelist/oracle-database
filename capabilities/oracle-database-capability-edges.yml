@@ -1,0 +1,82 @@
+slug: oracle-database
+provider: Oracle Database
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 7
+edges:
+- tag: Autonomous Databases
+  spec_file: oracle-database-autonomous-databases-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: '"Create an Autonomous Database", "Start an Autonomous Database", "Stop an Autonomous Database",
+    schema CreateAutonomousDatabaseDetails'
+  reason: Provisioning, lifecycle and runtime control of cloud database instances is compute/storage infrastructure
+    management, squarely IT Infrastructure Management.
+- tag: DB Systems
+  spec_file: oracle-database-db-systems-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: '"Launch a DB System", "Terminate a DB System", schema LaunchDbSystemDetails'
+  reason: Provisioning and teardown of cloud database systems is cloud compute/storage infrastructure
+    lifecycle management.
+- tag: Monitoring
+  spec_file: oracle-database-monitoring-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.78
+  evidence: '"Get blocking locks", "Get all alerts", "Get wait class metrics"'
+  reason: Database session, lock, alert and wait-metric monitoring is day-to-day IT operations monitoring,
+    not business alerting.
+- tag: Pluggable Databases
+  spec_file: oracle-database-pluggable-databases-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.78
+  evidence: 'POST /pluggableDatabases createPluggableDatabase ''Create a pluggable database''; description:
+    ''management of DB Systems, Autonomous Databases, Exadata infrastructure ... related cloud database
+    resources'''
+  reason: Operations provision and manage cloud database instances (pluggable databases), which is compute/storage/cloud
+    infrastructure provisioning — IT Infrastructure Management. No business-domain reading fits.
+- tag: Database Homes
+  spec_file: oracle-database-database-homes-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.75
+  evidence: '"Create a Database Home", "List Database Homes", schema CreateDbHomeDetails'
+  reason: Provisioning and lifecycle of database home resources in cloud infrastructure is compute/storage
+    infrastructure management.
+- tag: Databases
+  spec_file: oracle-database-databases-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.72
+  evidence: '"Create a database", "Delete a database", schema CreateDatabaseDetails'
+  reason: CRUD over cloud database resources = provisioning and managing infrastructure resources (IT
+    Infrastructure Management).
+- tag: Performance
+  spec_file: oracle-database-performance-api-openapi.yml
+  capability_id: BC-600.40
+  capability_id_l1: BC-600
+  capability_name: IT Operations Management
+  confidence: 0.72
+  evidence: '"Get top SQL by CPU usage", "Get SQL execution plan", "Get active sessions history"'
+  reason: SQL and session performance statistics for a database platform — IT operations monitoring and
+    performance analysis, not a business capability.
