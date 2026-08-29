@@ -1,36 +1,29 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database APEX Monitoring API
-  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
-  version: '20160918'
+  title: Oracle Database Oracle REST Data Services (ORDS) Monitoring API
+  description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
+  version: 25.4.0
   contact:
-    name: Oracle Cloud Support
+    name: Oracle Support
     url: https://support.oracle.com
-    email: cloud-support@oracle.com
+    email: support@oracle.com
   license:
-    name: Oracle Cloud Infrastructure Terms
-    url: https://www.oracle.com/cloud/free/oci-terms.html
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
   termsOfService: https://www.oracle.com/legal/terms.html
 servers:
-- url: https://database.{region}.oraclecloud.com/20160918
-  description: OCI Database Service Regional Endpoint
+- url: https://{host}:{port}/ords
+  description: ORDS Server
   variables:
-    region:
-      default: us-ashburn-1
-      description: OCI region identifier
-      enum:
-      - us-ashburn-1
-      - us-phoenix-1
-      - eu-frankfurt-1
-      - uk-london-1
-      - ap-tokyo-1
-      - ap-mumbai-1
-      - ca-toronto-1
-      - ap-sydney-1
-      - sa-saopaulo-1
-      - ap-seoul-1
+    host:
+      default: localhost
+      description: ORDS server hostname
+    port:
+      default: '8443'
+      description: ORDS server port
 security:
-- ociSignature: []
+- oauth2: []
+- basicAuth: []
 tags:
 - name: Monitoring
   description: Database session monitoring, locks, alerts, and wait metrics
@@ -213,58 +206,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    AlertSummaryList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              message_level:
-                type: integer
-              count:
-                type: integer
-    WaitClassTotalList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              wait_class:
-                type: string
-              total_waits:
-                type: integer
-                format: int64
-              time_waited:
-                type: number
-    SessionList:
-      allOf:
-      - $ref: '#/components/schemas/PaginatedResponse'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SessionDetail'
-    SessionLimitList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              resource_name:
-                type: string
-              current_utilization:
-                type: integer
-              max_utilization:
-                type: integer
-              limit_value:
-                type: string
     Error:
       type: object
       properties:
@@ -274,6 +215,24 @@ components:
           type: string
         type:
           type: string
+    PaginatedResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items: {}
+        hasMore:
+          type: boolean
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     SessionDetail:
       type: object
       properties:
@@ -298,61 +257,6 @@ components:
         logon_time:
           type: string
           format: date-time
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-    PaginatedResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items: {}
-        hasMore:
-          type: boolean
-        limit:
-          type: integer
-        offset:
-          type: integer
-        count:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    WaitClassMetricList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              wait_class:
-                type: string
-              average_waiter_count:
-                type: number
-              dbtime_in_wait:
-                type: number
-    AlertList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              message_text:
-                type: string
-              message_level:
-                type: integer
-              originating_timestamp:
-                type: string
-                format: date-time
     SessionLockList:
       type: object
       properties:
@@ -371,6 +275,95 @@ components:
                 type: string
               block:
                 type: integer
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+    SessionList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SessionDetail'
+    WaitClassTotalList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              wait_class:
+                type: string
+              total_waits:
+                type: integer
+                format: int64
+              time_waited:
+                type: number
+    AlertSummaryList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              message_level:
+                type: integer
+              count:
+                type: integer
+    AlertList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              message_text:
+                type: string
+              message_level:
+                type: integer
+              originating_timestamp:
+                type: string
+                format: date-time
+    WaitClassMetricList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              wait_class:
+                type: string
+              average_waiter_count:
+                type: number
+              dbtime_in_wait:
+                type: number
+    SessionLimitList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              resource_name:
+                type: string
+              current_utilization:
+                type: integer
+              max_utilization:
+                type: integer
+              limit_value:
+                type: string
   parameters:
     limitParam:
       name: limit
@@ -402,10 +395,19 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   securitySchemes:
-    ociSignature:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /ords/{schema}/oauth/auth
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+    basicAuth:
       type: http
-      scheme: bearer
-      description: OCI request signature authentication using API signing keys
+      scheme: basic
 externalDocs:
-  description: OCI Database Service API Documentation
-  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  description: ORDS REST API Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.4/orrst/

@@ -1,36 +1,29 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database APEX Scheduler API
-  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
-  version: '20160918'
+  title: Oracle Database Oracle REST Data Services (ORDS) Scheduler API
+  description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
+  version: 25.4.0
   contact:
-    name: Oracle Cloud Support
+    name: Oracle Support
     url: https://support.oracle.com
-    email: cloud-support@oracle.com
+    email: support@oracle.com
   license:
-    name: Oracle Cloud Infrastructure Terms
-    url: https://www.oracle.com/cloud/free/oci-terms.html
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
   termsOfService: https://www.oracle.com/legal/terms.html
 servers:
-- url: https://database.{region}.oraclecloud.com/20160918
-  description: OCI Database Service Regional Endpoint
+- url: https://{host}:{port}/ords
+  description: ORDS Server
   variables:
-    region:
-      default: us-ashburn-1
-      description: OCI region identifier
-      enum:
-      - us-ashburn-1
-      - us-phoenix-1
-      - eu-frankfurt-1
-      - uk-london-1
-      - ap-tokyo-1
-      - ap-mumbai-1
-      - ca-toronto-1
-      - ap-sydney-1
-      - sa-saopaulo-1
-      - ap-seoul-1
+    host:
+      default: localhost
+      description: ORDS server hostname
+    port:
+      default: '8443'
+      description: ORDS server port
 security:
-- ociSignature: []
+- oauth2: []
+- basicAuth: []
 tags:
 - name: Scheduler
   description: Oracle Scheduler job management
@@ -82,6 +75,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
     SchedulerJob:
       type: object
       properties:
@@ -102,15 +104,6 @@ components:
           type: string
           format: date-time
         repeat_interval:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
           type: string
     SchedulerJobList:
       type: object
@@ -133,10 +126,19 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   securitySchemes:
-    ociSignature:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /ords/{schema}/oauth/auth
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+    basicAuth:
       type: http
-      scheme: bearer
-      description: OCI request signature authentication using API signing keys
+      scheme: basic
 externalDocs:
-  description: OCI Database Service API Documentation
-  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  description: ORDS REST API Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.4/orrst/

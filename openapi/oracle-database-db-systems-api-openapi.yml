@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database APEX DB Systems API
+  title: Oracle Database Oracle Cloud Infrastructure Database DB Systems API
   description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
   version: '20160918'
   contact:
@@ -170,6 +170,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     CreateDatabaseDetails:
       type: object
       required:
@@ -190,23 +197,6 @@ components:
           type: string
         pdbName:
           type: string
-    UpdateDbSystemDetails:
-      type: object
-      properties:
-        displayName:
-          type: string
-        cpuCoreCount:
-          type: integer
-        sshPublicKeys:
-          type: array
-          items:
-            type: string
-        dataStorageSizeInGBs:
-          type: integer
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
     LaunchDbSystemDetails:
       type: object
       required:
@@ -259,17 +249,6 @@ components:
           enum:
           - HIGH
           - NORMAL
-    CreateDbHomeDetails:
-      type: object
-      required:
-      - dbVersion
-      properties:
-        dbVersion:
-          type: string
-        displayName:
-          type: string
-        database:
-          $ref: '#/components/schemas/CreateDatabaseDetails'
     DbSystem:
       type: object
       properties:
@@ -320,13 +299,34 @@ components:
           enum:
           - HIGH
           - NORMAL
-    Error:
+    CreateDbHomeDetails:
+      type: object
+      required:
+      - dbVersion
+      properties:
+        dbVersion:
+          type: string
+        displayName:
+          type: string
+        database:
+          $ref: '#/components/schemas/CreateDatabaseDetails'
+    UpdateDbSystemDetails:
       type: object
       properties:
-        code:
+        displayName:
           type: string
-        message:
-          type: string
+        cpuCoreCount:
+          type: integer
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        dataStorageSizeInGBs:
+          type: integer
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
     DbSystemSummary:
       type: object
       properties:
@@ -348,6 +348,13 @@ components:
           type: string
           format: date-time
   parameters:
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
     limitParam:
       name: limit
       in: query
@@ -356,17 +363,16 @@ components:
         type: integer
         minimum: 1
         maximum: 1000
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
     opcRetryTokenParam:
       name: opc-retry-token
       in: header
       description: Unique retry token to prevent duplicate requests
-      schema:
-        type: string
-    dbSystemIdParam:
-      name: dbSystemId
-      in: path
-      required: true
-      description: The OCID of the DB System
       schema:
         type: string
     ifMatchParam:
@@ -375,17 +381,11 @@ components:
       description: ETag value for optimistic concurrency control
       schema:
         type: string
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
-    compartmentIdParam:
-      name: compartmentId
-      in: query
+    dbSystemIdParam:
+      name: dbSystemId
+      in: path
       required: true
-      description: The OCID of the compartment
+      description: The OCID of the DB System
       schema:
         type: string
   responses:

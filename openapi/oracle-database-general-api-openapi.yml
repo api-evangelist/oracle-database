@@ -1,36 +1,29 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database APEX General API
-  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
-  version: '20160918'
+  title: Oracle Database Oracle REST Data Services (ORDS) General API
+  description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
+  version: 25.4.0
   contact:
-    name: Oracle Cloud Support
+    name: Oracle Support
     url: https://support.oracle.com
-    email: cloud-support@oracle.com
+    email: support@oracle.com
   license:
-    name: Oracle Cloud Infrastructure Terms
-    url: https://www.oracle.com/cloud/free/oci-terms.html
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
   termsOfService: https://www.oracle.com/legal/terms.html
 servers:
-- url: https://database.{region}.oraclecloud.com/20160918
-  description: OCI Database Service Regional Endpoint
+- url: https://{host}:{port}/ords
+  description: ORDS Server
   variables:
-    region:
-      default: us-ashburn-1
-      description: OCI region identifier
-      enum:
-      - us-ashburn-1
-      - us-phoenix-1
-      - eu-frankfurt-1
-      - uk-london-1
-      - ap-tokyo-1
-      - ap-mumbai-1
-      - ca-toronto-1
-      - ap-sydney-1
-      - sa-saopaulo-1
-      - ap-seoul-1
+    host:
+      default: localhost
+      description: ORDS server hostname
+    port:
+      default: '8443'
+      description: ORDS server port
 security:
-- ociSignature: []
+- oauth2: []
+- basicAuth: []
 tags:
 - name: General
   description: Core database instance status, version, and configuration services
@@ -294,42 +287,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    UserList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              username:
-                type: string
-              account_status:
-                type: string
-              default_tablespace:
-                type: string
-              created:
-                type: string
-                format: date-time
-    DatafileList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              file_name:
-                type: string
-              file_id:
-                type: integer
-              tablespace_name:
-                type: string
-              bytes:
-                type: integer
-                format: int64
-              status:
-                type: string
     Error:
       type: object
       properties:
@@ -338,112 +295,6 @@ components:
         message:
           type: string
         type:
-          type: string
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-    DatabaseParameter:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-        display_value:
-          type: string
-        isdefault:
-          type: string
-        ismodified:
-          type: string
-        type:
-          type: string
-        description:
-          type: string
-    SessionlessTransaction:
-      type: object
-      properties:
-        sessionlessTransactionID:
-          type: string
-    PaginatedResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items: {}
-        hasMore:
-          type: boolean
-        limit:
-          type: integer
-        offset:
-          type: integer
-        count:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    TablespaceList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tablespace'
-    ComponentList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              comp_id:
-                type: string
-              comp_name:
-                type: string
-              version:
-                type: string
-              status:
-                type: string
-    ParameterList:
-      allOf:
-      - $ref: '#/components/schemas/PaginatedResponse'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/DatabaseParameter'
-    DatabaseVersion:
-      type: object
-      properties:
-        version:
-          type: string
-        version_full:
-          type: string
-        banner:
-          type: string
-    DatabaseStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - OPEN
-          - MOUNTED
-          - STARTED
-        instance_name:
-          type: string
-        host_name:
-          type: string
-        database_role:
-          type: string
-        open_mode:
           type: string
     Tablespace:
       type: object
@@ -477,6 +328,47 @@ components:
         free_bytes:
           type: integer
           format: int64
+    ParameterList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/DatabaseParameter'
+    TablespaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tablespace'
+    UserList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              username:
+                type: string
+              account_status:
+                type: string
+              default_tablespace:
+                type: string
+              created:
+                type: string
+                format: date-time
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
     FeatureUsageList:
       type: object
       properties:
@@ -495,15 +387,116 @@ components:
               last_usage_date:
                 type: string
                 format: date-time
+    SessionlessTransaction:
+      type: object
+      properties:
+        sessionlessTransactionID:
+          type: string
+    PaginatedResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items: {}
+        hasMore:
+          type: boolean
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    DatabaseStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - OPEN
+          - MOUNTED
+          - STARTED
+        instance_name:
+          type: string
+        host_name:
+          type: string
+        database_role:
+          type: string
+        open_mode:
+          type: string
+    ComponentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              comp_id:
+                type: string
+              comp_name:
+                type: string
+              version:
+                type: string
+              status:
+                type: string
+    DatafileList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              file_name:
+                type: string
+              file_id:
+                type: integer
+              tablespace_name:
+                type: string
+              bytes:
+                type: integer
+                format: int64
+              status:
+                type: string
+    DatabaseVersion:
+      type: object
+      properties:
+        version:
+          type: string
+        version_full:
+          type: string
+        banner:
+          type: string
+    DatabaseParameter:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        display_value:
+          type: string
+        isdefault:
+          type: string
+        ismodified:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
   responses:
-    NotFound:
-      description: The specified resource was not found
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    NotFound:
+      description: The specified resource was not found
       content:
         application/json:
           schema:
@@ -526,10 +519,19 @@ components:
         minimum: 0
         default: 0
   securitySchemes:
-    ociSignature:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /ords/{schema}/oauth/auth
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+    basicAuth:
       type: http
-      scheme: bearer
-      description: OCI request signature authentication using API signing keys
+      scheme: basic
 externalDocs:
-  description: OCI Database Service API Documentation
-  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  description: ORDS REST API Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.4/orrst/

@@ -1,36 +1,35 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database APEX Bulk Operations API
-  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
-  version: '20160918'
+  title: Oracle Database Oracle SODA (Simple Oracle Document Access) REST Bulk Operations API
+  description: NoSQL-style document access API for Oracle Database. SODA for REST provides HTTP operations for managing JSON document collections, enabling CRUD operations, querying by example (QBE), bulk operations, and index management through a RESTful interface built on Oracle REST Data Services.
+  version: 1.0.0
   contact:
-    name: Oracle Cloud Support
+    name: Oracle Support
     url: https://support.oracle.com
-    email: cloud-support@oracle.com
+    email: support@oracle.com
   license:
-    name: Oracle Cloud Infrastructure Terms
-    url: https://www.oracle.com/cloud/free/oci-terms.html
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
   termsOfService: https://www.oracle.com/legal/terms.html
 servers:
-- url: https://database.{region}.oraclecloud.com/20160918
-  description: OCI Database Service Regional Endpoint
+- url: https://{host}:{port}/ords/{schema}/soda/{version}
+  description: SODA REST API Server
   variables:
-    region:
-      default: us-ashburn-1
-      description: OCI region identifier
-      enum:
-      - us-ashburn-1
-      - us-phoenix-1
-      - eu-frankfurt-1
-      - uk-london-1
-      - ap-tokyo-1
-      - ap-mumbai-1
-      - ca-toronto-1
-      - ap-sydney-1
-      - sa-saopaulo-1
-      - ap-seoul-1
+    host:
+      default: localhost
+      description: ORDS server hostname
+    port:
+      default: '8443'
+      description: ORDS server port
+    schema:
+      default: myschema
+      description: Oracle Database schema name
+    version:
+      default: latest
+      description: SODA API version
 security:
-- ociSignature: []
+- oauth2: []
+- basicAuth: []
 tags:
 - name: Bulk Operations
   description: Bulk insert, delete, and update operations
@@ -155,19 +154,37 @@ components:
         itemsUpdated:
           type: integer
           description: Number of documents updated
-    DocumentMetadata:
+    BulkUpdateRequest:
+      type: object
+      description: Combination of QBE filter fields and $patch operations. Filter fields identify documents to update, $patch contains the JSON Patch operations to apply.
+      properties:
+        $patch:
+          type: array
+          items:
+            $ref: '#/components/schemas/JsonPatchOperation'
+      additionalProperties: true
+      example:
+        department: HR
+        $patch:
+        - op: replace
+          path: /salary
+          value: 70000
+    Error:
       type: object
       properties:
-        id:
+        code:
+          type: integer
+        message:
           type: string
-        etag:
-          type: string
-        lastModified:
-          type: string
-          format: date-time
-        created:
-          type: string
-          format: date-time
+    BulkDeleteResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of documents affected
+        itemsDeleted:
+          type: integer
+          description: Number of documents deleted
     JsonPatchOperation:
       type: object
       required:
@@ -192,37 +209,6 @@ components:
         from:
           type: string
           description: JSON Pointer path for move and copy source
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    BulkUpdateRequest:
-      type: object
-      description: Combination of QBE filter fields and $patch operations. Filter fields identify documents to update, $patch contains the JSON Patch operations to apply.
-      properties:
-        $patch:
-          type: array
-          items:
-            $ref: '#/components/schemas/JsonPatchOperation'
-      additionalProperties: true
-      example:
-        department: HR
-        $patch:
-        - op: replace
-          path: /salary
-          value: 70000
-    BulkDeleteResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Number of documents affected
-        itemsDeleted:
-          type: integer
-          description: Number of documents deleted
     BulkInsertResponse:
       type: object
       properties:
@@ -232,6 +218,19 @@ components:
             $ref: '#/components/schemas/DocumentMetadata'
         hasMore:
           type: boolean
+    DocumentMetadata:
+      type: object
+      properties:
+        id:
+          type: string
+        etag:
+          type: string
+        lastModified:
+          type: string
+          format: date-time
+        created:
+          type: string
+          format: date-time
     QBEFilter:
       type: object
       description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
@@ -240,14 +239,6 @@ components:
         name: John
         salary:
           $gt: 50000
-  parameters:
-    collectionParam:
-      name: collection
-      in: path
-      required: true
-      description: The name of the SODA collection
-      schema:
-        type: string
   responses:
     NotFound:
       description: The specified collection or document was not found
@@ -261,11 +252,24 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
   securitySchemes:
-    ociSignature:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+    basicAuth:
       type: http
-      scheme: bearer
-      description: OCI request signature authentication using API signing keys
+      scheme: basic
 externalDocs:
-  description: OCI Database Service API Documentation
-  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  description: SODA for REST Documentation
+  url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/

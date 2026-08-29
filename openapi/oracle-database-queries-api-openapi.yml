@@ -1,36 +1,35 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database APEX Queries API
-  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
-  version: '20160918'
+  title: Oracle Database Oracle SODA (Simple Oracle Document Access) REST Queries API
+  description: NoSQL-style document access API for Oracle Database. SODA for REST provides HTTP operations for managing JSON document collections, enabling CRUD operations, querying by example (QBE), bulk operations, and index management through a RESTful interface built on Oracle REST Data Services.
+  version: 1.0.0
   contact:
-    name: Oracle Cloud Support
+    name: Oracle Support
     url: https://support.oracle.com
-    email: cloud-support@oracle.com
+    email: support@oracle.com
   license:
-    name: Oracle Cloud Infrastructure Terms
-    url: https://www.oracle.com/cloud/free/oci-terms.html
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
   termsOfService: https://www.oracle.com/legal/terms.html
 servers:
-- url: https://database.{region}.oraclecloud.com/20160918
-  description: OCI Database Service Regional Endpoint
+- url: https://{host}:{port}/ords/{schema}/soda/{version}
+  description: SODA REST API Server
   variables:
-    region:
-      default: us-ashburn-1
-      description: OCI region identifier
-      enum:
-      - us-ashburn-1
-      - us-phoenix-1
-      - eu-frankfurt-1
-      - uk-london-1
-      - ap-tokyo-1
-      - ap-mumbai-1
-      - ca-toronto-1
-      - ap-sydney-1
-      - sa-saopaulo-1
-      - ap-seoul-1
+    host:
+      default: localhost
+      description: ORDS server hostname
+    port:
+      default: '8443'
+      description: ORDS server port
+    schema:
+      default: myschema
+      description: Oracle Database schema name
+    version:
+      default: latest
+      description: SODA API version
 security:
-- ociSignature: []
+- oauth2: []
+- basicAuth: []
 tags:
 - name: Queries
   description: Query by Example (QBE) and filter operations
@@ -83,45 +82,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Document:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique document key
-        etag:
-          type: string
-          description: Document version tag for optimistic concurrency
-        lastModified:
-          type: string
-          format: date-time
-          description: Last modification timestamp
-        created:
-          type: string
-          format: date-time
-          description: Creation timestamp
-        value:
-          type: object
-          description: Document content (when fields=value or fields=all)
-        mediaType:
-          type: string
-          description: Content type for non-JSON documents
-        bytes:
-          type: integer
-          description: Content length for non-JSON documents
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: Link URL
-        mediaType:
-          type: string
-          description: Media type of the linked resource
     Error:
       type: object
       properties:
@@ -155,6 +115,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: Link URL
+        mediaType:
+          type: string
+          description: Media type of the linked resource
     QBEFilter:
       type: object
       description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
@@ -163,6 +136,45 @@ components:
         name: John
         salary:
           $gt: 50000
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique document key
+        etag:
+          type: string
+          description: Document version tag for optimistic concurrency
+        lastModified:
+          type: string
+          format: date-time
+          description: Last modification timestamp
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        value:
+          type: object
+          description: Document content (when fields=value or fields=all)
+        mediaType:
+          type: string
+          description: Content type for non-JSON documents
+        bytes:
+          type: integer
+          description: Content length for non-JSON documents
+  responses:
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     collectionParam:
       name: collection
@@ -171,24 +183,16 @@ components:
       description: The name of the SODA collection
       schema:
         type: string
-  responses:
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified collection or document was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
-    ociSignature:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+    basicAuth:
       type: http
-      scheme: bearer
-      description: OCI request signature authentication using API signing keys
+      scheme: basic
 externalDocs:
-  description: OCI Database Service API Documentation
-  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  description: SODA for REST Documentation
+  url: https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/

@@ -1,36 +1,29 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database APEX REST Services API
-  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
-  version: '20160918'
+  title: Oracle Database Oracle REST Data Services (ORDS) REST Services API
+  description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
+  version: 25.4.0
   contact:
-    name: Oracle Cloud Support
+    name: Oracle Support
     url: https://support.oracle.com
-    email: cloud-support@oracle.com
+    email: support@oracle.com
   license:
-    name: Oracle Cloud Infrastructure Terms
-    url: https://www.oracle.com/cloud/free/oci-terms.html
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
   termsOfService: https://www.oracle.com/legal/terms.html
 servers:
-- url: https://database.{region}.oraclecloud.com/20160918
-  description: OCI Database Service Regional Endpoint
+- url: https://{host}:{port}/ords
+  description: ORDS Server
   variables:
-    region:
-      default: us-ashburn-1
-      description: OCI region identifier
-      enum:
-      - us-ashburn-1
-      - us-phoenix-1
-      - eu-frankfurt-1
-      - uk-london-1
-      - ap-tokyo-1
-      - ap-mumbai-1
-      - ca-toronto-1
-      - ap-sydney-1
-      - sa-saopaulo-1
-      - ap-seoul-1
+    host:
+      default: localhost
+      description: ORDS server hostname
+    port:
+      default: '8443'
+      description: ORDS server port
 security:
-- ociSignature: []
+- oauth2: []
+- basicAuth: []
 tags:
 - name: REST Services
   description: Custom REST API module, handler, and OAuth management
@@ -325,6 +318,164 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ORDSPropertyList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+    CreateRESTModuleRequest:
+      type: object
+      required:
+      - name
+      - uri_prefix
+      properties:
+        name:
+          type: string
+        uri_prefix:
+          type: string
+        status:
+          type: string
+          enum:
+          - PUBLISHED
+          - NOT_PUBLISHED
+        items_per_page:
+          type: integer
+    AutoRESTRequest:
+      type: object
+      required:
+      - object_name
+      - object_type
+      properties:
+        object_name:
+          type: string
+        object_type:
+          type: string
+          enum:
+          - TABLE
+          - VIEW
+          - PACKAGE
+          - PROCEDURE
+          - FUNCTION
+        object_alias:
+          type: string
+        schema:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    RESTModuleList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RESTModule'
+    CreateOAuthClientRequest:
+      type: object
+      required:
+      - name
+      - grant_type
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        grant_type:
+          type: string
+          enum:
+          - authorization_code
+          - client_credentials
+        redirect_uri:
+          type: string
+          format: uri
+    ORDSPropertyValue:
+      type: object
+      properties:
+        value:
+          type: string
+    CreatePrivilegeRequest:
+      type: object
+      required:
+      - name
+      - label
+      properties:
+        name:
+          type: string
+        label:
+          type: string
+        description:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+    RESTHandlerList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              method:
+                type: string
+              source_type:
+                type: string
+              source:
+                type: string
+    OAuthClientList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              client_id:
+                type: string
+              grant_type:
+                type: string
+    RESTModule:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        uri_prefix:
+          type: string
+        status:
+          type: string
+        items_per_page:
+          type: integer
+    CreateRoleRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
     CreateRESTHandlerRequest:
       type: object
       required:
@@ -348,164 +499,6 @@ components:
           - plsql
         source:
           type: string
-    RESTModuleList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/RESTModule'
-    ORDSPropertyList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              key:
-                type: string
-              value:
-                type: string
-    RESTHandlerList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              method:
-                type: string
-              source_type:
-                type: string
-              source:
-                type: string
-    CreateRESTModuleRequest:
-      type: object
-      required:
-      - name
-      - uri_prefix
-      properties:
-        name:
-          type: string
-        uri_prefix:
-          type: string
-        status:
-          type: string
-          enum:
-          - PUBLISHED
-          - NOT_PUBLISHED
-        items_per_page:
-          type: integer
-    ORDSPropertyValue:
-      type: object
-      properties:
-        value:
-          type: string
-    CreateOAuthClientRequest:
-      type: object
-      required:
-      - name
-      - grant_type
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        grant_type:
-          type: string
-          enum:
-          - authorization_code
-          - client_credentials
-        redirect_uri:
-          type: string
-          format: uri
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
-    RESTModule:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        uri_prefix:
-          type: string
-        status:
-          type: string
-        items_per_page:
-          type: integer
-    CreateRoleRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-    CreatePrivilegeRequest:
-      type: object
-      required:
-      - name
-      - label
-      properties:
-        name:
-          type: string
-        label:
-          type: string
-        description:
-          type: string
-        roles:
-          type: array
-          items:
-            type: string
-    AutoRESTRequest:
-      type: object
-      required:
-      - object_name
-      - object_type
-      properties:
-        object_name:
-          type: string
-        object_type:
-          type: string
-          enum:
-          - TABLE
-          - VIEW
-          - PACKAGE
-          - PROCEDURE
-          - FUNCTION
-        object_alias:
-          type: string
-        schema:
-          type: string
-    OAuthClientList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              client_id:
-                type: string
-              grant_type:
-                type: string
   responses:
     NotFound:
       description: The specified resource was not found
@@ -526,10 +519,19 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   securitySchemes:
-    ociSignature:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /ords/{schema}/oauth/auth
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+    basicAuth:
       type: http
-      scheme: bearer
-      description: OCI request signature authentication using API signing keys
+      scheme: basic
 externalDocs:
-  description: OCI Database Service API Documentation
-  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  description: ORDS REST API Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.4/orrst/

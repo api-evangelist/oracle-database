@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database APEX Autonomous Databases API
+  title: Oracle Database Oracle Cloud Infrastructure Database Autonomous Databases API
   description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
   version: '20160918'
   contact:
@@ -346,25 +346,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -373,103 +354,6 @@ components:
           type: string
         message:
           type: string
-    CreateAutonomousDatabaseDetails:
-      type: object
-      required:
-      - compartmentId
-      - dbName
-      - cpuCoreCount
-      - dataStorageSizeInTBs
-      - adminPassword
-      properties:
-        compartmentId:
-          type: string
-        dbName:
-          type: string
-        displayName:
-          type: string
-        adminPassword:
-          type: string
-          format: password
-        cpuCoreCount:
-          type: integer
-        dataStorageSizeInTBs:
-          type: integer
-        dbWorkload:
-          type: string
-          enum:
-          - OLTP
-          - DW
-          - AJD
-          - APEX
-        isAutoScalingEnabled:
-          type: boolean
-        isFreeTier:
-          type: boolean
-        licenseModel:
-          type: string
-          enum:
-          - LICENSE_INCLUDED
-          - BRING_YOUR_OWN_LICENSE
-        whitelistedIps:
-          type: array
-          items:
-            type: string
-        subnetId:
-          type: string
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-    AutonomousDatabaseBackup:
-      type: object
-      properties:
-        id:
-          type: string
-        autonomousDatabaseId:
-          type: string
-        displayName:
-          type: string
-        type:
-          type: string
-          enum:
-          - INCREMENTAL
-          - FULL
-          - LONG_TERM
-        lifecycleState:
-          type: string
-        databaseSizeInTBs:
-          type: number
-        timeStarted:
-          type: string
-          format: date-time
-        timeEnded:
-          type: string
-          format: date-time
-        isAutomatic:
-          type: boolean
-    UpdateAutonomousDatabaseDetails:
-      type: object
-      properties:
-        displayName:
-          type: string
-        cpuCoreCount:
-          type: integer
-        dataStorageSizeInTBs:
-          type: integer
-        isAutoScalingEnabled:
-          type: boolean
-        adminPassword:
-          type: string
-          format: password
-        whitelistedIps:
-          type: array
-          items:
-            type: string
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
     AutonomousDatabaseSummary:
       type: object
       properties:
@@ -494,20 +378,6 @@ components:
           format: date-time
         isFreeTier:
           type: boolean
-    CreateAutonomousDatabaseBackupDetails:
-      type: object
-      required:
-      - autonomousDatabaseId
-      - displayName
-      properties:
-        autonomousDatabaseId:
-          type: string
-        displayName:
-          type: string
-        isLongTermBackup:
-          type: boolean
-        retentionPeriodInDays:
-          type: integer
     GenerateAutonomousDatabaseWalletDetails:
       type: object
       required:
@@ -522,24 +392,6 @@ components:
           enum:
           - ALL
           - SINGLE
-    AutonomousDatabaseBackupSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        autonomousDatabaseId:
-          type: string
-        displayName:
-          type: string
-        type:
-          type: string
-        lifecycleState:
-          type: string
-        timeStarted:
-          type: string
-          format: date-time
-        isAutomatic:
-          type: boolean
     AutonomousDatabase:
       type: object
       properties:
@@ -633,11 +485,140 @@ components:
           type: object
           additionalProperties:
             type: object
+    CreateAutonomousDatabaseDetails:
+      type: object
+      required:
+      - compartmentId
+      - dbName
+      - cpuCoreCount
+      - dataStorageSizeInTBs
+      - adminPassword
+      properties:
+        compartmentId:
+          type: string
+        dbName:
+          type: string
+        displayName:
+          type: string
+        adminPassword:
+          type: string
+          format: password
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        dbWorkload:
+          type: string
+          enum:
+          - OLTP
+          - DW
+          - AJD
+          - APEX
+        isAutoScalingEnabled:
+          type: boolean
+        isFreeTier:
+          type: boolean
+        licenseModel:
+          type: string
+          enum:
+          - LICENSE_INCLUDED
+          - BRING_YOUR_OWN_LICENSE
+        whitelistedIps:
+          type: array
+          items:
+            type: string
+        subnetId:
+          type: string
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    UpdateAutonomousDatabaseDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        isAutoScalingEnabled:
+          type: boolean
+        adminPassword:
+          type: string
+          format: password
+        whitelistedIps:
+          type: array
+          items:
+            type: string
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    AutonomousDatabaseBackupSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+        lifecycleState:
+          type: string
+        timeStarted:
+          type: string
+          format: date-time
+        isAutomatic:
+          type: boolean
+    CreateAutonomousDatabaseBackupDetails:
+      type: object
+      required:
+      - autonomousDatabaseId
+      - displayName
+      properties:
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        isLongTermBackup:
+          type: boolean
+        retentionPeriodInDays:
+          type: integer
+    AutonomousDatabaseBackup:
+      type: object
+      properties:
+        id:
+          type: string
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+          enum:
+          - INCREMENTAL
+          - FULL
+          - LONG_TERM
+        lifecycleState:
+          type: string
+        databaseSizeInTBs:
+          type: number
+        timeStarted:
+          type: string
+          format: date-time
+        timeEnded:
+          type: string
+          format: date-time
+        isAutomatic:
+          type: boolean
   parameters:
-    ifMatchParam:
-      name: if-match
+    opcRequestIdParam:
+      name: opc-request-id
       in: header
-      description: ETag value for optimistic concurrency control
+      description: Unique request identifier for tracing
       schema:
         type: string
     autonomousDatabaseIdParam:
@@ -645,6 +626,13 @@ components:
       in: path
       required: true
       description: The OCID of the Autonomous Database
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
       schema:
         type: string
     limitParam:
@@ -655,23 +643,10 @@ components:
         type: integer
         minimum: 1
         maximum: 1000
-    opcRequestIdParam:
-      name: opc-request-id
-      in: header
-      description: Unique request identifier for tracing
-      schema:
-        type: string
     pageParam:
       name: page
       in: query
       description: Pagination token from a previous response
-      schema:
-        type: string
-    compartmentIdParam:
-      name: compartmentId
-      in: query
-      required: true
-      description: The OCID of the compartment
       schema:
         type: string
     opcRetryTokenParam:
@@ -680,6 +655,31 @@ components:
       description: Unique retry token to prevent duplicate requests
       schema:
         type: string
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ociSignature:
       type: http

@@ -1,16 +1,9 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database APEX Pluggable Databases API
-  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
-  version: '20160918'
-  contact:
-    name: Oracle Cloud Support
-    url: https://support.oracle.com
-    email: cloud-support@oracle.com
-  license:
-    name: Oracle Cloud Infrastructure Terms
-    url: https://www.oracle.com/cloud/free/oci-terms.html
+  title: Oracle Database Pluggable Databases API
   termsOfService: https://www.oracle.com/legal/terms.html
+  version: '1.0'
+  description: 'Operations tagged Pluggable Databases across 2 of this provider''s published API definitions: oracle-database-oci-openapi.yml, oracle-database-ords-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://database.{region}.oraclecloud.com/20160918
   description: OCI Database Service Regional Endpoint
@@ -29,8 +22,15 @@ servers:
       - ap-sydney-1
       - sa-saopaulo-1
       - ap-seoul-1
-security:
-- ociSignature: []
+- url: https://{host}:{port}/ords
+  description: ORDS Server
+  variables:
+    host:
+      default: localhost
+      description: ORDS server hostname
+    port:
+      default: '8443'
+      description: ORDS server port
 tags:
 - name: Pluggable Databases
   description: Manage pluggable databases in multitenant architecture
@@ -61,6 +61,8 @@ paths:
                   $ref: '#/components/schemas/PluggableDatabaseSummary'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - ociSignature: []
     post:
       operationId: createPluggableDatabase
       summary: Oracle Database Create a pluggable database
@@ -82,6 +84,26 @@ paths:
                 $ref: '#/components/schemas/PluggableDatabase'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - ociSignature: []
+    servers:
+    - url: https://database.{region}.oraclecloud.com/20160918
+      description: OCI Database Service Regional Endpoint
+      variables:
+        region:
+          default: us-ashburn-1
+          description: OCI region identifier
+          enum:
+          - us-ashburn-1
+          - us-phoenix-1
+          - eu-frankfurt-1
+          - uk-london-1
+          - ap-tokyo-1
+          - ap-mumbai-1
+          - ca-toronto-1
+          - ap-sydney-1
+          - sa-saopaulo-1
+          - ap-seoul-1
   /pluggableDatabases/{pluggableDatabaseId}:
     get:
       operationId: getPluggableDatabase
@@ -106,6 +128,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+      security:
+      - ociSignature: []
     put:
       operationId: updatePluggableDatabase
       summary: Oracle Database Update a pluggable database
@@ -136,6 +160,8 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+      security:
+      - ociSignature: []
     delete:
       operationId: deletePluggableDatabase
       summary: Oracle Database Delete a pluggable database
@@ -156,6 +182,26 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+      security:
+      - ociSignature: []
+    servers:
+    - url: https://database.{region}.oraclecloud.com/20160918
+      description: OCI Database Service Regional Endpoint
+      variables:
+        region:
+          default: us-ashburn-1
+          description: OCI region identifier
+          enum:
+          - us-ashburn-1
+          - us-phoenix-1
+          - eu-frankfurt-1
+          - uk-london-1
+          - ap-tokyo-1
+          - ap-mumbai-1
+          - ca-toronto-1
+          - ap-sydney-1
+          - sa-saopaulo-1
+          - ap-seoul-1
   /database/pdbs/:
     get:
       operationId: getPDBs
@@ -172,6 +218,9 @@ paths:
                 $ref: '#/components/schemas/PDBList'
         '401':
           $ref: '#/components/responses/Unauthorized_2'
+      security:
+      - oauth2: []
+      - basicAuth: []
     post:
       operationId: createPDB
       summary: Oracle Database Create a pluggable database
@@ -195,6 +244,19 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized_2'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/pdbs/{pdb_name}:
     get:
       operationId: getPDB
@@ -219,6 +281,9 @@ paths:
           $ref: '#/components/responses/Unauthorized_2'
         '404':
           $ref: '#/components/responses/NotFound_2'
+      security:
+      - oauth2: []
+      - basicAuth: []
     patch:
       operationId: updatePDB
       summary: Oracle Database Update a pluggable database
@@ -248,6 +313,9 @@ paths:
           $ref: '#/components/responses/Unauthorized_2'
         '404':
           $ref: '#/components/responses/NotFound_2'
+      security:
+      - oauth2: []
+      - basicAuth: []
     delete:
       operationId: dropPDB
       summary: Oracle Database Drop a pluggable database
@@ -267,17 +335,21 @@ paths:
           $ref: '#/components/responses/Unauthorized_2'
         '404':
           $ref: '#/components/responses/NotFound_2'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
 components:
   schemas:
-    Error_2:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
     Error:
       type: object
       properties:
@@ -296,6 +368,42 @@ components:
           type: object
           additionalProperties:
             type: object
+    PluggableDatabaseSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        containerDatabaseId:
+          type: string
+        pdbName:
+          type: string
+        lifecycleState:
+          type: string
+        openMode:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+    CreatePluggableDatabaseDetails:
+      type: object
+      required:
+      - containerDatabaseId
+      - pdbName
+      properties:
+        containerDatabaseId:
+          type: string
+        pdbName:
+          type: string
+        pdbAdminPassword:
+          type: string
+          format: password
+        tdeWalletPassword:
+          type: string
+          format: password
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
     PluggableDatabase:
       type: object
       properties:
@@ -333,19 +441,15 @@ components:
               type: string
             pdbIpDefault:
               type: string
-    UpdatePDBRequest:
+    Error_2:
       type: object
       properties:
-        state:
+        code:
+          type: integer
+        message:
           type: string
-          enum:
-          - OPEN
-          - CLOSE
-        open_mode:
+        type:
           type: string
-          enum:
-          - READ WRITE
-          - READ ONLY
     PDB:
       type: object
       properties:
@@ -363,29 +467,6 @@ components:
         creation_time:
           type: string
           format: date-time
-    PluggableDatabaseSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        containerDatabaseId:
-          type: string
-        pdbName:
-          type: string
-        lifecycleState:
-          type: string
-        openMode:
-          type: string
-        timeCreated:
-          type: string
-          format: date-time
-    PDBList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/PDB'
     CreatePDBRequest:
       type: object
       required:
@@ -405,62 +486,32 @@ components:
         storage_limit:
           type: integer
           format: int64
-    CreatePluggableDatabaseDetails:
+    PDBList:
       type: object
-      required:
-      - containerDatabaseId
-      - pdbName
       properties:
-        containerDatabaseId:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PDB'
+    UpdatePDBRequest:
+      type: object
+      properties:
+        state:
           type: string
-        pdbName:
+          enum:
+          - OPEN
+          - CLOSE
+        open_mode:
           type: string
-        pdbAdminPassword:
-          type: string
-          format: password
-        tdeWalletPassword:
-          type: string
-          format: password
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized_2:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound_2:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
+          enum:
+          - READ WRITE
+          - READ ONLY
   parameters:
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
       schema:
         type: string
     limitParam:
@@ -477,18 +528,61 @@ components:
       description: Pagination token from a previous response
       schema:
         type: string
-    compartmentIdParam:
-      name: compartmentId
-      in: query
-      required: true
-      description: The OCID of the compartment
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
       schema:
         type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound_2:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    Unauthorized_2:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
   securitySchemes:
     ociSignature:
       type: http
       scheme: bearer
       description: OCI request signature authentication using API signing keys
-externalDocs:
-  description: OCI Database Service API Documentation
-  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /ords/{schema}/oauth/auth
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+    basicAuth:
+      type: http
+      scheme: basic
+x-refined-from:
+- oracle-database-oci-openapi.yml
+- oracle-database-ords-openapi.yml

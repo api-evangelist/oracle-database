@@ -1,36 +1,29 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database APEX Data Dictionary API
-  description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
-  version: '20160918'
+  title: Oracle Database Oracle REST Data Services (ORDS) Data Dictionary API
+  description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
+  version: 25.4.0
   contact:
-    name: Oracle Cloud Support
+    name: Oracle Support
     url: https://support.oracle.com
-    email: cloud-support@oracle.com
+    email: support@oracle.com
   license:
-    name: Oracle Cloud Infrastructure Terms
-    url: https://www.oracle.com/cloud/free/oci-terms.html
+    name: Oracle Technology Network License
+    url: https://www.oracle.com/downloads/licenses/standard-license.html
   termsOfService: https://www.oracle.com/legal/terms.html
 servers:
-- url: https://database.{region}.oraclecloud.com/20160918
-  description: OCI Database Service Regional Endpoint
+- url: https://{host}:{port}/ords
+  description: ORDS Server
   variables:
-    region:
-      default: us-ashburn-1
-      description: OCI region identifier
-      enum:
-      - us-ashburn-1
-      - us-phoenix-1
-      - eu-frankfurt-1
-      - uk-london-1
-      - ap-tokyo-1
-      - ap-mumbai-1
-      - ca-toronto-1
-      - ap-sydney-1
-      - sa-saopaulo-1
-      - ap-seoul-1
+    host:
+      default: localhost
+      description: ORDS server hostname
+    port:
+      default: '8443'
+      description: ORDS server port
 security:
-- ociSignature: []
+- oauth2: []
+- basicAuth: []
 tags:
 - name: Data Dictionary
   description: Database tables, views, columns, indexes, and object metadata
@@ -303,19 +296,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    FunctionMetadata:
-      type: object
-      properties:
-        object_id:
-          type: integer
-        owner:
-          type: string
-        object_name:
-          type: string
-        object_type:
-          type: string
-        status:
-          type: string
     Error:
       type: object
       properties:
@@ -324,163 +304,6 @@ components:
         message:
           type: string
         type:
-          type: string
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-    ForeignKeyList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              owner:
-                type: string
-              constraint_name:
-                type: string
-              table_name:
-                type: string
-              r_owner:
-                type: string
-              r_constraint_name:
-                type: string
-              status:
-                type: string
-    FunctionList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/FunctionMetadata'
-    TableList:
-      allOf:
-      - $ref: '#/components/schemas/PaginatedResponse'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/TableMetadata'
-    ColumnList:
-      allOf:
-      - $ref: '#/components/schemas/PaginatedResponse'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/ColumnMetadata'
-    IndexMetadata:
-      type: object
-      properties:
-        owner:
-          type: string
-        index_name:
-          type: string
-        table_name:
-          type: string
-        index_type:
-          type: string
-        uniqueness:
-          type: string
-        status:
-          type: string
-    PaginatedResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items: {}
-        hasMore:
-          type: boolean
-        limit:
-          type: integer
-        offset:
-          type: integer
-        count:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    TablespaceList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tablespace'
-    IndexList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/IndexMetadata'
-    ColumnMetadata:
-      type: object
-      properties:
-        owner:
-          type: string
-        table_name:
-          type: string
-        column_name:
-          type: string
-        data_type:
-          type: string
-        data_length:
-          type: integer
-        nullable:
-          type: string
-        column_id:
-          type: integer
-    DatabaseLinkList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatabaseLink'
-    DatabaseLink:
-      type: object
-      properties:
-        owner:
-          type: string
-        db_link:
-          type: string
-        username:
-          type: string
-        host:
-          type: string
-        created:
-          type: string
-          format: date-time
-    TableMetadata:
-      type: object
-      properties:
-        owner:
-          type: string
-        table_name:
-          type: string
-        tablespace_name:
-          type: string
-        num_rows:
-          type: integer
-          format: int64
-        last_analyzed:
-          type: string
-          format: date-time
-        status:
-          type: string
-        temporary:
           type: string
     Tablespace:
       type: object
@@ -502,15 +325,185 @@ components:
         free_bytes:
           type: integer
           format: int64
+    TableMetadata:
+      type: object
+      properties:
+        owner:
+          type: string
+        table_name:
+          type: string
+        tablespace_name:
+          type: string
+        num_rows:
+          type: integer
+          format: int64
+        last_analyzed:
+          type: string
+          format: date-time
+        status:
+          type: string
+        temporary:
+          type: string
+    DatabaseLinkList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabaseLink'
+    ForeignKeyList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+              constraint_name:
+                type: string
+              table_name:
+                type: string
+              r_owner:
+                type: string
+              r_constraint_name:
+                type: string
+              status:
+                type: string
+    TablespaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tablespace'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+    DatabaseLink:
+      type: object
+      properties:
+        owner:
+          type: string
+        db_link:
+          type: string
+        username:
+          type: string
+        host:
+          type: string
+        created:
+          type: string
+          format: date-time
+    PaginatedResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items: {}
+        hasMore:
+          type: boolean
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    FunctionMetadata:
+      type: object
+      properties:
+        object_id:
+          type: integer
+        owner:
+          type: string
+        object_name:
+          type: string
+        object_type:
+          type: string
+        status:
+          type: string
+    IndexMetadata:
+      type: object
+      properties:
+        owner:
+          type: string
+        index_name:
+          type: string
+        table_name:
+          type: string
+        index_type:
+          type: string
+        uniqueness:
+          type: string
+        status:
+          type: string
+    ColumnList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/ColumnMetadata'
+    TableList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/TableMetadata'
+    IndexList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndexMetadata'
+    FunctionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FunctionMetadata'
+    ColumnMetadata:
+      type: object
+      properties:
+        owner:
+          type: string
+        table_name:
+          type: string
+        column_name:
+          type: string
+        data_type:
+          type: string
+        data_length:
+          type: integer
+        nullable:
+          type: string
+        column_id:
+          type: integer
   responses:
-    NotFound:
-      description: The specified resource was not found
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    NotFound:
+      description: The specified resource was not found
       content:
         application/json:
           schema:
@@ -533,10 +526,19 @@ components:
         minimum: 0
         default: 0
   securitySchemes:
-    ociSignature:
+    oauth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /ords/{schema}/oauth/auth
+          tokenUrl: /ords/{schema}/oauth/token
+          scopes: {}
+    basicAuth:
       type: http
-      scheme: bearer
-      description: OCI request signature authentication using API signing keys
+      scheme: basic
 externalDocs:
-  description: OCI Database Service API Documentation
-  url: https://docs.oracle.com/iaas/api/#/en/database/20160918/
+  description: ORDS REST API Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.4/orrst/
