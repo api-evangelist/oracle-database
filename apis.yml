@@ -105,7 +105,7 @@ apis:
   - Event Streaming
   - Kafka
   - Messaging
-  - Pub-Sub
+  - Pub/Sub
   - Queues
   tags_raw:
   - Event Streaming
