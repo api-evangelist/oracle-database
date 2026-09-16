@@ -31,7 +31,7 @@ position: Consuming
 access: 3rd-Party
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/oracle-database.png
 created: '2024-01-20'
-modified: '2026-08-21'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 url: https://raw.githubusercontent.com/api-evangelist/oracle-database/refs/heads/main/apis.yml
 apis:
@@ -417,7 +417,7 @@ apis:
   - type: JSONSchema
     url: json-schema/oracle-database-collection.json
 - aid: oracle-database:oracle-database-database-homes-api
-  name: Oracle Database Database Homes API
+  name: Oracle Database Homes API
   description: Manage Oracle Database Home directories
   tags:
   - Database Homes
