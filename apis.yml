@@ -456,6 +456,8 @@ apis:
   name: Oracle Database Databases API
   description: Manage databases within DB Systems
   tags:
+  - Database
+  tags_raw:
   - Databases
   properties:
   - type: OpenAPI
@@ -601,6 +603,8 @@ apis:
   name: Oracle Database Indexes API
   description: Collection index management
   tags:
+  - Index
+  tags_raw:
   - Indexes
   properties:
   - type: OpenAPI
