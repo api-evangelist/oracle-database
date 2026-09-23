@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle REST Data Services (ORDS) Performance API
+  title: Oracle Database Oracle REST Data Services (ORDS)…
   description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
   version: 25.4.0
   contact:
@@ -193,34 +193,14 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ActiveSessionHistoryList:
+    Link:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              sample_time:
-                type: string
-                format: date-time
-              session_id:
-                type: integer
-              sql_id:
-                type: string
-              event:
-                type: string
-              wait_class:
-                type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
+        rel:
           type: string
-        type:
+        href:
           type: string
+          format: uri
     PaginatedResponse:
       type: object
       properties:
@@ -239,62 +219,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    ActiveSessionWaitList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              event:
-                type: string
-              wait_class:
-                type: string
-              total_waits:
-                type: integer
-              average_wait_ms:
-                type: number
-    SQLStatementDetail:
-      type: object
-      properties:
-        sql_id:
-          type: string
-        sql_text:
-          type: string
-        executions:
-          type: integer
-          format: int64
-        cpu_time:
-          type: integer
-          format: int64
-        elapsed_time:
-          type: integer
-          format: int64
-        buffer_gets:
-          type: integer
-          format: int64
-        disk_reads:
-          type: integer
-          format: int64
-        rows_processed:
-          type: integer
-          format: int64
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-    SQLText:
-      type: object
-      properties:
-        sql_id:
-          type: string
-        sql_fulltext:
-          type: string
     ExecutionPlan:
       type: object
       properties:
@@ -320,6 +244,22 @@ components:
                 type: integer
               cardinality:
                 type: integer
+    ActiveSessionWaitList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              event:
+                type: string
+              wait_class:
+                type: string
+              total_waits:
+                type: integer
+              average_wait_ms:
+                type: number
     SQLStatementList:
       allOf:
       - $ref: '#/components/schemas/PaginatedResponse'
@@ -329,6 +269,41 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/SQLStatementDetail'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    SQLText:
+      type: object
+      properties:
+        sql_id:
+          type: string
+        sql_fulltext:
+          type: string
+    ActiveSessionHistoryList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sample_time:
+                type: string
+                format: date-time
+              session_id:
+                type: integer
+              sql_id:
+                type: string
+              event:
+                type: string
+              wait_class:
+                type: string
     SQLHistoryList:
       type: object
       properties:
@@ -349,23 +324,31 @@ components:
               elapsed_time_delta:
                 type: integer
                 format: int64
-  parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        default: 25
-    offsetParam:
-      name: offset
-      in: query
-      description: Number of items to skip before returning results
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
+    SQLStatementDetail:
+      type: object
+      properties:
+        sql_id:
+          type: string
+        sql_text:
+          type: string
+        executions:
+          type: integer
+          format: int64
+        cpu_time:
+          type: integer
+          format: int64
+        elapsed_time:
+          type: integer
+          format: int64
+        buffer_gets:
+          type: integer
+          format: int64
+        disk_reads:
+          type: integer
+          format: int64
+        rows_processed:
+          type: integer
+          format: int64
   responses:
     NotFound:
       description: The specified resource was not found
@@ -379,6 +362,23 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    offsetParam:
+      name: offset
+      in: query
+      description: Number of items to skip before returning results
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
   securitySchemes:
     oauth2:
       type: oauth2

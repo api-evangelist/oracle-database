@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle SODA (Simple Oracle Document Access) REST Documents API
+  title: Oracle Database Oracle SODA (Simple Oracle Document Access)…
   description: NoSQL-style document access API for Oracle Database. SODA for REST provides HTTP operations for managing JSON document collections, enabling CRUD operations, querying by example (QBE), bulk operations, and index management through a RESTful interface built on Oracle REST Data Services.
   version: 1.0.0
   contact:
@@ -288,85 +288,6 @@ paths:
           description: Collection is read-only
 components:
   schemas:
-    InsertResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentMetadata'
-        hasMore:
-          type: boolean
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    DocumentList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-        hasMore:
-          type: boolean
-          description: Whether more documents exist beyond this page
-        limit:
-          type: integer
-          description: Server-imposed result limit
-        offset:
-          type: integer
-          description: Offset of first returned result
-        count:
-          type: integer
-          description: Number of documents in this response
-        totalResults:
-          type: integer
-          description: Total documents in collection (only if totalResults=true)
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    JsonPatchOperation:
-      type: object
-      required:
-      - op
-      - path
-      properties:
-        op:
-          type: string
-          enum:
-          - add
-          - remove
-          - replace
-          - move
-          - copy
-          - test
-          description: The patch operation to perform
-        path:
-          type: string
-          description: JSON Pointer path to the target field
-        value:
-          description: The value to use for add, replace, or test operations
-        from:
-          type: string
-          description: JSON Pointer path for move and copy source
-    DocumentMetadata:
-      type: object
-      properties:
-        id:
-          type: string
-        etag:
-          type: string
-        lastModified:
-          type: string
-          format: date-time
-        created:
-          type: string
-          format: date-time
     Link:
       type: object
       properties:
@@ -406,30 +327,88 @@ components:
         bytes:
           type: integer
           description: Content length for non-JSON documents
-  parameters:
-    keyParam:
-      name: key
-      in: path
-      required: true
-      description: The unique key of the document
-      schema:
-        type: string
-    collectionParam:
-      name: collection
-      in: path
-      required: true
-      description: The name of the SODA collection
-      schema:
-        type: string
+    InsertResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentMetadata'
+        hasMore:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    JsonPatchOperation:
+      type: object
+      required:
+      - op
+      - path
+      properties:
+        op:
+          type: string
+          enum:
+          - add
+          - remove
+          - replace
+          - move
+          - copy
+          - test
+          description: The patch operation to perform
+        path:
+          type: string
+          description: JSON Pointer path to the target field
+        value:
+          description: The value to use for add, replace, or test operations
+        from:
+          type: string
+          description: JSON Pointer path for move and copy source
+    DocumentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        hasMore:
+          type: boolean
+          description: Whether more documents exist beyond this page
+        limit:
+          type: integer
+          description: Server-imposed result limit
+        offset:
+          type: integer
+          description: Offset of first returned result
+        count:
+          type: integer
+          description: Number of documents in this response
+        totalResults:
+          type: integer
+          description: Total documents in collection (only if totalResults=true)
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    DocumentMetadata:
+      type: object
+      properties:
+        id:
+          type: string
+        etag:
+          type: string
+        lastModified:
+          type: string
+          format: date-time
+        created:
+          type: string
+          format: date-time
   responses:
     NotFound:
       description: The specified collection or document was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:
@@ -440,6 +419,27 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
+    keyParam:
+      name: key
+      in: path
+      required: true
+      description: The unique key of the document
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle SODA (Simple Oracle Document Access) REST Bulk Operations API
+  title: Oracle Database Oracle SODA (Simple Oracle Document Access)…
   description: NoSQL-style document access API for Oracle Database. SODA for REST provides HTTP operations for managing JSON document collections, enabling CRUD operations, querying by example (QBE), bulk operations, and index management through a RESTful interface built on Oracle REST Data Services.
   version: 1.0.0
   contact:
@@ -145,6 +145,14 @@ paths:
           description: Collection is read-only
 components:
   schemas:
+    QBEFilter:
+      type: object
+      description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
+      additionalProperties: true
+      example:
+        name: John
+        salary:
+          $gt: 50000
     BulkUpdateResponse:
       type: object
       properties:
@@ -154,21 +162,6 @@ components:
         itemsUpdated:
           type: integer
           description: Number of documents updated
-    BulkUpdateRequest:
-      type: object
-      description: Combination of QBE filter fields and $patch operations. Filter fields identify documents to update, $patch contains the JSON Patch operations to apply.
-      properties:
-        $patch:
-          type: array
-          items:
-            $ref: '#/components/schemas/JsonPatchOperation'
-      additionalProperties: true
-      example:
-        department: HR
-        $patch:
-        - op: replace
-          path: /salary
-          value: 70000
     Error:
       type: object
       properties:
@@ -176,15 +169,6 @@ components:
           type: integer
         message:
           type: string
-    BulkDeleteResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Number of documents affected
-        itemsDeleted:
-          type: integer
-          description: Number of documents deleted
     JsonPatchOperation:
       type: object
       required:
@@ -209,6 +193,15 @@ components:
         from:
           type: string
           description: JSON Pointer path for move and copy source
+    BulkDeleteResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of documents affected
+        itemsDeleted:
+          type: integer
+          description: Number of documents deleted
     BulkInsertResponse:
       type: object
       properties:
@@ -231,14 +224,21 @@ components:
         created:
           type: string
           format: date-time
-    QBEFilter:
+    BulkUpdateRequest:
       type: object
-      description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
+      description: Combination of QBE filter fields and $patch operations. Filter fields identify documents to update, $patch contains the JSON Patch operations to apply.
+      properties:
+        $patch:
+          type: array
+          items:
+            $ref: '#/components/schemas/JsonPatchOperation'
       additionalProperties: true
       example:
-        name: John
-        salary:
-          $gt: 50000
+        department: HR
+        $patch:
+        - op: replace
+          path: /salary
+          value: 70000
   responses:
     NotFound:
       description: The specified collection or document was not found

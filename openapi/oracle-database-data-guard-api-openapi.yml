@@ -279,6 +279,40 @@ paths:
           default: '8443'
           description: ORDS server port
 components:
+  parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+  responses:
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    Unauthorized_2:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
   schemas:
     Error:
       type: object
@@ -325,24 +359,26 @@ components:
         timeCreated:
           type: string
           format: date-time
-    UpdateDataGuardDatabaseRequest:
+    DataGuardDatabaseList:
       type: object
       properties:
-        action:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataGuardDatabase'
+    DataGuardConfiguration:
+      type: object
+      properties:
+        configuration_name:
           type: string
-          enum:
-          - ENABLE
-          - DISABLE
-          - CONVERT
-          - SWITCHOVER
-          - FAILOVER
-    UpdateDataGuardConfigRequest:
-      type: object
-      properties:
-        enabled:
-          type: boolean
         protection_mode:
           type: string
+        enabled:
+          type: boolean
+        databases:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataGuardDatabase'
     Error_2:
       type: object
       properties:
@@ -352,6 +388,19 @@ components:
           type: string
         type:
           type: string
+    CreateDataGuardConfigRequest:
+      type: object
+      required:
+      - configuration_name
+      properties:
+        configuration_name:
+          type: string
+        protection_mode:
+          type: string
+          enum:
+          - MAXIMUM_AVAILABILITY
+          - MAXIMUM_PERFORMANCE
+          - MAXIMUM_PROTECTION
     AddDataGuardDatabaseRequest:
       type: object
       required:
@@ -380,73 +429,24 @@ components:
           type: string
         apply_lag:
           type: string
-    CreateDataGuardConfigRequest:
-      type: object
-      required:
-      - configuration_name
-      properties:
-        configuration_name:
-          type: string
-        protection_mode:
-          type: string
-          enum:
-          - MAXIMUM_AVAILABILITY
-          - MAXIMUM_PERFORMANCE
-          - MAXIMUM_PROTECTION
-    DataGuardDatabaseList:
+    UpdateDataGuardConfigRequest:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataGuardDatabase'
-    DataGuardConfiguration:
-      type: object
-      properties:
-        configuration_name:
-          type: string
-        protection_mode:
-          type: string
         enabled:
           type: boolean
-        databases:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataGuardDatabase'
-  parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
-  responses:
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-    Unauthorized_2:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
+        protection_mode:
+          type: string
+    UpdateDataGuardDatabaseRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - ENABLE
+          - DISABLE
+          - CONVERT
+          - SWITCHOVER
+          - FAILOVER
   securitySchemes:
     ociSignature:
       type: http

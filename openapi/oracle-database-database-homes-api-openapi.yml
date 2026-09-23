@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database Database Homes API
+  title: Oracle Database Oracle Cloud Infrastructure Database…
   description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
   version: '20160918'
   contact:
@@ -128,6 +128,19 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    DbHomeSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        dbVersion:
+          type: string
+        lifecycleState:
+          type: string
     DbHome:
       type: object
       properties:
@@ -146,6 +159,17 @@ components:
         timeCreated:
           type: string
           format: date-time
+    CreateDbHomeDetails:
+      type: object
+      required:
+      - dbVersion
+      properties:
+        dbVersion:
+          type: string
+        displayName:
+          type: string
+        database:
+          $ref: '#/components/schemas/CreateDatabaseDetails'
     Error:
       type: object
       properties:
@@ -173,58 +197,6 @@ components:
           type: string
         pdbName:
           type: string
-    DbHomeSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        compartmentId:
-          type: string
-        displayName:
-          type: string
-        dbVersion:
-          type: string
-        lifecycleState:
-          type: string
-    CreateDbHomeDetails:
-      type: object
-      required:
-      - dbVersion
-      properties:
-        dbVersion:
-          type: string
-        displayName:
-          type: string
-        database:
-          $ref: '#/components/schemas/CreateDatabaseDetails'
-  parameters:
-    compartmentIdParam:
-      name: compartmentId
-      in: query
-      required: true
-      description: The OCID of the compartment
-      schema:
-        type: string
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
-      schema:
-        type: string
   responses:
     NotFound:
       description: Resource not found
@@ -238,6 +210,34 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
   securitySchemes:
     ociSignature:
       type: http

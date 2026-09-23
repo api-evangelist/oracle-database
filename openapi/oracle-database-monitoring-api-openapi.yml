@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle REST Data Services (ORDS) Monitoring API
+  title: Oracle Database Oracle REST Data Services (ORDS) Monitoring…
   description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
   version: 25.4.0
   contact:
@@ -206,15 +206,28 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
+    WaitClassMetricList:
       type: object
       properties:
-        code:
-          type: integer
-        message:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              wait_class:
+                type: string
+              average_waiter_count:
+                type: number
+              dbtime_in_wait:
+                type: number
+    Link:
+      type: object
+      properties:
+        rel:
           type: string
-        type:
+        href:
           type: string
+          format: uri
     PaginatedResponse:
       type: object
       properties:
@@ -233,6 +246,61 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    SessionLockList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sid:
+                type: integer
+              type:
+                type: string
+              mode_held:
+                type: string
+              mode_requested:
+                type: string
+              block:
+                type: integer
+    SessionList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SessionDetail'
+    AlertSummaryList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              message_level:
+                type: integer
+              count:
+                type: integer
+    SessionLimitList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              resource_name:
+                type: string
+              current_utilization:
+                type: integer
+              max_utilization:
+                type: integer
+              limit_value:
+                type: string
     SessionDetail:
       type: object
       properties:
@@ -257,68 +325,6 @@ components:
         logon_time:
           type: string
           format: date-time
-    SessionLockList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              sid:
-                type: integer
-              type:
-                type: string
-              mode_held:
-                type: string
-              mode_requested:
-                type: string
-              block:
-                type: integer
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-    SessionList:
-      allOf:
-      - $ref: '#/components/schemas/PaginatedResponse'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SessionDetail'
-    WaitClassTotalList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              wait_class:
-                type: string
-              total_waits:
-                type: integer
-                format: int64
-              time_waited:
-                type: number
-    AlertSummaryList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              message_level:
-                type: integer
-              count:
-                type: integer
     AlertList:
       type: object
       properties:
@@ -334,7 +340,16 @@ components:
               originating_timestamp:
                 type: string
                 format: date-time
-    WaitClassMetricList:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    WaitClassTotalList:
       type: object
       properties:
         items:
@@ -344,43 +359,11 @@ components:
             properties:
               wait_class:
                 type: string
-              average_waiter_count:
-                type: number
-              dbtime_in_wait:
-                type: number
-    SessionLimitList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              resource_name:
-                type: string
-              current_utilization:
+              total_waits:
                 type: integer
-              max_utilization:
-                type: integer
-              limit_value:
-                type: string
-  parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        default: 25
-    offsetParam:
-      name: offset
-      in: query
-      description: Number of items to skip before returning results
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
+                format: int64
+              time_waited:
+                type: number
   responses:
     NotFound:
       description: The specified resource was not found
@@ -394,6 +377,23 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    offsetParam:
+      name: offset
+      in: query
+      description: Number of items to skip before returning results
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
   securitySchemes:
     oauth2:
       type: oauth2

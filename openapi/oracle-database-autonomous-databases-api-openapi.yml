@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database Autonomous Databases API
+  title: Oracle Database Oracle Cloud Infrastructure Database…
   description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
   version: '20160918'
   contact:
@@ -347,13 +347,69 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
+    UpdateAutonomousDatabaseDetails:
       type: object
       properties:
-        code:
+        displayName:
           type: string
-        message:
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        isAutoScalingEnabled:
+          type: boolean
+        adminPassword:
           type: string
+          format: password
+        whitelistedIps:
+          type: array
+          items:
+            type: string
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    CreateAutonomousDatabaseBackupDetails:
+      type: object
+      required:
+      - autonomousDatabaseId
+      - displayName
+      properties:
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        isLongTermBackup:
+          type: boolean
+        retentionPeriodInDays:
+          type: integer
+    AutonomousDatabaseBackup:
+      type: object
+      properties:
+        id:
+          type: string
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+          enum:
+          - INCREMENTAL
+          - FULL
+          - LONG_TERM
+        lifecycleState:
+          type: string
+        databaseSizeInTBs:
+          type: number
+        timeStarted:
+          type: string
+          format: date-time
+        timeEnded:
+          type: string
+          format: date-time
+        isAutomatic:
+          type: boolean
     AutonomousDatabaseSummary:
       type: object
       properties:
@@ -378,20 +434,72 @@ components:
           format: date-time
         isFreeTier:
           type: boolean
-    GenerateAutonomousDatabaseWalletDetails:
+    AutonomousDatabaseBackupSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+        lifecycleState:
+          type: string
+        timeStarted:
+          type: string
+          format: date-time
+        isAutomatic:
+          type: boolean
+    CreateAutonomousDatabaseDetails:
       type: object
       required:
-      - password
+      - compartmentId
+      - dbName
+      - cpuCoreCount
+      - dataStorageSizeInTBs
+      - adminPassword
       properties:
-        password:
+        compartmentId:
+          type: string
+        dbName:
+          type: string
+        displayName:
+          type: string
+        adminPassword:
           type: string
           format: password
-          description: Password to encrypt the wallet keys
-        generateType:
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        dbWorkload:
           type: string
           enum:
-          - ALL
-          - SINGLE
+          - OLTP
+          - DW
+          - AJD
+          - APEX
+        isAutoScalingEnabled:
+          type: boolean
+        isFreeTier:
+          type: boolean
+        licenseModel:
+          type: string
+          enum:
+          - LICENSE_INCLUDED
+          - BRING_YOUR_OWN_LICENSE
+        whitelistedIps:
+          type: array
+          items:
+            type: string
+        subnetId:
+          type: string
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
     AutonomousDatabase:
       type: object
       properties:
@@ -485,136 +593,42 @@ components:
           type: object
           additionalProperties:
             type: object
-    CreateAutonomousDatabaseDetails:
+    GenerateAutonomousDatabaseWalletDetails:
       type: object
       required:
-      - compartmentId
-      - dbName
-      - cpuCoreCount
-      - dataStorageSizeInTBs
-      - adminPassword
+      - password
       properties:
-        compartmentId:
-          type: string
-        dbName:
-          type: string
-        displayName:
-          type: string
-        adminPassword:
+        password:
           type: string
           format: password
-        cpuCoreCount:
-          type: integer
-        dataStorageSizeInTBs:
-          type: integer
-        dbWorkload:
+          description: Password to encrypt the wallet keys
+        generateType:
           type: string
           enum:
-          - OLTP
-          - DW
-          - AJD
-          - APEX
-        isAutoScalingEnabled:
-          type: boolean
-        isFreeTier:
-          type: boolean
-        licenseModel:
-          type: string
-          enum:
-          - LICENSE_INCLUDED
-          - BRING_YOUR_OWN_LICENSE
-        whitelistedIps:
-          type: array
-          items:
-            type: string
-        subnetId:
-          type: string
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-    UpdateAutonomousDatabaseDetails:
+          - ALL
+          - SINGLE
+    Error:
       type: object
       properties:
-        displayName:
+        code:
           type: string
-        cpuCoreCount:
-          type: integer
-        dataStorageSizeInTBs:
-          type: integer
-        isAutoScalingEnabled:
-          type: boolean
-        adminPassword:
+        message:
           type: string
-          format: password
-        whitelistedIps:
-          type: array
-          items:
-            type: string
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-    AutonomousDatabaseBackupSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        autonomousDatabaseId:
-          type: string
-        displayName:
-          type: string
-        type:
-          type: string
-        lifecycleState:
-          type: string
-        timeStarted:
-          type: string
-          format: date-time
-        isAutomatic:
-          type: boolean
-    CreateAutonomousDatabaseBackupDetails:
-      type: object
-      required:
-      - autonomousDatabaseId
-      - displayName
-      properties:
-        autonomousDatabaseId:
-          type: string
-        displayName:
-          type: string
-        isLongTermBackup:
-          type: boolean
-        retentionPeriodInDays:
-          type: integer
-    AutonomousDatabaseBackup:
-      type: object
-      properties:
-        id:
-          type: string
-        autonomousDatabaseId:
-          type: string
-        displayName:
-          type: string
-        type:
-          type: string
-          enum:
-          - INCREMENTAL
-          - FULL
-          - LONG_TERM
-        lifecycleState:
-          type: string
-        databaseSizeInTBs:
-          type: number
-        timeStarted:
-          type: string
-          format: date-time
-        timeEnded:
-          type: string
-          format: date-time
-        isAutomatic:
-          type: boolean
   parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
     opcRequestIdParam:
       name: opc-request-id
       in: header
@@ -628,25 +642,10 @@ components:
       description: The OCID of the Autonomous Database
       schema:
         type: string
-    compartmentIdParam:
-      name: compartmentId
-      in: query
-      required: true
-      description: The OCID of the compartment
-      schema:
-        type: string
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
       schema:
         type: string
     opcRetryTokenParam:
@@ -655,10 +654,11 @@ components:
       description: Unique retry token to prevent duplicate requests
       schema:
         type: string
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
       schema:
         type: string
   responses:
@@ -668,14 +668,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:

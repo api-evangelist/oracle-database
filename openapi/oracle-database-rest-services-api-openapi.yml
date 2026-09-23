@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle REST Data Services (ORDS) REST Services API
+  title: Oracle Database Oracle REST Data Services (ORDS) REST…
   description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
   version: 25.4.0
   contact:
@@ -318,35 +318,36 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ORDSPropertyList:
+    CreateRESTHandlerRequest:
+      type: object
+      required:
+      - method
+      - source_type
+      - source
+      properties:
+        method:
+          type: string
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+        source_type:
+          type: string
+          enum:
+          - collection/query
+          - collection/feed
+          - query
+          - plsql
+        source:
+          type: string
+    RESTModuleList:
       type: object
       properties:
         items:
           type: array
           items:
-            type: object
-            properties:
-              key:
-                type: string
-              value:
-                type: string
-    CreateRESTModuleRequest:
-      type: object
-      required:
-      - name
-      - uri_prefix
-      properties:
-        name:
-          type: string
-        uri_prefix:
-          type: string
-        status:
-          type: string
-          enum:
-          - PUBLISHED
-          - NOT_PUBLISHED
-        items_per_page:
-          type: integer
+            $ref: '#/components/schemas/RESTModule'
     AutoRESTRequest:
       type: object
       required:
@@ -367,22 +368,49 @@ components:
           type: string
         schema:
           type: string
-    Error:
+    CreateRoleRequest:
       type: object
+      required:
+      - name
       properties:
-        code:
-          type: integer
-        message:
+        name:
           type: string
-        type:
+        description:
           type: string
-    RESTModuleList:
+    ORDSPropertyList:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/RESTModule'
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+    ORDSPropertyValue:
+      type: object
+      properties:
+        value:
+          type: string
+    CreateRESTModuleRequest:
+      type: object
+      required:
+      - name
+      - uri_prefix
+      properties:
+        name:
+          type: string
+        uri_prefix:
+          type: string
+        status:
+          type: string
+          enum:
+          - PUBLISHED
+          - NOT_PUBLISHED
+        items_per_page:
+          type: integer
     CreateOAuthClientRequest:
       type: object
       required:
@@ -401,10 +429,43 @@ components:
         redirect_uri:
           type: string
           format: uri
-    ORDSPropertyValue:
+    OAuthClientList:
       type: object
       properties:
-        value:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              client_id:
+                type: string
+              grant_type:
+                type: string
+    RESTModule:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        uri_prefix:
+          type: string
+        status:
+          type: string
+        items_per_page:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
           type: string
     CreatePrivilegeRequest:
       type: object
@@ -438,67 +499,6 @@ components:
                 type: string
               source:
                 type: string
-    OAuthClientList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              client_id:
-                type: string
-              grant_type:
-                type: string
-    RESTModule:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        uri_prefix:
-          type: string
-        status:
-          type: string
-        items_per_page:
-          type: integer
-    CreateRoleRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-    CreateRESTHandlerRequest:
-      type: object
-      required:
-      - method
-      - source_type
-      - source
-      properties:
-        method:
-          type: string
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-        source_type:
-          type: string
-          enum:
-          - collection/query
-          - collection/feed
-          - query
-          - plsql
-        source:
-          type: string
   responses:
     NotFound:
       description: The specified resource was not found
@@ -506,14 +506,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:

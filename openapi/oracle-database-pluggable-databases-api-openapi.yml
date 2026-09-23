@@ -350,60 +350,6 @@ paths:
           description: ORDS server port
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    UpdatePluggableDatabaseDetails:
-      type: object
-      properties:
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-        definedTags:
-          type: object
-          additionalProperties:
-            type: object
-    PluggableDatabaseSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        containerDatabaseId:
-          type: string
-        pdbName:
-          type: string
-        lifecycleState:
-          type: string
-        openMode:
-          type: string
-        timeCreated:
-          type: string
-          format: date-time
-    CreatePluggableDatabaseDetails:
-      type: object
-      required:
-      - containerDatabaseId
-      - pdbName
-      properties:
-        containerDatabaseId:
-          type: string
-        pdbName:
-          type: string
-        pdbAdminPassword:
-          type: string
-          format: password
-        tdeWalletPassword:
-          type: string
-          format: password
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
     PluggableDatabase:
       type: object
       properties:
@@ -441,32 +387,60 @@ components:
               type: string
             pdbIpDefault:
               type: string
-    Error_2:
+    CreatePluggableDatabaseDetails:
+      type: object
+      required:
+      - containerDatabaseId
+      - pdbName
+      properties:
+        containerDatabaseId:
+          type: string
+        pdbName:
+          type: string
+        pdbAdminPassword:
+          type: string
+          format: password
+        tdeWalletPassword:
+          type: string
+          format: password
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    UpdatePluggableDatabaseDetails:
+      type: object
+      properties:
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+        definedTags:
+          type: object
+          additionalProperties:
+            type: object
+    PluggableDatabaseSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        containerDatabaseId:
+          type: string
+        pdbName:
+          type: string
+        lifecycleState:
+          type: string
+        openMode:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+    Error:
       type: object
       properties:
         code:
-          type: integer
+          type: string
         message:
           type: string
-        type:
-          type: string
-    PDB:
-      type: object
-      properties:
-        pdb_name:
-          type: string
-        pdb_id:
-          type: integer
-        status:
-          type: string
-        open_mode:
-          type: string
-        total_size:
-          type: integer
-          format: int64
-        creation_time:
-          type: string
-          format: date-time
     CreatePDBRequest:
       type: object
       required:
@@ -486,13 +460,6 @@ components:
         storage_limit:
           type: integer
           format: int64
-    PDBList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/PDB'
     UpdatePDBRequest:
       type: object
       properties:
@@ -506,34 +473,39 @@ components:
           enum:
           - READ WRITE
           - READ ONLY
-  parameters:
-    compartmentIdParam:
-      name: compartmentId
-      in: query
-      required: true
-      description: The OCID of the compartment
-      schema:
-        type: string
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
-      schema:
-        type: string
+    PDB:
+      type: object
+      properties:
+        pdb_name:
+          type: string
+        pdb_id:
+          type: integer
+        status:
+          type: string
+        open_mode:
+          type: string
+        total_size:
+          type: integer
+          format: int64
+        creation_time:
+          type: string
+          format: date-time
+    PDBList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/PDB'
+    Error_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
   responses:
     NotFound:
       description: Resource not found
@@ -553,18 +525,46 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error_2'
-    Unauthorized_2:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
     BadRequest:
       description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error_2'
+    Unauthorized_2:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+  parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
   securitySchemes:
     ociSignature:
       type: http

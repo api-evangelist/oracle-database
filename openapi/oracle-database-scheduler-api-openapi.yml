@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle REST Data Services (ORDS) Scheduler API
+  title: Oracle Database Oracle REST Data Services (ORDS) Scheduler…
   description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
   version: 25.4.0
   contact:
@@ -75,15 +75,13 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
+    SchedulerJobList:
       type: object
       properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchedulerJob'
     SchedulerJob:
       type: object
       properties:
@@ -105,13 +103,15 @@ components:
           format: date-time
         repeat_interval:
           type: string
-    SchedulerJobList:
+    Error:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SchedulerJob'
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
   responses:
     NotFound:
       description: The specified resource was not found

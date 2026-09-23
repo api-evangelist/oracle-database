@@ -287,14 +287,100 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
+    DatabaseVersion:
       type: object
       properties:
-        code:
-          type: integer
-        message:
+        version:
           type: string
-        type:
+        version_full:
+          type: string
+        banner:
+          type: string
+    DatabaseStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - OPEN
+          - MOUNTED
+          - STARTED
+        instance_name:
+          type: string
+        host_name:
+          type: string
+        database_role:
+          type: string
+        open_mode:
+          type: string
+    UserList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              username:
+                type: string
+              account_status:
+                type: string
+              default_tablespace:
+                type: string
+              created:
+                type: string
+                format: date-time
+    ParameterList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/DatabaseParameter'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+    PaginatedResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items: {}
+        hasMore:
+          type: boolean
+        limit:
+          type: integer
+        offset:
+          type: integer
+        count:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    StorageInfo:
+      type: object
+      properties:
+        total_bytes:
+          type: integer
+          format: int64
+        used_bytes:
+          type: integer
+          format: int64
+        free_bytes:
+          type: integer
+          format: int64
+    SessionlessTransaction:
+      type: object
+      properties:
+        sessionlessTransactionID:
           type: string
     Tablespace:
       type: object
@@ -316,27 +402,6 @@ components:
         free_bytes:
           type: integer
           format: int64
-    StorageInfo:
-      type: object
-      properties:
-        total_bytes:
-          type: integer
-          format: int64
-        used_bytes:
-          type: integer
-          format: int64
-        free_bytes:
-          type: integer
-          format: int64
-    ParameterList:
-      allOf:
-      - $ref: '#/components/schemas/PaginatedResponse'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/DatabaseParameter'
     TablespaceList:
       type: object
       properties:
@@ -344,31 +409,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tablespace'
-    UserList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              username:
-                type: string
-              account_status:
-                type: string
-              default_tablespace:
-                type: string
-              created:
-                type: string
-                format: date-time
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
     FeatureUsageList:
       type: object
       properties:
@@ -387,62 +427,23 @@ components:
               last_usage_date:
                 type: string
                 format: date-time
-    SessionlessTransaction:
+    DatabaseParameter:
       type: object
       properties:
-        sessionlessTransactionID:
+        name:
           type: string
-    PaginatedResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items: {}
-        hasMore:
-          type: boolean
-        limit:
-          type: integer
-        offset:
-          type: integer
-        count:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    DatabaseStatus:
-      type: object
-      properties:
-        status:
+        value:
           type: string
-          enum:
-          - OPEN
-          - MOUNTED
-          - STARTED
-        instance_name:
+        display_value:
           type: string
-        host_name:
+        isdefault:
           type: string
-        database_role:
+        ismodified:
           type: string
-        open_mode:
+        type:
           type: string
-    ComponentList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              comp_id:
-                type: string
-              comp_name:
-                type: string
-              version:
-                type: string
-              status:
-                type: string
+        description:
+          type: string
     DatafileList:
       type: object
       properties:
@@ -462,32 +463,48 @@ components:
                 format: int64
               status:
                 type: string
-    DatabaseVersion:
+    Error:
       type: object
       properties:
-        version:
-          type: string
-        version_full:
-          type: string
-        banner:
-          type: string
-    DatabaseParameter:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-        display_value:
-          type: string
-        isdefault:
-          type: string
-        ismodified:
+        code:
+          type: integer
+        message:
           type: string
         type:
           type: string
-        description:
-          type: string
+    ComponentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              comp_id:
+                type: string
+              comp_name:
+                type: string
+              version:
+                type: string
+              status:
+                type: string
+  parameters:
+    offsetParam:
+      name: offset
+      in: query
+      description: Number of items to skip before returning results
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
   responses:
     Unauthorized:
       description: Authentication required or credentials invalid
@@ -501,23 +518,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        default: 25
-    offsetParam:
-      name: offset
-      in: query
-      description: Number of items to skip before returning results
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

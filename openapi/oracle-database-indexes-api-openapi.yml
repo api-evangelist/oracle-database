@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle SODA (Simple Oracle Document Access) REST Indexes API
+  title: Oracle Database Oracle SODA (Simple Oracle Document Access)…
   description: NoSQL-style document access API for Oracle Database. SODA for REST provides HTTP operations for managing JSON document collections, enabling CRUD operations, querying by example (QBE), bulk operations, and index management through a RESTful interface built on Oracle REST Data Services.
   version: 1.0.0
   contact:
@@ -87,14 +87,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     IndexSpecification:
       type: object
       required:
@@ -144,19 +150,13 @@ components:
           - none
           - text
           - text_value
-  responses:
-    NotFound:
-      description: The specified collection or document was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
   parameters:
     collectionParam:
       name: collection

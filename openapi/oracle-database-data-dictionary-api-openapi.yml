@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle REST Data Services (ORDS) Data Dictionary API
+  title: Oracle Database Oracle REST Data Services (ORDS) Data…
   description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
   version: 25.4.0
   contact:
@@ -295,97 +295,24 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    offsetParam:
+      name: offset
+      in: query
+      description: Number of items to skip before returning results
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
-    Tablespace:
-      type: object
-      properties:
-        tablespace_name:
-          type: string
-        status:
-          type: string
-        contents:
-          type: string
-        block_size:
-          type: integer
-        allocated_bytes:
-          type: integer
-          format: int64
-        used_bytes:
-          type: integer
-          format: int64
-        free_bytes:
-          type: integer
-          format: int64
-    TableMetadata:
-      type: object
-      properties:
-        owner:
-          type: string
-        table_name:
-          type: string
-        tablespace_name:
-          type: string
-        num_rows:
-          type: integer
-          format: int64
-        last_analyzed:
-          type: string
-          format: date-time
-        status:
-          type: string
-        temporary:
-          type: string
-    DatabaseLinkList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatabaseLink'
-    ForeignKeyList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              owner:
-                type: string
-              constraint_name:
-                type: string
-              table_name:
-                type: string
-              r_owner:
-                type: string
-              r_constraint_name:
-                type: string
-              status:
-                type: string
-    TablespaceList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tablespace'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
     DatabaseLink:
       type: object
       properties:
@@ -400,6 +327,14 @@ components:
         created:
           type: string
           format: date-time
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
     PaginatedResponse:
       type: object
       properties:
@@ -418,6 +353,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    IndexList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IndexMetadata'
     FunctionMetadata:
       type: object
       properties:
@@ -455,29 +397,40 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/ColumnMetadata'
-    TableList:
-      allOf:
-      - $ref: '#/components/schemas/PaginatedResponse'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/TableMetadata'
-    IndexList:
+    Tablespace:
+      type: object
+      properties:
+        tablespace_name:
+          type: string
+        status:
+          type: string
+        contents:
+          type: string
+        block_size:
+          type: integer
+        allocated_bytes:
+          type: integer
+          format: int64
+        used_bytes:
+          type: integer
+          format: int64
+        free_bytes:
+          type: integer
+          format: int64
+    TablespaceList:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/IndexMetadata'
-    FunctionList:
+            $ref: '#/components/schemas/Tablespace'
+    DatabaseLinkList:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/FunctionMetadata'
+            $ref: '#/components/schemas/DatabaseLink'
     ColumnMetadata:
       type: object
       properties:
@@ -495,6 +448,70 @@ components:
           type: string
         column_id:
           type: integer
+    TableList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/TableMetadata'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    TableMetadata:
+      type: object
+      properties:
+        owner:
+          type: string
+        table_name:
+          type: string
+        tablespace_name:
+          type: string
+        num_rows:
+          type: integer
+          format: int64
+        last_analyzed:
+          type: string
+          format: date-time
+        status:
+          type: string
+        temporary:
+          type: string
+    FunctionList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/FunctionMetadata'
+    ForeignKeyList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+              constraint_name:
+                type: string
+              table_name:
+                type: string
+              r_owner:
+                type: string
+              r_constraint_name:
+                type: string
+              status:
+                type: string
   responses:
     Unauthorized:
       description: Authentication required or credentials invalid
@@ -508,23 +525,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        default: 25
-    offsetParam:
-      name: offset
-      in: query
-      description: Number of items to skip before returning results
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   securitySchemes:
     oauth2:
       type: oauth2

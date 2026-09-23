@@ -172,6 +172,13 @@ components:
           type: integer
         total_developers:
           type: integer
+    APEXWorkspaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/APEXWorkspace'
     Error:
       type: object
       properties:
@@ -215,13 +222,6 @@ components:
           type: array
           items:
             type: string
-    APEXWorkspaceList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/APEXWorkspace'
   responses:
     NotFound:
       description: The specified resource was not found

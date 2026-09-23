@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle SODA (Simple Oracle Document Access) REST Collections API
+  title: Oracle Database Oracle SODA (Simple Oracle Document Access)…
   description: NoSQL-style document access API for Oracle Database. SODA for REST provides HTTP operations for managing JSON document collections, enabling CRUD operations, querying by example (QBE), bulk operations, and index management through a RESTful interface built on Oracle REST Data Services.
   version: 1.0.0
   contact:
@@ -106,14 +106,34 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameter value
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     CollectionList:
       type: object
       properties:
@@ -131,6 +151,13 @@ components:
         hasMore:
           type: boolean
           description: Whether more collections exist beyond this page
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     CollectionMetadata:
       type: object
       description: Optional collection configuration metadata
@@ -186,33 +213,6 @@ components:
               type: string
         readOnly:
           type: boolean
-  responses:
-    NotFound:
-      description: The specified collection or document was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameter value
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    collectionParam:
-      name: collection
-      in: path
-      required: true
-      description: The name of the SODA collection
-      schema:
-        type: string
   securitySchemes:
     oauth2:
       type: oauth2

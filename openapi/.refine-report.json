@@ -40,7 +40,8 @@
     "oracle-database-ords-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "oracle-database-soda-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "tag 'Data Guard' spans 2 source specs (oracle-database-oci-openapi.yml, oracle-database-ords-openapi.yml): per-path servers applied",
-    "tag 'Pluggable Databases' spans 2 source specs (oracle-database-oci-openapi.yml, oracle-database-ords-openapi.yml): per-path servers applied"
+    "tag 'Pluggable Databases' spans 2 source specs (oracle-database-oci-openapi.yml, oracle-database-ords-openapi.yml): per-path servers applied",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "oracle-database-apex-api-openapi.yml: previously refined output, superseded by openapi/_original/",

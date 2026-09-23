@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle REST Data Services (ORDS) PDB Snapshots API
+  title: Oracle Database Oracle REST Data Services (ORDS) PDB…
   description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
   version: 25.4.0
   contact:
@@ -157,50 +157,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
-    AutoSnapshotConfig:
-      type: object
-      properties:
-        auto_snapshot_enabled:
-          type: boolean
-        snapshot_interval_minutes:
-          type: integer
-        max_snapshots:
-          type: integer
-    SnapshotMode:
-      type: object
-      properties:
-        snapshot_mode:
-          type: string
-    SnapshotList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Snapshot'
-    Snapshot:
-      type: object
-      properties:
-        snapshot_name:
-          type: string
-        snapshot_scn:
-          type: integer
-          format: int64
-        creation_time:
-          type: string
-          format: date-time
-        pdb_name:
-          type: string
   responses:
     NotFound:
       description: The specified resource was not found
@@ -214,6 +170,50 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  schemas:
+    AutoSnapshotConfig:
+      type: object
+      properties:
+        auto_snapshot_enabled:
+          type: boolean
+        snapshot_interval_minutes:
+          type: integer
+        max_snapshots:
+          type: integer
+    Snapshot:
+      type: object
+      properties:
+        snapshot_name:
+          type: string
+        snapshot_scn:
+          type: integer
+          format: int64
+        creation_time:
+          type: string
+          format: date-time
+        pdb_name:
+          type: string
+    SnapshotMode:
+      type: object
+      properties:
+        snapshot_mode:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    SnapshotList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Snapshot'
   securitySchemes:
     oauth2:
       type: oauth2

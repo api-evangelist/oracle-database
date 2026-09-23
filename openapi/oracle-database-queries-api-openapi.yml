@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle SODA (Simple Oracle Document Access) REST Queries API
+  title: Oracle Database Oracle SODA (Simple Oracle Document Access)…
   description: NoSQL-style document access API for Oracle Database. SODA for REST provides HTTP operations for managing JSON document collections, enabling CRUD operations, querying by example (QBE), bulk operations, and index management through a RESTful interface built on Oracle REST Data Services.
   version: 1.0.0
   contact:
@@ -82,39 +82,14 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
+    QBEFilter:
       type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    DocumentList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-        hasMore:
-          type: boolean
-          description: Whether more documents exist beyond this page
-        limit:
-          type: integer
-          description: Server-imposed result limit
-        offset:
-          type: integer
-          description: Offset of first returned result
-        count:
-          type: integer
-          description: Number of documents in this response
-        totalResults:
-          type: integer
-          description: Total documents in collection (only if totalResults=true)
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
+      description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
+      additionalProperties: true
+      example:
+        name: John
+        salary:
+          $gt: 50000
     Link:
       type: object
       properties:
@@ -128,14 +103,6 @@ components:
         mediaType:
           type: string
           description: Media type of the linked resource
-    QBEFilter:
-      type: object
-      description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
-      additionalProperties: true
-      example:
-        name: John
-        salary:
-          $gt: 50000
     Document:
       type: object
       properties:
@@ -162,6 +129,39 @@ components:
         bytes:
           type: integer
           description: Content length for non-JSON documents
+    DocumentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        hasMore:
+          type: boolean
+          description: Whether more documents exist beyond this page
+        limit:
+          type: integer
+          description: Server-imposed result limit
+        offset:
+          type: integer
+          description: Offset of first returned result
+        count:
+          type: integer
+          description: Number of documents in this response
+        totalResults:
+          type: integer
+          description: Total documents in collection (only if totalResults=true)
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
   responses:
     NotFound:
       description: The specified collection or document was not found

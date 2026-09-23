@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle REST Data Services (ORDS) RDF Graph API
+  title: Oracle Database Oracle REST Data Services (ORDS) RDF Graph…
   description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
   version: 25.4.0
   contact:
@@ -203,39 +203,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    SPARQLResults:
-      type: object
-      properties:
-        head:
-          type: object
-          properties:
-            vars:
-              type: array
-              items:
-                type: string
-        results:
-          type: object
-          properties:
-            bindings:
-              type: array
-              items:
-                type: object
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
-    RDFNetworkList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/RDFNetwork'
     RDFNetwork:
       type: object
       properties:
@@ -257,6 +224,39 @@ components:
                 type: string
               network_name:
                 type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    RDFNetworkList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RDFNetwork'
+    SPARQLResults:
+      type: object
+      properties:
+        head:
+          type: object
+          properties:
+            vars:
+              type: array
+              items:
+                type: string
+        results:
+          type: object
+          properties:
+            bindings:
+              type: array
+              items:
+                type: object
   responses:
     NotFound:
       description: The specified resource was not found
@@ -264,14 +264,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:

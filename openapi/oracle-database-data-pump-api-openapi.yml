@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle REST Data Services (ORDS) Data Pump API
+  title: Oracle Database Oracle REST Data Services (ORDS) Data Pump…
   description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
   version: 25.4.0
   contact:
@@ -158,32 +158,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    DataPumpImportRequest:
-      type: object
-      required:
-      - job_name
-      properties:
-        job_name:
-          type: string
-        directory:
-          type: string
-        dumpfile:
-          type: string
-        schemas:
-          type: array
-          items:
-            type: string
-        remap_schema:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
     DataPumpJob:
       type: object
       properties:
@@ -201,6 +175,30 @@ components:
           type: integer
         attached_sessions:
           type: integer
+    DataPumpImportRequest:
+      type: object
+      required:
+      - job_name
+      properties:
+        job_name:
+          type: string
+        directory:
+          type: string
+        dumpfile:
+          type: string
+        schemas:
+          type: array
+          items:
+            type: string
+        remap_schema:
+          type: string
+    DataPumpJobList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataPumpJob'
     DataPumpExportRequest:
       type: object
       required:
@@ -222,13 +220,15 @@ components:
           type: string
         logfile:
           type: string
-    DataPumpJobList:
+    Error:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataPumpJob'
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
   responses:
     NotFound:
       description: The specified resource was not found
@@ -236,14 +236,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:

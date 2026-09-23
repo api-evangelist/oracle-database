@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle SODA (Simple Oracle Document Access) REST Metadata API
+  title: Oracle Database Oracle SODA (Simple Oracle Document Access)…
   description: NoSQL-style document access API for Oracle Database. SODA for REST provides HTTP operations for managing JSON document collections, enabling CRUD operations, querying by example (QBE), bulk operations, and index management through a RESTful interface built on Oracle REST Data Services.
   version: 1.0.0
   contact:
@@ -112,13 +112,39 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
+    Link:
       type: object
       properties:
-        code:
-          type: integer
-        message:
+        rel:
           type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: Link URL
+        mediaType:
+          type: string
+          description: Media type of the linked resource
+    CatalogResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Collection name
+              properties:
+                type: object
+                description: Collection metadata properties
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Link'
+        hasMore:
+          type: boolean
     CollectionSchema:
       type: object
       properties:
@@ -161,39 +187,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Link:
+    Error:
       type: object
       properties:
-        rel:
+        code:
+          type: integer
+        message:
           type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: Link URL
-        mediaType:
-          type: string
-          description: Media type of the linked resource
-    CatalogResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-                description: Collection name
-              properties:
-                type: object
-                description: Collection metadata properties
-              links:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Link'
-        hasMore:
-          type: boolean
   responses:
     NotFound:
       description: The specified collection or document was not found
@@ -201,14 +201,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    BadRequest:
+      description: Bad request - invalid parameter value
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameter value
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:

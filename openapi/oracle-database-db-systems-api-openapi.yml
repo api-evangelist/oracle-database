@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle Cloud Infrastructure Database DB Systems API
+  title: Oracle Database Oracle Cloud Infrastructure Database DB…
   description: API for managing Oracle Database services in Oracle Cloud Infrastructure (OCI). Provides management of DB Systems, Autonomous Databases, Exadata infrastructure, database backups, Data Guard associations, database homes, and related cloud database resources.
   version: '20160918'
   contact:
@@ -169,34 +169,67 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    opcRetryTokenParam:
+      name: opc-retry-token
+      in: header
+      description: Unique retry token to prevent duplicate requests
+      schema:
+        type: string
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    dbSystemIdParam:
+      name: dbSystemId
+      in: path
+      required: true
+      description: The OCID of the DB System
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    CreateDatabaseDetails:
-      type: object
-      required:
-      - dbHomeId
-      - dbName
-      - adminPassword
-      properties:
-        dbHomeId:
-          type: string
-        dbName:
-          type: string
-        adminPassword:
-          type: string
-          format: password
-        characterSet:
-          type: string
-        ncharacterSet:
-          type: string
-        pdbName:
-          type: string
     LaunchDbSystemDetails:
       type: object
       required:
@@ -249,6 +282,61 @@ components:
           enum:
           - HIGH
           - NORMAL
+    UpdateDbSystemDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+        cpuCoreCount:
+          type: integer
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        dataStorageSizeInGBs:
+          type: integer
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    CreateDbHomeDetails:
+      type: object
+      required:
+      - dbVersion
+      properties:
+        dbVersion:
+          type: string
+        displayName:
+          type: string
+        database:
+          $ref: '#/components/schemas/CreateDatabaseDetails'
+    CreateDatabaseDetails:
+      type: object
+      required:
+      - dbHomeId
+      - dbName
+      - adminPassword
+      properties:
+        dbHomeId:
+          type: string
+        dbName:
+          type: string
+        adminPassword:
+          type: string
+          format: password
+        characterSet:
+          type: string
+        ncharacterSet:
+          type: string
+        pdbName:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     DbSystem:
       type: object
       properties:
@@ -299,34 +387,6 @@ components:
           enum:
           - HIGH
           - NORMAL
-    CreateDbHomeDetails:
-      type: object
-      required:
-      - dbVersion
-      properties:
-        dbVersion:
-          type: string
-        displayName:
-          type: string
-        database:
-          $ref: '#/components/schemas/CreateDatabaseDetails'
-    UpdateDbSystemDetails:
-      type: object
-      properties:
-        displayName:
-          type: string
-        cpuCoreCount:
-          type: integer
-        sshPublicKeys:
-          type: array
-          items:
-            type: string
-        dataStorageSizeInGBs:
-          type: integer
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
     DbSystemSummary:
       type: object
       properties:
@@ -347,66 +407,6 @@ components:
         timeCreated:
           type: string
           format: date-time
-  parameters:
-    compartmentIdParam:
-      name: compartmentId
-      in: query
-      required: true
-      description: The OCID of the compartment
-      schema:
-        type: string
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
-    opcRetryTokenParam:
-      name: opc-retry-token
-      in: header
-      description: Unique retry token to prevent duplicate requests
-      schema:
-        type: string
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
-      schema:
-        type: string
-    dbSystemIdParam:
-      name: dbSystemId
-      in: path
-      required: true
-      description: The OCID of the DB System
-      schema:
-        type: string
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     ociSignature:
       type: http
