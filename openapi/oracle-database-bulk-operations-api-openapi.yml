@@ -145,6 +145,19 @@ paths:
           description: Collection is read-only
 components:
   schemas:
+    DocumentMetadata:
+      type: object
+      properties:
+        id:
+          type: string
+        etag:
+          type: string
+        lastModified:
+          type: string
+          format: date-time
+        created:
+          type: string
+          format: date-time
     QBEFilter:
       type: object
       description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
@@ -162,6 +175,15 @@ components:
         itemsUpdated:
           type: integer
           description: Number of documents updated
+    BulkDeleteResponse:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: Number of documents affected
+        itemsDeleted:
+          type: integer
+          description: Number of documents deleted
     Error:
       type: object
       properties:
@@ -169,6 +191,30 @@ components:
           type: integer
         message:
           type: string
+    BulkInsertResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentMetadata'
+        hasMore:
+          type: boolean
+    BulkUpdateRequest:
+      type: object
+      description: Combination of QBE filter fields and $patch operations. Filter fields identify documents to update, $patch contains the JSON Patch operations to apply.
+      properties:
+        $patch:
+          type: array
+          items:
+            $ref: '#/components/schemas/JsonPatchOperation'
+      additionalProperties: true
+      example:
+        department: HR
+        $patch:
+        - op: replace
+          path: /salary
+          value: 70000
     JsonPatchOperation:
       type: object
       required:
@@ -193,52 +239,14 @@ components:
         from:
           type: string
           description: JSON Pointer path for move and copy source
-    BulkDeleteResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Number of documents affected
-        itemsDeleted:
-          type: integer
-          description: Number of documents deleted
-    BulkInsertResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentMetadata'
-        hasMore:
-          type: boolean
-    DocumentMetadata:
-      type: object
-      properties:
-        id:
-          type: string
-        etag:
-          type: string
-        lastModified:
-          type: string
-          format: date-time
-        created:
-          type: string
-          format: date-time
-    BulkUpdateRequest:
-      type: object
-      description: Combination of QBE filter fields and $patch operations. Filter fields identify documents to update, $patch contains the JSON Patch operations to apply.
-      properties:
-        $patch:
-          type: array
-          items:
-            $ref: '#/components/schemas/JsonPatchOperation'
-      additionalProperties: true
-      example:
-        department: HR
-        $patch:
-        - op: replace
-          path: /salary
-          value: 70000
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
   responses:
     NotFound:
       description: The specified collection or document was not found
@@ -252,14 +260,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    collectionParam:
-      name: collection
-      in: path
-      required: true
-      description: The name of the SODA collection
-      schema:
-        type: string
   securitySchemes:
     oauth2:
       type: oauth2

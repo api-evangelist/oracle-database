@@ -1,0 +1,545 @@
+openapi: 3.2.0
+info:
+  description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+  version: 2026.03.26
+  title: Oracle REST Data Services Vector Database/Vector Tables API
+  contact:
+    name: Oracle REST Data Services
+    url: https://www.oracle.com/database/technologies/appdev/rest.html
+  x-summary: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+tags:
+- name: Vector Database/Vector Tables
+  description: The operations from the Vector Database/Vector Tables category.
+paths:
+  /vecdb/vector-tables/:
+    get:
+      tags:
+      - Vector Database/Vector Tables
+      operationId: list_vector_tables
+      summary: List vector tables
+      description: Returns all vector tables available to the caller.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: List of vector tables.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VecDBTableCollection'
+      x-internal-id: vecdb-vector-tables--get
+      x-filename-id: vecdb-vector-tables-get
+    post:
+      tags:
+      - Vector Database/Vector Tables
+      operationId: create_vector_table
+      summary: Create a vector table
+      description: Creates a new vector table. Exactly one of vectorType or embedParams must be provided. If both or neither are provided, the request is rejected.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - tableName
+              properties:
+                tableName:
+                  type: string
+                  description: The name of the vector table.
+                description:
+                  type: string
+                  description: A brief description of the vector table.
+                autoGenerateID:
+                  type: boolean
+                  description: Whether the ID column of the table should be auto generated. Defaults to false.
+                annotations:
+                  type: object
+                  description: Key-value pairs added to the vector table metadata.
+                vectorType:
+                  type: string
+                  description: Vector type to use for the table. For V1 only 'dense' is supported.
+                  enum:
+                  - dense
+                embedParams:
+                  type: object
+                  description: Embedding model parameters. Provide this instead of vectorType to create a table for a model (e.g., {"model":"hosted-model-name","embed_metadata_jsonpath":""}).
+                  properties: {}
+                indexParams:
+                  $ref: '#/components/schemas/VectorIndexParams'
+                debugFlags:
+                  $ref: '#/components/schemas/VectorDebugFlags'
+              oneOf:
+              - required:
+                - vectorType
+                not:
+                  required:
+                  - embedParams
+              - required:
+                - embedParams
+                not:
+                  required:
+                  - vectorType
+      responses:
+        '201':
+          description: Vector table created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VecDBTableNoLinks'
+        '400':
+          description: The request body included invalid or missing parameters (e.g., missing tableName, invalid JSON, or providing both/neither vectorType and embedParams).
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+        '409':
+          description: 'Conflict: A table with that name already exists.'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-vector-tables--post
+      x-filename-id: vecdb-vector-tables-post
+  /vecdb/vector-tables/{vector_table_name}:
+    parameters:
+    - name: vector_table_name
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 128
+        pattern: ^[A-Za-z0-9_]+$
+      description: Name of the vector table. Must contain only letters, digits, and underscore (_).
+    get:
+      tags:
+      - Vector Database/Vector Tables
+      operationId: describe_vector_table
+      summary: Describe a vector table
+      description: Returns metadata for the specified vector table.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: Vector table details.
+          headers:
+            ETag:
+              description: Entity tag for the resource.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VecDBTableNoLinks'
+        '404':
+          description: Not found or precondition failed.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-vector-tables-{vector_table_name}-get
+      x-filename-id: vecdb-vector-tables-vector_table_name-get
+    delete:
+      tags:
+      - Vector Database/Vector Tables
+      operationId: drop_vector_table
+      summary: Delete a vector table
+      description: Drops the specified vector table.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: Drop accepted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Table not found.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-vector-tables-{vector_table_name}-delete
+      x-filename-id: vecdb-vector-tables-vector_table_name-delete
+    patch:
+      tags:
+      - Vector Database/Vector Tables
+      operationId: update_vector_table_annotation
+      summary: Update table description and annotations
+      description: Updates metadata for the specified table. Only description and annotations are supported. Debug flags may be provided for troubleshooting.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - annotations
+              properties:
+                annotations:
+                  type: object
+                  description: Key-value pairs to attach as user metadata.
+                debugFlags:
+                  $ref: '#/components/schemas/VectorDebugFlags'
+      responses:
+        '202':
+          description: Update accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VecDBTableNoLinks'
+        '400':
+          description: Bad request (invalid JSON, invalid types, missing required fields).
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+        '404':
+          description: Not found or precondition failed.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-vector-tables-{vector_table_name}-patch
+      x-filename-id: vecdb-vector-tables-vector_table_name-patch
+components:
+  schemas:
+    VecDBTableCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VecDBTableItem'
+        hasMore:
+          type: boolean
+        limit:
+          type: number
+        offset:
+          type: number
+        count:
+          type: number
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    VectorIndexParams:
+      description: Index configuration for the table.
+      type: object
+      properties:
+        indexing:
+          type: string
+          enum:
+          - manual
+          - auto
+          default: auto
+        organization:
+          type: string
+          enum:
+          - PARTITIONS
+          - INMEMORY GRAPH
+          default: PARTITIONS
+        distance_metric:
+          type: string
+          enum:
+          - COSINE
+          - MANHATTAN
+          - HAMMING
+          - JACCARD
+          - DOT
+          - EUCLIDEAN
+          - L2_SQUARED
+          - EUCLIDEAN_SQUARED
+        accuracy:
+          type: integer
+          minimum: 0
+          maximum: 100
+        advanced_params:
+          type: object
+    VecDBTableItem:
+      allOf:
+      - $ref: '#/components/schemas/VecDBTableNoLinks'
+      - type: object
+        properties:
+          links:
+            type: array
+            items:
+              $ref: '#/components/schemas/LinkRelation'
+    VectorDebugFlags:
+      type: object
+      description: Debug flags to be used to trace vector modules
+      properties:
+        VECTOR_INDEX:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_BUILD:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_MEM:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_SEARCH:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_APPCHNG:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_STATS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_PARTITIONS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_FIXED_VIEW:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_COM:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ_DWNGRD:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ_GROW:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_SJ:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_SJ_BG:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VEC_INDEX_CALIBRATION:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_TRACE:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+    ORDSErrorResponse:
+      type: object
+      required:
+      - code
+      - message
+      - type
+      - instance
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        type:
+          type: string
+        instance:
+          type: string
+        diagnosticTrace:
+          type: string
+        stackTrace:
+          type: string
+    VecDBTableNoLinks:
+      type: object
+      properties:
+        table_name:
+          type: string
+          description: The name of the table
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the vector table
+        auto_generate_id:
+          type: integer
+          description: Whether the ID column of the table should be auto generated. Defaults to false.
+        owner:
+          type: string
+        status:
+          type: string
+          description: Population status of the vector table.
+        vector_type:
+          type: string
+          enum:
+          - dense
+        vector_table_type:
+          type: string
+          enum:
+          - BYOV
+          - MODEL
+          description: Creation mode of the table.
+        index_params:
+          description: Index configuration for the table.
+          type:
+          - object
+          - 'null'
+          properties:
+            indexing:
+              type: string
+            organization:
+              type: string
+            distance_metric:
+              type: string
+            accuracy:
+              type: integer
+            advanced_params:
+              type: object
+              properties:
+                partitions:
+                  type:
+                  - number
+                  - 'null'
+                efConstruction:
+                  type:
+                  - number
+                  - 'null'
+                neighbors:
+                  type:
+                  - number
+                  - 'null'
+        annotations:
+          description: User metadata attached to the table.
+          type:
+          - object
+          - 'null'
+        embed_params:
+          description: Embedding model configuration (MODEL tables).
+          properties:
+            model:
+              type: string
+            embed_metadata_jsonpath:
+              type: string
+        dense_idx_name:
+          type:
+          - string
+          - 'null'
+          description: The name of the vector index associated to the vector table.
+        stats:
+          type:
+          - object
+          - 'null'
+          description: Statistics of the vector table
+          properties:
+            total_vectors:
+              type:
+              - number
+              - 'null'
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp of the vector table.
+        updated:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Creation timestamp of the vector table.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: /oauth/auth
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /oauth/auth
+          tokenUrl: /oauth/token
+          scopes: {}
+        clientCredentials:
+          tokenUrl: /oauth/token
+          scopes: {}
+externalDocs:
+  description: Oracle REST Data Services product documentation.
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/

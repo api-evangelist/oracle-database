@@ -75,13 +75,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    SchedulerJobList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/SchedulerJob'
     SchedulerJob:
       type: object
       properties:
@@ -112,6 +105,13 @@ components:
           type: string
         type:
           type: string
+    SchedulerJobList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/SchedulerJob'
   responses:
     NotFound:
       description: The specified resource was not found

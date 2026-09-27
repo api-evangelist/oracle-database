@@ -81,15 +81,15 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
   schemas:
-    QBEFilter:
-      type: object
-      description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
-      additionalProperties: true
-      example:
-        name: John
-        salary:
-          $gt: 50000
     Link:
       type: object
       properties:
@@ -129,6 +129,21 @@ components:
         bytes:
           type: integer
           description: Content length for non-JSON documents
+    QBEFilter:
+      type: object
+      description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
+      additionalProperties: true
+      example:
+        name: John
+        salary:
+          $gt: 50000
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     DocumentList:
       type: object
       properties:
@@ -155,13 +170,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
   responses:
     NotFound:
       description: The specified collection or document was not found
@@ -175,14 +183,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    collectionParam:
-      name: collection
-      in: path
-      required: true
-      description: The name of the SODA collection
-      schema:
-        type: string
   securitySchemes:
     oauth2:
       type: oauth2

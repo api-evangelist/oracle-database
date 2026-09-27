@@ -163,6 +163,13 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    APEXWorkspaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/APEXWorkspace'
     APEXOverview:
       type: object
       properties:
@@ -172,13 +179,13 @@ components:
           type: integer
         total_developers:
           type: integer
-    APEXWorkspaceList:
+    APEXApplicationRequest:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/APEXWorkspace'
+        application_name:
+          type: string
+        workspace:
+          type: string
     Error:
       type: object
       properties:
@@ -187,13 +194,6 @@ components:
         message:
           type: string
         type:
-          type: string
-    APEXApplicationRequest:
-      type: object
-      properties:
-        application_name:
-          type: string
-        workspace:
           type: string
     APEXApplicationList:
       type: object

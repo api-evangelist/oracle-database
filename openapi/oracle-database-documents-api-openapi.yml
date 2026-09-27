@@ -288,6 +288,19 @@ paths:
           description: Collection is read-only
 components:
   schemas:
+    DocumentMetadata:
+      type: object
+      properties:
+        id:
+          type: string
+        etag:
+          type: string
+        lastModified:
+          type: string
+          format: date-time
+        created:
+          type: string
+          format: date-time
     Link:
       type: object
       properties:
@@ -393,38 +406,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    DocumentMetadata:
-      type: object
-      properties:
-        id:
-          type: string
-        etag:
-          type: string
-        lastModified:
-          type: string
-          format: date-time
-        created:
-          type: string
-          format: date-time
-  responses:
-    NotFound:
-      description: The specified collection or document was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameter value
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     collectionParam:
       name: collection
@@ -440,6 +421,25 @@ components:
       description: The unique key of the document
       schema:
         type: string
+  responses:
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameter value
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

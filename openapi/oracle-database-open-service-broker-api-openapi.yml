@@ -85,15 +85,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
     ProvisionRequest:
       type: object
       required:
@@ -106,6 +97,15 @@ components:
           type: string
         parameters:
           type: object
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
     ServiceCatalog:
       type: object
       properties:

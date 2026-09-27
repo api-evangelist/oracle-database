@@ -1,0 +1,373 @@
+openapi: 3.2.0
+info:
+  description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+  version: 2026.03.26
+  title: Oracle REST Data Services Vector Database/Inference… Vector…
+  contact:
+    name: Oracle REST Data Services
+    url: https://www.oracle.com/database/technologies/appdev/rest.html
+  x-summary: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+tags:
+- name: Vector Database/Inference Operations
+  description: The operations from the Vector Database/Inference Operations category.
+paths:
+  /vecdb/embed:
+    post:
+      tags:
+      - Vector Database/Inference Operations
+      operationId: generate_embedding
+      summary: Generate text embeddings
+      description: Generate vector embeddings for one or more input texts using an ONNX model hosted in the database.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VectorEmbedRequest'
+            example:
+              modelName: TEXT_MODEL
+              inputs:
+              - text: Apple is a popular fruit known for its sweetness and crisp texture.
+              - text: The tech company Apple is known for its innovative products like the iPhone.
+              - text: Many people enjoy eating apples as a healthy snack.
+              - text: Apple Inc. has revolutionized the tech industry with its sleek designs and user-friendly interfaces.
+              - text: An apple a day keeps the doctor away, as the saying goes.
+              - text: Apple Computer Company was founded on April 1, 1976, by Steve Jobs, Steve Wozniak, and Ronald Wayne as a partnership.
+      responses:
+        '200':
+          description: Embeddings generated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VectorEmbedResponse'
+              example:
+                data:
+                - text: Apple is a popular fruit known for its sweetness and crisp texture.
+                  embedding:
+                  - -0.0013012911
+                  - 0.008567206
+                  - 0.010289432
+                  - -0.031064631
+                  - -0.082377188
+                  - 0.047858458
+        '400':
+          description: The request body included invalid parameters.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-embed-post
+      x-filename-id: vecdb-embed-post
+  /vecdb/rerank:
+    post:
+      tags:
+      - Vector Database/Inference Operations
+      operationId: rerank
+      summary: Rerank documents by query relevance
+      description: Score and order documents by relevance to a query using an ONNX reranker hosted in the database.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VectorRerankRequest'
+            example:
+              query: What is the capital of the United States?
+              documents:
+              - Carson City is the capital city of the American state of Nevada.
+              - The Commonwealth of the Northern Mariana Islands is a group of islands in the Pacific Ocean. Its capital is Saipan.
+              - Washington, D.C. (also known as simply Washington or D.C., and officially as the District of Columbia) is the capital of the United States. It is a federal district.
+              - Capitalization or capitalisation in English grammar is the use of a capital letter at the start of a word. English usage varies from capitalization in other languages.
+              - Capital punishment (the death penalty) has existed in the United States since beforethe United States was a country. As of 2017, capital punishment is legal in 30 of the 50 states.
+              modelName: reranker
+              modelParams:
+                provider: database
+      responses:
+        '200':
+          description: Rerank scores for each input document in descending relevance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VectorRerankResponse'
+              example:
+              - index: 2
+                score: 8.034194946289062
+              - index: 0
+                score: 4.549003601074219
+              - index: 1
+                score: 1.1962472200393677
+              - index: 3
+                score: -5.338606834411621
+              - index: 4
+                score: -6.584031105041504
+        '400':
+          description: The request body included invalid parameters.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-rerank-post
+      x-filename-id: vecdb-rerank-post
+components:
+  schemas:
+    VectorEmbedRequest:
+      type: object
+      required:
+      - modelName
+      - inputs
+      properties:
+        modelName:
+          type: string
+          description: The name of the text embedding model hosted in the database.
+        inputs:
+          type: array
+          description: Array of input items to embed.
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/VectorEmbedInputItem'
+        debugFlags:
+          $ref: '#/components/schemas/VectorDebugFlags'
+    VectorEmbedResponse:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: array
+          description: List of generated embeddings.
+          items:
+            $ref: '#/components/schemas/VectorEmbedItem'
+    VectorEmbedItem:
+      type: object
+      required:
+      - text
+      - embedding
+      properties:
+        text:
+          type: string
+          description: Echo of the input text.
+        embedding:
+          type: array
+          description: Embedding vector for the input text.
+          items:
+            type: number
+            format: double
+    VectorRerankItem:
+      type: object
+      required:
+      - index
+      - score
+      properties:
+        index:
+          type: integer
+          format: int32
+          description: Zero-based index of the input document in the request payload.
+        score:
+          type: number
+          format: double
+          description: Relevance score for the document (higher is more relevant).
+    VectorRerankRequest:
+      type: object
+      required:
+      - query
+      - documents
+      - modelName
+      properties:
+        query:
+          type: string
+          description: Natural language query to use for reranking.
+        documents:
+          type: array
+          description: Array of raw document strings to score.
+          minItems: 1
+          items:
+            type: string
+        modelName:
+          type: string
+          description: The name of the ONNX reranking model hosted in the database.
+        modelParams:
+          type: object
+          description: Model-specific parameters.
+          additionalProperties: true
+          properties:
+            provider:
+              type: string
+              description: Optional model provider (e.g., 'database').
+        debugFlags:
+          $ref: '#/components/schemas/VectorDebugFlags'
+    VectorRerankResponse:
+      type: array
+      description: List of rerank results sorted by descending relevance.
+      items:
+        $ref: '#/components/schemas/VectorRerankItem'
+    VectorDebugFlags:
+      type: object
+      description: Debug flags to be used to trace vector modules
+      properties:
+        VECTOR_INDEX:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_BUILD:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_MEM:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_SEARCH:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_APPCHNG:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_STATS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_PARTITIONS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_FIXED_VIEW:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_COM:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ_DWNGRD:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ_GROW:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_SJ:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_SJ_BG:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VEC_INDEX_CALIBRATION:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_TRACE:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+    ORDSErrorResponse:
+      type: object
+      required:
+      - code
+      - message
+      - type
+      - instance
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        type:
+          type: string
+        instance:
+          type: string
+        diagnosticTrace:
+          type: string
+        stackTrace:
+          type: string
+    VectorEmbedInputItem:
+      type: object
+      required:
+      - text
+      properties:
+        text:
+          type: string
+          description: Input text to embed.
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: /oauth/auth
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /oauth/auth
+          tokenUrl: /oauth/token
+          scopes: {}
+        clientCredentials:
+          tokenUrl: /oauth/token
+          scopes: {}
+externalDocs:
+  description: Oracle REST Data Services product documentation.
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/

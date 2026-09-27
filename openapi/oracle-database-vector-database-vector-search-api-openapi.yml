@@ -1,0 +1,256 @@
+openapi: 3.2.0
+info:
+  description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+  version: 2026.03.26
+  title: Oracle REST Data Services Vector Database/Vector Search API
+  contact:
+    name: Oracle REST Data Services
+    url: https://www.oracle.com/database/technologies/appdev/rest.html
+  x-summary: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+tags:
+- name: Vector Database/Vector Search
+  description: The operations from the Vector Database/Vector Search category.
+paths:
+  /vecdb/vector-tables/{vector_table_name}/query:
+    post:
+      tags:
+      - Vector Database/Vector Search
+      operationId: query_vectors
+      summary: Perform a vector similarity search over the specified vector table
+      description: Perform a vector similarity search using text, a vector or an ID returning the most similar records as well as their distance.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      parameters:
+      - name: vector_table_name
+        in: path
+        description: The name of the vector table.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - queryBy
+              - topK
+              properties:
+                queryBy:
+                  type: object
+                  description: Query by text, vector or id.
+                topK:
+                  type: number
+                  description: The topK nearest results.
+                includeVectors:
+                  type: boolean
+                  description: ' indicates whether vector values are included in the response. Defaults to false.'
+                filters:
+                  type: object
+                  description: ' Filters to be applied over the vector table metadata.'
+                advancedOptions:
+                  type: object
+                  description: Additional query parameters.
+                debugFlags:
+                  $ref: '#/components/schemas/VectorDebugFlags'
+      responses:
+        '200':
+          description: List of vectors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/VecDBSearchItem'
+        '400':
+          description: The request body included invalid parameters.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+        '404':
+          description: The specified vector table does not exists.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-vector-tables-{vector_table_name}-query-post
+      x-filename-id: vecdb-vector-tables-vector_table_name-query-post
+components:
+  schemas:
+    VectorDebugFlags:
+      type: object
+      description: Debug flags to be used to trace vector modules
+      properties:
+        VECTOR_INDEX:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_BUILD:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_MEM:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_SEARCH:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_APPCHNG:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_STATS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_PARTITIONS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_FIXED_VIEW:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_COM:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ_DWNGRD:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ_GROW:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_SJ:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_SJ_BG:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VEC_INDEX_CALIBRATION:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_TRACE:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+    ORDSErrorResponse:
+      type: object
+      required:
+      - code
+      - message
+      - type
+      - instance
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        type:
+          type: string
+        instance:
+          type: string
+        diagnosticTrace:
+          type: string
+        stackTrace:
+          type: string
+    VecDBSearchItem:
+      type: object
+      properties:
+        id:
+          type: string
+        metadata:
+          type: object
+        vector:
+          type: array
+          items:
+            type: number
+            format: double
+        distance:
+          type: number
+          format: double
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: /oauth/auth
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /oauth/auth
+          tokenUrl: /oauth/token
+          scopes: {}
+        clientCredentials:
+          tokenUrl: /oauth/token
+          scopes: {}
+externalDocs:
+  description: Oracle REST Data Services product documentation.
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/

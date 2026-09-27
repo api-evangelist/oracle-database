@@ -4,15 +4,19 @@ description: APIs and interfaces for Oracle Database management, querying, and a
 type: Index
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - oracle/oracle-db-examples
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: paid
@@ -999,6 +1003,208 @@ apis:
     url: json-schema/oracle-database-document.json
   - type: JSONSchema
     url: json-schema/oracle-database-collection.json
+- aid: oracle-database:oracle-database-data-tools-api
+  name: Oracle Database Data Tools API
+  description: >-
+    ORDS Database API services for loading, manipulating and analyzing data: data load jobs, cloud storage
+    links, credentials and table surveys.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - Data Tools
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-data-tools-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
+- aid: oracle-database:oracle-database-environment-api
+  name: Oracle Database Environment API
+  description: >-
+    ORDS Database API services for the Oracle Database installation: Oracle Homes, databases in a home,
+    DBCA jobs and DBCA templates. Available on Unix-based operating systems only.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - Environment
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-environment-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
+- aid: oracle-database:oracle-database-oracle-apex-api
+  name: Oracle Database Oracle APEX API
+  description: >-
+    Services related to Oracle APEX. The product must be installed in the Oracle database that ORDS is
+    configured to use.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - Oracle APEX
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-oracle-apex-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
+- aid: oracle-database:oracle-database-oracle-transactional-event-queues-api
+  name: Oracle Database Oracle Transactional Event Queues API
+  description: Services related to Oracle Transactional Event Queues.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - Oracle Transactional Event Queues
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-oracle-transactional-event-queues-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
+- aid: oracle-database:oracle-database-ords-rest-services-api
+  name: Oracle Database ORDS REST Services API
+  description: Custom Oracle REST Data Services built with SQL & PL/SQL.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - ORDS REST Services
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-ords-rest-services-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
+- aid: oracle-database:oracle-database-pluggable-database-lifecycle-management-api
+  name: Oracle Database Pluggable Database Lifecycle Management API
+  description: >-
+    Services related to managing pluggable databases in an Oracle multitenant database instance.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - Pluggable Database Lifecycle Management
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-pluggable-database-lifecycle-management-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
+- aid: oracle-database:oracle-database-vector-database-inference-operations-api
+  name: Oracle Database Vector Database/Inference Operations API
+  description: The operations from the Vector Database/Inference Operations category.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - Vector Database/Inference Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-vector-database-inference-operations-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
+- aid: oracle-database:oracle-database-vector-database-models-api
+  name: Oracle Database Vector Database/Models API
+  description: The operations from the Vector Database/Models category.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - Vector Database/Models
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-vector-database-models-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
+- aid: oracle-database:oracle-database-vector-database-summary-api
+  name: Oracle Database Vector Database/Summary API
+  description: The operations from the Vector Database/Summary category.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - Vector Database/Summary
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-vector-database-summary-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
+- aid: oracle-database:oracle-database-vector-database-vector-indexes-api
+  name: Oracle Database Vector Database/Vector Indexes API
+  description: The operations from the Vector Database/Vector Indexes category.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - Vector Database/Vector Indexes
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-vector-database-vector-indexes-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
+- aid: oracle-database:oracle-database-vector-database-vector-operations-api
+  name: Oracle Database Vector Database/Vector Operations API
+  description: The operations from the Vector Database/Vector Operations category.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - Vector Database/Vector Operations
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-vector-database-vector-operations-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
+- aid: oracle-database:oracle-database-vector-database-vector-search-api
+  name: Oracle Database Vector Database/Vector Search API
+  description: The operations from the Vector Database/Vector Search category.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - Vector Database/Vector Search
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-vector-database-vector-search-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
+- aid: oracle-database:oracle-database-vector-database-vector-tables-api
+  name: Oracle Database Vector Database/Vector Tables API
+  description: The operations from the Vector Database/Vector Tables category.
+  humanURL: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+  tags:
+  - Vector Database/Vector Tables
+  properties:
+  - type: OpenAPI
+    url: openapi/oracle-database-vector-database-vector-tables-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/index.html
+  - type: APIReference
+    url: >-
+      https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/26.1/orrst/rest-endpoints.html
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

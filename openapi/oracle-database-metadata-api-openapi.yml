@@ -111,6 +111,14 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
   schemas:
     Link:
       type: object
@@ -201,26 +209,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameter value
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication required or credentials invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    collectionParam:
-      name: collection
-      in: path
-      required: true
-      description: The name of the SODA collection
-      schema:
-        type: string
+    BadRequest:
+      description: Bad request - invalid parameter value
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

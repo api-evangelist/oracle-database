@@ -1,0 +1,1603 @@
+openapi: 3.2.0
+info:
+  description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+  version: 2026.03.26
+  title: Oracle REST Data Services ORDS REST Services API
+  contact:
+    name: Oracle REST Data Services
+    url: https://www.oracle.com/database/technologies/appdev/rest.html
+  x-summary: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+tags:
+- name: ORDS REST Services
+  description: Custom Oracle REST Data Services built with SQL & PL/SQL.
+paths:
+  /ords/properties/{key}:
+    get:
+      operationId: ordsPropertiesKeyGet
+      tags:
+      - ORDS REST Services
+      summary: Get an ORDS property value
+      description: Returns information about a specfic ORDS property that has a value set in the database. Depending on the associated database account permissions the data will be returned from USER_ORDS_PROPERTIES view for that correspond REST Enabled schema or all REST Enabled schemas if the database account has access to them. Users can view their own ORDS property values that are defined at SCHEMA scope through this endpoint. ORDS properties that are defined at DATABASE scope can be view through this endpoint by an administrator. A client requires SQL Developer or SQL Administrator role to invoke this service.
+      parameters:
+      - name: key
+        in: path
+        description: The name of the ORDS property.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Information about a specific ORDS property value in the database that is visible to the user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-properties-{key}-get
+      x-filename-id: ords-properties-key-get
+  /ords/properties/{schema}/{key}:
+    get:
+      operationId: ordsPropertiesSchemaKeyGet
+      tags:
+      - ORDS REST Services
+      summary: Get an ORDS property value for a schema
+      description: Returns information about a specfic ORDS property that has a value set in the database for the specified schema. ORDS property values that are defined at SCHEMA scope can be view through this endpoint. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: schema
+        in: path
+        description: The name of the REST Enabled database schema.
+        required: true
+        schema:
+          type: string
+      - name: key
+        in: path
+        description: The name of the ORDS property.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Information about a specific ORDS property value in the database for the specified REST Enabled schema
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-properties-{schema}-{key}-get
+      x-filename-id: ords-properties-schema-key-get
+    put:
+      operationId: ordsPropertiesSchemaKeyPut
+      tags:
+      - ORDS REST Services
+      summary: Set an ORDS property value for a schema
+      description: Set a specfic ORDS property value in the database for the specified schema. ORDS property values that are defined at SCHEMA scope can be managed through this endpoint. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: schema
+        in: path
+        description: The name of the REST Enabled database schema.
+        required: true
+        schema:
+          type: string
+      - name: key
+        in: path
+        description: The name of the ORDS property.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: string
+                  description: The value to set for the property.
+      responses:
+        '200':
+          description: Information about a specific ORDS property value in the database that is visible to the user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-properties-{schema}-{key}-put
+      x-filename-id: ords-properties-schema-key-put
+    delete:
+      operationId: ordsPropertiesSchemaKeyDelete
+      tags:
+      - ORDS REST Services
+      summary: Unset an ORDS property value for a schema
+      description: Removes a specfic ORDS property value in the database for the specified schema. ORDS property values that are defined at SCHEMA scope can be unset through this endpoint. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: schema
+        in: path
+        description: The name of the REST Enabled database schema.
+        required: true
+        schema:
+          type: string
+      - name: key
+        in: path
+        description: The name of the ORDS property.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Confirmation that the specific ORDS property value is not set in the database.
+      x-internal-id: ords-properties-{schema}-{key}-delete
+      x-filename-id: ords-properties-schema-key-delete
+  /ords/rest/modules/{id}:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get a REST module
+      description: Desribes a REST module.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific module.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of the REST module.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-modules-{id}-get
+      x-filename-id: ords-rest-modules-id-get
+      operationId: getOrdsRestModulesById
+      x-operation-id-source: derived
+  /ords/rest/modules/{id}/source:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get a REST module source
+      description: Exports the REST module source code.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific module.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: SQL file of the exported module.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+        '404':
+          description: Module does not exist.
+      x-internal-id: ords-rest-modules-{id}-source-get
+      x-filename-id: ords-rest-modules-id-source-get
+      operationId: getOrdsRestModulesByIdSource
+      x-operation-id-source: derived
+  /ords/rest/templates/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all REST module templates
+      description: Describes all the REST templates.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: Details of all the REST templates.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsCollection'
+      x-internal-id: ords-rest-templates--get
+      x-filename-id: ords-rest-templates-get
+      operationId: getOrdsRestTemplates
+      x-operation-id-source: derived
+    post:
+      tags:
+      - ORDS REST Services
+      summary: Create a REST module template
+      description: Creates a REST module template.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - module_id
+              - uri_prefix
+              properties:
+                module_id:
+                  type: integer
+                  description: ID for specific reosurce module
+                uri_prefix:
+                  type: string
+                  description: A matching pattern for the resource template. For example, a pattern of /objects/:object/:id? will match /objects/emp/101 (matches a request for the item in the emp resource with id of 101) and will also match /objects/emp/. (Matches a request for the emp resource, because the :id parameter is annotated with the ? modifier, which indicates that the id parameter is optional.)
+                priority:
+                  type: integer
+                  description: 'The priority for the order of how the resource template should be evaluated: 0 (low priority. the default) through 9 (high priority).'
+                etag_type:
+                  type: string
+                  description: A type of entity tag to be used by the resource template. An entity tag is an HTTP Header that acts as a version identifier for a resource. Use entity tag headers to avoid retrieving previously retrieved resources and to perform optimistic locking when updating resources. Valid values are HASH, QUERY, NONE.
+                etag_query:
+                  type: string
+                  description: Query that is used to generate the entity tag.
+                comments:
+                  type: string
+                  description: Comment text.
+                run_mode:
+                  type: string
+                  description: Its value can be 'codePreview', which would make the endpoint respond with the code the backend would have executed. When the parameter is not provided, the endpoint will respond with the results of the operation execution.
+      responses:
+        '201':
+          description: Details of the REST module template that has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+        '400':
+          description: No pattern parameter provided or Module not specified.
+        '404':
+          description: Module does not exist
+        '409':
+          description: A template with that pattern already exists.
+      x-internal-id: ords-rest-templates--post
+      x-filename-id: ords-rest-templates-post
+      operationId: postOrdsRestTemplates
+      x-operation-id-source: derived
+  /ords/rest/templates/{id}:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get a REST module template
+      description: Describes a REST module template.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific template.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of the REST module template.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-templates-{id}-get
+      x-filename-id: ords-rest-templates-id-get
+      operationId: getOrdsRestTemplatesById
+      x-operation-id-source: derived
+    put:
+      tags:
+      - ORDS REST Services
+      summary: Update a REST module template
+      description: Updates a REST module template.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific template.
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - uri_prefix
+              - priority
+              - etag_type
+              properties:
+                uri_prefix:
+                  type: string
+                  description: A matching pattern for the resource template. For example, a pattern of /objects/:object/:id? will match /objects/emp/101 (matches a request for the item in the emp resource with id of 101) and will also match /objects/emp/. (Matches a request for the emp resource, because the :id parameter is annotated with the ? modifier, which indicates that the id parameter is optional.)
+                priority:
+                  type: integer
+                  description: 'The priority for the order of how the resource template should be evaluated: 0 (low priority. the default) through 9 (high priority).'
+                etag_type:
+                  type: string
+                  description: A type of entity tag to be used by the resource template. An entity tag is an HTTP Header that acts as a version identifier for a resource. Use entity tag headers to avoid retrieving previously retrieved resources and to perform optimistic locking when updating resources. Valid values are HASH, QUERY, NONE.
+                etag_query:
+                  type: string
+                  description: Query that is used to generate the entity tag.
+                comments:
+                  type: string
+                  description: Comment text.
+      responses:
+        '200':
+          description: Details of the REST module template that has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+        '400':
+          description: No etag_type or pattern or priority parameter provided.
+        '404':
+          description: Template does not exist
+        '409':
+          description: Template pattern already exists in the module.
+      x-internal-id: ords-rest-templates-{id}-put
+      x-filename-id: ords-rest-templates-id-put
+      operationId: putOrdsRestTemplatesById
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - ORDS REST Services
+      summary: Delete a REST module template
+      description: Deletes a REST module template.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific template.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Confirmation that the REST module template has been delete.
+      x-internal-id: ords-rest-templates-{id}-delete
+      x-filename-id: ords-rest-templates-id-delete
+      operationId: deleteOrdsRestTemplatesById
+      x-operation-id-source: derived
+  /ords/rest/handlers/{id}:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get a REST template handler
+      description: Describes a REST template handler.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific handler.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of the REST template handler.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-handlers-{id}-get
+      x-filename-id: ords-rest-handlers-id-get
+      operationId: getOrdsRestHandlersById
+      x-operation-id-source: derived
+    put:
+      tags:
+      - ORDS REST Services
+      summary: Update a REST template handler
+      description: Updates a REST template handler.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific handler.
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - source_type
+              - source
+              - method
+              properties:
+                source_type:
+                  type: string
+                  description: 'The HTTP request method for this handler. Valid values: source_type_collection_feed, source_type_collection_item, source_type_media, source_type_plsql, source_type_query || source_type_csv_query, source_type_query_one_row, source_type_feed, path/to/feed/{id}.'
+                source:
+                  type: string
+                  description: The source implementation for the selected HTTP method.
+                method:
+                  type: string
+                  description: 'The HTTP method to which this handler will respond. Valid values: GET, POST, PUT, DELETE.'
+                items_per_page:
+                  type: integer
+                  description: 'The default pagination for a resource handler HTTP operation GET method, that is, the number of rows to return on each page of a JSON format result set based on a database query. Default: NULL (defers to the resource module setting).'
+                mimes_allowed:
+                  type: string
+                  description: Comma-separated list of MIME types that the handler will accept. Applies to PUT and POST only.
+                comments:
+                  type: string
+                  description: Comment text.
+      responses:
+        '200':
+          description: Details of the REST template handler that has been successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+        '400':
+          description: No template specified or No source parameter provided or Invalid Source Type.
+        '404':
+          description: Template does not exis
+        '409':
+          description: Handler already exists.
+      x-internal-id: ords-rest-handlers-{id}-put
+      x-filename-id: ords-rest-handlers-id-put
+      operationId: putOrdsRestHandlersById
+      x-operation-id-source: derived
+  /ords/rest/handlers/{id}/source:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get a REST handler source
+      description: Returns a REST handler source code.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific handler.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Source code of the REST handler.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsCollection'
+      x-internal-id: ords-rest-handlers-{id}-source-get
+      x-filename-id: ords-rest-handlers-id-source-get
+      operationId: getOrdsRestHandlersByIdSource
+      x-operation-id-source: derived
+  /ords/rest/parameters/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all REST handler parameters
+      description: Describes all the REST handler parameters.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: Details of all the REST handler parameters.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsCollection'
+      x-internal-id: ords-rest-parameters--get
+      x-filename-id: ords-rest-parameters-get
+      operationId: getOrdsRestParameters
+      x-operation-id-source: derived
+    post:
+      tags:
+      - ORDS REST Services
+      summary: Create a REST handler parameter
+      description: Creates a REST handler parameter.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - handler_id
+              - name
+              properties:
+                handler_id:
+                  type: integer
+                  description: ID for specific module handler.
+                name:
+                  type: string
+                  description: The name of the parameter, as it is named in the URI Template or HTTP Header. Used to map names that are not valid SQL parameter names.
+                bind_variable_name:
+                  type: string
+                  description: The name of the parameter, as it will be referred to in the SQL. If NULL is specified, then the parameter is unbound.
+                source_type:
+                  type: string
+                  description: 'The type identifies if the parameter originates in the URI Template or a HTTP Header. Valid values: HEADER, RESPONSE, URI.'
+                param_type:
+                  type: string
+                  description: 'The native type of the parameter. Valid values: STRING, INT, DOUBLE, BOOLEAN, LONG, TIMESTAMP.'
+                access_method:
+                  type: string
+                  description: 'The parameter access method. Indicates if the parameter is an input value, output value, or both. Valid values: IN, OUT, INOUT.'
+                comments:
+                  type: string
+                  description: Comment text.
+                run_mode:
+                  type: string
+                  description: Its value can be 'codePreview', which would make the endpoint respond with the code the backend would have executed. When the parameter is not provided, the endpoint will respond with the results of the operation execution.
+      responses:
+        '201':
+          description: Details of the REST handler parameter that has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+        '400':
+          description: No name parameter provided.
+        '404':
+          description: No handler specified.
+        '409':
+          description: Parameter name or bind variable already exists.
+      x-internal-id: ords-rest-parameters--post
+      x-filename-id: ords-rest-parameters-post
+      operationId: postOrdsRestParameters
+      x-operation-id-source: derived
+  /ords/rest/parameters/{id}:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get a REST handler parameter
+      description: Describes a REST handler parameter.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific parameter.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of the REST handler parameter.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-parameters-{id}-get
+      x-filename-id: ords-rest-parameters-id-get
+      operationId: getOrdsRestParametersById
+      x-operation-id-source: derived
+    put:
+      tags:
+      - ORDS REST Services
+      summary: Update a REST handler parameter
+      description: Updates a REST handler parameter.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific parameter.
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - handler_id
+              - name
+              - source_type
+              - param_type
+              - access_method
+              properties:
+                handler_id:
+                  type: integer
+                  description: ID for specific handler.
+                name:
+                  type: string
+                  description: The name of the parameter, as it is named in the URI Template or HTTP Header. Used to map names that are not valid SQL parameter names.
+                bind_variable_name:
+                  type: string
+                  description: The name of the parameter, as it will be referred to in the SQL. If NULL is specified, then the parameter is unbound.
+                source_type:
+                  type: string
+                  description: 'The type identifies if the parameter originates in the URI Template or a HTTP Header. Valid values: HEADER, RESPONSE, URI.'
+                param_type:
+                  type: string
+                  description: 'The native type of the parameter. Valid values: STRING, INT, DOUBLE, BOOLEAN, LONG, TIMESTAMP.'
+                access_method:
+                  type: string
+                  description: 'The parameter access method. Indicates if the parameter is an input value, output value, or both. Valid values: IN, OUT, INOUT.'
+                comments:
+                  type: string
+                  description: Comment text.
+      responses:
+        '200':
+          description: Details of the REST handler parameter that has been successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+        '400':
+          description: No name parameter provided.
+        '404':
+          description: Parameter does not exist.
+        '409':
+          description: Parameter name or bind variable already exists.
+      x-internal-id: ords-rest-parameters-{id}-put
+      x-filename-id: ords-rest-parameters-id-put
+      operationId: putOrdsRestParametersById
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - ORDS REST Services
+      summary: Delete a REST handler parameter
+      description: Deletes a REST handler parameter.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific parameter.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Confirmation that the REST handler parameter has been deleted.
+      x-internal-id: ords-rest-parameters-{id}-delete
+      x-filename-id: ords-rest-parameters-id-delete
+      operationId: deleteOrdsRestParametersById
+      x-operation-id-source: derived
+  /ords/rest/roles/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all ORDS roles
+      description: Describes all the ORDS roles.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: Details of all the ORDS roles.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsCollection'
+      x-internal-id: ords-rest-roles--get
+      x-filename-id: ords-rest-roles-get
+      operationId: getOrdsRestRoles
+      x-operation-id-source: derived
+  /ords/rest/roles/{id}:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get an ORDS role
+      description: Describes an ORDS role.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific ORDS role.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of the ORDS role.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-roles-{id}-get
+      x-filename-id: ords-rest-roles-id-get
+      operationId: getOrdsRestRolesById
+      x-operation-id-source: derived
+    put:
+      tags:
+      - ORDS REST Services
+      summary: Update an ORDS role
+      description: Updates an ORDS role.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific ORDS role.
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - id
+              - role_name
+              properties:
+                id:
+                  type: number
+                  description: Specify the ORDS role given the ID to update.
+                role_name:
+                  type: string
+                  description: New role_name for the ORDS role module.
+                run_mode:
+                  type: string
+                  description: Its value can be 'codePreview', which would make the endpoint respond with the code the backend would have executed. When the parameter is not provided, the endpoint will respond with the results of the operation execution.
+      responses:
+        '201':
+          description: Details of the ORDS role that has been successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+        '400':
+          description: No role_name parameter provided.
+        '403':
+          description: You do not have the permission to update this role.
+        '404':
+          description: Role not found.
+      x-internal-id: ords-rest-roles-{id}-put
+      x-filename-id: ords-rest-roles-id-put
+      operationId: putOrdsRestRolesById
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - ORDS REST Services
+      summary: Delete an ORDS role
+      description: Deletes an ORDS role.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific ORDS role.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Confirmation that the ORDS role has been delete.
+      x-internal-id: ords-rest-roles-{id}-delete
+      x-filename-id: ords-rest-roles-id-delete
+      operationId: deleteOrdsRestRolesById
+      x-operation-id-source: derived
+  /ords/rest/roles/{id}/privileges/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all ORDS privileges for a specific role
+      description: Lists all the privileges for the specified role.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific ORDS role privilege.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of all the ORDS privileges with the role.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-roles-{id}-privileges--get
+      x-filename-id: ords-rest-roles-id-privileges-get
+      operationId: getOrdsRestRolesByIdPrivileges
+      x-operation-id-source: derived
+  /ords/rest/privileges/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all ORDS privileges
+      description: Describes all the ORDS privileges.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: Details of all the ORDS privileges.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsCollection'
+      x-internal-id: ords-rest-privileges--get
+      x-filename-id: ords-rest-privileges-get
+      operationId: getOrdsRestPrivileges
+      x-operation-id-source: derived
+  /ords/rest/privileges/{id}:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get an ORDS privilege
+      description: Describes an ORDS privilege.
+      parameters:
+      - name: id
+        in: path
+        description: ID for ORDS specific privilege.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of the ORDS privilege.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-privileges-{id}-get
+      x-filename-id: ords-rest-privileges-id-get
+      operationId: getOrdsRestPrivilegesById
+      x-operation-id-source: derived
+    put:
+      tags:
+      - ORDS REST Services
+      summary: Update an ORDS privilege
+      description: Updates an ORDS privilege.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific ORDS privilege.
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  description: Name of the ORDS privilege
+                label:
+                  type: string
+                  description: ORDS privilege label.
+                description:
+                  type: string
+                  description: ORDS privilege description text.
+                roles:
+                  type: string
+                  description: String of an ORDS roles list separated by the null char.
+                patterns:
+                  type: string
+                  description: String of an ORDS patterns list separated by the null char.
+                modules:
+                  type: string
+                  description: String of an ORDS modules list separated by the null char.
+                comments:
+                  type: string
+                  description: Comments text.
+      responses:
+        '200':
+          description: Details of the ORDS privilege that has been successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+        '400':
+          description: No name parameter provided or Length parameter is too long or Privilege name already exists.
+        '403':
+          description: You do not have permission to update this privilege.
+        '404':
+          description: A privilege or role name or module name o does not existname does not exist.
+      x-internal-id: ords-rest-privileges-{id}-put
+      x-filename-id: ords-rest-privileges-id-put
+      operationId: putOrdsRestPrivilegesById
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - ORDS REST Services
+      summary: Delete an ORDS privilege
+      description: Deletes an ORDS privilege.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific ORDS privilege.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Confirmation that the ORDS privilege has been delete.
+      x-internal-id: ords-rest-privileges-{id}-delete
+      x-filename-id: ords-rest-privileges-id-delete
+      operationId: deleteOrdsRestPrivilegesById
+      x-operation-id-source: derived
+  /ords/rest/privileges/{id}/modules/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all REST modules in a privilege
+      description: Describes all the REST modules protected by a privilege.
+      parameters:
+      - name: id
+        in: path
+        description: ID for ORDS specific privilege.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of the all the REST modules protected by a privilege.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-privileges-{id}-modules--get
+      x-filename-id: ords-rest-privileges-id-modules-get
+      operationId: getOrdsRestPrivilegesByIdModules
+      x-operation-id-source: derived
+  /ords/rest/privileges/{id}/patterns/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all REST patterns in a privilege
+      description: Describes all the REST patterns protected by a privilege.
+      parameters:
+      - name: id
+        in: path
+        description: ID for ORDS specific privilege.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of all the REST patterns protected by a privilege.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-privileges-{id}-patterns--get
+      x-filename-id: ords-rest-privileges-id-patterns-get
+      operationId: getOrdsRestPrivilegesByIdPatterns
+      x-operation-id-source: derived
+  /ords/rest/privileges/{id}/roles/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all ORDS roles in a privilege
+      description: Describes all the ORDS roles assigned to a privilege.
+      parameters:
+      - name: id
+        in: path
+        description: ID for ORDS specific privilege.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of the all the ORDS roles assigned to a privilege.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-privileges-{id}-roles--get
+      x-filename-id: ords-rest-privileges-id-roles-get
+      operationId: getOrdsRestPrivilegesByIdRoles
+      x-operation-id-source: derived
+  /ords/rest/privilege/modules/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all protected REST modules
+      description: Describes all the protected REST modules.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: Details of all the protected REST modules.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsCollection'
+      x-internal-id: ords-rest-privilege-modules--get
+      x-filename-id: ords-rest-privilege-modules-get
+      operationId: getOrdsRestPrivilegeModules
+      x-operation-id-source: derived
+  /ords/rest/clients/{id}:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get an ORDS OAuth client
+      description: Describes an ORDS OAuth client.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific OAuth client.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of the ORDS OAuth client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestClientCollectionItem'
+      x-internal-id: ords-rest-clients-{id}-get
+      x-filename-id: ords-rest-clients-id-get
+      operationId: getOrdsRestClientsById
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - ORDS REST Services
+      summary: Delete an ORDS OAuth client
+      description: Deletes an ORDS OAuth client.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific OAuth client.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: Confirmation that the ORDS OAuth client has been deleted.
+        '404':
+          description: OAuth client does not exist.
+        '409':
+          description: You do not have permission to delete this oauth client.
+      x-internal-id: ords-rest-clients-{id}-delete
+      x-filename-id: ords-rest-clients-id-delete
+      operationId: deleteOrdsRestClientsById
+      x-operation-id-source: derived
+  /ords/rest/clients/{id}/logo/:
+    post:
+      tags:
+      - ORDS REST Services
+      summary: Updates the ORDS OAuth client avatar image
+      description: Updates the ORDS OAuth client avatar image.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific OAuth client.
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - content_type
+              - body
+              properties:
+                content_type:
+                  type: string
+                  description: 'Under content, specify the request media type (such as image/png or application/octet-stream). Files use a type: string schema with format: binary or format: base64, depending on how the file contents will be encoded.'
+                body:
+                  type: string
+                  format: binary
+                  description: files uploaded directly with the request content and files uploaded with multipart requests.
+      responses:
+        '201':
+          description: Details of the ORDS OAuth  avatar that has been successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-clients-{id}-logo--post
+      x-filename-id: ords-rest-clients-id-logo-post
+      operationId: postOrdsRestClientsByIdLogo
+      x-operation-id-source: derived
+  /ords/rest/clients/{id}/secret/{slotid}:
+    post:
+      tags:
+      - ORDS REST Services
+      summary: Register or Rotate the ORDS OAuth client secret
+      description: Register or Rotate the ORDS OAuth client secret.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific OAuth client.
+        required: true
+        schema:
+          type: integer
+      - name: slotid
+        in: path
+        description: Slot ID for a specific OAuth client; it can only be 1 or 2.
+        required: true
+        schema:
+          type: integer
+      - name: revoke_sessions
+        in: query
+        description: Deletes the current client sessions when TRUE. Default value is FALSE.
+        required: false
+        schema:
+          type: boolean
+      - name: revoke_existing
+        in: query
+        description: Deletes the existing client sessions when TRUE. Default value is FALSE.
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '201':
+          description: Details of the ORDS OAuth secret has been successfully updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RestClientSecretItem'
+      x-internal-id: ords-rest-clients-{id}-secret-{slotid}-post
+      x-filename-id: ords-rest-clients-id-secret-slotid-post
+      operationId: postOrdsRestClientsByIdSecretBySlotid
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - ORDS REST Services
+      summary: Revoke the ORDS OAuth client secret
+      description: Revoke the ORDS OAuth client secret.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific OAuth client.
+        required: true
+        schema:
+          type: integer
+      - name: slotid
+        in: path
+        description: Slot ID for a specific OAuth client; valid values are 1 or 2, while 3 revokes all clients.
+        required: true
+        schema:
+          type: integer
+      - name: revoke_sessions
+        in: query
+        description: Deletes the current client sessions when TRUE. Default value is FALSE.
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '204':
+          description: Confirmation that the ORDS OAuth secret has been successfully revoked.
+      x-internal-id: ords-rest-clients-{id}-secret-{slotid}-delete
+      x-filename-id: ords-rest-clients-id-secret-slotid-delete
+      operationId: deleteOrdsRestClientsByIdSecretBySlotid
+      x-operation-id-source: derived
+  /ords/rest/clients/{id}/privileges/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all ORDS privileges in an OAuth client
+      description: Describes all the ORDS privileges in an OAuth client.
+      parameters:
+      - name: id
+        in: path
+        description: ID for specific OAuth client.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of all the ORDS privileges in the OAuth client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsCollection'
+      x-internal-id: ords-rest-clients-{id}-privileges--get
+      x-filename-id: ords-rest-clients-id-privileges-get
+      operationId: getOrdsRestClientsByIdPrivileges
+      x-operation-id-source: derived
+  /ords/rest/clients/{id}/roles/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all ORDS roles in an OAuth client
+      description: Describes all the ORDS roles in an OAuth client.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the OAuth client.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of all the ORDS roles in the OAuth client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsCollection'
+      x-internal-id: ords-rest-clients-{id}-roles--get
+      x-filename-id: ords-rest-clients-id-roles-get
+      operationId: getOrdsRestClientsByIdRoles
+      x-operation-id-source: derived
+  /ords/rest/autorest/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all REST enabled objects
+      description: Describes all the REST enabled objects.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: Details of all the REST enabled objects.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsCollection'
+      x-internal-id: ords-rest-autorest--get
+      x-filename-id: ords-rest-autorest-get
+      operationId: getOrdsRestAutorest
+      x-operation-id-source: derived
+  /ords/rest/autorest/{id}:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get a REST enabled object
+      description: Describes a REST enabled object.
+      parameters:
+      - name: id
+        in: path
+        description: ID of the module for the REST Enabled Object.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of the REST enabled object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-autorest-{id}-get
+      x-filename-id: ords-rest-autorest-id-get
+      operationId: getOrdsRestAutorestById
+      x-operation-id-source: derived
+    put:
+      tags:
+      - ORDS REST Services
+      summary: Update or disables a REST enabled object
+      description: Updates or disables a REST enabled object,
+      parameters:
+      - name: id
+        in: path
+        description: ID of the module for the REST Enabled Object.
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - object_alias
+              - auth
+              properties:
+                object_alias:
+                  type: string
+                  description: Alias of the object.
+                auth:
+                  type: boolean
+                  description: 'Controls whether Oracle REST Data Services should require user authorization before allowing access to the Oracle REST Data Services metadata for this object. If this value is TRUE, then the service is protected by the following roles: oracle.dbtools.autorest.any.schema, oracle.dbtools.role.autorest.<SCHEMANAME>.<OBJECTNAME>.'
+                action:
+                  type: string
+                  description: Its value can be 'DISABLE' which would make the endpoint disables a REST enabled object or 'UPDATE' which would make the endpoint update a REST enabled object.
+      responses:
+        '200':
+          description: Details of the REST enabled object that has been successfully updated or disables.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+        '404':
+          description: A REST Object does not exist.
+        '403':
+          description: You do not have permission to enable a REST object.
+        '409':
+          description: A REST enabled object with that alias already exists.
+      x-internal-id: ords-rest-autorest-{id}-put
+      x-filename-id: ords-rest-autorest-id-put
+      operationId: putOrdsRestAutorestById
+      x-operation-id-source: derived
+  /ords/rest/autorest/summary:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get count of all the REST enabled objects
+      description: Summarizes all the REST enabled objects.
+      responses:
+        '200':
+          description: Summary of all the REST enabled object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-autorest-summary-get
+      x-filename-id: ords-rest-autorest-summary-get
+      operationId: getOrdsRestAutorestSummary
+      x-operation-id-source: derived
+  /ords/rest/autorest/{id}/metadata:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get a REST enabled object metadata
+      description: Describes a REST enabled object metadata.
+      parameters:
+      - name: id
+        in: path
+        description: ID of specific REST enabled object.
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Details of the REST enabled object metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+        '400':
+          description: Unsupported REST object type.
+        '404':
+          description: A REST Object does not exist.
+      x-internal-id: ords-rest-autorest-{id}-metadata-get
+      x-filename-id: ords-rest-autorest-id-metadata-get
+      operationId: getOrdsRestAutorestByIdMetadata
+      x-operation-id-source: derived
+  /ords/rest/overview/:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get current ORDS schema and count of all current schema REST objects and count…
+      description: Describes the current ORDS schema and summarizes all the REST objects in the current schema and Summary of all the published, unpublished, fully protected, partially protected and unique protected REST modules, get current ORDS schema auto-REST authorization
+      responses:
+        '200':
+          description: Details of the current ORDS schema. This includes the connection type, pattern, REST status, auto-REST authorization, operations allowed and pre hook and ummary of all the REST objects in the current schema and summarizes all the published, unpublished, fully protected, partially protected and unique protected REST modules, etails of the current ORDS schema auto-REST authorization
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResourceItem'
+      x-internal-id: ords-rest-overview--get
+      x-filename-id: ords-rest-overview-get
+      operationId: getOrdsRestOverview
+      x-operation-id-source: derived
+  /ords/rest/overview/objects_recent:
+    get:
+      tags:
+      - ORDS REST Services
+      summary: Get all current schema recent REST objects
+      description: Describes the last 7 days manipulated REST objects in the current schema in UPDATED_ON descending order.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: Details of the recently manipulated REST objects in the current schema in UPDATED_ON descending order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemsCollection'
+      x-internal-id: ords-rest-overview-objects_recent-get
+      x-filename-id: ords-rest-overview-objects_recent-get
+      operationId: getOrdsRestOverviewObjectsRecent
+      x-operation-id-source: derived
+components:
+  schemas:
+    Filter:
+      type: object
+      description: See Oracle REST Data Services production documentation 'Filtering in Queries' section.
+      externalDocs:
+        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+      anyOf:
+      - type: object
+        description: Any key / value pair for specifying a Filter Criteria.
+      - type: object
+        properties:
+          $orderby:
+            description: Specify which properties to order the result set by.
+            type: object
+          $asof:
+            description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
+            type: object
+    RestClientSecretItem:
+      type: object
+      description: This object represents a new client secret .
+      properties:
+        id:
+          type: integer
+          description: The original generated client identifier.
+        name:
+          type: string
+          description: The name for the client.
+        client_secret:
+          type: string
+          description: The client secret for slot 1.
+        client_secret_2:
+          type: string
+          description: The client secret for slot 2.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    ResourceItem:
+      type: object
+      additionalProperties: true
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    ItemsCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    RestClientCollectionItem:
+      type: object
+      description: ORDS OAuth clients
+      properties:
+        id:
+          type: integer
+          description: The original generated client identifier.
+        name:
+          type: string
+          description: The name for the client.
+        grant_type:
+          type: string
+          description: 'OAuth grant type. Must be one of: authorization_code, implicit, or client_credentials.'
+        description:
+          type: string
+          description: Description of the purpose of the client.
+        auth_flow:
+          type: string
+          description: OAuth flow type.
+        response_type:
+          type: string
+          description: OAuth response type
+        client_id:
+          type: string
+          description: A unique string identifier of a client.
+        client_secret:
+          type: string
+          description: The client secret for slot 1.
+        client_secret_issued_on:
+          type: string
+          description: Date and time when the client secret was generated or issued.
+        client_secret_2:
+          type: string
+          description: The client secret for slot 2.
+        client_secret_2_issued_on:
+          type: string
+          description: Date and time when the client secret was generated or issued.
+        token_duration:
+          type: string
+          description: 'Duration of the access token in seconds. '
+        refresh_duration:
+          type: string
+          description: Duration of refresh token in seconds. NULL duration fallsback to the value in the ORDS instance.
+        code_duration:
+          type: string
+          description: Duration of the code token in seconds applicable only when authorization code is authorization_code.
+        redirect_uri:
+          type: string
+          description: Client-controlled URI to which redirect containing an OAuth access token or error is sent.
+        support_email:
+          type: string
+          description: The URI to contact the client for support.
+        support_uri:
+          type: string
+          description: The URI where to contact the client for support.
+        allowed_origins:
+          type: string
+          description: The comma-separated list of URL prefixes.
+        about_url:
+          type: string
+          description: The URL that provides more information for the client
+        logo_content_type:
+          type: string
+          description: The content type of the logo.
+        logo_image:
+          type: string
+          description: The logo of the OAuth client.
+        schema_id:
+          type: string
+          description: The schema registration id.
+        created_by:
+          type: string
+          description: The user who created the client
+        created_on:
+          type: string
+          description: Date and time when the client was created.
+        updated_by:
+          type: string
+          description: The user who updated the client
+        updated_on:
+          type: string
+          description: Date and time when the client was updated.
+        privilege_names:
+          type: string
+          description: List of comma-separated privileges that the client wants to access.
+        role_names:
+          type: string
+          description: The names of the roles that was granted.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+  parameters:
+    Filter:
+      name: q
+      in: query
+      description: Filtering is the process of limiting a collection resource by using a per-request dynamic filter definition across multiple page resources, where each page contains a subset of items found in the complete collection. Filtering enables efficient traversal of large collections.
+      required: false
+      schema:
+        $ref: '#/components/schemas/Filter'
+      examples:
+        FilterCriteriaExample:
+          $ref: '#/components/examples/FilterCriteria'
+        OrderByPropertyExample:
+          $ref: '#/components/examples/OrderByProperty'
+        FilterAndOrderExample:
+          $ref: '#/components/examples/FilterAndOrder'
+    Limit:
+      name: limit
+      in: query
+      description: The maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        format: int32
+  examples:
+    OrderByProperty:
+      summary: Order by with literals.
+      value:
+        $orderby:
+          SALARY: ASC
+          ENAME: DESC
+    FilterCriteria:
+      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
+      value:
+        SALARY: 1000
+    FilterAndOrder:
+      summary: Filter criteria supports a wide range of operators. In this example LIKE operator ($like) is used. See Oracle REST Data Services production documentation 'Filtering in Queries' section for further information on the operators available.
+      value:
+        ENAME:
+          $like: AX%
+        $orderby:
+          ENAME: ASC
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: /oauth/auth
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /oauth/auth
+          tokenUrl: /oauth/token
+          scopes: {}
+        clientCredentials:
+          tokenUrl: /oauth/token
+          scopes: {}
+externalDocs:
+  description: Oracle REST Data Services product documentation.
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/

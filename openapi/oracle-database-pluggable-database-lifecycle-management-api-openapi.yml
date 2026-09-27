@@ -1,0 +1,275 @@
+openapi: 3.2.0
+info:
+  description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+  version: 2026.03.26
+  title: Oracle REST Data Services Pluggable Database Lifecycle……
+  contact:
+    name: Oracle REST Data Services
+    url: https://www.oracle.com/database/technologies/appdev/rest.html
+  x-summary: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+tags:
+- name: Pluggable Database Lifecycle Management
+  description: Services related to managing pluggable databases in an Oracle multitenant database instance.
+paths:
+  /database/pdb_snapshots/:
+    get:
+      tags:
+      - Pluggable Database Lifecycle Management
+      summary: The snapshots of all pluggable databases (PDBs) in the Container Database
+      description: Returns records from dba_pdb_snapshots. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: PDB snapshots in the container database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabasePluggableSnapshots'
+      x-internal-id: database-pdb_snapshots--get
+      x-filename-id: database-pdb_snapshots-get
+      operationId: getDatabasePdbSnapshots
+      x-operation-id-source: derived
+  /database/pdb_snapshots/{pdb_name}/:
+    get:
+      tags:
+      - Pluggable Database Lifecycle Management
+      summary: The list of all snapshots taken for the specified pluggable databases (PDBs)
+      description: Returns records from dba_pdb_snapshots based on container name. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: pdb_name
+        in: path
+        description: The name of the specified PDB to retrieve the list of snapshots for.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: PDB snapshots in the specified pluggable database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabasePluggableSnapshots'
+      x-internal-id: database-pdb_snapshots-{pdb_name}--get
+      x-filename-id: database-pdb_snapshots-pdb_name-get
+      operationId: getDatabasePdbSnapshotsByPdbName
+      x-operation-id-source: derived
+  /database/pdb_snapshots/{pdb_name}/{snapshot_name}:
+    get:
+      tags:
+      - Pluggable Database Lifecycle Management
+      summary: The specific snapshot taken of the specific pluggable databases (PDBs)
+      description: Returns records from dba_pdb_snapshots based on container name and snapshot name. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: pdb_name
+        in: path
+        description: The name of the specified PDB to retrieve the snapshot for.
+        required: true
+        schema:
+          type: string
+      - name: snapshot_name
+        in: path
+        description: The name of the snapshot to retrieve.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: PDB snapshot in the database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabasePluggableSnapshotWithFileItem'
+      x-internal-id: database-pdb_snapshots-{pdb_name}-{snapshot_name}-get
+      x-filename-id: database-pdb_snapshots-pdb_name-snapshot_name-get
+      operationId: getDatabasePdbSnapshotsByPdbNameBySnapshotName
+      x-operation-id-source: derived
+components:
+  schemas:
+    Filter:
+      type: object
+      description: See Oracle REST Data Services production documentation 'Filtering in Queries' section.
+      externalDocs:
+        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+      anyOf:
+      - type: object
+        description: Any key / value pair for specifying a Filter Criteria.
+      - type: object
+        properties:
+          $orderby:
+            description: Specify which properties to order the result set by.
+            type: object
+          $asof:
+            description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
+            type: object
+    DatabasePluggableSnapshotWithFileItem:
+      type: object
+      description: This object describes Pluggable Database Snapshots and snapshot files associated with the current instance.
+      properties:
+        con_id:
+          type: integer
+          description: The ID of the container to which the data pertains.
+        con_uid:
+          type: integer
+          description: Unique identifier associated with the PDB.
+        con_name:
+          type: string
+          description: Name of the PDB.
+        snapshot_name:
+          type: string
+          description: Snapshot name of the PDB.
+        snapshot_scn:
+          type: integer
+          description: SCN at which the snapshot was taken.
+        previous_snapshot_scn:
+          type: integer
+          description: SCN at which the previous snapshot for the PDB was taken
+        snapshot_time:
+          type: integer
+          description: Timestamp at which the snapshot was taken.
+        previous_snapshot_time:
+          type: integer
+          description: Timestamp of the previous snapshot for this PDB.
+        full_snapshot_path:
+          type: string
+          description: Full path for the snapshot.
+        snapshot_files:
+          type: string
+          description: The snapshot files.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    DatabasePluggableSnapshotItem:
+      type: object
+      description: This object describes Pluggable Database Snapshots associated with the current instance.
+      properties:
+        con_id:
+          type: integer
+          description: The ID of the container to which the data pertains.
+        con_uid:
+          type: integer
+          description: Unique identifier associated with the PDB.
+        con_name:
+          type: string
+          description: Name of the PDB.
+        snapshot_name:
+          type: string
+          description: Snapshot name of the PDB.
+        snapshot_scn:
+          type: integer
+          description: SCN at which the snapshot was taken.
+        previous_snapshot_scn:
+          type: integer
+          description: SCN at which the previous snapshot for the PDB was taken
+        snapshot_time:
+          type: integer
+          description: Timestamp at which the snapshot was taken.
+        previous_snapshot_time:
+          type: integer
+          description: Timestamp of the previous snapshot for this PDB.
+        full_snapshot_path:
+          type: string
+          description: Full path for the snapshot.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabasePluggableSnapshots:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabasePluggableSnapshotItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+  parameters:
+    Filter:
+      name: q
+      in: query
+      description: Filtering is the process of limiting a collection resource by using a per-request dynamic filter definition across multiple page resources, where each page contains a subset of items found in the complete collection. Filtering enables efficient traversal of large collections.
+      required: false
+      schema:
+        $ref: '#/components/schemas/Filter'
+      examples:
+        FilterCriteriaExample:
+          $ref: '#/components/examples/FilterCriteria'
+        OrderByPropertyExample:
+          $ref: '#/components/examples/OrderByProperty'
+        FilterAndOrderExample:
+          $ref: '#/components/examples/FilterAndOrder'
+    Limit:
+      name: limit
+      in: query
+      description: The maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        format: int32
+  examples:
+    OrderByProperty:
+      summary: Order by with literals.
+      value:
+        $orderby:
+          SALARY: ASC
+          ENAME: DESC
+    FilterCriteria:
+      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
+      value:
+        SALARY: 1000
+    FilterAndOrder:
+      summary: Filter criteria supports a wide range of operators. In this example LIKE operator ($like) is used. See Oracle REST Data Services production documentation 'Filtering in Queries' section for further information on the operators available.
+      value:
+        ENAME:
+          $like: AX%
+        $orderby:
+          ENAME: ASC
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: /oauth/auth
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /oauth/auth
+          tokenUrl: /oauth/token
+          scopes: {}
+        clientCredentials:
+          tokenUrl: /oauth/token
+          scopes: {}
+externalDocs:
+  description: Oracle REST Data Services product documentation.
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/

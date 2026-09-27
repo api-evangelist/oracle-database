@@ -1,16 +1,10 @@
 openapi: 3.2.0
 info:
-  title: Oracle Database Oracle REST Data Services (ORDS) General API
-  description: RESTful API for Oracle Database management, monitoring, and data access through Oracle REST Data Services. Provides 300+ endpoints across 17 categories including database administration, performance monitoring, Data Guard management, Data Pump operations, pluggable database lifecycle, APEX management, RDF graph operations, and transactional event queues.
-  version: 25.4.0
-  contact:
-    name: Oracle Support
-    url: https://support.oracle.com
-    email: support@oracle.com
-  license:
-    name: Oracle Technology Network License
-    url: https://www.oracle.com/downloads/licenses/standard-license.html
-  termsOfService: https://www.oracle.com/legal/terms.html
+  title: Oracle Database General API
+  x-refined-note:
+  - x-summary differs across the merged source definitions and was not carried
+  version: '1.0'
+  description: 'Operations tagged General across 2 of this provider''s published API definitions: oracle-database-ords-openapi.yml, oracle-database-general-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://{host}:{port}/ords
   description: ORDS Server
@@ -21,9 +15,6 @@ servers:
     port:
       default: '8443'
       description: ORDS server port
-security:
-- oauth2: []
-- basicAuth: []
 tags:
 - name: General
   description: Core database instance status, version, and configuration services
@@ -44,6 +35,19 @@ paths:
                 $ref: '#/components/schemas/DatabaseStatus'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/version:
     get:
       operationId: getDatabaseVersion
@@ -60,6 +64,19 @@ paths:
                 $ref: '#/components/schemas/DatabaseVersion'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/components/:
     get:
       operationId: getDatabaseComponents
@@ -76,6 +93,19 @@ paths:
                 $ref: '#/components/schemas/ComponentList'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/parameters/:
     get:
       operationId: getDatabaseParameters
@@ -95,6 +125,19 @@ paths:
                 $ref: '#/components/schemas/ParameterList'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/parameters/{name}:
     get:
       operationId: getDatabaseParameter
@@ -120,6 +163,19 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/security/users/:
     get:
       operationId: getDatabaseUsers
@@ -136,6 +192,19 @@ paths:
                 $ref: '#/components/schemas/UserList'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/storage/bytes:
     get:
       operationId: getStorageBytes
@@ -152,6 +221,19 @@ paths:
                 $ref: '#/components/schemas/StorageInfo'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/storage/tablespaces/:
     get:
       operationId: getTablespaces
@@ -168,6 +250,19 @@ paths:
                 $ref: '#/components/schemas/TablespaceList'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/storage/tablespaces/{tablespace_name}/:
     get:
       operationId: getTablespace
@@ -192,6 +287,19 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/storage/tablespaces/{tablespace_name}/datafiles/:
     get:
       operationId: getDatafiles
@@ -214,6 +322,19 @@ paths:
                 $ref: '#/components/schemas/DatafileList'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/feature_usage/:
     get:
       operationId: getFeatureUsage
@@ -230,6 +351,19 @@ paths:
                 $ref: '#/components/schemas/FeatureUsageList'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/sessionless-transactions/:
     post:
       operationId: startSessionlessTransaction
@@ -246,6 +380,19 @@ paths:
                 $ref: '#/components/schemas/SessionlessTransaction'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/sessionless-transactions/{sessionlessTransactionID}:
     put:
       operationId: commitSessionlessTransaction
@@ -266,6 +413,9 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+      security:
+      - oauth2: []
+      - basicAuth: []
     delete:
       operationId: rollbackSessionlessTransaction
       summary: Oracle Database Rollback a sessionless transaction
@@ -285,16 +435,609 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
+      security:
+      - oauth2: []
+      - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
+  /database/components/{comp_id}:
+    get:
+      tags:
+      - General
+      summary: Get a database component
+      description: Returns information about the specified component loaded into the database from DBA_REGISTRY view. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: comp_id
+        in: path
+        description: Identifier of the component.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Information about the specified component.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseComponentsItem'
+      x-internal-id: database-components-{comp_id}-get
+      x-filename-id: database-components-comp_id-get
+      operationId: getDatabaseComponentsByCompId
+      x-operation-id-source: derived
+  /database/connections/:
+    get:
+      tags:
+      - General
+      summary: Get a description of all local listeners for this database
+      description: Returns LOCAL LISTENER and SERVICE NAME records from GV$LISTENER_NETWORK for this database. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: All the local listeners for this database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseConnections'
+      x-internal-id: database-connections--get
+      x-filename-id: database-connections-get
+      operationId: getDatabaseConnections
+      x-operation-id-source: derived
+  /database/connections/{host_name},{port},{service_name}:
+    get:
+      tags:
+      - General
+      summary: Get a description of a specific local listener for this database
+      description: Returns LOCAL LISTENER and SERVICE NAME information from GV$LISTENER_NETWORK for a specific host, port, and service combination. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: host_name
+        in: path
+        description: Name of the host.
+        required: true
+        schema:
+          type: string
+      - name: port
+        in: path
+        description: Port number being listened on.
+        required: true
+        schema:
+          type: number
+      - name: service_name
+        in: path
+        description: Name of the service.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Information on a specific listener and service.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseConnectionsItem'
+      x-internal-id: database-connections-{host_name},{port},{service_name}-get
+      x-filename-id: database-connections-host_name-port-service_name-get
+      operationId: getDatabaseConnectionsByHostName},{port},{serviceName
+      x-operation-id-source: derived
+  /database/datapump/jobs/:
+    post:
+      tags:
+      - General
+      summary: Create a data pump job
+      description: Create a Data Pump job with the specified parameters and start it. Refer to Oracle Data Pump documentation for a more detailed explanation of parameters. A client requires SQL Administrator or SQL Developer role to invoke this service.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - operation
+              properties:
+                operation:
+                  type: string
+                  description: Specify the Data Pump job operation.
+                  enum:
+                  - EXPORT
+                  - IMPORT
+                credential_name:
+                  type: string
+                  description: Specify the name of the credential, owned by the database user, to be used to import from object storage or export to object storage.
+                datapump_dir:
+                  type: string
+                  description: Specify the database directory to use.
+                  default: DATA_PUMP_DIR
+                filter:
+                  type: string
+                  description: The filter to apply to identify database objects for export. This an export convenience for simple lists in metadata filter parameters, carried over from 19.1 implementation.
+                job_mode:
+                  type: string
+                  description: Specify the Data Pump job mode.
+                  default: SCHEMA
+                  enum:
+                  - FULL
+                  - SCHEMA
+                  - TABLE
+                  - TABLESPACE
+                file_name:
+                  type: string
+                  description: The file name pattern to use for Data Pump import. Required when operation is IMPORT or when credential_name is specified. For EXPORT the file_name will default to a pattern with a timestamp in the name. When credential_name is specified the file_name must be a URI format for an Oracle Object Store location.
+                threads:
+                  type: integer
+                  description: The maximum number of worker processes that can be used for the job. Set this parameter to adjust the amount of resources used for a job.
+                remap_schemas:
+                  type: array
+                  description: Used to define Remap Schema parameters for an import job. Only applicable for IMPORT.
+                  items:
+                    type: object
+                    required:
+                    - source
+                    - target
+                    properties:
+                      source:
+                        type: string
+                        description: Source schema to remap from.
+                      target:
+                        type: string
+                        description: Target schema to remap to.
+                name_expressions:
+                  type: array
+                  description: Used to define Metadata Filter parameters for a Data Pump job. Applicable for both EXPORT and IMPORT.
+                  items:
+                    type: object
+                    required:
+                    - expression
+                    properties:
+                      expression:
+                        type: string
+                        description: An SQL clause to be used as a Name Expression filter.
+                schema_expressions:
+                  type: array
+                  description: Used to define Metadata Filter parameters for a Data Pump job. Applicable for both EXPORT and IMPORT.
+                  items:
+                    type: object
+                    required:
+                    - expression
+                    properties:
+                      expression:
+                        type: string
+                        description: An SQL clause to be used as a Schema Expression filter.
+                tablespace_expressions:
+                  type: array
+                  description: Used to define Metadata Filter parameters for a Data Pump job. Applicable for both EXPORT and IMPORT.
+                  items:
+                    type: object
+                    required:
+                    - expression
+                    properties:
+                      expression:
+                        type: string
+                        description: An SQL clause to be used as a Tablespace Expression filter.
+                keep_master:
+                  type: integer
+                  description: The maximum number of worker processes that can be used for the job. Set this parameter to adjust the amount of resources used for a job.
+                  default: 1
+                  enum:
+                  - 0
+                  - 1
+            examples:
+              export_hr:
+                summary: Export the HR schema.
+                value:
+                  operation: EXPORT
+                  schema_expressions:
+                  - expression: IN ( 'HR' )
+              import_hr_to_blake:
+                summary: Import the HR schema and map it to the BLAKE schema.
+                value:
+                  operation: IMPORT
+                  job_mode: FULL
+                  file_name: EXPDAT%U2019-03-25-12_55_03.DMP
+                  remap_schemas:
+                  - source: HR
+                    target: BLAKE
+      responses:
+        '201':
+          description: Details of the Data Pump job that has been successfully created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DataPumpJobsItem'
+      x-internal-id: database-datapump-jobs--post
+      x-filename-id: database-datapump-jobs-post
+      operationId: postDatabaseDatapumpJobs
+      x-operation-id-source: derived
+  /database/feature_usage/{dbid},{name}:
+    get:
+      tags:
+      - General
+      summary: Get usage statistic for a feature
+      description: Returns records from DBA_FEATURE_USAGE_STATISTICS for a specific feature. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: dbid
+        in: path
+        description: Database identifier as found in GV$DATABASE.
+        required: true
+        schema:
+          type: number
+      - name: name
+        in: path
+        description: Name of the feature.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Information on the usage statistics for a specific feature.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseFeatureUsageItem'
+      x-internal-id: database-feature_usage-{dbid},{name}-get
+      x-filename-id: database-feature_usage-dbid-name-get
+      operationId: getDatabaseFeatureUsageByDbid},{name
+      x-operation-id-source: derived
+  /database/security/users/{username}:
+    get:
+      tags:
+      - General
+      summary: Get a specific database user
+      description: Returns the corresponding record from DBA_USERS or ALL_USERS view depending on the role at runtime. A client requires SQL Administrator or SQL Developer role to invoke this service.
+      parameters:
+      - name: username
+        in: path
+        description: Identifier for the user.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Information on the specified user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseUsersItem'
+      x-internal-id: database-security-users-{username}-get
+      x-filename-id: database-security-users-username-get
+      operationId: getDatabaseSecurityUsersByUsername
+      x-operation-id-source: derived
+  /database/storage/tablespaces/{tablespace_name}/datafiles_usage:
+    get:
+      tags:
+      - General
+      summary: Get data file usage summary for a specific tablespace
+      description: Returns GV$DATAFILE and DBA_DATA_FILES records for a specific tablespace. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: tablespace_name
+        in: path
+        description: Name of the tablespace.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tablespace data file usage.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseTablespaceDatafilesUsageItem'
+      x-internal-id: database-storage-tablespaces-{tablespace_name}-datafiles_usage-get
+      x-filename-id: database-storage-tablespaces-tablespace_name-datafiles_usage-get
+      operationId: getDatabaseStorageTablespacesByTablespaceNameDatafilesUsage
+      x-operation-id-source: derived
+  /database/storage/tablespaces/{tablespace_name}/datafiles/{file_id}/:
+    get:
+      tags:
+      - General
+      summary: Get tablespace data file
+      description: Returns data from DBA_DATA_FILES for a specific tablespace and file. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: tablespace_name
+        in: path
+        description: Name of the tablespace.
+        required: true
+        schema:
+          type: string
+      - name: file_id
+        in: path
+        description: File identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Information about the specified data file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseTablespaceDatafilesItem'
+      x-internal-id: database-storage-tablespaces-{tablespace_name}-datafiles-{file_id}--get
+      x-filename-id: database-storage-tablespaces-tablespace_name-datafiles-file_id-get
+      operationId: getDatabaseStorageTablespacesByTablespaceNameDatafilesByFileId
+      x-operation-id-source: derived
+  /database/storage/tablespaces/{tablespace_name}/datafiles/{file_id}/usage:
+    get:
+      tags:
+      - General
+      summary: Get tablespace data file usage
+      description: Returns GV$DATAFILE and DBA_DATA_FILES records for a specific tablespace and file. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: tablespace_name
+        in: path
+        description: Name of the tablespace.
+        required: true
+        schema:
+          type: string
+      - name: file_id
+        in: path
+        description: File identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Description of the space usage for the tablespace data file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseTablespaceDatafileUsageItem'
+      x-internal-id: database-storage-tablespaces-{tablespace_name}-datafiles-{file_id}-usage-get
+      x-filename-id: database-storage-tablespaces-tablespace_name-datafiles-file_id-usage-get
+      operationId: getDatabaseStorageTablespacesByTablespaceNameDatafilesByFileIdUsage
+      x-operation-id-source: derived
+  /database/storage/tablespaces/{tablespace_name}/history:
+    get:
+      tags:
+      - General
+      summary: Get tablespace space usage history
+      description: Oracle Diagnostic Pack licence is required for this service. Returns DBA_HIST_TBSPC_SPACE_USAGE records where tablespace size has changed. These records are historical tablespace usage statistics. Recent changes in tablespace storage or usage will not appear until a snapshot is created. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: tablespace_name
+        in: path
+        description: Name of the tablespace.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tablespace space usage history for the specified tablespace.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseTablespaceHistoryItem'
+      x-internal-id: database-storage-tablespaces-{tablespace_name}-history-get
+      x-filename-id: database-storage-tablespaces-tablespace_name-history-get
+      operationId: getDatabaseStorageTablespacesByTablespaceNameHistory
+      x-operation-id-source: derived
+  /database/storage/tablespaces/{tablespace_name}/segments/:
+    get:
+      tags:
+      - General
+      summary: Get tablespace segments
+      description: Returns records from DBA_SEGMENTS for a specific tablespace. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: tablespace_name
+        in: path
+        description: Name of the tablespace.
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: Collection of records from DBA_SEGMENTS for the specified tablespace.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseTablespaceSegments'
+      x-internal-id: database-storage-tablespaces-{tablespace_name}-segments--get
+      x-filename-id: database-storage-tablespaces-tablespace_name-segments-get
+      operationId: getDatabaseStorageTablespacesByTablespaceNameSegments
+      x-operation-id-source: derived
+  /database/storage/tablespaces/{tablespace_name}/segments/{segment_name}:
+    get:
+      tags:
+      - General
+      summary: Get a tablespace segment
+      description: Returns data from DBA_SEGMENTS for a specific tablespace and segment. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: tablespace_name
+        in: path
+        description: Name of the tablespace.
+        required: true
+        schema:
+          type: string
+      - name: segment_name
+        in: path
+        description: Name of the segment.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A specific record from DBA_SEGMENTS for the tablespace and segment name.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseTablespaceSegmentsItem'
+      x-internal-id: database-storage-tablespaces-{tablespace_name}-segments-{segment_name}-get
+      x-filename-id: database-storage-tablespaces-tablespace_name-segments-segment_name-get
+      operationId: getDatabaseStorageTablespacesByTablespaceNameSegmentsBySegmentName
+      x-operation-id-source: derived
+  /database/storage/tablespaces/{tablespace_name}/tempfiles_usage:
+    get:
+      tags:
+      - General
+      summary: Get temporary file usage summary for a specific tablespace
+      description: Returns records from GV$TEMPFILE and DBA_TEMP_FILES for a specific tablespace. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: tablespace_name
+        in: path
+        description: Name of the tablespace.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Summary information of all temporary files used by the tablespace.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseTablespaceDatafilesUsageItem'
+      x-internal-id: database-storage-tablespaces-{tablespace_name}-tempfiles_usage-get
+      x-filename-id: database-storage-tablespaces-tablespace_name-tempfiles_usage-get
+      operationId: getDatabaseStorageTablespacesByTablespaceNameTempfilesUsage
+      x-operation-id-source: derived
+  /database/storage/tablespaces/{tablespace_name}/tempfiles/:
+    get:
+      tags:
+      - General
+      summary: Get temporary files for a tablespace
+      description: Returns records from DBA_TEMP_FILES for a specific tablespace. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: tablespace_name
+        in: path
+        description: Name of the tablespace.
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: Description of all temporary files used by the specified tablespace.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseTablespaceTempfiles'
+      x-internal-id: database-storage-tablespaces-{tablespace_name}-tempfiles--get
+      x-filename-id: database-storage-tablespaces-tablespace_name-tempfiles-get
+      operationId: getDatabaseStorageTablespacesByTablespaceNameTempfiles
+      x-operation-id-source: derived
+  /database/storage/tablespaces/{tablespace_name}/tempfiles/{file_id}/:
+    get:
+      tags:
+      - General
+      summary: Get tablespace temporary file
+      description: Returns data from DBA_TEMP_FILES for a specific tablespace and file. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: tablespace_name
+        in: path
+        description: Name of the tablespace.
+        required: true
+        schema:
+          type: string
+      - name: file_id
+        in: path
+        description: File identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Information about the specified temporary file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseTablespaceTempfilesItem'
+      x-internal-id: database-storage-tablespaces-{tablespace_name}-tempfiles-{file_id}--get
+      x-filename-id: database-storage-tablespaces-tablespace_name-tempfiles-file_id-get
+      operationId: getDatabaseStorageTablespacesByTablespaceNameTempfilesByFileId
+      x-operation-id-source: derived
+  /database/storage/tablespaces/{tablespace_name}/tempfiles/{file_id}/usage:
+    get:
+      tags:
+      - General
+      summary: Get tablespace temporary file usage
+      description: Returns GV$DATAFILE and DBA_TEMP_FILES records for a specific tablespace and file. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: tablespace_name
+        in: path
+        description: Name of the tablespace.
+        required: true
+        schema:
+          type: string
+      - name: file_id
+        in: path
+        description: File identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Usage information about the temporary file.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatabaseTablespaceDatafileUsageItem'
+      x-internal-id: database-storage-tablespaces-{tablespace_name}-tempfiles-{file_id}-usage-get
+      x-filename-id: database-storage-tablespaces-tablespace_name-tempfiles-file_id-usage-get
+      operationId: getDatabaseStorageTablespacesByTablespaceNameTempfilesByFileIdUsage
+      x-operation-id-source: derived
+  /environment/homes/{homeName}/:
+    get:
+      tags:
+      - General
+      summary: Get specific database Oracle Home
+      description: Returns a description for a specific Oracle Home on the same host as the Oracle REST Data Services server instance. A client requires System Administrator role to invoke this service.The implementation is only available for Unix based operating systems.
+      parameters:
+      - name: homeName
+        in: path
+        description: Name of the Oracle Home.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Description of the Oracle Home.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentHomesItem'
+      x-internal-id: environment-homes-{homeName}--get
+      x-filename-id: environment-homes-homename-get
+      operationId: getEnvironmentHomesByHomeName
+      x-operation-id-source: derived
 components:
   schemas:
-    DatabaseVersion:
+    SessionlessTransaction:
       type: object
       properties:
-        version:
+        sessionlessTransactionID:
           type: string
-        version_full:
+    TablespaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tablespace'
+    DatabaseParameter:
+      type: object
+      properties:
+        name:
           type: string
-        banner:
+        value:
+          type: string
+        display_value:
+          type: string
+        isdefault:
+          type: string
+        ismodified:
+          type: string
+        type:
+          type: string
+        description:
           type: string
     DatabaseStatus:
       type: object
@@ -313,7 +1056,7 @@ components:
           type: string
         open_mode:
           type: string
-    UserList:
+    ComponentList:
       type: object
       properties:
         items:
@@ -321,32 +1064,23 @@ components:
           items:
             type: object
             properties:
-              username:
+              comp_id:
                 type: string
-              account_status:
+              comp_name:
                 type: string
-              default_tablespace:
+              version:
                 type: string
-              created:
+              status:
                 type: string
-                format: date-time
-    ParameterList:
-      allOf:
-      - $ref: '#/components/schemas/PaginatedResponse'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/DatabaseParameter'
-    Link:
+    DatabaseVersion:
       type: object
       properties:
-        rel:
+        version:
           type: string
-        href:
+        version_full:
           type: string
-          format: uri
+        banner:
+          type: string
     PaginatedResponse:
       type: object
       properties:
@@ -365,23 +1099,34 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    StorageInfo:
+    ParameterList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/DatabaseParameter'
+    DatafileList:
       type: object
       properties:
-        total_bytes:
-          type: integer
-          format: int64
-        used_bytes:
-          type: integer
-          format: int64
-        free_bytes:
-          type: integer
-          format: int64
-    SessionlessTransaction:
-      type: object
-      properties:
-        sessionlessTransactionID:
-          type: string
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              file_name:
+                type: string
+              file_id:
+                type: integer
+              tablespace_name:
+                type: string
+              bytes:
+                type: integer
+                format: int64
+              status:
+                type: string
     Tablespace:
       type: object
       properties:
@@ -402,13 +1147,52 @@ components:
         free_bytes:
           type: integer
           format: int64
-    TablespaceList:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    UserList:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Tablespace'
+            type: object
+            properties:
+              username:
+                type: string
+              account_status:
+                type: string
+              default_tablespace:
+                type: string
+              created:
+                type: string
+                format: date-time
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+    StorageInfo:
+      type: object
+      properties:
+        total_bytes:
+          type: integer
+          format: int64
+        used_bytes:
+          type: integer
+          format: int64
+        free_bytes:
+          type: integer
+          format: int64
     FeatureUsageList:
       type: object
       properties:
@@ -427,25 +1211,619 @@ components:
               last_usage_date:
                 type: string
                 format: date-time
-    DatabaseParameter:
+    Filter:
+      type: object
+      description: See Oracle REST Data Services production documentation 'Filtering in Queries' section.
+      externalDocs:
+        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+      anyOf:
+      - type: object
+        description: Any key / value pair for specifying a Filter Criteria.
+      - type: object
+        properties:
+          $orderby:
+            description: Specify which properties to order the result set by.
+            type: object
+          $asof:
+            description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
+            type: object
+    DatabaseTablespaceSegmentsItem:
+      type: object
+      description: Describes the storage allocated for a segments in the database.
+      properties:
+        owner:
+          type: string
+          description: Username of the segment owner.
+        segment_name:
+          type: string
+          description: Name, if any, of the segment.
+        partition_name:
+          type: string
+          description: Object Partition Name (Set to NULL for nonpartitioned objects).
+        segment_type:
+          type: string
+          description: Type of segment.
+        segment_subtype:
+          type: string
+          description: 'Subtype of LOB segment: SECUREFILE, ASSM, MSSM, and NULL.'
+        tablespace_name:
+          type: string
+          description: Name of the tablespace containing the segment.
+        header_file:
+          type: integer
+          description: ID of the file containing the segment header.
+        header_block:
+          type: integer
+          description: ID of the block containing the segment header.
+        bytes:
+          type: integer
+          description: Size, in bytes, of the segment.
+        blocks:
+          type: integer
+          description: Size, in Oracle blocks, of the segment.
+        extents:
+          type: integer
+          description: Number of extents allocated to the segment.
+        initial_extent:
+          type: integer
+          description: Size in bytes requested for the initial extent of the segment at create time. Oracle rounds the extent size to multiples of 5 blocks if the requested size is greater than 5 blocks.
+        next_extent:
+          type: integer
+          description: Size in bytes of the next extent to be allocated to the segment.
+        min_extents:
+          type: integer
+          description: Minimum number of extents allowed in the segment.
+        max_extents:
+          type: integer
+          description: Maximum number of extents allowed in the segment.
+        max_size:
+          type: integer
+          description: Maximum number of blocks allowed in the segment.
+        retention:
+          type: string
+          description: Retention option for SECUREFILE segment.
+        minretention:
+          type: integer
+          description: Minimum retention duration for SECUREFILE segment.
+        pct_increase:
+          type: integer
+          description: Percent by which to increase the size of the next extent to be allocated.
+        freelists:
+          type: integer
+          description: Number of process freelists allocated to this segment.
+        freelist_groups:
+          type: integer
+          description: Number of freelist groups allocated to this segment.
+        relative_fno:
+          type: integer
+          description: Relative file number of the segment header.
+        buffer_pool:
+          type: string
+          description: Buffer pool to be used for segment blocks.
+        flash_cache:
+          type: string
+          description: Database Smart Flash Cache hint to be used for segment blocks.
+        cell_flash_cache:
+          type: string
+          description: Cell flash cache hint to be used for segment blocks.
+        inmemory:
+          type: string
+          description: Indicates whether the In-Memory Column Store (IM column store) is enabled (ENABLED) or disabled (DISABLED) for this segment.
+        inmemory_priority:
+          type: string
+          description: Indicates the priority for In-Memory Column Store (IM column store) population.
+        inmemory_distribute:
+          type: string
+          description: Indicates how the IM column store is distributed in an Oracle Real Application Clusters (Oracle RAC) environment.
+        inmemory_duplicate:
+          type: string
+          description: Indicates the duplicate setting for the IM column store in an Oracle RAC environment.
+        inmemory_compression:
+          type: string
+          description: Indicates the compression level for the IM column store.
+        cellmemory:
+          type: string
+          description: The value for columnar compression in the storage cell flash cache.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseConnectionsItem:
+      type: object
+      description: Information on the listeners configured for the database is retrieved from GV$LISTENER_NETWORK. The list of attributes may vary depending on database version.
+      properties:
+        inst_id:
+          type: integer
+          description: Instance number from which the associated GV$LISTENER_NETWORK view information was obtained.
+        host_name:
+          type: string
+          description: Name of the host machine.
+        con_id:
+          type: integer
+          description: The ID of the container to which the data pertains.
+        service_name:
+          type: string
+          description: Name of the database service that is registered with the listener.
+        port:
+          type: integer
+          description: The TCP/IP port the listener is using.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseTablespaceTempfilesItem:
+      type: object
+      description: Describes a temporary file in the database.
+      properties:
+        file_name:
+          type: string
+          description: Name of the database file.
+        file_id:
+          type: integer
+          description: File identifier number of the database temp file.
+        tablespace_name:
+          type: string
+          description: Name of the tablespace.
+        bytes:
+          type: integer
+          description: Size of the file (in bytes).
+        blocks:
+          type: integer
+          description: Size of the file (in Oracle blocks).
+        status:
+          type: string
+          description: File status.
+        relative_fno:
+          type: integer
+          description: Tablespace-relative file number.
+        autoextensible:
+          type: string
+          description: Indicates whether the file is autoextensible (YES) or not (NO).
+        maxbytes:
+          type: integer
+          description: Maximum size of the file (in bytes).
+        maxblocks:
+          type: integer
+          description: Maximum size of the file (in Oracle blocks).
+        increment_by:
+          type: integer
+          description: Default increment for autoextension (in Oracle blocks).
+        user_bytes:
+          type: integer
+          description: The size of the file available for user data. The actual size of the file minus the USER_BYTES value is used to store file related metadata.
+        user_blocks:
+          type: integer
+          description: Size of the useful portion of the file (in Oracle blocks).
+        shared:
+          type: string
+          description: Type of tablespace this file belongs to.
+        inst_id:
+          type: integer
+          description: Instance ID of the instance to which the temp file belongs. This column has a NULL value for temp files that belong to shared tablespaces.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseUsersItem:
+      type: object
+      description: This object describes a database user. The list of attributes may vary depending on database version.
+      properties:
+        username:
+          type: string
+          description: Name of the user.
+        user_id:
+          type: integer
+          description: ID number of the user.
+        account_status:
+          type: string
+          description: Account status.
+        lock_date:
+          type: string
+          description: Date the account was locked if account status was LOCKED.
+        expiry_date:
+          type: string
+          description: Date of expiration of the account.
+        default_tablespace:
+          type: string
+          description: Default tablespace for data.
+        temporary_tablespace:
+          type: string
+          description: Name of the default tablespace for temporary tables or the name of a tablespace group.
+        local_temp_tablespace:
+          type: string
+          description: Default local temporary tablespace for the user.
+        created:
+          type: string
+          description: User creation date.
+        profile:
+          type: string
+          description: User resource profile name.
+        initial_rsrc_consumer_group:
+          type: string
+          description: Initial resource consumer group for the user.
+        external_name:
+          type: string
+          description: User external name. For centrally managed users, if the database user mapping is an exclusive mapping, then this will be the directory service DN for the user. If this database user is a shared schema, it will be the DN of a group.
+        password_versions:
+          type: string
+          description: Shows the list of versions of the password hashes (also known as 'verifiers') existing for the account.
+        editions_enabled:
+          type: string
+          description: Indicates whether editions have been enabled for the corresponding user (Y) or not (N).
+        authentication_type:
+          type: string
+          description: Indicates the authentication mechanism for the user.
+        proxy_only_connect:
+          type: string
+          description: Indicates whether a user can connect directly (N) or whether the account can only be proxied (Y) by users who have proxy privileges for this account (that is, by users who have been granted the 'connect through' privilege for this account).
+        common:
+          type: string
+          description: Indicates whether a given user is common.
+        last_login:
+          type: string
+          description: The time of the last user login.
+        oracle_maintained:
+          type: string
+          description: Denotes whether the user was created, and is maintained, by Oracle-supplied scripts (such as catalog.sql or catproc.sql). A user for which this column has the value Y must not be changed in any way except by running an Oracle-supplied script.
+        inherited:
+          type: string
+          description: Indicates whether the user definition was inherited from another container (YES) or not (NO).
+        default_collation:
+          type: string
+          description: Default collation for the user???s schema.
+        implicit:
+          type: string
+          description: Indicates whether this user is a common user created by an implicit application (YES) or not (NO).
+        all_shard:
+          type: string
+          description: In a sharded database, the value in this column indicates whether the user was created with shard DDL enabled.
+        locked_account:
+          type: integer
+          description: When LOCK_DATE is set, 1, otherwise 0.
+        expired_account:
+          type: integer
+          description: When EXPIRY_DATE is in the past, 1, otherwise 0.
+        open_account:
+          type: integer
+          description: When ACCOUNT_STATUS = 'OPEN', 1, otherwise 0.
+        days_left:
+          type: integer
+          description: Indicates the number of days left before the account expires. Can be a negative value if the account is expired.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DataPumpJobsItem:
+      type: object
+      description: This object represents a specified Data Pump job in the database.
+      properties:
+        owner_name:
+          type: string
+          description: User that initiated the job.
+        job_name:
+          type: string
+          description: User-supplied name for the job (or the default name generated by the server).
+        operation:
+          type: string
+          description: Type of job.
+        job_mode:
+          type: string
+          description: Mode of job.
+        state:
+          type: string
+          description: Current job state.
+        degree:
+          type: integer
+          description: Number of worker processes performing the operation.
+        attached_sessions:
+          type: integer
+          description: Number of sessions attached to the job.
+        datapump_sessions:
+          type: integer
+          description: Number of Data Pump sessions participating in the job.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseTablespaceTempfiles:
       type: object
       properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabaseTablespaceTempfilesItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseTablespaceDatafileUsageItem:
+      type: object
+      description: Using GV$DATAFILE and DBA_FREE_SPACE data this object represents the usage of a data file in the database.
+      properties:
+        file_name:
+          type: string
+          description: Name of the database file.
+        file_id:
+          type: integer
+          description: File identifier number of the database file.
+        tablespace:
+          type: string
+          description: Name of the tablespace.
+        status:
+          type: string
+          description: File status.
+        total_space:
+          type: integer
+          description: Total size of the files (in bytes).
+        used_space:
+          type: integer
+          description: Total used space (in bytes).
+        used_space_pct:
+          type: number
+          description: :Percentage of how much space is used.
+        autoextend:
+          type: string
+          description: Indicates whether the file is autoextensible (YES) or not (NO).
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseConnections:
+      type: object
+      description: Information on the listeners configured for the database is retrieved from GV$LISTENER_NETWORK.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabaseConnectionsItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseTablespaceSegments:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabaseTablespaceSegmentsItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseTablespaceHistoryItem:
+      type: object
+      description: Describes historical tablespace usage statistics.
+      properties:
+        snap_id:
+          type: integer
+          description: Unique snapshot ID.
+        dbid:
+          type: integer
+          description: Database ID for the snapshot.
+        tablespace_id:
+          type: integer
+          description: Tablespace ID.
+        tablespace_size:
+          type: integer
+          description: Tablespace size (in database blocks).
+        tablespace_maxsize:
+          type: integer
+          description: Maximum size of the tablespace (in database blocks).
+        tablespace_usedsize:
+          type: integer
+          description: Used size of the tablespace (in database blocks).
+        rtime:
+          type: string
+          description: Runtime.
+        con_dbid:
+          type: integer
+          description: The database ID of the PDB for the sampled session.
+        con_id:
+          type: integer
+          description: The ID of the container that CON_DBID identifies.
+        prev_tablespace_size:
+          type: integer
+          description: The previous tablespace size (in database blocks).
         name:
           type: string
-        value:
+          description: Tablespace name.
+    DatabaseTablespaceDatafilesItem:
+      type: object
+      description: ''
+      properties:
+        file_name:
           type: string
-        display_value:
+          description: Name of the database file.
+        tablespace:
           type: string
-        isdefault:
+          description: Name of the tablespace.
+        bytes:
+          type: integer
+          description: Size of the file (in bytes).
+        blocks:
+          type: integer
+          description: Size of the file (in Oracle blocks).
+        status:
           type: string
-        ismodified:
+          description: File status.
+        relative_fno:
+          type: integer
+          description: Tablespace-relative file number.
+        autoextensible:
           type: string
-        type:
+          description: Indicates whether the file is autoextensible (YES) or not (NO).
+        maxbytes:
+          type: integer
+          description: Maximum size of the file (in bytes).
+        maxblocks:
+          type: integer
+          description: Maximum size of the file (in Oracle blocks).
+        increment_by:
+          type: integer
+          description: Default increment for autoextension (in Oracle blocks).
+        user_bytes:
+          type: integer
+          description: The size of the file available for user data. The actual size of the file minus the USER_BYTES value is used to store file related metadata.
+        user_blocks:
+          type: integer
+          description: Size of the useful portion of the file (in Oracle blocks).
+        online_status:
           type: string
+          description: Online status of the file.
+        lost_write_protect:
+          type: integer
+          description: Lost write protection status of the file.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseComponentsItem:
+      type: object
+      description: A component registered in the database.
+      properties:
+        comp_id:
+          type: string
+          description: Component identifier.
+        comp_name:
+          type: string
+          description: Component name.
+        version:
+          type: string
+          description: Component version loaded.
+        version_full:
+          type: string
+          description: Component full version.
+        status:
+          type: string
+          description: Component status.
+        modified:
+          type: string
+          description: Time when the component was last modified.
+        namespace:
+          type: string
+          description: Component namespace.
+        control:
+          type: string
+          description: User that created the component entry.
+        schema:
+          type: string
+          description: User that contains the objects for the component.
+        procedure:
+          type: string
+          description: Validation procedure.
+        startup:
+          type: string
+          description: Indicates whether the component requires a startup after the upgrade (REQUIRED) or not.
+        parent_id:
+          type: string
+          description: Parent component identifier.
+        other_schemas:
+          type: string
+          description: A list of ancillary schema names associated with the component.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    DatabaseFeatureUsageItem:
+      type: object
+      description: Statistics on the usage in the database for an Oracle Database feature.
+      properties:
+        dbid:
+          type: integer
+          description: Database identifier of the database being tracked.
+        name:
+          type: string
+          description: Name of the feature.
+        version:
+          type: string
+          description: Database version in which the feature was tracked.
+        detected_usages:
+          type: integer
+          description: Number of times the system has detected usage for the feature.
+        total_samples:
+          type: integer
+          description: Number of times the system has woken up and checked for feature usage.
+        currently_used:
+          type: string
+          description: Indicates whether usage was detected the last time the system checked (TRUE) or not (FALSE).
+        first_usage_date:
+          type: string
+          description: First sample time the system detected usage of the feature.
+        last_usage_date:
+          type: string
+          description: Last sample time the system detected usage of the feature.
+        aux_count:
+          type: integer
+          description: This column stores feature-specific usage data in number format.
+        feature_info:
+          type: string
+          description: This column stores feature-specific usage data in character format.
+        last_sample_date:
+          type: string
+          description: The last time the system checked for usage.
+        last_sample_period:
+          type: integer
+          description: Amount of time (in seconds) between the last two usage sample times.
+        sample_interval:
+          type: integer
+          description: Sample interval.
         description:
           type: string
-    DatafileList:
+          description: Description of the feature and usage detection logic.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseTablespaceDatafilesUsageItem:
       type: object
+      description: Using GV$DATAFILE and DBA_FREE_SPACE data this object represents the usage of a data file in the database.
       properties:
         items:
           type: array
@@ -454,49 +1832,50 @@ components:
             properties:
               file_name:
                 type: string
-              file_id:
-                type: integer
-              tablespace_name:
+                description: Name of the database file.
+              tablespace:
                 type: string
-              bytes:
-                type: integer
-                format: int64
+                description: Name of the tablespace.
               status:
                 type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
-    ComponentList:
-      type: object
-      properties:
-        items:
+                description: File status.
+              total_space:
+                type: integer
+                description: Total size of the files (in bytes).
+              used_space:
+                type: integer
+                description: Total used space (in bytes).
+              used_space_pct:
+                type: number
+                description: :Percentage of how much space is used.
+              autoextend:
+                type: string
+                description: Indicates whether the file is autoextensible (YES) or not (NO).
+        links:
           type: array
           items:
-            type: object
-            properties:
-              comp_id:
-                type: string
-              comp_name:
-                type: string
-              version:
-                type: string
-              status:
-                type: string
+            $ref: '#/components/schemas/LinkRelation'
+    EnvironmentHomesItem:
+      type: object
+      description: An Oracle home is a directory into which Oracle software is installed.
+      properties:
+        name:
+          type: string
+          description: The name of the Oracle home.
+        version:
+          type: string
+          description: The product version.
+        default:
+          type: boolean
+          description: Indicates if the Oracle home is specified by the $ORACLE_HOME environment variable.
+        read_only_home:
+          type: boolean
+          description: Indicates if the Oracle home is configured in read only mode.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
   parameters:
-    offsetParam:
-      name: offset
-      in: query
-      description: Number of items to skip before returning results
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
     limitParam:
       name: limit
       in: query
@@ -505,6 +1884,36 @@ components:
         type: integer
         minimum: 1
         default: 25
+    offsetParam:
+      name: offset
+      in: query
+      description: Number of items to skip before returning results
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    Limit:
+      name: limit
+      in: query
+      description: The maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        format: int32
+    Filter:
+      name: q
+      in: query
+      description: Filtering is the process of limiting a collection resource by using a per-request dynamic filter definition across multiple page resources, where each page contains a subset of items found in the complete collection. Filtering enables efficient traversal of large collections.
+      required: false
+      schema:
+        $ref: '#/components/schemas/Filter'
+      examples:
+        FilterCriteriaExample:
+          $ref: '#/components/examples/FilterCriteria'
+        OrderByPropertyExample:
+          $ref: '#/components/examples/OrderByProperty'
+        FilterAndOrderExample:
+          $ref: '#/components/examples/FilterAndOrder'
   responses:
     Unauthorized:
       description: Authentication required or credentials invalid
@@ -518,6 +1927,24 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  examples:
+    FilterCriteria:
+      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
+      value:
+        SALARY: 1000
+    OrderByProperty:
+      summary: Order by with literals.
+      value:
+        $orderby:
+          SALARY: ASC
+          ENAME: DESC
+    FilterAndOrder:
+      summary: Filter criteria supports a wide range of operators. In this example LIKE operator ($like) is used. See Oracle REST Data Services production documentation 'Filtering in Queries' section for further information on the operators available.
+      value:
+        ENAME:
+          $like: AX%
+        $orderby:
+          ENAME: ASC
   securitySchemes:
     oauth2:
       type: oauth2
@@ -532,6 +1959,25 @@ components:
     basicAuth:
       type: http
       scheme: basic
-externalDocs:
-  description: ORDS REST API Documentation
-  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.4/orrst/
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: /oauth/auth
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /oauth/auth
+          tokenUrl: /oauth/token
+          scopes: {}
+        clientCredentials:
+          tokenUrl: /oauth/token
+          scopes: {}
+x-refined-from:
+- oracle-database-ords-openapi.yml
+- oracle-database-general-api-openapi.yml

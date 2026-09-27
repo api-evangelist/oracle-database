@@ -1,0 +1,962 @@
+openapi: 3.2.0
+info:
+  description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+  version: 2026.03.26
+  title: Oracle REST Data Services … Oracle Transactional Event…
+  contact:
+    name: Oracle REST Data Services
+    url: https://www.oracle.com/database/technologies/appdev/rest.html
+  x-summary: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+tags:
+- name: Oracle Transactional Event Queues
+  description: Services related to Oracle Transactional Event Queues.
+paths:
+  /database/txeventq/topics:
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Get all Transactional Event Queue Topics in the schema
+      description: This API is compiant witht the Confluent Kafka API. Get a list of Transactional Event Queue Topics defined. A client requires SQL Developer role to invoke this service. Database user requires EXECUTE on DBMS_AQADM and OWA_UTIL packages.
+      responses:
+        '200':
+          description: List of Transactional Event Queue Topics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+      x-internal-id: database-txeventq-topics-get
+      x-filename-id: database-txeventq-topics-get
+      operationId: getDatabaseTxeventqTopics
+      x-operation-id-source: derived
+  /database/txeventq/topics/{topic_name}:
+    post:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Produce a message to the Transactional Event Queue Topic specified by topic_name
+      description: Produce a message to the topic specified by topic_name with a key and value. Optionally, specify a partition to produce the message in. If no partition is specified one is automatically chosen. A client requires SQL Developer role to invoke this service. Database user requires Execute privilege on DBMS_AQ, DBMS_AQADM and OWA_UTIL packages. Topic must belong to Database User's schema.
+      responses:
+        '201':
+          description: The successfully created record.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+              examples:
+                Produce Messages in Topic:
+                  summary: This API produces messages in Topic
+                  value:
+                    records:
+                    - key: color
+                      value: red
+                      partition: 5
+                    - key: 7
+                      value: 77
+      parameters:
+      - name: topic_name
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-topics-{topic_name}-post
+      x-filename-id: database-txeventq-topics-topic_name-post
+      operationId: postDatabaseTxeventqTopicsByTopicName
+      x-operation-id-source: derived
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Get description of a particular Transactional Event Queue Topic
+      description: Get description of a particular topic. A client requires SQL Developer role to invoke this service. Database user requires READ privilege on USER_QUEUE_SHARDS.
+      responses:
+        '200':
+          description: Topic Description
+      parameters:
+      - name: topic_name
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-topics-{topic_name}-get
+      x-filename-id: database-txeventq-topics-topic_name-get
+      operationId: getDatabaseTxeventqTopicsByTopicName
+      x-operation-id-source: derived
+  /database/txeventq/clusters/{cluster_id}/consumer-groups:
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Get Consumer Groups in Cluster
+      description: Returns the list of consumer groups that belong to the specified cluster. A client requires SQL Developer role to invoke this service.
+      responses:
+        '200':
+          description: Consmer Group Description
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-clusters-{cluster_id}-consumer-groups-get
+      x-filename-id: database-txeventq-clusters-cluster_id-consumer-groups-get
+      operationId: getDatabaseTxeventqClustersByClusterIdConsumerGroups
+      x-operation-id-source: derived
+  /database/txeventq/clusters/{cluster_id}/consumer-groups/{consumer_group_id}:
+    post:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Create a Consumer Group
+      description: Create a new consumer consumer group in the specified Cluster Id. A client requires SQL Developer role to invoke this service. Database user requires Execute privilege on DBMS_AQADM and OWA_UTIL packages and the Topic must be created in the Database User's' schema.
+      responses:
+        '201':
+          description: Successfully created Consumer Group.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+              examples:
+                Create a Consumer Group:
+                  summary: This API creates a Consumer Group in Topic
+                  value:
+                    topic_name: myTopic
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: consumer_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Topic
+        in: header
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-clusters-{cluster_id}-consumer-groups-{consumer_group_id}-post
+      x-filename-id: database-txeventq-clusters-cluster_id-consumer-groups-consumer_group_id-post
+      operationId: postDatabaseTxeventqClustersByClusterIdConsumerGroupsByConsumerGroupId
+      x-operation-id-source: derived
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Get a Consumer Group
+      description: Get the consumer group specified by the consumer_group_id.
+      responses:
+        '200':
+          description: The Consumer Group
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: consumer_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-clusters-{cluster_id}-consumer-groups-{consumer_group_id}-get
+      x-filename-id: database-txeventq-clusters-cluster_id-consumer-groups-consumer_group_id-get
+      operationId: getDatabaseTxeventqClustersByClusterIdConsumerGroupsByConsumerGroupId
+      x-operation-id-source: derived
+    delete:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Delete a Consumer Group
+      description: Delete consumer consumer group in the specified Cluster Id. A client requires SQL Developer role to invoke this service. Database User requires Execute privilege on DBMS_AQADM and OWA_UTIL packages and the Topic must have been created in Database User's schema.
+      responses:
+        '200':
+          description: Deleted Consumer Group.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+              examples:
+                Delete a Consumer Group:
+                  summary: This API deletes a Consumer Group in Topic
+                  value:
+                    topic_name: myTopic
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: consumer_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Topic
+        in: header
+        schema:
+          type: string
+      x-internal-id: database-txeventq-clusters-{cluster_id}-consumer-groups-{consumer_group_id}-delete
+      x-filename-id: database-txeventq-clusters-cluster_id-consumer-groups-consumer_group_id-delete
+      operationId: deleteDatabaseTxeventqClustersByClusterIdConsumerGroupsByConsumerGroupId
+      x-operation-id-source: derived
+  /database/txeventq/clusters/{cluster_id}/consumer-groups/{consumer_group_id}/lag-summary:
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Get lag summary for Consumer Groups in Cluster
+      description: Gets the max and total lag of the consumers in the specified consumer group. A client requires SQL Developer role to invoke this service. Database User requires EXECUTE privilege on DBMS_AQADM and OWA_UTIL packages.
+      responses:
+        '200':
+          description: The Consumer Group Lag Summary.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: consumer_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-clusters-{cluster_id}-consumer-groups-{consumer_group_id}-lag-summary-get
+      x-filename-id: database-txeventq-clusters-cluster_id-consumer-groups-consumer_group_id-lag-summary-get
+      operationId: getDatabaseTxeventqClustersByClusterIdConsumerGroupsByConsumerGroupIdLagSummary
+      x-operation-id-source: derived
+  /database/txeventq/clusters/{cluster_id}/consumer-groups/{consumer_group_id}/lags:
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Lags/Offsets of consumers in the Consumer group
+      description: Gets a list of Current/Log-End Offsets and Lag of consumers belonging to the specified consumer group. A client requires SQL Developer role to invoke this service. Database User requires EXECUTE privilege on DBMS_AQADM and OWA_UTIL packages.
+      responses:
+        '200':
+          description: The Consumer Lag and Offsets
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: consumer_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-clusters-{cluster_id}-consumer-groups-{consumer_group_id}-lags-get
+      x-filename-id: database-txeventq-clusters-cluster_id-consumer-groups-consumer_group_id-lags-get
+      operationId: getDatabaseTxeventqClustersByClusterIdConsumerGroupsByConsumerGroupIdLags
+      x-operation-id-source: derived
+  /database/txeventq/clusters/{cluster_id}/topics:
+    post:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Create a new Transactional Event Queue Topic
+      description: Create a new Topic. A client requires SQL Developer role to invoke this service. Database User requires Execute privilege on DBMS_AQADM and OWA_UTIL packages as well as Resource and Unlimited Tablespace privileges.
+      responses:
+        '201':
+          description: The successfully created topic.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+              examples:
+                Create a Topic:
+                  summary: This API creates a Topic
+                  value:
+                    topic_name: myTopic
+                    partitions_count: '10'
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic_name
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: partitions_count
+        in: header
+        required: true
+        schema:
+          type: integer
+      x-internal-id: database-txeventq-clusters-{cluster_id}-topics-post
+      x-filename-id: database-txeventq-clusters-cluster_id-topics-post
+      operationId: postDatabaseTxeventqClustersByClusterIdTopics
+      x-operation-id-source: derived
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: List Transactional Event Queue Topics that belong to the specified database…
+      description: List topics that belong to the specified database cluster. A client requires SQL Developer role to invoke this service. Database User requires Execute privilege on DBMS_AQADM and OWA_UTIL packages and READ privilege on USER_QUEUE_SHARDS.
+      responses:
+        '200':
+          description: Topics in Cluster
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-clusters-{cluster_id}-topics-get
+      x-filename-id: database-txeventq-clusters-cluster_id-topics-get
+      operationId: getDatabaseTxeventqClustersByClusterIdTopics
+      x-operation-id-source: derived
+  /database/txeventq/clusters/{cluster_id}/topics/{topic_name}:
+    delete:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Delete the Transactional Event Queue Topic with the specified topic_name
+      description: Delete the topic with the specified topic_name. A client requires SQL Developer role to invoke this service. Database User requires Execute privilege on DBMS_AQADM and OWA_UTIL packages and the Topic must have been created in the database user's schema.
+      responses:
+        '200':
+          description: Deleted topic.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic_name
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-clusters-{cluster_id}-topics-{topic_name}-delete
+      x-filename-id: database-txeventq-clusters-cluster_id-topics-topic_name-delete
+      operationId: deleteDatabaseTxeventqClustersByClusterIdTopicsByTopicName
+      x-operation-id-source: derived
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Describes Transactional Event Queue Topic in Cluster
+      description: Get a full description of the topic specified by the topic_name. A client requires SQL Developer role to invoke this service. Database User requires to have READ privilege on USER_QUEUE_SHARDS.
+      responses:
+        '200':
+          description: The topic specified.
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic_name
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-clusters-{cluster_id}-topics-{topic_name}-get
+      x-filename-id: database-txeventq-clusters-cluster_id-topics-topic_name-get
+      operationId: getDatabaseTxeventqClustersByClusterIdTopicsByTopicName
+      x-operation-id-source: derived
+  /database/txeventq/clusters/{cluster_id}/topics/{topic_name}/partitions:
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: List Partitions for a Transactional Event Queue Topic in Cluster
+      description: Get all the partitions that belong to a specified topic. A client requires SQL Developer role to invoke this service. Database User requires READ privilege on USER_QUEUE_SHARDS.
+      responses:
+        '200':
+          description: The topic partitions.
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic_name
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-clusters-{cluster_id}-topics-{topic_name}-partitions-get
+      x-filename-id: database-txeventq-clusters-cluster_id-topics-topic_name-partitions-get
+      operationId: getDatabaseTxeventqClustersByClusterIdTopicsByTopicNamePartitions
+      x-operation-id-source: derived
+  /database/txeventq/clusters/{cluster_id}/topics/{topic_name}/partitions/{partition_id}:
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Describe Transactional Event Queue Topic Partition specified in Cluster
+      description: Get the partition with a specified partition_id for the specified Topic in cluster. A client requires SQL Developer role to invoke this service. Database User requires READ privilege on USER_QUEUE_SHARDS.
+      responses:
+        '200':
+          description: The specified Topic Partition
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: partition_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic_name
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-clusters-{cluster_id}-topics-{topic_name}-partitions-{partition_id}-get
+      x-filename-id: database-txeventq-clusters-cluster_id-topics-topic_name-partitions-partition_id-get
+      operationId: getDatabaseTxeventqClustersByClusterIdTopicsByTopicNamePartitionsByPartitionId
+      x-operation-id-source: derived
+  /database/txeventq/consumers/{group_name}:
+    post:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Create Consumer Instance
+      description: Create a new consumer instance in the consumer group. Database user requires SQL Developer role and EXECUTE privilege on OWA_UTIL package to invoke this service. The database user also requires SELECT privilege on V_$SESSION to perform this operation.
+      responses:
+        '201':
+          description: Created consumer instance
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+              examples:
+                Create Consumer Instance:
+                  summary: This create a Consumer Instance in a Consumer Group
+                  value:
+                    name: MY-Consumer-Instance
+      parameters:
+      - name: group_name
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-consumers-{group_name}-post
+      x-filename-id: database-txeventq-consumers-group_name-post
+      operationId: postDatabaseTxeventqConsumersByGroupName
+      x-operation-id-source: derived
+  /database/txeventq/consumers/{group_name}/instances/{instance}:
+    delete:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Delete Consumer Instance
+      description: Delete the consumer instance. A client requires SQL Developer role to invoke this service. Also EXECUTE privilege on OWA_UTIL package.
+      responses:
+        '204':
+          description: Deleted Consumer Instance.
+        '404':
+          description: Not Found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+      parameters:
+      - name: group_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-consumers-{group_name}-instances-{instance}-delete
+      x-filename-id: database-txeventq-consumers-group_name-instances-instance-delete
+      operationId: deleteDatabaseTxeventqConsumersByGroupNameInstancesByInstance
+      x-operation-id-source: derived
+  /database/txeventq/clusters/{cluster_id}/consumer-groups/{consumer_group_id}/lags/{topic_name}/partitions/{partition_id}:
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Get consumer lag for Transactional Event Queue Topic Partition
+      description: Get the consumer lag on a specified partition in a topic. A client requires SQL Developer role to invoke this service. Database User requires EXECUTE privilege on DBMS_AQADM and OWA_UTIL packages.
+      responses:
+        '200':
+          description: Consumer-Group lag for Partition
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+      parameters:
+      - name: cluster_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: consumer_group_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: partition_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic_name
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-clusters-{cluster_id}-consumer-groups-{consumer_group_id}-lags-{topic_name}-partitions-{partition_id}-get
+      x-filename-id: database-txeventq-clusters-cluster_id-consumer-groups-consumer_group_id-lags-topic_name-partitions-partition_id-get
+      operationId: getDatabaseTxeventqClustersByClusterIdConsumerGroupsByConsumerGroupIdLagsByTopicNamePartitionsByPartitionId
+      x-operation-id-source: derived
+  /database/txeventq/consumers/{group_name}/instances/{instance}/offsets:
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Get Consumer last Commit Offsets
+      description: Get the last committed offsets for the given partition. A client requires SQL Developer role to invoke this service. Database User requires EXECUTE privilege on DBMS_AQADM and OWA_UTIL packages.
+      responses:
+        '200':
+          description: Consumer-Group Commit Offsets
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+              examples:
+                Consumer-Group Commit Offsets:
+                  summary: Get Consumer's Commit Offsets
+                  value:
+                    partitions:
+                    - topic: myTopic1
+                      partition: 0
+                    - topic: myTopic2
+                      partition: 3
+      parameters:
+      - name: group_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: List of Topic and Partition
+        in: query
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-consumers-{group_name}-instances-{instance}-offsets-get
+      x-filename-id: database-txeventq-consumers-group_name-instances-instance-offsets-get
+      operationId: getDatabaseTxeventqConsumersByGroupNameInstancesByInstanceOffsets
+      x-operation-id-source: derived
+  /database/txeventq/consumers/{group_name}/instances/{instance}/positions:
+    post:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Seek to specified Transactional Event Queue Topic partition offsets for…
+      description: Seek to the offsets for each of the Topic partition. A client requires SQL Developer role to invoke this service. Database User requires EXECUTE privilege on DBMS_AQ, DBMS_AQADM and OWA_UTIL packages. Also needs READ privilege on V$DATABASE and V$TRANSPORTABLE_PLATFORM.
+      responses:
+        '201':
+          description: Moved Consumer offset to specified position
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+              examples:
+                Move Consumer Offset:
+                  summary: Move Consumer position to specified offset in Partition
+                  value:
+                    offsets:
+                    - topic: myTopic
+                      partition: 0
+                      offset: 2
+      parameters:
+      - name: group_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-consumers-{group_name}-instances-{instance}-positions-post
+      x-filename-id: database-txeventq-consumers-group_name-instances-instance-positions-post
+      operationId: postDatabaseTxeventqConsumersByGroupNameInstancesByInstancePositions
+      x-operation-id-source: derived
+  /database/txeventq/consumers/{group_name}/instances/{instance}/positions/beginning:
+    post:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Seek to start of Partitions for Consumer Group
+      description: Seek to the beginning offset for each of the given partitions. A client requires SQL Developer role to invoke this service. Database User requires EXECUTE privilege on DBMS_AQ and OWA_UTIL packages.
+      responses:
+        '201':
+          description: Moved Consumer offset to start of the Partitions specified.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+              examples:
+                Move Consumer Offset to the Start of Partition:
+                  summary: Move Consumer position to the start of specified Partitions
+                  value:
+                    partitions:
+                    - topic: myTopic
+                      partition: 4
+      parameters:
+      - name: group_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-consumers-{group_name}-instances-{instance}-positions-beginning-post
+      x-filename-id: database-txeventq-consumers-group_name-instances-instance-positions-beginning-post
+      operationId: postDatabaseTxeventqConsumersByGroupNameInstancesByInstancePositionsBeginning
+      x-operation-id-source: derived
+  /database/txeventq/consumers/{group_name}/instances/{instance}/positions/end:
+    post:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Seek to End of Partitions for Consumer Group
+      description: Seek to the End offset for each of the given partitions. A client requires SQL Developer role to invoke this service. Database User requires EXECUTE privilege on DBMS_AQ and OWA_UTIL packages.
+      responses:
+        '201':
+          description: 'Moved Consumer offset to end of the Partitions specified '
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+              examples:
+                Move Consumer Offset to the end of Partition:
+                  summary: Move Consumer position to the end of specified Partitions
+                  value:
+                    partitions:
+                    - topic: myTopic
+                      partition: 4
+      parameters:
+      - name: group_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-consumers-{group_name}-instances-{instance}-positions-end-post
+      x-filename-id: database-txeventq-consumers-group_name-instances-instance-positions-end-post
+      operationId: postDatabaseTxeventqConsumersByGroupNameInstancesByInstancePositionsEnd
+      x-operation-id-source: derived
+  /database/txeventq/consumers/{group_name}/instances/{instance}/records:
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Fetch messages for the specified Consumer
+      description: Fetch messages for the specified Consumer in Consumer Group from Topics its Subscribed to. A client requires SQL Developer role to invoke this service. Database User requires EXECUTE privilege on DBMS_AQ, DBMS_AQADM and OWA_UTIL packages.
+      responses:
+        '200':
+          description: The fetched messages
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+      parameters:
+      - name: group_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: Maximum Bytes of Records
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: Timeout in Milli Seconds
+        in: query
+        required: false
+        schema:
+          type: integer
+      x-internal-id: database-txeventq-consumers-{group_name}-instances-{instance}-records-get
+      x-filename-id: database-txeventq-consumers-group_name-instances-instance-records-get
+      operationId: getDatabaseTxeventqConsumersByGroupNameInstancesByInstanceRecords
+      x-operation-id-source: derived
+  /database/txeventq/consumers/{group_name}/instances/{instance}/subscription:
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Subscribed list of Transactional Event Queue Topics
+      description: Get the current subscribed list of topics for the consumer group instance. A client requires SQL Developer role to invoke this service. Database User requires EXECUTE privilege on DBMS_AQADM and OWA_UTIL packagse.
+      responses:
+        '200':
+          description: The queried record.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+      parameters:
+      - name: group_name
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: instance
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-consumers-{group_name}-instances-{instance}-subscription-get
+      x-filename-id: database-txeventq-consumers-group_name-instances-instance-subscription-get
+      operationId: getDatabaseTxeventqConsumersByGroupNameInstancesByInstanceSubscription
+      x-operation-id-source: derived
+  /database/txeventq/topics/{topic_name}/partitions:
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Describe Transactional Event Queue Topic Partitions
+      description: Get a list of partitions for the specified topic_name. A client requires SQL Developer role to invoke this service. Database User requires READ privilege on USER_QUEUE_SHARDS.
+      responses:
+        '200':
+          description: The queried record.
+      parameters:
+      - name: topic_name
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-topics-{topic_name}-partitions-get
+      x-filename-id: database-txeventq-topics-topic_name-partitions-get
+      operationId: getDatabaseTxeventqTopicsByTopicNamePartitions
+      x-operation-id-source: derived
+  /database/txeventq/topics/{topic_name}/partitions/{partition_id}:
+    post:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Produce messages in the specified Transactional Event Queue Topic Partition
+      description: Produce messages to the specified partition of the topic. A client requires SQL Developer role to invoke this service. Database User requires EXECUTE privilege on DBMS_AQ, DBMS_AQADM and OWA_UTIL packages.
+      responses:
+        '201':
+          description: Produced messages to the specified partition of the topic
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+              examples:
+                Produce Messages to a specified Partition:
+                  summary: Produce messages in the specified Partitions
+                  value:
+                    records:
+                    - key: 99
+                      value: 9999
+      parameters:
+      - name: partition_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic_name
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-topics-{topic_name}-partitions-{partition_id}-post
+      x-filename-id: database-txeventq-topics-topic_name-partitions-partition_id-post
+      operationId: postDatabaseTxeventqTopicsByTopicNamePartitionsByPartitionId
+      x-operation-id-source: derived
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Describe the specified Transactional Event Queue Topic Partition
+      description: Get metadata details of a specified partition in the topic. A client requires SQL Developer role to invoke this service. Database User requires READ privilege on USER_QUEUE_SHARDS.
+      responses:
+        '200':
+          description: The Topic Partition Metadata.
+      parameters:
+      - name: partition_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic_name
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-topics-{topic_name}-partitions-{partition_id}-get
+      x-filename-id: database-txeventq-topics-topic_name-partitions-partition_id-get
+      operationId: getDatabaseTxeventqTopicsByTopicNamePartitionsByPartitionId
+      x-operation-id-source: derived
+  /database/txeventq/topics/{topic_name}/partitions/{partition_id}/offsets:
+    get:
+      tags:
+      - Oracle Transactional Event Queues
+      summary: Get Transactional Event Queue Topic Partition Offsets
+      description: Get the first and last offset in the specified partition. A client requires SQL Developer role to invoke this service. Database User requires EXECUTE privilege on DBMS_AQADM and OWA_UTIL packages.
+      responses:
+        '200':
+          description: The Topic Partition Offsets.
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  SQL ERROR MESSAGE:
+                    type: string
+      parameters:
+      - name: partition_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: topic_name
+        in: path
+        required: true
+        schema:
+          type: string
+      x-internal-id: database-txeventq-topics-{topic_name}-partitions-{partition_id}-offsets-get
+      x-filename-id: database-txeventq-topics-topic_name-partitions-partition_id-offsets-get
+      operationId: getDatabaseTxeventqTopicsByTopicNamePartitionsByPartitionIdOffsets
+      x-operation-id-source: derived
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: /oauth/auth
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /oauth/auth
+          tokenUrl: /oauth/token
+          scopes: {}
+        clientCredentials:
+          tokenUrl: /oauth/token
+          scopes: {}
+externalDocs:
+  description: Oracle REST Data Services product documentation.
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/

@@ -1,0 +1,67 @@
+openapi: 3.2.0
+info:
+  description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+  version: 2026.03.26
+  title: Oracle REST Data Services Vector Database/Summary API
+  contact:
+    name: Oracle REST Data Services
+    url: https://www.oracle.com/database/technologies/appdev/rest.html
+  x-summary: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+tags:
+- name: Vector Database/Summary
+  description: The operations from the Vector Database/Summary category.
+paths:
+  /vecdb/summary:
+    get:
+      tags:
+      - Vector Database/Summary
+      operationId: describe_vector_database
+      summary: A summary of all of the VecDB objects present in the schema
+      description: Provides a summary of all of the VecDB objects present in the schema.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: Provides a summary of all of the VecDB objects present in the schema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SummaryItem'
+      x-internal-id: vecdb-summary-get
+      x-filename-id: vecdb-summary-get
+components:
+  schemas:
+    SummaryItem:
+      type: object
+      properties:
+        total_tables:
+          type: number
+        total_vectors:
+          type: number
+        total_models:
+          type: number
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: /oauth/auth
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /oauth/auth
+          tokenUrl: /oauth/token
+          scopes: {}
+        clientCredentials:
+          tokenUrl: /oauth/token
+          scopes: {}
+externalDocs:
+  description: Oracle REST Data Services product documentation.
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/

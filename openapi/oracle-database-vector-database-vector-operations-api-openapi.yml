@@ -1,0 +1,598 @@
+openapi: 3.2.0
+info:
+  description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+  version: 2026.03.26
+  title: Oracle REST Data Services … Vector Database/Vector…
+  contact:
+    name: Oracle REST Data Services
+    url: https://www.oracle.com/database/technologies/appdev/rest.html
+  x-summary: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+tags:
+- name: Vector Database/Vector Operations
+  description: The operations from the Vector Database/Vector Operations category.
+paths:
+  /vecdb/vector-tables/{vector_table_name}/upsert:
+    post:
+      tags:
+      - Vector Database/Vector Operations
+      operationId: upsert_vectors
+      summary: Upsert vectors or records into a given vector table
+      description: Insert or update records into a vector table.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      parameters:
+      - name: vector_table_name
+        in: path
+        description: The name of the vector table.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - vectors
+              properties:
+                vectors:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: The ID of the vector record.
+                      dense_vector:
+                        type: array
+                        description: The dense vector to insert.
+                        items:
+                          type: number
+                          format: double
+                      metadata:
+                        type: object
+                        description: The metadata associated to the vector record.
+                  description: The vectors to upsert
+                debugFlags:
+                  $ref: '#/components/schemas/VectorDebugFlags'
+      responses:
+        '201':
+          description: List of vectors.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  upserted_count:
+                    type: number
+                    description: The number of upserted records.
+        '400':
+          description: The request body included invalid parameters.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+        '404':
+          description: The specified vector table does not exists.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-vector-tables-{vector_table_name}-upsert-post
+      x-filename-id: vecdb-vector-tables-vector_table_name-upsert-post
+  /vecdb/vector-tables/{vector_table_name}/list:
+    post:
+      tags:
+      - Vector Database/Vector Operations
+      operationId: list_vectors
+      summary: List the records of a given vector table
+      description: Look up and return vectors by ID from a vector table. The returned vectors include the vector data and/or metadata.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      parameters:
+      - name: vector_table_name
+        in: path
+        description: The name of the vector table.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ids:
+                  type: array
+                  items:
+                    type: string
+                  description: The IDs of the vector table records to list.
+                limit:
+                  type: number
+                  description: The maximum number or records to retrieve.
+                  default: 15
+                offset:
+                  type: number
+                  description: Row offset for pagination.
+                debugFlags:
+                  $ref: '#/components/schemas/VectorDebugFlags'
+      responses:
+        '200':
+          description: List of vector records.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VecDBVectorVectorCollection'
+        '400':
+          description: The request body included invalid parameters.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+        '404':
+          description: The specified vector table does not exists.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-vector-tables-{vector_table_name}-list-post
+      x-filename-id: vecdb-vector-tables-vector_table_name-list-post
+  /vecdb/vector-tables/{vector_table_name}/delete:
+    post:
+      tags:
+      - Vector Database/Vector Operations
+      operationId: delete_vectors
+      summary: Delete vectors with the specified IDs from the specified vector table
+      description: Delete vectors from a vector table.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      parameters:
+      - name: vector_table_name
+        in: path
+        description: The name of the vector table.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - ids
+              properties:
+                ids:
+                  type: array
+                  items:
+                    type: string
+                  description: The IDs of the vector table records to delete.
+                debugFlags:
+                  $ref: '#/components/schemas/VectorDebugFlags'
+      responses:
+        '200':
+          description: Deleted vectors count
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Confirmation message.
+        '400':
+          description: The request body included invalid parameters.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+        '404':
+          description: The specified vector table does not exists.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-vector-tables-{vector_table_name}-delete-post
+      x-filename-id: vecdb-vector-tables-vector_table_name-delete-post
+  /vecdb/load:
+    post:
+      tags:
+      - Vector Database/Vector Operations
+      operationId: load_vectors
+      summary: Load dataset in CSV format, from PAR URL or public bucket
+      description: Schedule a Job to load data into a vector table
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - tableName
+              - url
+              properties:
+                tableName:
+                  type: string
+                  description: The name of the vector table.
+                url:
+                  type: string
+                  description: PAR url from where the data will be sourced.
+                params:
+                  type: object
+                  description: 'Parameters required to load the dataset into the table. '
+                debugFlags:
+                  $ref: '#/components/schemas/VectorDebugFlags'
+      responses:
+        '200':
+          description: Description of the load job that has been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VecDBJobItem'
+        '400':
+          description: The request body included invalid parameters.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-load-post
+      x-filename-id: vecdb-load-post
+  /vecdb/load/jobs/:
+    get:
+      tags:
+      - Vector Database/Vector Operations
+      operationId: list_vector_load_jobs
+      summary: Retrieve all schedulled load jobs
+      description: Describes all of the jobs scheduled to load data into a vector table.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: Description of all the load jobs that have been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VecDBJobCollection'
+      x-internal-id: vecdb-load-jobs--get
+      x-filename-id: vecdb-load-jobs-get
+  /vecdb/load/jobs/{load_job_name}/:
+    get:
+      tags:
+      - Vector Database/Vector Operations
+      operationId: describe_vector_load_job
+      summary: Retrieve details of an schedulled load job
+      description: Describes the specified job scheduled to load data into a vector table.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      parameters:
+      - name: load_job_name
+        in: path
+        description: The name of the load job.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Description of all the load jobs that have been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VecDBJobItem'
+        '404':
+          description: The specified lod job was not found.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-load-jobs-{load_job_name}--get
+      x-filename-id: vecdb-load-jobs-load_job_name-get
+  /vecdb/load/jobs/{load_job_name}/jobfile:
+    get:
+      tags:
+      - Vector Database/Vector Operations
+      operationId: get_vector_load_job_log
+      summary: Get the logs associated to a scheduled load job
+      description: Returns the log associated to a given load job.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      parameters:
+      - name: load_job_name
+        in: path
+        description: The name of the load job.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Description of all the load jobs that have been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VecDBJobLogItem'
+        '404':
+          description: The specified lod job was not found or the load job has not finished yet.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-load-jobs-{load_job_name}-jobfile-get
+      x-filename-id: vecdb-load-jobs-load_job_name-jobfile-get
+components:
+  schemas:
+    VecDBJobCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VecDBJobItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    VecDBJobItem:
+      type: object
+      properties:
+        job_name:
+          type: string
+        job_creator:
+          type: string
+        job_type:
+          type: string
+        operation:
+          type: string
+        state:
+          type: string
+        start_date:
+          type:
+          - string
+          - 'null'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    VecDBVectorVectorItem:
+      type: object
+      properties:
+        id:
+          type: string
+        dense_vector:
+          type: array
+          items:
+            type: number
+            format: double
+        metadata:
+          type:
+          - object
+          - 'null'
+    VecDBJobLogItem:
+      type: object
+      properties:
+        log_date:
+          type: string
+        job_name:
+          type: string
+        status:
+          type: string
+        error#:
+          type: integer
+        additional_info:
+          type:
+          - string
+          - 'null'
+        actual_start_date:
+          type: string
+        run_duration:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    VectorDebugFlags:
+      type: object
+      description: Debug flags to be used to trace vector modules
+      properties:
+        VECTOR_INDEX:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_BUILD:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_MEM:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_SEARCH:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_APPCHNG:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_STATS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_PARTITIONS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_FIXED_VIEW:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_COM:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ_DWNGRD:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ_GROW:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_SJ:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_SJ_BG:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VEC_INDEX_CALIBRATION:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_TRACE:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+    ORDSErrorResponse:
+      type: object
+      required:
+      - code
+      - message
+      - type
+      - instance
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        type:
+          type: string
+        instance:
+          type: string
+        diagnosticTrace:
+          type: string
+        stackTrace:
+          type: string
+    VecDBVectorVectorCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VecDBVectorVectorItem'
+        limit:
+          type: number
+        offset:
+          type: number
+        count:
+          type: number
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: /oauth/auth
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /oauth/auth
+          tokenUrl: /oauth/token
+          scopes: {}
+        clientCredentials:
+          tokenUrl: /oauth/token
+          scopes: {}
+externalDocs:
+  description: Oracle REST Data Services product documentation.
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/

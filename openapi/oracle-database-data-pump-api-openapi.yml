@@ -175,23 +175,6 @@ components:
           type: integer
         attached_sessions:
           type: integer
-    DataPumpImportRequest:
-      type: object
-      required:
-      - job_name
-      properties:
-        job_name:
-          type: string
-        directory:
-          type: string
-        dumpfile:
-          type: string
-        schemas:
-          type: array
-          items:
-            type: string
-        remap_schema:
-          type: string
     DataPumpJobList:
       type: object
       properties:
@@ -199,6 +182,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DataPumpJob'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
     DataPumpExportRequest:
       type: object
       required:
@@ -220,14 +212,22 @@ components:
           type: string
         logfile:
           type: string
-    Error:
+    DataPumpImportRequest:
       type: object
+      required:
+      - job_name
       properties:
-        code:
-          type: integer
-        message:
+        job_name:
           type: string
-        type:
+        directory:
+          type: string
+        dumpfile:
+          type: string
+        schemas:
+          type: array
+          items:
+            type: string
+        remap_schema:
           type: string
   responses:
     NotFound:
@@ -236,14 +236,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:

@@ -318,6 +318,132 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    AutoRESTRequest:
+      type: object
+      required:
+      - object_name
+      - object_type
+      properties:
+        object_name:
+          type: string
+        object_type:
+          type: string
+          enum:
+          - TABLE
+          - VIEW
+          - PACKAGE
+          - PROCEDURE
+          - FUNCTION
+        object_alias:
+          type: string
+        schema:
+          type: string
+    CreateRESTModuleRequest:
+      type: object
+      required:
+      - name
+      - uri_prefix
+      properties:
+        name:
+          type: string
+        uri_prefix:
+          type: string
+        status:
+          type: string
+          enum:
+          - PUBLISHED
+          - NOT_PUBLISHED
+        items_per_page:
+          type: integer
+    OAuthClientList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              client_id:
+                type: string
+              grant_type:
+                type: string
+    RESTHandlerList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              method:
+                type: string
+              source_type:
+                type: string
+              source:
+                type: string
+    ORDSPropertyValue:
+      type: object
+      properties:
+        value:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    CreateOAuthClientRequest:
+      type: object
+      required:
+      - name
+      - grant_type
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        grant_type:
+          type: string
+          enum:
+          - authorization_code
+          - client_credentials
+        redirect_uri:
+          type: string
+          format: uri
+    RESTModule:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        uri_prefix:
+          type: string
+        status:
+          type: string
+        items_per_page:
+          type: integer
+    ORDSPropertyList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
     CreateRESTHandlerRequest:
       type: object
       required:
@@ -348,125 +474,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/RESTModule'
-    AutoRESTRequest:
-      type: object
-      required:
-      - object_name
-      - object_type
-      properties:
-        object_name:
-          type: string
-        object_type:
-          type: string
-          enum:
-          - TABLE
-          - VIEW
-          - PACKAGE
-          - PROCEDURE
-          - FUNCTION
-        object_alias:
-          type: string
-        schema:
-          type: string
-    CreateRoleRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-    ORDSPropertyList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              key:
-                type: string
-              value:
-                type: string
-    ORDSPropertyValue:
-      type: object
-      properties:
-        value:
-          type: string
-    CreateRESTModuleRequest:
-      type: object
-      required:
-      - name
-      - uri_prefix
-      properties:
-        name:
-          type: string
-        uri_prefix:
-          type: string
-        status:
-          type: string
-          enum:
-          - PUBLISHED
-          - NOT_PUBLISHED
-        items_per_page:
-          type: integer
-    CreateOAuthClientRequest:
-      type: object
-      required:
-      - name
-      - grant_type
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        grant_type:
-          type: string
-          enum:
-          - authorization_code
-          - client_credentials
-        redirect_uri:
-          type: string
-          format: uri
-    OAuthClientList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              client_id:
-                type: string
-              grant_type:
-                type: string
-    RESTModule:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        uri_prefix:
-          type: string
-        status:
-          type: string
-        items_per_page:
-          type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
     CreatePrivilegeRequest:
       type: object
       required:
@@ -483,22 +490,15 @@ components:
           type: array
           items:
             type: string
-    RESTHandlerList:
+    CreateRoleRequest:
       type: object
+      required:
+      - name
       properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              method:
-                type: string
-              source_type:
-                type: string
-              source:
-                type: string
+        name:
+          type: string
+        description:
+          type: string
   responses:
     NotFound:
       description: The specified resource was not found
@@ -506,14 +506,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:

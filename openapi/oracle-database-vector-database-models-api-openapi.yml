@@ -1,0 +1,392 @@
+openapi: 3.2.0
+info:
+  description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+  version: 2026.03.26
+  title: Oracle REST Data Services Vector Database/Models API
+  contact:
+    name: Oracle REST Data Services
+    url: https://www.oracle.com/database/technologies/appdev/rest.html
+  x-summary: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+tags:
+- name: Vector Database/Models
+  description: The operations from the Vector Database/Models category.
+paths:
+  /vecdb/models/:
+    get:
+      tags:
+      - Vector Database/Models
+      operationId: list_models
+      summary: Get the ONNX models hosted in the database
+      description: Describe the ONNX models hosted in the database.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: Details of the ONNX models hosted in the database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelsCollection'
+      x-internal-id: vecdb-models--get
+      x-filename-id: vecdb-models-get
+    post:
+      tags:
+      - Vector Database/Models
+      operationId: load_model
+      summary: Load an ONNX model into de database
+      description: Load an ONNX model into de database.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - modelName
+              - url
+              properties:
+                modelName:
+                  type: string
+                  description: The name of the model.
+                url:
+                  type: string
+                  description: The PAR URL of the model.
+                modelParams:
+                  type: object
+                  description: Model specific parameters.
+                  properties:
+                    provider:
+                      type: string
+                      description: The provider of the ONNX model.
+                    credential:
+                      type: string
+                      description: The credential to use to load the model
+                    metadata:
+                      type: object
+                      description: Model specific metadata parameters
+                debugFlags:
+                  $ref: '#/components/schemas/VectorDebugFlags'
+      responses:
+        '201':
+          description: The model details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelItem'
+        '400':
+          description: The request body included invalid parameters.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+        '404':
+          description: Model not found.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-models--post
+      x-filename-id: vecdb-models-post
+  /vecdb/models/{model_name}:
+    parameters:
+    - name: model_name
+      in: path
+      required: true
+      schema:
+        type: string
+        maxLength: 128
+      description: Name of the ONNX model.
+    get:
+      tags:
+      - Vector Database/Models
+      operationId: describe_model
+      summary: Get details of an ONNX model hosted in the database
+      description: Describe an ONNX model hosted in the database.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: Details of the ONNX model hosted in the database.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelItem'
+        '404':
+          description: Model not found.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-models-{model_name}-get
+      x-filename-id: vecdb-models-model_name-get
+    delete:
+      tags:
+      - Vector Database/Models
+      operationId: drop_model
+      summary: Delete an ONNX model from de database
+      description: Delete an ONNX model from de database.
+      security:
+      - BasicAuth: []
+      - BearerAuth: []
+      - OAuth2: []
+      responses:
+        '200':
+          description: The model was successfully deleted from the database.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dropped:
+                    type: string
+                    description: If the model was dropped or not.
+                  message:
+                    type: string
+                    description: Confirmation message.
+        '400':
+          description: The model is used in a vector table and can not be deleted.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+        '404':
+          description: Model not found.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ORDSErrorResponse'
+      x-internal-id: vecdb-models-{model_name}-delete
+      x-filename-id: vecdb-models-model_name-delete
+components:
+  schemas:
+    ModelAttributeItem:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        data_type:
+          type: string
+        data_length:
+          type: number
+        vector_info:
+          type:
+          - string
+          - 'null'
+    ModelsCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelItemWithLinks'
+        hasMore:
+          type: boolean
+        limit:
+          type: number
+        offset:
+          type: number
+        count:
+          type: number
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    ModelItemWithLinks:
+      allOf:
+      - $ref: '#/components/schemas/ModelItem'
+      - type: object
+        properties:
+          links:
+            type: array
+            items:
+              $ref: '#/components/schemas/LinkRelation'
+    VectorDebugFlags:
+      type: object
+      description: Debug flags to be used to trace vector modules
+      properties:
+        VECTOR_INDEX:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_BUILD:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_MEM:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_SEARCH:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_APPCHNG:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_GRAPH_STATS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_NEIGHBOR_PARTITIONS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_INDEX_FIXED_VIEW:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_COM:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ_DWNGRD:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_PJ_GROW:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_SJ:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECIDX_TRANS_SJ_BG:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VEC_INDEX_CALIBRATION:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+        VECTOR_TRACE:
+          type: string
+          enum:
+          - low
+          - medium
+          - high
+    ORDSErrorResponse:
+      type: object
+      required:
+      - code
+      - message
+      - type
+      - instance
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        type:
+          type: string
+        instance:
+          type: string
+        diagnosticTrace:
+          type: string
+        stackTrace:
+          type: string
+    ModelItem:
+      type: object
+      properties:
+        model_name:
+          type: string
+        algorithm:
+          type: string
+        mining_function:
+          type: string
+        creation_date:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ModelAttributeItem'
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: /oauth/auth
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /oauth/auth
+          tokenUrl: /oauth/token
+          scopes: {}
+        clientCredentials:
+          tokenUrl: /oauth/token
+          scopes: {}
+externalDocs:
+  description: Oracle REST Data Services product documentation.
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/

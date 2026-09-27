@@ -170,16 +170,10 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
-    opcRetryTokenParam:
-      name: opc-retry-token
+    ifMatchParam:
+      name: if-match
       in: header
-      description: Unique retry token to prevent duplicate requests
-      schema:
-        type: string
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
+      description: ETag value for optimistic concurrency control
       schema:
         type: string
     dbSystemIdParam:
@@ -187,6 +181,13 @@ components:
       in: path
       required: true
       description: The OCID of the DB System
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
       schema:
         type: string
     limitParam:
@@ -197,39 +198,144 @@ components:
         type: integer
         minimum: 1
         maximum: 1000
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
-      schema:
-        type: string
-    compartmentIdParam:
-      name: compartmentId
+    pageParam:
+      name: page
       in: query
-      required: true
-      description: The OCID of the compartment
+      description: Pagination token from a previous response
       schema:
         type: string
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    opcRetryTokenParam:
+      name: opc-retry-token
+      in: header
+      description: Unique retry token to prevent duplicate requests
+      schema:
+        type: string
   schemas:
+    CreateDbHomeDetails:
+      type: object
+      required:
+      - dbVersion
+      properties:
+        dbVersion:
+          type: string
+        displayName:
+          type: string
+        database:
+          $ref: '#/components/schemas/CreateDatabaseDetails'
+    CreateDatabaseDetails:
+      type: object
+      required:
+      - dbHomeId
+      - dbName
+      - adminPassword
+      properties:
+        dbHomeId:
+          type: string
+        dbName:
+          type: string
+        adminPassword:
+          type: string
+          format: password
+        characterSet:
+          type: string
+        ncharacterSet:
+          type: string
+        pdbName:
+          type: string
+    DbSystemSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        shape:
+          type: string
+        lifecycleState:
+          type: string
+        databaseEdition:
+          type: string
+        cpuCoreCount:
+          type: integer
+        timeCreated:
+          type: string
+          format: date-time
+    DbSystem:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        availabilityDomain:
+          type: string
+        shape:
+          type: string
+        cpuCoreCount:
+          type: integer
+        nodeCount:
+          type: integer
+        dataStorageSizeInGBs:
+          type: integer
+        databaseEdition:
+          type: string
+          enum:
+          - STANDARD_EDITION
+          - ENTERPRISE_EDITION
+          - ENTERPRISE_EDITION_HIGH_PERFORMANCE
+          - ENTERPRISE_EDITION_EXTREME_PERFORMANCE
+        lifecycleState:
+          type: string
+        hostname:
+          type: string
+        domain:
+          type: string
+        subnetId:
+          type: string
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        timeCreated:
+          type: string
+          format: date-time
+        version:
+          type: string
+        licenseModel:
+          type: string
+        diskRedundancy:
+          type: string
+          enum:
+          - HIGH
+          - NORMAL
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    UpdateDbSystemDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+        cpuCoreCount:
+          type: integer
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        dataStorageSizeInGBs:
+          type: integer
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
     LaunchDbSystemDetails:
       type: object
       required:
@@ -282,131 +388,25 @@ components:
           enum:
           - HIGH
           - NORMAL
-    UpdateDbSystemDetails:
-      type: object
-      properties:
-        displayName:
-          type: string
-        cpuCoreCount:
-          type: integer
-        sshPublicKeys:
-          type: array
-          items:
-            type: string
-        dataStorageSizeInGBs:
-          type: integer
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-    CreateDbHomeDetails:
-      type: object
-      required:
-      - dbVersion
-      properties:
-        dbVersion:
-          type: string
-        displayName:
-          type: string
-        database:
-          $ref: '#/components/schemas/CreateDatabaseDetails'
-    CreateDatabaseDetails:
-      type: object
-      required:
-      - dbHomeId
-      - dbName
-      - adminPassword
-      properties:
-        dbHomeId:
-          type: string
-        dbName:
-          type: string
-        adminPassword:
-          type: string
-          format: password
-        characterSet:
-          type: string
-        ncharacterSet:
-          type: string
-        pdbName:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    DbSystem:
-      type: object
-      properties:
-        id:
-          type: string
-        compartmentId:
-          type: string
-        displayName:
-          type: string
-        availabilityDomain:
-          type: string
-        shape:
-          type: string
-        cpuCoreCount:
-          type: integer
-        nodeCount:
-          type: integer
-        dataStorageSizeInGBs:
-          type: integer
-        databaseEdition:
-          type: string
-          enum:
-          - STANDARD_EDITION
-          - ENTERPRISE_EDITION
-          - ENTERPRISE_EDITION_HIGH_PERFORMANCE
-          - ENTERPRISE_EDITION_EXTREME_PERFORMANCE
-        lifecycleState:
-          type: string
-        hostname:
-          type: string
-        domain:
-          type: string
-        subnetId:
-          type: string
-        sshPublicKeys:
-          type: array
-          items:
-            type: string
-        timeCreated:
-          type: string
-          format: date-time
-        version:
-          type: string
-        licenseModel:
-          type: string
-        diskRedundancy:
-          type: string
-          enum:
-          - HIGH
-          - NORMAL
-    DbSystemSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        compartmentId:
-          type: string
-        displayName:
-          type: string
-        shape:
-          type: string
-        lifecycleState:
-          type: string
-        databaseEdition:
-          type: string
-        cpuCoreCount:
-          type: integer
-        timeCreated:
-          type: string
-          format: date-time
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ociSignature:
       type: http

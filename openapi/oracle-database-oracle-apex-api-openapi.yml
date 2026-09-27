@@ -1,0 +1,771 @@
+openapi: 3.2.0
+info:
+  description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+  version: 2026.03.26
+  title: Oracle REST Data Services Oracle APEX API
+  contact:
+    name: Oracle REST Data Services
+    url: https://www.oracle.com/database/technologies/appdev/rest.html
+  x-summary: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
+tags:
+- name: Oracle APEX
+  description: Services related to Oracle APEX. The product must be installed in the Oracle database that ORDS is configured to use.
+paths:
+  /apex/statistics/application/{application_id}/:
+    get:
+      tags:
+      - Oracle APEX
+      summary: Get application statistics
+      description: This service returns usage statistics for a specific Oracle APEX application. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: application_id
+        in: path
+        description: Identifier of the application.
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: All Oracle APEX application usage statistics.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXUsageStatistics'
+      x-internal-id: apex-statistics-application-{application_id}--get
+      x-filename-id: apex-statistics-application-application_id-get
+      operationId: getApexStatisticsApplicationByApplicationId
+      x-operation-id-source: derived
+  /apex/statistics/instance/:
+    get:
+      tags:
+      - Oracle APEX
+      summary: Get instance statistics
+      description: This service returns usage statistics for the whole Oracle APEX instance. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: All usage statistics for the Oracle APEX instance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXUsageStatistics'
+      x-internal-id: apex-statistics-instance--get
+      x-filename-id: apex-statistics-instance-get
+      operationId: getApexStatisticsInstance
+      x-operation-id-source: derived
+  /apex/statistics/workspace/{workspace_name}/:
+    get:
+      tags:
+      - Oracle APEX
+      summary: Get application statistics
+      description: This service returns usage statistics for a specific Oracle APEX workspace. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: workspace_name
+        in: path
+        description: Display name of the workspace.
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: Statistics for all Oracle APEX workspaces in the instance.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXUsageStatistics'
+      x-internal-id: apex-statistics-workspace-{workspace_name}--get
+      x-filename-id: apex-statistics-workspace-workspace_name-get
+      operationId: getApexStatisticsWorkspaceByWorkspaceName
+      x-operation-id-source: derived
+  /apex/workspaces/{workspace_name}/datasets/:
+    get:
+      tags:
+      - Oracle APEX
+      summary: Get all datasets in the specified workspace
+      description: Returns information about the datasets available in the specified workspace. A client requires SQL Administrator role to invoke this service.
+      parameters:
+      - name: workspace_name
+        in: path
+        description: Display name of the workspace.
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Filter'
+      responses:
+        '200':
+          description: All datasets in the workspace.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXDatasets'
+              examples:
+                all_datasets_in_workspace:
+                  summary: An example of a list of all the datasets in the workspace that the user has access to.
+                  value:
+                    count: 1
+                    hasMore: false
+                    items:
+                    - dataset_id: '2066291953340216'
+                      dataset_name: Simple-Dataset
+                      dataset_description: Description of dataset
+                      static_id: SIMPLE_DATASET
+                      workspace_display_name: ORDS
+                      workspace: ORDS
+                      workspace_id: '2063824650324169'
+                      last_updated_by: PAIGE
+                      last_updated_on: '2022-04-06T07:37:17Z'
+                      links:
+                      - href: https://myserver/ords/myschema/_/db-api/stable/apex/datasets/Simple-Dataset
+                        rel: self
+                    limit: 25
+                    links:
+                    - href: https://myserver/ords/myschema/_/db-api/stable/apex/workspaces/example_workspace/datasets/
+                      rel: self
+                    - href: https://myserver/ords/myschema/_/db-api/stable/metadata-catalog/
+                      rel: describedby
+                    offset: 0
+      x-internal-id: apex-workspaces-{workspace_name}-datasets--get
+      x-filename-id: apex-workspaces-workspace_name-datasets-get
+      operationId: getApexWorkspacesByWorkspaceNameDatasets
+      x-operation-id-source: derived
+  /apex/workspaces/{workspace_name}/datasets/{dataset_name}:
+    get:
+      tags:
+      - Oracle APEX
+      summary: Get a specific Oracle APEX Dataset
+      description: This service returns a representation of the specified Oracle APEX Dataset. The representation data will be a metadata about the Oracle APEX Dataset from APEX_DR_DATASETS view. See APEX documentation for more information. A client requires SQL Developer or SQL Administrator role.
+      parameters:
+      - name: workspace_name
+        in: path
+        description: Display name of the workspace.
+        required: true
+        schema:
+          type: string
+      - name: dataset_name
+        in: path
+        description: Display name of the dataset.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The specified Oracle APEX Dataset.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DatasetItem'
+              examples:
+                dataset_example:
+                  summary: An example of the details returned for the specified Oracle APEX Dataset.
+                  value:
+                    dataset_id: '2066291953340216'
+                    dataset_name: Simple-Dataset
+                    dataset_description: Description of dataset
+                    static_id: SIMPLE_DATASET
+                    workspace_display_name: ORDS
+                    workspace: ORDS
+                    workspace_id: '2063824650324169'
+                    last_updated_by: PAIGE
+                    last_updated_on: '2022-04-06T07:37:17Z'
+                    links:
+                    - rel: collection
+                      href: https://myserver/ords/myschema/_/db-api/stable/apex/workspaces/example_workspace/datasets/
+        '400':
+          description: Bad Request - The dataset does not exist.
+      x-internal-id: apex-workspaces-{workspace_name}-datasets-{dataset_name}-get
+      x-filename-id: apex-workspaces-workspace_name-datasets-dataset_name-get
+      operationId: getApexWorkspacesByWorkspaceNameDatasetsByDatasetName
+      x-operation-id-source: derived
+  /apex/applications/{application_id}:
+    get:
+      tags:
+      - Oracle APEX
+      summary: Get or export a specific APEX application
+      description: This service returns a representation of the specified APEX Application. The representation data will be a metadata about the APEX Application from APEX_APPLICATIONS view or an export of the entire application using APEX GET_APPLICATION.EXPORT database procedure. See APEX documentation for more information. A client requires SQL Developer or SQL Administrator role.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application Primary Key, Unique over all workspaces.
+        required: true
+        schema:
+          type: string
+      - name: export_format
+        in: query
+        description: Indicates the file format to return the entire application components. Valid values SQL_SCRIPT | SQL_ZIP
+        schema:
+          type: string
+          enum:
+          - SQL_SCRIPT
+          - SQL_ZIP
+      - name: export_type
+        in: query
+        description: Parameter for APEX Export function. Comma-delimited list of export types to perform APPLICATION_SOURCE,EMBEDDED_CODE, CHECKSUM-SH1
+        schema:
+          type: string
+        examples:
+          export_type_src:
+            summary: Export application source
+            value: APPLICATION_SOURCE
+      - name: with_date
+        in: query
+        description: Parameter for APEX Export function. If true include export date and time in the result. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_ir_public_reports
+        in: query
+        description: Parameter for APEX Export function. If true, include public reports that a user saved. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_ir_private_reports
+        in: query
+        description: Parameter for APEX Export function. If true, include private reports that a user saved. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_ir_notifications
+        in: query
+        description: Parameter for APEX Export function. If true, include report notifications. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_translations
+        in: query
+        description: Parameter for APEX Export function. If true, include application translation mappings and all text from the translation repository. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_pkg_app_mapping
+        in: query
+        description: If true, export installed packaged applications  with references to the packaged application definition. If false, export them as normal applications.
+        schema:
+          type: boolean
+      - name: with_original_ids
+        in: query
+        description: Parameter for APEX Export function. If true, export with the IDs as they were when the application was imported. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_no_subscriptions
+        in: query
+        description: Parameter for APEX Export function. If true, components contain subscription references. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_comments
+        in: query
+        description: Parameter for APEX Export function. If true, include developer comments. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_supporting_objects
+        in: query
+        description: Parameter for APEX Export function. If 'Y', export supporting objects. If 'I',automatically install on import. If 'N', do not export supporting objects. If null, the application's include in export deployment value is used. Only valid if export_format query parameter is also specified.
+        schema:
+          type: string
+          enum:
+          - Y
+          - I
+          - N
+      - name: with_acl_assignments
+        in: query
+        description: Parameter for APEX Export function. If true, export ACL user role assignments. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_audit_info
+        in: query
+        description: 'Parameter for the APEX Export function. If "NULL", export excludes all audit information. If "NAMES_AND_DATES", export includes Created On, Created By, Updated On, and Updated By values if they exist. If "DATES_ONLY", export includes Created On and Updated On values only; user names are excluded. Only valid if the export_format query parameter is also specified. Enum: "NAMES_AND_DATES", "DATES_ONLY".'
+        schema:
+          type: string
+          enum:
+          - NAMES_AND-DATES
+          - DATES_ONLY
+      responses:
+        '200':
+          description: The specified Oracle APEX application.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APEXApplicationsItem'
+              examples:
+                application_example:
+                  summary: An example of the details returned for the specified application. Returned when export_format query parameter is not specified in the request.
+                  value:
+                    application_id: 103
+                    application_name: Sample Cards
+                    application_alias: SAMPLE-CARDS103
+                    application_group: null
+                    application_owner: HR
+                    page_count: 25
+                    application_type: STANDARD
+                    workspace: ORDS
+                    availability_status: Available with Edit Links
+                    last_updated_by: TIM
+                    last_updated_on: '2022-04-06T12:31:05Z'
+                    links:
+                    - href: https://myserver/ords/myschema/_/db-api/stable/apex/applications/101
+                      rel: self
+                    - href: https://myserver/ords/myschema/_/db-api/stable/apex/statistics/application/101/
+                      rel: related
+                      title: Application Statistics
+                    - href: https://myserver/ords/myschema/_/db-api/stable/apex/workspaces/example_workspace/
+                      rel: related
+                      title: Workspace
+                    - href: https://myserver/ords/myschema/_/db-api/stable/apex/applications/101?export_format=SQL_SCRIPT&with_date=true
+                      rel: enclosure
+                      type: application/sql
+                      title: Export Application as SQL file
+                    - href: https://myserver/ords/myschema/_/db-api/stable/apex/applications/101?export_format=SQL_ZIP&with_date=true&with_supporting_objects=false
+                      rel: enclosure
+                      type: application/zip
+                      title: Export Application as ZIP file
+            application/sql:
+              schema:
+                type: string
+                format: binary
+              examples:
+                sqlExample:
+                  summary: The APEX application source exported in single SQL script. Returned when export_format query parameter is SQL_SCRIPT in the request.
+                  value: "--begin SQL script snippet sample\n  ...\n  wwv_flow_imp.import_begin (p_version_yyyy_mm_dd=>'2022.10.07'\n   ,p_release=>'22.2.0'\n   ,p_default_workspace_id=>7586151564871204\n   ,p_default_application_id=>101\n   ,p_default_id_offset=>7587564257891170\n   ,p_default_owner=>'EXAMPLEWS'\n   );\n  ...\n--end SQL script snippet sample"
+            application/zip:
+              schema:
+                type: string
+                format: binary
+              examples:
+                zipExample:
+                  summary: The APEX application source exported in ZIP format. Returned when export_format query parameter is SQL_ZIP in the request.
+                  value: --begin zip snippet sample UEsDBBQAAAgIAG5aYlUY6d2blwAAAL0AAAASAAAAZjEwNi9jb3B5cmlnaHQudHh0LY3LCsIwEEX3/Yq7VJCk7bJbFyKICuIHDOnUBtIkZKYV/9762NzVOfecaeION5pyYByjciGnfmEciu+l2q --end zip snippet sample
+        '400':
+          description: Bad Request - The export related query parameters provided without specifying export_format.
+      x-internal-id: apex-applications-{application_id}-get
+      x-filename-id: apex-applications-application_id-get
+      operationId: getApexApplicationsByApplicationId
+      x-operation-id-source: derived
+    post:
+      tags:
+      - Oracle APEX
+      summary: Export APEX application components and/or runtime instance data
+      description: Exports selected components of a specified APEX application and/or runtime instance data.
+      parameters:
+      - name: application_id
+        in: path
+        description: Application Primary Key, Unique over all workspaces.
+        required: true
+        schema:
+          type: string
+      - name: export_format
+        in: query
+        description: Indicates the file format to return the entire application components. Valid values SQL_SCRIPT | SQL_ZIP
+        schema:
+          type: string
+          enum:
+          - SQL_SCRIPT
+          - SQL_ZIP
+      - name: export_type
+        in: query
+        description: Parameter for APEX Export function. Comma-delimited list of export types to perform APPLICATION_SOURCE,EMBEDDED_CODE, CHECKSUM-SH1
+        schema:
+          type: string
+        examples:
+          export_type_src:
+            summary: Export application source
+            value: APPLICATION_SOURCE
+      - name: with_date
+        in: query
+        description: Parameter for APEX Export function. If true include export date and time in the result. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_ir_public_reports
+        in: query
+        description: Parameter for APEX Export function. If true, include public reports that a user saved. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_ir_private_reports
+        in: query
+        description: Parameter for APEX Export function. If true, include private reports that a user saved. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_ir_notifications
+        in: query
+        description: Parameter for APEX Export function. If true, include report notifications. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_translations
+        in: query
+        description: Parameter for APEX Export function. If true, include application translation mappings and all text from the translation repository. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_pkg_app_mapping
+        in: query
+        description: If true, export installed packaged applications  with references to the packaged application definition. If false, export them as normal applications.
+        schema:
+          type: boolean
+      - name: with_original_ids
+        in: query
+        description: Parameter for APEX Export function. If true, export with the IDs as they were when the application was imported. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_no_subscriptions
+        in: query
+        description: Parameter for APEX Export function. If true, components contain subscription references. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_comments
+        in: query
+        description: Parameter for APEX Export function. If true, include developer comments. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_supporting_objects
+        in: query
+        description: 'Parameter for the APEX Export function. If "NULL", export excludes all audit information. If "NAMES_AND_DATES", export includes Created On, Created By, Updated On, and Updated By values if they exist. If "DATES_ONLY", export includes Created On and Updated On values only; user names are excluded. Only valid if the export_format query parameter is also specified. Enum: "NAMES_AND_DATES", "DATES_ONLY".'
+        schema:
+          type: string
+          enum:
+          - Y
+          - I
+          - N
+      - name: with_acl_assignments
+        in: query
+        description: Parameter for APEX Export function. If true, export ACL user role assignments. Only valid if export_format query parameter is also specified.
+        schema:
+          type: boolean
+      - name: with_audit_info
+        in: query
+        description: Parameter for APEX Export function. If 'NULL', export excludes all audit information. if 'NAMES_AND_DATES', export includes Created On, Created By, Updated On, Updated By values if they exist. If 'DATES_ONLY', export includes Created On and Updated On values if they exist. User names are excluded. Only valid if export_format query parameter is also specified.
+        schema:
+          type: string
+          enum:
+          - NAMES_AND-DATES
+          - DATES_ONLY
+      requestBody:
+        description: Defines what should be exported from the APEX application. You can export application components, runtime instance data, or both.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: This object represents an export request for APEX application components and/or runtime instance data.
+              required:
+              - export_format
+              properties:
+                components:
+                  description: Parameter for APEX Export function. The list of components in the specified APEX Application to export.
+                  type: array
+                  items:
+                    description: Alias of the component. Format is TYPE:IDENTIFIER.
+                    type: string
+                withRuntimeInstances:
+                  description: Parameter for APEX Export function. An array with components for which to export runtime instance data
+                  type: array
+                  items:
+                    description: If "WORKFLOW", exports workflow instances and their associated task instances. If "TASK", exports task instances that are not associated with any workflow. If "WORKFLOW, TASK", exports both workflow instances with their associated tasks and task instances not associated with any workflow.
+                    type: string
+                    enum:
+                    - WORKFLOW
+                    - TASK
+            examples:
+              export_specific_components:
+                summary: Listing two specific APEX Applications components to export. The query parameter export_format MUST be specified.
+                value:
+                  components:
+                  - LOV:123
+                  - PAGE:321
+              export_runtime_instances:
+                summary: Setting the runtime instance to WORKFLOW, in order to export workflow instances and their associated task instances. The query parameter export_format MUST be specified.
+                value:
+                  withRuntimeInstances:
+                  - WORKFLOW
+      responses:
+        '200':
+          description: The current state of the specified Oracle APEX application components.
+          content:
+            application/sql:
+              schema:
+                type: string
+                format: binary
+              examples:
+                sqlExample:
+                  summary: The APEX application components source exported in single SQL script
+                  value: "--begin SQL script snippet sample\n  ...\n  wwv_flow_imp.import_begin (p_version_yyyy_mm_dd=>'2022.10.07'\n   ,p_release=>'22.2.0'\n   ,p_default_workspace_id=>7586151564871204\n   ,p_default_application_id=>101\n   ,p_default_id_offset=>7587564257891170\n   ,p_default_owner=>'EXAMPLEWS'\n   );\n  ...\n--end SQL script snippet sample"
+            application/zip:
+              schema:
+                type: string
+                format: binary
+              examples:
+                zipExample:
+                  summary: The APEX application components source exported in ZIP format
+                  value: --begin zip snippet sample UEsDBBQAAAgIAG5aYlUY6d2blwAAAL0AAAASAAAAZjEwNi9jb3B5cmlnaHQudHh0LY3LCsIwEEX3/Yq7VJCk7bJbFyKICuIHDOnUBtIkZKYV/9762NzVOfecaeION5pyYByjciGnfmEciu+l2q --end zip snippet sample
+        '400':
+          description: Bad Request - The service requested requires a body in the request.
+      x-internal-id: apex-applications-{application_id}-post
+      x-filename-id: apex-applications-application_id-post
+      operationId: postApexApplicationsByApplicationId
+      x-operation-id-source: derived
+components:
+  schemas:
+    Filter:
+      type: object
+      description: See Oracle REST Data Services production documentation 'Filtering in Queries' section.
+      externalDocs:
+        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+      anyOf:
+      - type: object
+        description: Any key / value pair for specifying a Filter Criteria.
+      - type: object
+        properties:
+          $orderby:
+            description: Specify which properties to order the result set by.
+            type: object
+          $asof:
+            description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
+            type: object
+    DatasetItem:
+      type: object
+      description: This object represents a single row on APEX_DR_DATASETS
+      properties:
+        dataset_id:
+          type: integer
+          description: Dataset Primary Key.
+        dataset_name:
+          type: string
+          description: The name of this Dataset.
+        dataset_description:
+          type: string
+          description: A description about this Dataset.
+        static_id:
+          type: string
+          description: The static ID of the dataset
+        workspace_display_name:
+          type: string
+          description: The displayed name of the workspace.
+        workspace:
+          type: string
+          description: The internal name of the workspace.
+        workspace_id:
+          type: string
+          description: The unique ID of the workspace.
+        last_updated_by:
+          type: string
+          description: Last updated by.
+        last_updated_on:
+          type: string
+          description: The date and time of the last update.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    APEXApplicationsItem:
+      type: object
+      description: This object represents a single row on APEX_APPLICATIONS.
+      properties:
+        application_id:
+          type: integer
+          description: Application Primary Key, Unique over all workspaces.
+        application_name:
+          type: string
+          description: The name of this application.
+        application_alias:
+          type: string
+          description: The alternate alphanumeric application identifier.
+        application_group:
+          type: string
+          description: The alternate alphanumeric application identifier.
+        application_owner:
+          type: string
+          description: The alternate alphanumeric application identifier.
+        page_count:
+          type: integer
+          description: Number of application pages.
+        workspace:
+          type: string
+          description: The internal name of the workspace.
+        availability_status:
+          type: string
+          description: Specifies whether or not the application is available or unavailable for use.
+        last_updated_by:
+          type: string
+          description: Last updated by.
+        last_updated_on:
+          type: string
+          description: The date and time of the last update.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    APEXDatasets:
+      type: object
+      description: This object represents data from APEX_DR_DATASETS view.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatasetItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    APEXUsageStatisticsItem:
+      type: object
+      description: This object represents a APEX_WORKSPACE_LOG_ARCHIVE record of page view activity. Page view activity is a daily summary of workspace activity that is retained until physically purged.
+      properties:
+        application_id:
+          type: integer
+          description: Application ID for which this page view log was recorded.
+        application_name:
+          type: string
+          description: Application Name for which this page view log was recorded.
+        average_render_time:
+          type: number
+          description: Summarized information by day, application  and workspace.
+        builder_events:
+          type: integer
+          description: TBD
+        distinct_pages:
+          type: integer
+          description: Summarized information by day, application and workspace of the number of distinct pages used.
+        distinct_sessions:
+          type: integer
+          description: Summarized information by day, application and workspace of the number of distinct sessions.
+        distinct_users:
+          type: integer
+          description: Summarized information by day, application and workspace of the number of distinct users.
+        error_count:
+          type: integer
+          description: Summarized information by day, application and workspace of the number of errors.
+        log_day:
+          type: string
+          description: Total not null interactive report search values logged to the activity log.
+        maximum_render_time:
+          type: number
+          description: Summarized information by day, application and workspace indicating maximum render time.
+        median_render_time:
+          type: number
+          description: Summarized information by day, application and workspace indicating median render time.
+        page_events:
+          type: integer
+          description: Total number of page events logged for a given day, application and workspace.
+        public_page_events:
+          type: integer
+          description: Total public page events for a given day, application and workspace.
+        total_render_time:
+          type: number
+          description: Summarized information by day, application and workspace indicating total render time.
+        workspace_id:
+          type: integer
+          description: Identifies workspace.
+        workspace_login_events:
+          type: integer
+          description: Total workspace login events by day, application and workspace.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    APEXUsageStatistics:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/APEXUsageStatisticsItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+  parameters:
+    Filter:
+      name: q
+      in: query
+      description: Filtering is the process of limiting a collection resource by using a per-request dynamic filter definition across multiple page resources, where each page contains a subset of items found in the complete collection. Filtering enables efficient traversal of large collections.
+      required: false
+      schema:
+        $ref: '#/components/schemas/Filter'
+      examples:
+        FilterCriteriaExample:
+          $ref: '#/components/examples/FilterCriteria'
+        OrderByPropertyExample:
+          $ref: '#/components/examples/OrderByProperty'
+        FilterAndOrderExample:
+          $ref: '#/components/examples/FilterAndOrder'
+    Limit:
+      name: limit
+      in: query
+      description: The maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        format: int32
+  examples:
+    OrderByProperty:
+      summary: Order by with literals.
+      value:
+        $orderby:
+          SALARY: ASC
+          ENAME: DESC
+    FilterCriteria:
+      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
+      value:
+        SALARY: 1000
+    FilterAndOrder:
+      summary: Filter criteria supports a wide range of operators. In this example LIKE operator ($like) is used. See Oracle REST Data Services production documentation 'Filtering in Queries' section for further information on the operators available.
+      value:
+        ENAME:
+          $like: AX%
+        $orderby:
+          ENAME: ASC
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    BearerAuth:
+      type: http
+      scheme: bearer
+    OAuth2:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: /oauth/auth
+          scopes: {}
+        authorizationCode:
+          authorizationUrl: /oauth/auth
+          tokenUrl: /oauth/token
+          scopes: {}
+        clientCredentials:
+          tokenUrl: /oauth/token
+          scopes: {}
+externalDocs:
+  description: Oracle REST Data Services product documentation.
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
