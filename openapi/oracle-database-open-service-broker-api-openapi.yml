@@ -85,27 +85,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ProvisionRequest:
-      type: object
-      required:
-      - service_id
-      - plan_id
-      properties:
-        service_id:
-          type: string
-        plan_id:
-          type: string
-        parameters:
-          type: object
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
     ServiceCatalog:
       type: object
       properties:
@@ -131,6 +110,27 @@ components:
                       type: string
                     description:
                       type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    ProvisionRequest:
+      type: object
+      required:
+      - service_id
+      - plan_id
+      properties:
+        service_id:
+          type: string
+        plan_id:
+          type: string
+        parameters:
+          type: object
   responses:
     NotFound:
       description: The specified resource was not found

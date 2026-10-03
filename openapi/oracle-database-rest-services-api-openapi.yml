@@ -338,6 +338,11 @@ components:
           type: string
         schema:
           type: string
+    ORDSPropertyValue:
+      type: object
+      properties:
+        value:
+          type: string
     CreateRESTModuleRequest:
       type: object
       required:
@@ -355,70 +360,6 @@ components:
           - NOT_PUBLISHED
         items_per_page:
           type: integer
-    OAuthClientList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              client_id:
-                type: string
-              grant_type:
-                type: string
-    RESTHandlerList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              method:
-                type: string
-              source_type:
-                type: string
-              source:
-                type: string
-    ORDSPropertyValue:
-      type: object
-      properties:
-        value:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
-    CreateOAuthClientRequest:
-      type: object
-      required:
-      - name
-      - grant_type
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        grant_type:
-          type: string
-          enum:
-          - authorization_code
-          - client_credentials
-        redirect_uri:
-          type: string
-          format: uri
     RESTModule:
       type: object
       properties:
@@ -432,18 +373,22 @@ components:
           type: string
         items_per_page:
           type: integer
-    ORDSPropertyList:
+    CreatePrivilegeRequest:
       type: object
+      required:
+      - name
+      - label
       properties:
-        items:
+        name:
+          type: string
+        label:
+          type: string
+        description:
+          type: string
+        roles:
           type: array
           items:
-            type: object
-            properties:
-              key:
-                type: string
-              value:
-                type: string
+            type: string
     CreateRESTHandlerRequest:
       type: object
       required:
@@ -467,29 +412,27 @@ components:
           - plsql
         source:
           type: string
-    RESTModuleList:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    ORDSPropertyList:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/RESTModule'
-    CreatePrivilegeRequest:
-      type: object
-      required:
-      - name
-      - label
-      properties:
-        name:
-          type: string
-        label:
-          type: string
-        description:
-          type: string
-        roles:
-          type: array
-          items:
-            type: string
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
     CreateRoleRequest:
       type: object
       required:
@@ -499,6 +442,63 @@ components:
           type: string
         description:
           type: string
+    CreateOAuthClientRequest:
+      type: object
+      required:
+      - name
+      - grant_type
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        grant_type:
+          type: string
+          enum:
+          - authorization_code
+          - client_credentials
+        redirect_uri:
+          type: string
+          format: uri
+    RESTHandlerList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              method:
+                type: string
+              source_type:
+                type: string
+              source:
+                type: string
+    RESTModuleList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RESTModule'
+    OAuthClientList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              client_id:
+                type: string
+              grant_type:
+                type: string
   responses:
     NotFound:
       description: The specified resource was not found
@@ -506,14 +506,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
+    BadRequest:
+      description: Bad request - invalid parameters or request body
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
+    Unauthorized:
+      description: Authentication required or credentials invalid
       content:
         application/json:
           schema:

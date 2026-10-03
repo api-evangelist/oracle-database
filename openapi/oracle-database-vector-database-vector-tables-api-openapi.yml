@@ -241,58 +241,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
-    VectorIndexParams:
-      description: Index configuration for the table.
-      type: object
-      properties:
-        indexing:
-          type: string
-          enum:
-          - manual
-          - auto
-          default: auto
-        organization:
-          type: string
-          enum:
-          - PARTITIONS
-          - INMEMORY GRAPH
-          default: PARTITIONS
-        distance_metric:
-          type: string
-          enum:
-          - COSINE
-          - MANHATTAN
-          - HAMMING
-          - JACCARD
-          - DOT
-          - EUCLIDEAN
-          - L2_SQUARED
-          - EUCLIDEAN_SQUARED
-        accuracy:
-          type: integer
-          minimum: 0
-          maximum: 100
-        advanced_params:
-          type: object
-    VecDBTableItem:
-      allOf:
-      - $ref: '#/components/schemas/VecDBTableNoLinks'
-      - type: object
-        properties:
-          links:
-            type: array
-            items:
-              $ref: '#/components/schemas/LinkRelation'
     VectorDebugFlags:
       type: object
       description: Debug flags to be used to trace vector modules
@@ -405,26 +353,25 @@ components:
           - low
           - medium
           - high
-    ORDSErrorResponse:
+    LinkRelation:
       type: object
-      required:
-      - code
-      - message
-      - type
-      - instance
       properties:
-        code:
+        rel:
           type: string
-        message:
+        href:
           type: string
-        type:
-          type: string
-        instance:
-          type: string
-        diagnosticTrace:
-          type: string
-        stackTrace:
-          type: string
+      required:
+      - rel
+      - href
+    VecDBTableItem:
+      allOf:
+      - $ref: '#/components/schemas/VecDBTableNoLinks'
+      - type: object
+        properties:
+          links:
+            type: array
+            items:
+              $ref: '#/components/schemas/LinkRelation'
     VecDBTableNoLinks:
       type: object
       properties:
@@ -520,6 +467,59 @@ components:
           - 'null'
           format: date-time
           description: Creation timestamp of the vector table.
+    ORDSErrorResponse:
+      type: object
+      required:
+      - code
+      - message
+      - type
+      - instance
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        type:
+          type: string
+        instance:
+          type: string
+        diagnosticTrace:
+          type: string
+        stackTrace:
+          type: string
+    VectorIndexParams:
+      description: Index configuration for the table.
+      type: object
+      properties:
+        indexing:
+          type: string
+          enum:
+          - manual
+          - auto
+          default: auto
+        organization:
+          type: string
+          enum:
+          - PARTITIONS
+          - INMEMORY GRAPH
+          default: PARTITIONS
+        distance_metric:
+          type: string
+          enum:
+          - COSINE
+          - MANHATTAN
+          - HAMMING
+          - JACCARD
+          - DOT
+          - EUCLIDEAN
+          - L2_SQUARED
+          - EUCLIDEAN_SQUARED
+        accuracy:
+          type: integer
+          minimum: 0
+          maximum: 100
+        advanced_params:
+          type: object
   securitySchemes:
     BasicAuth:
       type: http

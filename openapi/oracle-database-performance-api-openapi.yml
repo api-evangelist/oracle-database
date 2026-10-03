@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Oracle Database Performance API
   x-refined-note:
-  - x-summary differs across the merged source definitions and was not carried
+  - x-refined-note differs across the merged source definitions and was not carried
   version: '1.0'
   description: 'Operations tagged Performance across 2 of this provider''s published API definitions: oracle-database-ords-openapi.yml, oracle-database-performance-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
@@ -316,6 +316,16 @@ paths:
       x-filename-id: database-performance-active_sessions_history-sample_id-session_id-get
       operationId: getDatabasePerformanceActiveSessionsHistoryBySampleId},{sessionId
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/performance/active_sessions_history_waits/{sid},{seq_number}/:
     get:
       tags:
@@ -346,6 +356,16 @@ paths:
       x-filename-id: database-performance-active_sessions_history_waits-sid-seq_number-get
       operationId: getDatabasePerformanceActiveSessionsHistoryWaitsBySid},{seqNumber
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/performance/active_sessions_history_waits/{sid},{seq_number}/active_sql:
     get:
       tags:
@@ -376,6 +396,16 @@ paths:
       x-filename-id: database-performance-active_sessions_history_waits-sid-seq_number-active_sql-get
       operationId: getDatabasePerformanceActiveSessionsHistoryWaitsBySid},{seqNumberActiveSql
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/performance/sql_statements/{sql_id}/monitor/:
     get:
       tags:
@@ -402,6 +432,16 @@ paths:
       x-filename-id: database-performance-sql_statements-sql_id-monitor-get
       operationId: getDatabasePerformanceSqlStatementsBySqlIdMonitor
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/performance/sql_statements/{sql_id}/monitor/{sql_exec_id},{sql_exec_start}/:
     get:
       tags:
@@ -439,6 +479,16 @@ paths:
       x-filename-id: database-performance-sql_statements-sql_id-monitor-sql_exec_id-sql_exec_start-get
       operationId: getDatabasePerformanceSqlStatementsBySqlIdMonitorBySqlExecId},{sqlExecStart
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/performance/sql_statements/{sql_id}/monitor/{sql_exec_id},{sql_exec_start}/parallelism:
     get:
       tags:
@@ -476,6 +526,16 @@ paths:
       x-filename-id: database-performance-sql_statements-sql_id-monitor-sql_exec_id-sql_exec_start-parallelism-get
       operationId: getDatabasePerformanceSqlStatementsBySqlIdMonitorBySqlExecId},{sqlExecStartParallelism
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/performance/top_sql_statements/maximums:
     get:
       tags:
@@ -493,16 +553,47 @@ paths:
       x-filename-id: database-performance-top_sql_statements-maximums-get
       operationId: getDatabasePerformanceTopSqlStatementsMaximums
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
 components:
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Link:
+    ActiveSessionWaitList:
       type: object
       properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              event:
+                type: string
+              wait_class:
+                type: string
+              total_waits:
+                type: integer
+              average_wait_ms:
+                type: number
     PaginatedResponse:
       type: object
       properties:
@@ -521,6 +612,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    SQLStatementList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SQLStatementDetail'
     ActiveSessionHistoryList:
       type: object
       properties:
@@ -540,14 +640,12 @@ components:
                 type: string
               wait_class:
                 type: string
-    Error:
+    SQLText:
       type: object
       properties:
-        code:
-          type: integer
-        message:
+        sql_id:
           type: string
-        type:
+        sql_fulltext:
           type: string
     ExecutionPlan:
       type: object
@@ -574,49 +672,15 @@ components:
                 type: integer
               cardinality:
                 type: integer
-    ActiveSessionWaitList:
+    Error:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              event:
-                type: string
-              wait_class:
-                type: string
-              total_waits:
-                type: integer
-              average_wait_ms:
-                type: number
-    SQLText:
-      type: object
-      properties:
-        sql_id:
+        code:
+          type: integer
+        message:
           type: string
-        sql_fulltext:
+        type:
           type: string
-    SQLHistoryList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              sql_id:
-                type: string
-              snap_id:
-                type: integer
-              executions_delta:
-                type: integer
-              cpu_time_delta:
-                type: integer
-                format: int64
-              elapsed_time_delta:
-                type: integer
-                format: int64
     SQLStatementDetail:
       type: object
       properties:
@@ -642,15 +706,34 @@ components:
         rows_processed:
           type: integer
           format: int64
-    SQLStatementList:
-      allOf:
-      - $ref: '#/components/schemas/PaginatedResponse'
-      - type: object
-        properties:
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
+    SQLHistoryList:
+      type: object
+      properties:
+        items:
+          type: array
           items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SQLStatementDetail'
+            type: object
+            properties:
+              sql_id:
+                type: string
+              snap_id:
+                type: integer
+              executions_delta:
+                type: integer
+              cpu_time_delta:
+                type: integer
+                format: int64
+              elapsed_time_delta:
+                type: integer
+                format: int64
     PerformanceSQLStatementMonitorsItem:
       type: object
       description: This object provides statistics for a single execution of an SQL statement. The list of attributes may vary depending on database version.
@@ -924,13 +1007,115 @@ components:
           $asof:
             description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
             type: object
-    PerformanceSQLStatementMonitors:
+    LinkRelation:
       type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    PerformanceSQLStatementMonitorParallelism:
+      type: object
+      description: Describes the parallel execution of an SQL Statement. Using GV$SQL_MONITOR view, the information includes the Parallel Coordinator and the instance(s) where it was executed.
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/PerformanceSQLStatementMonitorsItem'
+            type: object
+            properties:
+              node_id:
+                type: integer
+                description: Used as a distinguishing value in the Parallelism metadata. The value may be an Instance Number to represent the execution on an instance, 10000 when a Parallel Coordinator or some other value derived from the SERVER_GROUP data.
+              parent_node_id:
+                type: number
+                description: The value may be an Instance Number to represent the execution of Parallel Coordinator or Server Group on an instance. May be NULL.
+              name:
+                type: string
+                description: Name of either the Instance, Parallel Coordinator, Parallel Group, Parallel Set or Parallel Server that corresponds to the GV$SQL_MONITOR record.
+              inst_id:
+                type: number
+                description: The Instance Number from the GV$SQL_MONITOR record.
+              server_set:
+                type: integer
+                description: Number (1 or 2) of the logical set of parallel execution servers to which PX_SERVER# belongs (see SERVER_SET in V$PX_SESSION); NULL if this monitoring entry is not associated with a parallel execution server.
+              process_name:
+                type: string
+                description: Process name identifier executing (or having executed)the statement; ora if the process is foreground, else the background process name (for example, p001 for PX server p001).
+              db_time:
+                type: number
+                description: The greater of either ELAPSED_TIME or a total of the following CPU_TIME + QUEUING_TIME + APPLICATION_WAIT_TIME + CONCURRENCY_WAIT_TIME + CLUSTER_WAIT_TIME + USER_IO_WAIT_TIME + PLSQL_EXEC_TIME + JAVA_EXEC_TIME.
+              db_time_prop:
+                type: number
+                description: The proportional time spent for this GV$SQL_MONITOR record compared to other execution records for the same SQL Statement.
+              db_time_max:
+                type: number
+                description: The maximum time spent for an execution of the SQL Statement.
+              cpu_time:
+                type: integer
+                description: CPU time (in microseconds) used by this cursor for parsing, executing, and fetching.
+              queuing_time:
+                type: integer
+                description: Duration of time (in microseconds) spent by SQL in the statement queue.
+              application_wait_time:
+                type: number
+                description: Application wait time (in microseconds); updated as the statement executes.
+              concurrency_wait_time:
+                type: number
+                description: Concurrency wait time (in microseconds); updated as the statement executes.
+              cluster_wait_time:
+                type: number
+                description: Cluster wait time (in microseconds); updated as the statement executes.
+              user_io_wait_time:
+                type: number
+                description: User I/O Wait Time (in microseconds); updated as the statement executes.
+              plsql_exec_time:
+                type: number
+                description: PL/SQL execution time (in microseconds); updated as the statement executes.
+              java_exec_time:
+                type: number
+                description: Java execution time (in microseconds); updated as the statement executes.
+              other_wait_time:
+                type: number
+                description: The greater of either zero or a total of the following CPU_TIME - QUEUING_TIME - APPLICATION_WAIT_TIME - CONCURRENCY_WAIT_TIME - CLUSTER_WAIT_TIME - USER_IO_WAIT_TIME - PLSQL_EXEC_TIME - JAVA_EXEC_TIME.
+              io_requests:
+                type: number
+                description: Total of number of physical read and write I/O requests issued by the monitored SQL.
+              io_requests_prop:
+                type: number
+                description: The proportional number of physical read and write I/O requests issued by the monitored SQL compared to other execution records for the same SQL Statement.
+              io_requests_max:
+                type: number
+                description: The maximum number of physical read and write I/O requests issued by a monitored SQL execution for the same SQL Statement.
+              io_bytes:
+                type: number
+                description: Total of number of bytes read from disks and bytes written to disks by the monitored SQL.
+              io_bytes_prop:
+                type: number
+                description: The proportional number of bytes read from disks and bytes written to disks by the monitored SQL compared to other execution records for the same SQL Statement.
+              io_bytes_max:
+                type: number
+                description: The maximum number of bytes read from disks and bytes written to disks by a monitored SQL execution for the same SQL Statement.
+              buffer_gets:
+                type: number
+                description: Number of buffer get operations; updated as the statement executes.
+              buffer_gets_prop:
+                type: number
+                description: The proportional number of buffer get operations compared to other execution records for the same SQL Statement.
+              buffer_gets_max:
+                type: number
+                description: The maximum number of buffer get operations by a monitored SQL execution for the same SQL Statement.
+              dop_downgrade:
+                type: string
+                description: Percentage of actual number of parallel execution servers allocated to execute the query compared to the total number of parallel execution servers requested to execute the query.
+              servers_requested:
+                type: number
+                description: Total number of parallel execution servers requested to execute the monitored SQL.
+              servers_allocated:
+                type: number
+                description: Actual number of parallel execution servers allocated to execute the query.
         hasMore:
           type: boolean
           description: Indicates if there are more records to be retrieved.
@@ -943,6 +1128,281 @@ components:
         count:
           type: integer
           description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    PerformanceActionSessionHistoryWaitsActiveSQLItem:
+      type: object
+      description: Describes statistics on an SQL statement that is in memory, parsed and ready for execution but waiting on an event. The list of attributes may vary depending on database version.
+      properties:
+        username:
+          type: string
+          description: Name of the user that is associated with the session that is waiting.
+        inst_id:
+          type: integer
+          description: Instance number from which the associated V$ view information was obtained.
+        sql_text:
+          type: string
+          description: First thousand characters of the SQL text for the current cursor.
+        sql_fulltext:
+          type: string
+          description: All characters of the SQL text for the current cursor.
+        sql_id:
+          type: string
+          description: SQL identifier of the parent cursor in the library cache.
+        sharable_mem:
+          type: integer
+          description: Amount of shared memory used by a cursor. If multiple child cursors exist, then the sum of all shared memory used by all child cursors.
+        persistent_mem:
+          type: integer
+          description: Fixed amount of memory used for the lifetime of an open cursor. If multiple child cursors exist, then the fixed sum of memory used for the lifetime of all the child cursors.
+        runtime_mem:
+          type: integer
+          description: Fixed amount of memory required during execution of a cursor. If multiple child cursors exist, then the fixed sum of all memory required during execution of all the child cursors.
+        sorts:
+          type: integer
+          description: Sum of the number of sorts that were done for all the child cursors.
+        version_count:
+          type: integer
+          description: Number of child cursors that are present in the cache under this parent.
+        loaded_versions:
+          type: integer
+          description: Number of child cursors that are present in the cache and have their context heap loaded.
+        open_versions:
+          type: integer
+          description: Number of child cursors that are currently open under this current parent.
+        users_opening:
+          type: integer
+          description: Number of users that have any of the child cursors open.
+        fetches:
+          type: integer
+          description: Number of fetches associated with the SQL statement.
+        executions:
+          type: integer
+          description: Total number of executions, totalled over all the child cursors.
+        px_servers_executions:
+          type: integer
+          description: Total number of executions performed by parallel execution servers (0 when the statement has never been executed in parallel).
+        end_of_fetch_count:
+          type: integer
+          description: Number of times this cursor was fully executed since the cursor was brought into the library cache. The value of this statistic is not incremented when the cursor is partially executed, either because it failed during the execution or because only the first few rows produced by this cursor are fetched before the cursor is closed or re-executed. By definition, the value of the END_OF_FETCH_COUNT column should be less or equal to the value of the EXECUTIONS column.
+        users_executing:
+          type: integer
+          description: Total number of users executing the statement over all child cursors.
+        loads:
+          type: integer
+          description: Number of times the object was loaded or reloaded.
+        first_load_time:
+          type: string
+          description: Timestamp of the parent creation time.
+        invalidations:
+          type: integer
+          description: Total number of invalidations over all the child cursors.
+        parse_calls:
+          type: integer
+          description: Sum of all parse calls to all the child cursors under this parent.
+        disk_reads:
+          type: integer
+          description: Sum of the number of disk reads over all child cursors.
+        direct_writes:
+          type: integer
+          description: Sum of the number of direct writes over all child cursors.
+        direct_reads:
+          type: integer
+          description: Sum of the number of direct reads over all child cursors.
+        buffer_gets:
+          type: integer
+          description: Sum of buffer gets over all child cursors.
+        application_wait_time:
+          type: integer
+          description: Application wait time (in microseconds).
+        concurrency_wait_time:
+          type: integer
+          description: Concurrency wait time (in microseconds).
+        cluster_wait_time:
+          type: integer
+          description: Cluster wait time (in microseconds).
+        user_io_wait_time:
+          type: integer
+          description: User I/O Wait Time (in microseconds).
+        plsql_exec_time:
+          type: integer
+          description: PL/SQL execution time (in microseconds).
+        java_exec_time:
+          type: integer
+          description: Java execution time (in microseconds).
+        rows_processed:
+          type: integer
+          description: Total number of rows processed on behalf of this SQL statement.
+        command_type:
+          type: integer
+          description: Oracle command type definition.
+        optimizer_mode:
+          type: string
+          description: Mode under which the SQL statement was executed.
+        optimizer_cost:
+          type: integer
+          description: Cost of this query given by the optimizer.
+        optimizer_env:
+          type: string
+          description: Optimizer environment.
+        optimizer_env_hash_value:
+          type: integer
+          description: Hash value for the optimizer environment.
+        parsing_user_id:
+          type: integer
+          description: User ID of the user that has parsed the very first cursor under this parent.
+        parsing_schema_id:
+          type: integer
+          description: Schema ID that was used to parse this child cursor.
+        parsing_schema_name:
+          type: string
+          description: Schema name that was used to parse this child cursor.
+        kept_versions:
+          type: integer
+          description: Number of child cursors that have been marked to be kept using the DBMS_SHARED_POOL package.
+        address:
+          type: string
+          description: Address of the handle to the parent for this cursor.
+        hash_value:
+          type: integer
+          description: Hash value of the parent statement in the library cache.
+        old_hash_value:
+          type: integer
+          description: Old SQL hash value.
+        plan_hash_value:
+          type: integer
+          description: Numeric representation of the current SQL plan for this cursor. Comparing one PLAN_HASH_VALUE to another easily identifies whether or not two plans are the same (rather than comparing the two plans line by line).
+        full_plan_hash_value:
+          type: integer
+          description: Numeric representation of the complete SQL plan for this cursor. Comparing one FULL_PLAN_HASH_VALUE to another easily identifies whether or not two plans are the same (rather than comparing the two plans line by line). Note that the FULL_PLAN_HASH_VALUE cannot be compared across databases releases. It is not backward compatible.
+        module:
+          type: string
+          description: Contains the name of the module that was executing when the SQL statement was first parsed as set by calling DBMS_APPLICATION_INFO.SET_MODULE
+        module_hash:
+          type: integer
+          description: Hash value of the module that is named in the MODULE column.
+        action:
+          type: string
+          description: Contains the name of the action that was executing when the SQL statement was first parsed as set by calling DBMS_APPLICATION_INFO.SET_ACTION.
+        action_hash:
+          type: integer
+          description: Hash value of the action that is named in the ACTION column.
+        serializable_aborts:
+          type: integer
+          description: Number of times the transaction failed to serialize, producing ORA-08177 errors, totalled over all the child cursors.
+        outline_category:
+          type: string
+          description: If an outline was applied during construction of the cursor, then this column displays the category of that outline. Otherwise the column is left blank.
+        cpu_time:
+          type: integer
+          description: CPU time (in microseconds) used by this cursor for parsing, executing, and fetching.
+        elapsed_time:
+          type: integer
+          description: Elapsed time (in microseconds) used by this cursor for parsing, executing, and fetching. If the cursor uses parallel execution, then ELAPSED_TIME is the cumulative time for the query coordinator, plus all parallel query slave processes.
+        outline_sid:
+          type: string
+          description: Outline session identifier.
+        last_active_child_address:
+          type: string
+          description: Address (identifier) of the child cursor that was the last to be active in the group (that is, the child cursor on behalf of which statistics in GV$SQL were updated).
+        remote:
+          type: string
+          description: Indicates whether the cursor is remote mapped (Y) or not (N).
+        object_status:
+          type: string
+          description: Status of the cursor.
+        literal_hash_value:
+          type: integer
+          description: Hash value of the literals which are replaced with system-generated bind variables and are to be matched, when CURSOR_SHARING is used. This is not the hash value for the SQL statement. If CURSOR_SHARING is not used, then the value is 0.
+        last_load_time:
+          type: string
+          description: Time at which the query plan was loaded into the library cache.
+        is_obsolete:
+          type: string
+          description: Indicates whether the cursor has become obsolete (Y) or not (N). This can happen if the number of child cursors is too large.
+        is_bind_sensitive:
+          type: string
+          description: Indicates whether the cursor is bind sensitive (Y) or not (N). A query is considered bind-sensitive if the optimizer peeked at one of its bind variable values when computing predicate selectivities and where a change in a bind variable value may cause the optimizer to generate a different plan.
+        is_bind_aware:
+          type: string
+          description: Indicates whether the cursor is bind aware (Y) or not (N). A query is considered bind-aware if it has been marked to use extended cursor sharing. The query would already have been marked as bind-sensitive.
+        child_latch:
+          type: integer
+          description: Child latch number that is protecting the cursor. This column is obsolete and maintained for backward compatibility.
+        sql_profile:
+          type: string
+          description: SQL profile used for this statement, if any.
+        sql_patch:
+          type: string
+          description: SQL patch used for this statement, if any.
+        sql_plan_baseline:
+          type: string
+          description: SQL plan baseline used for this statement, if any.
+        program_id:
+          type: integer
+          description: Program identifier.
+        program_line#:
+          type: integer
+          description: Program line number.
+        exact_matching_signature:
+          type: integer
+          description: Signature used when the CURSOR_SHARING parameter is set to EXACT.
+        force_matching_signature:
+          type: integer
+          description: Signature used when the CURSOR_SHARING parameter is set to FORCE.
+        last_active_time:
+          type: string
+          description: Time at which the query plan was last active.
+        bind_data:
+          type: string
+          description: Bind data.
+        typecheck_mem:
+          type: integer
+          description: Typecheck memory.
+        io_cell_offload_eligible_bytes:
+          type: integer
+          description: Number of I/O bytes which can be filtered by the Exadata storage system.
+        io_interconnect_bytes:
+          type: integer
+          description: Number of I/O bytes exchanged between Oracle Database and the storage system.
+        physical_read_requests:
+          type: integer
+          description: Number of physical read I/O requests issued by the monitored SQL.
+        physical_read_bytes:
+          type: integer
+          description: Number of bytes read from disks by the monitored SQL.
+        physical_write_requests:
+          type: integer
+          description: Number of physical write I/O requests issued by the monitored SQL.
+        physical_write_bytes:
+          type: integer
+          description: Number of bytes written to disks by the monitored SQL.
+        optimized_phy_read_requests:
+          type: integer
+          description: Number of physical read I/O requests from Database Smart Flash Cache issued by the monitored SQL.
+        locked_total:
+          type: integer
+          description: Total number of times the child cursor has been locked.
+        pinned_total:
+          type: integer
+          description: Total number of times the child cursor has been pinned.
+        io_cell_uncompressed_bytes:
+          type: integer
+          description: Number of uncompressed bytes (that is, size after decompression) that are offloaded to the Exadata cells.
+        io_cell_offload_returned_bytes:
+          type: integer
+          description: Number of bytes that are returned by Exadata cell through the regular I/O path.
+        con_id:
+          type: integer
+          description: The ID of the container to which the data pertains.
+        is_reoptimizable:
+          type: string
+          description: This columns shows whether the next execution matching this child cursor will trigger a reoptimization.
+        is_resolved_adaptive_plan:
+          type: string
+          description: This column shows whether all of the adaptive parts of a plan have been resolved to the final plan.
         links:
           type: array
           items:
@@ -1335,390 +1795,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    PerformanceActionSessionHistoryWaitsActiveSQLItem:
+    PerformanceSQLStatementMonitors:
       type: object
-      description: Describes statistics on an SQL statement that is in memory, parsed and ready for execution but waiting on an event. The list of attributes may vary depending on database version.
-      properties:
-        username:
-          type: string
-          description: Name of the user that is associated with the session that is waiting.
-        inst_id:
-          type: integer
-          description: Instance number from which the associated V$ view information was obtained.
-        sql_text:
-          type: string
-          description: First thousand characters of the SQL text for the current cursor.
-        sql_fulltext:
-          type: string
-          description: All characters of the SQL text for the current cursor.
-        sql_id:
-          type: string
-          description: SQL identifier of the parent cursor in the library cache.
-        sharable_mem:
-          type: integer
-          description: Amount of shared memory used by a cursor. If multiple child cursors exist, then the sum of all shared memory used by all child cursors.
-        persistent_mem:
-          type: integer
-          description: Fixed amount of memory used for the lifetime of an open cursor. If multiple child cursors exist, then the fixed sum of memory used for the lifetime of all the child cursors.
-        runtime_mem:
-          type: integer
-          description: Fixed amount of memory required during execution of a cursor. If multiple child cursors exist, then the fixed sum of all memory required during execution of all the child cursors.
-        sorts:
-          type: integer
-          description: Sum of the number of sorts that were done for all the child cursors.
-        version_count:
-          type: integer
-          description: Number of child cursors that are present in the cache under this parent.
-        loaded_versions:
-          type: integer
-          description: Number of child cursors that are present in the cache and have their context heap loaded.
-        open_versions:
-          type: integer
-          description: Number of child cursors that are currently open under this current parent.
-        users_opening:
-          type: integer
-          description: Number of users that have any of the child cursors open.
-        fetches:
-          type: integer
-          description: Number of fetches associated with the SQL statement.
-        executions:
-          type: integer
-          description: Total number of executions, totalled over all the child cursors.
-        px_servers_executions:
-          type: integer
-          description: Total number of executions performed by parallel execution servers (0 when the statement has never been executed in parallel).
-        end_of_fetch_count:
-          type: integer
-          description: Number of times this cursor was fully executed since the cursor was brought into the library cache. The value of this statistic is not incremented when the cursor is partially executed, either because it failed during the execution or because only the first few rows produced by this cursor are fetched before the cursor is closed or re-executed. By definition, the value of the END_OF_FETCH_COUNT column should be less or equal to the value of the EXECUTIONS column.
-        users_executing:
-          type: integer
-          description: Total number of users executing the statement over all child cursors.
-        loads:
-          type: integer
-          description: Number of times the object was loaded or reloaded.
-        first_load_time:
-          type: string
-          description: Timestamp of the parent creation time.
-        invalidations:
-          type: integer
-          description: Total number of invalidations over all the child cursors.
-        parse_calls:
-          type: integer
-          description: Sum of all parse calls to all the child cursors under this parent.
-        disk_reads:
-          type: integer
-          description: Sum of the number of disk reads over all child cursors.
-        direct_writes:
-          type: integer
-          description: Sum of the number of direct writes over all child cursors.
-        direct_reads:
-          type: integer
-          description: Sum of the number of direct reads over all child cursors.
-        buffer_gets:
-          type: integer
-          description: Sum of buffer gets over all child cursors.
-        application_wait_time:
-          type: integer
-          description: Application wait time (in microseconds).
-        concurrency_wait_time:
-          type: integer
-          description: Concurrency wait time (in microseconds).
-        cluster_wait_time:
-          type: integer
-          description: Cluster wait time (in microseconds).
-        user_io_wait_time:
-          type: integer
-          description: User I/O Wait Time (in microseconds).
-        plsql_exec_time:
-          type: integer
-          description: PL/SQL execution time (in microseconds).
-        java_exec_time:
-          type: integer
-          description: Java execution time (in microseconds).
-        rows_processed:
-          type: integer
-          description: Total number of rows processed on behalf of this SQL statement.
-        command_type:
-          type: integer
-          description: Oracle command type definition.
-        optimizer_mode:
-          type: string
-          description: Mode under which the SQL statement was executed.
-        optimizer_cost:
-          type: integer
-          description: Cost of this query given by the optimizer.
-        optimizer_env:
-          type: string
-          description: Optimizer environment.
-        optimizer_env_hash_value:
-          type: integer
-          description: Hash value for the optimizer environment.
-        parsing_user_id:
-          type: integer
-          description: User ID of the user that has parsed the very first cursor under this parent.
-        parsing_schema_id:
-          type: integer
-          description: Schema ID that was used to parse this child cursor.
-        parsing_schema_name:
-          type: string
-          description: Schema name that was used to parse this child cursor.
-        kept_versions:
-          type: integer
-          description: Number of child cursors that have been marked to be kept using the DBMS_SHARED_POOL package.
-        address:
-          type: string
-          description: Address of the handle to the parent for this cursor.
-        hash_value:
-          type: integer
-          description: Hash value of the parent statement in the library cache.
-        old_hash_value:
-          type: integer
-          description: Old SQL hash value.
-        plan_hash_value:
-          type: integer
-          description: Numeric representation of the current SQL plan for this cursor. Comparing one PLAN_HASH_VALUE to another easily identifies whether or not two plans are the same (rather than comparing the two plans line by line).
-        full_plan_hash_value:
-          type: integer
-          description: Numeric representation of the complete SQL plan for this cursor. Comparing one FULL_PLAN_HASH_VALUE to another easily identifies whether or not two plans are the same (rather than comparing the two plans line by line). Note that the FULL_PLAN_HASH_VALUE cannot be compared across databases releases. It is not backward compatible.
-        module:
-          type: string
-          description: Contains the name of the module that was executing when the SQL statement was first parsed as set by calling DBMS_APPLICATION_INFO.SET_MODULE
-        module_hash:
-          type: integer
-          description: Hash value of the module that is named in the MODULE column.
-        action:
-          type: string
-          description: Contains the name of the action that was executing when the SQL statement was first parsed as set by calling DBMS_APPLICATION_INFO.SET_ACTION.
-        action_hash:
-          type: integer
-          description: Hash value of the action that is named in the ACTION column.
-        serializable_aborts:
-          type: integer
-          description: Number of times the transaction failed to serialize, producing ORA-08177 errors, totalled over all the child cursors.
-        outline_category:
-          type: string
-          description: If an outline was applied during construction of the cursor, then this column displays the category of that outline. Otherwise the column is left blank.
-        cpu_time:
-          type: integer
-          description: CPU time (in microseconds) used by this cursor for parsing, executing, and fetching.
-        elapsed_time:
-          type: integer
-          description: Elapsed time (in microseconds) used by this cursor for parsing, executing, and fetching. If the cursor uses parallel execution, then ELAPSED_TIME is the cumulative time for the query coordinator, plus all parallel query slave processes.
-        outline_sid:
-          type: string
-          description: Outline session identifier.
-        last_active_child_address:
-          type: string
-          description: Address (identifier) of the child cursor that was the last to be active in the group (that is, the child cursor on behalf of which statistics in GV$SQL were updated).
-        remote:
-          type: string
-          description: Indicates whether the cursor is remote mapped (Y) or not (N).
-        object_status:
-          type: string
-          description: Status of the cursor.
-        literal_hash_value:
-          type: integer
-          description: Hash value of the literals which are replaced with system-generated bind variables and are to be matched, when CURSOR_SHARING is used. This is not the hash value for the SQL statement. If CURSOR_SHARING is not used, then the value is 0.
-        last_load_time:
-          type: string
-          description: Time at which the query plan was loaded into the library cache.
-        is_obsolete:
-          type: string
-          description: Indicates whether the cursor has become obsolete (Y) or not (N). This can happen if the number of child cursors is too large.
-        is_bind_sensitive:
-          type: string
-          description: Indicates whether the cursor is bind sensitive (Y) or not (N). A query is considered bind-sensitive if the optimizer peeked at one of its bind variable values when computing predicate selectivities and where a change in a bind variable value may cause the optimizer to generate a different plan.
-        is_bind_aware:
-          type: string
-          description: Indicates whether the cursor is bind aware (Y) or not (N). A query is considered bind-aware if it has been marked to use extended cursor sharing. The query would already have been marked as bind-sensitive.
-        child_latch:
-          type: integer
-          description: Child latch number that is protecting the cursor. This column is obsolete and maintained for backward compatibility.
-        sql_profile:
-          type: string
-          description: SQL profile used for this statement, if any.
-        sql_patch:
-          type: string
-          description: SQL patch used for this statement, if any.
-        sql_plan_baseline:
-          type: string
-          description: SQL plan baseline used for this statement, if any.
-        program_id:
-          type: integer
-          description: Program identifier.
-        program_line#:
-          type: integer
-          description: Program line number.
-        exact_matching_signature:
-          type: integer
-          description: Signature used when the CURSOR_SHARING parameter is set to EXACT.
-        force_matching_signature:
-          type: integer
-          description: Signature used when the CURSOR_SHARING parameter is set to FORCE.
-        last_active_time:
-          type: string
-          description: Time at which the query plan was last active.
-        bind_data:
-          type: string
-          description: Bind data.
-        typecheck_mem:
-          type: integer
-          description: Typecheck memory.
-        io_cell_offload_eligible_bytes:
-          type: integer
-          description: Number of I/O bytes which can be filtered by the Exadata storage system.
-        io_interconnect_bytes:
-          type: integer
-          description: Number of I/O bytes exchanged between Oracle Database and the storage system.
-        physical_read_requests:
-          type: integer
-          description: Number of physical read I/O requests issued by the monitored SQL.
-        physical_read_bytes:
-          type: integer
-          description: Number of bytes read from disks by the monitored SQL.
-        physical_write_requests:
-          type: integer
-          description: Number of physical write I/O requests issued by the monitored SQL.
-        physical_write_bytes:
-          type: integer
-          description: Number of bytes written to disks by the monitored SQL.
-        optimized_phy_read_requests:
-          type: integer
-          description: Number of physical read I/O requests from Database Smart Flash Cache issued by the monitored SQL.
-        locked_total:
-          type: integer
-          description: Total number of times the child cursor has been locked.
-        pinned_total:
-          type: integer
-          description: Total number of times the child cursor has been pinned.
-        io_cell_uncompressed_bytes:
-          type: integer
-          description: Number of uncompressed bytes (that is, size after decompression) that are offloaded to the Exadata cells.
-        io_cell_offload_returned_bytes:
-          type: integer
-          description: Number of bytes that are returned by Exadata cell through the regular I/O path.
-        con_id:
-          type: integer
-          description: The ID of the container to which the data pertains.
-        is_reoptimizable:
-          type: string
-          description: This columns shows whether the next execution matching this child cursor will trigger a reoptimization.
-        is_resolved_adaptive_plan:
-          type: string
-          description: This column shows whether all of the adaptive parts of a plan have been resolved to the final plan.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
-    PerformanceSQLStatementMonitorParallelism:
-      type: object
-      description: Describes the parallel execution of an SQL Statement. Using GV$SQL_MONITOR view, the information includes the Parallel Coordinator and the instance(s) where it was executed.
       properties:
         items:
           type: array
           items:
-            type: object
-            properties:
-              node_id:
-                type: integer
-                description: Used as a distinguishing value in the Parallelism metadata. The value may be an Instance Number to represent the execution on an instance, 10000 when a Parallel Coordinator or some other value derived from the SERVER_GROUP data.
-              parent_node_id:
-                type: number
-                description: The value may be an Instance Number to represent the execution of Parallel Coordinator or Server Group on an instance. May be NULL.
-              name:
-                type: string
-                description: Name of either the Instance, Parallel Coordinator, Parallel Group, Parallel Set or Parallel Server that corresponds to the GV$SQL_MONITOR record.
-              inst_id:
-                type: number
-                description: The Instance Number from the GV$SQL_MONITOR record.
-              server_set:
-                type: integer
-                description: Number (1 or 2) of the logical set of parallel execution servers to which PX_SERVER# belongs (see SERVER_SET in V$PX_SESSION); NULL if this monitoring entry is not associated with a parallel execution server.
-              process_name:
-                type: string
-                description: Process name identifier executing (or having executed)the statement; ora if the process is foreground, else the background process name (for example, p001 for PX server p001).
-              db_time:
-                type: number
-                description: The greater of either ELAPSED_TIME or a total of the following CPU_TIME + QUEUING_TIME + APPLICATION_WAIT_TIME + CONCURRENCY_WAIT_TIME + CLUSTER_WAIT_TIME + USER_IO_WAIT_TIME + PLSQL_EXEC_TIME + JAVA_EXEC_TIME.
-              db_time_prop:
-                type: number
-                description: The proportional time spent for this GV$SQL_MONITOR record compared to other execution records for the same SQL Statement.
-              db_time_max:
-                type: number
-                description: The maximum time spent for an execution of the SQL Statement.
-              cpu_time:
-                type: integer
-                description: CPU time (in microseconds) used by this cursor for parsing, executing, and fetching.
-              queuing_time:
-                type: integer
-                description: Duration of time (in microseconds) spent by SQL in the statement queue.
-              application_wait_time:
-                type: number
-                description: Application wait time (in microseconds); updated as the statement executes.
-              concurrency_wait_time:
-                type: number
-                description: Concurrency wait time (in microseconds); updated as the statement executes.
-              cluster_wait_time:
-                type: number
-                description: Cluster wait time (in microseconds); updated as the statement executes.
-              user_io_wait_time:
-                type: number
-                description: User I/O Wait Time (in microseconds); updated as the statement executes.
-              plsql_exec_time:
-                type: number
-                description: PL/SQL execution time (in microseconds); updated as the statement executes.
-              java_exec_time:
-                type: number
-                description: Java execution time (in microseconds); updated as the statement executes.
-              other_wait_time:
-                type: number
-                description: The greater of either zero or a total of the following CPU_TIME - QUEUING_TIME - APPLICATION_WAIT_TIME - CONCURRENCY_WAIT_TIME - CLUSTER_WAIT_TIME - USER_IO_WAIT_TIME - PLSQL_EXEC_TIME - JAVA_EXEC_TIME.
-              io_requests:
-                type: number
-                description: Total of number of physical read and write I/O requests issued by the monitored SQL.
-              io_requests_prop:
-                type: number
-                description: The proportional number of physical read and write I/O requests issued by the monitored SQL compared to other execution records for the same SQL Statement.
-              io_requests_max:
-                type: number
-                description: The maximum number of physical read and write I/O requests issued by a monitored SQL execution for the same SQL Statement.
-              io_bytes:
-                type: number
-                description: Total of number of bytes read from disks and bytes written to disks by the monitored SQL.
-              io_bytes_prop:
-                type: number
-                description: The proportional number of bytes read from disks and bytes written to disks by the monitored SQL compared to other execution records for the same SQL Statement.
-              io_bytes_max:
-                type: number
-                description: The maximum number of bytes read from disks and bytes written to disks by a monitored SQL execution for the same SQL Statement.
-              buffer_gets:
-                type: number
-                description: Number of buffer get operations; updated as the statement executes.
-              buffer_gets_prop:
-                type: number
-                description: The proportional number of buffer get operations compared to other execution records for the same SQL Statement.
-              buffer_gets_max:
-                type: number
-                description: The maximum number of buffer get operations by a monitored SQL execution for the same SQL Statement.
-              dop_downgrade:
-                type: string
-                description: Percentage of actual number of parallel execution servers allocated to execute the query compared to the total number of parallel execution servers requested to execute the query.
-              servers_requested:
-                type: number
-                description: Total number of parallel execution servers requested to execute the monitored SQL.
-              servers_allocated:
-                type: number
-                description: Actual number of parallel execution servers allocated to execute the query.
+            $ref: '#/components/schemas/PerformanceSQLStatementMonitorsItem'
         hasMore:
           type: boolean
           description: Indicates if there are more records to be retrieved.
@@ -1758,19 +1841,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-  responses:
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     offsetParam:
       name: offset
@@ -1788,6 +1858,14 @@ components:
         type: integer
         minimum: 1
         default: 25
+    Limit:
+      name: limit
+      in: query
+      description: The maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        format: int32
     Filter:
       name: q
       in: query
@@ -1802,21 +1880,7 @@ components:
           $ref: '#/components/examples/OrderByProperty'
         FilterAndOrderExample:
           $ref: '#/components/examples/FilterAndOrder'
-    Limit:
-      name: limit
-      in: query
-      description: The maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        format: int32
   examples:
-    OrderByProperty:
-      summary: Order by with literals.
-      value:
-        $orderby:
-          SALARY: ASC
-          ENAME: DESC
     FilterCriteria:
       summary: Implicit EQUALS operator for a number. Supports String and Dates too.
       value:
@@ -1828,6 +1892,12 @@ components:
           $like: AX%
         $orderby:
           ENAME: ASC
+    OrderByProperty:
+      summary: Order by with literals.
+      value:
+        $orderby:
+          SALARY: ASC
+          ENAME: DESC
   securitySchemes:
     oauth2:
       type: oauth2
@@ -1861,6 +1931,9 @@ components:
         clientCredentials:
           tokenUrl: /oauth/token
           scopes: {}
+externalDocs:
+  description: ORDS REST API Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.4/orrst/
 x-refined-from:
 - oracle-database-ords-openapi.yml
 - oracle-database-performance-api-openapi.yml

@@ -87,14 +87,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    collectionParam:
-      name: collection
-      in: path
-      required: true
-      description: The name of the SODA collection
-      schema:
-        type: string
   responses:
     NotFound:
       description: The specified collection or document was not found
@@ -109,6 +101,13 @@ components:
           schema:
             $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     IndexSpecification:
       type: object
       required:
@@ -158,13 +157,14 @@ components:
           - none
           - text
           - text_value
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2

@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Oracle Database Monitoring API
   x-refined-note:
-  - x-summary differs across the merged source definitions and was not carried
+  - x-refined-note differs across the merged source definitions and was not carried
   version: '1.0'
   description: 'Operations tagged Monitoring across 2 of this provider''s published API definitions: oracle-database-ords-openapi.yml, oracle-database-monitoring-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
@@ -349,6 +349,16 @@ paths:
       x-filename-id: database-monitoring-alerts-record_id-get
       operationId: getDatabaseMonitoringAlertsByRecordId
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/alerts_recent_summaries/by_message_level:
     get:
       tags:
@@ -366,6 +376,16 @@ paths:
       x-filename-id: database-monitoring-alerts_recent_summaries-by_message_level-get
       operationId: getDatabaseMonitoringAlertsRecentSummariesByMessageLevel
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/alerts_recent_summaries/by_message_type:
     get:
       tags:
@@ -383,6 +403,16 @@ paths:
       x-filename-id: database-monitoring-alerts_recent_summaries-by_message_type-get
       operationId: getDatabaseMonitoringAlertsRecentSummariesByMessageType
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/alerts_summaries/by_message_type:
     get:
       tags:
@@ -401,6 +431,16 @@ paths:
       x-filename-id: database-monitoring-alerts_summaries-by_message_type-get
       operationId: getDatabaseMonitoringAlertsSummariesByMessageType
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/session_locks/{session_id},{lock_id1},{lock_id2}:
     get:
       tags:
@@ -437,6 +477,16 @@ paths:
       x-filename-id: database-monitoring-session_locks-session_id-lock_id1-lock_id2-get
       operationId: getDatabaseMonitoringSessionLocksBySessionId},{lockId1},{lockId2
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/session_locks/holding/{session_id},{lock_id1},{lock_id2}:
     get:
       tags:
@@ -473,6 +523,16 @@ paths:
       x-filename-id: database-monitoring-session_locks-holding-session_id-lock_id1-lock_id2-get
       operationId: getDatabaseMonitoringSessionLocksHoldingBySessionId},{lockId1},{lockId2
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/session_locks/waiting/{session_id},{lock_id1},{lock_id2}:
     get:
       tags:
@@ -509,6 +569,16 @@ paths:
       x-filename-id: database-monitoring-session_locks-waiting-session_id-lock_id1-lock_id2-get
       operationId: getDatabaseMonitoringSessionLocksWaitingBySessionId},{lockId1},{lockId2
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/session_summaries/by_type:
     get:
       tags:
@@ -526,6 +596,16 @@ paths:
       x-filename-id: database-monitoring-session_summaries-by_type-get
       operationId: getDatabaseMonitoringSessionSummariesByType
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/session_wait_classes/:
     get:
       tags:
@@ -546,6 +626,16 @@ paths:
       x-filename-id: database-monitoring-session_wait_classes-get
       operationId: getDatabaseMonitoringSessionWaitClasses
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/session_wait_classes/{sid},{serial_number},{wait_class_number}:
     get:
       tags:
@@ -582,6 +672,16 @@ paths:
       x-filename-id: database-monitoring-session_wait_classes-sid-serial_number-wait_class_number-get
       operationId: getDatabaseMonitoringSessionWaitClassesBySid},{serialNumber},{waitClassNumber
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/session_waits/:
     get:
       tags:
@@ -602,6 +702,16 @@ paths:
       x-filename-id: database-monitoring-session_waits-get
       operationId: getDatabaseMonitoringSessionWaits
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/session_waits/{sid},{seq_number}:
     get:
       tags:
@@ -632,6 +742,16 @@ paths:
       x-filename-id: database-monitoring-session_waits-sid-seq_number-get
       operationId: getDatabaseMonitoringSessionWaitsBySid},{seqNumber
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/sessions/{sid},{serial_number}/long_running_operations:
     get:
       tags:
@@ -662,6 +782,16 @@ paths:
       x-filename-id: database-monitoring-sessions-sid-serial_number-long_running_operations-get
       operationId: getDatabaseMonitoringSessionsBySid},{serialNumberLongRunningOperations
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/sessions/{sid},{serial_number}/process:
     get:
       tags:
@@ -692,6 +822,16 @@ paths:
       x-filename-id: database-monitoring-sessions-sid-serial_number-process-get
       operationId: getDatabaseMonitoringSessionsBySid},{serialNumberProcess
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/monitoring/waits_recent:
     get:
       tags:
@@ -710,31 +850,31 @@ paths:
       x-filename-id: database-monitoring-waits_recent-get
       operationId: getDatabaseMonitoringWaitsRecent
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
 components:
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-          format: uri
-    WaitClassTotalList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              wait_class:
-                type: string
-              total_waits:
-                type: integer
-                format: int64
-              time_waited:
-                type: number
     PaginatedResponse:
       type: object
       properties:
@@ -753,6 +893,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    WaitClassMetricList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              wait_class:
+                type: string
+              average_waiter_count:
+                type: number
+              dbtime_in_wait:
+                type: number
     AlertList:
       type: object
       properties:
@@ -768,56 +922,6 @@ components:
               originating_timestamp:
                 type: string
                 format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
-    SessionLockList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              sid:
-                type: integer
-              type:
-                type: string
-              mode_held:
-                type: string
-              mode_requested:
-                type: string
-              block:
-                type: integer
-    SessionList:
-      allOf:
-      - $ref: '#/components/schemas/PaginatedResponse'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/SessionDetail'
-    WaitClassMetricList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              wait_class:
-                type: string
-              average_waiter_count:
-                type: number
-              dbtime_in_wait:
-                type: number
     SessionDetail:
       type: object
       properties:
@@ -842,6 +946,41 @@ components:
         logon_time:
           type: string
           format: date-time
+    SessionLockList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sid:
+                type: integer
+              type:
+                type: string
+              mode_held:
+                type: string
+              mode_requested:
+                type: string
+              block:
+                type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+          format: uri
     SessionLimitList:
       type: object
       properties:
@@ -858,6 +997,21 @@ components:
                 type: integer
               limit_value:
                 type: string
+    WaitClassTotalList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              wait_class:
+                type: string
+              total_waits:
+                type: integer
+                format: int64
+              time_waited:
+                type: number
     AlertSummaryList:
       type: object
       properties:
@@ -870,6 +1024,260 @@ components:
                 type: integer
               count:
                 type: integer
+    SessionList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/SessionDetail'
+    MonitoringSessionWaitsItem:
+      type: object
+      description: This object represents a record from GV$SESSION_WAIT view. GV$SESSION_WAIT displays the current or last wait for each session. The list of attributes may vary depending on database version.
+      properties:
+        inst_id:
+          type: integer
+          description: Oracle Real Application Clusters instance number for which this data relates to. In a non-RAC database this number will be 1.
+        sid:
+          type: integer
+          description: Session identifier.
+        seq#:
+          type: integer
+          description: A number that uniquely identifies the current or last wait (incremented for each wait).
+        event:
+          type: string
+          description: If the session is currently waiting, then the resource or event for which the session is waiting. If the session is not in a wait, then the resource or event for which the session most recently waited.
+        p1text:
+          type: string
+          description: Description of the first wait event parameter.
+        p1:
+          type: integer
+          description: First wait event parameter (in decimal).
+        p1raw:
+          type: string
+          description: First wait event parameter (in hexadecimal).
+        p2text:
+          type: string
+          description: Description of the second wait event parameter.
+        p2:
+          type: integer
+          description: Second wait event parameter (in decimal).
+        p2raw:
+          type: string
+          description: Second wait event parameter (in hexadecimal).
+        p3text:
+          type: string
+          description: Description of the third wait event parameter.
+        p3:
+          type: integer
+          description: Third wait event parameter (in decimal).
+        p3raw:
+          type: string
+          description: Third wait event parameter (in hexadecimal).
+        wait_class_id:
+          type: integer
+          description: Identifier of the class of the wait event.
+        wait_class#:
+          type: integer
+          description: Number of the class of the wait event.
+        wait_class:
+          type: string
+          description: Name of the class of the wait event.
+        wait_time:
+          type: integer
+          description: If the session is currently waiting, then the value is 0. If the session is not in a wait, then the value indicates the duration of the last wait.
+        seconds_in_wait:
+          type: integer
+          description: If the session is currently waiting, then the value is the amount of time waited for the current wait. If the session is not in a wait, then the value is the amount of time since the start of the last wait.
+        state:
+          type: string
+          description: Wait state.
+        wait_time_micro:
+          type: integer
+          description: Amount of time waited (in microseconds). If the session is currently waiting, then the value is the time spent in the current wait. If the session is currently not in a wait, then the value is the amount of time waited in the last wait.
+        time_remaining_micro:
+          type: integer
+          description: Amount of time remaining remaining before a timeout. This field may indicate that a timeout has occurred, or that no timeout will occur.
+        time_since_last_wait_micro:
+          type: integer
+          description: Time elapsed since the end of the last wait (in microseconds). If the session is currently in a wait, then the value is 0.
+        con_id:
+          type: integer
+          description: The ID of the container to which the data pertains.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    MonitoringSessionLocksItem:
+      type: object
+      description: This object is represents a record on DBA_LOCK view. DBA_LOCK lists all locks or latches held in the database, and all outstanding requests for a lock or latch. The list of attributes may vary depending on database version.
+      properties:
+        session_id:
+          type: integer
+          description: Session holding or acquiring the lock.
+        lock_type:
+          type: string
+          description: Lock type.
+        mode_held:
+          type: string
+          description: Lock mode.
+        mode_requested:
+          type: string
+          description: Lock mode requested.
+        lock_id1:
+          type: string
+          description: Type-specific lock identifier, part 1.
+        lock_id2:
+          type: string
+          description: Type-specific lock identifier, part 2.
+        last_convert:
+          type: integer
+          description: The last convert.
+        blocking_others:
+          type: string
+          description: Whether the lock is currently blocking others.
+        con_id:
+          type: integer
+          description: The ID of the container to which the data pertains.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    MonitoringAlertsSummaryMessageLevelItem:
+      type: object
+      description: This object represents a summary of V$DIAG_ALERT_EXT records by message level. The list of attributes may vary depending on database version.
+      properties:
+        inst_id:
+          type: integer
+          description: Oracle Real Application Clusters instance number for which this data relates to. In a non-RAC database this number will be 1.
+        con_id:
+          type: integer
+          description: The ID of the container to which the data pertains.
+        message_level:
+          type: integer
+          description: Level the message belongs to. Lower level values imply higher severity for errors.
+        message_level_name:
+          type: string
+          description: A text description of the corresponding message level value.
+        number_of_messages:
+          type: integer
+          description: The count of records that have this message level.
+        latest_messages:
+          type: string
+          description: The text of the last 5 messages at this message level.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    MonitoringSessionWaitClasses:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitoringSessionWaitClassesItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    MonitoringSessionWaitClassesItem:
+      type: object
+      description: This object represents a record from GV$SESSION_WAIT_CLASS view. GV$SESSION_WAIT_CLASS displays the time spent in various wait event operations on a per-session basis. The list of attributes may vary depending on database version.
+      properties:
+        inst_id:
+          type: integer
+          description: Oracle Real Application Clusters instance number for which this data relates to. In a non-RAC database this number will be 1.
+        sid:
+          type: integer
+          description: Session identifier.
+        serial#:
+          type: integer
+          description: Serial number.
+        wait_class_id:
+          type: integer
+          description: Identifier of the wait class.
+        wait_class#:
+          type: integer
+          description: Number of the wait class.
+        wait_class:
+          type: string
+          description: Name of the wait class.
+        total_waits:
+          type: integer
+          description: Number of times waits of the class occurred for the session.
+        time_waited:
+          type: integer
+          description: Amount of time spent in the wait class by the session.
+        con_id:
+          type: integer
+          description: The ID of the container to which the data pertains.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    MonitoringAlertsSummaryMessageTypeItem:
+      type: object
+      description: This object represents a summary of V$DIAG_ALERT_EXT records by message type. The list of attributes may vary depending on database version.
+      properties:
+        inst_id:
+          type: integer
+          description: Oracle Real Application Clusters instance number for which this data relates to. In a non-RAC database this number will be 1.
+        con_id:
+          type: integer
+          description: The ID of the container to which the data pertains.
+        message_type:
+          type: integer
+          description: Type of the message, indicating that a different type of response is required.
+        message_type_name:
+          type: string
+          description: A text description of the corresponding message type value.
+        number_of_messages:
+          type: integer
+          description: The count of records that have this message type.
+        latest_messages:
+          type: string
+          description: The text of the last 5 messages at this message type.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    MonitoringSessionWaits:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/MonitoringSessionWaitsItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     Filter:
       type: object
       description: See Oracle REST Data Services production documentation 'Filtering in Queries' section.
@@ -886,6 +1294,234 @@ components:
           $asof:
             description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
             type: object
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    MonitoringWaitsRecentItem:
+      type: object
+      description: A summary of time waited for each wait class in GV$ACTIVE_SESSION_HISTORY.
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              sample_time:
+                type: string
+                description: Time at which the sample was taken.
+              wait_class:
+                type: string
+                description: Wait class name of the event for which the session was waiting at the time of sampling.
+              time_waited:
+                type: integer
+                description: Amount of time (in microseconds) spent in waits from this wait class at the time of sampling.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    MonitoringAlertsItem:
+      type: object
+      description: This object represents an alert log record from V$DIAG_ALERT_EXT. V$DIAG_ALERT_EXT shows the contents of the XML-based alert log in the Automatic Diagnostic Repository (ADR). The list of attributes may vary depending on database version.
+      properties:
+        con_id:
+          type: integer
+          description: The ID of the container to which the data pertains.
+        adr_home:
+          type: string
+          description: Directory location of the Automatic Diagnostic Repository (ADR).
+        originating_timestamp:
+          type: string
+          description: Date and time when the message was generated.
+        normalized_timestamp:
+          type: string
+          description: Date and time when the message originated, normalized for clock drift to the Oracle Enterprise Manager repository time.
+        organization_id:
+          type: string
+          description: ID of the organization that wrote the originating component, usually the domain of the organization.
+        component_id:
+          type: string
+          description: ID of the product or component that originated the message.
+        host_id:
+          type: string
+          description: DNS hostname of originating host.
+        host_address:
+          type: string
+          description: IP of other network address of the originating host for the message.
+        message_type:
+          type: integer
+          description: Type of the message, indicating that a different type of response is required.
+        message_type_name:
+          type: string
+          description: A text description of the corresponding message type value.
+        message_level:
+          type: integer
+          description: Level the message belongs to. Lower level values imply higher severity for errors.
+        message_level_name:
+          type: string
+          description: A text description of the corresponding message level value.
+        message_id:
+          type: string
+          description: ID of the message.
+        message_group:
+          type: string
+          description: Name of the group to which the message belongs.
+        client_id:
+          type: string
+          description: ID of the client or security group that the message relates to.
+        module_id:
+          type: string
+          description: ID of the module that originated the message. This value is unique within a component.
+        process_id:
+          type: string
+          description: ID of the process that originated the message.
+        thread_id:
+          type: string
+          description: ID of the thread of the process that originated the message.
+        user_id:
+          type: string
+          description: ID of the user that originated the message.
+        detailed_location:
+          type: string
+          description: Absolute pathname of supplemental detail file on the originating host.
+        upstream_comp_id:
+          type: string
+          description: ID of a component that the originating component is working with on the upstream (client) side.
+        downstream_comp_id:
+          type: string
+          description: ID of a component that the originating component is working with on the downstream (server) side.
+        execution_context_id:
+          type: string
+          description: Identifies the thread of execution that the originating component participates in.
+        execution_context_sequence:
+          type: integer
+          description: Execution sequence of the thread that the originating component participates in.
+        error_instance_id:
+          type: integer
+          description: ID of the instance where error occurred.
+        error_instance_sequence:
+          type: integer
+          description: Instance sequence where error occurred.
+        message_text:
+          type: string
+          description: Fully formed and localized text of the message.
+        message_arguments:
+          type: string
+          description: Arguments to be bound with the generic text of the message.
+        supplemental_attributes:
+          type: string
+          description: Supplemental attributes that are specific to a message. This field contains the impacts for an incident type error message.
+        supplemental_details:
+          type: string
+          description: Supplemental data that is specific to a particular program and error message required to complete the diagnosis.
+        partition:
+          type: integer
+          description: Segment number of physical file.
+        record_id:
+          type: integer
+          description: Record number for the message (this value is same as the row number).
+        filename:
+          type: string
+          description: Physical file on disk.
+        problem_key:
+          type: string
+          description: Describes the key for the current problem that the message is associated with.
+        version:
+          type: integer
+          description: Oracle ARB logging standard version number for the message.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    MonitoringSessionsProcessItem:
+      type: object
+      description: This object represents information about the currently active processes for a specific session. Data is retrieved from GV$PROCESS view.
+      properties:
+        inst_id:
+          type: integer
+          description: Oracle Real Application Clusters instance number for which this data relates to. In a non-RAC database this number will be 1.
+        addr:
+          type: string
+          description: Address of the process state object.
+        pid:
+          type: integer
+          description: Oracle process identifier.
+        sosid:
+          type: string
+          description: Operating system (process, thread) identifier.
+        spid:
+          type: string
+          description: Operating system process identifier.
+        stid:
+          type: string
+          description: Operating system thread identifier.
+        execution_type:
+          type: string
+          description: Operating system execution type.
+        pname:
+          type: string
+          description: Name of this process.
+        username:
+          type: string
+          description: Operating system process username.
+        serial#:
+          type: integer
+          description: Process serial number.
+        terminal:
+          type: string
+          description: Operating system terminal identifier.
+        program:
+          type: string
+          description: Program in progress.
+        traceid:
+          type: string
+          description: Trace file identifier.
+        tracefile:
+          type: string
+          description: Trace file name of the process.
+        background:
+          type: string
+          description: 1 for a SYSTEM background process; NULL for foreground processes or non-SYSTEM background processes.
+        latchwait:
+          type: string
+          description: Address of the latch the process is waiting for; NULL if none.
+        latchspin:
+          type: string
+          description: This column is obsolete.
+        pga_used_mem:
+          type: integer
+          description: PGA memory currently used by the process (in bytes).
+        pga_alloc_mem:
+          type: integer
+          description: PGA memory currently allocated by the process (including free PGA memory not yet released to the operating system by the server process), in bytes.
+        pga_freeable_mem:
+          type: integer
+          description: Allocated PGA memory which can be freed (in bytes).
+        pga_max_mem:
+          type: integer
+          description: Maximum PGA memory ever allocated by the process (in bytes).
+        numa_default:
+          type: integer
+          description: The NUMA processor group of this process at initialization time.
+        numa_curr:
+          type: integer
+          description: The NUMA processor group of this process currently.
+        cpu_used:
+          type: integer
+          description: Tracks the CPU used by this process (in microseconds) from the time it was spawned.
+        con_id:
+          type: integer
+          description: The ID of the container to which the data pertains.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     MonitoringSessionsLongRunningOperationItem:
       type: object
       description: This object represents operations for a specific session that run for longer than 6 seconds (in absolute time).
@@ -1012,479 +1648,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    MonitoringSessionsProcessItem:
-      type: object
-      description: This object represents information about the currently active processes for a specific session. Data is retrieved from GV$PROCESS view.
-      properties:
-        inst_id:
-          type: integer
-          description: Oracle Real Application Clusters instance number for which this data relates to. In a non-RAC database this number will be 1.
-        addr:
-          type: string
-          description: Address of the process state object.
-        pid:
-          type: integer
-          description: Oracle process identifier.
-        sosid:
-          type: string
-          description: Operating system (process, thread) identifier.
-        spid:
-          type: string
-          description: Operating system process identifier.
-        stid:
-          type: string
-          description: Operating system thread identifier.
-        execution_type:
-          type: string
-          description: Operating system execution type.
-        pname:
-          type: string
-          description: Name of this process.
-        username:
-          type: string
-          description: Operating system process username.
-        serial#:
-          type: integer
-          description: Process serial number.
-        terminal:
-          type: string
-          description: Operating system terminal identifier.
-        program:
-          type: string
-          description: Program in progress.
-        traceid:
-          type: string
-          description: Trace file identifier.
-        tracefile:
-          type: string
-          description: Trace file name of the process.
-        background:
-          type: string
-          description: 1 for a SYSTEM background process; NULL for foreground processes or non-SYSTEM background processes.
-        latchwait:
-          type: string
-          description: Address of the latch the process is waiting for; NULL if none.
-        latchspin:
-          type: string
-          description: This column is obsolete.
-        pga_used_mem:
-          type: integer
-          description: PGA memory currently used by the process (in bytes).
-        pga_alloc_mem:
-          type: integer
-          description: PGA memory currently allocated by the process (including free PGA memory not yet released to the operating system by the server process), in bytes.
-        pga_freeable_mem:
-          type: integer
-          description: Allocated PGA memory which can be freed (in bytes).
-        pga_max_mem:
-          type: integer
-          description: Maximum PGA memory ever allocated by the process (in bytes).
-        numa_default:
-          type: integer
-          description: The NUMA processor group of this process at initialization time.
-        numa_curr:
-          type: integer
-          description: The NUMA processor group of this process currently.
-        cpu_used:
-          type: integer
-          description: Tracks the CPU used by this process (in microseconds) from the time it was spawned.
-        con_id:
-          type: integer
-          description: The ID of the container to which the data pertains.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    MonitoringWaitsRecentItem:
-      type: object
-      description: A summary of time waited for each wait class in GV$ACTIVE_SESSION_HISTORY.
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              sample_time:
-                type: string
-                description: Time at which the sample was taken.
-              wait_class:
-                type: string
-                description: Wait class name of the event for which the session was waiting at the time of sampling.
-              time_waited:
-                type: integer
-                description: Amount of time (in microseconds) spent in waits from this wait class at the time of sampling.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    MonitoringAlertsSummaryMessageTypeItem:
-      type: object
-      description: This object represents a summary of V$DIAG_ALERT_EXT records by message type. The list of attributes may vary depending on database version.
-      properties:
-        inst_id:
-          type: integer
-          description: Oracle Real Application Clusters instance number for which this data relates to. In a non-RAC database this number will be 1.
-        con_id:
-          type: integer
-          description: The ID of the container to which the data pertains.
-        message_type:
-          type: integer
-          description: Type of the message, indicating that a different type of response is required.
-        message_type_name:
-          type: string
-          description: A text description of the corresponding message type value.
-        number_of_messages:
-          type: integer
-          description: The count of records that have this message type.
-        latest_messages:
-          type: string
-          description: The text of the last 5 messages at this message type.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    MonitoringSessionLocksItem:
-      type: object
-      description: This object is represents a record on DBA_LOCK view. DBA_LOCK lists all locks or latches held in the database, and all outstanding requests for a lock or latch. The list of attributes may vary depending on database version.
-      properties:
-        session_id:
-          type: integer
-          description: Session holding or acquiring the lock.
-        lock_type:
-          type: string
-          description: Lock type.
-        mode_held:
-          type: string
-          description: Lock mode.
-        mode_requested:
-          type: string
-          description: Lock mode requested.
-        lock_id1:
-          type: string
-          description: Type-specific lock identifier, part 1.
-        lock_id2:
-          type: string
-          description: Type-specific lock identifier, part 2.
-        last_convert:
-          type: integer
-          description: The last convert.
-        blocking_others:
-          type: string
-          description: Whether the lock is currently blocking others.
-        con_id:
-          type: integer
-          description: The ID of the container to which the data pertains.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    MonitoringSessionWaitClassesItem:
-      type: object
-      description: This object represents a record from GV$SESSION_WAIT_CLASS view. GV$SESSION_WAIT_CLASS displays the time spent in various wait event operations on a per-session basis. The list of attributes may vary depending on database version.
-      properties:
-        inst_id:
-          type: integer
-          description: Oracle Real Application Clusters instance number for which this data relates to. In a non-RAC database this number will be 1.
-        sid:
-          type: integer
-          description: Session identifier.
-        serial#:
-          type: integer
-          description: Serial number.
-        wait_class_id:
-          type: integer
-          description: Identifier of the wait class.
-        wait_class#:
-          type: integer
-          description: Number of the wait class.
-        wait_class:
-          type: string
-          description: Name of the wait class.
-        total_waits:
-          type: integer
-          description: Number of times waits of the class occurred for the session.
-        time_waited:
-          type: integer
-          description: Amount of time spent in the wait class by the session.
-        con_id:
-          type: integer
-          description: The ID of the container to which the data pertains.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    MonitoringSessionWaits:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/MonitoringSessionWaitsItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
-    MonitoringSessionWaitClasses:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/MonitoringSessionWaitClassesItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    MonitoringAlertsSummaryMessageLevelItem:
-      type: object
-      description: This object represents a summary of V$DIAG_ALERT_EXT records by message level. The list of attributes may vary depending on database version.
-      properties:
-        inst_id:
-          type: integer
-          description: Oracle Real Application Clusters instance number for which this data relates to. In a non-RAC database this number will be 1.
-        con_id:
-          type: integer
-          description: The ID of the container to which the data pertains.
-        message_level:
-          type: integer
-          description: Level the message belongs to. Lower level values imply higher severity for errors.
-        message_level_name:
-          type: string
-          description: A text description of the corresponding message level value.
-        number_of_messages:
-          type: integer
-          description: The count of records that have this message level.
-        latest_messages:
-          type: string
-          description: The text of the last 5 messages at this message level.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    MonitoringSessionWaitsItem:
-      type: object
-      description: This object represents a record from GV$SESSION_WAIT view. GV$SESSION_WAIT displays the current or last wait for each session. The list of attributes may vary depending on database version.
-      properties:
-        inst_id:
-          type: integer
-          description: Oracle Real Application Clusters instance number for which this data relates to. In a non-RAC database this number will be 1.
-        sid:
-          type: integer
-          description: Session identifier.
-        seq#:
-          type: integer
-          description: A number that uniquely identifies the current or last wait (incremented for each wait).
-        event:
-          type: string
-          description: If the session is currently waiting, then the resource or event for which the session is waiting. If the session is not in a wait, then the resource or event for which the session most recently waited.
-        p1text:
-          type: string
-          description: Description of the first wait event parameter.
-        p1:
-          type: integer
-          description: First wait event parameter (in decimal).
-        p1raw:
-          type: string
-          description: First wait event parameter (in hexadecimal).
-        p2text:
-          type: string
-          description: Description of the second wait event parameter.
-        p2:
-          type: integer
-          description: Second wait event parameter (in decimal).
-        p2raw:
-          type: string
-          description: Second wait event parameter (in hexadecimal).
-        p3text:
-          type: string
-          description: Description of the third wait event parameter.
-        p3:
-          type: integer
-          description: Third wait event parameter (in decimal).
-        p3raw:
-          type: string
-          description: Third wait event parameter (in hexadecimal).
-        wait_class_id:
-          type: integer
-          description: Identifier of the class of the wait event.
-        wait_class#:
-          type: integer
-          description: Number of the class of the wait event.
-        wait_class:
-          type: string
-          description: Name of the class of the wait event.
-        wait_time:
-          type: integer
-          description: If the session is currently waiting, then the value is 0. If the session is not in a wait, then the value indicates the duration of the last wait.
-        seconds_in_wait:
-          type: integer
-          description: If the session is currently waiting, then the value is the amount of time waited for the current wait. If the session is not in a wait, then the value is the amount of time since the start of the last wait.
-        state:
-          type: string
-          description: Wait state.
-        wait_time_micro:
-          type: integer
-          description: Amount of time waited (in microseconds). If the session is currently waiting, then the value is the time spent in the current wait. If the session is currently not in a wait, then the value is the amount of time waited in the last wait.
-        time_remaining_micro:
-          type: integer
-          description: Amount of time remaining remaining before a timeout. This field may indicate that a timeout has occurred, or that no timeout will occur.
-        time_since_last_wait_micro:
-          type: integer
-          description: Time elapsed since the end of the last wait (in microseconds). If the session is currently in a wait, then the value is 0.
-        con_id:
-          type: integer
-          description: The ID of the container to which the data pertains.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    MonitoringAlertsItem:
-      type: object
-      description: This object represents an alert log record from V$DIAG_ALERT_EXT. V$DIAG_ALERT_EXT shows the contents of the XML-based alert log in the Automatic Diagnostic Repository (ADR). The list of attributes may vary depending on database version.
-      properties:
-        con_id:
-          type: integer
-          description: The ID of the container to which the data pertains.
-        adr_home:
-          type: string
-          description: Directory location of the Automatic Diagnostic Repository (ADR).
-        originating_timestamp:
-          type: string
-          description: Date and time when the message was generated.
-        normalized_timestamp:
-          type: string
-          description: Date and time when the message originated, normalized for clock drift to the Oracle Enterprise Manager repository time.
-        organization_id:
-          type: string
-          description: ID of the organization that wrote the originating component, usually the domain of the organization.
-        component_id:
-          type: string
-          description: ID of the product or component that originated the message.
-        host_id:
-          type: string
-          description: DNS hostname of originating host.
-        host_address:
-          type: string
-          description: IP of other network address of the originating host for the message.
-        message_type:
-          type: integer
-          description: Type of the message, indicating that a different type of response is required.
-        message_type_name:
-          type: string
-          description: A text description of the corresponding message type value.
-        message_level:
-          type: integer
-          description: Level the message belongs to. Lower level values imply higher severity for errors.
-        message_level_name:
-          type: string
-          description: A text description of the corresponding message level value.
-        message_id:
-          type: string
-          description: ID of the message.
-        message_group:
-          type: string
-          description: Name of the group to which the message belongs.
-        client_id:
-          type: string
-          description: ID of the client or security group that the message relates to.
-        module_id:
-          type: string
-          description: ID of the module that originated the message. This value is unique within a component.
-        process_id:
-          type: string
-          description: ID of the process that originated the message.
-        thread_id:
-          type: string
-          description: ID of the thread of the process that originated the message.
-        user_id:
-          type: string
-          description: ID of the user that originated the message.
-        detailed_location:
-          type: string
-          description: Absolute pathname of supplemental detail file on the originating host.
-        upstream_comp_id:
-          type: string
-          description: ID of a component that the originating component is working with on the upstream (client) side.
-        downstream_comp_id:
-          type: string
-          description: ID of a component that the originating component is working with on the downstream (server) side.
-        execution_context_id:
-          type: string
-          description: Identifies the thread of execution that the originating component participates in.
-        execution_context_sequence:
-          type: integer
-          description: Execution sequence of the thread that the originating component participates in.
-        error_instance_id:
-          type: integer
-          description: ID of the instance where error occurred.
-        error_instance_sequence:
-          type: integer
-          description: Instance sequence where error occurred.
-        message_text:
-          type: string
-          description: Fully formed and localized text of the message.
-        message_arguments:
-          type: string
-          description: Arguments to be bound with the generic text of the message.
-        supplemental_attributes:
-          type: string
-          description: Supplemental attributes that are specific to a message. This field contains the impacts for an incident type error message.
-        supplemental_details:
-          type: string
-          description: Supplemental data that is specific to a particular program and error message required to complete the diagnosis.
-        partition:
-          type: integer
-          description: Segment number of physical file.
-        record_id:
-          type: integer
-          description: Record number for the message (this value is same as the row number).
-        filename:
-          type: string
-          description: Physical file on disk.
-        problem_key:
-          type: string
-          description: Describes the key for the current problem that the message is associated with.
-        version:
-          type: integer
-          description: Oracle ARB logging standard version number for the message.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
   parameters:
     offsetParam:
       name: offset
@@ -1502,14 +1665,6 @@ components:
         type: integer
         minimum: 1
         default: 25
-    Limit:
-      name: limit
-      in: query
-      description: The maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        format: int32
     Filter:
       name: q
       in: query
@@ -1524,19 +1679,14 @@ components:
           $ref: '#/components/examples/OrderByProperty'
         FilterAndOrderExample:
           $ref: '#/components/examples/FilterAndOrder'
-  responses:
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Limit:
+      name: limit
+      in: query
+      description: The maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        format: int32
   examples:
     FilterCriteria:
       summary: Implicit EQUALS operator for a number. Supports String and Dates too.
@@ -1588,6 +1738,9 @@ components:
         clientCredentials:
           tokenUrl: /oauth/token
           scopes: {}
+externalDocs:
+  description: ORDS REST API Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.4/orrst/
 x-refined-from:
 - oracle-database-ords-openapi.yml
 - oracle-database-monitoring-api-openapi.yml

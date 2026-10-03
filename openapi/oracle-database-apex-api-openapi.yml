@@ -162,14 +162,20 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    APEXWorkspaceList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/APEXWorkspace'
     APEXOverview:
       type: object
       properties:
@@ -179,22 +185,6 @@ components:
           type: integer
         total_developers:
           type: integer
-    APEXApplicationRequest:
-      type: object
-      properties:
-        application_name:
-          type: string
-        workspace:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
     APEXApplicationList:
       type: object
       properties:
@@ -211,6 +201,29 @@ components:
                 type: string
               version:
                 type: string
+    APEXApplicationRequest:
+      type: object
+      properties:
+        application_name:
+          type: string
+        workspace:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    APEXWorkspaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/APEXWorkspace'
     APEXWorkspace:
       type: object
       properties:
@@ -222,19 +235,6 @@ components:
           type: array
           items:
             type: string
-  responses:
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

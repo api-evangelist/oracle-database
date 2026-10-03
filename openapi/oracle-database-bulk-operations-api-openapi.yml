@@ -144,7 +144,29 @@ paths:
         '405':
           description: Collection is read-only
 components:
+  responses:
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    BulkInsertResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentMetadata'
+        hasMore:
+          type: boolean
     DocumentMetadata:
       type: object
       properties:
@@ -166,15 +188,6 @@ components:
         name: John
         salary:
           $gt: 50000
-    BulkUpdateResponse:
-      type: object
-      properties:
-        count:
-          type: integer
-          description: Number of documents matched
-        itemsUpdated:
-          type: integer
-          description: Number of documents updated
     BulkDeleteResponse:
       type: object
       properties:
@@ -191,30 +204,15 @@ components:
           type: integer
         message:
           type: string
-    BulkInsertResponse:
+    BulkUpdateResponse:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentMetadata'
-        hasMore:
-          type: boolean
-    BulkUpdateRequest:
-      type: object
-      description: Combination of QBE filter fields and $patch operations. Filter fields identify documents to update, $patch contains the JSON Patch operations to apply.
-      properties:
-        $patch:
-          type: array
-          items:
-            $ref: '#/components/schemas/JsonPatchOperation'
-      additionalProperties: true
-      example:
-        department: HR
-        $patch:
-        - op: replace
-          path: /salary
-          value: 70000
+        count:
+          type: integer
+          description: Number of documents matched
+        itemsUpdated:
+          type: integer
+          description: Number of documents updated
     JsonPatchOperation:
       type: object
       required:
@@ -239,6 +237,21 @@ components:
         from:
           type: string
           description: JSON Pointer path for move and copy source
+    BulkUpdateRequest:
+      type: object
+      description: Combination of QBE filter fields and $patch operations. Filter fields identify documents to update, $patch contains the JSON Patch operations to apply.
+      properties:
+        $patch:
+          type: array
+          items:
+            $ref: '#/components/schemas/JsonPatchOperation'
+      additionalProperties: true
+      example:
+        department: HR
+        $patch:
+        - op: replace
+          path: /salary
+          value: 70000
   parameters:
     collectionParam:
       name: collection
@@ -247,19 +260,6 @@ components:
       description: The name of the SODA collection
       schema:
         type: string
-  responses:
-    NotFound:
-      description: The specified collection or document was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

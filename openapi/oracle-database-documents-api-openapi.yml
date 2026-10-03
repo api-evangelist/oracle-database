@@ -287,7 +287,35 @@ paths:
         '405':
           description: Collection is read-only
 components:
+  responses:
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameter value
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    InsertResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentMetadata'
+        hasMore:
+          type: boolean
     DocumentMetadata:
       type: object
       properties:
@@ -301,19 +329,6 @@ components:
         created:
           type: string
           format: date-time
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: Link URL
-        mediaType:
-          type: string
-          description: Media type of the linked resource
     Document:
       type: object
       properties:
@@ -340,46 +355,6 @@ components:
         bytes:
           type: integer
           description: Content length for non-JSON documents
-    InsertResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentMetadata'
-        hasMore:
-          type: boolean
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    JsonPatchOperation:
-      type: object
-      required:
-      - op
-      - path
-      properties:
-        op:
-          type: string
-          enum:
-          - add
-          - remove
-          - replace
-          - move
-          - copy
-          - test
-          description: The patch operation to perform
-        path:
-          type: string
-          description: JSON Pointer path to the target field
-        value:
-          description: The value to use for add, replace, or test operations
-        from:
-          type: string
-          description: JSON Pointer path for move and copy source
     DocumentList:
       type: object
       properties:
@@ -406,6 +381,50 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: Link URL
+        mediaType:
+          type: string
+          description: Media type of the linked resource
+    JsonPatchOperation:
+      type: object
+      required:
+      - op
+      - path
+      properties:
+        op:
+          type: string
+          enum:
+          - add
+          - remove
+          - replace
+          - move
+          - copy
+          - test
+          description: The patch operation to perform
+        path:
+          type: string
+          description: JSON Pointer path to the target field
+        value:
+          description: The value to use for add, replace, or test operations
+        from:
+          type: string
+          description: JSON Pointer path for move and copy source
   parameters:
     collectionParam:
       name: collection
@@ -421,25 +440,6 @@ components:
       description: The unique key of the document
       schema:
         type: string
-  responses:
-    NotFound:
-      description: The specified collection or document was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameter value
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

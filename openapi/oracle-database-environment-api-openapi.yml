@@ -501,6 +501,26 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    EnvironmentHomesItem:
+      type: object
+      description: An Oracle home is a directory into which Oracle software is installed.
+      properties:
+        name:
+          type: string
+          description: The name of the Oracle home.
+        version:
+          type: string
+          description: The product version.
+        default:
+          type: boolean
+          description: Indicates if the Oracle home is specified by the $ORACLE_HOME environment variable.
+        read_only_home:
+          type: boolean
+          description: Indicates if the Oracle home is configured in read only mode.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     EnvironmentDatabasesItem:
       type: object
       description: A database has a unique name within the context of the Oracle home it belongs to.
@@ -571,32 +591,6 @@ components:
       required:
       - rel
       - href
-    EnvironmentDbcaTemplates:
-      type: object
-      description: Represents a list of the DBCA Database Templates in the Oracle Home.
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              filename:
-                type: string
-                description: Name of the template file.
-              size:
-                type: integer
-                description: Size (in bytes) of the template file.
-              updated:
-                type: string
-                description: The last update date of the template file.
-              links:
-                type: array
-                items:
-                  $ref: '#/components/schemas/LinkRelation'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
     EnvironmentDbcaJobsItem:
       type: object
       description: Describes a Database Configuration Assistant job.
@@ -660,6 +654,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
+    EnvironmentDbcaTemplates:
+      type: object
+      description: Represents a list of the DBCA Database Templates in the Oracle Home.
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              filename:
+                type: string
+                description: Name of the template file.
+              size:
+                type: integer
+                description: Size (in bytes) of the template file.
+              updated:
+                type: string
+                description: The last update date of the template file.
+              links:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LinkRelation'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     EnvironmentDatabases:
       type: object
       properties:
@@ -683,27 +703,72 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    EnvironmentHomesItem:
-      type: object
-      description: An Oracle home is a directory into which Oracle software is installed.
-      properties:
-        name:
-          type: string
-          description: The name of the Oracle home.
-        version:
-          type: string
-          description: The product version.
-        default:
-          type: boolean
-          description: Indicates if the Oracle home is specified by the $ORACLE_HOME environment variable.
-        read_only_home:
-          type: boolean
-          description: Indicates if the Oracle home is configured in read only mode.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
   requestBodies:
+    createDatabase:
+      description: A payload for creating a database.
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              global_database_name:
+                type: string
+                description: Global Database Name.
+              template_name:
+                type: string
+                description: The name of the template file for DBCA to use.
+              response_file:
+                type: string
+                description: The name of the response file for DBCA to use.
+              system_user_password:
+                type: string
+                description: The password for the system user in the new database.
+              sys_user_password:
+                type: string
+                description: The password for the sys user in the new database.
+              container_configuration:
+                type: object
+                description: This object specifies that a Container Database is to be created with the PDB settings provided.
+                items:
+                  type: object
+                  required:
+                  - number_of_pdbs
+                  - pdb_administrator_password
+                  - pdb_name
+                  properties:
+                    number_of_pdbs:
+                      type: integer
+                      description: The number of Pluggable Databases to create.
+                    pdb_administrator_password:
+                      type: string
+                      description: The password for the PDBADMIN user created in each Pluggable Database.
+                    pdb_name:
+                      type: string
+                      description: The name prefix to use for each Pluggable Database created.
+              total_memory:
+                type: integer
+                description: Total amount of physical memory, in megabytes, that can be used by the new database.
+          examples:
+            create_cdb:
+              summary: This is an example request body to create a container database with two pluggable databases. The General_Purpose.dbc template file from the Oracle Home dbca templates directory will be used. It is by providing container_configuration property in the request that indicates a container database is to be created. The container database name will be devcdb1 and the pluggable database names will be pdbtest1 and pdbtest2 in this scenario. The response to this request will be the location of the DBCA job that has been created to process the request.
+              value:
+                global_database_name: devcdb1
+                template_name: General_Purpose.dbc
+                sys_user_password: W3lc0m31
+                system_user_password: W3lc0m31
+                container_configuration:
+                  number_of_pdbs: 2
+                  pdb_name: pdbtest
+                  pdb_administrator_password: W3lc0m31
+            create_noncdb:
+              summary: This is an example request body to create a non-container database. The non-container database will be called devdb1, based on the General_Purpose.dbc template, and a predefined response file used to set additional configuration properties. The response to this request will be the location of the DBCA job that has been created to process the request.
+              value:
+                global_database_name: devdb1
+                template_name: General_Purpose.dbc
+                sys_user_password: W3lc0m31
+                system_user_password: W3lc0m31
+                response_file: /disk1/oracle/install_oracle_for_dev.rsp
     createDBCAJob:
       description: A payload for creating a DBCA job.
       required: true
@@ -781,71 +846,6 @@ components:
                 global_database_name: devdb1
                 username: sys
                 password: W3lc0m31
-    createDatabase:
-      description: A payload for creating a database.
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              global_database_name:
-                type: string
-                description: Global Database Name.
-              template_name:
-                type: string
-                description: The name of the template file for DBCA to use.
-              response_file:
-                type: string
-                description: The name of the response file for DBCA to use.
-              system_user_password:
-                type: string
-                description: The password for the system user in the new database.
-              sys_user_password:
-                type: string
-                description: The password for the sys user in the new database.
-              container_configuration:
-                type: object
-                description: This object specifies that a Container Database is to be created with the PDB settings provided.
-                items:
-                  type: object
-                  required:
-                  - number_of_pdbs
-                  - pdb_administrator_password
-                  - pdb_name
-                  properties:
-                    number_of_pdbs:
-                      type: integer
-                      description: The number of Pluggable Databases to create.
-                    pdb_administrator_password:
-                      type: string
-                      description: The password for the PDBADMIN user created in each Pluggable Database.
-                    pdb_name:
-                      type: string
-                      description: The name prefix to use for each Pluggable Database created.
-              total_memory:
-                type: integer
-                description: Total amount of physical memory, in megabytes, that can be used by the new database.
-          examples:
-            create_cdb:
-              summary: This is an example request body to create a container database with two pluggable databases. The General_Purpose.dbc template file from the Oracle Home dbca templates directory will be used. It is by providing container_configuration property in the request that indicates a container database is to be created. The container database name will be devcdb1 and the pluggable database names will be pdbtest1 and pdbtest2 in this scenario. The response to this request will be the location of the DBCA job that has been created to process the request.
-              value:
-                global_database_name: devcdb1
-                template_name: General_Purpose.dbc
-                sys_user_password: W3lc0m31
-                system_user_password: W3lc0m31
-                container_configuration:
-                  number_of_pdbs: 2
-                  pdb_name: pdbtest
-                  pdb_administrator_password: W3lc0m31
-            create_noncdb:
-              summary: This is an example request body to create a non-container database. The non-container database will be called devdb1, based on the General_Purpose.dbc template, and a predefined response file used to set additional configuration properties. The response to this request will be the location of the DBCA job that has been created to process the request.
-              value:
-                global_database_name: devdb1
-                template_name: General_Purpose.dbc
-                sys_user_password: W3lc0m31
-                system_user_password: W3lc0m31
-                response_file: /disk1/oracle/install_oracle_for_dev.rsp
   securitySchemes:
     BasicAuth:
       type: http

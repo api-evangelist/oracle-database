@@ -127,11 +127,24 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
       schema:
         type: string
     compartmentIdParam:
@@ -139,6 +152,12 @@ components:
       in: query
       required: true
       description: The OCID of the compartment
+      schema:
+        type: string
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
       schema:
         type: string
     limitParam:
@@ -149,12 +168,6 @@ components:
         type: integer
         minimum: 1
         maximum: 1000
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
   schemas:
     Backup:
       type: object
@@ -214,19 +227,6 @@ components:
         timeStarted:
           type: string
           format: date-time
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     ociSignature:
       type: http

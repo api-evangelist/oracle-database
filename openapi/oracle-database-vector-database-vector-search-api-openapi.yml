@@ -84,6 +84,41 @@ paths:
       x-filename-id: vecdb-vector-tables-vector_table_name-query-post
 components:
   schemas:
+    VecDBSearchItem:
+      type: object
+      properties:
+        id:
+          type: string
+        metadata:
+          type: object
+        vector:
+          type: array
+          items:
+            type: number
+            format: double
+        distance:
+          type: number
+          format: double
+    ORDSErrorResponse:
+      type: object
+      required:
+      - code
+      - message
+      - type
+      - instance
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        type:
+          type: string
+        instance:
+          type: string
+        diagnosticTrace:
+          type: string
+        stackTrace:
+          type: string
     VectorDebugFlags:
       type: object
       description: Debug flags to be used to trace vector modules
@@ -196,41 +231,6 @@ components:
           - low
           - medium
           - high
-    ORDSErrorResponse:
-      type: object
-      required:
-      - code
-      - message
-      - type
-      - instance
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        type:
-          type: string
-        instance:
-          type: string
-        diagnosticTrace:
-          type: string
-        stackTrace:
-          type: string
-    VecDBSearchItem:
-      type: object
-      properties:
-        id:
-          type: string
-        metadata:
-          type: object
-        vector:
-          type: array
-          items:
-            type: number
-            format: double
-        distance:
-          type: number
-          format: double
   securitySchemes:
     BasicAuth:
       type: http

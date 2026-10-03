@@ -169,59 +169,26 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
-      schema:
-        type: string
-    dbSystemIdParam:
-      name: dbSystemId
-      in: path
-      required: true
-      description: The OCID of the DB System
-      schema:
-        type: string
-    compartmentIdParam:
-      name: compartmentId
-      in: query
-      required: true
-      description: The OCID of the compartment
-      schema:
-        type: string
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
-    opcRetryTokenParam:
-      name: opc-retry-token
-      in: header
-      description: Unique retry token to prevent duplicate requests
-      schema:
-        type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    CreateDbHomeDetails:
-      type: object
-      required:
-      - dbVersion
-      properties:
-        dbVersion:
-          type: string
-        displayName:
-          type: string
-        database:
-          $ref: '#/components/schemas/CreateDatabaseDetails'
     CreateDatabaseDetails:
       type: object
       required:
@@ -242,6 +209,17 @@ components:
           type: string
         pdbName:
           type: string
+    CreateDbHomeDetails:
+      type: object
+      required:
+      - dbVersion
+      properties:
+        dbVersion:
+          type: string
+        displayName:
+          type: string
+        database:
+          $ref: '#/components/schemas/CreateDatabaseDetails'
     DbSystemSummary:
       type: object
       properties:
@@ -262,6 +240,13 @@ components:
         timeCreated:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     DbSystem:
       type: object
       properties:
@@ -312,30 +297,6 @@ components:
           enum:
           - HIGH
           - NORMAL
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    UpdateDbSystemDetails:
-      type: object
-      properties:
-        displayName:
-          type: string
-        cpuCoreCount:
-          type: integer
-        sshPublicKeys:
-          type: array
-          items:
-            type: string
-        dataStorageSizeInGBs:
-          type: integer
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
     LaunchDbSystemDetails:
       type: object
       required:
@@ -388,25 +349,64 @@ components:
           enum:
           - HIGH
           - NORMAL
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    UpdateDbSystemDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+        cpuCoreCount:
+          type: integer
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        dataStorageSizeInGBs:
+          type: integer
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+  parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    dbSystemIdParam:
+      name: dbSystemId
+      in: path
+      required: true
+      description: The OCID of the DB System
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    opcRetryTokenParam:
+      name: opc-retry-token
+      in: header
+      description: Unique retry token to prevent duplicate requests
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
   securitySchemes:
     ociSignature:
       type: http

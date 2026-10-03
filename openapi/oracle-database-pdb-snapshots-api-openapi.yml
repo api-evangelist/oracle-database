@@ -157,6 +157,19 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Snapshot:
       type: object
@@ -171,6 +184,15 @@ components:
           format: date-time
         pdb_name:
           type: string
+    AutoSnapshotConfig:
+      type: object
+      properties:
+        auto_snapshot_enabled:
+          type: boolean
+        snapshot_interval_minutes:
+          type: integer
+        max_snapshots:
+          type: integer
     SnapshotMode:
       type: object
       properties:
@@ -192,28 +214,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Snapshot'
-    AutoSnapshotConfig:
-      type: object
-      properties:
-        auto_snapshot_enabled:
-          type: boolean
-        snapshot_interval_minutes:
-          type: integer
-        max_snapshots:
-          type: integer
-  responses:
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

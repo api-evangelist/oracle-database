@@ -291,6 +291,27 @@ paths:
       x-filename-id: vecdb-vector-indexes-vector_table_name-delete
 components:
   schemas:
+    VecDBJobItem:
+      type: object
+      properties:
+        job_name:
+          type: string
+        job_creator:
+          type: string
+        job_type:
+          type: string
+        operation:
+          type: string
+        state:
+          type: string
+        start_date:
+          type:
+          - string
+          - 'null'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     VecDBJobCollection:
       type: object
       properties:
@@ -314,60 +335,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    VecDBJobItem:
-      type: object
-      properties:
-        job_name:
-          type: string
-        job_creator:
-          type: string
-        job_type:
-          type: string
-        operation:
-          type: string
-        state:
-          type: string
-        start_date:
-          type:
-          - string
-          - 'null'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    VecDBJobLogItem:
-      type: object
-      properties:
-        log_date:
-          type: string
-        job_name:
-          type: string
-        status:
-          type: string
-        error#:
-          type: integer
-        additional_info:
-          type:
-          - string
-          - 'null'
-        actual_start_date:
-          type: string
-        run_duration:
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
     VectorDebugFlags:
       type: object
       description: Debug flags to be used to trace vector modules
@@ -480,6 +447,16 @@ components:
           - low
           - medium
           - high
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
     ORDSErrorResponse:
       type: object
       required:
@@ -500,6 +477,29 @@ components:
           type: string
         stackTrace:
           type: string
+    VecDBJobLogItem:
+      type: object
+      properties:
+        log_date:
+          type: string
+        job_name:
+          type: string
+        status:
+          type: string
+        error#:
+          type: integer
+        additional_info:
+          type:
+          - string
+          - 'null'
+        actual_start_date:
+          type: string
+        run_duration:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
   securitySchemes:
     BasicAuth:
       type: http

@@ -161,51 +161,20 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
-      schema:
-        type: string
-    compartmentIdParam:
-      name: compartmentId
-      in: query
-      required: true
-      description: The OCID of the compartment
-      schema:
-        type: string
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    DatabaseSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        compartmentId:
-          type: string
-        dbName:
-          type: string
-        dbHomeId:
-          type: string
-        lifecycleState:
-          type: string
-        timeCreated:
-          type: string
-          format: date-time
     CreateDatabaseDetails:
       type: object
       required:
@@ -226,6 +195,22 @@ components:
           type: string
         pdbName:
           type: string
+    DatabaseSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        dbName:
+          type: string
+        dbHomeId:
+          type: string
+        lifecycleState:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
     Error:
       type: object
       properties:
@@ -273,19 +258,34 @@ components:
         timeCreated:
           type: string
           format: date-time
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
   securitySchemes:
     ociSignature:
       type: http

@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Oracle Database Data Guard API
   x-refined-note:
-  - x-summary differs across the merged source definitions and was not carried
+  - x-refined-note differs across the merged source definitions and was not carried
   version: '1.0'
   description: 'Operations tagged Data Guard across 3 of this provider''s published API definitions: oracle-database-oci-openapi.yml, oracle-database-ords-openapi.yml, oracle-database-data-guard-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
@@ -269,6 +269,16 @@ paths:
       security:
       - oauth2: []
       - basicAuth: []
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
     get:
       tags:
       - Data Guard
@@ -295,16 +305,6 @@ paths:
       security:
       - oauth2: []
       - basicAuth: []
-    servers:
-    - url: https://{host}:{port}/ords
-      description: ORDS Server
-      variables:
-        host:
-          default: localhost
-          description: ORDS server hostname
-        port:
-          default: '8443'
-          description: ORDS server port
   /database/dataguard/configuration/properties/:
     get:
       tags:
@@ -322,6 +322,33 @@ paths:
       x-filename-id: database-dataguard-configuration-properties-get
       operationId: getDatabaseDataguardConfigurationProperties
       x-operation-id-source: derived
+    servers:
+    - url: https://database.{region}.oraclecloud.com/20160918
+      description: OCI Database Service Regional Endpoint
+      variables:
+        region:
+          default: us-ashburn-1
+          description: OCI region identifier
+          enum:
+          - us-ashburn-1
+          - us-phoenix-1
+          - eu-frankfurt-1
+          - uk-london-1
+          - ap-tokyo-1
+          - ap-mumbai-1
+          - ca-toronto-1
+          - ap-sydney-1
+          - sa-saopaulo-1
+          - ap-seoul-1
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/dataguard/configuration/properties/{property}:
     get:
       tags:
@@ -396,6 +423,33 @@ paths:
       x-filename-id: database-dataguard-configuration-properties-property-put
       operationId: putDatabaseDataguardConfigurationPropertiesByProperty
       x-operation-id-source: derived
+    servers:
+    - url: https://database.{region}.oraclecloud.com/20160918
+      description: OCI Database Service Regional Endpoint
+      variables:
+        region:
+          default: us-ashburn-1
+          description: OCI region identifier
+          enum:
+          - us-ashburn-1
+          - us-phoenix-1
+          - eu-frankfurt-1
+          - uk-london-1
+          - ap-tokyo-1
+          - ap-mumbai-1
+          - ca-toronto-1
+          - ap-sydney-1
+          - sa-saopaulo-1
+          - ap-seoul-1
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/dataguard/databases/{database}/instances/:
     get:
       tags:
@@ -420,6 +474,33 @@ paths:
       x-filename-id: database-dataguard-databases-database-instances-get
       operationId: getDatabaseDataguardDatabasesByDatabaseInstances
       x-operation-id-source: derived
+    servers:
+    - url: https://database.{region}.oraclecloud.com/20160918
+      description: OCI Database Service Regional Endpoint
+      variables:
+        region:
+          default: us-ashburn-1
+          description: OCI region identifier
+          enum:
+          - us-ashburn-1
+          - us-phoenix-1
+          - eu-frankfurt-1
+          - uk-london-1
+          - ap-tokyo-1
+          - ap-mumbai-1
+          - ca-toronto-1
+          - ap-sydney-1
+          - sa-saopaulo-1
+          - ap-seoul-1
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/dataguard/databases/{database}/instances/{instance}:
     delete:
       tags:
@@ -462,6 +543,33 @@ paths:
       x-filename-id: database-dataguard-databases-database-instances-instance-delete
       operationId: deleteDatabaseDataguardDatabasesByDatabaseInstancesByInstance
       x-operation-id-source: derived
+    servers:
+    - url: https://database.{region}.oraclecloud.com/20160918
+      description: OCI Database Service Regional Endpoint
+      variables:
+        region:
+          default: us-ashburn-1
+          description: OCI region identifier
+          enum:
+          - us-ashburn-1
+          - us-phoenix-1
+          - eu-frankfurt-1
+          - uk-london-1
+          - ap-tokyo-1
+          - ap-mumbai-1
+          - ca-toronto-1
+          - ap-sydney-1
+          - sa-saopaulo-1
+          - ap-seoul-1
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/dataguard/databases/{database}/properties/:
     get:
       tags:
@@ -486,6 +594,33 @@ paths:
       x-filename-id: database-dataguard-databases-database-properties-get
       operationId: getDatabaseDataguardDatabasesByDatabaseProperties
       x-operation-id-source: derived
+    servers:
+    - url: https://database.{region}.oraclecloud.com/20160918
+      description: OCI Database Service Regional Endpoint
+      variables:
+        region:
+          default: us-ashburn-1
+          description: OCI region identifier
+          enum:
+          - us-ashburn-1
+          - us-phoenix-1
+          - eu-frankfurt-1
+          - uk-london-1
+          - ap-tokyo-1
+          - ap-mumbai-1
+          - ca-toronto-1
+          - ap-sydney-1
+          - sa-saopaulo-1
+          - ap-seoul-1
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/dataguard/databases/{database}/properties/{property}:
     get:
       tags:
@@ -573,7 +708,68 @@ paths:
       x-filename-id: database-dataguard-databases-database-properties-property-put
       operationId: putDatabaseDataguardDatabasesByDatabasePropertiesByProperty
       x-operation-id-source: derived
+    servers:
+    - url: https://database.{region}.oraclecloud.com/20160918
+      description: OCI Database Service Regional Endpoint
+      variables:
+        region:
+          default: us-ashburn-1
+          description: OCI region identifier
+          enum:
+          - us-ashburn-1
+          - us-phoenix-1
+          - eu-frankfurt-1
+          - uk-london-1
+          - ap-tokyo-1
+          - ap-mumbai-1
+          - ca-toronto-1
+          - ap-sydney-1
+          - sa-saopaulo-1
+          - ap-seoul-1
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
 components:
+  parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+  responses:
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    Unauthorized_2:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
   schemas:
     Error:
       type: object
@@ -631,63 +827,6 @@ components:
           - CONVERT
           - SWITCHOVER
           - FAILOVER
-    DataGuardDatabase:
-      type: object
-      properties:
-        database_name:
-          type: string
-        role:
-          type: string
-          enum:
-          - PRIMARY
-          - PHYSICAL_STANDBY
-          - LOGICAL_STANDBY
-          - SNAPSHOT_STANDBY
-        enabled:
-          type: boolean
-        transport_lag:
-          type: string
-        apply_lag:
-          type: string
-    CreateDataGuardConfigRequest:
-      type: object
-      required:
-      - configuration_name
-      properties:
-        configuration_name:
-          type: string
-        protection_mode:
-          type: string
-          enum:
-          - MAXIMUM_AVAILABILITY
-          - MAXIMUM_PERFORMANCE
-          - MAXIMUM_PROTECTION
-    Error_2:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
-    DataGuardDatabaseList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataGuardDatabase'
-    AddDataGuardDatabaseRequest:
-      type: object
-      required:
-      - database_name
-      - connect_identifier
-      properties:
-        database_name:
-          type: string
-        connect_identifier:
-          type: string
     DataGuardConfiguration:
       type: object
       properties:
@@ -708,15 +847,134 @@ components:
           type: boolean
         protection_mode:
           type: string
-    DataguardConfigurationPropertyItem:
+    Error_2:
       type: object
       properties:
-        property:
+        code:
+          type: integer
+        message:
           type: string
-        property_type:
+        type:
           type: string
-        value:
+    DataGuardDatabaseList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataGuardDatabase'
+    CreateDataGuardConfigRequest:
+      type: object
+      required:
+      - configuration_name
+      properties:
+        configuration_name:
           type: string
+        protection_mode:
+          type: string
+          enum:
+          - MAXIMUM_AVAILABILITY
+          - MAXIMUM_PERFORMANCE
+          - MAXIMUM_PROTECTION
+    DataGuardDatabase:
+      type: object
+      properties:
+        database_name:
+          type: string
+        role:
+          type: string
+          enum:
+          - PRIMARY
+          - PHYSICAL_STANDBY
+          - LOGICAL_STANDBY
+          - SNAPSHOT_STANDBY
+        enabled:
+          type: boolean
+        transport_lag:
+          type: string
+        apply_lag:
+          type: string
+    AddDataGuardDatabaseRequest:
+      type: object
+      required:
+      - database_name
+      - connect_identifier
+      properties:
+        database_name:
+          type: string
+        connect_identifier:
+          type: string
+    DataguardConfigurationPropertiesCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataguardConfigurationPropertyItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DataguardInstanceCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataguardInstanceItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DataguardConfigurationItemLinks:
+      type: object
+      properties:
+        inst_id:
+          type: integer
+        database:
+          type: string
+        connection_identifier:
+          type: string
+        dataguard_role:
+          type: string
+        redo_source:
+          type: string
+        enabled:
+          type: string
+        status:
+          type: integer
+        severity:
+          type: string
+        status_message:
+          type: string
+        version:
+          type: string
+        con_id:
+          type: integer
         links:
           type: array
           items:
@@ -773,58 +1031,6 @@ components:
           type: string
         database_type:
           type: string
-    DataguardInstanceCollection:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataguardInstanceItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    DataguardConfigurationItemLinks:
-      type: object
-      properties:
-        inst_id:
-          type: integer
-        database:
-          type: string
-        connection_identifier:
-          type: string
-        dataguard_role:
-          type: string
-        redo_source:
-          type: string
-        enabled:
-          type: string
-        status:
-          type: integer
-        severity:
-          type: string
-        status_message:
-          type: string
-        version:
-          type: string
-        con_id:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
     LinkRelation:
       type: object
       properties:
@@ -835,6 +1041,19 @@ components:
       required:
       - rel
       - href
+    DataguardConfigurationPropertyItem:
+      type: object
+      properties:
+        property:
+          type: string
+        property_type:
+          type: string
+        value:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     ErrorObject:
       type: object
       properties:
@@ -846,63 +1065,6 @@ components:
           type: string
         instance:
           type: string
-    DataguardConfigurationPropertiesCollection:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataguardConfigurationPropertyItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-  responses:
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-    Unauthorized_2:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-  parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
   securitySchemes:
     ociSignature:
       type: http

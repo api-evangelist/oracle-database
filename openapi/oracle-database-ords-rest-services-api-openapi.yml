@@ -1384,6 +1384,24 @@ components:
           $asof:
             description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
             type: object
+    ResourceItem:
+      type: object
+      additionalProperties: true
+      properties:
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
     RestClientSecretItem:
       type: object
       description: This object represents a new client secret .
@@ -1404,47 +1422,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    ResourceItem:
-      type: object
-      additionalProperties: true
-      properties:
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    ItemsCollection:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
     RestClientCollectionItem:
       type: object
       description: ORDS OAuth clients
@@ -1537,7 +1514,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
+    ItemsCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
   parameters:
+    Limit:
+      name: limit
+      in: query
+      description: The maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        format: int32
     Filter:
       name: q
       in: query
@@ -1552,21 +1560,7 @@ components:
           $ref: '#/components/examples/OrderByProperty'
         FilterAndOrderExample:
           $ref: '#/components/examples/FilterAndOrder'
-    Limit:
-      name: limit
-      in: query
-      description: The maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        format: int32
   examples:
-    OrderByProperty:
-      summary: Order by with literals.
-      value:
-        $orderby:
-          SALARY: ASC
-          ENAME: DESC
     FilterCriteria:
       summary: Implicit EQUALS operator for a number. Supports String and Dates too.
       value:
@@ -1578,6 +1572,12 @@ components:
           $like: AX%
         $orderby:
           ENAME: ASC
+    OrderByProperty:
+      summary: Order by with literals.
+      value:
+        $orderby:
+          SALARY: ASC
+          ENAME: DESC
   securitySchemes:
     BasicAuth:
       type: http

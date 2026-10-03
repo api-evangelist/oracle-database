@@ -833,86 +833,19 @@ paths:
       x-internal-id: data-tools-credentials-{owner},{credential_name}-delete
       x-filename-id: data-tools-credentials-owner-credential_name-delete
 components:
-  responses:
-    data-tools-jobs:
-      description: Data Tools jobs
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/data-tools-jobs'
-    data-tools-job:
-      description: Data Tools job
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/data-tools-job'
-    cloud-storage-links:
-      description: Multiple Cloud Storage Links
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/cloud-storage-links'
-    credentials:
-      description: Multiple Credentials
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/credentials'
-    data-load-statuses:
-      description: Status of multiple data loads
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/data-load-statuses'
-    live-table-feeds:
-      description: Live Table Feeds
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/live-table-feeds'
-    data-load-job-ids:
-      description: List of Data Loads
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/data-load-job-ids'
-    live-table-feed-key:
-      description: Live Table Feed notification Key
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/live-table-feed-key'
-    surveys:
-      description: Surveys of input files
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/surveys'
   requestBodies:
-    surveys:
-      description: Surveys to perform
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/survey-requests'
-    data-loads:
-      description: Data Loads to perform
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/data-loads'
     credentials:
       description: Credentials to create
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/credentials'
-    data-tools-job:
-      description: Data Tools Job
+    surveys:
+      description: Surveys to perform
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/data-tools-job'
+            $ref: '#/components/schemas/survey-requests'
     live-table-feeds:
       description: Live Table Feeds to create
       content:
@@ -925,7 +858,423 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/cloud-storage-links'
+    data-loads:
+      description: Data Loads to perform
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/data-loads'
+    data-tools-job:
+      description: Data Tools Job
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/data-tools-job'
   schemas:
+    credential:
+      type: object
+      properties:
+        owner:
+          type: string
+          description: Owner of the credential.
+          example: SCOTT
+        credential_name:
+          type: string
+          description: Name of the credential.
+          example: MYCRED
+        username:
+          type: string
+          example: CLOUDUSER
+        password:
+          type: string
+          example: trustno1
+        windows_domain:
+          type: string
+          example: MYCOMPANY
+        comments:
+          type: string
+          example: Created via DBMS_CLOUD.create_credential
+        enabled:
+          type: string
+          example: 'TRUE'
+    live_feed_timestamp:
+      type: string
+      example: '2009-08-12T07:47:21.212121000-04:00'
+      description: A data and time of the format YYYY-MM-DDTHH24:MI:SS.FFTZH:TZM
+    data-load:
+      type: object
+      properties:
+        data_load_name:
+          $ref: '#/components/schemas/data_load_name'
+        data_load_job_id:
+          $ref: '#/components/schemas/data_load_job_id'
+        table_name:
+          $ref: '#/components/schemas/table_name'
+        table_schema:
+          $ref: '#/components/schemas/schema_name'
+        objects:
+          $ref: '#/components/schemas/data_load_objects'
+        storage_link_name:
+          $ref: '#/components/schemas/storage_link_name'
+        columns:
+          $ref: '#/components/schemas/columns'
+        object_filter:
+          $ref: '#/components/schemas/object_filter'
+        object_filter_type:
+          $ref: '#/components/schemas/object_filter_type'
+        partition_column_name:
+          type: string
+          example: FISCAL_YEAR
+          description: Column name to partition table on
+        format:
+          $ref: '#/components/schemas/format'
+        sql_statements:
+          $ref: '#/components/schemas/sql_statements'
+        merge_keys:
+          type: array
+          items:
+            type: string
+            description: Column name to merge on
+          example: '[ ''RECORD_ID'' ]'
+        table_exists_action:
+          type: string
+          example: APPEND
+          description: Action to take when there is an existing table.
+          enum:
+          - SKIP
+          - APPEND
+          - TRUNCATE
+          - MERGE
+          - REPLACE
+        target_type:
+          type: string
+          example: TABLE
+          description: Type of database object to create.
+          enum:
+          - TABLE
+          - EXTERNAL_TABLE
+    sql_statements:
+      type: array
+      items:
+        description: SQL statement
+        type: string
+      description: SQL statements to perform database operation
+      example:
+      - CREATE TABLE "MYSCHEMA"."EXAMPLE_TABLE"("ID" NUMBER, "DATE_RECV" DATE);
+    storage_link_name:
+      type: string
+      example: MY-BUCKET
+      description: Name of Cloud Storage Link
+    email-array:
+      type: array
+      example:
+      - data_studio_user@oracle.com
+      - oci_enthusiast@oracle.com
+      items:
+        description: Email address to notify
+        type: string
+        example: data_studio_user@oracle.com
+    live_table_feed_name:
+      type: string
+      example: SALES_FEED
+    data_tools_step:
+      type: object
+      description: Step of a Data Tools job
+      discriminator:
+        propertyName: type
+        mapping:
+          data_load: data_tools_step_data_load
+          smart_table: data_tools_step_smart_table
+          procedure: data_tools_step_procedure
+          live_feed: data_tools_step_live_feed
+          http: data_tools_step_http
+      properties:
+        type:
+          type: string
+          example: data_load
+          description: Type of step
+          enum:
+          - data_load
+          - smart_table
+          - procedure
+          - live_feed
+          - http
+        step_name:
+          type: string
+          example: LOAD_MY_TABLE
+          description: Optional name of step
+        on_errors:
+          type: string
+          example: continue
+          description: Action when encountering step error
+          enum:
+          - stop
+          - continue
+      required:
+      - type
+    survey-request:
+      type: object
+      properties:
+        survey_name:
+          $ref: '#/components/schemas/survey_name'
+        objects:
+          $ref: '#/components/schemas/data_load_objects'
+        storage_link_name:
+          $ref: '#/components/schemas/storage_link_name'
+        format:
+          $ref: '#/components/schemas/format'
+    surveys:
+      type: object
+      properties:
+        surveys:
+          type: array
+          items:
+            $ref: '#/components/schemas/survey'
+    object_filter:
+      type: string
+      example: '*.csv'
+      description: Filter to select subset of files
+    table_name:
+      type: string
+      example: SALES
+      description: Table name to load
+    cloud-storage-link:
+      type: object
+      properties:
+        storage_link_name:
+          $ref: '#/components/schemas/storage_link_name'
+        storage_link_description:
+          type: string
+          example: My bucket for CSV files
+          description: Description of Cloud Storage Link
+        credential_name:
+          type: string
+          example: MYCRED
+          description: Credential name used to access bucket
+        uri:
+          type: string
+          example: https://objectstorage.us-ashburn-1.oraclecloud.com/n/kdnmfs3kdj2x/b/my-bucket/o/
+          description: URI of bucket for Cloud Storage Links
+        sql_statements:
+          $ref: '#/components/schemas/sql_statements'
+    live-table-feed:
+      type: object
+      properties:
+        live_table_feed_name:
+          $ref: '#/components/schemas/live_table_feed_name'
+        table_name:
+          $ref: '#/components/schemas/table_name'
+        table_schema:
+          $ref: '#/components/schemas/schema_name'
+        column_list:
+          $ref: '#/components/schemas/columns'
+        object_type:
+          $ref: '#/components/schemas/live_feed_object_type'
+        object_format:
+          $ref: '#/components/schemas/loader_format'
+        storage_link_name:
+          $ref: '#/components/schemas/storage_link_name'
+        object_filter:
+          $ref: '#/components/schemas/object_filter'
+        object_filter_type:
+          $ref: '#/components/schemas/object_filter_type'
+        scheduled:
+          type: boolean
+          example: true
+          description: Is the Live Table Feed scheduler job enabled?
+        scheduler_interval:
+          type: string
+          example: FREQ=DAILY;BYHOUR=9;BYMINUTE=30;BYDAY=MON,TUE,WED,THU,FRI
+          description: DBMS_SCHEDULER interval for Live Table Feed job
+        notifications:
+          type: boolean
+          example: false
+          description: Is the Live Table Feed enabled for notifications?
+        job_class:
+          $ref: '#/components/schemas/job_class'
+        start_date:
+          $ref: '#/components/schemas/live_feed_timestamp'
+          example: '2009-08-12T07:47:21.212121000-04:00'
+        end_date:
+          $ref: '#/components/schemas/live_feed_timestamp'
+          example: '2013-06-05T06:36:21.212121000-04:00'
+        sql_statements:
+          $ref: '#/components/schemas/sql_statements'
+    data-tools-job:
+      type: object
+      properties:
+        job_name:
+          $ref: '#/components/schemas/data_tools_job_name'
+        owner:
+          $ref: '#/components/schemas/schema_name'
+        description:
+          type: string
+          example: My job to load and manipulate data
+          description: Descrip1tion of the Data Tools job
+        steps:
+          type: array
+          items:
+            $ref: '#/components/schemas/data_tools_step'
+          example:
+          - type: data_load
+            step_name: Load the SALES table
+            data_load_name: SALES_LOAD
+            on_errors: stop
+          - type: smart_table
+            step_name: Get the birth year from the date
+            recipe: EXTRACT_BIRTH_YEAR_FROM_DATE
+            on_errors: continue
+          - type: procedure
+            procedure: DBMS_OUTPUT.PUT_LINE
+            arguments:
+            - Print this!
+          - type: http
+            url: https://data-tools-enthusiast.adb.us-ashburn-1.oraclecloudapps.com/my-endpoint
+            method: POST
+            credential_name: MYAUTHTOKEN
+            body: '{ "status": "done" }'
+        start_date:
+          $ref: '#/components/schemas/live_feed_timestamp'
+          example: '2009-08-12T07:47:21.212121000-04:00'
+        repeat_interval:
+          type: string
+          example: FREQ=DAILY;BYHOUR=9;BYMINUTE=30;BYDAY=MON,TUE,WED,THU,FRI
+          description: DBMS_SCHEDULER interval for Data Tools job
+        end_date:
+          $ref: '#/components/schemas/live_feed_timestamp'
+          example: '2013-06-05T06:36:21.212121000-04:00'
+        reporting:
+          $ref: '#/components/schemas/data-tools-job-reporting'
+    credentials:
+      type: object
+      properties:
+        credentials:
+          type: array
+          items:
+            $ref: '#/components/schemas/credential'
+    survey:
+      type: object
+      properties:
+        survey_name:
+          $ref: '#/components/schemas/survey_name'
+        objects:
+          $ref: '#/components/schemas/data_load_objects'
+        storage_link_name:
+          $ref: '#/components/schemas/storage_link_name'
+        format:
+          $ref: '#/components/schemas/format'
+        columns:
+          $ref: '#/components/schemas/columns'
+    object_filter_type:
+      type: string
+      description: Type of matching for object_filter
+      example: GLOB
+      enum:
+      - GLOB
+      - REGEX
+    data_tools_job_name:
+      type: string
+      example: LOAD_AND_MODIFY_SALES
+    job_class:
+      type: string
+      example: HIGH
+      description: Scheduler job class
+    data-load-job-id:
+      type: object
+      description: ID of data load job
+      properties:
+        data_load_job_id:
+          $ref: '#/components/schemas/data_load_job_id'
+    data-loads:
+      type: object
+      properties:
+        data_loads:
+          type: array
+          items:
+            $ref: '#/components/schemas/data-load'
+    loader_format:
+      type: object
+      description: SQL Loader options
+      example:
+        ignoreblanklines: true
+        ignoremissingcolumns: true
+        blankasnull: true
+        rejectlimit: 10000
+        trimspaces: lrtrim
+        characterset: AL32UTF8
+        skipheaders: 1
+    survey_name:
+      type: string
+      example: SALES-SURVEY-20220605-112233-4567
+      description: Name of input data survey
+    data-tools-jobs:
+      type: object
+      properties:
+        data_loads:
+          type: array
+          items:
+            $ref: '#/components/schemas/data-tools-job'
+    format:
+      type: object
+      example:
+        delimiter: ','
+        blankasnull: true
+        characterset: AL32UTF8
+      description: DBMS_CLOUD.COPY_DATA formatting options
+    data-load-status:
+      type: object
+      description: Status of a data load job
+      properties:
+        data_load_job_id:
+          $ref: '#/components/schemas/data_load_job_id'
+        progress:
+          type: integer
+          example: 42
+          description: Percentage complete
+        rows_loaded:
+          type: integer
+          example: 10342
+          description: Rows loaded so far
+        rows_rejected:
+          type: integer
+          example: 3
+          description: Rows rejected so far
+        rows_total:
+          type: integer
+          example: 16572
+          description: Total rows for completed job
+        rows_total_estimate:
+          type: integer
+          example: 15000
+          description: Estimated total rows for in-progress job
+        state:
+          type: string
+          enum:
+          - RUNNING
+          - COMPLETE
+          - INPROGRESS
+          - WAITING
+        timestamp:
+          type: string
+          example: '2022-06-05 07:30:00'
+        time_completion:
+          type: string
+          example: '2022-05-29 01:30:00'
+        exception_details:
+          type: object
+          description: Exception details for failed job
+    data-load-job-ids:
+      type: object
+      description: List of data load job IDs
+      properties:
+        data_load_job_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/data-load-job-id'
+    schema_name:
+      type: string
+      example: SH
+      description: Database object schema
     column:
       type: object
       properties:
@@ -1016,17 +1365,10 @@ components:
           type: string
           example: KM
           description: Unit of GEOJson data for column from SDO_UNITS_OF_MEASURE table
-    loader_format:
-      type: object
-      description: SQL Loader options
-      example:
-        ignoreblanklines: true
-        ignoremissingcolumns: true
-        blankasnull: true
-        rejectlimit: 10000
-        trimspaces: lrtrim
-        characterset: AL32UTF8
-        skipheaders: 1
+    data_load_job_id:
+      type: string
+      example: SALES-LOAD-20220529-112233-4567
+      description: Name of data load job
     data_load_object:
       type: object
       properties:
@@ -1034,119 +1376,13 @@ components:
           type: string
           description: Name of object to load
           example: sales.csv
-    column_name:
-      type: string
-      example: UNITS
-      description: Column name in table
-    live-table-feed:
+    live-table-feeds:
       type: object
       properties:
-        live_table_feed_name:
-          $ref: '#/components/schemas/live_table_feed_name'
-        table_name:
-          $ref: '#/components/schemas/table_name'
-        table_schema:
-          $ref: '#/components/schemas/schema_name'
-        column_list:
-          $ref: '#/components/schemas/columns'
-        object_type:
-          $ref: '#/components/schemas/live_feed_object_type'
-        object_format:
-          $ref: '#/components/schemas/loader_format'
-        storage_link_name:
-          $ref: '#/components/schemas/storage_link_name'
-        object_filter:
-          $ref: '#/components/schemas/object_filter'
-        object_filter_type:
-          $ref: '#/components/schemas/object_filter_type'
-        scheduled:
-          type: boolean
-          example: true
-          description: Is the Live Table Feed scheduler job enabled?
-        scheduler_interval:
-          type: string
-          example: FREQ=DAILY;BYHOUR=9;BYMINUTE=30;BYDAY=MON,TUE,WED,THU,FRI
-          description: DBMS_SCHEDULER interval for Live Table Feed job
-        notifications:
-          type: boolean
-          example: false
-          description: Is the Live Table Feed enabled for notifications?
-        job_class:
-          $ref: '#/components/schemas/job_class'
-        start_date:
-          $ref: '#/components/schemas/live_feed_timestamp'
-          example: '2009-08-12T07:47:21.212121000-04:00'
-        end_date:
-          $ref: '#/components/schemas/live_feed_timestamp'
-          example: '2013-06-05T06:36:21.212121000-04:00'
-        sql_statements:
-          $ref: '#/components/schemas/sql_statements'
-    live_feed_object_type:
-      type: string
-      enum:
-      - CSV
-      - JSON
-      - XLSX
-      - IMAGE
-      - ICEBERG
-    data-tools-job-reporting-options:
-      type: object
-      properties:
-        smtp:
-          $ref: '#/components/schemas/email-array'
-    object_filter_type:
-      type: string
-      description: Type of matching for object_filter
-      example: GLOB
-      enum:
-      - GLOB
-      - REGEX
-    cloud-storage-links:
-      type: object
-      properties:
-        cloud_storage_links:
+        live_table_feeds:
           type: array
           items:
-            $ref: '#/components/schemas/cloud-storage-link'
-    data_tools_step:
-      type: object
-      description: Step of a Data Tools job
-      discriminator:
-        propertyName: type
-        mapping:
-          data_load: data_tools_step_data_load
-          smart_table: data_tools_step_smart_table
-          procedure: data_tools_step_procedure
-          live_feed: data_tools_step_live_feed
-          http: data_tools_step_http
-      properties:
-        type:
-          type: string
-          example: data_load
-          description: Type of step
-          enum:
-          - data_load
-          - smart_table
-          - procedure
-          - live_feed
-          - http
-        step_name:
-          type: string
-          example: LOAD_MY_TABLE
-          description: Optional name of step
-        on_errors:
-          type: string
-          example: continue
-          description: Action when encountering step error
-          enum:
-          - stop
-          - continue
-      required:
-      - type
-    storage_link_name:
-      type: string
-      example: MY-BUCKET
-      description: Name of Cloud Storage Link
+            $ref: '#/components/schemas/live-table-feed'
     data-load-statuses:
       type: object
       description: Status of data load jobs
@@ -1155,329 +1391,30 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/data-load-status'
-    sql_statements:
-      type: array
-      items:
-        description: SQL statement
-        type: string
-      description: SQL statements to perform database operation
-      example:
-      - CREATE TABLE "MYSCHEMA"."EXAMPLE_TABLE"("ID" NUMBER, "DATE_RECV" DATE);
-    credential:
+    live_feed_object_type:
+      type: string
+      enum:
+      - CSV
+      - JSON
+      - XLSX
+      - IMAGE
+      - ICEBERG
+    cloud-storage-links:
       type: object
       properties:
-        owner:
-          type: string
-          description: Owner of the credential.
-          example: SCOTT
-        credential_name:
-          type: string
-          description: Name of the credential.
-          example: MYCRED
-        username:
-          type: string
-          example: CLOUDUSER
-        password:
-          type: string
-          example: trustno1
-        windows_domain:
-          type: string
-          example: MYCOMPANY
-        comments:
-          type: string
-          example: Created via DBMS_CLOUD.create_credential
-        enabled:
-          type: string
-          example: 'TRUE'
-    live_feed_timestamp:
-      type: string
-      example: '2009-08-12T07:47:21.212121000-04:00'
-      description: A data and time of the format YYYY-MM-DDTHH24:MI:SS.FFTZH:TZM
-    format:
-      type: object
-      example:
-        delimiter: ','
-        blankasnull: true
-        characterset: AL32UTF8
-      description: DBMS_CLOUD.COPY_DATA formatting options
-    survey:
-      type: object
-      properties:
-        survey_name:
-          $ref: '#/components/schemas/survey_name'
-        objects:
-          $ref: '#/components/schemas/data_load_objects'
-        storage_link_name:
-          $ref: '#/components/schemas/storage_link_name'
-        format:
-          $ref: '#/components/schemas/format'
-        columns:
-          $ref: '#/components/schemas/columns'
-    survey_name:
-      type: string
-      example: SALES-SURVEY-20220605-112233-4567
-      description: Name of input data survey
-    data_load_job_id:
-      type: string
-      example: SALES-LOAD-20220529-112233-4567
-      description: Name of data load job
-    table_name:
-      type: string
-      example: SALES
-      description: Table name to load
-    cloud-storage-link:
-      type: object
-      properties:
-        storage_link_name:
-          $ref: '#/components/schemas/storage_link_name'
-        storage_link_description:
-          type: string
-          example: My bucket for CSV files
-          description: Description of Cloud Storage Link
-        credential_name:
-          type: string
-          example: MYCRED
-          description: Credential name used to access bucket
-        uri:
-          type: string
-          example: https://objectstorage.us-ashburn-1.oraclecloud.com/n/kdnmfs3kdj2x/b/my-bucket/o/
-          description: URI of bucket for Cloud Storage Links
-        sql_statements:
-          $ref: '#/components/schemas/sql_statements'
-    surveys:
-      type: object
-      properties:
-        surveys:
+        cloud_storage_links:
           type: array
           items:
-            $ref: '#/components/schemas/survey'
-    data-load:
-      type: object
-      properties:
-        data_load_name:
-          $ref: '#/components/schemas/data_load_name'
-        data_load_job_id:
-          $ref: '#/components/schemas/data_load_job_id'
-        table_name:
-          $ref: '#/components/schemas/table_name'
-        table_schema:
-          $ref: '#/components/schemas/schema_name'
-        objects:
-          $ref: '#/components/schemas/data_load_objects'
-        storage_link_name:
-          $ref: '#/components/schemas/storage_link_name'
-        columns:
-          $ref: '#/components/schemas/columns'
-        object_filter:
-          $ref: '#/components/schemas/object_filter'
-        object_filter_type:
-          $ref: '#/components/schemas/object_filter_type'
-        partition_column_name:
-          type: string
-          example: FISCAL_YEAR
-          description: Column name to partition table on
-        format:
-          $ref: '#/components/schemas/format'
-        sql_statements:
-          $ref: '#/components/schemas/sql_statements'
-        merge_keys:
-          type: array
-          items:
-            type: string
-            description: Column name to merge on
-          example: '[ ''RECORD_ID'' ]'
-        table_exists_action:
-          type: string
-          example: APPEND
-          description: Action to take when there is an existing table.
-          enum:
-          - SKIP
-          - APPEND
-          - TRUNCATE
-          - MERGE
-          - REPLACE
-        target_type:
-          type: string
-          example: TABLE
-          description: Type of database object to create.
-          enum:
-          - TABLE
-          - EXTERNAL_TABLE
-    data-tools-job:
-      type: object
-      properties:
-        job_name:
-          $ref: '#/components/schemas/data_tools_job_name'
-        owner:
-          $ref: '#/components/schemas/schema_name'
-        description:
-          type: string
-          example: My job to load and manipulate data
-          description: Descrip1tion of the Data Tools job
-        steps:
-          type: array
-          items:
-            $ref: '#/components/schemas/data_tools_step'
-          example:
-          - type: data_load
-            step_name: Load the SALES table
-            data_load_name: SALES_LOAD
-            on_errors: stop
-          - type: smart_table
-            step_name: Get the birth year from the date
-            recipe: EXTRACT_BIRTH_YEAR_FROM_DATE
-            on_errors: continue
-          - type: procedure
-            procedure: DBMS_OUTPUT.PUT_LINE
-            arguments:
-            - Print this!
-          - type: http
-            url: https://data-tools-enthusiast.adb.us-ashburn-1.oraclecloudapps.com/my-endpoint
-            method: POST
-            credential_name: MYAUTHTOKEN
-            body: '{ "status": "done" }'
-        start_date:
-          $ref: '#/components/schemas/live_feed_timestamp'
-          example: '2009-08-12T07:47:21.212121000-04:00'
-        repeat_interval:
-          type: string
-          example: FREQ=DAILY;BYHOUR=9;BYMINUTE=30;BYDAY=MON,TUE,WED,THU,FRI
-          description: DBMS_SCHEDULER interval for Data Tools job
-        end_date:
-          $ref: '#/components/schemas/live_feed_timestamp'
-          example: '2013-06-05T06:36:21.212121000-04:00'
-        reporting:
-          $ref: '#/components/schemas/data-tools-job-reporting'
-    email-array:
-      type: array
-      example:
-      - data_studio_user@oracle.com
-      - oci_enthusiast@oracle.com
-      items:
-        description: Email address to notify
-        type: string
-        example: data_studio_user@oracle.com
-    data-load-job-id:
-      type: object
-      description: ID of data load job
-      properties:
-        data_load_job_id:
-          $ref: '#/components/schemas/data_load_job_id'
-    live_table_feed_name:
+            $ref: '#/components/schemas/cloud-storage-link'
+    column_name:
       type: string
-      example: SALES_FEED
-    job_class:
-      type: string
-      example: HIGH
-      description: Scheduler job class
-    data_load_name:
-      type: string
-      example: MY_LOAD_OF_SALES
-      description: Descriptive name for data load
-    data-tools-jobs:
+      example: UNITS
+      description: Column name in table
+    data-tools-job-reporting-options:
       type: object
       properties:
-        data_loads:
-          type: array
-          items:
-            $ref: '#/components/schemas/data-tools-job'
-    data-loads:
-      type: object
-      properties:
-        data_loads:
-          type: array
-          items:
-            $ref: '#/components/schemas/data-load'
-    object_filter:
-      type: string
-      example: '*.csv'
-      description: Filter to select subset of files
-    data-load-job-ids:
-      type: object
-      description: List of data load job IDs
-      properties:
-        data_load_job_ids:
-          type: array
-          items:
-            $ref: '#/components/schemas/data-load-job-id'
-    survey-requests:
-      type: object
-      properties:
-        surveys:
-          type: array
-          items:
-            $ref: '#/components/schemas/survey-request'
-    data_tools_job_name:
-      type: string
-      example: LOAD_AND_MODIFY_SALES
-    live-table-feed-key:
-      type: object
-      properties:
-        live_table_feed_key:
-          type: string
-          example: x17sSGjaXrCgy2QQKKIpMdMi1zESM_kRX9g4#f5Y6ZUNi#SYo4Y4qjJRyXKiOlTyWnU01vx#vF1lBS#bTzC4gNeZZ1Zih#iK3Qoo
-          description: Key for notification services to trigger the Live Feed
-    data_load_objects:
-      type: array
-      items:
-        $ref: '#/components/schemas/data_load_object'
-      example:
-      - object_name: sales1976.csv
-      - object_name: sales2009.csv
-      - object_name: sales2013.csv
-    survey-request:
-      type: object
-      properties:
-        survey_name:
-          $ref: '#/components/schemas/survey_name'
-        objects:
-          $ref: '#/components/schemas/data_load_objects'
-        storage_link_name:
-          $ref: '#/components/schemas/storage_link_name'
-        format:
-          $ref: '#/components/schemas/format'
-    data-load-status:
-      type: object
-      description: Status of a data load job
-      properties:
-        data_load_job_id:
-          $ref: '#/components/schemas/data_load_job_id'
-        progress:
-          type: integer
-          example: 42
-          description: Percentage complete
-        rows_loaded:
-          type: integer
-          example: 10342
-          description: Rows loaded so far
-        rows_rejected:
-          type: integer
-          example: 3
-          description: Rows rejected so far
-        rows_total:
-          type: integer
-          example: 16572
-          description: Total rows for completed job
-        rows_total_estimate:
-          type: integer
-          example: 15000
-          description: Estimated total rows for in-progress job
-        state:
-          type: string
-          enum:
-          - RUNNING
-          - COMPLETE
-          - INPROGRESS
-          - WAITING
-        timestamp:
-          type: string
-          example: '2022-06-05 07:30:00'
-        time_completion:
-          type: string
-          example: '2022-05-29 01:30:00'
-        exception_details:
-          type: object
-          description: Exception details for failed job
+        smtp:
+          $ref: '#/components/schemas/email-array'
     columns:
       type: array
       items:
@@ -1500,24 +1437,87 @@ components:
           $ref: '#/components/schemas/data-tools-job-reporting-options'
         failed:
           $ref: '#/components/schemas/data-tools-job-reporting-options'
-    schema_name:
+    live-table-feed-key:
+      type: object
+      properties:
+        live_table_feed_key:
+          type: string
+          example: x17sSGjaXrCgy2QQKKIpMdMi1zESM_kRX9g4#f5Y6ZUNi#SYo4Y4qjJRyXKiOlTyWnU01vx#vF1lBS#bTzC4gNeZZ1Zih#iK3Qoo
+          description: Key for notification services to trigger the Live Feed
+    data_load_name:
       type: string
-      example: SH
-      description: Database object schema
-    live-table-feeds:
+      example: MY_LOAD_OF_SALES
+      description: Descriptive name for data load
+    survey-requests:
       type: object
       properties:
-        live_table_feeds:
+        surveys:
           type: array
           items:
-            $ref: '#/components/schemas/live-table-feed'
+            $ref: '#/components/schemas/survey-request'
+    data_load_objects:
+      type: array
+      items:
+        $ref: '#/components/schemas/data_load_object'
+      example:
+      - object_name: sales1976.csv
+      - object_name: sales2009.csv
+      - object_name: sales2013.csv
+  responses:
+    data-tools-job:
+      description: Data Tools job
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/data-tools-job'
+    data-tools-jobs:
+      description: Data Tools jobs
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/data-tools-jobs'
+    cloud-storage-links:
+      description: Multiple Cloud Storage Links
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/cloud-storage-links'
+    live-table-feed-key:
+      description: Live Table Feed notification Key
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/live-table-feed-key'
     credentials:
-      type: object
-      properties:
-        credentials:
-          type: array
-          items:
-            $ref: '#/components/schemas/credential'
+      description: Multiple Credentials
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/credentials'
+    surveys:
+      description: Surveys of input files
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/surveys'
+    data-load-job-ids:
+      description: List of Data Loads
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/data-load-job-ids'
+    live-table-feeds:
+      description: Live Table Feeds
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/live-table-feeds'
+    data-load-statuses:
+      description: Status of multiple data loads
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/data-load-statuses'
   securitySchemes:
     BasicAuth:
       type: http

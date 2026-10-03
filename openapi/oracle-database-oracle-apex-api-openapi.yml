@@ -554,78 +554,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    APEXApplicationsItem:
-      type: object
-      description: This object represents a single row on APEX_APPLICATIONS.
-      properties:
-        application_id:
-          type: integer
-          description: Application Primary Key, Unique over all workspaces.
-        application_name:
-          type: string
-          description: The name of this application.
-        application_alias:
-          type: string
-          description: The alternate alphanumeric application identifier.
-        application_group:
-          type: string
-          description: The alternate alphanumeric application identifier.
-        application_owner:
-          type: string
-          description: The alternate alphanumeric application identifier.
-        page_count:
-          type: integer
-          description: Number of application pages.
-        workspace:
-          type: string
-          description: The internal name of the workspace.
-        availability_status:
-          type: string
-          description: Specifies whether or not the application is available or unavailable for use.
-        last_updated_by:
-          type: string
-          description: Last updated by.
-        last_updated_on:
-          type: string
-          description: The date and time of the last update.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
-    APEXDatasets:
-      type: object
-      description: This object represents data from APEX_DR_DATASETS view.
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatasetItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
     APEXUsageStatisticsItem:
       type: object
       description: This object represents a APEX_WORKSPACE_LOG_ARCHIVE record of page view activity. Page view activity is a daily summary of workspace activity that is retained until physically purged.
@@ -682,6 +610,54 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    APEXApplicationsItem:
+      type: object
+      description: This object represents a single row on APEX_APPLICATIONS.
+      properties:
+        application_id:
+          type: integer
+          description: Application Primary Key, Unique over all workspaces.
+        application_name:
+          type: string
+          description: The name of this application.
+        application_alias:
+          type: string
+          description: The alternate alphanumeric application identifier.
+        application_group:
+          type: string
+          description: The alternate alphanumeric application identifier.
+        application_owner:
+          type: string
+          description: The alternate alphanumeric application identifier.
+        page_count:
+          type: integer
+          description: Number of application pages.
+        workspace:
+          type: string
+          description: The internal name of the workspace.
+        availability_status:
+          type: string
+          description: Specifies whether or not the application is available or unavailable for use.
+        last_updated_by:
+          type: string
+          description: Last updated by.
+        last_updated_on:
+          type: string
+          description: The date and time of the last update.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     APEXUsageStatistics:
       type: object
       properties:
@@ -705,7 +681,39 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
+    APEXDatasets:
+      type: object
+      description: This object represents data from APEX_DR_DATASETS view.
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatasetItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
   parameters:
+    Limit:
+      name: limit
+      in: query
+      description: The maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        format: int32
     Filter:
       name: q
       in: query
@@ -720,21 +728,7 @@ components:
           $ref: '#/components/examples/OrderByProperty'
         FilterAndOrderExample:
           $ref: '#/components/examples/FilterAndOrder'
-    Limit:
-      name: limit
-      in: query
-      description: The maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        format: int32
   examples:
-    OrderByProperty:
-      summary: Order by with literals.
-      value:
-        $orderby:
-          SALARY: ASC
-          ENAME: DESC
     FilterCriteria:
       summary: Implicit EQUALS operator for a number. Supports String and Dates too.
       value:
@@ -746,6 +740,12 @@ components:
           $like: AX%
         $orderby:
           ENAME: ASC
+    OrderByProperty:
+      summary: Order by with literals.
+      value:
+        $orderby:
+          SALARY: ASC
+          ENAME: DESC
   securitySchemes:
     BasicAuth:
       type: http

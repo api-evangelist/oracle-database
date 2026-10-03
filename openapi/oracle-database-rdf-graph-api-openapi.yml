@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Oracle Database RDF Graph API
   x-refined-note:
-  - x-summary differs across the merged source definitions and was not carried
+  - x-refined-note differs across the merged source definitions and was not carried
   version: '1.0'
   description: 'Operations tagged RDF Graph across 2 of this provider''s published API definitions: oracle-database-ords-openapi.yml, oracle-database-rdf-graph-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
@@ -108,6 +108,16 @@ paths:
     parameters:
     - $ref: '#/components/parameters/NetworkOwner'
     - $ref: '#/components/parameters/NetworkName'
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
     delete:
       tags:
       - RDF Graph
@@ -136,16 +146,6 @@ paths:
       security:
       - oauth2: []
       - basicAuth: []
-    servers:
-    - url: https://{host}:{port}/ords
-      description: ORDS Server
-      variables:
-        host:
-          default: localhost
-          description: ORDS server hostname
-        port:
-          default: '8443'
-          description: ORDS server port
   /database/rdf/networks/{network_owner},{network_name}/models/:
     get:
       operationId: getRDFModels
@@ -356,6 +356,16 @@ paths:
       x-filename-id: database-rdf-networks-network_owner-network_name-models-model_name-delete
       operationId: deleteDatabaseRdfNetworksByNetworkOwner},{networkNameModelsByModelName
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/rdf/networks/{network_owner},{network_name}/entailments/:
     get:
       tags:
@@ -381,6 +391,16 @@ paths:
       x-filename-id: database-rdf-networks-network_owner-network_name-entailments-get
       operationId: getDatabaseRdfNetworksByNetworkOwner},{networkNameEntailments
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/rdf/networks/{network_owner},{network_name}/entailments/{entailment_name}:
     parameters:
     - $ref: '#/components/parameters/NetworkOwner'
@@ -455,6 +475,16 @@ paths:
       x-filename-id: database-rdf-networks-network_owner-network_name-entailments-entailment_name-delete
       operationId: deleteDatabaseRdfNetworksByNetworkOwner},{networkNameEntailmentsByEntailmentName
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/rdf/networks/{network_owner},{network_name}/virtual_models/:
     get:
       tags:
@@ -480,6 +510,16 @@ paths:
       x-filename-id: database-rdf-networks-network_owner-network_name-virtual_models-get
       operationId: getDatabaseRdfNetworksByNetworkOwner},{networkNameVirtualModels
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/rdf/networks/{network_owner},{network_name}/virtual_models/{virtual_model_name}:
     parameters:
     - $ref: '#/components/parameters/NetworkOwner'
@@ -555,6 +595,16 @@ paths:
       x-filename-id: database-rdf-networks-network_owner-network_name-virtual_models-virtual_model_name-delete
       operationId: deleteDatabaseRdfNetworksByNetworkOwner},{networkNameVirtualModelsByVirtualModelName
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/rdf/networks/{network_owner},{network_name}/models/{model_name}/sparql2sql/1.1:
     parameters:
     - $ref: '#/components/parameters/NetworkOwner'
@@ -642,6 +692,16 @@ paths:
       x-filename-id: database-rdf-networks-network_owner-network_name-models-model_name-sparql2sql-1.1-post
       operationId: postDatabaseRdfNetworksByNetworkOwner},{networkNameModelsByModelNameSparql2sql11
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/rdf/networks/{network_owner},{network_name}/models/{model_name}/graph_store/1.1:
     parameters:
     - $ref: '#/components/parameters/NetworkOwner'
@@ -807,6 +867,16 @@ paths:
       x-filename-id: database-rdf-networks-network_owner-network_name-models-model_name-graph_store-1.1-delete
       operationId: deleteDatabaseRdfNetworksByNetworkOwner},{networkNameModelsByModelNameGraphStore11
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
   /database/rdf/networks/{network_owner},{network_name}/models/{model_name}/search:
     parameters:
     - $ref: '#/components/parameters/NetworkOwner'
@@ -873,7 +943,36 @@ paths:
       x-filename-id: database-rdf-networks-network_owner-network_name-models-model_name-search-get
       operationId: getDatabaseRdfNetworksByNetworkOwner},{networkNameModelsByModelNameSearch
       x-operation-id-source: derived
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
 components:
+  responses:
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     RDFNetwork:
       type: object
@@ -882,6 +981,27 @@ components:
           type: string
         network_name:
           type: string
+    RDFNetworkList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RDFNetwork'
+    RDFModelList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              model_name:
+                type: string
+              network_owner:
+                type: string
+              network_name:
+                type: string
     SPARQLResults:
       type: object
       properties:
@@ -899,20 +1019,6 @@ components:
               type: array
               items:
                 type: object
-    RDFModelList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              model_name:
-                type: string
-              network_owner:
-                type: string
-              network_name:
-                type: string
     Error:
       type: object
       properties:
@@ -922,97 +1028,6 @@ components:
           type: string
         type:
           type: string
-    RDFNetworkList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/RDFNetwork'
-    RDFTextSearchResultCollection:
-      description: A collection of RDF text search results.
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/RDFTextSearchResultElem'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    VirtualModelDetailCollection:
-      description: A collection of RDF virtual model metadata items.
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/VirtualModelDetailSingle'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    ModelDetailSingle:
-      description: Metadata for a single RDF model.
-      type: object
-      properties:
-        owner:
-          type: string
-          example: M1
-          description: the owner of the model
-        model_id:
-          type: string
-          example: 1
-          description: the ID of the model
-        model_name:
-          type: string
-          example: M1
-          description: the name of the model
-        table_name:
-          type: string
-          example: null
-          description: the name of the application table associated with the model (null for schema-private networks)
-        column_name:
-          type: string
-          example: null
-          description: the name of the SDO_RDF_TRIPLE_S column in the application table associated with the model (null for schema-private networks)
-        model_tablespace_name:
-          type: string
-          example: DATA
-          description: the tablespace used to store model data
-        model_type:
-          type: string
-          example: M
-          description: the type of model (M for regular model; V for virtual model; X for model created to store the contents of the semantic index; or D for model created on relational data)
-        inmemory:
-          type: string
-          example: F
-          description: indicates if the model is an in-memory virtual model (T for in-memory, or F for not in-memory)
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    RDFTextSearchResultElem:
-      description: A single RDF text search result element.
-      type: object
-      properties:
-        sub:
-          type: string
-          example: <http://example.oracle.com/oracle_corporation>
-          description: the subject resource
-        vals:
-          type: string
-          example: third largest <b>software</b> company in the world... a suite of enterprise <b>software</b> products
-          description: an aggregation of text snippets from object values that match the search string
-        score:
-          type: string
-          example: 14
-          description: the maximum relevance score over all matched object values
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
     EntailmentDetailSingle:
       type: object
       description: This object represents metadata about an RDF entailment.
@@ -1045,6 +1060,38 @@ components:
           type: string
           example: MODEL M1, RULEBASE OWLPRIME
           description: a comma-delimited list of the names of models and rulebases used to build the entailment
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    RDFTextSearchResultElem:
+      description: A single RDF text search result element.
+      type: object
+      properties:
+        sub:
+          type: string
+          example: <http://example.oracle.com/oracle_corporation>
+          description: the subject resource
+        vals:
+          type: string
+          example: third largest <b>software</b> company in the world... a suite of enterprise <b>software</b> products
+          description: an aggregation of text snippets from object values that match the search string
+        score:
+          type: string
+          example: 14
+          description: the maximum relevance score over all matched object values
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    VirtualModelDetailCollection:
+      description: A collection of RDF virtual model metadata items.
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VirtualModelDetailSingle'
         links:
           type: array
           items:
@@ -1093,6 +1140,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
+    RDFTextSearchResultCollection:
+      description: A collection of RDF text search results.
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/RDFTextSearchResultElem'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     EntailmentDetailCollection:
       description: A collection of RDF entailment metadata items.
       type: object
@@ -1101,6 +1160,46 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EntailmentDetailSingle'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    ModelDetailSingle:
+      description: Metadata for a single RDF model.
+      type: object
+      properties:
+        owner:
+          type: string
+          example: M1
+          description: the owner of the model
+        model_id:
+          type: string
+          example: 1
+          description: the ID of the model
+        model_name:
+          type: string
+          example: M1
+          description: the name of the model
+        table_name:
+          type: string
+          example: null
+          description: the name of the application table associated with the model (null for schema-private networks)
+        column_name:
+          type: string
+          example: null
+          description: the name of the SDO_RDF_TRIPLE_S column in the application table associated with the model (null for schema-private networks)
+        model_tablespace_name:
+          type: string
+          example: DATA
+          description: the tablespace used to store model data
+        model_type:
+          type: string
+          example: M
+          description: the type of model (M for regular model; V for virtual model; X for model created to store the contents of the semantic index; or D for model created on relational data)
+        inmemory:
+          type: string
+          example: F
+          description: indicates if the model is an in-memory virtual model (T for in-memory, or F for not in-memory)
         links:
           type: array
           items:
@@ -1115,25 +1214,6 @@ components:
       required:
       - rel
       - href
-  responses:
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     DefaultGraphUri:
       in: query
@@ -1141,6 +1221,54 @@ components:
       required: false
       example: http%3A%2F%2Fwww.example.oracle.com%2Fg1
       description: A URL-encoded IRI identifying a named graph that should be included in the DEFAULT graph of the query dataset.
+      schema:
+        type: string
+    ModelName:
+      name: model_name
+      in: path
+      required: true
+      example: M1
+      description: The name of the RDF model.
+      schema:
+        type: string
+    Offset:
+      name: offset
+      in: query
+      description: The index of the first record to start returning results for. Used with pagination.
+      required: false
+      schema:
+        type: integer
+        format: int32
+    Limit:
+      name: limit
+      in: query
+      description: The maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        format: int32
+    NetworkOwner:
+      name: network_owner
+      in: path
+      required: true
+      example: RDFUSER
+      description: The owner of the RDF network.
+      schema:
+        type: string
+    NamedGraphUri:
+      in: query
+      name: named-graph-uri
+      required: false
+      example: http%3A%2F%2Fwww.example.oracle.com%2Fg2
+      description: A URL-encoded IRI identifying a named graph that should be included in the set of named graphs for the query dataset.
+      schema:
+        type: string
+    NetworkName:
+      name: network_name
+      in: path
+      required: true
+      example: NET1
+      description: The name of the RDF network.
       schema:
         type: string
     SparqlOptions:
@@ -1154,123 +1282,7 @@ components:
           description: See the options argument of SEM_MATCH
           url: https://docs.oracle.com/en/database/oracle/oracle-database/26/rdfrm/using-sem_match-table-function-query-rdf-data.html#GUID-71464CC4-1C03-48A4-9A4C-0E671FF8F16E
         type: string
-    NetworkName:
-      name: network_name
-      in: path
-      required: true
-      example: NET1
-      description: The name of the RDF network.
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      description: The maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        format: int32
-    NamedGraphUri:
-      in: query
-      name: named-graph-uri
-      required: false
-      example: http%3A%2F%2Fwww.example.oracle.com%2Fg2
-      description: A URL-encoded IRI identifying a named graph that should be included in the set of named graphs for the query dataset.
-      schema:
-        type: string
-    ModelName:
-      name: model_name
-      in: path
-      required: true
-      example: M1
-      description: The name of the RDF model.
-      schema:
-        type: string
-    NetworkOwner:
-      name: network_owner
-      in: path
-      required: true
-      example: RDFUSER
-      description: The owner of the RDF network.
-      schema:
-        type: string
-    Offset:
-      name: offset
-      in: query
-      description: The index of the first record to start returning results for. Used with pagination.
-      required: false
-      schema:
-        type: integer
-        format: int32
   requestBodies:
-    createEntailment:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              models:
-                type: array
-                items:
-                  type: string
-                description: List of models to use for the entailment
-              rulebases:
-                type: array
-                items:
-                  type: string
-                  example: OWLPRIME
-                description: List of rulebases to use for the entailment
-              inf_components:
-                type: array
-                items:
-                  type: string
-                description: List of keywords representing inference components, for performing selective or component-based inferencing (the default is all components defined by the included rulebases)
-              options:
-                type: string
-                description: A comma-delimited string of options to control the inference process by overriding the default inference behavior
-            required:
-            - models
-            - rulebases
-          examples:
-            basic_entailment:
-              summary: This is an example of creating an entailment using an ontology model (TBOX), a data model (ABOX), and the OWL2RL rulebase.
-              value:
-                models:
-                - TBOX
-                - ABOX
-                rulebases:
-                - OWL2RL
-            entailment_with_options:
-              summary: This is an example of creating an OWL2 RL entailment using a degree of parallelism of 16 and without generating extra assertions for individuals based on owl:sameAs.
-              value:
-                models:
-                - M1
-                rulebases:
-                - OWL2RL
-                inf_components:
-                - SAM-
-                options: DOP=16
-    createModel:
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              tablespace_name:
-                type: string
-                description: The name of the tablespace in which to create the RDF model
-              options:
-                type: string
-                description: Options to use when creating the RDF model
-          examples:
-            supplied_tbs:
-              summary: This is an example of creating a model in a specific tablespace (MY_TBS). By default a model is created in the tablespace used for network creation.
-              value:
-                tablespace_name: MY_TBS
-            compression:
-              summary: This is an example of creating a model with Advanced Row Compression (ROW STORE COMPRESS ADVANCED).
-              value:
-                options: COMPRESS=RSCA
     createVirtualModel:
       content:
         application/json:
@@ -1322,6 +1334,74 @@ components:
                 - DATA_MODEL
                 entailments:
                 - SCHEMA_ENTAILMENT
+    createModel:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              tablespace_name:
+                type: string
+                description: The name of the tablespace in which to create the RDF model
+              options:
+                type: string
+                description: Options to use when creating the RDF model
+          examples:
+            supplied_tbs:
+              summary: This is an example of creating a model in a specific tablespace (MY_TBS). By default a model is created in the tablespace used for network creation.
+              value:
+                tablespace_name: MY_TBS
+            compression:
+              summary: This is an example of creating a model with Advanced Row Compression (ROW STORE COMPRESS ADVANCED).
+              value:
+                options: COMPRESS=RSCA
+    createEntailment:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              models:
+                type: array
+                items:
+                  type: string
+                description: List of models to use for the entailment
+              rulebases:
+                type: array
+                items:
+                  type: string
+                  example: OWLPRIME
+                description: List of rulebases to use for the entailment
+              inf_components:
+                type: array
+                items:
+                  type: string
+                description: List of keywords representing inference components, for performing selective or component-based inferencing (the default is all components defined by the included rulebases)
+              options:
+                type: string
+                description: A comma-delimited string of options to control the inference process by overriding the default inference behavior
+            required:
+            - models
+            - rulebases
+          examples:
+            basic_entailment:
+              summary: This is an example of creating an entailment using an ontology model (TBOX), a data model (ABOX), and the OWL2RL rulebase.
+              value:
+                models:
+                - TBOX
+                - ABOX
+                rulebases:
+                - OWL2RL
+            entailment_with_options:
+              summary: This is an example of creating an OWL2 RL entailment using a degree of parallelism of 16 and without generating extra assertions for individuals based on owl:sameAs.
+              value:
+                models:
+                - M1
+                rulebases:
+                - OWL2RL
+                inf_components:
+                - SAM-
+                options: DOP=16
   securitySchemes:
     oauth2:
       type: oauth2
@@ -1355,6 +1435,9 @@ components:
         clientCredentials:
           tokenUrl: /oauth/token
           scopes: {}
+externalDocs:
+  description: ORDS REST API Documentation
+  url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/25.4/orrst/
 x-refined-from:
 - oracle-database-ords-openapi.yml
 - oracle-database-rdf-graph-api-openapi.yml

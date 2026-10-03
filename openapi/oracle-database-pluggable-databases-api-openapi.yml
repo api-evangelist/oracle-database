@@ -349,11 +349,42 @@ paths:
           default: '8443'
           description: ORDS server port
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound_2:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    Unauthorized_2:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
   parameters:
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
       schema:
         type: string
     compartmentIdParam:
@@ -361,6 +392,12 @@ components:
       in: query
       required: true
       description: The OCID of the compartment
+      schema:
+        type: string
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
       schema:
         type: string
     limitParam:
@@ -371,13 +408,43 @@ components:
         type: integer
         minimum: 1
         maximum: 1000
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
   schemas:
+    PluggableDatabaseSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        containerDatabaseId:
+          type: string
+        pdbName:
+          type: string
+        lifecycleState:
+          type: string
+        openMode:
+          type: string
+        timeCreated:
+          type: string
+          format: date-time
+    CreatePluggableDatabaseDetails:
+      type: object
+      required:
+      - containerDatabaseId
+      - pdbName
+      properties:
+        containerDatabaseId:
+          type: string
+        pdbName:
+          type: string
+        pdbAdminPassword:
+          type: string
+          format: password
+        tdeWalletPassword:
+          type: string
+          format: password
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
     PluggableDatabase:
       type: object
       properties:
@@ -415,42 +482,6 @@ components:
               type: string
             pdbIpDefault:
               type: string
-    PluggableDatabaseSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        containerDatabaseId:
-          type: string
-        pdbName:
-          type: string
-        lifecycleState:
-          type: string
-        openMode:
-          type: string
-        timeCreated:
-          type: string
-          format: date-time
-    CreatePluggableDatabaseDetails:
-      type: object
-      required:
-      - containerDatabaseId
-      - pdbName
-      properties:
-        containerDatabaseId:
-          type: string
-        pdbName:
-          type: string
-        pdbAdminPassword:
-          type: string
-          format: password
-        tdeWalletPassword:
-          type: string
-          format: password
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
     Error:
       type: object
       properties:
@@ -469,19 +500,6 @@ components:
           type: object
           additionalProperties:
             type: object
-    UpdatePDBRequest:
-      type: object
-      properties:
-        state:
-          type: string
-          enum:
-          - OPEN
-          - CLOSE
-        open_mode:
-          type: string
-          enum:
-          - READ WRITE
-          - READ ONLY
     PDBList:
       type: object
       properties:
@@ -489,6 +507,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PDB'
+    PDB:
+      type: object
+      properties:
+        pdb_name:
+          type: string
+        pdb_id:
+          type: integer
+        status:
+          type: string
+        open_mode:
+          type: string
+        total_size:
+          type: integer
+          format: int64
+        creation_time:
+          type: string
+          format: date-time
+    Error_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
     CreatePDBRequest:
       type: object
       required:
@@ -508,63 +552,19 @@ components:
         storage_limit:
           type: integer
           format: int64
-    Error_2:
+    UpdatePDBRequest:
       type: object
       properties:
-        code:
-          type: integer
-        message:
+        state:
           type: string
-        type:
-          type: string
-    PDB:
-      type: object
-      properties:
-        pdb_name:
-          type: string
-        pdb_id:
-          type: integer
-        status:
-          type: string
+          enum:
+          - OPEN
+          - CLOSE
         open_mode:
           type: string
-        total_size:
-          type: integer
-          format: int64
-        creation_time:
-          type: string
-          format: date-time
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound_2:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-    Unauthorized_2:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
+          enum:
+          - READ WRITE
+          - READ ONLY
   securitySchemes:
     ociSignature:
       type: http

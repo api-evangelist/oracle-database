@@ -346,72 +346,26 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    opcRequestIdParam:
-      name: opc-request-id
-      in: header
-      description: Unique request identifier for tracing
-      schema:
-        type: string
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
-      schema:
-        type: string
-    autonomousDatabaseIdParam:
-      name: autonomousDatabaseId
-      in: path
-      required: true
-      description: The OCID of the Autonomous Database
-      schema:
-        type: string
-    compartmentIdParam:
-      name: compartmentId
-      in: query
-      required: true
-      description: The OCID of the compartment
-      schema:
-        type: string
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
-    opcRetryTokenParam:
-      name: opc-retry-token
-      in: header
-      description: Unique retry token to prevent duplicate requests
-      schema:
-        type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    AutonomousDatabaseBackupSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        autonomousDatabaseId:
-          type: string
-        displayName:
-          type: string
-        type:
-          type: string
-        lifecycleState:
-          type: string
-        timeStarted:
-          type: string
-          format: date-time
-        isAutomatic:
-          type: boolean
     AutonomousDatabaseSummary:
       type: object
       properties:
@@ -435,6 +389,67 @@ components:
           type: string
           format: date-time
         isFreeTier:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    CreateAutonomousDatabaseBackupDetails:
+      type: object
+      required:
+      - autonomousDatabaseId
+      - displayName
+      properties:
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        isLongTermBackup:
+          type: boolean
+        retentionPeriodInDays:
+          type: integer
+    UpdateAutonomousDatabaseDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
+        isAutoScalingEnabled:
+          type: boolean
+        adminPassword:
+          type: string
+          format: password
+        whitelistedIps:
+          type: array
+          items:
+            type: string
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    AutonomousDatabaseBackupSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+        lifecycleState:
+          type: string
+        timeStarted:
+          type: string
+          format: date-time
+        isAutomatic:
           type: boolean
     CreateAutonomousDatabaseDetails:
       type: object
@@ -484,6 +499,33 @@ components:
           type: object
           additionalProperties:
             type: string
+    AutonomousDatabaseBackup:
+      type: object
+      properties:
+        id:
+          type: string
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+          enum:
+          - INCREMENTAL
+          - FULL
+          - LONG_TERM
+        lifecycleState:
+          type: string
+        databaseSizeInTBs:
+          type: number
+        timeStarted:
+          type: string
+          format: date-time
+        timeEnded:
+          type: string
+          format: date-time
+        isAutomatic:
+          type: boolean
     GenerateAutonomousDatabaseWalletDetails:
       type: object
       required:
@@ -498,13 +540,6 @@ components:
           enum:
           - ALL
           - SINGLE
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     AutonomousDatabase:
       type: object
       properties:
@@ -598,88 +633,53 @@ components:
           type: object
           additionalProperties:
             type: object
-    CreateAutonomousDatabaseBackupDetails:
-      type: object
-      required:
-      - autonomousDatabaseId
-      - displayName
-      properties:
-        autonomousDatabaseId:
-          type: string
-        displayName:
-          type: string
-        isLongTermBackup:
-          type: boolean
-        retentionPeriodInDays:
-          type: integer
-    UpdateAutonomousDatabaseDetails:
-      type: object
-      properties:
-        displayName:
-          type: string
-        cpuCoreCount:
-          type: integer
-        dataStorageSizeInTBs:
-          type: integer
-        isAutoScalingEnabled:
-          type: boolean
-        adminPassword:
-          type: string
-          format: password
-        whitelistedIps:
-          type: array
-          items:
-            type: string
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-    AutonomousDatabaseBackup:
-      type: object
-      properties:
-        id:
-          type: string
-        autonomousDatabaseId:
-          type: string
-        displayName:
-          type: string
-        type:
-          type: string
-          enum:
-          - INCREMENTAL
-          - FULL
-          - LONG_TERM
-        lifecycleState:
-          type: string
-        databaseSizeInTBs:
-          type: number
-        timeStarted:
-          type: string
-          format: date-time
-        timeEnded:
-          type: string
-          format: date-time
-        isAutomatic:
-          type: boolean
-  responses:
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    opcRetryTokenParam:
+      name: opc-retry-token
+      in: header
+      description: Unique retry token to prevent duplicate requests
+      schema:
+        type: string
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    autonomousDatabaseIdParam:
+      name: autonomousDatabaseId
+      in: path
+      required: true
+      description: The OCID of the Autonomous Database
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+    opcRequestIdParam:
+      name: opc-request-id
+      in: header
+      description: Unique request identifier for tracing
+      schema:
+        type: string
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
   securitySchemes:
     ociSignature:
       type: http

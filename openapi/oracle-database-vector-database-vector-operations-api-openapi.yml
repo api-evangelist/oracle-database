@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
   version: 2026.03.26
-  title: Oracle REST Data Services … Vector Database/Vector…
+  title: Oracle REST Data Services … Vector Database/Vector… Vector…
   contact:
     name: Oracle REST Data Services
     url: https://www.oracle.com/database/technologies/appdev/rest.html
@@ -337,6 +337,27 @@ paths:
       x-filename-id: vecdb-load-jobs-load_job_name-jobfile-get
 components:
   schemas:
+    VecDBJobItem:
+      type: object
+      properties:
+        job_name:
+          type: string
+        job_creator:
+          type: string
+        job_type:
+          type: string
+        operation:
+          type: string
+        state:
+          type: string
+        start_date:
+          type:
+          - string
+          - 'null'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     VecDBJobCollection:
       type: object
       properties:
@@ -360,27 +381,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    VecDBJobItem:
-      type: object
-      properties:
-        job_name:
-          type: string
-        job_creator:
-          type: string
-        job_type:
-          type: string
-        operation:
-          type: string
-        state:
-          type: string
-        start_date:
-          type:
-          - string
-          - 'null'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
     VecDBVectorVectorItem:
       type: object
       properties:
@@ -395,39 +395,6 @@ components:
           type:
           - object
           - 'null'
-    VecDBJobLogItem:
-      type: object
-      properties:
-        log_date:
-          type: string
-        job_name:
-          type: string
-        status:
-          type: string
-        error#:
-          type: integer
-        additional_info:
-          type:
-          - string
-          - 'null'
-        actual_start_date:
-          type: string
-        run_duration:
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
     VectorDebugFlags:
       type: object
       description: Debug flags to be used to trace vector modules
@@ -540,6 +507,29 @@ components:
           - low
           - medium
           - high
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    VecDBVectorVectorCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VecDBVectorVectorItem'
+        limit:
+          type: number
+        offset:
+          type: number
+        count:
+          type: number
     ORDSErrorResponse:
       type: object
       required:
@@ -560,19 +550,29 @@ components:
           type: string
         stackTrace:
           type: string
-    VecDBVectorVectorCollection:
+    VecDBJobLogItem:
       type: object
       properties:
-        items:
+        log_date:
+          type: string
+        job_name:
+          type: string
+        status:
+          type: string
+        error#:
+          type: integer
+        additional_info:
+          type:
+          - string
+          - 'null'
+        actual_start_date:
+          type: string
+        run_duration:
+          type: string
+        links:
           type: array
           items:
-            $ref: '#/components/schemas/VecDBVectorVectorItem'
-        limit:
-          type: number
-        offset:
-          type: number
-        count:
-          type: number
+            $ref: '#/components/schemas/LinkRelation'
   securitySchemes:
     BasicAuth:
       type: http
