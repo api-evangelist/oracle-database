@@ -12,7 +12,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 7
+edge_count: 10
 edges:
 - tag: Autonomous Databases
   spec_file: oracle-database-autonomous-databases-api-openapi.yml
@@ -33,6 +33,16 @@ edges:
   evidence: '"Launch a DB System", "Terminate a DB System", schema LaunchDbSystemDetails'
   reason: Provisioning and teardown of cloud database systems is cloud compute/storage infrastructure
     lifecycle management.
+- tag: Environment
+  spec_file: oracle-database-environment-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.78
+  evidence: POST /environment/databases/ 'Create a new database in the default Oracle Home'; 'Create a
+    new DBCA job in the default Oracle Home'
+  reason: Provisioning databases and Oracle Homes via DBCA jobs is platform/infrastructure provisioning
+    and administration, i.e. IT Infrastructure Management, not a data-governance or business capability.
 - tag: Monitoring
   spec_file: oracle-database-monitoring-api-openapi.yml
   capability_id: BC-600.40
@@ -53,6 +63,16 @@ edges:
     resources'''
   reason: Operations provision and manage cloud database instances (pluggable databases), which is compute/storage/cloud
     infrastructure provisioning — IT Infrastructure Management. No business-domain reading fits.
+- tag: Vector Database/Models
+  spec_file: oracle-database-vector-database-models-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.78
+  evidence: POST /vecdb/models/ load_model 'Load an ONNX model into de database'; DELETE /vecdb/models/{model_name}
+    drop_model
+  reason: Load, describe, list and drop ONNX models hosted in the database is explicit ML model lifecycle
+    management (MLOps), matching Artificial Intelligence Management.
 - tag: Database Homes
   spec_file: oracle-database-database-homes-api-openapi.yml
   capability_id: BC-600.50
@@ -80,3 +100,13 @@ edges:
   evidence: '"Get top SQL by CPU usage", "Get SQL execution plan", "Get active sessions history"'
   reason: SQL and session performance statistics for a database platform — IT operations monitoring and
     performance analysis, not a business capability.
+- tag: Vector Database/Inference Operations
+  spec_file: oracle-database-vector-database-inference-operations-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.72
+  evidence: POST /vecdb/embed generate_embedding 'Generate text embeddings'; POST /vecdb/rerank 'Rerank
+    documents by query relevance'
+  reason: Operations execute ML inference (embedding generation and relevance reranking) inside the database,
+    which is AI/ML model serving — Artificial Intelligence Management.
