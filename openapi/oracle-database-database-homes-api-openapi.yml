@@ -127,20 +127,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     CreateDatabaseDetails:
       type: object
       required:
@@ -190,13 +184,6 @@ components:
           type: string
         database:
           $ref: '#/components/schemas/CreateDatabaseDetails'
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     DbHomeSummary:
       type: object
       properties:
@@ -217,17 +204,17 @@ components:
       description: Pagination token from a previous response
       schema:
         type: string
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
     compartmentIdParam:
       name: compartmentId
       in: query
       required: true
       description: The OCID of the compartment
-      schema:
-        type: string
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
       schema:
         type: string
     limitParam:
@@ -238,6 +225,19 @@ components:
         type: integer
         minimum: 1
         maximum: 1000
+  responses:
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ociSignature:
       type: http

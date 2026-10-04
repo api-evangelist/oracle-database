@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
   version: 2026.03.26
-  title: Oracle REST Data Services Vector Database/Inference……
+  title: Oracle REST Data Services Vector Database/Inference………
   contact:
     name: Oracle REST Data Services
     url: https://www.oracle.com/database/technologies/appdev/rest.html
@@ -118,11 +118,81 @@ paths:
       x-filename-id: vecdb-rerank-post
 components:
   schemas:
+    VectorEmbedResponse:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: array
+          description: List of generated embeddings.
+          items:
+            $ref: '#/components/schemas/VectorEmbedItem'
     VectorRerankResponse:
       type: array
       description: List of rerank results sorted by descending relevance.
       items:
         $ref: '#/components/schemas/VectorRerankItem'
+    VectorRerankItem:
+      type: object
+      required:
+      - index
+      - score
+      properties:
+        index:
+          type: integer
+          format: int32
+          description: Zero-based index of the input document in the request payload.
+        score:
+          type: number
+          format: double
+          description: Relevance score for the document (higher is more relevant).
+    VectorEmbedRequest:
+      type: object
+      required:
+      - modelName
+      - inputs
+      properties:
+        modelName:
+          type: string
+          description: The name of the text embedding model hosted in the database.
+        inputs:
+          type: array
+          description: Array of input items to embed.
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/VectorEmbedInputItem'
+        debugFlags:
+          $ref: '#/components/schemas/VectorDebugFlags'
+    VectorRerankRequest:
+      type: object
+      required:
+      - query
+      - documents
+      - modelName
+      properties:
+        query:
+          type: string
+          description: Natural language query to use for reranking.
+        documents:
+          type: array
+          description: Array of raw document strings to score.
+          minItems: 1
+          items:
+            type: string
+        modelName:
+          type: string
+          description: The name of the ONNX reranking model hosted in the database.
+        modelParams:
+          type: object
+          description: Model-specific parameters.
+          additionalProperties: true
+          properties:
+            provider:
+              type: string
+              description: Optional model provider (e.g., 'database').
+        debugFlags:
+          $ref: '#/components/schemas/VectorDebugFlags'
     VectorDebugFlags:
       type: object
       description: Debug flags to be used to trace vector modules
@@ -235,31 +305,14 @@ components:
           - low
           - medium
           - high
-    VectorEmbedItem:
+    VectorEmbedInputItem:
       type: object
       required:
       - text
-      - embedding
       properties:
         text:
           type: string
-          description: Echo of the input text.
-        embedding:
-          type: array
-          description: Embedding vector for the input text.
-          items:
-            type: number
-            format: double
-    VectorEmbedResponse:
-      type: object
-      required:
-      - data
-      properties:
-        data:
-          type: array
-          description: List of generated embeddings.
-          items:
-            $ref: '#/components/schemas/VectorEmbedItem'
+          description: Input text to embed.
     ORDSErrorResponse:
       type: object
       required:
@@ -280,74 +333,21 @@ components:
           type: string
         stackTrace:
           type: string
-    VectorRerankItem:
-      type: object
-      required:
-      - index
-      - score
-      properties:
-        index:
-          type: integer
-          format: int32
-          description: Zero-based index of the input document in the request payload.
-        score:
-          type: number
-          format: double
-          description: Relevance score for the document (higher is more relevant).
-    VectorEmbedRequest:
-      type: object
-      required:
-      - modelName
-      - inputs
-      properties:
-        modelName:
-          type: string
-          description: The name of the text embedding model hosted in the database.
-        inputs:
-          type: array
-          description: Array of input items to embed.
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/VectorEmbedInputItem'
-        debugFlags:
-          $ref: '#/components/schemas/VectorDebugFlags'
-    VectorRerankRequest:
-      type: object
-      required:
-      - query
-      - documents
-      - modelName
-      properties:
-        query:
-          type: string
-          description: Natural language query to use for reranking.
-        documents:
-          type: array
-          description: Array of raw document strings to score.
-          minItems: 1
-          items:
-            type: string
-        modelName:
-          type: string
-          description: The name of the ONNX reranking model hosted in the database.
-        modelParams:
-          type: object
-          description: Model-specific parameters.
-          additionalProperties: true
-          properties:
-            provider:
-              type: string
-              description: Optional model provider (e.g., 'database').
-        debugFlags:
-          $ref: '#/components/schemas/VectorDebugFlags'
-    VectorEmbedInputItem:
+    VectorEmbedItem:
       type: object
       required:
       - text
+      - embedding
       properties:
         text:
           type: string
-          description: Input text to embed.
+          description: Echo of the input text.
+        embedding:
+          type: array
+          description: Embedding vector for the input text.
+          items:
+            type: number
+            format: double
   securitySchemes:
     BasicAuth:
       type: http

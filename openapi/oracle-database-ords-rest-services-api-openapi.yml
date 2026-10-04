@@ -1367,57 +1367,52 @@ paths:
       operationId: getOrdsRestOverviewObjectsRecent
       x-operation-id-source: derived
 components:
+  examples:
+    OrderByProperty:
+      summary: Order by with literals.
+      value:
+        $orderby:
+          SALARY: ASC
+          ENAME: DESC
+    FilterAndOrder:
+      summary: Filter criteria supports a wide range of operators. In this example LIKE operator ($like) is used. See Oracle REST Data Services production documentation 'Filtering in Queries' section for further information on the operators available.
+      value:
+        ENAME:
+          $like: AX%
+        $orderby:
+          ENAME: ASC
+    FilterCriteria:
+      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
+      value:
+        SALARY: 1000
   schemas:
-    Filter:
+    ItemsCollection:
       type: object
-      description: See Oracle REST Data Services production documentation 'Filtering in Queries' section.
-      externalDocs:
-        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
-      anyOf:
-      - type: object
-        description: Any key / value pair for specifying a Filter Criteria.
-      - type: object
-        properties:
-          $orderby:
-            description: Specify which properties to order the result set by.
-            type: object
-          $asof:
-            description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
-            type: object
-    ResourceItem:
-      type: object
-      additionalProperties: true
       properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
         links:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
+    ResourceItem:
       type: object
+      additionalProperties: true
       properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
-    RestClientSecretItem:
-      type: object
-      description: This object represents a new client secret .
-      properties:
-        id:
-          type: integer
-          description: The original generated client identifier.
-        name:
-          type: string
-          description: The name for the client.
-        client_secret:
-          type: string
-          description: The client secret for slot 1.
-        client_secret_2:
-          type: string
-          description: The client secret for slot 2.
         links:
           type: array
           items:
@@ -1514,38 +1509,53 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    ItemsCollection:
+    LinkRelation:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    RestClientSecretItem:
+      type: object
+      description: This object represents a new client secret .
+      properties:
+        id:
           type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
+          description: The original generated client identifier.
+        name:
+          type: string
+          description: The name for the client.
+        client_secret:
+          type: string
+          description: The client secret for slot 1.
+        client_secret_2:
+          type: string
+          description: The client secret for slot 2.
         links:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
+    Filter:
+      type: object
+      description: See Oracle REST Data Services production documentation 'Filtering in Queries' section.
+      externalDocs:
+        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+      anyOf:
+      - type: object
+        description: Any key / value pair for specifying a Filter Criteria.
+      - type: object
+        properties:
+          $orderby:
+            description: Specify which properties to order the result set by.
+            type: object
+          $asof:
+            description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
+            type: object
   parameters:
-    Limit:
-      name: limit
-      in: query
-      description: The maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        format: int32
     Filter:
       name: q
       in: query
@@ -1560,24 +1570,14 @@ components:
           $ref: '#/components/examples/OrderByProperty'
         FilterAndOrderExample:
           $ref: '#/components/examples/FilterAndOrder'
-  examples:
-    FilterCriteria:
-      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
-      value:
-        SALARY: 1000
-    FilterAndOrder:
-      summary: Filter criteria supports a wide range of operators. In this example LIKE operator ($like) is used. See Oracle REST Data Services production documentation 'Filtering in Queries' section for further information on the operators available.
-      value:
-        ENAME:
-          $like: AX%
-        $orderby:
-          ENAME: ASC
-    OrderByProperty:
-      summary: Order by with literals.
-      value:
-        $orderby:
-          SALARY: ASC
-          ENAME: DESC
+    Limit:
+      name: limit
+      in: query
+      description: The maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        format: int32
   securitySchemes:
     BasicAuth:
       type: http

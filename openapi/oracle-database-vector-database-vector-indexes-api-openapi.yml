@@ -335,6 +335,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
     VectorDebugFlags:
       type: object
       description: Debug flags to be used to trace vector modules
@@ -447,16 +457,6 @@ components:
           - low
           - medium
           - high
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
     ORDSErrorResponse:
       type: object
       required:

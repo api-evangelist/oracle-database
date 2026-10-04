@@ -442,6 +442,16 @@ paths:
           default: '8443'
           description: ORDS server port
   /database/objects/:
+    servers:
+    - url: https://{host}:{port}/ords
+      description: ORDS Server
+      variables:
+        host:
+          default: localhost
+          description: ORDS server hostname
+        port:
+          default: '8443'
+          description: ORDS server port
     get:
       tags:
       - Data Dictionary
@@ -461,6 +471,7 @@ paths:
       x-filename-id: database-objects-get
       operationId: getDatabaseObjects
       x-operation-id-source: derived
+  /database/objects/{owner},{object_name},{object_type}:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -471,7 +482,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/{owner},{object_name},{object_type}:
     get:
       tags:
       - Data Dictionary
@@ -507,6 +517,7 @@ paths:
       x-filename-id: database-objects-owner-object_name-object_type-get
       operationId: getDatabaseObjectsByOwner},{objectName},{objectType
       x-operation-id-source: derived
+  /database/objects/arguments/:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -517,7 +528,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/arguments/:
     get:
       tags:
       - Data Dictionary
@@ -537,6 +547,7 @@ paths:
       x-filename-id: database-objects-arguments-get
       operationId: getDatabaseObjectsArguments
       x-operation-id-source: derived
+  /database/objects/arguments/{object_id},{subprogram_id},{argument_name}:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -547,7 +558,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/arguments/{object_id},{subprogram_id},{argument_name}:
     get:
       tags:
       - Data Dictionary
@@ -583,6 +593,7 @@ paths:
       x-filename-id: database-objects-arguments-object_id-subprogram_id-argument_name-get
       operationId: getDatabaseObjectsArgumentsByObjectId},{subprogramId},{argumentName
       x-operation-id-source: derived
+  /database/objects/foreign_keys/{owner},{constraint_name}:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -593,7 +604,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/foreign_keys/{owner},{constraint_name}:
     get:
       tags:
       - Data Dictionary
@@ -623,6 +633,7 @@ paths:
       x-filename-id: database-objects-foreign_keys-owner-constraint_name-get
       operationId: getDatabaseObjectsForeignKeysByOwner},{constraintName
       x-operation-id-source: derived
+  /database/objects/materialized_view_logs/:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -633,7 +644,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/materialized_view_logs/:
     get:
       tags:
       - Data Dictionary
@@ -653,6 +663,7 @@ paths:
       x-filename-id: database-objects-materialized_view_logs-get
       operationId: getDatabaseObjectsMaterializedViewLogs
       x-operation-id-source: derived
+  /database/objects/materialized_view_logs/{log_owner},{log_table}:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -663,7 +674,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/materialized_view_logs/{log_owner},{log_table}:
     get:
       tags:
       - Data Dictionary
@@ -693,6 +703,7 @@ paths:
       x-filename-id: database-objects-materialized_view_logs-log_owner-log_table-get
       operationId: getDatabaseObjectsMaterializedViewLogsByLogOwner},{logTable
       x-operation-id-source: derived
+  /database/objects/packages/procedures/:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -703,7 +714,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/packages/procedures/:
     get:
       tags:
       - Data Dictionary
@@ -723,6 +733,7 @@ paths:
       x-filename-id: database-objects-packages-procedures-get
       operationId: getDatabaseObjectsPackagesProcedures
       x-operation-id-source: derived
+  /database/objects/packages/procedures/{object_id},{subprogram_id}:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -733,7 +744,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/packages/procedures/{object_id},{subprogram_id}:
     get:
       tags:
       - Data Dictionary
@@ -763,6 +773,7 @@ paths:
       x-filename-id: database-objects-packages-procedures-object_id-subprogram_id-get
       operationId: getDatabaseObjectsPackagesProceduresByObjectId},{subprogramId
       x-operation-id-source: derived
+  /database/objects/partitions/:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -773,7 +784,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/partitions/:
     get:
       tags:
       - Data Dictionary
@@ -793,6 +803,7 @@ paths:
       x-filename-id: database-objects-partitions-get
       operationId: getDatabaseObjectsPartitions
       x-operation-id-source: derived
+  /database/objects/partitions/{table_owner},{table_name},{partition_name}:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -803,7 +814,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/partitions/{table_owner},{table_name},{partition_name}:
     get:
       tags:
       - Data Dictionary
@@ -839,6 +849,7 @@ paths:
       x-filename-id: database-objects-partitions-table_owner-table_name-partition_name-get
       operationId: getDatabaseObjectsPartitionsByTableOwner},{tableName},{partitionName
       x-operation-id-source: derived
+  /database/objects/synonyms/:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -849,7 +860,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/synonyms/:
     get:
       tags:
       - Data Dictionary
@@ -869,6 +879,7 @@ paths:
       x-filename-id: database-objects-synonyms-get
       operationId: getDatabaseObjectsSynonyms
       x-operation-id-source: derived
+  /database/objects/synonyms/{owner},{synonym_name}:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -879,7 +890,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/synonyms/{owner},{synonym_name}:
     get:
       tags:
       - Data Dictionary
@@ -909,6 +919,7 @@ paths:
       x-filename-id: database-objects-synonyms-owner-synonym_name-get
       operationId: getDatabaseObjectsSynonymsByOwner},{synonymName
       x-operation-id-source: derived
+  /database/tablespaces/{tablespace_name}:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -919,7 +930,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/tablespaces/{tablespace_name}:
     get:
       tags:
       - Data Dictionary
@@ -943,6 +953,7 @@ paths:
       x-filename-id: database-tablespaces-tablespace_name-get
       operationId: getDatabaseTablespacesByTablespaceName
       x-operation-id-source: derived
+  /database/objects/types/:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -953,7 +964,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/types/:
     get:
       tags:
       - Data Dictionary
@@ -973,6 +983,7 @@ paths:
       x-filename-id: database-objects-types-get
       operationId: getDatabaseObjectsTypes
       x-operation-id-source: derived
+  /database/objects/types/{owner},{type_name}:
     servers:
     - url: https://{host}:{port}/ords
       description: ORDS Server
@@ -983,7 +994,6 @@ paths:
         port:
           default: '8443'
           description: ORDS server port
-  /database/objects/types/{owner},{type_name}:
     get:
       tags:
       - Data Dictionary
@@ -1013,30 +1023,7 @@ paths:
       x-filename-id: database-objects-types-owner-type_name-get
       operationId: getDatabaseObjectsTypesByOwner},{typeName
       x-operation-id-source: derived
-    servers:
-    - url: https://{host}:{port}/ords
-      description: ORDS Server
-      variables:
-        host:
-          default: localhost
-          description: ORDS server hostname
-        port:
-          default: '8443'
-          description: ORDS server port
 components:
-  responses:
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     IndexList:
       type: object
@@ -1045,22 +1032,51 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IndexMetadata'
-    TablespaceList:
+    DatabaseLinkList:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Tablespace'
-    Error:
+            $ref: '#/components/schemas/DatabaseLink'
+    ForeignKeyList:
       type: object
       properties:
-        code:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              owner:
+                type: string
+              constraint_name:
+                type: string
+              table_name:
+                type: string
+              r_owner:
+                type: string
+              r_constraint_name:
+                type: string
+              status:
+                type: string
+    PaginatedResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items: {}
+        hasMore:
+          type: boolean
+        limit:
           type: integer
-        message:
-          type: string
-        type:
-          type: string
+        offset:
+          type: integer
+        count:
+          type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     ColumnList:
       allOf:
       - $ref: '#/components/schemas/PaginatedResponse'
@@ -1070,6 +1086,29 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/ColumnMetadata'
+    DatabaseLink:
+      type: object
+      properties:
+        owner:
+          type: string
+        db_link:
+          type: string
+        username:
+          type: string
+        host:
+          type: string
+        created:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
     IndexMetadata:
       type: object
       properties:
@@ -1082,6 +1121,38 @@ components:
         index_type:
           type: string
         uniqueness:
+          type: string
+        status:
+          type: string
+    TableMetadata:
+      type: object
+      properties:
+        owner:
+          type: string
+        table_name:
+          type: string
+        tablespace_name:
+          type: string
+        num_rows:
+          type: integer
+          format: int64
+        last_analyzed:
+          type: string
+          format: date-time
+        status:
+          type: string
+        temporary:
+          type: string
+    FunctionMetadata:
+      type: object
+      properties:
+        object_id:
+          type: integer
+        owner:
+          type: string
+        object_name:
+          type: string
+        object_type:
           type: string
         status:
           type: string
@@ -1105,6 +1176,15 @@ components:
         free_bytes:
           type: integer
           format: int64
+    TableList:
+      allOf:
+      - $ref: '#/components/schemas/PaginatedResponse'
+      - type: object
+        properties:
+          items:
+            type: array
+            items:
+              $ref: '#/components/schemas/TableMetadata'
     ColumnMetadata:
       type: object
       properties:
@@ -1122,26 +1202,6 @@ components:
           type: string
         column_id:
           type: integer
-    ForeignKeyList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              owner:
-                type: string
-              constraint_name:
-                type: string
-              table_name:
-                type: string
-              r_owner:
-                type: string
-              r_constraint_name:
-                type: string
-              status:
-                type: string
     FunctionList:
       type: object
       properties:
@@ -1149,73 +1209,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FunctionMetadata'
-    TableList:
-      allOf:
-      - $ref: '#/components/schemas/PaginatedResponse'
-      - type: object
-        properties:
-          items:
-            type: array
-            items:
-              $ref: '#/components/schemas/TableMetadata'
-    PaginatedResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items: {}
-        hasMore:
-          type: boolean
-        limit:
-          type: integer
-        offset:
-          type: integer
-        count:
-          type: integer
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    DatabaseLink:
-      type: object
-      properties:
-        owner:
-          type: string
-        db_link:
-          type: string
-        username:
-          type: string
-        host:
-          type: string
-        created:
-          type: string
-          format: date-time
-    DatabaseLinkList:
+    TablespaceList:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/DatabaseLink'
-    TableMetadata:
-      type: object
-      properties:
-        owner:
-          type: string
-        table_name:
-          type: string
-        tablespace_name:
-          type: string
-        num_rows:
-          type: integer
-          format: int64
-        last_analyzed:
-          type: string
-          format: date-time
-        status:
-          type: string
-        temporary:
-          type: string
+            $ref: '#/components/schemas/Tablespace'
     Link:
       type: object
       properties:
@@ -1224,19 +1224,29 @@ components:
         href:
           type: string
           format: uri
-    FunctionMetadata:
+    DatabaseObjectsProcedures:
       type: object
       properties:
-        object_id:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabaseObjectsProceduresItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
           type: integer
-        owner:
-          type: string
-        object_name:
-          type: string
-        object_type:
-          type: string
-        status:
-          type: string
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     DatabaseObjectsForeignKeysItem:
       type: object
       description: Describes a foreign key constraint for referential integrity.
@@ -1338,108 +1348,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    DatabaseArguments:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatabaseArgumentsItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    DatabaseObjects:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatabaseObjectsItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    DatabaseObjectsTypesItem:
-      type: object
-      description: This object describes an object type in the database.
-      properties:
-        owner:
-          type: string
-          description: Owner of the type.
-        type_name:
-          type: string
-          description: Name of the type.
-        type_oid:
-          type: string
-          description: Object identifier (OID) of the type.
-        typecode:
-          type: string
-          description: Typecode of the type.
-        attributes:
-          type: integer
-          description: Number of attributes (if any) in the type.
-        methods:
-          type: integer
-          description: Number of methods (if any) in the type.
-        predefined:
-          type: string
-          description: Indicates whether the type is a predefined type (YES) or not (NO).
-        incomplete:
-          type: string
-          description: Indicates whether the type is an incomplete type (YES) or not (NO).
-        final:
-          type: string
-          description: Indicates whether the type is a final type (YES) or not (NO).
-        instantiable:
-          type: string
-          description: Indicates whether the type is an instantiable type (YES) or not (NO).
-        persistable:
-          type: string
-          description: Indicates whether the type is a persistable type (YES) or not (NO).
-        supertype_owner:
-          type: string
-          description: Owner of the supertype (NULL if type is not a subtype).
-        supertype_name:
-          type: string
-          description: Name of the supertype (NULL if type is not a subtype).
-        local_attributes:
-          type: integer
-          description: Number of local (not inherited) attributes (if any) in the subtype.
-        local_methods:
-          type: integer
-          description: Number of local (not inherited) methods (if any) in the subtype.
-        typeid:
-          type: string
-          description: Type ID value of the type.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
     DatabaseObjectsSynonyms:
       type: object
       properties:
@@ -1463,64 +1371,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    DatabaseObjectsMaterializedViewLogsItem:
+    DatabaseObjectsMaterializedViewLogs:
       type: object
-      description: This object describes a materialized view log in the database.
       properties:
-        log_owner:
-          type: string
-          description: Owner of the materialized view log.
-        master:
-          type: string
-          description: Name of the master table or master materialized view whose changes are logged.
-        log_table:
-          type: string
-          description: Name of the table where the changes to the master table or master materialized view are logged.
-        rowids:
-          type: string
-          description: Indicates whether rowid information is recorded (YES) or not (NO).
-        primary_key:
-          type: string
-          description: Indicates whether primary key information is recorded (YES) or not (NO).
-        object_id:
-          type: string
-          description: Indicates whether object identifier information in an object table is recorded (YES) or not (NO).
-        filter_columns:
-          type: string
-          description: Indicates whether filter column information is recorded (YES) or not (NO).
-        sequence:
-          type: string
-          description: Indicates whether the sequence value, which provides additional ordering information, is recorded (YES) or not (NO).
-        include_new_values:
-          type: string
-          description: Indicates whether both old and new values are recorded (YES) or old values are recorded but new values are not recorded (NO).
-        purge_asynchronous:
-          type: string
-          description: Indicates whether the materialized view log is purged asynchronously (YES) or not (NO).
-        purge_deferred:
-          type: string
-          description: Indicates whether the materialized view log is purged in a deferred manner (YES) or not (NO).
-        purge_start:
-          type: string
-          description: For deferred purge, the purge start date.
-        purge_interval:
-          type: string
-          description: For deferred purge, the purge interval.
-        last_purge_date:
-          type: string
-          description: Date of the last purge.
-        last_purge_status:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabaseObjectsMaterializedViewLogsItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
           type: integer
-          description: Status of the last purge (error code or 0 for success).
-        num_rows_purged:
+          description: The actual page size limit on number of records applied by the server.
+        offset:
           type: integer
-          description: Number of rows purged in the last purge.
-        commit_scn_based:
-          type: string
-          description: Indicates whether the materialized view log is commit SCN-based (YES) or not (NO).
-        staging_log:
-          type: string
-          description: Indicates whether the materialized view log is a staging log for synchronous refresh (YES) or not (NO).
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
         links:
           type: array
           items:
@@ -1587,13 +1456,99 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    DatabaseObjectsPartitions:
+    DatabaseObjectsItem:
+      type: object
+      description: A description of an object in the database.
+      properties:
+        owner:
+          type: string
+          description: Owner of the object.
+        object_name:
+          type: string
+          description: Name of the object.
+        subobject_name:
+          type: string
+          description: Name of the subobject (for example, partition).
+        object_id:
+          type: integer
+          description: Dictionary object number of the object.
+        data_object_id:
+          type: integer
+          description: Dictionary object number of the segment that contains the object.
+        object_type:
+          type: string
+          description: Type of the object (such as TABLE, INDEX).
+        created:
+          type: string
+          description: Timestamp for the creation of the object.
+        last_ddl_time:
+          type: string
+          description: Timestamp for the last modification of the object and dependent objects resulting from a DDL statement (including grants and revokes).
+        timestamp:
+          type: string
+          description: Timestamp for the specification of the object (character data).
+        status:
+          type: string
+          description: Status of the object.
+        temporary:
+          type: string
+          description: Indicates whether the object is temporary (the current session can see only data that it placed in this object itself) (Y) or not (N).
+        generated:
+          type: string
+          description: Indicates whether the name of this object was system-generated (Y) or not (N).
+        secondary:
+          type: string
+          description: Indicates whether this is a secondary object created by the ODCIIndexCreate method of the Oracle Data Cartridge (Y) or not (N).
+        namespace:
+          type: integer
+          description: Namespace for the object.
+        edition_name:
+          type: string
+          description: Name of the edition in which the object is actual.
+        sharing:
+          type: string
+          description: Indicates if the object is a metadata-linked, data-linked or not linked.
+        editionable:
+          type: string
+          description: Indicates if the object editionable in the database.
+        oracle_maintained:
+          type: string
+          description: Denotes whether the object was created, and is maintained, by Oracle-supplied scripts (such as catalog.sql or catproc.sql). An object for which this column has the value Y must not be changed in any way except by running an Oracle-supplied script.
+        application:
+          type: string
+          description: Indicates whether the object is an Application common object (Y) or not (N).
+        default_collation:
+          type: string
+          description: Default collation for the object.
+        duplicated:
+          type: string
+          description: Indicates whether this object is duplicated on this shard (Y) or not (N).
+        sharded:
+          type: string
+          description: Indicates whether this object is sharded (Y) or not (N).
+        created_appid:
+          type: integer
+          description: ID of the Application that created the object.
+        created_vsnid:
+          type: integer
+          description: ID of the Application Version that created the object.
+        modified_appid:
+          type: integer
+          description: ID of the Application that last modified the object.
+        modified_vsnid:
+          type: integer
+          description: ID of the Application Version that last modified the object.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseArguments:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/DatabaseObjectsPartitionsItem'
+            $ref: '#/components/schemas/DatabaseArgumentsItem'
         hasMore:
           type: boolean
           description: Indicates if there are more records to be retrieved.
@@ -1606,32 +1561,6 @@ components:
         count:
           type: integer
           description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    DatabaseObjectsSynonymsItem:
-      type: object
-      description: This object describes a synonym in the database. The list of attributes may vary depending on database version.
-      properties:
-        owner:
-          type: string
-          description: Owner of the synonym.
-        synonym_name:
-          type: string
-          description: Name of the synonym.
-        table_owner:
-          type: string
-          description: Owner of the object referenced by the synonym, or creator of the referring synonym if the target is a public synonym (that is, the object referred to by TABLE_NAME). Although the column is called TABLE_OWNER, the object owned is not necessarily a table. It can be any general object such as a view, sequence, stored procedure, synonym, and so on.
-        table_name:
-          type: string
-          description: Name of the object referenced by the synonym. Although the column is called TABLE_NAME, the object does not necessarily have to be a table. It can be any general object such as a view, sequence, stored procedure, synonym, and so on.
-        db_link:
-          type: string
-          description: Name of the database link referenced, if any.
-        origin_con_id:
-          type: integer
-          description: The ID of the container where the data originates.
         links:
           type: array
           items:
@@ -1731,13 +1660,69 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    DatabaseObjectsProcedures:
+    DatabaseObjectsTypesItem:
+      type: object
+      description: This object describes an object type in the database.
+      properties:
+        owner:
+          type: string
+          description: Owner of the type.
+        type_name:
+          type: string
+          description: Name of the type.
+        type_oid:
+          type: string
+          description: Object identifier (OID) of the type.
+        typecode:
+          type: string
+          description: Typecode of the type.
+        attributes:
+          type: integer
+          description: Number of attributes (if any) in the type.
+        methods:
+          type: integer
+          description: Number of methods (if any) in the type.
+        predefined:
+          type: string
+          description: Indicates whether the type is a predefined type (YES) or not (NO).
+        incomplete:
+          type: string
+          description: Indicates whether the type is an incomplete type (YES) or not (NO).
+        final:
+          type: string
+          description: Indicates whether the type is a final type (YES) or not (NO).
+        instantiable:
+          type: string
+          description: Indicates whether the type is an instantiable type (YES) or not (NO).
+        persistable:
+          type: string
+          description: Indicates whether the type is a persistable type (YES) or not (NO).
+        supertype_owner:
+          type: string
+          description: Owner of the supertype (NULL if type is not a subtype).
+        supertype_name:
+          type: string
+          description: Name of the supertype (NULL if type is not a subtype).
+        local_attributes:
+          type: integer
+          description: Number of local (not inherited) attributes (if any) in the subtype.
+        local_methods:
+          type: integer
+          description: Number of local (not inherited) methods (if any) in the subtype.
+        typeid:
+          type: string
+          description: Type ID value of the type.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseObjects:
       type: object
       properties:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/DatabaseObjectsProceduresItem'
+            $ref: '#/components/schemas/DatabaseObjectsItem'
         hasMore:
           type: boolean
           description: Indicates if there are more records to be retrieved.
@@ -1777,22 +1762,127 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    Filter:
+    DatabaseObjectsSynonymsItem:
       type: object
-      description: See Oracle REST Data Services production documentation 'Filtering in Queries' section.
-      externalDocs:
-        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
-      anyOf:
-      - type: object
-        description: Any key / value pair for specifying a Filter Criteria.
-      - type: object
-        properties:
-          $orderby:
-            description: Specify which properties to order the result set by.
-            type: object
-          $asof:
-            description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
-            type: object
+      description: This object describes a synonym in the database. The list of attributes may vary depending on database version.
+      properties:
+        owner:
+          type: string
+          description: Owner of the synonym.
+        synonym_name:
+          type: string
+          description: Name of the synonym.
+        table_owner:
+          type: string
+          description: Owner of the object referenced by the synonym, or creator of the referring synonym if the target is a public synonym (that is, the object referred to by TABLE_NAME). Although the column is called TABLE_OWNER, the object owned is not necessarily a table. It can be any general object such as a view, sequence, stored procedure, synonym, and so on.
+        table_name:
+          type: string
+          description: Name of the object referenced by the synonym. Although the column is called TABLE_NAME, the object does not necessarily have to be a table. It can be any general object such as a view, sequence, stored procedure, synonym, and so on.
+        db_link:
+          type: string
+          description: Name of the database link referenced, if any.
+        origin_con_id:
+          type: integer
+          description: The ID of the container where the data originates.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    DatabaseObjectsPartitions:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabaseObjectsPartitionsItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabaseObjectsMaterializedViewLogsItem:
+      type: object
+      description: This object describes a materialized view log in the database.
+      properties:
+        log_owner:
+          type: string
+          description: Owner of the materialized view log.
+        master:
+          type: string
+          description: Name of the master table or master materialized view whose changes are logged.
+        log_table:
+          type: string
+          description: Name of the table where the changes to the master table or master materialized view are logged.
+        rowids:
+          type: string
+          description: Indicates whether rowid information is recorded (YES) or not (NO).
+        primary_key:
+          type: string
+          description: Indicates whether primary key information is recorded (YES) or not (NO).
+        object_id:
+          type: string
+          description: Indicates whether object identifier information in an object table is recorded (YES) or not (NO).
+        filter_columns:
+          type: string
+          description: Indicates whether filter column information is recorded (YES) or not (NO).
+        sequence:
+          type: string
+          description: Indicates whether the sequence value, which provides additional ordering information, is recorded (YES) or not (NO).
+        include_new_values:
+          type: string
+          description: Indicates whether both old and new values are recorded (YES) or old values are recorded but new values are not recorded (NO).
+        purge_asynchronous:
+          type: string
+          description: Indicates whether the materialized view log is purged asynchronously (YES) or not (NO).
+        purge_deferred:
+          type: string
+          description: Indicates whether the materialized view log is purged in a deferred manner (YES) or not (NO).
+        purge_start:
+          type: string
+          description: For deferred purge, the purge start date.
+        purge_interval:
+          type: string
+          description: For deferred purge, the purge interval.
+        last_purge_date:
+          type: string
+          description: Date of the last purge.
+        last_purge_status:
+          type: integer
+          description: Status of the last purge (error code or 0 for success).
+        num_rows_purged:
+          type: integer
+          description: Number of rows purged in the last purge.
+        commit_scn_based:
+          type: string
+          description: Indicates whether the materialized view log is commit SCN-based (YES) or not (NO).
+        staging_log:
+          type: string
+          description: Indicates whether the materialized view log is a staging log for synchronous refresh (YES) or not (NO).
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     DatabaseObjectsPartitionsItem:
       type: object
       description: This object represents partition-level partitioning information, partition storage parameters, and partition statistics generated by the DBMS_STATS package for a partition in the database. The list of attributes may vary depending on database version.
@@ -1957,134 +2047,36 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
+    Filter:
       type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
-    DatabaseObjectsItem:
-      type: object
-      description: A description of an object in the database.
-      properties:
-        owner:
-          type: string
-          description: Owner of the object.
-        object_name:
-          type: string
-          description: Name of the object.
-        subobject_name:
-          type: string
-          description: Name of the subobject (for example, partition).
-        object_id:
-          type: integer
-          description: Dictionary object number of the object.
-        data_object_id:
-          type: integer
-          description: Dictionary object number of the segment that contains the object.
-        object_type:
-          type: string
-          description: Type of the object (such as TABLE, INDEX).
-        created:
-          type: string
-          description: Timestamp for the creation of the object.
-        last_ddl_time:
-          type: string
-          description: Timestamp for the last modification of the object and dependent objects resulting from a DDL statement (including grants and revokes).
-        timestamp:
-          type: string
-          description: Timestamp for the specification of the object (character data).
-        status:
-          type: string
-          description: Status of the object.
-        temporary:
-          type: string
-          description: Indicates whether the object is temporary (the current session can see only data that it placed in this object itself) (Y) or not (N).
-        generated:
-          type: string
-          description: Indicates whether the name of this object was system-generated (Y) or not (N).
-        secondary:
-          type: string
-          description: Indicates whether this is a secondary object created by the ODCIIndexCreate method of the Oracle Data Cartridge (Y) or not (N).
-        namespace:
-          type: integer
-          description: Namespace for the object.
-        edition_name:
-          type: string
-          description: Name of the edition in which the object is actual.
-        sharing:
-          type: string
-          description: Indicates if the object is a metadata-linked, data-linked or not linked.
-        editionable:
-          type: string
-          description: Indicates if the object editionable in the database.
-        oracle_maintained:
-          type: string
-          description: Denotes whether the object was created, and is maintained, by Oracle-supplied scripts (such as catalog.sql or catproc.sql). An object for which this column has the value Y must not be changed in any way except by running an Oracle-supplied script.
-        application:
-          type: string
-          description: Indicates whether the object is an Application common object (Y) or not (N).
-        default_collation:
-          type: string
-          description: Default collation for the object.
-        duplicated:
-          type: string
-          description: Indicates whether this object is duplicated on this shard (Y) or not (N).
-        sharded:
-          type: string
-          description: Indicates whether this object is sharded (Y) or not (N).
-        created_appid:
-          type: integer
-          description: ID of the Application that created the object.
-        created_vsnid:
-          type: integer
-          description: ID of the Application Version that created the object.
-        modified_appid:
-          type: integer
-          description: ID of the Application that last modified the object.
-        modified_vsnid:
-          type: integer
-          description: ID of the Application Version that last modified the object.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    DatabaseObjectsMaterializedViewLogs:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatabaseObjectsMaterializedViewLogsItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
+      description: See Oracle REST Data Services production documentation 'Filtering in Queries' section.
+      externalDocs:
+        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+      anyOf:
+      - type: object
+        description: Any key / value pair for specifying a Filter Criteria.
+      - type: object
+        properties:
+          $orderby:
+            description: Specify which properties to order the result set by.
+            type: object
+          $asof:
+            description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
+            type: object
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        default: 25
     offsetParam:
       name: offset
       in: query
@@ -2093,6 +2085,14 @@ components:
         type: integer
         minimum: 0
         default: 0
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        default: 25
     Filter:
       name: q
       in: query
@@ -2116,10 +2116,6 @@ components:
         type: integer
         format: int32
   examples:
-    FilterCriteria:
-      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
-      value:
-        SALARY: 1000
     OrderByProperty:
       summary: Order by with literals.
       value:
@@ -2133,6 +2129,10 @@ components:
           $like: AX%
         $orderby:
           ENAME: ASC
+    FilterCriteria:
+      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
+      value:
+        SALARY: 1000
   securitySchemes:
     oauth2:
       type: oauth2

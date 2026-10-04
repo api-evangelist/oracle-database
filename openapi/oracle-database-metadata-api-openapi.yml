@@ -111,26 +111,27 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    NotFound:
-      description: The specified collection or document was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameter value
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: Link URL
+        mediaType:
+          type: string
+          description: Media type of the linked resource
     CollectionSchema:
       type: object
       properties:
@@ -173,26 +174,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: Link URL
-        mediaType:
-          type: string
-          description: Media type of the linked resource
     CatalogResponse:
       type: object
       properties:
@@ -221,6 +202,25 @@ components:
       description: The name of the SODA collection
       schema:
         type: string
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameter value
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

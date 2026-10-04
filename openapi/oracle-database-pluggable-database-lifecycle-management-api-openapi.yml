@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
   version: 2026.03.26
-  title: Oracle REST Data Services Pluggable Database Lifecycle………
+  title: Oracle REST Data Services Pluggable Database Lifecycle…………
   contact:
     name: Oracle REST Data Services
     url: https://www.oracle.com/database/technologies/appdev/rest.html
@@ -86,7 +86,119 @@ paths:
       operationId: getDatabasePdbSnapshotsByPdbNameBySnapshotName
       x-operation-id-source: derived
 components:
+  examples:
+    OrderByProperty:
+      summary: Order by with literals.
+      value:
+        $orderby:
+          SALARY: ASC
+          ENAME: DESC
+    FilterAndOrder:
+      summary: Filter criteria supports a wide range of operators. In this example LIKE operator ($like) is used. See Oracle REST Data Services production documentation 'Filtering in Queries' section for further information on the operators available.
+      value:
+        ENAME:
+          $like: AX%
+        $orderby:
+          ENAME: ASC
+    FilterCriteria:
+      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
+      value:
+        SALARY: 1000
+  parameters:
+    Filter:
+      name: q
+      in: query
+      description: Filtering is the process of limiting a collection resource by using a per-request dynamic filter definition across multiple page resources, where each page contains a subset of items found in the complete collection. Filtering enables efficient traversal of large collections.
+      required: false
+      schema:
+        $ref: '#/components/schemas/Filter'
+      examples:
+        FilterCriteriaExample:
+          $ref: '#/components/examples/FilterCriteria'
+        OrderByPropertyExample:
+          $ref: '#/components/examples/OrderByProperty'
+        FilterAndOrderExample:
+          $ref: '#/components/examples/FilterAndOrder'
+    Limit:
+      name: limit
+      in: query
+      description: The maximum number of records to return.
+      required: false
+      schema:
+        type: integer
+        format: int32
   schemas:
+    DatabasePluggableSnapshots:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DatabasePluggableSnapshotItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DatabasePluggableSnapshotWithFileItem:
+      type: object
+      description: This object describes Pluggable Database Snapshots and snapshot files associated with the current instance.
+      properties:
+        con_id:
+          type: integer
+          description: The ID of the container to which the data pertains.
+        con_uid:
+          type: integer
+          description: Unique identifier associated with the PDB.
+        con_name:
+          type: string
+          description: Name of the PDB.
+        snapshot_name:
+          type: string
+          description: Snapshot name of the PDB.
+        snapshot_scn:
+          type: integer
+          description: SCN at which the snapshot was taken.
+        previous_snapshot_scn:
+          type: integer
+          description: SCN at which the previous snapshot for the PDB was taken
+        snapshot_time:
+          type: integer
+          description: Timestamp at which the snapshot was taken.
+        previous_snapshot_time:
+          type: integer
+          description: Timestamp of the previous snapshot for this PDB.
+        full_snapshot_path:
+          type: string
+          description: Full path for the snapshot.
+        snapshot_files:
+          type: string
+          description: The snapshot files.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
     DatabasePluggableSnapshotItem:
       type: object
       description: This object describes Pluggable Database Snapshots associated with the current instance.
@@ -138,118 +250,6 @@ components:
           $asof:
             description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
             type: object
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
-    DatabasePluggableSnapshotWithFileItem:
-      type: object
-      description: This object describes Pluggable Database Snapshots and snapshot files associated with the current instance.
-      properties:
-        con_id:
-          type: integer
-          description: The ID of the container to which the data pertains.
-        con_uid:
-          type: integer
-          description: Unique identifier associated with the PDB.
-        con_name:
-          type: string
-          description: Name of the PDB.
-        snapshot_name:
-          type: string
-          description: Snapshot name of the PDB.
-        snapshot_scn:
-          type: integer
-          description: SCN at which the snapshot was taken.
-        previous_snapshot_scn:
-          type: integer
-          description: SCN at which the previous snapshot for the PDB was taken
-        snapshot_time:
-          type: integer
-          description: Timestamp at which the snapshot was taken.
-        previous_snapshot_time:
-          type: integer
-          description: Timestamp of the previous snapshot for this PDB.
-        full_snapshot_path:
-          type: string
-          description: Full path for the snapshot.
-        snapshot_files:
-          type: string
-          description: The snapshot files.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    DatabasePluggableSnapshots:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DatabasePluggableSnapshotItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-  parameters:
-    Limit:
-      name: limit
-      in: query
-      description: The maximum number of records to return.
-      required: false
-      schema:
-        type: integer
-        format: int32
-    Filter:
-      name: q
-      in: query
-      description: Filtering is the process of limiting a collection resource by using a per-request dynamic filter definition across multiple page resources, where each page contains a subset of items found in the complete collection. Filtering enables efficient traversal of large collections.
-      required: false
-      schema:
-        $ref: '#/components/schemas/Filter'
-      examples:
-        FilterCriteriaExample:
-          $ref: '#/components/examples/FilterCriteria'
-        OrderByPropertyExample:
-          $ref: '#/components/examples/OrderByProperty'
-        FilterAndOrderExample:
-          $ref: '#/components/examples/FilterAndOrder'
-  examples:
-    FilterCriteria:
-      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
-      value:
-        SALARY: 1000
-    FilterAndOrder:
-      summary: Filter criteria supports a wide range of operators. In this example LIKE operator ($like) is used. See Oracle REST Data Services production documentation 'Filtering in Queries' section for further information on the operators available.
-      value:
-        ENAME:
-          $like: AX%
-        $orderby:
-          ENAME: ASC
-    OrderByProperty:
-      summary: Order by with literals.
-      value:
-        $orderby:
-          SALARY: ASC
-          ENAME: DESC
   securitySchemes:
     BasicAuth:
       type: http

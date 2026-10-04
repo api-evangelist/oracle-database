@@ -241,6 +241,101 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
+    VecDBTableNoLinks:
+      type: object
+      properties:
+        table_name:
+          type: string
+          description: The name of the table
+        description:
+          type:
+          - string
+          - 'null'
+          description: Description of the vector table
+        auto_generate_id:
+          type: integer
+          description: Whether the ID column of the table should be auto generated. Defaults to false.
+        owner:
+          type: string
+        status:
+          type: string
+          description: Population status of the vector table.
+        vector_type:
+          type: string
+          enum:
+          - dense
+        vector_table_type:
+          type: string
+          enum:
+          - BYOV
+          - MODEL
+          description: Creation mode of the table.
+        index_params:
+          description: Index configuration for the table.
+          type:
+          - object
+          - 'null'
+          properties:
+            indexing:
+              type: string
+            organization:
+              type: string
+            distance_metric:
+              type: string
+            accuracy:
+              type: integer
+            advanced_params:
+              type: object
+              properties:
+                partitions:
+                  type:
+                  - number
+                  - 'null'
+                efConstruction:
+                  type:
+                  - number
+                  - 'null'
+                neighbors:
+                  type:
+                  - number
+                  - 'null'
+        annotations:
+          description: User metadata attached to the table.
+          type:
+          - object
+          - 'null'
+        embed_params:
+          description: Embedding model configuration (MODEL tables).
+          properties:
+            model:
+              type: string
+            embed_metadata_jsonpath:
+              type: string
+        dense_idx_name:
+          type:
+          - string
+          - 'null'
+          description: The name of the vector index associated to the vector table.
+        stats:
+          type:
+          - object
+          - 'null'
+          description: Statistics of the vector table
+          properties:
+            total_vectors:
+              type:
+              - number
+              - 'null'
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp of the vector table.
+        updated:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: Creation timestamp of the vector table.
     VectorDebugFlags:
       type: object
       description: Debug flags to be used to trace vector modules
@@ -363,130 +458,6 @@ components:
       required:
       - rel
       - href
-    VecDBTableItem:
-      allOf:
-      - $ref: '#/components/schemas/VecDBTableNoLinks'
-      - type: object
-        properties:
-          links:
-            type: array
-            items:
-              $ref: '#/components/schemas/LinkRelation'
-    VecDBTableNoLinks:
-      type: object
-      properties:
-        table_name:
-          type: string
-          description: The name of the table
-        description:
-          type:
-          - string
-          - 'null'
-          description: Description of the vector table
-        auto_generate_id:
-          type: integer
-          description: Whether the ID column of the table should be auto generated. Defaults to false.
-        owner:
-          type: string
-        status:
-          type: string
-          description: Population status of the vector table.
-        vector_type:
-          type: string
-          enum:
-          - dense
-        vector_table_type:
-          type: string
-          enum:
-          - BYOV
-          - MODEL
-          description: Creation mode of the table.
-        index_params:
-          description: Index configuration for the table.
-          type:
-          - object
-          - 'null'
-          properties:
-            indexing:
-              type: string
-            organization:
-              type: string
-            distance_metric:
-              type: string
-            accuracy:
-              type: integer
-            advanced_params:
-              type: object
-              properties:
-                partitions:
-                  type:
-                  - number
-                  - 'null'
-                efConstruction:
-                  type:
-                  - number
-                  - 'null'
-                neighbors:
-                  type:
-                  - number
-                  - 'null'
-        annotations:
-          description: User metadata attached to the table.
-          type:
-          - object
-          - 'null'
-        embed_params:
-          description: Embedding model configuration (MODEL tables).
-          properties:
-            model:
-              type: string
-            embed_metadata_jsonpath:
-              type: string
-        dense_idx_name:
-          type:
-          - string
-          - 'null'
-          description: The name of the vector index associated to the vector table.
-        stats:
-          type:
-          - object
-          - 'null'
-          description: Statistics of the vector table
-          properties:
-            total_vectors:
-              type:
-              - number
-              - 'null'
-        created:
-          type: string
-          format: date-time
-          description: Creation timestamp of the vector table.
-        updated:
-          type:
-          - string
-          - 'null'
-          format: date-time
-          description: Creation timestamp of the vector table.
-    ORDSErrorResponse:
-      type: object
-      required:
-      - code
-      - message
-      - type
-      - instance
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        type:
-          type: string
-        instance:
-          type: string
-        diagnosticTrace:
-          type: string
-        stackTrace:
-          type: string
     VectorIndexParams:
       description: Index configuration for the table.
       type: object
@@ -520,6 +491,35 @@ components:
           maximum: 100
         advanced_params:
           type: object
+    VecDBTableItem:
+      allOf:
+      - $ref: '#/components/schemas/VecDBTableNoLinks'
+      - type: object
+        properties:
+          links:
+            type: array
+            items:
+              $ref: '#/components/schemas/LinkRelation'
+    ORDSErrorResponse:
+      type: object
+      required:
+      - code
+      - message
+      - type
+      - instance
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        type:
+          type: string
+        instance:
+          type: string
+        diagnosticTrace:
+          type: string
+        stackTrace:
+          type: string
   securitySchemes:
     BasicAuth:
       type: http

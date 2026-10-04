@@ -162,29 +162,41 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    APEXOverview:
+    Error:
       type: object
       properties:
-        total_workspaces:
+        code:
           type: integer
-        total_applications:
+        message:
+          type: string
+        type:
+          type: string
+    APEXApplicationRequest:
+      type: object
+      properties:
+        application_name:
+          type: string
+        workspace:
+          type: string
+    APEXWorkspace:
+      type: object
+      properties:
+        workspace_name:
+          type: string
+        workspace_id:
           type: integer
-        total_developers:
-          type: integer
+        schemas:
+          type: array
+          items:
+            type: string
+    APEXWorkspaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/APEXWorkspace'
     APEXApplicationList:
       type: object
       properties:
@@ -201,40 +213,28 @@ components:
                 type: string
               version:
                 type: string
-    APEXApplicationRequest:
+    APEXOverview:
       type: object
       properties:
-        application_name:
-          type: string
-        workspace:
-          type: string
-    Error:
-      type: object
-      properties:
-        code:
+        total_workspaces:
           type: integer
-        message:
-          type: string
-        type:
-          type: string
-    APEXWorkspaceList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/APEXWorkspace'
-    APEXWorkspace:
-      type: object
-      properties:
-        workspace_name:
-          type: string
-        workspace_id:
+        total_applications:
           type: integer
-        schemas:
-          type: array
-          items:
-            type: string
+        total_developers:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

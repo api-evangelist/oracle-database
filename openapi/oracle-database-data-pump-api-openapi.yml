@@ -157,33 +157,16 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Bad request - invalid parameters or request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    DataPumpJobList:
+    Error:
       type: object
       properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataPumpJob'
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
     DataPumpExportRequest:
       type: object
       required:
@@ -222,15 +205,6 @@ components:
             type: string
         remap_schema:
           type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
     DataPumpJob:
       type: object
       properties:
@@ -248,6 +222,32 @@ components:
           type: integer
         attached_sessions:
           type: integer
+    DataPumpJobList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataPumpJob'
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters or request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

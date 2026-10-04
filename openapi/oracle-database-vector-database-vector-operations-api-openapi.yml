@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
   version: 2026.03.26
-  title: Oracle REST Data Services … Vector Database/Vector… Vector…
+  title: Oracle REST Data Services … Vector Database/Vector… Vector……
   contact:
     name: Oracle REST Data Services
     url: https://www.oracle.com/database/technologies/appdev/rest.html
@@ -358,43 +358,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    VecDBJobCollection:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/VecDBJobItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    VecDBVectorVectorItem:
-      type: object
-      properties:
-        id:
-          type: string
-        dense_vector:
-          type: array
-          items:
-            type: number
-            format: double
-        metadata:
-          type:
-          - object
-          - 'null'
     VectorDebugFlags:
       type: object
       description: Debug flags to be used to trace vector modules
@@ -507,6 +470,43 @@ components:
           - low
           - medium
           - high
+    VecDBVectorVectorItem:
+      type: object
+      properties:
+        id:
+          type: string
+        dense_vector:
+          type: array
+          items:
+            type: number
+            format: double
+        metadata:
+          type:
+          - object
+          - 'null'
+    VecDBJobCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VecDBJobItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     LinkRelation:
       type: object
       properties:

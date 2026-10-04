@@ -81,54 +81,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: The specified collection or document was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Document:
+    Error:
       type: object
       properties:
-        id:
-          type: string
-          description: Unique document key
-        etag:
-          type: string
-          description: Document version tag for optimistic concurrency
-        lastModified:
-          type: string
-          format: date-time
-          description: Last modification timestamp
-        created:
-          type: string
-          format: date-time
-          description: Creation timestamp
-        value:
-          type: object
-          description: Document content (when fields=value or fields=all)
-        mediaType:
-          type: string
-          description: Content type for non-JSON documents
-        bytes:
+        code:
           type: integer
-          description: Content length for non-JSON documents
-    QBEFilter:
-      type: object
-      description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
-      additionalProperties: true
-      example:
-        name: John
-        salary:
-          $gt: 50000
+        message:
+          type: string
     DocumentList:
       type: object
       properties:
@@ -155,13 +115,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     Link:
       type: object
       properties:
@@ -175,6 +128,40 @@ components:
         mediaType:
           type: string
           description: Media type of the linked resource
+    QBEFilter:
+      type: object
+      description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
+      additionalProperties: true
+      example:
+        name: John
+        salary:
+          $gt: 50000
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique document key
+        etag:
+          type: string
+          description: Document version tag for optimistic concurrency
+        lastModified:
+          type: string
+          format: date-time
+          description: Last modification timestamp
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        value:
+          type: object
+          description: Document content (when fields=value or fields=all)
+        mediaType:
+          type: string
+          description: Content type for non-JSON documents
+        bytes:
+          type: integer
+          description: Content length for non-JSON documents
   parameters:
     collectionParam:
       name: collection
@@ -183,6 +170,19 @@ components:
       description: The name of the SODA collection
       schema:
         type: string
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

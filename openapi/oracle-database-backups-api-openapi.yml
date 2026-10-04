@@ -127,48 +127,40 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
-    compartmentIdParam:
-      name: compartmentId
-      in: query
-      required: true
-      description: The OCID of the compartment
-      schema:
-        type: string
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
-      schema:
-        type: string
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    BackupSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        databaseId:
+          type: string
+        displayName:
+          type: string
+        type:
+          type: string
+        lifecycleState:
+          type: string
+        timeStarted:
+          type: string
+          format: date-time
+    CreateBackupDetails:
+      type: object
+      required:
+      - databaseId
+      - displayName
+      properties:
+        databaseId:
+          type: string
+        displayName:
+          type: string
     Backup:
       type: object
       properties:
@@ -194,39 +186,47 @@ components:
         timeEnded:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    CreateBackupDetails:
-      type: object
-      required:
-      - databaseId
-      - displayName
-      properties:
-        databaseId:
-          type: string
-        displayName:
-          type: string
-    BackupSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        databaseId:
-          type: string
-        displayName:
-          type: string
-        type:
-          type: string
-        lifecycleState:
-          type: string
-        timeStarted:
-          type: string
-          format: date-time
+  parameters:
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+  responses:
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ociSignature:
       type: http

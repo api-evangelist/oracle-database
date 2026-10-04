@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   description: Provides the Oracle REST Data Services (ORDS) users the ability to perform Oracle Database management and monitoring operations through a user-friendly REST API.
   version: 2026.03.26
-  title: Oracle REST Data Services … Oracle Transactional Event……
+  title: Oracle REST Data Services … Oracle Transactional Event………
   contact:
     name: Oracle REST Data Services
     url: https://www.oracle.com/database/technologies/appdev/rest.html
