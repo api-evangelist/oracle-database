@@ -1209,6 +1209,12 @@ maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 common:
+- type: Plans
+  url: plans/oracle-database-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/oracle-database-rate-limits.yml
+- type: FinOps
+  url: finops/oracle-database-finops.yml
 - type: CapabilityMap
   url: capabilities/oracle-database-capability-edges.yml
   name: Oracle Database Business Capability Map
