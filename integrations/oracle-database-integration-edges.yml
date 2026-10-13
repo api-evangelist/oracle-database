@@ -1,0 +1,24 @@
+edges:
+- partner_name: Apache Kafka
+  partner: apache-kafka
+  partner_match: shape-anchor
+  channel: provider-built
+  relationship: compatible
+  direction: provider-built
+  shape: kafka-protocol
+  type: docs
+  degree: declared-subset
+  evidence: https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/Kafka_cient_interface_TEQ.html
+  evidence_kind: own-docs
+  evidence_file: https://github.com/api-evangelist/oracle-database/blob/main/evidence/compatibility/oracle-database-kafka-protocol-1.md
+  quote: Oracle Transactional Event Queue (TxEventQ) makes it easy to implement event-based applications. It is
+    also highly integrated with Apache Kafka, an open-source stream-processing software platform developed by LinkedIn
+    and donated to the Apa
+  supported_operations:
+  - Produce
+  unsupported_operations: []
+  supported_share: 0.024
+  detected_by: sweep-shape-compat.py
+  first_seen: '2026-10-13'
+generated: '2026-10-13'
+method: searched

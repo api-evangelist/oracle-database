@@ -1,0 +1,12 @@
+fetched: '2026-10-13'
+method: fetched
+source: https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/Kafka_cient_interface_TEQ.html
+page: https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/Kafka_cient_interface_TEQ.html
+file: oracle-database-kafka-protocol-1.md
+bytes: 48483
+sha256: 69b83ac7890d6282b2d71f2a8c81112d55135bf57f0c4e7c908cdcd0b3b84929
+anchor: apache-kafka
+shape: kafka-protocol
+classification: no-compatibility-statement
+quote: null
+note: text extracted from the provider's own page (tags stripped), saved for evidence
