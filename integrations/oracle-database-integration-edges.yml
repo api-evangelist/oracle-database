@@ -20,5 +20,29 @@ edges:
   supported_share: 0.024
   detected_by: sweep-shape-compat.py
   first_seen: '2026-10-13'
+- partner_name: LlamaIndex
+  partner: llamaindex
+  partner_match: framework
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-oracledb
+  coverage_role:
+  - embeddings
+  - vector-store
+  framework_signals:
+    packages:
+    - llama-index-embeddings-oracleai
+    - llama-index-vector-stores-oracledb
+    roles:
+    - embeddings
+    - vector-store
+    vendor_domain: oracle.com
+  matched_by: verified-domain-table
+  detected_by: sweep-rag-vector.py
+  first_seen: '2026-10-15'
 generated: '2026-10-13'
 method: searched
+checked:
+- https://github.com/run-llama/llama_index/tree/main/llama-index-integrations
