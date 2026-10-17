@@ -736,6 +736,40 @@ paths:
       operationId: putDatabaseDataguardDatabasesByDatabasePropertiesByProperty
       x-operation-id-source: derived
 components:
+  parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Not authenticated
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized_2:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error_2'
   schemas:
     Error:
       type: object
@@ -782,62 +816,6 @@ components:
         timeCreated:
           type: string
           format: date-time
-    Error_2:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
-    CreateDataGuardConfigRequest:
-      type: object
-      required:
-      - configuration_name
-      properties:
-        configuration_name:
-          type: string
-        protection_mode:
-          type: string
-          enum:
-          - MAXIMUM_AVAILABILITY
-          - MAXIMUM_PERFORMANCE
-          - MAXIMUM_PROTECTION
-    DataGuardConfiguration:
-      type: object
-      properties:
-        configuration_name:
-          type: string
-        protection_mode:
-          type: string
-        enabled:
-          type: boolean
-        databases:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataGuardDatabase'
-    AddDataGuardDatabaseRequest:
-      type: object
-      required:
-      - database_name
-      - connect_identifier
-      properties:
-        database_name:
-          type: string
-        connect_identifier:
-          type: string
-    UpdateDataGuardDatabaseRequest:
-      type: object
-      properties:
-        action:
-          type: string
-          enum:
-          - ENABLE
-          - DISABLE
-          - CONVERT
-          - SWITCHOVER
-          - FAILOVER
     DataGuardDatabase:
       type: object
       properties:
@@ -856,6 +834,30 @@ components:
           type: string
         apply_lag:
           type: string
+    DataGuardConfiguration:
+      type: object
+      properties:
+        configuration_name:
+          type: string
+        protection_mode:
+          type: string
+        enabled:
+          type: boolean
+        databases:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataGuardDatabase'
+    UpdateDataGuardDatabaseRequest:
+      type: object
+      properties:
+        action:
+          type: string
+          enum:
+          - ENABLE
+          - DISABLE
+          - CONVERT
+          - SWITCHOVER
+          - FAILOVER
     DataGuardDatabaseList:
       type: object
       properties:
@@ -863,6 +865,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DataGuardDatabase'
+    Error_2:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
     UpdateDataGuardConfigRequest:
       type: object
       properties:
@@ -870,15 +881,48 @@ components:
           type: boolean
         protection_mode:
           type: string
-    DataguardConfigurationPropertyItem:
+    CreateDataGuardConfigRequest:
+      type: object
+      required:
+      - configuration_name
+      properties:
+        configuration_name:
+          type: string
+        protection_mode:
+          type: string
+          enum:
+          - MAXIMUM_AVAILABILITY
+          - MAXIMUM_PERFORMANCE
+          - MAXIMUM_PROTECTION
+    AddDataGuardDatabaseRequest:
+      type: object
+      required:
+      - database_name
+      - connect_identifier
+      properties:
+        database_name:
+          type: string
+        connect_identifier:
+          type: string
+    DataguardInstanceCollection:
       type: object
       properties:
-        property:
-          type: string
-        property_type:
-          type: string
-        value:
-          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataguardInstanceItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
         links:
           type: array
           items:
@@ -908,6 +952,52 @@ components:
           type: string
         con_id:
           type: integer
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    DataguardConfigurationPropertyItem:
+      type: object
+      properties:
+        property:
+          type: string
+        property_type:
+          type: string
+        value:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    DataguardConfigurationPropertiesCollection:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataguardConfigurationPropertyItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
         links:
           type: array
           items:
@@ -975,96 +1065,6 @@ components:
           type: string
         instance:
           type: string
-    DataguardConfigurationPropertiesCollection:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataguardConfigurationPropertyItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
-    DataguardInstanceCollection:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/DataguardInstanceItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-  parameters:
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-  responses:
-    Unauthorized:
-      description: Not authenticated
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized_2:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
-    NotFound:
-      description: The specified resource was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error_2'
   securitySchemes:
     ociSignature:
       type: http

@@ -82,39 +82,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    DocumentList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-        hasMore:
-          type: boolean
-          description: Whether more documents exist beyond this page
-        limit:
-          type: integer
-          description: Server-imposed result limit
-        offset:
-          type: integer
-          description: Offset of first returned result
-        count:
-          type: integer
-          description: Number of documents in this response
-        totalResults:
-          type: integer
-          description: Total documents in collection (only if totalResults=true)
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     Link:
       type: object
       properties:
@@ -128,14 +95,6 @@ components:
         mediaType:
           type: string
           description: Media type of the linked resource
-    QBEFilter:
-      type: object
-      description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
-      additionalProperties: true
-      example:
-        name: John
-        salary:
-          $gt: 50000
     Document:
       type: object
       properties:
@@ -162,14 +121,47 @@ components:
         bytes:
           type: integer
           description: Content length for non-JSON documents
-  parameters:
-    collectionParam:
-      name: collection
-      in: path
-      required: true
-      description: The name of the SODA collection
-      schema:
-        type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    QBEFilter:
+      type: object
+      description: Query by Example filter specification. Provide field names and values to match, or use operators like $gt, $lt, $in, $regex, etc.
+      additionalProperties: true
+      example:
+        name: John
+        salary:
+          $gt: 50000
+    DocumentList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        hasMore:
+          type: boolean
+          description: Whether more documents exist beyond this page
+        limit:
+          type: integer
+          description: Server-imposed result limit
+        offset:
+          type: integer
+          description: Offset of first returned result
+        count:
+          type: integer
+          description: Number of documents in this response
+        totalResults:
+          type: integer
+          description: Total documents in collection (only if totalResults=true)
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
   responses:
     Unauthorized:
       description: Authentication required or credentials invalid
@@ -183,6 +175,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    collectionParam:
+      name: collection
+      in: path
+      required: true
+      description: The name of the SODA collection
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2

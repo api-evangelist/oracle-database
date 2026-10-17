@@ -158,14 +158,10 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
+    SnapshotMode:
       type: object
       properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
+        snapshot_mode:
           type: string
     AutoSnapshotConfig:
       type: object
@@ -189,10 +185,14 @@ components:
           format: date-time
         pdb_name:
           type: string
-    SnapshotMode:
+    Error:
       type: object
       properties:
-        snapshot_mode:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
           type: string
     SnapshotList:
       type: object

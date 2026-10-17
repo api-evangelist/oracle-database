@@ -346,32 +346,92 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  parameters:
+    opcRequestIdParam:
+      name: opc-request-id
+      in: header
+      description: Unique request identifier for tracing
+      schema:
+        type: string
+    pageParam:
+      name: page
+      in: query
+      description: Pagination token from a previous response
+      schema:
+        type: string
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
+    autonomousDatabaseIdParam:
+      name: autonomousDatabaseId
+      in: path
+      required: true
+      description: The OCID of the Autonomous Database
+      schema:
+        type: string
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+    opcRetryTokenParam:
+      name: opc-retry-token
+      in: header
+      description: Unique retry token to prevent duplicate requests
+      schema:
+        type: string
   schemas:
-    AutonomousDatabaseBackupSummary:
+    GenerateAutonomousDatabaseWalletDetails:
+      type: object
+      required:
+      - password
+      properties:
+        password:
+          type: string
+          format: password
+          description: Password to encrypt the wallet keys
+        generateType:
+          type: string
+          enum:
+          - ALL
+          - SINGLE
+    AutonomousDatabaseSummary:
       type: object
       properties:
         id:
           type: string
-        autonomousDatabaseId:
+        compartmentId:
           type: string
         displayName:
           type: string
-        type:
+        dbName:
           type: string
+        dbWorkload:
+          type: string
+        cpuCoreCount:
+          type: integer
+        dataStorageSizeInTBs:
+          type: integer
         lifecycleState:
           type: string
-        timeStarted:
+        timeCreated:
           type: string
           format: date-time
-        isAutomatic:
+        isFreeTier:
           type: boolean
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     UpdateAutonomousDatabaseDetails:
       type: object
       properties:
@@ -394,33 +454,6 @@ components:
           type: object
           additionalProperties:
             type: string
-    AutonomousDatabaseBackup:
-      type: object
-      properties:
-        id:
-          type: string
-        autonomousDatabaseId:
-          type: string
-        displayName:
-          type: string
-        type:
-          type: string
-          enum:
-          - INCREMENTAL
-          - FULL
-          - LONG_TERM
-        lifecycleState:
-          type: string
-        databaseSizeInTBs:
-          type: number
-        timeStarted:
-          type: string
-          format: date-time
-        timeEnded:
-          type: string
-          format: date-time
-        isAutomatic:
-          type: boolean
     CreateAutonomousDatabaseDetails:
       type: object
       required:
@@ -469,34 +502,31 @@ components:
           type: object
           additionalProperties:
             type: string
-    CreateAutonomousDatabaseBackupDetails:
+    Error:
       type: object
-      required:
-      - autonomousDatabaseId
-      - displayName
       properties:
+        code:
+          type: string
+        message:
+          type: string
+    AutonomousDatabaseBackupSummary:
+      type: object
+      properties:
+        id:
+          type: string
         autonomousDatabaseId:
           type: string
         displayName:
           type: string
-        isLongTermBackup:
+        type:
+          type: string
+        lifecycleState:
+          type: string
+        timeStarted:
+          type: string
+          format: date-time
+        isAutomatic:
           type: boolean
-        retentionPeriodInDays:
-          type: integer
-    GenerateAutonomousDatabaseWalletDetails:
-      type: object
-      required:
-      - password
-      properties:
-        password:
-          type: string
-          format: password
-          description: Password to encrypt the wallet keys
-        generateType:
-          type: string
-          enum:
-          - ALL
-          - SINGLE
     AutonomousDatabase:
       type: object
       properties:
@@ -590,37 +620,48 @@ components:
           type: object
           additionalProperties:
             type: object
-    AutonomousDatabaseSummary:
+    AutonomousDatabaseBackup:
       type: object
       properties:
         id:
           type: string
-        compartmentId:
+        autonomousDatabaseId:
           type: string
         displayName:
           type: string
-        dbName:
+        type:
           type: string
-        dbWorkload:
-          type: string
-        cpuCoreCount:
-          type: integer
-        dataStorageSizeInTBs:
-          type: integer
+          enum:
+          - INCREMENTAL
+          - FULL
+          - LONG_TERM
         lifecycleState:
           type: string
-        timeCreated:
+        databaseSizeInTBs:
+          type: number
+        timeStarted:
           type: string
           format: date-time
-        isFreeTier:
+        timeEnded:
+          type: string
+          format: date-time
+        isAutomatic:
           type: boolean
+    CreateAutonomousDatabaseBackupDetails:
+      type: object
+      required:
+      - autonomousDatabaseId
+      - displayName
+      properties:
+        autonomousDatabaseId:
+          type: string
+        displayName:
+          type: string
+        isLongTermBackup:
+          type: boolean
+        retentionPeriodInDays:
+          type: integer
   responses:
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Not authenticated
       content:
@@ -633,53 +674,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
-      schema:
-        type: string
-    autonomousDatabaseIdParam:
-      name: autonomousDatabaseId
-      in: path
-      required: true
-      description: The OCID of the Autonomous Database
-      schema:
-        type: string
-    compartmentIdParam:
-      name: compartmentId
-      in: query
-      required: true
-      description: The OCID of the compartment
-      schema:
-        type: string
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-    pageParam:
-      name: page
-      in: query
-      description: Pagination token from a previous response
-      schema:
-        type: string
-    opcRetryTokenParam:
-      name: opc-retry-token
-      in: header
-      description: Unique retry token to prevent duplicate requests
-      schema:
-        type: string
-    opcRequestIdParam:
-      name: opc-request-id
-      in: header
-      description: Unique request identifier for tracing
-      schema:
-        type: string
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ociSignature:
       type: http

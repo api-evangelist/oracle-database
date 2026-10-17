@@ -170,131 +170,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-    CreateDatabaseDetails:
-      type: object
-      required:
-      - dbHomeId
-      - dbName
-      - adminPassword
-      properties:
-        dbHomeId:
-          type: string
-        dbName:
-          type: string
-        adminPassword:
-          type: string
-          format: password
-        characterSet:
-          type: string
-        ncharacterSet:
-          type: string
-        pdbName:
-          type: string
-    DbSystem:
-      type: object
-      properties:
-        id:
-          type: string
-        compartmentId:
-          type: string
-        displayName:
-          type: string
-        availabilityDomain:
-          type: string
-        shape:
-          type: string
-        cpuCoreCount:
-          type: integer
-        nodeCount:
-          type: integer
-        dataStorageSizeInGBs:
-          type: integer
-        databaseEdition:
-          type: string
-          enum:
-          - STANDARD_EDITION
-          - ENTERPRISE_EDITION
-          - ENTERPRISE_EDITION_HIGH_PERFORMANCE
-          - ENTERPRISE_EDITION_EXTREME_PERFORMANCE
-        lifecycleState:
-          type: string
-        hostname:
-          type: string
-        domain:
-          type: string
-        subnetId:
-          type: string
-        sshPublicKeys:
-          type: array
-          items:
-            type: string
-        timeCreated:
-          type: string
-          format: date-time
-        version:
-          type: string
-        licenseModel:
-          type: string
-        diskRedundancy:
-          type: string
-          enum:
-          - HIGH
-          - NORMAL
-    DbSystemSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        compartmentId:
-          type: string
-        displayName:
-          type: string
-        shape:
-          type: string
-        lifecycleState:
-          type: string
-        databaseEdition:
-          type: string
-        cpuCoreCount:
-          type: integer
-        timeCreated:
-          type: string
-          format: date-time
-    UpdateDbSystemDetails:
-      type: object
-      properties:
-        displayName:
-          type: string
-        cpuCoreCount:
-          type: integer
-        sshPublicKeys:
-          type: array
-          items:
-            type: string
-        dataStorageSizeInGBs:
-          type: integer
-        freeformTags:
-          type: object
-          additionalProperties:
-            type: string
-    CreateDbHomeDetails:
-      type: object
-      required:
-      - dbVersion
-      properties:
-        dbVersion:
-          type: string
-        displayName:
-          type: string
-        database:
-          $ref: '#/components/schemas/CreateDatabaseDetails'
     LaunchDbSystemDetails:
       type: object
       required:
@@ -347,37 +222,136 @@ components:
           enum:
           - HIGH
           - NORMAL
+    CreateDatabaseDetails:
+      type: object
+      required:
+      - dbHomeId
+      - dbName
+      - adminPassword
+      properties:
+        dbHomeId:
+          type: string
+        dbName:
+          type: string
+        adminPassword:
+          type: string
+          format: password
+        characterSet:
+          type: string
+        ncharacterSet:
+          type: string
+        pdbName:
+          type: string
+    CreateDbHomeDetails:
+      type: object
+      required:
+      - dbVersion
+      properties:
+        dbVersion:
+          type: string
+        displayName:
+          type: string
+        database:
+          $ref: '#/components/schemas/CreateDatabaseDetails'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    DbSystem:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        availabilityDomain:
+          type: string
+        shape:
+          type: string
+        cpuCoreCount:
+          type: integer
+        nodeCount:
+          type: integer
+        dataStorageSizeInGBs:
+          type: integer
+        databaseEdition:
+          type: string
+          enum:
+          - STANDARD_EDITION
+          - ENTERPRISE_EDITION
+          - ENTERPRISE_EDITION_HIGH_PERFORMANCE
+          - ENTERPRISE_EDITION_EXTREME_PERFORMANCE
+        lifecycleState:
+          type: string
+        hostname:
+          type: string
+        domain:
+          type: string
+        subnetId:
+          type: string
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        timeCreated:
+          type: string
+          format: date-time
+        version:
+          type: string
+        licenseModel:
+          type: string
+        diskRedundancy:
+          type: string
+          enum:
+          - HIGH
+          - NORMAL
+    UpdateDbSystemDetails:
+      type: object
+      properties:
+        displayName:
+          type: string
+        cpuCoreCount:
+          type: integer
+        sshPublicKeys:
+          type: array
+          items:
+            type: string
+        dataStorageSizeInGBs:
+          type: integer
+        freeformTags:
+          type: object
+          additionalProperties:
+            type: string
+    DbSystemSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        shape:
+          type: string
+        lifecycleState:
+          type: string
+        databaseEdition:
+          type: string
+        cpuCoreCount:
+          type: integer
+        timeCreated:
+          type: string
+          format: date-time
   parameters:
-    dbSystemIdParam:
-      name: dbSystemId
-      in: path
-      required: true
-      description: The OCID of the DB System
-      schema:
-        type: string
     pageParam:
       name: page
       in: query
       description: Pagination token from a previous response
-      schema:
-        type: string
-    ifMatchParam:
-      name: if-match
-      in: header
-      description: ETag value for optimistic concurrency control
-      schema:
-        type: string
-    opcRetryTokenParam:
-      name: opc-retry-token
-      in: header
-      description: Unique retry token to prevent duplicate requests
-      schema:
-        type: string
-    compartmentIdParam:
-      name: compartmentId
-      in: query
-      required: true
-      description: The OCID of the compartment
       schema:
         type: string
     limitParam:
@@ -388,13 +362,33 @@ components:
         type: integer
         minimum: 1
         maximum: 1000
+    opcRetryTokenParam:
+      name: opc-retry-token
+      in: header
+      description: Unique retry token to prevent duplicate requests
+      schema:
+        type: string
+    dbSystemIdParam:
+      name: dbSystemId
+      in: path
+      required: true
+      description: The OCID of the DB System
+      schema:
+        type: string
+    ifMatchParam:
+      name: if-match
+      in: header
+      description: ETag value for optimistic concurrency control
+      schema:
+        type: string
+    compartmentIdParam:
+      name: compartmentId
+      in: query
+      required: true
+      description: The OCID of the compartment
+      schema:
+        type: string
   responses:
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Not authenticated
       content:
@@ -403,6 +397,12 @@ components:
             $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:

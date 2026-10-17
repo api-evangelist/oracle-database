@@ -288,52 +288,6 @@ paths:
           description: Collection is read-only
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    DocumentList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-        hasMore:
-          type: boolean
-          description: Whether more documents exist beyond this page
-        limit:
-          type: integer
-          description: Server-imposed result limit
-        offset:
-          type: integer
-          description: Offset of first returned result
-        count:
-          type: integer
-          description: Number of documents in this response
-        totalResults:
-          type: integer
-          description: Total documents in collection (only if totalResults=true)
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-          description: Link relation type
-        href:
-          type: string
-          format: uri
-          description: Link URL
-        mediaType:
-          type: string
-          description: Media type of the linked resource
     DocumentMetadata:
       type: object
       properties:
@@ -347,6 +301,52 @@ components:
         created:
           type: string
           format: date-time
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+          description: Link relation type
+        href:
+          type: string
+          format: uri
+          description: Link URL
+        mediaType:
+          type: string
+          description: Media type of the linked resource
+    Document:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique document key
+        etag:
+          type: string
+          description: Document version tag for optimistic concurrency
+        lastModified:
+          type: string
+          format: date-time
+          description: Last modification timestamp
+        created:
+          type: string
+          format: date-time
+          description: Creation timestamp
+        value:
+          type: object
+          description: Document content (when fields=value or fields=all)
+        mediaType:
+          type: string
+          description: Content type for non-JSON documents
+        bytes:
+          type: integer
+          description: Content length for non-JSON documents
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     InsertResponse:
       type: object
       properties:
@@ -380,32 +380,51 @@ components:
         from:
           type: string
           description: JSON Pointer path for move and copy source
-    Document:
+    DocumentList:
       type: object
       properties:
-        id:
-          type: string
-          description: Unique document key
-        etag:
-          type: string
-          description: Document version tag for optimistic concurrency
-        lastModified:
-          type: string
-          format: date-time
-          description: Last modification timestamp
-        created:
-          type: string
-          format: date-time
-          description: Creation timestamp
-        value:
-          type: object
-          description: Document content (when fields=value or fields=all)
-        mediaType:
-          type: string
-          description: Content type for non-JSON documents
-        bytes:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        hasMore:
+          type: boolean
+          description: Whether more documents exist beyond this page
+        limit:
           type: integer
-          description: Content length for non-JSON documents
+          description: Server-imposed result limit
+        offset:
+          type: integer
+          description: Offset of first returned result
+        count:
+          type: integer
+          description: Number of documents in this response
+        totalResults:
+          type: integer
+          description: Total documents in collection (only if totalResults=true)
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+  responses:
+    Unauthorized:
+      description: Authentication required or credentials invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The specified collection or document was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Bad request - invalid parameter value
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     keyParam:
       name: key
@@ -421,25 +440,6 @@ components:
       description: The name of the SODA collection
       schema:
         type: string
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameter value
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required or credentials invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: The specified collection or document was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

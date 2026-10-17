@@ -1367,24 +1367,6 @@ paths:
       operationId: getOrdsRestOverviewObjectsRecent
       x-operation-id-source: derived
 components:
-  examples:
-    OrderByProperty:
-      summary: Order by with literals.
-      value:
-        $orderby:
-          SALARY: ASC
-          ENAME: DESC
-    FilterAndOrder:
-      summary: Filter criteria supports a wide range of operators. In this example LIKE operator ($like) is used. See Oracle REST Data Services production documentation 'Filtering in Queries' section for further information on the operators available.
-      value:
-        ENAME:
-          $like: AX%
-        $orderby:
-          ENAME: ASC
-    FilterCriteria:
-      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
-      value:
-        SALARY: 1000
   schemas:
     ItemsCollection:
       type: object
@@ -1417,6 +1399,36 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
+    RestClientSecretItem:
+      type: object
+      description: This object represents a new client secret .
+      properties:
+        id:
+          type: integer
+          description: The original generated client identifier.
+        name:
+          type: string
+          description: The name for the client.
+        client_secret:
+          type: string
+          description: The client secret for slot 1.
+        client_secret_2:
+          type: string
+          description: The client secret for slot 2.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
     RestClientCollectionItem:
       type: object
       description: ORDS OAuth clients
@@ -1509,36 +1521,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
-    RestClientSecretItem:
-      type: object
-      description: This object represents a new client secret .
-      properties:
-        id:
-          type: integer
-          description: The original generated client identifier.
-        name:
-          type: string
-          description: The name for the client.
-        client_secret:
-          type: string
-          description: The client secret for slot 1.
-        client_secret_2:
-          type: string
-          description: The client secret for slot 2.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
     Filter:
       type: object
       description: See Oracle REST Data Services production documentation 'Filtering in Queries' section.
@@ -1555,6 +1537,24 @@ components:
           $asof:
             description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
             type: object
+  examples:
+    FilterCriteria:
+      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
+      value:
+        SALARY: 1000
+    FilterAndOrder:
+      summary: Filter criteria supports a wide range of operators. In this example LIKE operator ($like) is used. See Oracle REST Data Services production documentation 'Filtering in Queries' section for further information on the operators available.
+      value:
+        ENAME:
+          $like: AX%
+        $orderby:
+          ENAME: ASC
+    OrderByProperty:
+      summary: Order by with literals.
+      value:
+        $orderby:
+          SALARY: ASC
+          ENAME: DESC
   parameters:
     Filter:
       name: q

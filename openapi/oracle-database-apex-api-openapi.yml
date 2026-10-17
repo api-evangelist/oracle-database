@@ -163,40 +163,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-        type:
-          type: string
-    APEXApplicationRequest:
-      type: object
-      properties:
-        application_name:
-          type: string
-        workspace:
-          type: string
-    APEXWorkspace:
-      type: object
-      properties:
-        workspace_name:
-          type: string
-        workspace_id:
-          type: integer
-        schemas:
-          type: array
-          items:
-            type: string
-    APEXWorkspaceList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/APEXWorkspace'
     APEXApplicationList:
       type: object
       properties:
@@ -222,6 +188,40 @@ components:
           type: integer
         total_developers:
           type: integer
+    APEXWorkspaceList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/APEXWorkspace'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        type:
+          type: string
+    APEXWorkspace:
+      type: object
+      properties:
+        workspace_name:
+          type: string
+        workspace_id:
+          type: integer
+        schemas:
+          type: array
+          items:
+            type: string
+    APEXApplicationRequest:
+      type: object
+      properties:
+        application_name:
+          type: string
+        workspace:
+          type: string
   responses:
     Unauthorized:
       description: Authentication required or credentials invalid

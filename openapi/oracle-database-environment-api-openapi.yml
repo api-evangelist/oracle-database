@@ -564,52 +564,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    EnvironmentHomes:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentHomesItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    EnvironmentDbcaJobs:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/EnvironmentDbcaJobsItem'
-        hasMore:
-          type: boolean
-          description: Indicates if there are more records to be retrieved.
-        limit:
-          type: integer
-          description: The actual page size limit on number of records applied by the server.
-        offset:
-          type: integer
-          description: The actual index from which the item resources are returned.
-        count:
-          type: integer
-          description: Total number of records in the current response.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
     EnvironmentDatabases:
       type: object
       properties:
@@ -617,6 +571,29 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EnvironmentDatabasesItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    EnvironmentHomes:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentHomesItem'
         hasMore:
           type: boolean
           description: Indicates if there are more records to be retrieved.
@@ -653,6 +630,53 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
+    LinkRelation:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+      required:
+      - rel
+      - href
+    EnvironmentDbcaJobs:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/EnvironmentDbcaJobsItem'
+        hasMore:
+          type: boolean
+          description: Indicates if there are more records to be retrieved.
+        limit:
+          type: integer
+          description: The actual page size limit on number of records applied by the server.
+        offset:
+          type: integer
+          description: The actual index from which the item resources are returned.
+        count:
+          type: integer
+          description: Total number of records in the current response.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
+    EnvironmentDatabasesItem:
+      type: object
+      description: A database has a unique name within the context of the Oracle home it belongs to.
+      properties:
+        name:
+          type: string
+          description: The name of the database.
+        type:
+          type: string
+          description: The type of database. Either CDB or NON_CDB
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     EnvironmentDbcaTemplates:
       type: object
       description: Represents a list of the DBCA Database Templates in the Oracle Home.
@@ -675,30 +699,6 @@ components:
                 type: array
                 items:
                   $ref: '#/components/schemas/LinkRelation'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
-    EnvironmentDatabasesItem:
-      type: object
-      description: A database has a unique name within the context of the Oracle home it belongs to.
-      properties:
-        name:
-          type: string
-          description: The name of the database.
-        type:
-          type: string
-          description: The type of database. Either CDB or NON_CDB
         links:
           type: array
           items:

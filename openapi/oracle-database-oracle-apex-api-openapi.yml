@@ -502,25 +502,42 @@ paths:
       operationId: postApexApplicationsByApplicationId
       x-operation-id-source: derived
 components:
-  examples:
-    OrderByProperty:
-      summary: Order by with literals.
-      value:
-        $orderby:
-          SALARY: ASC
-          ENAME: DESC
-    FilterAndOrder:
-      summary: Filter criteria supports a wide range of operators. In this example LIKE operator ($like) is used. See Oracle REST Data Services production documentation 'Filtering in Queries' section for further information on the operators available.
-      value:
-        ENAME:
-          $like: AX%
-        $orderby:
-          ENAME: ASC
-    FilterCriteria:
-      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
-      value:
-        SALARY: 1000
   schemas:
+    DatasetItem:
+      type: object
+      description: This object represents a single row on APEX_DR_DATASETS
+      properties:
+        dataset_id:
+          type: integer
+          description: Dataset Primary Key.
+        dataset_name:
+          type: string
+          description: The name of this Dataset.
+        dataset_description:
+          type: string
+          description: A description about this Dataset.
+        static_id:
+          type: string
+          description: The static ID of the dataset
+        workspace_display_name:
+          type: string
+          description: The displayed name of the workspace.
+        workspace:
+          type: string
+          description: The internal name of the workspace.
+        workspace_id:
+          type: string
+          description: The unique ID of the workspace.
+        last_updated_by:
+          type: string
+          description: Last updated by.
+        last_updated_on:
+          type: string
+          description: The date and time of the last update.
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
     APEXUsageStatisticsItem:
       type: object
       description: This object represents a APEX_WORKSPACE_LOG_ARCHIVE record of page view activity. Page view activity is a daily summary of workspace activity that is retained until physically purged.
@@ -577,41 +594,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    DatasetItem:
+    LinkRelation:
       type: object
-      description: This object represents a single row on APEX_DR_DATASETS
       properties:
-        dataset_id:
-          type: integer
-          description: Dataset Primary Key.
-        dataset_name:
+        rel:
           type: string
-          description: The name of this Dataset.
-        dataset_description:
+        href:
           type: string
-          description: A description about this Dataset.
-        static_id:
-          type: string
-          description: The static ID of the dataset
-        workspace_display_name:
-          type: string
-          description: The displayed name of the workspace.
-        workspace:
-          type: string
-          description: The internal name of the workspace.
-        workspace_id:
-          type: string
-          description: The unique ID of the workspace.
-        last_updated_by:
-          type: string
-          description: Last updated by.
-        last_updated_on:
-          type: string
-          description: The date and time of the last update.
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
+      required:
+      - rel
+      - href
     APEXUsageStatistics:
       type: object
       properties:
@@ -659,6 +651,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
+    Filter:
+      type: object
+      description: See Oracle REST Data Services production documentation 'Filtering in Queries' section.
+      externalDocs:
+        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
+      anyOf:
+      - type: object
+        description: Any key / value pair for specifying a Filter Criteria.
+      - type: object
+        properties:
+          $orderby:
+            description: Specify which properties to order the result set by.
+            type: object
+          $asof:
+            description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
+            type: object
     APEXApplicationsItem:
       type: object
       description: This object represents a single row on APEX_APPLICATIONS.
@@ -697,32 +705,24 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LinkRelation'
-    LinkRelation:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-      required:
-      - rel
-      - href
-    Filter:
-      type: object
-      description: See Oracle REST Data Services production documentation 'Filtering in Queries' section.
-      externalDocs:
-        url: https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/
-      anyOf:
-      - type: object
-        description: Any key / value pair for specifying a Filter Criteria.
-      - type: object
-        properties:
-          $orderby:
-            description: Specify which properties to order the result set by.
-            type: object
-          $asof:
-            description: Specify a time related query parameter to limit the results. Parameter value can be a System Change Number or a Date.
-            type: object
+  examples:
+    FilterCriteria:
+      summary: Implicit EQUALS operator for a number. Supports String and Dates too.
+      value:
+        SALARY: 1000
+    FilterAndOrder:
+      summary: Filter criteria supports a wide range of operators. In this example LIKE operator ($like) is used. See Oracle REST Data Services production documentation 'Filtering in Queries' section for further information on the operators available.
+      value:
+        ENAME:
+          $like: AX%
+        $orderby:
+          ENAME: ASC
+    OrderByProperty:
+      summary: Order by with literals.
+      value:
+        $orderby:
+          SALARY: ASC
+          ENAME: DESC
   parameters:
     Filter:
       name: q

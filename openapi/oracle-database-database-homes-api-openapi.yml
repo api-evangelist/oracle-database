@@ -128,12 +128,18 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
+    DbHomeSummary:
       type: object
       properties:
-        code:
+        id:
           type: string
-        message:
+        compartmentId:
+          type: string
+        displayName:
+          type: string
+        dbVersion:
+          type: string
+        lifecycleState:
           type: string
     CreateDatabaseDetails:
       type: object
@@ -184,20 +190,22 @@ components:
           type: string
         database:
           $ref: '#/components/schemas/CreateDatabaseDetails'
-    DbHomeSummary:
+    Error:
       type: object
       properties:
-        id:
+        code:
           type: string
-        compartmentId:
-          type: string
-        displayName:
-          type: string
-        dbVersion:
-          type: string
-        lifecycleState:
+        message:
           type: string
   parameters:
+    limitParam:
+      name: limit
+      in: query
+      description: Maximum number of items to return
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
     pageParam:
       name: page
       in: query
@@ -217,14 +225,6 @@ components:
       description: The OCID of the compartment
       schema:
         type: string
-    limitParam:
-      name: limit
-      in: query
-      description: Maximum number of items to return
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
   responses:
     Unauthorized:
       description: Not authenticated

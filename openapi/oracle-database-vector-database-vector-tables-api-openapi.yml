@@ -222,25 +222,6 @@ paths:
       x-filename-id: vecdb-vector-tables-vector_table_name-patch
 components:
   schemas:
-    VecDBTableCollection:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/VecDBTableItem'
-        hasMore:
-          type: boolean
-        limit:
-          type: number
-        offset:
-          type: number
-        count:
-          type: number
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/LinkRelation'
     VecDBTableNoLinks:
       type: object
       properties:
@@ -448,6 +429,35 @@ components:
           - low
           - medium
           - high
+    ORDSErrorResponse:
+      type: object
+      required:
+      - code
+      - message
+      - type
+      - instance
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        type:
+          type: string
+        instance:
+          type: string
+        diagnosticTrace:
+          type: string
+        stackTrace:
+          type: string
+    VecDBTableItem:
+      allOf:
+      - $ref: '#/components/schemas/VecDBTableNoLinks'
+      - type: object
+        properties:
+          links:
+            type: array
+            items:
+              $ref: '#/components/schemas/LinkRelation'
     LinkRelation:
       type: object
       properties:
@@ -491,35 +501,25 @@ components:
           maximum: 100
         advanced_params:
           type: object
-    VecDBTableItem:
-      allOf:
-      - $ref: '#/components/schemas/VecDBTableNoLinks'
-      - type: object
-        properties:
-          links:
-            type: array
-            items:
-              $ref: '#/components/schemas/LinkRelation'
-    ORDSErrorResponse:
+    VecDBTableCollection:
       type: object
-      required:
-      - code
-      - message
-      - type
-      - instance
       properties:
-        code:
-          type: string
-        message:
-          type: string
-        type:
-          type: string
-        instance:
-          type: string
-        diagnosticTrace:
-          type: string
-        stackTrace:
-          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VecDBTableItem'
+        hasMore:
+          type: boolean
+        limit:
+          type: number
+        offset:
+          type: number
+        count:
+          type: number
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinkRelation'
   securitySchemes:
     BasicAuth:
       type: http
