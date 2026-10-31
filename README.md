@@ -1,4 +1,4 @@
-# Oracle Database (oracle-database)
+# Oracle Database
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,234 +66,268 @@
 
 APIs and interfaces for Oracle Database management, querying, and administration.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/oracle-database/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/oracle-database/refs/heads/main/apis.yml)
+**Areas:** Cloud · Database · Enterprise · Oracle · REST API · SQL
 
-## Scope
+## Oracle Database on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Oracle Database is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/oracle-database/](https://apis.io/providers/oracle-database/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (42)
 
-- Cloud
-- Database
-- Enterprise
-- Oracle
-- REST API
-- SQL
+- [Oracle Database API for MongoDB](https://apis.io/apis/oracle-database/oracle-database-api-for-mongodb/) — MongoDB-compatible API for Oracle Database.
+- [Oracle Database JDBC](https://apis.io/apis/oracle-database/oracle-database-jdbc/) — Java Database Connectivity API for Oracle Database.
+- [Oracle Call Interface (OCI)](https://apis.io/apis/oracle-database/oracle-call-interface-oci/) — C/C++ API for Oracle Database access.
+- [Oracle SQL Developer REST API](https://apis.io/apis/oracle-database/oracle-sql-developer-rest-api/) — RESTful services for Oracle SQL Developer.
+- [Oracle Transactional Event Queues (TxEventQ)](https://apis.io/apis/oracle-database/oracle-transactional-event-queues-txeventq/) — Kafka-compatible event streaming and message queuing built into Oracle Database.
+- [Oracle Database APEX API](https://apis.io/apis/oracle-database/oracle-database-apex-api/) — Oracle APEX workspace and application management
+- [Oracle Database Autonomous Databases API](https://apis.io/apis/oracle-database/oracle-database-autonomous-databases-api/) — Manage Oracle Autonomous Database instances
+- [Oracle Database Backups API](https://apis.io/apis/oracle-database/oracle-database-backups-api/) — Manage database backups
+- [Oracle Database Bulk Operations API](https://apis.io/apis/oracle-database/oracle-database-bulk-operations-api/) — Bulk insert, delete, and update operations
+- [Oracle Database Collections API](https://apis.io/apis/oracle-database/oracle-database-collections-api/) — Collection management operations (create, list, delete)
+- [Oracle Database Data Dictionary API](https://apis.io/apis/oracle-database/oracle-database-data-dictionary-api/) — Database tables, views, columns, indexes, and object metadata
+- [Oracle Database Data Guard API](https://apis.io/apis/oracle-database/oracle-database-data-guard-api/) — Manage Data Guard associations for high availability
+- [Oracle Database Data Pump API](https://apis.io/apis/oracle-database/oracle-database-data-pump-api/) — High-speed data and metadata export/import operations
+- [Oracle Database Homes API](https://apis.io/apis/oracle-database/oracle-database-database-homes-api/) — Manage Oracle Database Home directories
+- [Oracle Database Databases API](https://apis.io/apis/oracle-database/oracle-database-databases-api/) — Manage databases within DB Systems
+- [Oracle Database DB Systems API](https://apis.io/apis/oracle-database/oracle-database-db-systems-api/) — Manage Oracle Database Cloud Service DB Systems
+- [Oracle Database Documents API](https://apis.io/apis/oracle-database/oracle-database-documents-api/) — Document CRUD operations (get, insert, update, delete)
+- [Oracle Database General API](https://apis.io/apis/oracle-database/oracle-database-general-api/) — Core database instance status, version, and configuration services
+- [Oracle Database Indexes API](https://apis.io/apis/oracle-database/oracle-database-indexes-api/) — Collection index management
+- [Oracle Database Metadata API](https://apis.io/apis/oracle-database/oracle-database-metadata-api/) — Collection metadata and catalog operations
+- [Oracle Database Monitoring API](https://apis.io/apis/oracle-database/oracle-database-monitoring-api/) — Database session monitoring, locks, alerts, and wait metrics
+- [Oracle Database Open Service Broker API](https://apis.io/apis/oracle-database/oracle-database-open-service-broker-api/) — Open Service Broker API compliant service provisioning
+- [Oracle Database PDB Snapshots API](https://apis.io/apis/oracle-database/oracle-database-pdb-snapshots-api/) — PDB snapshot carousel management
+- [Oracle Database Performance API](https://apis.io/apis/oracle-database/oracle-database-performance-api/) — SQL performance analysis, execution plans, and active session history
+- [Oracle Database Pluggable Databases API](https://apis.io/apis/oracle-database/oracle-database-pluggable-databases-api/) — Manage pluggable databases in multitenant architecture
+- [Oracle Database Queries API](https://apis.io/apis/oracle-database/oracle-database-queries-api/) — Query by Example (QBE) and filter operations
+- [Oracle Database RDF Graph API](https://apis.io/apis/oracle-database/oracle-database-rdf-graph-api/) — Knowledge graph management using W3C RDF, OWL, and SPARQL standards
+- [Oracle Database REST Services API](https://apis.io/apis/oracle-database/oracle-database-rest-services-api/) — Custom REST API module, handler, and OAuth management
+- [Oracle Database Scheduler API](https://apis.io/apis/oracle-database/oracle-database-scheduler-api/) — Oracle Scheduler job management
+- [Oracle Database Data Tools API](https://apis.io/apis/oracle-database/oracle-database-data-tools-api/) — ORDS Database API services for loading, manipulating and analyzing data: data load jobs, cloud storage links, credentials and table surveys.
+- [Oracle Database Environment API](https://apis.io/apis/oracle-database/oracle-database-environment-api/) — ORDS Database API services for the Oracle Database installation: Oracle Homes, databases in a home, DBCA jobs and DBCA templates. Available on Unix-based…
+- [Oracle Database Oracle APEX API](https://apis.io/apis/oracle-database/oracle-database-oracle-apex-api/) — Services related to Oracle APEX. The product must be installed in the Oracle database that ORDS is configured to use.
+- [Oracle Database Oracle Transactional Event Queues API](https://apis.io/apis/oracle-database/oracle-database-oracle-transactional-event-queues-api/) — Services related to Oracle Transactional Event Queues.
+- [Oracle Database ORDS REST Services API](https://apis.io/apis/oracle-database/oracle-database-ords-rest-services-api/) — Custom Oracle REST Data Services built with SQL & PL/SQL.
+- [Oracle Database Pluggable Database Lifecycle Management API](https://apis.io/apis/oracle-database/oracle-database-pluggable-database-lifecycle-management-api/) — Services related to managing pluggable databases in an Oracle multitenant database instance.
+- [Oracle Database Vector Database/Inference Operations API](https://apis.io/apis/oracle-database/oracle-database-vector-database-inference-operations-api/) — The operations from the Vector Database/Inference Operations category.
+- [Oracle Database Vector Database/Models API](https://apis.io/apis/oracle-database/oracle-database-vector-database-models-api/) — The operations from the Vector Database/Models category.
+- [Oracle Database Vector Database/Summary API](https://apis.io/apis/oracle-database/oracle-database-vector-database-summary-api/) — The operations from the Vector Database/Summary category.
+- [Oracle Database Vector Database/Vector Indexes API](https://apis.io/apis/oracle-database/oracle-database-vector-database-vector-indexes-api/) — The operations from the Vector Database/Vector Indexes category.
+- [Oracle Database Vector Database/Vector Operations API](https://apis.io/apis/oracle-database/oracle-database-vector-database-vector-operations-api/) — The operations from the Vector Database/Vector Operations category.
+- [Oracle Database Vector Database/Vector Search API](https://apis.io/apis/oracle-database/oracle-database-vector-database-vector-search-api/) — The operations from the Vector Database/Vector Search category.
+- [Oracle Database Vector Database/Vector Tables API](https://apis.io/apis/oracle-database/oracle-database-vector-database-vector-tables-api/) — The operations from the Vector Database/Vector Tables category.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2024-01-20
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Oracle REST Data Services (ORDS)
+Event-driven and webhook contracts.
 
-RESTful API development and data access for Oracle Database.
+- [Oracle Transactional Event Queues (TxEventQ) API](https://apis.io/asyncapis/oracle-database/oracle-database-txeventq-asyncapi/)
 
-#### Tags
+#### Event channels (6)
 
-- Data Access
-- Database
-- REST
-- SQL
+Individual events and webhooks the provider emits.
 
-#### Properties
+- [database/txeventq/clusters/{clusterId}/consumer-groups/{consumerGroupId}](https://apis.io/channels/oracle-database/database-txeventq-clusters-clusterid-consumer-groups-consumergroupid/)
+- [database/txeventq/clusters/{clusterId}/topics](https://apis.io/channels/oracle-database/database-txeventq-clusters-clusterid-topics/)
+- [database/txeventq/consumers/{groupName}/instances/{instanceId}/records](https://apis.io/channels/oracle-database/database-txeventq-consumers-groupname-instances-instanceid-records/)
+- [database/txeventq/topics](https://apis.io/channels/oracle-database/database-txeventq-topics/)
+- [database/txeventq/topics/{topicName}](https://apis.io/channels/oracle-database/database-txeventq-topics-topicname/)
+- [database/txeventq/topics/{topicName}/partitions](https://apis.io/channels/oracle-database/database-txeventq-topics-topicname-partitions/)
 
-- [OpenAPI](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Documentation](https://docs.oracle.com/en/database/oracle/oracle-rest-data-services/latest/)
-- [Swagger](https://example.oracle.com/ords/metadata-catalog/)
-- [OpenAPI](openapi/oracle-database-ords-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/oracle-database-ords.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-ords.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/oracle-database-table.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/oracle-database-pluggable-database.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/oracle-database-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+#### Agentic access (1)
 
-### Oracle Database API for MongoDB
+Which operations an agent can call, which act, and which need a human in the loop.
 
-MongoDB-compatible API for Oracle Database.
+- [Oracle Database Agentic Access](https://apis.io/agentic-access/oracle-database/oracle-database-agentic-access/)
 
-#### Tags
+#### JSON Schema (132)
 
-- Database
-- JSON
-- MongoDB
-- NoSQL
+The data models the API reads and writes.
 
-#### Properties
+- [ActiveSessionHistoryList](https://apis.io/schemas/oracle-database/oracle-database-activesessionhistorylist/)
+- [ActiveSessionWaitList](https://apis.io/schemas/oracle-database/oracle-database-activesessionwaitlist/)
+- [AddDataGuardDatabaseRequest](https://apis.io/schemas/oracle-database/oracle-database-adddataguarddatabaserequest/)
+- [AlertList](https://apis.io/schemas/oracle-database/oracle-database-alertlist/)
+- [AlertSummaryList](https://apis.io/schemas/oracle-database/oracle-database-alertsummarylist/)
+- [APEXApplicationList](https://apis.io/schemas/oracle-database/oracle-database-apexapplicationlist/)
+- [APEXApplicationRequest](https://apis.io/schemas/oracle-database/oracle-database-apexapplicationrequest/)
+- [APEXOverview](https://apis.io/schemas/oracle-database/oracle-database-apexoverview/)
+- [APEXWorkspace](https://apis.io/schemas/oracle-database/oracle-database-apexworkspace/)
+- [APEXWorkspaceList](https://apis.io/schemas/oracle-database/oracle-database-apexworkspacelist/)
+- [Oracle Autonomous Database](https://apis.io/schemas/oracle-database/oracle-database-autonomous-database/)
+- [AutonomousDatabase](https://apis.io/schemas/oracle-database/oracle-database-autonomousdatabase/)
+- [AutonomousDatabaseBackup](https://apis.io/schemas/oracle-database/oracle-database-autonomousdatabasebackup/)
+- [AutonomousDatabaseBackupSummary](https://apis.io/schemas/oracle-database/oracle-database-autonomousdatabasebackupsummary/)
+- [AutonomousDatabaseSummary](https://apis.io/schemas/oracle-database/oracle-database-autonomousdatabasesummary/)
+- [AutoRESTRequest](https://apis.io/schemas/oracle-database/oracle-database-autorestrequest/)
+- [AutoSnapshotConfig](https://apis.io/schemas/oracle-database/oracle-database-autosnapshotconfig/)
+- [Backup](https://apis.io/schemas/oracle-database/oracle-database-backup/)
+- [BackupSummary](https://apis.io/schemas/oracle-database/oracle-database-backupsummary/)
+- [BulkDeleteResponse](https://apis.io/schemas/oracle-database/oracle-database-bulkdeleteresponse/)
+- [BulkInsertResponse](https://apis.io/schemas/oracle-database/oracle-database-bulkinsertresponse/)
+- [BulkUpdateRequest](https://apis.io/schemas/oracle-database/oracle-database-bulkupdaterequest/)
+- [BulkUpdateResponse](https://apis.io/schemas/oracle-database/oracle-database-bulkupdateresponse/)
+- [CatalogResponse](https://apis.io/schemas/oracle-database/oracle-database-catalogresponse/)
+- [Oracle SODA Collection](https://apis.io/schemas/oracle-database/oracle-database-collection/)
+- …and 107 more published on APIs.io
 
-- [Documentation](https://docs.oracle.com/en/database/oracle/mongodb-api/)
-- [Getting Started](https://www.oracle.com/database/mongodb-api/get-started/)
-- [Postman Collection](collections/oracle-database-oci.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-oci.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-database-ords.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-ords.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-database-soda.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-soda.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### JSON Structure (1)
 
-### Oracle Cloud Infrastructure Database API
+Data models expressed in JSON Structure.
 
-API for managing Oracle Database services in Oracle Cloud Infrastructure.
+- [Oracle Database Structure](https://apis.io/json-structure/oracle-database/oracle-database-structure/)
 
-#### Tags
+#### JSON-LD (1)
 
-- Autonomous Database
-- Cloud
-- Database Management
-- Infrastructure
+Linked-data contexts for the provider's vocabulary.
 
-#### Properties
+- [Oracle Database Context](https://apis.io/jsonld/oracle-database/oracle-database-context/)
 
-- [OpenAPI](https://docs.oracle.com/iaas/api/#/en/database/) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Documentation](https://docs.oracle.com/iaas/Content/Database/home.htm)
-- [SDK](https://docs.oracle.com/iaas/Content/API/Concepts/sdks.htm)
-- [API Reference](https://docs.oracle.com/iaas/api/#/en/database/20160918/)
-- [OpenAPI](openapi/oracle-database-oci-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/oracle-database-oci.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-oci.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/oracle-database-autonomous-database.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/oracle-database-pluggable-database.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/oracle-database-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+#### Vocabulary (1)
 
-### Oracle Database JDBC
+The provider's domain terms, defined.
 
-Java Database Connectivity API for Oracle Database.
+- [Oracle Database Domain Vocabulary](https://apis.io/vocabularies/oracle-database/oracle-database-vocabulary/)
 
-#### Tags
+#### Collections (51)
 
-- Database Driver
-- Java
-- JDBC
-- SQL
+Postman and Open Collection request collections.
 
-#### Properties
+- [Oracle Database Oracle Cloud Infrastructure Database APEX API](https://apis.io/collections/oracle-database/open-oracle-database-apex-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Autonomous Databases API](https://apis.io/collections/oracle-database/open-oracle-database-autonomous-databases-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Backups API](https://apis.io/collections/oracle-database/open-oracle-database-backups-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Bulk Operations API](https://apis.io/collections/oracle-database/open-oracle-database-bulk-operations-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Collections API](https://apis.io/collections/oracle-database/open-oracle-database-collections-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Data Dictionary API](https://apis.io/collections/oracle-database/open-oracle-database-data-dictionary-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Data Guard API](https://apis.io/collections/oracle-database/open-oracle-database-data-guard-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Data Pump API](https://apis.io/collections/oracle-database/open-oracle-database-data-pump-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Database Homes API](https://apis.io/collections/oracle-database/open-oracle-database-database-homes-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Databases API](https://apis.io/collections/oracle-database/open-oracle-database-databases-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX DB Systems API](https://apis.io/collections/oracle-database/open-oracle-database-db-systems-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Documents API](https://apis.io/collections/oracle-database/open-oracle-database-documents-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX General API](https://apis.io/collections/oracle-database/open-oracle-database-general-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Indexes API](https://apis.io/collections/oracle-database/open-oracle-database-indexes-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Metadata API](https://apis.io/collections/oracle-database/open-oracle-database-metadata-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Monitoring API](https://apis.io/collections/oracle-database/open-oracle-database-monitoring-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database API](https://apis.io/collections/oracle-database/open-oracle-database-oci/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Open Service Broker API](https://apis.io/collections/oracle-database/open-oracle-database-open-service-broker-api/)
+- [Oracle Database Oracle REST Data Services (ORDS) API](https://apis.io/collections/oracle-database/open-oracle-database-ords/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX PDB Snapshots API](https://apis.io/collections/oracle-database/open-oracle-database-pdb-snapshots-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Performance API](https://apis.io/collections/oracle-database/open-oracle-database-performance-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Pluggable Databases API](https://apis.io/collections/oracle-database/open-oracle-database-pluggable-databases-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX Queries API](https://apis.io/collections/oracle-database/open-oracle-database-queries-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX RDF Graph API](https://apis.io/collections/oracle-database/open-oracle-database-rdf-graph-api/)
+- [Oracle Database Oracle Cloud Infrastructure Database APEX REST Services API](https://apis.io/collections/oracle-database/open-oracle-database-rest-services-api/)
+- …and 26 more published on APIs.io
 
-- [Documentation](https://docs.oracle.com/en/database/oracle/oracle-database/21/jjdbc/)
-- [Downloads](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
-- [Git Hub](https://github.com/oracle/oracle-db-examples/tree/master/java)
-- [Postman Collection](collections/oracle-database-oci.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-oci.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-database-ords.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-ords.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-database-soda.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-soda.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (2)
 
-### Oracle Call Interface (OCI)
+Spectral rulesets for the provider's contracts.
 
-C/C++ API for Oracle Database access.
+- [Oracle Database — asyncapi rules](https://apis.io/rules/oracle-database/oracle-database-asyncapi-spectral-rules/)
+- [Oracle Database — jsonschema rules](https://apis.io/rules/oracle-database/oracle-database-jsonschema-spectral-rules/)
 
-#### Tags
+#### Security (2)
 
-- C
-- C++
-- Database Driver
-- Native API
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Oracle Database Authentication](https://apis.io/security/oracle-database/oracle-database-authentication/)
+- [Oracle Database Domain Security](https://apis.io/security/oracle-database/oracle-database-domain-security/)
 
-- [Documentation](https://docs.oracle.com/en/database/oracle/oracle-database/21/lnoci/)
-- [Programming  Guide](https://docs.oracle.com/en/database/oracle/oracle-database/21/lnoci/introduction.html)
-- [Postman Collection](collections/oracle-database-oci.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-oci.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-database-ords.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-ords.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-database-soda.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-soda.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### OAuth scopes (1)
 
-### Oracle SQL Developer REST API
+The permissions the API asks for.
 
-RESTful services for Oracle SQL Developer.
+- [Oracle Database Scopes](https://apis.io/scopes/oracle-database/oracle-database-scopes/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Development Tools
-- REST
-- SQL
+Published plans, tiers and prices.
 
-#### Properties
+- [Oracle Database Plans Pricing](https://apis.io/plans/oracle-database/oracle-database-plans-pricing/)
 
-- [Documentation](https://docs.oracle.com/en/database/oracle/sql-developer/)
-- [User  Guide](https://docs.oracle.com/en/database/oracle/sql-developer/latest/)
-- [Postman Collection](collections/oracle-database-oci.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-oci.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-database-ords.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-ords.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-database-soda.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-soda.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Oracle SODA (Simple Oracle Document Access)
+Published request limits.
 
-NoSQL-style document API for Oracle Database.
+- [Oracle Database Rate Limits](https://apis.io/rate-limits/oracle-database/oracle-database-rate-limits/)
 
-#### Tags
+#### FinOps (1)
 
-- Document Database
-- JSON
-- NoSQL
-- REST
+What the API costs to run, by operation.
 
-#### Properties
+- [Oracle Database Finops](https://apis.io/finops/oracle-database/oracle-database-finops/)
 
-- [Documentation](https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/)
-- [R E S T  A P I](https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/rest/)
-- [Java  A P I](https://docs.oracle.com/en/database/oracle/simple-oracle-document-access/java/)
-- [OpenAPI](openapi/oracle-database-soda-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/oracle-database-soda.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-soda.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/oracle-database-document.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/oracle-database-collection.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/oracle-database-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+## Where to find this API
 
-### Oracle Transactional Event Queues (TxEventQ)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-Kafka-compatible event streaming and message queuing built into Oracle Database.
-
-#### Tags
-
-- Event Streaming
-- Kafka
-- Messaging
-- Pub/Sub
-- Queues
-
-#### Properties
-
-- [Documentation](https://docs.oracle.com/en/database/oracle/oracle-database/23/adque/)
-- [AsyncAPI](asyncapi/oracle-database-txeventq-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [JSON Schema](json-schema/oracle-database-event-message.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON-LD](json-ld/oracle-database-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Postman Collection](collections/oracle-database-oci.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-oci.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-database-ords.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-ords.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/oracle-database-soda.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/oracle-database-soda.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [LinkedIn](https://www.linkedin.com/showcase/oracleautonomousdatabase)
-- [Portal](https://www.oracle.com/database/technologies/appdev.html)
-- [Documentation](https://docs.oracle.com/en/database/oracle/oracle-database/)
-- [Getting Started](https://www.oracle.com/database/technologies/appdev/quickstartsandtutorials.html)
-- [Support](https://www.oracle.com/support/)
-- [Status Page](https://ocistatus.oraclecloud.com/)
-- [Blog](https://blogs.oracle.com/database/)
-- [Terms of Service](https://www.oracle.com/legal/terms.html)
-- [Privacy Policy](https://www.oracle.com/legal/privacy/)
 - [Website](https://www.oracle.com/database/)
-- [Console](https://cloud.oracle.com/)
-- [Sign Up](https://signup.cloud.oracle.com/)
-- [GitHub Organization](https://github.com/oracle)
-- [Community](https://forums.oracle.com/ords/apexds/domain/dev-community)
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/oracle)
-- [YouTube](https://www.youtube.com/user/Oracle)
+- [Documentation](https://docs.oracle.com/en/database/oracle/oracle-database/)
+- [Getting started](https://www.oracle.com/database/technologies/appdev/quickstartsandtutorials.html)
 - [Pricing](https://www.oracle.com/database/technologies/oracle-database-pricing.html)
+- [Support](https://www.oracle.com/support/)
+- [Blog](https://blogs.oracle.com/database/)
+- [Terms of service](https://www.oracle.com/legal/terms.html)
+- [Privacy policy](https://www.oracle.com/legal/privacy/)
+- [GitHub](https://github.com/oracle)
+- [Status](https://ocistatus.oraclecloud.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 49.8** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 44.6 |
+| Contract quality | 67.2 |
+| Contract governance | 13.6 |
+| Operational transparency | 26.3 |
+| Developer ergonomics | 53.6 |
+| Access clarity | 42.1 |
+
+**Agent readiness 34.9** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | mostly |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/oracle-database/](https://apis.io/providers/oracle-database/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Oracle Database: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/oracle-database/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
